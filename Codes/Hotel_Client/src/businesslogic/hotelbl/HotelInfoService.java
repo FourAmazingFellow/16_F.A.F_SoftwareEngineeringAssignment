@@ -7,6 +7,7 @@ import vo.HotelVO;
  * 
  * @author 原
  * @version
+ * @see
  */
 public interface HotelInfoService {
 	

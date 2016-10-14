@@ -10,6 +10,7 @@ import po.HotelPO;
  * 
  * @author 原
  * @version
+ * @see
  */
 public interface HotelDAO {
 	

@@ -10,6 +10,7 @@ import vo.OrderVO;
  * 
  * @author 原
  * @version
+ * @see
  */
 public interface QueryHotelService {
 	

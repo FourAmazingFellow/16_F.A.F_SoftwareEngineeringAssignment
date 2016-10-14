@@ -8,6 +8,7 @@ import vo.HotelBriefInfoVO;
  * 
  * @author 原
  * @version
+ * @see
  */
 public interface SearchHotelService {
 	
