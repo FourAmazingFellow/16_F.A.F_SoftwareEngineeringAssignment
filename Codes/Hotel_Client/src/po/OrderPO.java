@@ -3,15 +3,22 @@ package po;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 
+ * @author Accident
+ * @version 
+ * @see
+ */
+
 public class OrderPO extends OrderBriefInfoPO {
-	String orderID;
-	Calendar orderProducedTime;
-	Calendar lastedOrderDoneTime;
-	int numOfPerson;
-	boolean isChildren;
-	boolean isOnSale;
-	OrderState orderState;
-	boolean isCommented;
+	private String orderID;
+	private Calendar orderProducedTime;
+	private Calendar lastedOrderDoneTime;
+	private int numOfPerson;
+	private boolean isChildren;
+	private boolean isOnSale;
+	private OrderState orderState;
+	private boolean isCommented;
 
 	public OrderPO(long userID,String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			String ID, Calendar oPT, Calendar lODT, int nOP, boolean isChild,
@@ -59,6 +66,38 @@ public class OrderPO extends OrderBriefInfoPO {
 
 	public boolean isCommented() {
 		return isCommented;
+	}
+
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
+	}
+
+	public void setOrderProducedTime(Calendar orderProducedTime) {
+		this.orderProducedTime = orderProducedTime;
+	}
+
+	public void setLastedOrderDoneTime(Calendar lastedOrderDoneTime) {
+		this.lastedOrderDoneTime = lastedOrderDoneTime;
+	}
+
+	public void setNumOfPerson(int numOfPerson) {
+		this.numOfPerson = numOfPerson;
+	}
+
+	public void setChildren(boolean isChildren) {
+		this.isChildren = isChildren;
+	}
+
+	public void setOnSale(boolean isOnSale) {
+		this.isOnSale = isOnSale;
+	}
+
+	public void setOrderState(OrderState orderState) {
+		this.orderState = orderState;
+	}
+
+	public void setCommented(boolean isCommented) {
+		this.isCommented = isCommented;
 	}
 	
 }
