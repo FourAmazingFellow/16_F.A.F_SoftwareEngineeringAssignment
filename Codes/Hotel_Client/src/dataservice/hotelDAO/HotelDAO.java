@@ -30,7 +30,7 @@ public interface HotelDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<HotelBriefInfoPO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException;
+	public ArrayList<HotelBriefInfoPO> getHotelBriefInfoListBySearching (String[] condition) throws RemoteException;
 	
 	/**
 	 * 
@@ -39,7 +39,7 @@ public interface HotelDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<HotelBriefInfoPO> getHotelBriefInfoListByQuerying(String[] condition) throws RemoteException;
+	public ArrayList<HotelBriefInfoPO> getHotelBriefInfoListByQuerying (String[] condition) throws RemoteException;
 	
 	/**
 	 * 

@@ -6,6 +6,6 @@ package vo;
  * @version
  * @see
  */
-public class HotelBriefInfoVO {
+public class HotelBriefInfoVO extends HotelVO{
 
 }

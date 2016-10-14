@@ -7,10 +7,5 @@ package po;
  * @see
  */
 public class HotelBriefInfoPO {
-	String hotelName;
-	String businessDistrict;
-	String hotelAddress;
-	int starLevel;
-	int mark;
 
 }

@@ -6,7 +6,6 @@ package po;
  * @version
  * @see
  */
-public class HotelPO extends HotelBriefInfoPO {
-	
+public class HotelPO {
 
 }
