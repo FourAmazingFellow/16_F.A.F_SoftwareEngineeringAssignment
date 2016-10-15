@@ -12,17 +12,17 @@ import vo.UserVO;
 public interface ManageHotelInfoService {
 	
 	/**
-	 * 
-	 * @param hotel
-	 * @return
-	 * @see
+	 * 添加酒店
+	 * @param hotel HotelVO型，界面传递来的酒店信息
+	 * @return 添加酒店成功返回true，添加酒店失败返回false
+	 * @see 
 	 */
 	public boolean addHotel(HotelVO hotel);
 	
 	/**
-	 * 
-	 * @param staff
-	 * @return
+	 * 添加酒店工作人员
+	 * @param staff UserVO型，界面传递来的员工信息
+	 * @return 添加酒店工作人员成功返回true，添加酒店工作人员失败返回false
 	 * @see
 	 */
 	public boolean addHotelStaff(UserVO staff);

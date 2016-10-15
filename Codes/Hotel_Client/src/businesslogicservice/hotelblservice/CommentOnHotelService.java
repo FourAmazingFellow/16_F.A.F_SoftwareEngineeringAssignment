@@ -13,9 +13,9 @@ import vo.OrderVO;
 public interface CommentOnHotelService {
 	
 	/**
-	 * 获取该用户可以评价的酒店对应的已执行订单列表
+	 * 获取用户可以评价的酒店对应的已执行订单列表
 	 * @param ID long型，界面传递过来的用户标识
-	 * @return 返回该用户可以评价的酒店对应的已执行订单列表
+	 * @return 返回用户可以评价的酒店对应的已执行订单列表
 	 * @see
 	 */
 	public ArrayList<OrderVO> getCommentableOrderList(long ID);
@@ -30,8 +30,8 @@ public interface CommentOnHotelService {
 	/**
 	 * 确认评价酒店
 	 * @param username String型，界面传递来的客户名称
-	 * @param mark int型，界面传递来的酒店评分
-	 * @param comment String型，界面传递来的酒店评价
+	 * @param mark int型，界面传递来的客户对酒店的评分
+	 * @param comment String型，界面传递来的客户对酒店的评价
 	 * @return 评价成功返回true，评价失败返回false
 	 * @see
 	 */
