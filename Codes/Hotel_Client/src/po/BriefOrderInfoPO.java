@@ -36,7 +36,7 @@ public class BriefOrderInfoPO {
 		return userID;
 	}
 
-	public String gerOrderID(){
+	public String getOrderID(){
 		return orderID;
 	}
 	
