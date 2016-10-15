@@ -6,6 +6,6 @@ package dataservice.orderDAO;
  * @version
  * @see
  */
-public class OrderDAO {
-
+public interface OrderDAO {
+	
 }

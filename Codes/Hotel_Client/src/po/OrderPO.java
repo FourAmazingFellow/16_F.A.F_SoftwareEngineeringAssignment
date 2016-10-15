@@ -11,7 +11,6 @@ import java.util.Date;
  */
 
 public class OrderPO extends OrderBriefInfoPO {
-	private String orderID;
 	private Calendar orderProducedTime;
 	private Calendar lastedOrderDoneTime;
 	private int numOfPerson;
@@ -20,13 +19,12 @@ public class OrderPO extends OrderBriefInfoPO {
 	private OrderState orderState;
 	private boolean isCommented;
 
-	public OrderPO(long userID,String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
+	public OrderPO(long userID,String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			String ID, Calendar oPT, Calendar lODT, int nOP, boolean isChild,
 			boolean isOnSale, OrderState orderS, boolean isCom) {
 		
-		super(userID, hN, hA, bD, fD, rT, n, tP);
+		super(userID, orID, hN, hA, bD, fD, rT, n, tP);
 		
-		orderID = ID;
 		orderProducedTime = oPT;
 		lastedOrderDoneTime = lODT;
 		numOfPerson = nOP;
@@ -34,10 +32,6 @@ public class OrderPO extends OrderBriefInfoPO {
 		this.isOnSale = isOnSale;
 		orderState = orderS;
 		isCommented = isCom;
-	}
-
-	public String getOrderID() {
-		return orderID;
 	}
 
 	public Calendar getOrderProducedTime() {
@@ -66,10 +60,6 @@ public class OrderPO extends OrderBriefInfoPO {
 
 	public boolean isCommented() {
 		return isCommented;
-	}
-
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
 	}
 
 	public void setOrderProducedTime(Calendar orderProducedTime) {

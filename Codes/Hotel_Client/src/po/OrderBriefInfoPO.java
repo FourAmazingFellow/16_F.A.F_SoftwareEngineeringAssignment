@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class OrderBriefInfoPO {
 	private long userID;
+	private String orderID;
 	private String hotelName;
 	private String hotelAddress;
 	private Date beginDate;
@@ -18,8 +19,9 @@ public class OrderBriefInfoPO {
 	private int num;
 	private int totalPrice;
 
-	public OrderBriefInfoPO(long userID,String hN, String hA, Date bD,
+	public OrderBriefInfoPO(long userID, String orderID, String hN, String hA, Date bD,
 			Date fD, RoomType rT, int n, int tP) {
+		this.orderID = orderID;
 		this.userID = userID;
 		hotelName = hN;
 		hotelAddress = hA;
@@ -34,6 +36,10 @@ public class OrderBriefInfoPO {
 		return userID;
 	}
 
+	public String gerOrderID(){
+		return orderID;
+	}
+	
 	public String getHotelName() {
 		return hotelName;
 	}
@@ -66,6 +72,10 @@ public class OrderBriefInfoPO {
 		this.userID = userID;
 	}
 
+	public void setOrderID(String orderID){
+		this.orderID = orderID;
+	}
+	
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
