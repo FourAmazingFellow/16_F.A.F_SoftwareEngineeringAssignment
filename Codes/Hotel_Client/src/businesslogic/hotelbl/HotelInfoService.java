@@ -12,17 +12,17 @@ import vo.HotelVO;
 public interface HotelInfoService {
 	
 	/**
-	 * 
+	 * 获取该酒店简要信息
 	 * @param address String型， 同层调用传来的酒店地址
-	 * @return 返回酒店简要信息的值对象
+	 * @return 返回该酒店简要信息
 	 * @see
 	 */
 	public HotelBriefInfoVO getHotelBriefInfo(String address);
 	
 	/**
-	 * 
-	 * @param address
-	 * @return
+	 * 获取该酒店详细信息
+	 * @param address String型，同层调用传来的酒店地址
+	 * @return 返回该酒店详细信息
 	 * @see
 	 */
 	public HotelVO getHotelDetails(String address);

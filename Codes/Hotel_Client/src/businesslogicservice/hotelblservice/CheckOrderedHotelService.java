@@ -13,9 +13,9 @@ import vo.HotelBriefInfoVO;
 public interface CheckOrderedHotelService {
 	
 	/**
-	 * 
-	 * @param ID
-	 * @return
+	 * 获取当前用户所有预订过的酒店简要信息列表
+	 * @param ID long型，界面传递过来的用户标识
+	 * @return 返回当前用户所有预订过的酒店简要信息列表
 	 * @see
 	 */
 	public ArrayList<HotelBriefInfoVO> enrollHotelBreifInfoList (long ID);
