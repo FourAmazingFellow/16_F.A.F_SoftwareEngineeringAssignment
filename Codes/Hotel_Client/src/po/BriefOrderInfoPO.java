@@ -8,7 +8,7 @@ import java.util.Date;
  * @version 
  * @see
  */
-public class OrderBriefInfoPO {
+public class BriefOrderInfoPO {
 	private long userID;
 	private String orderID;
 	private String hotelName;
@@ -19,7 +19,7 @@ public class OrderBriefInfoPO {
 	private int num;
 	private int totalPrice;
 
-	public OrderBriefInfoPO(long userID, String orderID, String hN, String hA, Date bD,
+	public BriefOrderInfoPO(long userID, String orderID, String hN, String hA, Date bD,
 			Date fD, RoomType rT, int n, int tP) {
 		this.orderID = orderID;
 		this.userID = userID;

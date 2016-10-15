@@ -10,7 +10,7 @@ import java.util.Date;
  * @see
  */
 
-public class OrderPO extends OrderBriefInfoPO {
+public class OrderPO extends BriefOrderInfoPO {
 	private Calendar orderProducedTime;
 	private Calendar lastedOrderDoneTime;
 	private int numOfPerson;
