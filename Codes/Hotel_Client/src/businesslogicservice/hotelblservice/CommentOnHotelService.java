@@ -7,7 +7,7 @@ import vo.OrderVO;
 /**
  * 
  * @author 原
- * @version
+ * @version 1.0
  * @see
  */
 public interface CommentOnHotelService {

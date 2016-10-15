@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * 
  * @author 原
- * @version
+ * @version 1.0
  * @see
  */
 public class HotelPO extends HotelBriefInfoPO {
