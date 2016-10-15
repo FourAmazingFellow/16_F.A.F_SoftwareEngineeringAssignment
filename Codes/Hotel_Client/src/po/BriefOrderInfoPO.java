@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 
  * @author Accident
- * @version 
+ * @version 1.0
  * @see
  */
 public class BriefOrderInfoPO {
