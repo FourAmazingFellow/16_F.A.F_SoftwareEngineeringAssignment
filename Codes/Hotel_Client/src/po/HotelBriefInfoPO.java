@@ -14,6 +14,13 @@ public class HotelBriefInfoPO {
 	private int starLevel;
 	private int mark;
 	
+	public HotelBriefInfoPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark) {
+		this.hotelName = hotelName;
+		this.businessDistrict = businessDistrict;
+		this.hotelAddress = hotelAddress;
+		this.starLevel = starLevel;
+		this.mark = mark;
+	}
 	public String getHotelName() {
 		return hotelName;
 	}

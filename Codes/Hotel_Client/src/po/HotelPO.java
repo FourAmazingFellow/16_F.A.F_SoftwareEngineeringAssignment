@@ -15,6 +15,15 @@ public class HotelPO extends HotelBriefInfoPO {
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
 	private HashMap<String, String> comments;
 	
+	public HotelPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark,
+			String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice,
+			HashMap<String, String> comments) {
+		super(hotelName, businessDistrict, hotelAddress, starLevel, mark);
+		this.briefIntroduction = briefIntroduction;
+		this.facilityAndService = facilityAndService;
+		this.roomTypeAndPrice = roomTypeAndPrice;
+		this.comments = comments;
+	}
 	public String getBriefIntroduction() {
 		return briefIntroduction;
 	}
