@@ -2,7 +2,7 @@ package businesslogicservice.hotelblservice;
 
 import java.util.ArrayList;
 
-import vo.HotelBriefInfoVO;
+import vo.BriefHotelInfoVO;
 
 /**
  * 为界面提供浏览预定过的酒店的方法
@@ -18,6 +18,6 @@ public interface CheckOrderedHotelService {
 	 * @return 返回用户所有预订过的酒店简要信息列表
 	 * @see
 	 */
-	public ArrayList<HotelBriefInfoVO> enrollHotelBreifInfoList (long ID);
+	public ArrayList<BriefHotelInfoVO> enrollHotelBreifInfoList (long ID);
 
 }

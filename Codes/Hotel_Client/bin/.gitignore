@@ -1,9 +1,5 @@
-/businesslogicservice/
-/dataservice/
 /po/
-/bl_Driver/
-/bl_Stub/
-/data_Stub/
-/orderblservice_Stub/
-/businesslogic/
+/presentation/
+/rmi/
 /vo/
+/businesslogic/

@@ -1,6 +1,6 @@
 package businesslogic.hotelbl;
 
-import vo.HotelBriefInfoVO;
+import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
 /**
@@ -17,7 +17,7 @@ public interface HotelInfoService {
 	 * @return 返回该酒店简要信息
 	 * @see
 	 */
-	public HotelBriefInfoVO getHotelBriefInfo(String address);
+	public BriefHotelInfoVO getHotelBriefInfo(String address);
 	
 	/**
 	 * 获取该酒店详细信息
