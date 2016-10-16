@@ -8,7 +8,7 @@ import java.util.HashMap;
  * @version 1.0
  * @see
  */
-public class HotelPO extends HotelBriefInfoPO {
+public class HotelPO extends BriefHotelInfoPO {
 	
 	private String briefIntroduction;
 	private String facilityAndService;
