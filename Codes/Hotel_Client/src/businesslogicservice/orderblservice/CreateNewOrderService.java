@@ -9,6 +9,7 @@ import vo.OrderVO;
  * @see
  */
 public interface CreateNewOrderService {
+	
 	/**
 	 * 初始化新订单
 	 * @param ID long型 客户ID

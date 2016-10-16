@@ -7,5 +7,8 @@ package businesslogicservice.orderblservice;
  * @see
  */
 public enum ResultMessage {
-
+	SUCCEED,
+	NUM_CANNOT_SATISFIED,
+	TYPE_CANNOT_SATISFIED,
+	TIME_CANNOT_SATISFIED,
 }

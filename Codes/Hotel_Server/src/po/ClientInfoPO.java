@@ -13,9 +13,9 @@ public class ClientInfoPO extends UserPO{
 
     private String[] creditRecord;
  
-    public ClientInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
+    public ClientInfoPO(long userID, String passpord, long telNum, Enum<po.UserType> creditChangeRecord,
             Enum<po.UserType> userType, int creditValue, String[] creditRecord) {
-        super(userID, passpord, telNum, creditChangeRecord, userType);
+        super(userID, passpord, telNum, creditChangeRecord);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }

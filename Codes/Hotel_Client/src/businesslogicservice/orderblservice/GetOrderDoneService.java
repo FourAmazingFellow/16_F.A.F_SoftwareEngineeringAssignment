@@ -16,7 +16,7 @@ import vo.OrderVO;
 public interface GetOrderDoneService {
 	
 	/**
-	 * 得到该酒店的所有订单OrderVO的ArrayList
+	 * 得到该酒店的未执行订单OrderVO的ArrayList
 	 * @param address String型 酒店地址
 	 * @param orderType 订单类型
 	 * @return 该酒店的所有订单OrderVO的ArrayList
