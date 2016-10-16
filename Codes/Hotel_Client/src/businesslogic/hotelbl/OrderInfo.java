@@ -41,7 +41,7 @@ public interface OrderInfo {
 	 * 得到某用户在某酒店所有订单的列表
 	 * @param ID long型 用户ID
 	 * @param address String型 酒店地址
-	 * @return 得到该用户在该酒店的所有订单OrderVO的ArrayList
+	 * @return 该用户在该酒店的所有订单OrderVO的ArrayList
 	 * @see
 	 */
 	public ArrayList<OrderVO> getOrderList(long ID, String address);
