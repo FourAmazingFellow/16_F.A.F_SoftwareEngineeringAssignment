@@ -52,12 +52,12 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
     }
 
     @Override
-    public boolean AddCheckOut(String address, RoomVO roomvo) {
+    public boolean addCheckOut(String address, RoomVO roomvo) {
         return true;
     }
 
     @Override
-    public boolean ModifyCheckOut(String address, RoomVO roomvo) {
+    public boolean modifyCheckOut(String address, RoomVO roomvo) {
         return true;
     }
 

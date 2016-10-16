@@ -54,12 +54,12 @@ public class UpdateCheckInServiceImpl_Stub implements UpdateCheckInService{
     }
 
     @Override
-    public boolean AddCheckIn(String address, RoomVO checkIn) {
+    public boolean addCheckIn(String address, RoomVO checkIn) {
         return true;
     }
 
     @Override
-    public boolean ModifyCheckIn(String address, RoomVO checkIn) {
+    public boolean modifyCheckIn(String address, RoomVO checkIn) {
         return true;
     }
 

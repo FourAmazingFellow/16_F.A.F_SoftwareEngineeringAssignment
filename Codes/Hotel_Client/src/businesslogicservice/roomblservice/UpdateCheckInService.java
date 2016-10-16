@@ -47,7 +47,7 @@ public interface UpdateCheckInService {
      * @return boolean型，返回是否增加入住信息成功
      * @see
      */
-    public boolean AddCheckIn(String address, RoomVO checkIn);
+    public boolean addCheckIn(String address, RoomVO checkIn);
     
     /**
      * 修改某条入住信息
@@ -56,7 +56,7 @@ public interface UpdateCheckInService {
      * @return boolean型，返回是否修改入住信息成功
      * @see
      */
-    public boolean ModifyCheckIn(String address, RoomVO checkIn);
+    public boolean modifyCheckIn(String address, RoomVO checkIn);
     
     /**
      * 删除某条入住信息

@@ -47,7 +47,7 @@ public interface UpdateCheckOutService {
      * @return boolean型，返回是否增加退房信息成功
      * @see
      */
-    public boolean AddCheckOut(String address, RoomVO roomvo);
+    public boolean addCheckOut(String address, RoomVO roomvo);
     
     /**
      * 修改某条退房信息
@@ -56,7 +56,7 @@ public interface UpdateCheckOutService {
      * @return boolean型，返回是否修改退房信息成功
      * @see
      */
-    public boolean ModifyCheckOut(String address, RoomVO roomvo);
+    public boolean modifyCheckOut(String address, RoomVO roomvo);
     
     /**
      *  删除某条退房信息
