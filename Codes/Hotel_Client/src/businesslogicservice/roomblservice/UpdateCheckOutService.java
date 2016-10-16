@@ -8,7 +8,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 给view层的更新退房信息任务提供roombl接口
  * @author 双
  * @version 
  * @see

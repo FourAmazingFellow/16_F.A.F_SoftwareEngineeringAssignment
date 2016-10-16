@@ -6,7 +6,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 给同层其他模块调用的roombl接口
  * @author 双
  * @version 
  * @see

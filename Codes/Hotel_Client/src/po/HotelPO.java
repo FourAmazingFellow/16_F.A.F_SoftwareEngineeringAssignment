@@ -3,7 +3,7 @@ package po;
 import java.util.HashMap;
 
 /**
- * 
+ * 酒店详细信息的实体类，负责持久化数据传输
  * @author 原
  * @version 1.0
  * @see

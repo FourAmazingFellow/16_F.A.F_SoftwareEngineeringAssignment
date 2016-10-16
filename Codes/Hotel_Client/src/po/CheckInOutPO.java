@@ -3,7 +3,7 @@ package po;
 import java.sql.Date;
 
 /**
- * 
+ * 入住退房信息PO（继承酒店房间信息RoomPO），负责持久化数据传输
  * @author 双
  * @version 
  * @see

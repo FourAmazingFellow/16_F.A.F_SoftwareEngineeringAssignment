@@ -3,7 +3,7 @@ package po;
 import java.sql.Date;
 
 /**
- * 
+ * 会员信息PO，负责持久化数据传输
  * @author sparkler
  * @version 1.0
  */
