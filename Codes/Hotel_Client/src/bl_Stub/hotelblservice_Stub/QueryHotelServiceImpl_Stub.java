@@ -104,7 +104,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(address, address, address, starLevel, mark, address, address, roomTypeAndPrice, comments);
+		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, comments);
 	}
 
 	@Override
