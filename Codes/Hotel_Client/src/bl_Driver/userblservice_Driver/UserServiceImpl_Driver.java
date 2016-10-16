@@ -17,7 +17,7 @@ public class UserServiceImpl_Driver {
        else
            System.out.println("Login Failed!\n");
         
-        UserVO userVO = null;
+        UserVO userVO = new UserVO(1111,"qwe123",1234567);
         boolean result2 = userService.signRegularVip(userVO);
         if(result2)
            System.out.println("Sign Succeed!\n");

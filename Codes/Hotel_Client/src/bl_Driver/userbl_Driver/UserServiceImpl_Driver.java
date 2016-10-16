@@ -12,7 +12,7 @@ import vo.UserVO;
 public class UserServiceImpl_Driver {
     public void drive(UserService userService){
     
-        UserVO userVO = null;
+        UserVO userVO = new UserVO(1111,"qwe123",1234567);
         boolean result = userService.insert(userVO);
         if(result)
            System.out.println("Add Succeed!\n");
