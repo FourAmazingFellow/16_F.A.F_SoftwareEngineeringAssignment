@@ -49,31 +49,26 @@ public class UserServiceImpl_Stub implements UserService {
     
     @Override
     public boolean login(long ID, String password) {
-        
         return false;
     }
 
     @Override
     public boolean signRegularVip(UserVO regularVip) {
-        
         return false;
     }
 
     @Override
     public boolean signEnterpriseVip(UserVO EnterpriseVip) {
-        
         return false;
     }
 
     @Override
     public boolean add(UserVO user) {
-        
         return false;
     }
 
     @Override
     public boolean del(UserVO user) {
-        
         return false;
     }
 

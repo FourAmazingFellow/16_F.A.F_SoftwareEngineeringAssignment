@@ -12,12 +12,11 @@ public class UserPO {
     private long telNum;
     private Enum<UserType> UserType;
     
-    public UserPO(long userID, String passpord, long telNum, Enum<po.UserType> userType) {
+    public UserPO(long userID, String passpord, long telNum) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
-        UserType = userType;
     }
     
     public void setUserID(long userID) {

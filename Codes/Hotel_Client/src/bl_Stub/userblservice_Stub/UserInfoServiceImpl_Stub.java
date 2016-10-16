@@ -34,13 +34,11 @@ public class UserInfoServiceImpl_Stub implements UserInfoService {
     
     @Override
     public UserVO getUserInfo(long ID, Enum<UserType> UserType) {
-        
-        return null;
+        return new UserVO(userID, passpord, telNum);
     }
 
     @Override
     public boolean modifyUserInfo(UserVO user) {
-        
         return false;
     }
 

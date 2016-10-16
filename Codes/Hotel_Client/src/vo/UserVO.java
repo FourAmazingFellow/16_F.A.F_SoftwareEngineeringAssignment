@@ -12,11 +12,10 @@ public class UserVO {
     public long telNum;
     public Enum<UserType> UserType;
  
-    public UserVO(long userID, String passpord, long telNum, Enum<vo.UserType> userType) {
+    public UserVO(long userID, String passpord, long telNum) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
-        UserType = userType;
     }
 }

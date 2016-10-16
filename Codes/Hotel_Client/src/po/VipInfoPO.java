@@ -15,7 +15,7 @@ public class VipInfoPO extends UserPO {
     
     public VipInfoPO(long userID, String passpord, long telNum, String creditChangeRecord, Enum<po.UserType> userType,
             Date birth, String enterpriseID, String enterprisePasspord) {
-        super(userID, passpord, telNum, userType);
+        super(userID, passpord, telNum);
         this.birth = birth;
         this.enterpriseID = enterpriseID;
         this.enterprisePasspord = enterprisePasspord;

@@ -11,7 +11,7 @@ public class HotelStaffInfoPO extends UserPO{
     
     public HotelStaffInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
             Enum<po.UserType> userType, String enterpriseName) {
-        super(userID, passpord, telNum, userType);
+        super(userID, passpord, telNum);
         this.enterpriseName = enterpriseName;
     }
     public void setEnterpriseName(String enterpriseName) {

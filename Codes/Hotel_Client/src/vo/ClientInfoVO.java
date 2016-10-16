@@ -11,9 +11,8 @@ public class ClientInfoVO extends UserVO{
     public int creditValue;
     public String[] creditRecord;
 
-    public ClientInfoVO(long userID, String passpord, long telNum, String creditChangeRecord,
-            Enum<vo.UserType> userType, int creditValue, String[] creditRecord) {
-        super(userID, passpord, telNum, userType);
+    public ClientInfoVO(long userID, String passpord, long telNum, String[] creditRecord, int creditValue) {
+        super(userID, passpord, telNum);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }

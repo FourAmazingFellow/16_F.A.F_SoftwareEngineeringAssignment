@@ -10,7 +10,7 @@ public class HotelStaffInfoVO extends UserVO{
     
     public HotelStaffInfoVO(long userID, String passpord, long telNum, String creditChangeRecord,
             Enum<vo.UserType> userType, String enterpriseName) {
-        super(userID, passpord, telNum, userType);
+        super(userID, passpord, telNum);
         this.enterpriseName = enterpriseName;
     }
     
