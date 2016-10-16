@@ -1,12 +1,13 @@
 package po;
 
 /**
- * 
+ * 酒店简要信息的实体类，负责持久化数据传输
  * @author 原
  * @version 1.0
  * @see
  */
 public class HotelBriefInfoPO {
+	
 	private String hotelName;
 	private String businessDistrict;
 	private String hotelAddress;
