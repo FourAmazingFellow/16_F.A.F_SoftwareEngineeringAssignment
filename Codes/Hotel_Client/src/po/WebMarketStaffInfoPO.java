@@ -9,7 +9,7 @@ public class WebMarketStaffInfoPO extends UserPO{
 
     public WebMarketStaffInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
             Enum<po.UserType> userType) {
-        super(userID, passpord, telNum, creditChangeRecord, userType);
+        super(userID, passpord, telNum, userType);
     }
 
 }
