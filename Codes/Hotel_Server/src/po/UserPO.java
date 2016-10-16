@@ -13,13 +13,12 @@ public class UserPO {
     private String creditChangeRecord;
     private Enum<UserType> UserType;
     
-    public UserPO(long userID, String passpord, long telNum, String creditChangeRecord, Enum<po.UserType> userType) {
+    public UserPO(long userID, String passpord, long telNum, String creditChangeRecord) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
         this.creditChangeRecord = creditChangeRecord;
-        UserType = userType;
     }
     
     public void setUserID(long userID) {

@@ -8,8 +8,8 @@ package po;
  */
 public class ClientInfoPO extends UserPO{
  
-    public ClientInfoPO(long userID, String passpord, long telNum, Enum<po.UserType> userType, int creditValue,
-            String[] creditRecord) {
+ 
+    public ClientInfoPO(long userID, String passpord, long telNum, int creditValue, String[] creditRecord) {
         super(userID, passpord, telNum);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
