@@ -2,7 +2,8 @@
  * 
  */
 /**
- * @author 原
+ * strategy模块数据层接口方法的实现包
+ * @author 双
  *
  */
 package data.strategydata;
