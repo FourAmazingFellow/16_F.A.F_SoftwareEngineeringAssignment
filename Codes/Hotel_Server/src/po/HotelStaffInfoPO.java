@@ -9,7 +9,7 @@ public class HotelStaffInfoPO extends UserPO{
     
     private String enterpriseName;
   
-    public HotelStaffInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
+    public HotelStaffInfoPO(long userID, String passpord, long telNum, Enum<po.UserType> creditChangeRecord,
             String enterpriseName) {
         super(userID, passpord, telNum, creditChangeRecord);
         this.enterpriseName = enterpriseName;
