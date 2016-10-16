@@ -40,12 +40,12 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 	
 	@Override
 	public boolean addHotel(HotelVO hotel) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean addHotelStaff(UserVO staff) {
-		return false;
+		return true;
 	}
 
 }

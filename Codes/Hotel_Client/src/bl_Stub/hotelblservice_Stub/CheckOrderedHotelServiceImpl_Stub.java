@@ -22,7 +22,9 @@ public class CheckOrderedHotelServiceImpl_Stub implements CheckOrderedHotelServi
 	
 	@Override
 	public ArrayList<BriefHotelInfoVO> enrollHotelBreifInfoList(long ID) {
-		return null;
+		ArrayList<BriefHotelInfoVO> briefHotelInfoVOList = new ArrayList<>();
+		briefHotelInfoVOList.add(new BriefHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark));
+		return briefHotelInfoVOList;
 	}
 
 }

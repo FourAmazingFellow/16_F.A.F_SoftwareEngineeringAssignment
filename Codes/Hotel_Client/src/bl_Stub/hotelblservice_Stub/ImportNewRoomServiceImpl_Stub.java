@@ -21,12 +21,14 @@ public class ImportNewRoomServiceImpl_Stub implements ImportNewRoomService{
 	}
 	@Override
 	public ArrayList<RoomVO> getAvailableRoomList(String address) {
-		return null;
+		ArrayList<RoomVO> roomVOList = new ArrayList<>();
+		roomVOList.add(new RoomVO(roomType, roomNum, address));
+		return roomVOList;
 	}
 
 	@Override
 	public boolean addRoom(RoomVO room) {
-		return false;
+		return true;
 	}
 
 }
