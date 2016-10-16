@@ -1,20 +1,19 @@
 package po;
 
 /**
- * 酒店简要信息的实体类，负责持久化数据传输
+ * 
  * @author 原
  * @version 1.0
  * @see
  */
-public class HotelBriefInfoPO {
-	
+public class BriefHotelInfoPO {
 	private String hotelName;
 	private String businessDistrict;
 	private String hotelAddress;
 	private int starLevel;
 	private int mark;
 	
-	public HotelBriefInfoPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark) {
+	public BriefHotelInfoPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;
@@ -51,5 +50,6 @@ public class HotelBriefInfoPO {
 	public void setMark(int mark) {
 		this.mark = mark;
 	}
+
 
 }
