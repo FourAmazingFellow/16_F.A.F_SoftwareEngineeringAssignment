@@ -13,9 +13,9 @@ import vo.RoomVO;
 public interface BrowseSpareRoomService {
     
     /**
-     * 
-     * @param address
-     * @return
+     * 获取空房信息列表
+     * @param address String型， 酒店地址
+     * @return ArrayList<RoomVO>，返回空房信息列表
      * @see
      */
     public ArrayList<RoomVO> getRoomInfoList (String address);

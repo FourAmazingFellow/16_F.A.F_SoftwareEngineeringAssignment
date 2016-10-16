@@ -1,71 +1,78 @@
 package businesslogicservice.roomblservice;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import po.RoomPO;
 import po.RoomType;
 import vo.RoomVO;
 
+/**
+ * 
+ * @author 双
+ * @version 
+ * @see
+ */
 public interface UpdateCheckOutService {
 
     /**
-     * 
-     * @param address
-     * @return
+     * 获取退房信息列表
+     * @param address String型， 酒店地址
+     * @return ArrayList<RoomVO>，返回退房信息列表
      * @see
      */
     public ArrayList<RoomVO> getCheckOutList(String address);
     
     /**
-     * 
-     * @param address
-     * @param time
-     * @return
+     * 按实际离开时间查找相应的退房信息
+     * @param address String型， 酒店地址
+     * @param time Date型，实际离开时间
+     * @return RoomVO型，返回退房信息
      * @see
      */
-    public RoomPO getCheckOutInfo(String address, String time);
+    public RoomPO getCheckOutInfo(String address, Date time);
     
     /**
-     * 
-     * @param address
-     * @param roomType
-     * @return
+     * 按房间类型查找相应的退房信息
+     * @param address String型， 酒店地址
+     * @param roomType 枚举类，酒店房间类型
+     * @return RoomVO型，返回退房信息
      * @see
      */
     public RoomPO getCheckOutInfo(String address, Enum<RoomType> roomType);
     
     /**
-     * 
-     * @param address
-     * @param roomvo
-     * @return
+     * 增加退房信息
+     * @param address String型， 酒店地址
+     * @param checkIn RoomVO型，退房信息
+     * @return boolean型，返回是否增加退房信息成功
      * @see
      */
     public boolean AddCheckOut(String address, RoomVO roomvo);
     
     /**
-     * 
-     * @param address
-     * @param roomvo
-     * @return
+     * 修改某条退房信息
+     * @param address String型， 酒店地址
+     * @param checkIn RoomVO型，退房信息
+     * @return boolean型，返回是否修改退房信息成功
      * @see
      */
     public boolean ModifyCheckOut(String address, RoomVO roomvo);
     
     /**
-     * 
-     * @param address
-     * @param roomvo
-     * @return
+     *  删除某条退房信息
+     * @param address String型， 酒店地址
+     * @param checkIn RoomVO型，退房信息
+     * @return boolean型，返回是否删除退房信息成功
      * @see
      */
     public boolean delCheckOut(String address, RoomVO roomvo);
     
     /**
-     * 
-     * @param address
-     * @param checkOut
-     * @return
+     *  检查退房信息是否符合规范
+     * @param address String型， 酒店地址
+     * @param checkIn RoomVO型，退房信息
+     * @return boolean型，返回退房信息是否符合规范
      * @see
      */
     public boolean validCheckOut(String address, RoomVO checkOut);
