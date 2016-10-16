@@ -1,7 +1,7 @@
 package po;
 
 /**
- * 
+ * 用户信息PO，负责持久化数据传输
  * @author sparkler
  * @version 1.0
  */
