@@ -3,7 +3,7 @@
  */
 /**
  * @author 原
- * @version
+ * @version 1.0
  * @see
  */
 package data_Stub;
