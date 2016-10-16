@@ -7,6 +7,7 @@ package po;
  * @see
  */
 public enum OrderType {
+	ALL,
 	ABNORMAL_ORDER,
 	NOT_DONE_ORDER,
 	DONE_ORDER,

@@ -18,7 +18,7 @@ public interface BrowseHotelOrderService {
 	 * 得到该酒店的所有订单OrderVO的ArrayList
 	 * @param address String型 酒店地址
 	 * @param orderType 订单类型
-	 * @return 该酒店的所有订单OrderVO的ArrayList
+	 * @return 该酒店的所有订单BriefOrderInfoVO的ArrayList
 	 * @see
 	 */
 	public ArrayList<BriefOrderInfoVO>  getHotelOrderList (String address, Enum<OrderType> orderType);

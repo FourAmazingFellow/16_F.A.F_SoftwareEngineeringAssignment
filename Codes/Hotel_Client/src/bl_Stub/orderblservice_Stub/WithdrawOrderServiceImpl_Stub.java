@@ -1,9 +1,11 @@
 package bl_Stub.orderblservice_Stub;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogicservice.orderblservice.WithdrawOrderService;
 import po.OrderState;
+import po.OrderType;
 import po.RoomType;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
@@ -34,6 +36,21 @@ public class WithdrawOrderServiceImpl_Stub implements WithdrawOrderService {
 	public boolean withdrawOrder(OrderVO vo) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public ArrayList<BriefOrderInfoVO> getUserOrderList(long ID, Enum<OrderType> orderType) {
+		// TODO Auto-generated method stub
+		System.out.println("得到用户所有订单列表");
+		ArrayList<BriefOrderInfoVO> b = new ArrayList<BriefOrderInfoVO>();
+		b.add(testBriefOrderInfoVO);
+		return b;
+	}
+
+	@Override
+	public OrderVO getDetailedOrder(String orderID) {
+		// TODO Auto-generated method stub
+		System.out.println("展开订单详情");
+		return testOrderVO;
 	}
 
 }

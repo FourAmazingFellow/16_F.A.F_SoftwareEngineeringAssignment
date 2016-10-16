@@ -22,7 +22,7 @@ public interface StrategyDAO {
      * @throws RemoteException
      * @see
      */
-    public ArrayList<StrategyPO> getStrategyList(String address, Enum<StrategyType> StrategyType) throws RemoteException;
+    public ArrayList<StrategyPO> getStrategyList(String address, Enum<StrategyType> strategyType) throws RemoteException;
     
     /**
      * 获取对应折扣名称的策略信息
