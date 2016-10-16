@@ -3,7 +3,6 @@ package businesslogicservice.roomblservice;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import po.RoomPO;
 import po.RoomType;
 import vo.RoomVO;
 
@@ -30,7 +29,7 @@ public interface UpdateCheckOutService {
      * @return RoomVO型，返回退房信息
      * @see
      */
-    public RoomPO getCheckOutInfo(String address, Date time);
+    public RoomVO getCheckOutInfo(String address, Date time);
     
     /**
      * 按房间类型查找相应的退房信息
@@ -39,7 +38,7 @@ public interface UpdateCheckOutService {
      * @return RoomVO型，返回退房信息
      * @see
      */
-    public RoomPO getCheckOutInfo(String address, Enum<RoomType> roomType);
+    public RoomVO getCheckOutInfo(String address, Enum<RoomType> roomType);
     
     /**
      * 增加退房信息

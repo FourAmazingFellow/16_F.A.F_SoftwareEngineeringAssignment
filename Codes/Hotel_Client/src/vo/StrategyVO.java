@@ -24,15 +24,19 @@ public class StrategyVO {
     public String tradeArea;
     public int vipRank;
     
-    public StrategyVO(String address, Enum<StrategyType> strategyType){
+    public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, int discount){
         this.address=address;
+        this.strategyName=strategyName;
+        this.discount=discount;
         if(strategyType.equals(StrategyType.BirthdayPromotion))
             this.strategyType=strategyType;
     }
     
-    public StrategyVO(String address, Enum<StrategyType> strategyType, int inputInt){
+    public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, int inputInt){
         this.address=address;
         this.strategyType=strategyType;
+        this.strategyName=strategyName;
+        this.discount=discount;
         if(strategyType.equals(StrategyType.MultiRoomPromotion)){
             this.minRoomNum=inputInt;
         }
@@ -41,21 +45,22 @@ public class StrategyVO {
         }
     }
     
-    public StrategyVO(String address, Enum<StrategyType> strategyType, String enterpriseName, String securityCode){
+    public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, String enterpriseName, String securityCode){
         this.address=address;
         this.strategyType=strategyType;
+        
         this.enterpriseName=enterpriseName;
         this.securityCode=securityCode;
     }
     
-    public StrategyVO(String address, Enum<StrategyType> strategyType, Date startTime, Date endTime){
+    public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, Date startTime, Date endTime){
         this.address=address;
         this.strategyType=strategyType;
         this.startTime=startTime;
         this.endTime=endTime;
     }
     
-    public StrategyVO(String address, Enum<StrategyType> strategyType, int vipRank, String tradeArea){
+    public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, int vipRank, String tradeArea){
         this.address=address;
         this.strategyType=strategyType;
         this.vipRank=vipRank;

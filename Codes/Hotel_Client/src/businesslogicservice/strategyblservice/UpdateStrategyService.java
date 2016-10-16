@@ -20,7 +20,7 @@ public interface UpdateStrategyService {
      * @return ArrayList<StrategyVO>，返回某种策略类型的折扣列表
      * @see
      */
-    public ArrayList<StrategyVO> getStrategyList(String address, Enum<StrategyType> StrategyType);
+    public ArrayList<StrategyVO> getStrategyList(String address, Enum<StrategyType> strategyType);
     
     /**
      * 返回某个折扣名称的折扣信息
