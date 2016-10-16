@@ -3,7 +3,7 @@ package dataservice.hotelDAO;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import po.HotelBriefInfoPO;
+import po.BriefHotelInfoPO;
 import po.HotelPO;
 
 /**
@@ -21,7 +21,7 @@ public interface HotelDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public HotelBriefInfoPO getHotelBriefInfo(String address) throws RemoteException;
+	public BriefHotelInfoPO getHotelBriefInfo(String address) throws RemoteException;
 	
 	/**
 	 * 通过搜索获取酒店基本信息列表
@@ -30,7 +30,7 @@ public interface HotelDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<HotelBriefInfoPO> getHotelBriefInfoListBySearching (String[] condition) throws RemoteException;
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching (String[] condition) throws RemoteException;
 	
 	/**
 	 * 通过查看获取酒店基本信息列表
@@ -39,7 +39,7 @@ public interface HotelDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<HotelBriefInfoPO> getHotelBriefInfoListByQuerying (String[] condition) throws RemoteException;
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying (String[] condition) throws RemoteException;
 	
 	/**
 	 * 获取酒店详情

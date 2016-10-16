@@ -13,13 +13,13 @@ import po.RoomType;
  * @see
  */
 public class OrderVO extends BriefOrderInfoVO{	
-	private Calendar orderProducedTime;
-	private Calendar lastedOrderDoneTime;
-	private int numOfPerson;
-	private boolean isChildren;
-	private boolean isOnSale;
-	private OrderState orderState;
-	private boolean isCommented;
+	public Calendar orderProducedTime;
+	public Calendar lastedOrderDoneTime;
+	public int numOfPerson;
+	public boolean isChildren;
+	public boolean isOnSale;
+	public OrderState orderState;
+	public boolean isCommented;
 
 	public OrderVO(long userID,String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			String ID, Calendar oPT, Calendar lODT, int nOP, boolean isChild,
@@ -34,62 +34,6 @@ public class OrderVO extends BriefOrderInfoVO{
 		this.isOnSale = isOnSale;
 		orderState = orderS;
 		isCommented = isCom;
-	}
-
-	public Calendar getOrderProducedTime() {
-		return orderProducedTime;
-	}
-
-	public Calendar getLastedOrderDoneTime() {
-		return lastedOrderDoneTime;
-	}
-
-	public int getNumOfPerson() {
-		return numOfPerson;
-	}
-
-	public boolean isChildren() {
-		return isChildren;
-	}
-
-	public boolean isOnSale() {
-		return isOnSale;
-	}
-
-	public OrderState getOrderState() {
-		return orderState;
-	}
-
-	public boolean isCommented() {
-		return isCommented;
-	}
-
-	public void setOrderProducedTime(Calendar orderProducedTime) {
-		this.orderProducedTime = orderProducedTime;
-	}
-
-	public void setLastedOrderDoneTime(Calendar lastedOrderDoneTime) {
-		this.lastedOrderDoneTime = lastedOrderDoneTime;
-	}
-
-	public void setNumOfPerson(int numOfPerson) {
-		this.numOfPerson = numOfPerson;
-	}
-
-	public void setChildren(boolean isChildren) {
-		this.isChildren = isChildren;
-	}
-
-	public void setOnSale(boolean isOnSale) {
-		this.isOnSale = isOnSale;
-	}
-
-	public void setOrderState(OrderState orderState) {
-		this.orderState = orderState;
-	}
-
-	public void setCommented(boolean isCommented) {
-		this.isCommented = isCommented;
 	}
 	
 }

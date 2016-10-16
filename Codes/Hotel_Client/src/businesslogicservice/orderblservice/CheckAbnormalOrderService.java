@@ -12,7 +12,7 @@ import vo.OrderVO;
  * @version 1.0
  * @see
  */
-public interface CheckAbnormalOrder {
+public interface CheckAbnormalOrderService {
 	
 	/**
 	 * 得到异常订单列表
