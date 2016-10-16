@@ -32,6 +32,18 @@ public class BriefOrderInfoPO {
 		totalPrice = tP;
 	}
 
+	@SuppressWarnings("deprecation")
+	public BriefOrderInfoPO(){
+		this.orderID = "0001000100010001";
+		this.userID = 666;
+		hotelName = "F.A.F酒店";
+		hotelAddress = "南京大学";
+		beginDate = new Date(2016,10,16);
+		finishDate = new Date(2016,10,17);
+		roomType = RoomType.KING_SIZE_ROOM;
+		num = 1;
+		totalPrice = 100;
+	}
 	public long getUserID() {
 		return userID;
 	}
