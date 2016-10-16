@@ -49,9 +49,9 @@ public class UserPO {
     public Enum<UserType> getUserType() {
         return UserType;
     }
+
     public void setUserType(Enum<UserType> userType) {
         UserType = userType;
     }
-
   
 }
