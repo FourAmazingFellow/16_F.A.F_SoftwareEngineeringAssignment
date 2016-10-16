@@ -20,13 +20,7 @@ public interface CommentOnHotelService {
 	 */
 	public ArrayList<OrderVO> getCommentableOrderList(long ID);
 	
-	/**
-	 * 
-	 * @param mark 
-	 * @param comment
-	 * @return 
-	 * @see
-	 */
+	
 	/**
 	 * 确认评价酒店
 	 * @param username String型，界面传递来的客户名称
