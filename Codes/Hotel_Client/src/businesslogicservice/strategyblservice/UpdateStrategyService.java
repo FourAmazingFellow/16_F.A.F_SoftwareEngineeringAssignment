@@ -6,7 +6,7 @@ import po.StrategyType;
 import vo.StrategyVO;
 
 /**
- * 
+ * 给view层的制定酒店促销策略和网站营销策略任务提供roombl接口
  * @author 双
  * @version 
  * @see

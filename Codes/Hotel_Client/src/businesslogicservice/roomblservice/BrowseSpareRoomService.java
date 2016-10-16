@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.RoomVO;
 
 /**
- * 
+ * 给view层的浏览空房信息任务提供roombl接口
  * @author 双
  * @version 
  * @see

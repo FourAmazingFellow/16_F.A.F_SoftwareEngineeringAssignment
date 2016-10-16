@@ -2,7 +2,7 @@ package businesslogic.strategybl;
 
 import vo.OrderVO;
 
-/**
+/**给同层其他模块调用的Strategybl接口
  * 
  * @author 双
  * @version 

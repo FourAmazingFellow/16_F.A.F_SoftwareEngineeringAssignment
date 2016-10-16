@@ -1,7 +1,7 @@
 package po;
 
 /**
- * 
+ * 酒店房间信息PO，负责持久化数据传输
  * @author 双
  * @version 
  * @see
