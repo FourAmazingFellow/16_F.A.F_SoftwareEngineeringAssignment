@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 
+ * 详细订单信息PO（继承简要订单信息PO），负责持久化数据传输
  * @author Accident
  * @version 1.0
  * @see

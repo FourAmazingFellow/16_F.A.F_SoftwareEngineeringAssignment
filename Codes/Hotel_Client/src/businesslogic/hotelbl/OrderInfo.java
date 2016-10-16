@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.OrderVO;
 
 /**
- * 
+ * 给Hotel调用的Order接口
  * @author Accident
  * @version 1.0
  * @see
