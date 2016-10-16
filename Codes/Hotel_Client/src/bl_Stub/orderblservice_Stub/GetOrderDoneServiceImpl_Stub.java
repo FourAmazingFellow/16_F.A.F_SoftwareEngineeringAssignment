@@ -20,7 +20,7 @@ public class GetOrderDoneServiceImpl_Stub implements GetOrderDoneService {
 	@Override
 	public OrderVO getSingleOrder(String address, String orderID) {
 		// TODO Auto-generated method stub
-		System.out.println("得到F.A.F自主豪华八星级酒店的对应订单");
+		System.out.println("得到F.A.F酒店的对应订单");
 		return null;
 	}
 
