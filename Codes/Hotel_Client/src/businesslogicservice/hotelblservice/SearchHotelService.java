@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.HotelBriefInfoVO;
 
 /**
- * 
+ * 为界面提供搜索酒店所需要的方法
  * @author 原
  * @version 1.0
  * @see

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.RoomVO;
 
 /**
- * 
+ * 为界面提供录入可用客房的方法
  * @author 原
  * @version 1.0
  * @see

@@ -4,7 +4,7 @@ import vo.HotelVO;
 import vo.UserVO;
 
 /**
- * 
+ * 为界面提供管理酒店信息的方法
  * @author 原
  * @version 1.0
  * @see

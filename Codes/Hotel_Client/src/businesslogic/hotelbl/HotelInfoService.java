@@ -4,7 +4,7 @@ import vo.HotelBriefInfoVO;
 import vo.HotelVO;
 
 /**
- * 
+ * 为同层调用提供酒店信息
  * @author 原
  * @version 1.0
  * @see

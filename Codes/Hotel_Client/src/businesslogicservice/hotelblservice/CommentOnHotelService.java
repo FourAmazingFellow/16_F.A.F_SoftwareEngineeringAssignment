@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.OrderVO;
 
 /**
- * 
+ * 为界面提供评价酒店的方法
  * @author 原
  * @version 1.0
  * @see

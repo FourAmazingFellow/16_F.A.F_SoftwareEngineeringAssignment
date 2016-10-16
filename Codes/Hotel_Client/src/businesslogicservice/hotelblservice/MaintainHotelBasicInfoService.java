@@ -3,7 +3,7 @@ package businesslogicservice.hotelblservice;
 import vo.HotelVO;
 
 /**
- * 
+ * 为界面提供维护酒店基本信息的方法
  * @author 原
  * @version 1.0
  * @see

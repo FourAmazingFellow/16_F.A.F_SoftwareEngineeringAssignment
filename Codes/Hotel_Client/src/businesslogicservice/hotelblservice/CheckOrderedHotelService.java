@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.HotelBriefInfoVO;
 
 /**
- * 
+ * 为界面提供浏览预定过的酒店的方法
  * @author 原
  * @version 1.0
  * @see

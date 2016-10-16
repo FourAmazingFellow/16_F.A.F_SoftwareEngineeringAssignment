@@ -7,7 +7,7 @@ import vo.HotelVO;
 import vo.OrderVO;
 
 /**
- * 
+ * 为界面提供查看酒店信息所需要的方法
  * @author 原
  * @version 1.0
  * @see
