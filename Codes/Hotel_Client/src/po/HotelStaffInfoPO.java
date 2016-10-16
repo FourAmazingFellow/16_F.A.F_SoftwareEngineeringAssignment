@@ -5,15 +5,15 @@ package po;
  * @version 
  * @see
  */
-public class HotelStaffInfoPO {
+public class HotelStaffInfoPO extends UserPO{
     
     private String enterpriseName;
     
-    public HotelStaffInfoPO(String enterpriseName) {
-        super();
+    public HotelStaffInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
+            Enum<po.UserType> userType, String enterpriseName) {
+        super(userID, passpord, telNum, userType);
         this.enterpriseName = enterpriseName;
     }
-    
     public void setEnterpriseName(String enterpriseName) {
         this.enterpriseName = enterpriseName;
     }

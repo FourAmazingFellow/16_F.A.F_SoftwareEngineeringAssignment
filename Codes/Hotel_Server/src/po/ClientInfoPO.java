@@ -8,12 +8,16 @@ package po;
  */
 public class ClientInfoPO extends UserPO{
  
+ 
     private int creditValue;
-    
+
+    private String[] creditRecord;
+ 
     public ClientInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
-            Enum<po.UserType> userType, int creditValue) {
+            Enum<po.UserType> userType, int creditValue, String[] creditRecord) {
         super(userID, passpord, telNum, creditChangeRecord, userType);
         this.creditValue = creditValue;
+        this.creditRecord = creditRecord;
     }
     
     public void setCreditValue(int creditValue) {
@@ -21,5 +25,12 @@ public class ClientInfoPO extends UserPO{
     }
     public int getCreditValue() {
         return creditValue;
+    }
+    public String[] getCreditRecord() {
+        return creditRecord;
+    }
+
+    public void setCreditRecord(String[] creditRecord) {
+        this.creditRecord = creditRecord;
     }
 }

@@ -10,7 +10,19 @@ import vo.UserVO;
  * @see
  */
 public class ClientCreditServiceImpl_Stub implements ClientCreditService {
-
+    public long userID;
+    public String passpord;
+    public int creditValue;
+    public String[] creditRecord;
+    
+    public ClientCreditServiceImpl_Stub(long userID, String passpord, int creditValue, String[] creditRecord) {
+        super();
+        this.userID = userID;
+        this.passpord = passpord;
+        this.creditValue = creditValue;
+        this.creditRecord = creditRecord;
+    }
+    
     @Override
     public UserVO queryCredit(long ID) {
         // TODO Auto-generated method stub

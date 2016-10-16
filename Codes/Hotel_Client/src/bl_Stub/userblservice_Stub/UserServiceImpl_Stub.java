@@ -1,6 +1,9 @@
 package bl_Stub.userblservice_Stub;
 
+import java.sql.Date;
+
 import businesslogicservice.userblservice.UserService;
+import po.UserType;
 import vo.UserVO;
 
 /**
@@ -11,33 +14,66 @@ import vo.UserVO;
  */
 public class UserServiceImpl_Stub implements UserService {
 
+    public long userID;
+    public String passpord;
+    public long telNum;
+    public String creditChangeRecord;
+    public Enum<UserType> UserType;
+
+    public Date birth;
+    public String enterpriseID;
+    public String enterprisePasspord;
+    
+    public UserServiceImpl_Stub(long userID, String passpord, long telNum, String creditChangeRecord,
+            Enum<po.UserType> userType) {
+        super();
+        this.userID = userID;
+        this.passpord = passpord;
+        this.telNum = telNum;
+        this.creditChangeRecord = creditChangeRecord;
+        UserType = userType;
+    }
+    
+    public UserServiceImpl_Stub(long userID, String passpord, long telNum, String creditChangeRecord,
+            Enum<po.UserType> userType, Date birth, String enterpriseID, String enterprisePasspord) {
+        super();
+        this.userID = userID;
+        this.passpord = passpord;
+        this.telNum = telNum;
+        this.creditChangeRecord = creditChangeRecord;
+        UserType = userType;
+        this.birth = birth;
+        this.enterpriseID = enterpriseID;
+        this.enterprisePasspord = enterprisePasspord;
+    }
+    
     @Override
     public boolean login(long ID, String password) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 
     @Override
     public boolean signRegularVip(UserVO regularVip) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 
     @Override
     public boolean signEnterpriseVip(UserVO EnterpriseVip) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 
     @Override
     public boolean add(UserVO user) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 
     @Override
     public boolean del(UserVO user) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 
