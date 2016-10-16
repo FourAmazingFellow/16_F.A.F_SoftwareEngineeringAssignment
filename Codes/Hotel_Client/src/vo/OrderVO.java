@@ -1,7 +1,6 @@
 package vo;
 
 import java.util.Date;
-import java.util.Date;
 
 import po.OrderState;
 import po.RoomType;
@@ -23,7 +22,7 @@ public class OrderVO extends BriefOrderInfoVO {
 	public boolean isCommented;
 
 	public OrderVO(long userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
-			String ID, Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
+			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
 			boolean isCom) {
 
 		super(userID, orID, hN, hA, bD, fD, rT, n, tP);
@@ -35,16 +34,5 @@ public class OrderVO extends BriefOrderInfoVO {
 		this.isOnSale = isOnSale;
 		orderState = orderS;
 		isCommented = isCom;
-	}
-
-	@SuppressWarnings("deprecation")
-	public OrderVO() {
-		orderProducedTime = new Date(2016, 10, 16, 18, 0);
-		lastedOrderDoneTime = new Date(2016, 10, 16, 20, 0);
-		numOfPerson = 2;
-		isChildren = false;
-		this.isOnSale = false;
-		orderState = OrderState.NOT_DONE_ORDER;
-		isCommented = false;
 	}
 }
