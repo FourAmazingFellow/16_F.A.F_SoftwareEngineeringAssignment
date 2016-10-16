@@ -22,12 +22,7 @@ public class OrderVO extends BriefOrderInfoVO {
 	public boolean isCommented;
 
 	public OrderVO(long userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
-<<<<<<< HEAD
-			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
-=======
-			 Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
->>>>>>> origin/master
-			boolean isCom) {
+			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS, boolean isCom) {
 
 		super(userID, orID, hN, hA, bD, fD, rT, n, tP);
 
