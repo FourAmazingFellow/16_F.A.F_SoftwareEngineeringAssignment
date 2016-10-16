@@ -15,4 +15,17 @@ public class RoomVO {
     public int roomPrice;
     public String address;
     
+    public RoomVO(Enum<RoomType> roomType, int roomNum, int roomPrice, String address){
+        this.roomType=roomType;
+        this.roomNum=roomNum;
+        this.roomPrice=roomPrice;
+        this.address=address;
+    }
+    
+    public RoomVO(Enum<RoomType> roomType, int roomNum, String address){
+        this.roomType=roomType;
+        this.roomNum=roomNum;
+        this.address=address;
+    }
+    
 }
