@@ -43,7 +43,7 @@ public class UserInfoServiceImpl_Stub implements UserInfoService{
     }
 
     @Override
-    public UserVO getEnterpriseInfo(long ID) {
+    public UserVO getEnterpriseVipInfo(long ID) {
         return new VipInfoVO(userID, passpord, telNum, null, enterpriseID, enterprisePasspord);
                 
     }

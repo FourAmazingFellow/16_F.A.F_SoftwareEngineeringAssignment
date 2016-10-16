@@ -19,7 +19,7 @@ public interface UserInfoService {
      * @return 返回用户信息
      * @see
      */
-    public UserVO getUserInfo(long ID,Enum<UserType> UserType);
+    public UserVO getUserInfo(long ID,Enum<UserType> userType);
     
     /**
      * 修改用户信息

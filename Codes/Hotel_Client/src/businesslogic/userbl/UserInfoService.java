@@ -24,5 +24,5 @@ public interface UserInfoService {
      * @return 返回企业客户信息
      * @see
      */
-    public UserVO getEnterpriseInfo(long ID);
+    public UserVO getEnterpriseVipInfo(long ID);
 }
