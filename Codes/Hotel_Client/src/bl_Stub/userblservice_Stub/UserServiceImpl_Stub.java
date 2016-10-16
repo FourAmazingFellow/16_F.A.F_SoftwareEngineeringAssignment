@@ -3,6 +3,12 @@ package bl_Stub.userblservice_Stub;
 import businesslogicservice.userblservice.UserService;
 import vo.UserVO;
 
+/**
+ * 
+ * @author sparkler
+ * @version 
+ * @see
+ */
 public class UserServiceImpl_Stub implements UserService {
 
     @Override

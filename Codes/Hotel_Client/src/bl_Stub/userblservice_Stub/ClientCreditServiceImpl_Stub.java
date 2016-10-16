@@ -1,9 +1,14 @@
 package bl_Stub.userblservice_Stub;
 
-
 import businesslogicservice.userblservice.ClientCreditService;
 import vo.UserVO;
 
+/**
+ * 
+ * @author sparkler
+ * @version 
+ * @see
+ */
 public class ClientCreditServiceImpl_Stub implements ClientCreditService {
 
     @Override

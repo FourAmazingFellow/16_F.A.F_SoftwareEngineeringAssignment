@@ -1,10 +1,15 @@
 package bl_Stub.userblservice_Stub;
 
-
 import businesslogicservice.userblservice.UserInfoService;
 import po.UserType;
 import vo.UserVO;
 
+/**
+ * 
+ * @author sparkler
+ * @version 
+ * @see
+ */
 public class UserInfoServiceImpl_Stub implements UserInfoService {
 
     @Override
