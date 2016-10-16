@@ -13,7 +13,7 @@ import vo.OrderVO;
  * @version 1.0
  * @see
  */
-public interface GetOrderDone {
+public interface GetOrderDoneService {
 	
 	/**
 	 * 得到该酒店的所有订单OrderVO的ArrayList
