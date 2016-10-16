@@ -6,14 +6,21 @@ package po;
  * @version 1.0
  */
 public class UserPO {
+  
     private long userID;
     private String passpord;
     private long telNum;
-    private int creditValue;
     private String creditChangeRecord;
-    private String enterpriseName;
-    @SuppressWarnings("unused")
     private Enum<UserType> UserType;
+    
+    public UserPO(long userID, String passpord, long telNum, String creditChangeRecord, Enum<po.UserType> userType) {
+        super();
+        this.userID = userID;
+        this.passpord = passpord;
+        this.telNum = telNum;
+        this.creditChangeRecord = creditChangeRecord;
+        UserType = userType;
+    }
     
     public void setUserID(long userID) {
         this.userID = userID;
@@ -33,22 +40,11 @@ public class UserPO {
     public long getTelNum() {
         return telNum;
     }
-    public void setCreditValue(int creditValue) {
-        this.creditValue = creditValue;
-    }
-    public int getCreditValue() {
-        return creditValue;
-    }
     public void setCreditChangeRecord(String creditChangeRecord) {
         this.creditChangeRecord = creditChangeRecord;
     }
     public String getCreditChangeRecord() {
         return creditChangeRecord;
     }
-    public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName;
-    }
-    public String getEnterpriseName() {
-        return enterpriseName;
-    }
+  
 }
