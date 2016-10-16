@@ -21,7 +21,7 @@ public class UpdateStrategyService_Driver {
             System.out.println("There are " + strategyList.size() + " checkIns in this hotel!\n");
         
         StrategyVO strategyVO=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.BirthdayPromotion, "双十一折扣", 80);
-        System.out.println("The strategy "+strategyVO.strategyName+" has discount "+strategyVO.discount);
+        System.out.println("The strategy "+strategyVO.strategyName+" has discount "+strategyVO.discount+"/n");
         
         boolean addStrategy=updateStrategyService.add("江苏省南京市栖霞区仙林大道163号", strategyVO);
         if(addStrategy)

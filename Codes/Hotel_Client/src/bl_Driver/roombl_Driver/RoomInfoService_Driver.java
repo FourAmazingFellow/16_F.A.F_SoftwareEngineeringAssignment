@@ -6,6 +6,12 @@ import businesslogic.roombl.RoomInfoService;
 import po.RoomType;
 import vo.RoomVO;
 
+/**
+ * 
+ * @author 双
+ * @version 
+ * @see
+ */
 public class RoomInfoService_Driver {
     public void drive(RoomInfoService roomInfoService){
         RoomType roomType=RoomType.SINGLE_ROOM;

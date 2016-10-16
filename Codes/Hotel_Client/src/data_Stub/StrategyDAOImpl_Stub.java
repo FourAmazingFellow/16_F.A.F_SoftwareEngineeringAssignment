@@ -8,6 +8,12 @@ import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;
 import po.StrategyType;
 
+/**
+ * 
+ * @author 双
+ * @version 
+ * @see
+ */
 public class StrategyDAOImpl_Stub implements StrategyDAO{
     
     private String address;

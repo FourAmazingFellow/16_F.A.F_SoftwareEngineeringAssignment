@@ -7,6 +7,12 @@ import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;
 import po.StrategyType;
 
+/**
+ * 
+ * @author 双
+ * @version 
+ * @see
+ */
 public class StrategyDAO_Driver {
     public void drive(StrategyDAO strategyDAO) throws RemoteException{
         ArrayList<StrategyPO> strategyList=strategyDAO.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.BirthdayPromotion);
@@ -16,10 +22,10 @@ public class StrategyDAO_Driver {
             System.out.println("There are " + strategyList.size() + " checkIns in this hotel!\n");
         
         StrategyPO strategyPO1=strategyDAO.getMarketStrategyInfo("江苏省南京市栖霞区仙林大道163号", "雙十一折扣");
-        System.out.println("The strategy "+strategyPO1.getStrategyName()+" has discount "+strategyPO1.getDiscount());
+        System.out.println("The strategy "+strategyPO1.getStrategyName()+" has discount "+strategyPO1.getDiscount()+"/n");
         
         StrategyPO strategyPO2=strategyDAO.find(12345678);
-        System.out.println("The strategy "+strategyPO2.getStrategyName()+" has discount "+strategyPO2.getDiscount());
+        System.out.println("The strategy "+strategyPO2.getStrategyName()+" has discount "+strategyPO2.getDiscount()+"/n");
         
         StrategyPO strategyPO=new StrategyPO("江苏省南京市栖霞区仙林大道163号", StrategyType.BirthdayPromotion);
         strategyDAO.update(strategyPO);

@@ -56,8 +56,8 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO getCheckInInfo(String address, String time) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
+    public RoomPO getCheckInInfo(String address, Date time) throws RemoteException {
+        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, time, expDepartTime);
         return roomPO;
     }
 
@@ -76,8 +76,8 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO getCheckOutInfo(String address, String time) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+    public RoomPO getCheckOutInfo(String address, Date time) throws RemoteException {
+        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, time);
         return roomPO;
     }
 

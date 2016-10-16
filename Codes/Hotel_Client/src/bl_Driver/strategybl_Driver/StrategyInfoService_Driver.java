@@ -7,6 +7,12 @@ import po.OrderState;
 import po.RoomType;
 import vo.OrderVO;
 
+/**
+ * 
+ * @author 双
+ * @version 
+ * @see
+ */
 public class StrategyInfoService_Driver {
     public void drive(StrategyInfoService strategyInfoService){
         @SuppressWarnings("deprecation")

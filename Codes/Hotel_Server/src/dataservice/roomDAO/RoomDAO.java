@@ -2,6 +2,7 @@ package dataservice.roomDAO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.sql.Date;
 
 import po.RoomPO;
 import po.RoomType;
@@ -51,7 +52,7 @@ public interface RoomDAO {
      * @throws RemoteException
      * @see
      */
-    public RoomPO getCheckInInfo(String address , String time) throws RemoteException;
+    public RoomPO getCheckInInfo(String address , Date time) throws RemoteException;
     
     /**
      * 获取对应房间类型的入住信息
@@ -80,7 +81,7 @@ public interface RoomDAO {
      * @throws RemoteException
      * @see
      */
-    public RoomPO getCheckOutInfo(String address, String time) throws RemoteException;
+    public RoomPO getCheckOutInfo(String address, Date time) throws RemoteException;
     
     /**
      * 获取对应房间类型的退房信息

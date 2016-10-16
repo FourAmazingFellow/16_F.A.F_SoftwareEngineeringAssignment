@@ -9,6 +9,12 @@ import po.CheckInOutPO;
 import po.RoomPO;
 import po.RoomType;
 
+/**
+ * 
+ * @author 双
+ * @version 
+ * @see
+ */
 public class RoomDAO_Driver {
     public void drive(RoomDAO roomDAO) throws RemoteException{
         ArrayList<RoomPO> spareRoomList=roomDAO.getSpareRoomInfoList("江苏省南京市栖霞区仙林大道163号");
@@ -27,13 +33,13 @@ public class RoomDAO_Driver {
             System.out.println("There are " + checkInInfoList.size() + " checkIns in this hotel!\n");
         
         CheckInOutPO checkInPO1=(CheckInOutPO)roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
-        System.out.println("the checkInInfo includes "+checkInPO1.getRoomNum() + " 间"+ checkInPO1.getRoomType());
+        System.out.println("the checkInInfo includes "+checkInPO1.getRoomNum() + " "+ checkInPO1.getRoomType());
         System.out.println("checkin time is "+checkInPO1.getCheckInTime());
         System.out.println("expected time is "+checkInPO1.getExpDepartTime()+"/n");
         
         Date checkInTime=new Date(System.currentTimeMillis());
-        CheckInOutPO checkInPO2=(CheckInOutPO)roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime.toString());
-        System.out.println("the checkInInfo includes "+checkInPO2.getRoomNum() + " 间"+ checkInPO2.getRoomType());
+        CheckInOutPO checkInPO2=(CheckInOutPO)roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime);
+        System.out.println("the checkInInfo includes "+checkInPO2.getRoomNum() + " "+ checkInPO2.getRoomType());
         System.out.println("checkin time is "+checkInPO2.getCheckInTime());
         System.out.println("expected time is "+checkInPO2.getExpDepartTime()+"/n");
         
@@ -44,16 +50,16 @@ public class RoomDAO_Driver {
             System.out.println("There are " + checkOutInfoList.size() + " checkOuts in this hotel!\n");
         
         CheckInOutPO checkOutPO1=(CheckInOutPO)roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
-        System.out.println("the checkOutInfo includes "+checkOutPO1.getRoomNum() + " 间"+ checkOutPO1.getRoomType());
-        System.out.println("checkOut time is "+checkOutPO1.getActDepartTime());
+        System.out.println("the checkOutInfo includes "+checkOutPO1.getRoomNum() + " "+ checkOutPO1.getRoomType());
+        System.out.println("checkOut time is "+checkOutPO1.getActDepartTime()+"/n");
         
         Date checkOutTime=new Date(System.currentTimeMillis());
-        CheckInOutPO checkOutPO2=(CheckInOutPO)roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime.toString());
-        System.out.println("the checkInInfo includes "+checkOutPO2.getRoomNum() + " 间"+ checkOutPO2.getRoomType());
-        System.out.println("checkOut time is "+checkOutPO1.getActDepartTime());
+        CheckInOutPO checkOutPO2=(CheckInOutPO)roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime);
+        System.out.println("the checkInInfo includes "+checkOutPO2.getRoomNum() + " "+ checkOutPO2.getRoomType());
+        System.out.println("checkOut time is "+checkOutPO2.getActDepartTime()+"/n");
         
         RoomPO roompo=roomDAO.find(12345678);
-        System.out.println("roomType is "+roompo.getRoomType());
+        System.out.println("this roompo includes "+roompo.getRoomNum()+" "+roompo.getRoomType()+"/n");
         
         RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
         roomDAO.update(roomPo);
