@@ -2,7 +2,7 @@
  * 
  */
 /**
- * 没有人要调用Order层，双向接口已解除
+ * hotel逻辑层接口的实现包
  * @author Accident
  * @version 1.0
  * @see

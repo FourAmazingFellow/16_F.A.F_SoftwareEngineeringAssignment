@@ -2,7 +2,7 @@
  * 
  */
 /**
- * hotel模块的界面层包
+ * hotel模块的界面展示层包
  * @author 原
  * @version
  * @see
