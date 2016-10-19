@@ -13,7 +13,7 @@ public class StrategyPO {
     private String address;
     private Enum<StrategyType> strategyType;
     private String strategyName;
-    private int discount;
+    private float discount;
     private int minRoomNum;
     private String enterpriseName;
     private String securityCode;
@@ -22,7 +22,7 @@ public class StrategyPO {
     private String tradeArea;
     private int vipRank;
     
-    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, int discount){
+    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, float discount){
         this.address=address;
         this.strategyName=strategyName;
         this.discount=discount;
@@ -30,7 +30,7 @@ public class StrategyPO {
             this.strategyType=strategyType;
     }
     
-    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, int inputInt){
+    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, float discount, int inputInt){
         this.address=address;
         this.strategyType=strategyType;
         this.strategyName=strategyName;
@@ -43,26 +43,28 @@ public class StrategyPO {
         }
     }
     
-    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, String enterpriseName, String securityCode){
+    public StrategyPO(String address, Enum<StrategyType> strategyType, float discount, String enterpriseName, String securityCode){
         this.address=address;
         this.strategyType=strategyType;
-        
+        this.discount = discount;
         this.enterpriseName=enterpriseName;
         this.securityCode=securityCode;
     }
     
-    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, Date startTime, Date endTime){
+    public StrategyPO(String address, Enum<StrategyType> strategyType, float discount, Date startTime, Date endTime){
         this.address=address;
         this.strategyType=strategyType;
         this.startTime=startTime;
         this.endTime=endTime;
+        this.discount = discount;
     }
     
-    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, int discount, int vipRank, String tradeArea){
+    public StrategyPO(String address, Enum<StrategyType> strategyType, float discount, int vipRank, String tradeArea){
         this.address=address;
         this.strategyType=strategyType;
         this.vipRank=vipRank;
         this.tradeArea=tradeArea;
+        this.discount = discount;
     }
     
     public String getAddress() {
@@ -89,7 +91,7 @@ public class StrategyPO {
         this.strategyName = strategyName;
     }
 
-    public int getDiscount() {
+    public float getDiscount() {
         return discount;
     }
 

@@ -19,7 +19,7 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
     private String address;
     private Enum<StrategyType> strategyType;
     private String strategyName;
-    private int discount;
+    private float discount;
     private int minRoomNum;
     private String enterpriseName;
     private String securityCode;
@@ -50,15 +50,15 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
             throws RemoteException {
         StrategyPO strategyPO=null;
         if(StrategyType.BirthdayPromotion==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, address, discount);
+            strategyPO=new StrategyPO(address, strategyType, strategyName, discount);
         if(StrategyType.MultiRoomPromotion==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, address, discount, minRoomNum);
+            strategyPO=new StrategyPO(address, strategyType, strategyName, discount, minRoomNum);
         if(StrategyType.CooperationEnterprisePromotion==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, address, discount, enterpriseName, securityCode);
+            strategyPO=new StrategyPO(address, strategyType, discount, enterpriseName, securityCode);
         if(StrategyType.SpecificTimePromotion==strategyType||StrategyType.SpecificTimeMarket==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+            strategyPO=new StrategyPO(address, strategyType, discount, startTime, endTime);
         if(StrategyType.VipTradeAreaMarket==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, tradeArea);
+            strategyPO=new StrategyPO(address, strategyType, discount, vipRank, tradeArea);
         if(StrategyType.MemberRankMarket==strategyType)
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         ArrayList<StrategyPO> arrayList=new ArrayList<StrategyPO>();
