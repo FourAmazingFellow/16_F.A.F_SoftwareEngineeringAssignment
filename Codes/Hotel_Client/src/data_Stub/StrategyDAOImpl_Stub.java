@@ -17,6 +17,7 @@ import po.StrategyType;
 public class StrategyDAOImpl_Stub implements StrategyDAO{
     
     private String address;
+    private String hotelName;
     private Enum<StrategyType> strategyType;
     private String strategyName;
     private float discount;
@@ -28,11 +29,12 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
     private String tradeArea;
     private int vipRank;
     
-    public StrategyDAOImpl_Stub(String address, Enum<StrategyType> strategyType, String strategyName, int discount,
+    public StrategyDAOImpl_Stub(String address, String hotelName, Enum<StrategyType> strategyType, String strategyName, int discount,
             int minRoomNum, String enterpriseName, String securityCode, Date startTime, Date endTime, String tradeArea,
             int vipRank) {
         super();
         this.address = address;
+        this.hotelName = hotelName;
         this.strategyType = strategyType;
         this.strategyName = strategyName;
         this.discount = discount;
@@ -54,11 +56,11 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
         if(StrategyType.MultiRoomPromotion==strategyType)
             strategyPO=new StrategyPO(address, strategyType, strategyName, discount, minRoomNum);
         if(StrategyType.CooperationEnterprisePromotion==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, discount, enterpriseName, securityCode);
+            strategyPO=new StrategyPO(hotelName, strategyType, strategyName, discount, enterpriseName, securityCode);
         if(StrategyType.SpecificTimePromotion==strategyType||StrategyType.SpecificTimeMarket==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, discount, startTime, endTime);
+            strategyPO=new StrategyPO(address, strategyType, strategyName, discount, startTime, endTime);
         if(StrategyType.VipTradeAreaMarket==strategyType)
-            strategyPO=new StrategyPO(address, strategyType, discount, vipRank, tradeArea);
+            strategyPO=new StrategyPO(address, strategyType, strategyName, discount, vipRank, tradeArea);
         if(StrategyType.MemberRankMarket==strategyType)
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         ArrayList<StrategyPO> arrayList=new ArrayList<StrategyPO>();
