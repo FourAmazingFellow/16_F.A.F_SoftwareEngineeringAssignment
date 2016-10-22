@@ -42,5 +42,12 @@ public class OrderInfoImpl_Stub implements OrderInfo{
 		a.add(testOrderVO);
 		return a;
 	}
+
+	@Override
+	public ArrayList<OrderVO> getReservedOrderList(String userID) {
+		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
+		a.add(testOrderVO);
+		return a;
+	}
 	
 }

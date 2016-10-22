@@ -6,8 +6,8 @@ import vo.OrderVO;
 
 /**
  * 给Hotel调用的Order接口
- * @author Accident
- * @version 1.0
+ * @author 原
+ * @version 1.2
  * @see
  */
 public interface OrderInfo {
@@ -46,4 +46,12 @@ public interface OrderInfo {
 	 */
 	public ArrayList<OrderVO> getOrderList(long ID, String address);
 
+	/**
+	 * 得到某用户的所有已执行、已撤销和异常订单
+	 * @param userID String型 用户ID
+	 * @return 该用户的所有已执行、已撤销和异常订单列表
+	 * @see
+	 */
+	public ArrayList<OrderVO> getReservedOrderList(String userID);
+	
 }
