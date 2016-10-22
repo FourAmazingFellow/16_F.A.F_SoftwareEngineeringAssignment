@@ -7,7 +7,7 @@ import vo.BriefHotelInfoVO;
 
 public class CheckOrderedHotelService_Driver {
 	public void drive(CheckOrderedHotelService checkOrderedHotelService) {
-		ArrayList<BriefHotelInfoVO> briefHotelInfoVOList = checkOrderedHotelService.enrollHotelBreifInfoList(19970909);
+		ArrayList<BriefHotelInfoVO> briefHotelInfoVOList = checkOrderedHotelService.enrollHotelBreifInfoList("原");
 		if(briefHotelInfoVOList.isEmpty())
 			System.out.println("No such hotels!\n");
 		else
