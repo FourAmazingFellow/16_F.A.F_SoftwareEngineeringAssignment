@@ -18,6 +18,6 @@ public interface CheckOrderedHotelService {
 	 * @return 返回用户所有预订过的酒店简要信息列表
 	 * @see
 	 */
-	public ArrayList<BriefHotelInfoVO> enrollHotelBreifInfoList (long ID);
+	public ArrayList<BriefHotelInfoVO> enrollHotelBreifInfoList(long ID);
 
 }
