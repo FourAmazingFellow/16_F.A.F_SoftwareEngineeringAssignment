@@ -57,7 +57,7 @@ public class CommentOnHotelServiceImpl_Stub implements CommentOnHotelService{
 	}
 
 	@Override
-	public boolean confirmComment(String username, int mark, String comment) {
+	public boolean confirmComment(String username, int mark, String comment, String hotelAddress) {
 		return true;
 	}
 	
