@@ -7,7 +7,7 @@ import vo.OrderVO;
 
 public class CreateNewOrderServiceImpl_Driver {
 	public void drive(CreateNewOrderService createNewOrderService){
-		OrderVO newOrder = createNewOrderService.initNewOrder(1, "江苏省南京市栖霞区仙林大道163号");
+		OrderVO newOrder = createNewOrderService.initNewOrder("原", "江苏省南京市栖霞区仙林大道163号");
 		
 		System.out.println("该用户选择订一间大床房");
 		newOrder.roomType = RoomType.KING_SIZE_ROOM;

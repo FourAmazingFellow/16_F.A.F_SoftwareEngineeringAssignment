@@ -10,7 +10,7 @@ import po.UserType;
 
 public class UserDAOImpl_Stub implements UserDAO{
     
-    public long userID;
+    public String userID;
     public String passpord;
     public long telNum;
     
@@ -23,15 +23,15 @@ public class UserDAOImpl_Stub implements UserDAO{
     public String enterpriseID;
     public String enterprisePasspord;
     
-    public Enum<UserType> UserType;
+    public UserType userType;
     
-    public UserDAOImpl_Stub(long userID, String passpord, long telNum) {
+    public UserDAOImpl_Stub(String userID, String passpord, long telNum) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
     }
-    public UserDAOImpl_Stub(long userID, String passpord, long telNum, int creditValue, String[] creditRecord) {
+    public UserDAOImpl_Stub(String userID, String passpord, long telNum, int creditValue, String[] creditRecord) {
         super();
         this.userID = userID;
         this.passpord = passpord;
@@ -39,7 +39,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }
-    public UserDAOImpl_Stub(long userID, String passpord, long telNum, int creditValue, String[] creditRecord,
+    public UserDAOImpl_Stub(String userID, String passpord, long telNum, int creditValue, String[] creditRecord,
             Date birth) {
         super();
         this.userID = userID;
@@ -49,7 +49,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.creditRecord = creditRecord;
         this.birth = birth;
     }
-    public UserDAOImpl_Stub(long userID, String passpord, long telNum, String enterpriseName) {
+    public UserDAOImpl_Stub(String userID, String passpord, long telNum, String enterpriseName) {
         super();
         this.userID = userID;
         this.passpord = passpord;
@@ -57,12 +57,12 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.enterpriseName = enterpriseName;
     }
     @Override
-    public UserPO getUserInfo(String userID, Enum<po.UserType> UserType) throws RemoteException {
-        return new UserPO(userID, passpord, telNum);
+    public UserPO getUserInfo(String userID, UserType userType) throws RemoteException {
+        return new UserPO(userID, passpord, telNum, userType);
     }
     @Override
     public UserPO queryCredit(String userID) throws RemoteException {
-        return new ClientInfoPO(userID, passpord, telNum, creditValue, creditRecord);
+        return new ClientInfoPO(userID, passpord, telNum, userType, creditValue, creditRecord);
     }
     @Override
     public int getCreditValue(String userID) throws RemoteException {

@@ -17,7 +17,7 @@ public interface CreateNewOrderService {
 	 * @return 被初始化的OrderVO
 	 * @see
 	 */
-	public OrderVO initNewOrder(long userID, String address);
+	public OrderVO initNewOrder(String userID, String address);
 	
 	/**
 	 * 获取订单总价

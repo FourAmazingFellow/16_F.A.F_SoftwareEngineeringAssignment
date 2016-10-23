@@ -21,7 +21,6 @@ public class BrowseUserOrderServiceImpl_Stub implements BrowseUserOrderService {
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,oPT, lODT, nOP, isChild, isOnSale, orderS, isCom);
 	}
 	public ArrayList<BriefOrderInfoVO> getUserOrderList(String userID, Enum<OrderType> orderType) {
-		// TODO Auto-generated method stub
 		System.out.println("得到用户所有订单列表");
 		ArrayList<BriefOrderInfoVO> b = new ArrayList<BriefOrderInfoVO>();
 		b.add(testBriefOrderInfoVO);
@@ -30,7 +29,6 @@ public class BrowseUserOrderServiceImpl_Stub implements BrowseUserOrderService {
 
 	@Override
 	public OrderVO getDetailedOrder(String orderID) {
-		// TODO Auto-generated method stub
 		System.out.println("展开订单详情");
 		return testOrderVO;
 	}

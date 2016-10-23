@@ -9,8 +9,8 @@ package po;
 public class ClientInfoPO extends UserPO{
  
  
-    public ClientInfoPO(long userID, String passpord, long telNum, int creditValue, String[] creditRecord) {
-        super(userID, passpord, telNum);
+    public ClientInfoPO(String userID, String passpord, long telNum, UserType userType, int creditValue, String[] creditRecord) {
+        super(userID, passpord, telNum, userType);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }

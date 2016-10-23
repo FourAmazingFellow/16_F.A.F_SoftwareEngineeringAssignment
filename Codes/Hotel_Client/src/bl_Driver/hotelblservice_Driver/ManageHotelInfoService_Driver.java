@@ -21,7 +21,7 @@ public class ManageHotelInfoService_Driver {
 		else
 			System.out.println("添加酒店失败！\n");
 		
-		HotelStaffInfoVO staff = new HotelStaffInfoVO(19970909, "123456", 13655255834L, UserType.HotelStaff, "Jingling Hotel");
+		HotelStaffInfoVO staff = new HotelStaffInfoVO("原", "123456", 13655255834L, UserType.HotelStaff, "Jingling Hotel");
 		boolean result2 = manageHotelInfoService.addHotelStaff(staff);
 		if(result2)
 			System.out.println("添加酒店工作人员成功！\n");

@@ -7,22 +7,23 @@ package po;
  */
 public class UserPO {
   
-    private long userID;
+    private String userID;
     private String passpord;
     private long telNum;
     private Enum<UserType> UserType;
     
-    public UserPO(long userID, String passpord, long telNum) {
+    public UserPO(String userID, String passpord, long telNum, UserType userType) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
+        this.UserType = userType;
     }
     
-    public void setUserID(long userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
-    public long getUserID() {
+    public String getUserID() {
         return userID;
     }
     public void setPasspord(String passpord) {

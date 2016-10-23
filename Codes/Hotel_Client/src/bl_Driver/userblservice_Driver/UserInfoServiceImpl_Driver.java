@@ -12,7 +12,7 @@ import vo.UserVO;
  */
 public class UserInfoServiceImpl_Driver {
     public void drive(UserInfoService userInfoService){
-        UserVO userVO = userInfoService.getUserInfo(1111, UserType.Client);
+        UserVO userVO = userInfoService.getUserInfo("原", UserType.Client);
         System.out.println("The client's credit value and records are: "+userVO);
         
         boolean result = userInfoService.modifyUserInfo(userVO);

@@ -58,8 +58,6 @@ public class RoomDAO_Driver {
         System.out.println("the checkInInfo includes "+checkOutPO2.getRoomNum() + " "+ checkOutPO2.getRoomType());
         System.out.println("checkOut time is "+checkOutPO2.getActDepartTime()+"/n");
         
-        RoomPO roompo=roomDAO.find(12345678);
-        System.out.println("this roompo includes "+roompo.getRoomNum()+" "+roompo.getRoomType()+"/n");
         
         RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
         roomDAO.update(roomPo);

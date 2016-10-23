@@ -35,15 +35,6 @@ public interface StrategyDAO {
     public StrategyPO getMarketStrategyInfo(String address, String strategyName) throws RemoteException;
     
     /**
-     * 查找对应ID策略信息
-     * @param id long型，每条策略信息对应的ID
-     * @return 返回策略信息
-     * @throws RemoteException
-     * @see
-     */
-    public StrategyPO find(String userID) throws RemoteException;
-    
-    /**
      * 更新某条策略信息
      * @param po StrategyPO型，业务逻辑层传递来的策略信息
      * @throws RemoteException

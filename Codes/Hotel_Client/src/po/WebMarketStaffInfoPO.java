@@ -7,9 +7,9 @@ package po;
  */
 public class WebMarketStaffInfoPO extends UserPO{
 
-    public WebMarketStaffInfoPO(long userID, String passpord, long telNum, String creditChangeRecord,
-            Enum<po.UserType> userType) {
-        super(userID, passpord, telNum);
+    public WebMarketStaffInfoPO(String userID, String passpord, long telNum, String creditChangeRecord,
+            UserType userType) {
+        super(userID, passpord, telNum, userType);
     }
 
 }

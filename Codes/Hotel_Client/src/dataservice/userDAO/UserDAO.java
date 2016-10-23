@@ -19,7 +19,7 @@ public interface UserDAO {
      * @throws RemoteException
      * @see
      */
-    public UserPO getUserInfo(String userID,Enum<UserType> UserType) throws RemoteException;
+    public UserPO getUserInfo(String userID, UserType userType) throws RemoteException;
     
     /**
     * 查询信用记录

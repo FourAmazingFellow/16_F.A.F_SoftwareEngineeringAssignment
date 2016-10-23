@@ -9,7 +9,7 @@ import vo.OrderVO;
 
 public class WithdrawOrderServiceImpl_Driver {
 	public void drive(WithdrawOrderService withdrawOrderService){
-		ArrayList<BriefOrderInfoVO> a = withdrawOrderService.getUserOrderList(1, OrderType.ALL);
+		ArrayList<BriefOrderInfoVO> a = withdrawOrderService.getUserOrderList("原", OrderType.ALL);
 		BriefOrderInfoVO tested = a.get(0);
 		if(a.isEmpty())
 			System.out.println("该用户无订单");

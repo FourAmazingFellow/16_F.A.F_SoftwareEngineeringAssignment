@@ -8,10 +8,10 @@ package po;
 public class HotelStaffInfoPO extends UserPO{
     
     private String enterpriseName;
-  
-    public HotelStaffInfoPO(long userID, String passpord, long telNum, Enum<po.UserType> creditChangeRecord,
-            String enterpriseName) {
-        super(userID, passpord, telNum, creditChangeRecord);
+    
+    public HotelStaffInfoPO(String userID, String passpord, long telNum, String creditChangeRecord,
+            UserType userType, String enterpriseName) {
+        super(userID, passpord, telNum, userType);
         this.enterpriseName = enterpriseName;
     }
     public void setEnterpriseName(String enterpriseName) {
