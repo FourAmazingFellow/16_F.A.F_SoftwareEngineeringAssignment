@@ -16,3 +16,5 @@ hs_err_pid*
 Documents/.DS_Store
 
 Documents/设计阶段/.DS_Store
+
+*.class
