@@ -10,10 +10,10 @@ import businesslogic.userbl.ClientCreditService;
  */
 public class ClientCreditServiceImpl_Driver {
     public void drive(ClientCreditService clientCreditService){
-        int creditValue = clientCreditService.getCreditValue(1111);
+        int creditValue = clientCreditService.getCreditValue("原");
         System.out.println("The client's credit value is: "+creditValue);
     
-         boolean result = clientCreditService.changeCreditValue(1111, 100);
+         boolean result = clientCreditService.changeCreditValue("原", 100);
          if(result)
             System.out.println("Change Succeed!\n");
         else

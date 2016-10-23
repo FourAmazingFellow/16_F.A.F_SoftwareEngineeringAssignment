@@ -19,7 +19,7 @@ public class QueryHotelService_Driver {
 		HotelVO hotel = queryHotelService.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
 		System.out.println(hotel.briefIntroduction);
 		
-		ArrayList<OrderVO> orderVOList = queryHotelService.getOrders("江苏省南京市栖霞区仙林大道163号", 19970909);
+		ArrayList<OrderVO> orderVOList = queryHotelService.getOrders("江苏省南京市栖霞区仙林大道163号", "原");
 		if(orderVOList.isEmpty())
 			System.out.println("没有此类订单");
 		else

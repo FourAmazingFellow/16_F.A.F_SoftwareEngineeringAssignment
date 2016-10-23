@@ -7,7 +7,7 @@ import vo.OrderVO;
 
 public class CommentOnHotelService_Driver {
 	public void drive(CommentOnHotelService commentOnHotelService) {
-		ArrayList<OrderVO> orderVOList = commentOnHotelService.getCommentableOrderList(19970909);
+		ArrayList<OrderVO> orderVOList = commentOnHotelService.getCommentableOrderList("原");
 		if(orderVOList.isEmpty())
 			System.out.println("No such orders!\n");
 		else
