@@ -10,7 +10,7 @@ import vo.OrderVO;
 
 public class CommentOnHotelServiceImpl_Stub implements CommentOnHotelService{
 
-	public long userID;
+	public String userID;
 	public String orderID;
 	public String hotelName;
 	public String hotelAddress;
@@ -27,7 +27,7 @@ public class CommentOnHotelServiceImpl_Stub implements CommentOnHotelService{
 	public OrderState orderState;
 	public boolean isCommented;
 	
-	public CommentOnHotelServiceImpl_Stub(long userID, String orderID, String hotelName, String hotelAddress,
+	public CommentOnHotelServiceImpl_Stub(String userID, String orderID, String hotelName, String hotelAddress,
 			Date beginDate, Date finishDate, RoomType roomType, int num, int totalPrice, Date orderProducedTime,
 			Date lastedOrderDoneTime, int numOfPerson, boolean isChildren, boolean isOnSale, OrderState orderState,
 			boolean isCommented) {

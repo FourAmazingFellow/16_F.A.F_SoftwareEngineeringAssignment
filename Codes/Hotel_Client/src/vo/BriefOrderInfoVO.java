@@ -11,7 +11,7 @@ import po.RoomType;
  * @see
  */
 public class BriefOrderInfoVO {
-	public long userID;
+	public String userID;
 	public String orderID;
 	public String hotelName;
 	public String hotelAddress;
@@ -21,7 +21,7 @@ public class BriefOrderInfoVO {
 	public int num;
 	public int totalPrice;
 
-	public BriefOrderInfoVO(long userID, String orderID, String hN, String hA, Date bD,
+	public BriefOrderInfoVO(String userID, String orderID, String hN, String hA, Date bD,
 			Date fD, RoomType rT, int n, int tP) {
 		this.orderID = orderID;
 		this.userID = userID;

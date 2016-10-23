@@ -18,7 +18,7 @@ public interface OrderInfo {
 	 * @return 该用户所有订单的OrderVO的组成的ArrayList
 	 * @see
 	 */
-	public ArrayList<OrderVO> getAllOrders(long ID);
+	public ArrayList<OrderVO> getAllOrders(String userID);
 	
 	/**
 	 * 返回某酒店是否被某用户预定过
@@ -27,7 +27,7 @@ public interface OrderInfo {
 	 * @return 该酒店是否被该用户预定过
 	 * @see
 	 */
-	public boolean isReserved(long ID, String address);
+	public boolean isReserved(String userID, String address);
 
 	/**
 	 * 得到某用户所有可评价订单的列表
@@ -35,7 +35,7 @@ public interface OrderInfo {
 	 * @return 该用户所有可评价的订单OrderVO的ArrayList
 	 * @see
 	 */
-	public ArrayList<OrderVO> getCommentableOrderList (long ID);
+	public ArrayList<OrderVO> getCommentableOrderList (String userID);
 
 	/**
 	 * 得到某用户在某酒店所有订单的列表
@@ -44,7 +44,7 @@ public interface OrderInfo {
 	 * @return 该用户在该酒店的所有订单OrderVO的ArrayList
 	 * @see
 	 */
-	public ArrayList<OrderVO> getOrderList(long ID, String address);
+	public ArrayList<OrderVO> getOrderList(String userID, String address);
 
 	/**
 	 * 得到某用户的所有已执行、已撤销和异常订单

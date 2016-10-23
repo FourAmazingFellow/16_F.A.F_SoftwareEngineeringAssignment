@@ -24,7 +24,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	public HashMap<RoomType, Integer> roomTypeAndPrice;
 	public HashMap<String, String> comments;
 	
-	public long userID;
+	public String userID;
 	public String orderID;
 	public Date beginDate;
 	public Date finishDate;
@@ -72,7 +72,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 		this.comments = comments;
 	}
 	
-	public QueryHotelServiceImpl_Stub(String hotelName, String hotelAddress, long userID, String orderID,
+	public QueryHotelServiceImpl_Stub(String hotelName, String hotelAddress, String userID, String orderID,
 			Date beginDate, Date finishDate, RoomType roomType, int num, int totalPrice, Date orderProducedTime,
 			Date lastedOrderDoneTime, int numOfPerson, boolean isChildren, boolean isOnSale, OrderState orderState,
 			boolean isCommented) {

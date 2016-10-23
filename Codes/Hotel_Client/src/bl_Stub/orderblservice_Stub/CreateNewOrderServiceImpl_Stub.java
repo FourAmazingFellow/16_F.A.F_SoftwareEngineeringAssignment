@@ -14,7 +14,7 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	OrderVO testOrderVO;
 	ResultMessage resultMessage;
 	
-	public CreateNewOrderServiceImpl_Stub(long userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
+	public CreateNewOrderServiceImpl_Stub(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
 			boolean isCom, ResultMessage reM, ResultMessage resultMessage) {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP);

@@ -14,7 +14,7 @@ public class WithdrawOrderServiceImpl_Stub implements WithdrawOrderService {
 	BriefOrderInfoVO testBriefOrderInfoVO;
 	OrderVO testOrderVO;
 	
-	public WithdrawOrderServiceImpl_Stub(long userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
+	public WithdrawOrderServiceImpl_Stub(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
 			boolean isCom) {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP);
