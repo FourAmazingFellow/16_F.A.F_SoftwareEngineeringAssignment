@@ -11,10 +11,10 @@ import vo.UserVO;
  */
 public class UserInfoServiceImpl_Driver {
     public void drive(UserInfoService userInfoService){
-        UserVO userVO1 = userInfoService.getRegularVipInfo(1111);
+        UserVO userVO1 = userInfoService.getRegularVipInfo("原");
         System.out.println("The regular VIP's credit information are: "+userVO1);
         
-        UserVO userVO2 = userInfoService.getEnterpriseVipInfo(2211);
+        UserVO userVO2 = userInfoService.getEnterpriseVipInfo("原");
         System.out.println("The regular VIP's credit information are: "+userVO2);
     }
 }

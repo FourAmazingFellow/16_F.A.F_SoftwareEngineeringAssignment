@@ -9,7 +9,7 @@ import vo.OrderVO;
 
 public class BrowseUserOrderServiceImpl_Driver {
 	public void drive(BrowseUserOrderService browseUserOrderService){
-		ArrayList<BriefOrderInfoVO> a = browseUserOrderService.getUserOrderList(1, OrderType.ALL);
+		ArrayList<BriefOrderInfoVO> a = browseUserOrderService.getUserOrderList("原", OrderType.ALL);
 		BriefOrderInfoVO tested = a.get(0);
 		if(a.isEmpty())
 			System.out.println("该用户无订单");

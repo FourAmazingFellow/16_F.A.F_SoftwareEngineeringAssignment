@@ -9,13 +9,14 @@ import java.sql.Date;
  */
 public class VipInfoPO extends UserPO {
    
+
     private Date birth;
     private String enterpriseID;
     private String enterprisePasspord;
     
-    public VipInfoPO(long userID, String passpord, long telNum, Enum<po.UserType> creditChangeRecord, Enum<po.UserType> userType,
-            Date birth, String enterpriseID, String enterprisePasspord) {
-        super(userID, passpord, telNum, creditChangeRecord);
+    public VipInfoPO(String userID, String passpord, long telNum, UserType userType, Date birth, String enterpriseID,
+            String enterprisePasspord) {
+        super(userID, passpord, telNum, userType);
         this.birth = birth;
         this.enterpriseID = enterpriseID;
         this.enterprisePasspord = enterprisePasspord;

@@ -15,7 +15,7 @@ import vo.VipInfoVO;
  */
 public class UserInfoServiceImpl_Stub implements UserInfoService{
    
-    public long userID;
+    public String userID;
     public String passpord;
     public long telNum;
     public Enum<UserType> UserType;
@@ -24,7 +24,7 @@ public class UserInfoServiceImpl_Stub implements UserInfoService{
     public String enterpriseID;
     public String enterprisePasspord;
     
-    public UserInfoServiceImpl_Stub(long userID, String passpord, long telNum, Enum<po.UserType> userType,
+    public UserInfoServiceImpl_Stub(String userID, String passpord, long telNum, Enum<po.UserType> userType,
             int creditValue, Date birth, String enterpriseID, String enterprisePasspord) {
         super();
         this.userID = userID;

@@ -7,12 +7,12 @@ package vo;
  */
 public class UserVO {
   
-    public long userID;
+    public String userID;
     public String passpord;
     public long telNum;
     public Enum<UserType> UserType;
  
-    public UserVO(long userID, String passpord, long telNum) {
+    public UserVO(String userID, String passpord, long telNum) {
         super();
         this.userID = userID;
         this.passpord = passpord;

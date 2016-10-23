@@ -11,13 +11,13 @@ import vo.UserVO;
  */
 public class UserServiceImpl_Driver {
     public void drive(UserService userService){
-        boolean result1 = userService.login(1111, "qwe123");
+        boolean result1 = userService.login("原", "qwe123");
         if(result1)
            System.out.println("Login Succeed!\n");
        else
            System.out.println("Login Failed!\n");
         
-        UserVO userVO = new UserVO(1111,"qwe123",1234567);
+        UserVO userVO = new UserVO("原","qwe123",1234567);
         boolean result2 = userService.signRegularVip(userVO);
         if(result2)
            System.out.println("Sign Succeed!\n");

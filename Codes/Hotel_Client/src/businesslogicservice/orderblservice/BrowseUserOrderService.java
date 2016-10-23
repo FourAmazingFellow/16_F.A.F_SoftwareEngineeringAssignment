@@ -21,7 +21,7 @@ public interface BrowseUserOrderService {
 	 * @return 按orderType的值进行查找并按生成时间顺序排列的订单列表
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoVO> getUserOrderList (long userID, Enum<OrderType> orderType);
+	public ArrayList<BriefOrderInfoVO> getUserOrderList (String userID, Enum<OrderType> orderType);
 	
 	/**
 	 * 得到订单详细信息

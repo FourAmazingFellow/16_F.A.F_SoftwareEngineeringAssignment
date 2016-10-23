@@ -7,26 +7,23 @@ package po;
  */
 public class UserPO {
   
-
-
-    private long userID;
+    private String userID;
     private String passpord;
     private long telNum;
     private Enum<UserType> UserType;
     
-    public UserPO(long userID, String passpord, long telNum, Enum<po.UserType> userType) {
+    public UserPO(String userID, String passpord, long telNum, UserType userType) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
-      
-        UserType = userType;
+        this.UserType = userType;
     }
     
-    public void setUserID(long userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
-    public long getUserID() {
+    public String getUserID() {
         return userID;
     }
     public void setPasspord(String passpord) {
@@ -44,9 +41,9 @@ public class UserPO {
     public Enum<UserType> getUserType() {
         return UserType;
     }
-
     public void setUserType(Enum<UserType> userType) {
         UserType = userType;
     }
+
   
 }

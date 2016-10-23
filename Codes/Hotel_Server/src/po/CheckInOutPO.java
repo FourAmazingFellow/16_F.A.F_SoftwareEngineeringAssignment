@@ -45,4 +45,3 @@ public class CheckInOutPO extends RoomPO{
     }
     
 }
-

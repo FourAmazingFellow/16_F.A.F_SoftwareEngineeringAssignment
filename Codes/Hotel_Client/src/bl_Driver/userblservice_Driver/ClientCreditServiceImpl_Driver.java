@@ -11,10 +11,10 @@ import vo.UserVO;
  */
 public class ClientCreditServiceImpl_Driver {
     public void drive(ClientCreditService clientCreditService){
-        UserVO userVO = clientCreditService.queryCredit(1111);
+        UserVO userVO = clientCreditService.queryCredit("原");
         System.out.println("The client's credit value and records are: "+userVO);
     
-         boolean result = clientCreditService.addCreditValue(1111, 100);
+         boolean result = clientCreditService.addCreditValue("原", 100);
          if(result)
             System.out.println("Add Succeed!\n");
         else

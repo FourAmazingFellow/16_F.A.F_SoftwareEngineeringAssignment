@@ -94,15 +94,6 @@ public interface RoomDAO {
     public RoomPO getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException;
     
     /**
-     * 查找一个房间类型
-     * @param id long型，RoomPO对应的ID
-     * @return RooomPO型，返回房间信息
-     * @throws RemoteException
-     * @see
-     */
-    public RoomPO find(String userID) throws RemoteException;
-    
-    /**
      * 更新某个房间信息
      * @param po RoomPO型，业务逻辑层传递来的房间信息
      * @throws RemoteException

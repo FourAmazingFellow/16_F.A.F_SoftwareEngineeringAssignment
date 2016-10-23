@@ -24,10 +24,8 @@ public class StrategyDAO_Driver {
         StrategyPO strategyPO1=strategyDAO.getMarketStrategyInfo("江苏省南京市栖霞区仙林大道163号", "雙十一折扣");
         System.out.println("The strategy "+strategyPO1.getStrategyName()+" has discount "+strategyPO1.getDiscount()+"/n");
         
-        StrategyPO strategyPO2=strategyDAO.find(12345678);
-        System.out.println("The strategy "+strategyPO2.getStrategyName()+" has discount "+strategyPO2.getDiscount()+"/n");
         
-        StrategyPO strategyPO=new StrategyPO("江苏省南京市栖霞区仙林大道163号", StrategyType.BirthdayPromotion);
+        StrategyPO strategyPO=new StrategyPO("江苏省南京市栖霞区仙林大道163号",StrategyType.BirthdayPromotion, "普通会员生日折扣", 0.8f);
         strategyDAO.update(strategyPO);
         strategyDAO.insert(strategyPO);
         strategyDAO.delete(strategyPO);

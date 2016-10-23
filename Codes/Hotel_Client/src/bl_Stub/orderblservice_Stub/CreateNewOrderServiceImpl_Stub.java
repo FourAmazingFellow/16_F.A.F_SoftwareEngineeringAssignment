@@ -24,28 +24,24 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	
 	@Override
 	public OrderVO initNewOrder(String userID, String address) {
-		// TODO Auto-generated method stub
 		System.out.println("初始化订单");
 		return testOrderVO;
 	}
 
 	@Override
 	public int getPrice(OrderVO vo) {
-		// TODO Auto-generated method stub
 		System.out.println("得到订单价格");
 		return vo.totalPrice;
 	}
 
 	@Override
 	public ResultMessage checkNewOrder(OrderVO vo) {
-		// TODO Auto-generated method stub
 		System.out.println("初始化订单");
 		return resultMessage;
 	}
 
 	@Override
 	public boolean addNewOrder(OrderVO vo) {
-		// TODO Auto-generated method stub
 		System.out.println("添加订单");
 		return false;
 	}
