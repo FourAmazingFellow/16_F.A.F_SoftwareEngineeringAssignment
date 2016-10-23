@@ -16,7 +16,7 @@ public interface UserInfoService {
      * @return 返回普通客户信息
      * @see
      */
-    public UserVO getRegularVipInfo(long ID);
+    public UserVO getRegularVipInfo(String userID);
     
     /**
      * 获取企业客户信息
@@ -24,5 +24,5 @@ public interface UserInfoService {
      * @return 返回企业客户信息
      * @see
      */
-    public UserVO getEnterpriseVipInfo(long ID);
+    public UserVO getEnterpriseVipInfo(String userID);
 }

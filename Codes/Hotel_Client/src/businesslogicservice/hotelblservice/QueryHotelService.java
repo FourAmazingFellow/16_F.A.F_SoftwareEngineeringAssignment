@@ -37,6 +37,6 @@ public interface QueryHotelService {
 	 * @return 返回用户在该酒店的所有订单的列表
 	 * @see
 	 */
-	public ArrayList<OrderVO> getOrders(String address, long ID);
+	public ArrayList<OrderVO> getOrders(String address, String userID);
 
 }

@@ -41,7 +41,7 @@ public interface StrategyDAO {
      * @throws RemoteException
      * @see
      */
-    public StrategyPO find(long id) throws RemoteException;
+    public StrategyPO find(String userID) throws RemoteException;
     
     /**
      * 更新某条策略信息

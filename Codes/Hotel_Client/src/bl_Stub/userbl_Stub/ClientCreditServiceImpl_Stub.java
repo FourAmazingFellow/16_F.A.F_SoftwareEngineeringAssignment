@@ -24,12 +24,12 @@ public class ClientCreditServiceImpl_Stub implements ClientCreditService {
     }
 
     @Override
-    public int getCreditValue(long ID) {
+    public int getCreditValue(String userID) {
         return 0;
     }
 
     @Override
-    public boolean changeCreditValue(long ID, int num) {
+    public boolean changeCreditValue(String userID, int num) {
         return false;
     }
     

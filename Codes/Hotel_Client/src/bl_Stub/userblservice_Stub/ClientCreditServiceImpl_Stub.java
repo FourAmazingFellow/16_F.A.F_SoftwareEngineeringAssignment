@@ -25,12 +25,12 @@ public class ClientCreditServiceImpl_Stub implements ClientCreditService {
     }
     
     @Override
-    public UserVO queryCredit(long ID) {
+    public UserVO queryCredit(String userID) {
         return new ClientInfoVO(userID, passpord, 0, creditRecord, creditValue);
     }
 
     @Override
-    public boolean addCreditValue(long ID, int creditAdded) {
+    public boolean addCreditValue(String userID, int creditAdded) {
         return false;
     }
  

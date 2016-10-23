@@ -23,7 +23,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getUserAllOrders(long ID) throws RemoteException;
+	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException;
 	
 	/**
 	 * 得到客户可评价的订单PO列表（Hotel）
@@ -32,7 +32,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getCommentableOrders (long ID) throws RemoteException;
+	public ArrayList<OrderPO> getCommentableOrders (String userID) throws RemoteException;
 	
 	/**
 	 * 判断该客户是否预定过该酒店（Hotel）
@@ -42,7 +42,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public boolean isReserved(long ID, String address) throws RemoteException;
+	public boolean isReserved(String userID, String address) throws RemoteException;
 	
 	/**
 	 * 得到该用户在该酒店的所有订单OrderPO的ArrayList
@@ -52,7 +52,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getUserOrdersByHotel (long ID, String address) throws RemoteException;
+	public ArrayList<OrderPO> getUserOrdersByHotel (String userID, String address) throws RemoteException;
 
 	/**
 	 * 得到客户订单列表（简要信息）
@@ -62,7 +62,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoPO> getUserOrderList(long ID, Enum<OrderType> orderType) throws RemoteException;
+	public ArrayList<BriefOrderInfoPO> getUserOrderList(String userID, Enum<OrderType> orderType) throws RemoteException;
 	
 	/**
 	 * 得到酒店所有订单列表（简要信息）

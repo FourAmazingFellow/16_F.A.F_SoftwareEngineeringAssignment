@@ -19,7 +19,7 @@ public interface UserDAO {
      * @throws RemoteException
      * @see
      */
-    public UserPO getUserInfo(long ID,Enum<UserType> UserType) throws RemoteException;
+    public UserPO getUserInfo(String userID,Enum<UserType> UserType) throws RemoteException;
     
     /**
     * 查询信用记录
@@ -28,7 +28,7 @@ public interface UserDAO {
      * @throws RemoteException
      * @see
      */
-    public UserPO queryCredit(long ID) throws RemoteException;
+    public UserPO queryCredit(String userID) throws RemoteException;
     
     /**
       * 获取客户的信用值
@@ -37,7 +37,7 @@ public interface UserDAO {
      * @throws RemoteException
      * @see
      */
-    public int getCreditValue(long ID) throws RemoteException;
+    public int getCreditValue(String userID) throws RemoteException;
     
     /**
      * 用户注册新账号或网站管理人员增加账号

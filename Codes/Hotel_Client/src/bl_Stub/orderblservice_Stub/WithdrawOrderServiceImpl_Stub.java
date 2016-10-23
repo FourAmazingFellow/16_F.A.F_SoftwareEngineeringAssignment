@@ -38,7 +38,7 @@ public class WithdrawOrderServiceImpl_Stub implements WithdrawOrderService {
 		return false;
 	}
 	
-	public ArrayList<BriefOrderInfoVO> getUserOrderList(long ID, Enum<OrderType> orderType) {
+	public ArrayList<BriefOrderInfoVO> getUserOrderList(String userID, Enum<OrderType> orderType) {
 		// TODO Auto-generated method stub
 		System.out.println("得到用户所有订单列表");
 		ArrayList<BriefOrderInfoVO> b = new ArrayList<BriefOrderInfoVO>();

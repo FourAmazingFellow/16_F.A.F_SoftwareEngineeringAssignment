@@ -14,7 +14,7 @@ public interface ClientCreditService {
      * @return 返回客户当前信用值
      * @see
      */
-    public int getCreditValue(long ID);
+    public int getCreditValue(String userID);
     
     /**
      * 改变客户的信用值（有订单变化）
@@ -23,5 +23,5 @@ public interface ClientCreditService {
      * @return 改变成功则返回true，改变失败则返回false
      * @see
      */
-    public boolean changeCreditValue(long ID,int num);
+    public boolean changeCreditValue(String userID,int num);
 }

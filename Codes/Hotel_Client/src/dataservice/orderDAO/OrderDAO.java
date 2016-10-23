@@ -18,51 +18,51 @@ public interface OrderDAO {
 	
 	/**
 	 * 得到客户所有订单VO（Hotel）
-	 * @param ID long类型 用户ID
+	 * @param userID String型 客户ID
 	 * @return 用户所有订单PO
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getUserAllOrders(long ID) throws RemoteException;
+	public ArrayList<OrderPO> getUserAllOrders(String user) throws RemoteException;
 	
 	/**
 	 * 得到客户可评价的订单PO列表（Hotel）
-	 * @param ID long类型 用户ID
+	 * @param userID String型 客户ID
 	 * @return 用户可评价的订单列表（OrderPO）
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getCommentableOrders (long ID) throws RemoteException;
+	public ArrayList<OrderPO> getCommentableOrders (String userID) throws RemoteException;
 	
 	/**
 	 * 判断该客户是否预定过该酒店（Hotel）
-	 * @param ID long类型 用户ID
+	 * @param userID String型 客户ID
 	 * @param address String类型 酒店地址
 	 * @return boolean 该客户是否预定过该酒店
 	 * @throws RemoteException
 	 * @see
 	 */
-	public boolean isReserved(long ID, String address) throws RemoteException;
+	public boolean isReserved(String userID, String address) throws RemoteException;
 	
 	/**
 	 * 得到该用户在该酒店的所有订单OrderPO的ArrayList
-	 * @param ID long类型 用户ID
+	 * @param userID String型 客户ID
 	 * @param address String类型 酒店地址
 	 * @return 该用户在该酒店的所有订单OrderPO的ArrayList
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getUserOrdersByHotel (long ID, String address) throws RemoteException;
+	public ArrayList<OrderPO> getUserOrdersByHotel (String userID, String address) throws RemoteException;
 
 	/**
 	 * 得到客户订单列表（简要信息）
-	 * @param ID long类型 用户ID
+	 * @param userID String型 客户ID
 	 * @param orderType 枚举类型
 	 * @return 客户订单列表（简要信息）
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoPO> getUserOrderList(long ID, Enum<OrderType> orderType) throws RemoteException;
+	public ArrayList<BriefOrderInfoPO> getUserOrderList(String userID, Enum<OrderType> orderType) throws RemoteException;
 	
 	/**
 	 * 得到酒店所有订单列表（简要信息）

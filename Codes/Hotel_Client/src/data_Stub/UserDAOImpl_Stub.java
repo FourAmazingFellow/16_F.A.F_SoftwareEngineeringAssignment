@@ -57,15 +57,15 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.enterpriseName = enterpriseName;
     }
     @Override
-    public UserPO getUserInfo(long ID, Enum<po.UserType> UserType) throws RemoteException {
+    public UserPO getUserInfo(String userID, Enum<po.UserType> UserType) throws RemoteException {
         return new UserPO(userID, passpord, telNum);
     }
     @Override
-    public UserPO queryCredit(long ID) throws RemoteException {
+    public UserPO queryCredit(String userID) throws RemoteException {
         return new ClientInfoPO(userID, passpord, telNum, creditValue, creditRecord);
     }
     @Override
-    public int getCreditValue(long ID) throws RemoteException {
+    public int getCreditValue(String userID) throws RemoteException {
         return 0;
     }
     @Override

@@ -17,7 +17,7 @@ public interface UserService {
      * @return 登陆成功则返回true，登陆失败则返回false
      * @see
      */
-    public boolean login(long ID, String password);
+    public boolean login(String userID, String password);
     
     /**
      * 注册普通会员

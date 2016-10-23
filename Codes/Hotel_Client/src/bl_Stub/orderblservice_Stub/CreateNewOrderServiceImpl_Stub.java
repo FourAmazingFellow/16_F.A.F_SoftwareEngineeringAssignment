@@ -23,7 +23,7 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	}
 	
 	@Override
-	public OrderVO initNewOrder(long ID, String address) {
+	public OrderVO initNewOrder(String userID, String address) {
 		// TODO Auto-generated method stub
 		System.out.println("初始化订单");
 		return testOrderVO;

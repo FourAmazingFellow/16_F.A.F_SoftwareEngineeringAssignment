@@ -31,7 +31,7 @@ public class UserInfoServiceImpl_Stub implements UserInfoService {
     }
     
     @Override
-    public UserVO getUserInfo(long ID, Enum<UserType> UserType) {
+    public UserVO getUserInfo(String userID, Enum<UserType> UserType) {
         return new UserVO(userID, passpord, telNum);
     }
 

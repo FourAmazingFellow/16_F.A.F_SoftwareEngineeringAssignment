@@ -18,26 +18,26 @@ public class OrderInfoImpl_Stub implements OrderInfo{
 	}
 	
 	@Override
-	public ArrayList<OrderVO> getAllOrders(long ID) {
+	public ArrayList<OrderVO> getAllOrders(String userID) {
 		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
 		a.add(testOrderVO);
 		return a;
 	}
 
 	@Override
-	public boolean isReserved(long ID, String address) {
+	public boolean isReserved(String userID, String address) {
 		return false;
 	}
 
 	@Override
-	public ArrayList<OrderVO> getCommentableOrderList(long ID) {
+	public ArrayList<OrderVO> getCommentableOrderList(String userID) {
 		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
 		a.add(testOrderVO);
 		return a;
 	}
 
 	@Override
-	public ArrayList<OrderVO> getOrderList(long ID, String address) {
+	public ArrayList<OrderVO> getOrderList(String userID, String address) {
 		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
 		a.add(testOrderVO);
 		return a;
