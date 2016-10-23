@@ -88,7 +88,7 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO find(long id) throws RemoteException {
+    public RoomPO find(String userID) throws RemoteException {
         RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
         return roomPO;
     }

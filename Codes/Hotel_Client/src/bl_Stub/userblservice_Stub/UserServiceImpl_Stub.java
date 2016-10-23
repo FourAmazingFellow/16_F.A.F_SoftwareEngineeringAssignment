@@ -45,7 +45,7 @@ public class UserServiceImpl_Stub implements UserService {
     }
     
     @Override
-    public boolean login(long ID, String password) {
+    public boolean login(String userID, String password) {
         return false;
     }
 

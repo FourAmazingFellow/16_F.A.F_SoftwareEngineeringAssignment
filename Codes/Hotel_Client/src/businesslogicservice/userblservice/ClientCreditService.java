@@ -16,7 +16,7 @@ public interface ClientCreditService {
      * @return 返回用户的信用记录
      * @see
      */
-    public UserVO queryCredit(long ID);
+    public UserVO queryCredit(String userID);
     
     
     /**
@@ -26,5 +26,5 @@ public interface ClientCreditService {
      * @return 增加信用值成功则返回true，失败则返回false
      * @see
      */
-    public boolean addCreditValue(long ID,int creditAdded);
+    public boolean addCreditValue(String userID,int creditAdded);
 }

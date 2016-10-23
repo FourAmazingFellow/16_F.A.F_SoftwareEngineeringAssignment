@@ -20,7 +20,7 @@ public class BrowseUserOrderServiceImpl_Stub implements BrowseUserOrderService {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP);
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,oPT, lODT, nOP, isChild, isOnSale, orderS, isCom);
 	}
-	public ArrayList<BriefOrderInfoVO> getUserOrderList(long ID, Enum<OrderType> orderType) {
+	public ArrayList<BriefOrderInfoVO> getUserOrderList(String userID, Enum<OrderType> orderType) {
 		// TODO Auto-generated method stub
 		System.out.println("得到用户所有订单列表");
 		ArrayList<BriefOrderInfoVO> b = new ArrayList<BriefOrderInfoVO>();

@@ -18,7 +18,7 @@ public interface CommentOnHotelService {
 	 * @return 返回用户可以评价的酒店对应的已执行订单列表
 	 * @see
 	 */
-	public ArrayList<OrderVO> getCommentableOrderList(long ID);
+	public ArrayList<OrderVO> getCommentableOrderList(String userID);
 	
 	
 	/**

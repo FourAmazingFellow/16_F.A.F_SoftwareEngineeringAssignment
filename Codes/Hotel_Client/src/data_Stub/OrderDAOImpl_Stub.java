@@ -23,7 +23,7 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	}
 	
 	@Override
-	public ArrayList<OrderPO> getUserAllOrders(long ID) throws RemoteException {
+	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
 		a.add(testOrderPO);
@@ -31,7 +31,7 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	}
 
 	@Override
-	public ArrayList<OrderPO> getCommentableOrders(long ID) throws RemoteException {
+	public ArrayList<OrderPO> getCommentableOrders(String userID) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
 		a.add(testOrderPO);
@@ -39,13 +39,13 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	}
 
 	@Override
-	public boolean isReserved(long ID, String address) throws RemoteException {
+	public boolean isReserved(String userID, String address) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public ArrayList<OrderPO> getUserOrdersByHotel(long ID, String address) throws RemoteException {
+	public ArrayList<OrderPO> getUserOrdersByHotel(String userID, String address) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
 		a.add(testOrderPO);
@@ -53,7 +53,7 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	}
 
 	@Override
-	public ArrayList<BriefOrderInfoPO> getUserOrderList(long ID, Enum<OrderType> orderType) throws RemoteException {
+	public ArrayList<BriefOrderInfoPO> getUserOrderList(String userID, Enum<OrderType> orderType) throws RemoteException {
 		ArrayList<BriefOrderInfoPO> b = new ArrayList<BriefOrderInfoPO>();
 		b.add(testBriefOrderInfoPO);
 		return b;

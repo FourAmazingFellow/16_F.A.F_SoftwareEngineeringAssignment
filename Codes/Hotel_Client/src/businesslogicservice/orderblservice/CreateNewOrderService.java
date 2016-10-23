@@ -12,12 +12,12 @@ public interface CreateNewOrderService {
 	
 	/**
 	 * 初始化新订单
-	 * @param ID long型 客户ID
+	 * @param userID String型 客户ID
 	 * @param address String型 酒店地址
 	 * @return 被初始化的OrderVO
 	 * @see
 	 */
-	public OrderVO initNewOrder(long ID, String address);
+	public OrderVO initNewOrder(long userID, String address);
 	
 	/**
 	 * 获取订单总价

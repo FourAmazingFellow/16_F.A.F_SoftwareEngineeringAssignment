@@ -50,7 +50,7 @@ public class CommentOnHotelServiceImpl_Stub implements CommentOnHotelService{
 	}
 
 	@Override
-	public ArrayList<OrderVO> getCommentableOrderList(long ID) {
+	public ArrayList<OrderVO> getCommentableOrderList(String userID) {
 		ArrayList<OrderVO> orderVOList = new ArrayList<>();
 		orderVOList.add(new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, orderState, isCommented));
 		return orderVOList;

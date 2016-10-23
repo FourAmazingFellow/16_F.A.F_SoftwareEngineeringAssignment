@@ -100,7 +100,7 @@ public interface RoomDAO {
      * @throws RemoteException
      * @see
      */
-    public RoomPO find(long id) throws RemoteException;
+    public RoomPO find(String userID) throws RemoteException;
     
     /**
      * 更新某个房间信息

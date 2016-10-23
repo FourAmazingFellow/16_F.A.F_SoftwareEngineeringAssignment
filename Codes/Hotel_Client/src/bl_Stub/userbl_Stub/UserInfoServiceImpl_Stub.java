@@ -38,12 +38,12 @@ public class UserInfoServiceImpl_Stub implements UserInfoService{
     }
 
     @Override
-    public UserVO getRegularVipInfo(long ID) {
+    public UserVO getRegularVipInfo(String userID) {
         return new VipInfoVO(userID, passpord, telNum, birth, null, null);
     }
 
     @Override
-    public UserVO getEnterpriseVipInfo(long ID) {
+    public UserVO getEnterpriseVipInfo(String userID) {
         return new VipInfoVO(userID, passpord, telNum, null, enterpriseID, enterprisePasspord);
                 
     }
