@@ -9,10 +9,10 @@ public class UserVO {
   
     public String userID;
     public String passpord;
-    public long telNum;
+    public String telNum;
     public Enum<UserType> UserType;
  
-    public UserVO(String userID, String passpord, long telNum) {
+    public UserVO(String userID, String passpord, String telNum) {
         super();
         this.userID = userID;
         this.passpord = passpord;

@@ -12,7 +12,7 @@ public class UserDAOImpl_Stub implements UserDAO{
     
     public String userID;
     public String passpord;
-    public long telNum;
+    public String telNum;
     
     public int creditValue;
     public String[] creditRecord;
@@ -25,13 +25,13 @@ public class UserDAOImpl_Stub implements UserDAO{
     
     public UserType userType;
     
-    public UserDAOImpl_Stub(String userID, String passpord, long telNum) {
+    public UserDAOImpl_Stub(String userID, String passpord, String telNum) {
         super();
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, long telNum, int creditValue, String[] creditRecord) {
+    public UserDAOImpl_Stub(String userID, String passpord, String telNum, int creditValue, String[] creditRecord) {
         super();
         this.userID = userID;
         this.passpord = passpord;
@@ -39,7 +39,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, long telNum, int creditValue, String[] creditRecord,
+    public UserDAOImpl_Stub(String userID, String passpord, String telNum, int creditValue, String[] creditRecord,
             Date birth) {
         super();
         this.userID = userID;
@@ -49,7 +49,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.creditRecord = creditRecord;
         this.birth = birth;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, long telNum, String enterpriseName) {
+    public UserDAOImpl_Stub(String userID, String passpord, String telNum, String enterpriseName) {
         super();
         this.userID = userID;
         this.passpord = passpord;

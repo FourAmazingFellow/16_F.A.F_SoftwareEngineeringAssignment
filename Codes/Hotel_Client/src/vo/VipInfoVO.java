@@ -14,7 +14,7 @@ public class VipInfoVO extends UserVO {
     public String enterpriseID;
     public String enterprisePasspord;
     
-    public VipInfoVO(String userID, String passpord, long telNum, Date birth, String enterpriseID,
+    public VipInfoVO(String userID, String passpord, String telNum, Date birth, String enterpriseID,
             String enterprisePasspord) {
         super(userID, passpord, telNum);
         this.birth = birth;
