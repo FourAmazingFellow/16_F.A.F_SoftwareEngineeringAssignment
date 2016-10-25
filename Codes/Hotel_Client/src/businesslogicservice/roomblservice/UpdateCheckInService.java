@@ -26,19 +26,19 @@ public interface UpdateCheckInService {
      * 按入住时间查找相应的入住信息
      * @param address String型， 酒店地址
      * @param time Date型，入住时间
-     * @return RoomVO型，返回入住信息
+     * @return ArrayList<RoomVO>型，返回入住信息列表
      * @see
      */
-    public RoomVO searchCheckInInfo(String address ,Date time);
+    public ArrayList<RoomVO> searchCheckInInfo(String address ,Date time);
     
     /**
      * 按房间类型查找相应的入住信息
      * @param address String型， 酒店地址
      * @param roomType 枚举类，酒店房间类型
-     * @return RoomVO型，返回入住信息
+     * @return ArrayList<RoomVO>型，返回入住信息列表
      * @see
      */
-    public RoomVO searchCheckInInfo(String address , Enum<RoomType> roomType);
+    public ArrayList<RoomVO> searchCheckInInfo(String address , Enum<RoomType> roomType);
     
     /**
      * 增加入住信息

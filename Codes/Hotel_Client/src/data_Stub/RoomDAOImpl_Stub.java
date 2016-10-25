@@ -56,15 +56,19 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO getCheckInInfo(String address, Date time) throws RemoteException {
+    public ArrayList<RoomPO> getCheckInInfo(String address, Date time) throws RemoteException {
         RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, time, expDepartTime);
-        return roomPO;
+        ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
+        arrayList.add(roomPO);
+        return arrayList;
     }
 
     @Override
-    public RoomPO getCheckInInfo(String address, Enum<RoomType> roomType) throws RemoteException {
+    public ArrayList<RoomPO> getCheckInInfo(String address, Enum<RoomType> roomType) throws RemoteException {
         RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
-        return roomPO;
+        ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
+        arrayList.add(roomPO);
+        return arrayList;
     }
 
     @Override
@@ -76,15 +80,19 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO getCheckOutInfo(String address, Date time) throws RemoteException {
+    public ArrayList<RoomPO> getCheckOutInfo(String address, Date time) throws RemoteException {
         RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, time);
-        return roomPO;
+        ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
+        arrayList.add(roomPO);
+        return arrayList;
     }
 
     @Override
-    public RoomPO getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException {
+    public ArrayList<RoomPO> getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException {
         RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
-        return roomPO;
+        ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
+        arrayList.add(roomPO);
+        return arrayList;
     }
 
     @Override
