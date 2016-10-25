@@ -19,21 +19,6 @@ public interface UserService {
      */
     public boolean login(String userID, String password);
     
-    /**
-     * 注册普通会员
-     * @param regularVip UserVO型，界面传递过来的普通会员信息
-     * @return 注册成功则返回true，注册失败则返回false
-     * @see
-     */
-    public boolean signRegularVip(UserVO regularVip);
-    
-    /**
-     * 注册企业会员
-     * @param EnterpriseVip UserVO型，界面传递过来的企业会员信息
-     * @return 注册成功则返回true，注册失败则返回false
-     * @see
-     */
-    public boolean signEnterpriseVip(UserVO EnterpriseVip);
     
     /**
      * 用户注册新账号或网站管理人员增加账号

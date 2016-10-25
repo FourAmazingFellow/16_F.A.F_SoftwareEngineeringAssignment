@@ -17,19 +17,8 @@ public class UserServiceImpl_Driver {
        else
            System.out.println("Login Failed!\n");
         
-        UserVO userVO = new UserVO("原","qwe123",1234567);
-        boolean result2 = userService.signRegularVip(userVO);
-        if(result2)
-           System.out.println("Sign Succeed!\n");
-       else
-           System.out.println("Sign Failed!\n");
-        
-        boolean result3 = userService.signEnterpriseVip(userVO);
-        if(result3)
-           System.out.println("Sign Succeed!\n");
-       else
-           System.out.println("Sign Failed!\n");
-        
+        UserVO userVO = new UserVO("原","qwe123","12345675555");
+ 
         boolean result4 = userService.add(userVO);
         if(result4)
            System.out.println("Add Succeed!\n");

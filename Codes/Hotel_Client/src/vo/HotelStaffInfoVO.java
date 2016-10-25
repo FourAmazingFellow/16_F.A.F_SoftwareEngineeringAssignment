@@ -8,7 +8,7 @@ package vo;
 public class HotelStaffInfoVO extends UserVO{
     private String enterpriseName;
     
-    public HotelStaffInfoVO(String userID, String passpord, long telNum,
+    public HotelStaffInfoVO(String userID, String passpord, String telNum,
             Enum<vo.UserType> userType, String enterpriseName) {
         super(userID, passpord, telNum);
         this.UserType = userType;
