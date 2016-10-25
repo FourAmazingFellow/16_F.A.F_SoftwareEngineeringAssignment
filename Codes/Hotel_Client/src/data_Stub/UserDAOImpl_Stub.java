@@ -56,6 +56,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.telNum = telNum;
         this.enterpriseName = enterpriseName;
     }
+    
     @Override
     public UserPO getUserInfo(String userID, UserType userType) throws RemoteException {
         return new UserPO(userID, passpord, telNum, userType);
