@@ -1,8 +1,6 @@
 package businesslogicservice.orderblservice;
 
 import java.util.ArrayList;
-
-import po.RoomType;
 import vo.BriefHotelInfoVO;
 import vo.OrderVO;
 import vo.RoomVO;
