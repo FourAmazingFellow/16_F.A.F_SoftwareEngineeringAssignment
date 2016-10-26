@@ -12,6 +12,7 @@ import vo.RoomVO;
  * @see
  */
 public interface CreateNewOrderService {
+	
 	/**
 	 * 获取该酒店简要信息 (调用HotelInfoService)
 	 * @param address String型， 同层调用传来的酒店地址
