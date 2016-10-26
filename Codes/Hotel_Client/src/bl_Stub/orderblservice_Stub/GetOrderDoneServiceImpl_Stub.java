@@ -39,13 +39,6 @@ public class GetOrderDoneServiceImpl_Stub implements GetOrderDoneService {
 	}
 
 	@Override
-	public boolean setOrderState(Enum<OrderState> orderstate, OrderVO vo) {
-		// TODO Auto-generated method stub
-		System.out.println("更改订单状态");
-		return false;
-	}
-
-	@Override
 	public boolean getOrderDone(OrderVO vo) {
 		// TODO Auto-generated method stub
 		System.out.println("执行订单");

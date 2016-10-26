@@ -40,15 +40,19 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
     }
 
     @Override
-    public RoomVO getCheckOutInfo(String address, Date time) {
+    public ArrayList<RoomVO> getCheckOutInfo(String address, Date time) {
         RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, time);
-        return checkOutVO;
+        ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
+        arrayList.add(checkOutVO);
+        return arrayList;
     }
 
     @Override
-    public RoomVO getCheckOutInfo(String address, Enum<RoomType> roomType) {
+    public ArrayList<RoomVO> getCheckOutInfo(String address, Enum<RoomType> roomType) {
         RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, actDepartTime);
-        return checkOutVO;
+        ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
+        arrayList.add(checkOutVO);
+        return arrayList;
     }
 
     @Override

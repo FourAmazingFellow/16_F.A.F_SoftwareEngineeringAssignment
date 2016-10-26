@@ -7,7 +7,7 @@ package po;
  */
 public class WebMarketStaffInfoPO extends UserPO{
 
-    public WebMarketStaffInfoPO(String userID, String passpord, long telNum, String creditChangeRecord,
+    public WebMarketStaffInfoPO(String userID, String passpord, String telNum, String creditChangeRecord,
             UserType userType) {
         super(userID, passpord, telNum, userType);
     }

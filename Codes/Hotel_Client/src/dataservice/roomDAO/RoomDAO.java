@@ -48,21 +48,21 @@ public interface RoomDAO {
      * 获取对应入住时间的入住信息
      * @param address String型，业务逻辑层传递来的酒店地址
      * @param time Date型，入住时间
-     * @return RooomPO型，返回入住信息
+     * @return ArrayList<RoomPO>型，返回入住信息列表
      * @throws RemoteException
      * @see
      */
-    public RoomPO getCheckInInfo(String address , Date time) throws RemoteException;
+    public ArrayList<RoomPO> getCheckInInfo(String address , Date time) throws RemoteException;
     
     /**
      * 获取对应房间类型的入住信息
      * @param address String型，业务逻辑层传递来的酒店地址
      * @param roomType Enum型，房间类型
-     * @return RooomPO型，返回入住信息
+     * @return ArrayList<RoomPO>型，返回入住信息列表
      * @throws RemoteException
      * @see
      */
-    public RoomPO getCheckInInfo (String address, Enum<RoomType> roomType) throws RemoteException;
+    public ArrayList<RoomPO> getCheckInInfo (String address, Enum<RoomType> roomType) throws RemoteException;
     
     /**
      * 获取退房信息列表
@@ -77,21 +77,21 @@ public interface RoomDAO {
      * 获取对应实际离开时间的退房信息
      * @param address String型，业务逻辑层传递来的酒店地址
      * @param time Date型，实际离开时间
-     * @return RooomPO型，返回退房信息
+     * @return ArrayList<RoomPO>型，返回退房信息列表
      * @throws RemoteException
      * @see
      */
-    public RoomPO getCheckOutInfo(String address, Date time) throws RemoteException;
+    public ArrayList<RoomPO> getCheckOutInfo(String address, Date time) throws RemoteException;
     
     /**
      * 获取对应房间类型的退房信息
      * @param address String型，业务逻辑层传递来的酒店地址
      * @param roomType Enum型，房间类型
-     * @return RooomPO型，返回退房信息
+     * @return ArrayList<RoomPO>型，返回退房信息列表
      * @throws RemoteException
      * @see
      */
-    public RoomPO getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException;
+    public ArrayList<RoomPO> getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException;
     
     /**
      * 查找一个房间类型

@@ -9,10 +9,10 @@ public class UserPO {
   
     private String userID;
     private String passpord;
-    private long telNum;
+    private String telNum;
     private Enum<UserType> UserType;
     
-    public UserPO(String userID, String passpord, long telNum, UserType userType) {
+    public UserPO(String userID, String passpord, String telNum, UserType userType) {
         super();
         this.userID = userID;
         this.passpord = passpord;
@@ -32,10 +32,10 @@ public class UserPO {
     public String getPasspord() {
         return passpord;
     }
-    public void setTelNum(long telNum) {
+    public void setTelNum(String telNum) {
         this.telNum = telNum;
     }
-    public long getTelNum() {
+    public String getTelNum() {
         return telNum;
     }
     public Enum<UserType> getUserType() {

@@ -26,19 +26,19 @@ public interface UpdateCheckOutService {
      * 按实际离开时间查找相应的退房信息
      * @param address String型， 酒店地址
      * @param time Date型，实际离开时间
-     * @return RoomVO型，返回退房信息
+     * @return ArrayList<RoomVO>型，返回退房信息列表
      * @see
      */
-    public RoomVO getCheckOutInfo(String address, Date time);
+    public ArrayList<RoomVO> getCheckOutInfo(String address, Date time);
     
     /**
      * 按房间类型查找相应的退房信息
      * @param address String型， 酒店地址
      * @param roomType 枚举类，酒店房间类型
-     * @return RoomVO型，返回退房信息
+     * @return ArrayList<RoomVO>型，返回退房信息列表
      * @see
      */
-    public RoomVO getCheckOutInfo(String address, Enum<RoomType> roomType);
+    public ArrayList<RoomVO> getCheckOutInfo(String address, Enum<RoomType> roomType);
     
     /**
      * 增加退房信息

@@ -14,12 +14,12 @@ public class UserInfoServiceImpl_Stub implements UserInfoService {
 
     public long userID;
     public String passpord;
-    public long telNum;
+    public String telNum;
     public Enum<UserType> UserType;
     public int creditValue;
     public String enterpriseName;
     
-    public UserInfoServiceImpl_Stub(long userID, String passpord, long telNum,
+    public UserInfoServiceImpl_Stub(long userID, String passpord, String telNum,
             Enum<po.UserType> userType, int creditValue, String enterpriseName) {
         super();
         this.userID = userID;

@@ -18,7 +18,7 @@ public interface GetOrderDoneService {
 	/**
 	 * 得到该酒店的未执行订单OrderVO的ArrayList
 	 * @param address String型 酒店地址
-	 * @param orderType 订单类型
+	 * @param orderType 订单类型(为ResultMessage.NOT_DONE_ORDER)
 	 * @return 该酒店的所有订单OrderVO的ArrayList
 	 * @see
 	 */
@@ -32,15 +32,6 @@ public interface GetOrderDoneService {
 	 * @see
 	 */
 	public OrderVO getSingleOrder(String address, String orderID);
-
-	/**
-	 * 设置订单状态
-	 * @param orderstate 订单状态类型
-	 * @param vo OrderVO
-	 * @return 是否设置成功
-	 * @see
-	 */
-	public boolean setOrderState(Enum<OrderState> orderstate, OrderVO vo);
 	
 	/**
 	 * 执行订单（更新当前订单状态为已执行订单，并为客户增加与订单金额等值的信用值）

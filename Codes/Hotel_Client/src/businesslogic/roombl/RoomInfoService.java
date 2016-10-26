@@ -3,6 +3,7 @@ package businesslogic.roombl;
 import java.sql.Date;
 
 import po.RoomType;
+import vo.OrderVO;
 import vo.RoomVO;
 
 /**
@@ -14,7 +15,7 @@ import vo.RoomVO;
 public interface RoomInfoService {
     
     /**
-     * 获取对应房间类型的空房数量 
+     * 获取对应房间类型的空房数量
      * @param address String型， 同层调用传来的酒店地址
      * @param roomType 枚举类，酒店房间类型
      * @return int型，返回空房数量
@@ -32,6 +33,14 @@ public interface RoomInfoService {
      * @see
      */
     public boolean isTimeAvailable (String addresss, Enum<RoomType> roomType, Date beginDate, Date finishDate);
+  
+    /**
+     * 检查订单信息能否得到满足
+     * @param vo 要检查的订单的VO
+     * @return boolean 返回该订单在对应酒店能否得到满足
+     * @see
+     */
+    public boolean checkOrder(OrderVO vo);
     
     /**
      * 在更新可用客房后更新空房信息

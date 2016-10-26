@@ -20,20 +20,9 @@ public class WithdrawOrderServiceImpl_Stub implements WithdrawOrderService {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP);
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,oPT, lODT, nOP, isChild, isOnSale, orderS, isCom);
 	}
-	@Override
-	public boolean isWithdrawable(OrderVO vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
-	public boolean isTooLate(OrderVO vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean withdrawOrder(OrderVO vo) {
+	public boolean withdrawOrder(OrderVO vo, boolean isToolate) {
 		// TODO Auto-generated method stub
 		return false;
 	}

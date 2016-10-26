@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import businesslogic.roombl.RoomInfoService;
 import po.RoomType;
+import vo.OrderVO;
 import vo.RoomVO;
 
 /**
@@ -38,5 +39,11 @@ public class RoomInfoService_Stub implements RoomInfoService{
     public boolean addRoom(String address, int change, Enum<RoomType> roomType) {
         return true;
     }
+
+	@Override
+	public boolean checkOrder(OrderVO vo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
