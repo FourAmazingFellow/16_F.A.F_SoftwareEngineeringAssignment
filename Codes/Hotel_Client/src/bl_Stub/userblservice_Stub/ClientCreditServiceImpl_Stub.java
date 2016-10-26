@@ -1,6 +1,6 @@
 package bl_Stub.userblservice_Stub;
 
-import businesslogicservice.userblservice.ClientCreditService;
+import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import vo.ClientInfoVO;
 import vo.UserVO;
 
@@ -10,7 +10,7 @@ import vo.UserVO;
  * @version 
  * @see
  */
-public class ClientCreditServiceImpl_Stub implements ClientCreditService {
+public class ClientCreditServiceImpl_Stub implements QueryClientCreditRecordService {
 
 
     public long userID;

@@ -9,12 +9,12 @@ import vo.UserVO;
  * @version 1.0
  * @see
  */
-public interface UserInfoService {
+public interface ModifyClientInfoService {
 
     /**
      * 
      * 查询用户信息
-     * @param ID long型，界面传递过来的用户标识
+     * @param userID String型，界面传递过来的用户标识
      * @param UserType Enum<UserType>型，界面传递过来的用户类型
      * @return 返回用户信息
      * @see

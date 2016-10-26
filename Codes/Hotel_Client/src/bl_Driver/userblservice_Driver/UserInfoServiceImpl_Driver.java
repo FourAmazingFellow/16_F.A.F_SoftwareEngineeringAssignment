@@ -1,6 +1,6 @@
 package bl_Driver.userblservice_Driver;
 
-import businesslogicservice.userblservice.UserInfoService;
+import businesslogicservice.userblservice.ModifyClientInfoService;
 import po.UserType;
 import vo.UserVO;
 
@@ -11,7 +11,7 @@ import vo.UserVO;
  * @see
  */
 public class UserInfoServiceImpl_Driver {
-    public void drive(UserInfoService userInfoService){
+    public void drive(ModifyClientInfoService userInfoService){
         UserVO userVO = userInfoService.getUserInfo("原", UserType.Client);
         System.out.println("The client's credit value and records are: "+userVO);
         

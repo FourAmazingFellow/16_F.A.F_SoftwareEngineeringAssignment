@@ -1,6 +1,6 @@
 package bl_Driver.userblservice_Driver;
 
-import businesslogicservice.userblservice.UserService;
+import businesslogicservice.userblservice.ManageUserInfoService;
 import vo.UserVO;
 
 /**
@@ -10,7 +10,7 @@ import vo.UserVO;
  * @see
  */
 public class UserServiceImpl_Driver {
-    public void drive(UserService userService){
+    public void drive(ManageUserInfoService userService){
         boolean result1 = userService.login("原", "qwe123");
         if(result1)
            System.out.println("Login Succeed!\n");

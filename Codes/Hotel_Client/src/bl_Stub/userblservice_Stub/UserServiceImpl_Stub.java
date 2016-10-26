@@ -1,6 +1,6 @@
 package bl_Stub.userblservice_Stub;
 
-import businesslogicservice.userblservice.UserService;
+import businesslogicservice.userblservice.ManageUserInfoService;
 import po.UserType;
 import vo.UserVO;
 
@@ -10,7 +10,7 @@ import vo.UserVO;
  * @version 
  * @see
  */
-public class UserServiceImpl_Stub implements UserService {
+public class UserServiceImpl_Stub implements ManageUserInfoService {
 
     public long userID;
     public String passpord;

@@ -1,6 +1,6 @@
 package bl_Driver.userblservice_Driver;
 
-import businesslogicservice.userblservice.ClientCreditService;
+import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import vo.UserVO;
 
 /**
@@ -10,7 +10,7 @@ import vo.UserVO;
  * @see
  */
 public class ClientCreditServiceImpl_Driver {
-    public void drive(ClientCreditService clientCreditService){
+    public void drive(QueryClientCreditRecordService clientCreditService){
         UserVO userVO = clientCreditService.queryCredit("原");
         System.out.println("The client's credit value and records are: "+userVO);
     
