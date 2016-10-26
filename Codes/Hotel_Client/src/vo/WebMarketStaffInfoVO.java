@@ -7,9 +7,10 @@ package vo;
  */
 public class WebMarketStaffInfoVO extends UserVO{
 
-    public WebMarketStaffInfoVO(String userID, String passpord, String telNum, String creditChangeRecord,
-            Enum<vo.UserType> userType) {
+    public WebMarketStaffInfoVO(String userID, String passpord, String telNum) {
         super(userID, passpord, telNum);
     }
+
+
 
 }
