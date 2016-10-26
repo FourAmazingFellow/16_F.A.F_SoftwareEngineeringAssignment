@@ -1,6 +1,6 @@
 package businesslogicservice.userblservice;
 
-import po.UserType;
+import vo.UserType;
 import vo.UserVO;
 
 /**

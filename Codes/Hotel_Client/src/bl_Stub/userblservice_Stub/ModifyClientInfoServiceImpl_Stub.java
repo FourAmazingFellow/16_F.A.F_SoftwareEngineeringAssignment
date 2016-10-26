@@ -1,7 +1,7 @@
 package bl_Stub.userblservice_Stub;
 
 import businesslogicservice.userblservice.ModifyClientInfoService;
-import po.UserType;
+import vo.UserType;
 import vo.UserVO;
 
 /**
@@ -19,7 +19,7 @@ public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService
 	 public int creditValue;
 	 public String enterpriseName;
 	
-	 public ModifyClientInfoServiceImpl_Stub(long userID, String passpord, String telNum, Enum<po.UserType> userType,
+	 public ModifyClientInfoServiceImpl_Stub(long userID, String passpord, String telNum, UserType userType,
 			int creditValue, String enterpriseName) {
 		this.userID = userID;
 		this.passpord = passpord;
@@ -30,7 +30,7 @@ public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService
 	}
 	 
 	@Override
-	public UserVO getUserInfo(String userID, Enum<UserType> userType) {
+	public UserVO getUserInfo(String userID, UserType userType) {
 		return new UserVO(userID, passpord, telNum);
 	}
 
