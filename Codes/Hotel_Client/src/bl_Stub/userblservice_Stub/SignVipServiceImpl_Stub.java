@@ -5,6 +5,12 @@ import java.sql.Date;
 import businesslogicservice.userblservice.SignVipService;
 import vo.UserVO;
 
+/**
+ * 
+ * @author 原
+ * @version
+ * @see
+ */
 public class SignVipServiceImpl_Stub implements SignVipService {
 
     public Date birth;
