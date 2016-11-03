@@ -1,5 +1,6 @@
 package businesslogicservice.orderblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.OrderType;
@@ -28,7 +29,8 @@ public interface BrowseHotelOrderService {
 	 * @param address String型 酒店地址
 	 * @param orderID String
 	 * @return 检测订单号是否存在，如果存在，则返回对应订单的VO，否则返回null
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public OrderVO getSingleOrder(String address, String orderID);
+	public OrderVO getSingleOrder(String address, String orderID) throws RemoteException;
 }

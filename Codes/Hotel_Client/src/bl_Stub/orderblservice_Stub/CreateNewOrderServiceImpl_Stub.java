@@ -25,7 +25,7 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 			boolean isCom, ResultMessage reM, ResultMessage resultMessage, 
 			String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark,
 			Enum<RoomType> roomType, int roomNum, int roomPrice, String address) {
-		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP);
+		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,oPT, lODT, nOP, isChild, isOnSale, orderS, isCom);
 		this.resultMessage = resultMessage;
 		testBriefHotelInfoVO = new BriefHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark);

@@ -6,6 +6,7 @@ import java.util.Date;
 import businesslogic.hotelbl.OrderInfo;
 import po.OrderState;
 import po.RoomType;
+import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class OrderInfoImpl_Stub implements OrderInfo{
@@ -44,8 +45,8 @@ public class OrderInfoImpl_Stub implements OrderInfo{
 	}
 
 	@Override
-	public ArrayList<OrderVO> getReservedOrderList(String userID) {
-		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
+	public ArrayList<BriefOrderInfoVO> getReservedOrderList(String userID) {
+		ArrayList<BriefOrderInfoVO> a = new ArrayList<BriefOrderInfoVO>();
 		a.add(testOrderVO);
 		return a;
 	}

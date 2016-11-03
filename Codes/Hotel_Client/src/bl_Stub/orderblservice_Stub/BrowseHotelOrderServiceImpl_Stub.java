@@ -17,7 +17,7 @@ public class BrowseHotelOrderServiceImpl_Stub implements BrowseHotelOrderService
 	public BrowseHotelOrderServiceImpl_Stub(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
 			boolean isCom) {
-		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP);
+		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,oPT, lODT, nOP, isChild, isOnSale, orderS, isCom);
 	}
 	
