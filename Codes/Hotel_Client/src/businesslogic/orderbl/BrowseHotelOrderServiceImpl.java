@@ -15,7 +15,6 @@ public class BrowseHotelOrderServiceImpl implements BrowseHotelOrderService {
 	private POList2VOList poTransformer;
 	private OrderDAO orderDaoService;
 	
-	
 	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) {
 		ArrayList<BriefOrderInfoVO> hotelOrderList = poTransformer.briefPo2voList( listHelper.getHotelOrderList(address, orderType) );
 		
