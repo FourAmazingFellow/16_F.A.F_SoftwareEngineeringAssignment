@@ -3,7 +3,7 @@ package bl_Stub.userblservice_Stub;
 import java.sql.Date;
 
 import businesslogicservice.userblservice.SignVipService;
-import vo.UserVO;
+import vo.VipInfoVO;
 
 /**
  * 
@@ -27,14 +27,14 @@ public class SignVipServiceImpl_Stub implements SignVipService {
         this.enterpriseID = enterpriseID;
         this.enterprisePasspord = enterprisePasspord;
     }
+
     @Override
-    public boolean signRegularVip(UserVO regularVip) {
+    public boolean signRegularVip(VipInfoVO regularVip) {
         return false;
     }
 
     @Override
-    public boolean signEnterpriseVip(UserVO EnterpriseVip) {
+    public boolean signEnterpriseVip(VipInfoVO EnterpriseVip) {
         return false;
     }
-
 }

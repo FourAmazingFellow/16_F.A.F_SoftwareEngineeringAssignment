@@ -1,7 +1,6 @@
 package businesslogicservice.userblservice;
 
-import vo.UserType;
-import vo.UserVO;
+
 import vo.WebMarketStaffInfoVO;
 
 /**
@@ -19,5 +18,4 @@ public interface ManageUserInfoService extends ModifyClientInfoService{
      */
     public boolean add(WebMarketStaffInfoVO webMarketStaff);
 
-    public UserVO getUserInfo(String userID, UserType client);
 }

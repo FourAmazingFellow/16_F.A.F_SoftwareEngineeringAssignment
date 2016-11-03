@@ -1,6 +1,7 @@
 package businesslogicservice.userblservice;
 
-import vo.UserVO;
+
+import vo.VipInfoVO;
 
 /**
  * 
@@ -16,7 +17,7 @@ public interface SignVipService {
      * @return 注册成功则返回true，注册失败则返回false
      * @see
      */
-    public boolean signRegularVip(UserVO regularVip);
+    public boolean signRegularVip(VipInfoVO regularVip);
     
     /**
      * 注册企业会员
@@ -24,5 +25,5 @@ public interface SignVipService {
      * @return 注册成功则返回true，注册失败则返回false
      * @see
      */
-    public boolean signEnterpriseVip(UserVO EnterpriseVip);
+    public boolean signEnterpriseVip(VipInfoVO EnterpriseVip);
 }
