@@ -18,9 +18,10 @@ public class BriefOrderInfoPO {
 	private RoomType roomType;
 	private int num;
 	private int totalPrice;
+	public Enum<OrderState> orderState;
 
 	public BriefOrderInfoPO(String userID, String orderID, String hN, String hA, Date bD,
-			Date fD, RoomType rT, int n, int tP) {
+			Date fD, RoomType rT, int n, int tP, Enum<OrderState> orderState) {
 		this.orderID = orderID;
 		this.userID = userID;
 		hotelName = hN;
@@ -30,6 +31,7 @@ public class BriefOrderInfoPO {
 		roomType = rT;
 		num = n;
 		totalPrice = tP;
+		this.orderState = orderState;
 	}
 	
 	public String getUserID() {
@@ -68,6 +70,10 @@ public class BriefOrderInfoPO {
 		return totalPrice;
 	}
 
+	public Enum<OrderState> getOrderState() {
+		return orderState;
+	}
+	
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
@@ -104,5 +110,7 @@ public class BriefOrderInfoPO {
 		this.totalPrice = totalPrice;
 	}
 	
-	
+	public void setOrderState(Enum<OrderState> orderState) {
+		this.orderState = orderState;
+	}
 }

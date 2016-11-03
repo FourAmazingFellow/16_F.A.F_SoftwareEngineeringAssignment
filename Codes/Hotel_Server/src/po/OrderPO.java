@@ -16,14 +16,13 @@ public class OrderPO extends BriefOrderInfoPO {
 	private int numOfPerson;
 	private boolean isChildren;
 	private boolean isOnSale;
-	private OrderState orderState;
 	private boolean isCommented;
 
 	public OrderPO(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
 			boolean isCom) {
 
-		super(userID, orID, hN, hA, bD, fD, rT, n, tP);
+		super(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);
 
 		orderProducedTime = oPT;
 		lastedOrderDoneTime = lODT;
@@ -52,10 +51,6 @@ public class OrderPO extends BriefOrderInfoPO {
 
 	public boolean isOnSale() {
 		return isOnSale;
-	}
-
-	public OrderState getOrderState() {
-		return orderState;
 	}
 
 	public boolean isCommented() {
