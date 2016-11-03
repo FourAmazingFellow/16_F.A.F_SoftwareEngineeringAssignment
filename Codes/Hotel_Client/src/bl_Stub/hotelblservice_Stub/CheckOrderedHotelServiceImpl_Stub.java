@@ -1,8 +1,10 @@
 package bl_Stub.hotelblservice_Stub;
 
 import java.util.ArrayList;
+
 import businesslogicservice.hotelblservice.CheckOrderedHotelService;
-import vo.BriefHotelInfoVO;
+import po.OrderState;
+import vo.OrderedHotelInfoVO;
 
 public class CheckOrderedHotelServiceImpl_Stub implements CheckOrderedHotelService{
 	public String hotelName;
@@ -21,10 +23,12 @@ public class CheckOrderedHotelServiceImpl_Stub implements CheckOrderedHotelServi
 	}
 	
 	@Override
-	public ArrayList<BriefHotelInfoVO> enrollHotelBreifInfoList(String ID) {
-		ArrayList<BriefHotelInfoVO> briefHotelInfoVOList = new ArrayList<>();
-		briefHotelInfoVOList.add(new BriefHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark));
-		return briefHotelInfoVOList;
+	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList(String ID) {
+		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOList = new ArrayList<>();
+		ArrayList<OrderState> orderStates = new ArrayList<>();
+		orderStates.add(OrderState.DONE_ORDER);
+		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, orderStates));
+		return orderedHotelInfoVOList;
 	}
 
 }

@@ -2,6 +2,7 @@ package businesslogic.hotelbl;
 
 import java.util.ArrayList;
 
+import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 /**
@@ -52,6 +53,6 @@ public interface OrderInfo {
 	 * @return 该用户的所有已执行、已撤销和异常订单列表
 	 * @see
 	 */
-	public ArrayList<OrderVO> getReservedOrderList(String userID);
+	public ArrayList<BriefOrderInfoVO> getReservedOrderList(String userID);
 	
 }
