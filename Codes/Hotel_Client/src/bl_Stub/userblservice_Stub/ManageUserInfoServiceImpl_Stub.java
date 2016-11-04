@@ -1,7 +1,7 @@
 package bl_Stub.userblservice_Stub;
 
 import businesslogicservice.userblservice.ManageUserInfoService;
-import vo.UserType;
+import po.UserType;
 import vo.UserVO;
 import vo.WebMarketStaffInfoVO;
 
@@ -15,7 +15,7 @@ public class ManageUserInfoServiceImpl_Stub extends ModifyClientInfoServiceImpl_
 
 	public ManageUserInfoServiceImpl_Stub(long userID, String passpord, String telNum, UserType userType,
 			int creditValue, String enterpriseName) {
-		super(userID, passpord, telNum, userType, creditValue, enterpriseName);
+		super(userID, passpord, telNum, userType, creditValue, null);
 	}
 
 	@Override

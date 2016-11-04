@@ -10,13 +10,13 @@ import vo.UserVO;
  * @version 
  * @see
  */
-public class UserServiceImpl_Stub implements UserInfo {
+public class UserInfoImpl_Stub implements UserInfo {
     public long userID;
     public String passpord;
     public String telNum;
     public Enum<UserType> UserType;
 
-    public UserServiceImpl_Stub(long userID, String passpord, String telNum, Enum<po.UserType> userType) {
+    public UserInfoImpl_Stub(long userID, String passpord, String telNum, Enum<po.UserType> userType) {
         super();
         this.userID = userID;
         this.passpord = passpord;
@@ -31,7 +31,7 @@ public class UserServiceImpl_Stub implements UserInfo {
 
     @Override
     public UserVO getUserInfo(String userID) {
-        return new UserVO(userID, passpord, telNum);
+        return new UserVO(userID, passpord, telNum, UserType);
     }
     
     

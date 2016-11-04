@@ -8,7 +8,7 @@ import businesslogic.userbl.ClientCreditInfo;
  * @version 
  * @see
  */
-public class ClientCreditServiceImpl_Driver {
+public class ClientCreditInfoImpl_Driver {
     public void drive(ClientCreditInfo clientCreditService){
         int creditValue = clientCreditService.getCreditValue("原");
         System.out.println("The client's credit value is: "+creditValue);

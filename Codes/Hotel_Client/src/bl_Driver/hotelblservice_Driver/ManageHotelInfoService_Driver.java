@@ -6,7 +6,7 @@ import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import po.RoomType;
 import vo.HotelStaffInfoVO;
 import vo.HotelVO;
-import vo.UserType;
+import po.UserType;
 
 public class ManageHotelInfoService_Driver {
 	public void drive(ManageHotelInfoService manageHotelInfoService) {

@@ -9,14 +9,14 @@ import vo.ClientCreditRecordVO;
  * @version 
  * @see
  */
-public class ClientCreditServiceImpl_Stub implements ClientCreditInfo {
+public class ClientCreditInfoImpl_Stub implements ClientCreditInfo {
 
     public long userID;
     public String passpord;
     public int creditValue;
     public String[] creditRecord;
     
-    public ClientCreditServiceImpl_Stub(long userID, String passpord, int creditValue, String[] creditRecord) {
+    public ClientCreditInfoImpl_Stub(long userID, String passpord, int creditValue, String[] creditRecord) {
         super();
         this.userID = userID;
         this.passpord = passpord;

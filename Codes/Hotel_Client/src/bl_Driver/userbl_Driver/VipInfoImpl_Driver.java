@@ -9,7 +9,7 @@ import vo.UserVO;
  * @version 
  * @see
  */
-public class UserInfoServiceImpl_Driver {
+public class VipInfoImpl_Driver {
     public void drive(VipInfo userInfoService){
         UserVO userVO1 = userInfoService.getRegularVipInfo("原");
         System.out.println("The regular VIP's credit information are: "+userVO1);

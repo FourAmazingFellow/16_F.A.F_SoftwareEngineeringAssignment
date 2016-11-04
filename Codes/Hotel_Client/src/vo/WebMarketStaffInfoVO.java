@@ -1,4 +1,7 @@
 package vo;
+
+import po.UserType;
+
 /**
  * 
  * @author sparkler
@@ -7,10 +10,8 @@ package vo;
  */
 public class WebMarketStaffInfoVO extends UserVO{
 
-    public WebMarketStaffInfoVO(String userID, String passpord, String telNum) {
-        super(userID, passpord, telNum);
+    public WebMarketStaffInfoVO(String userID, String passpord, String telNum, UserType client) {
+        super(userID, passpord, telNum, client);
     }
-
-
 
 }

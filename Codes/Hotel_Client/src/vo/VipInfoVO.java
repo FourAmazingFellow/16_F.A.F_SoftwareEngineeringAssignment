@@ -2,6 +2,8 @@ package vo;
 
 import java.sql.Date;
 
+import po.UserType;
+
 /**
  * 
  * @author sparkler
@@ -13,15 +15,16 @@ public class VipInfoVO extends UserVO {
     public Date birth;
     public String enterpriseID;
     public String enterprisePasspord;
-    public VipInfoVO(String userID, String passpord, String telNum, Date birth) {
-        super(userID, passpord, telNum);
+    public VipInfoVO(String userID, String passpord, String telNum, Enum<UserType> userType, Date birth) {
+        super(userID, passpord, telNum, userType);
         this.birth = birth;
     }
-    public VipInfoVO(String userID, String passpord, String telNum, String enterpriseID, String enterprisePasspord) {
-        super(userID, passpord, telNum);
+    public VipInfoVO(String userID, String passpord, String telNum, Enum<UserType> userType, String enterpriseID,
+            String enterprisePasspord) {
+        super(userID, passpord, telNum, userType);
         this.enterpriseID = enterpriseID;
         this.enterprisePasspord = enterprisePasspord;
     }
-    
+
 
 }

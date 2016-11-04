@@ -1,5 +1,7 @@
 package po;
 
+import vo.ClientInfoVO;
+
 /**
  * 用户信息PO，负责持久化数据传输
  * @author sparkler
@@ -10,16 +12,20 @@ public class UserPO {
     private String userID;
     private String passpord;
     private String telNum;
-    private Enum<UserType> UserType;
+    public Enum<UserType> userType;
     
-    public UserPO(String userID, String passpord, String telNum, UserType userType) {
-        super();
+    public UserPO(String userID, String passpord, String telNum, Enum<UserType> userType) {
         this.userID = userID;
         this.passpord = passpord;
         this.telNum = telNum;
-        this.UserType = userType;
+        this.userType = userType;
     }
     
+
+    public UserPO(ClientInfoVO clientInfoVO) {
+    }
+
+
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -39,10 +45,10 @@ public class UserPO {
         return telNum;
     }
     public Enum<UserType> getUserType() {
-        return UserType;
+        return userType;
     }
     public void setUserType(Enum<UserType> userType) {
-        UserType = userType;
+        this.userType = userType;
     }
 
   

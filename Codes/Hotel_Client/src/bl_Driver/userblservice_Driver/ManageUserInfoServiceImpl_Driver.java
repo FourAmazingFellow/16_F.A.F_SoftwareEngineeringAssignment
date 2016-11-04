@@ -1,7 +1,7 @@
 package bl_Driver.userblservice_Driver;
 
 import businesslogicservice.userblservice.ManageUserInfoService;
-import vo.UserType;
+import po.UserType;
 import vo.UserVO;
 import vo.WebMarketStaffInfoVO;
 
@@ -22,7 +22,7 @@ public class ManageUserInfoServiceImpl_Driver {
        else
            System.out.println("Modify Failed!\n");
         
-        WebMarketStaffInfoVO newUserVO = new WebMarketStaffInfoVO("原", "qwe123", "12345678908");
+        WebMarketStaffInfoVO newUserVO = new WebMarketStaffInfoVO("原", "qwe123", "12345678908",UserType.Client);
         boolean result2 = manageUserInfoService.add(newUserVO);
         if(result2)
             System.out.println("Add Succeed!\n");

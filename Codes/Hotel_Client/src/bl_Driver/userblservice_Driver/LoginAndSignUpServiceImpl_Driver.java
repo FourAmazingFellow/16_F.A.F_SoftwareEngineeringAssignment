@@ -1,6 +1,7 @@
 package bl_Driver.userblservice_Driver;
 
 import businesslogicservice.userblservice.LoginAndSignUpService;
+import po.UserType;
 import vo.UserVO;
 
 public class LoginAndSignUpServiceImpl_Driver {
@@ -11,7 +12,7 @@ public class LoginAndSignUpServiceImpl_Driver {
        else
            System.out.println("Login Failed!\n");
         
-        UserVO userVO = new UserVO("原","qwe123","12345675555");
+        UserVO userVO = new UserVO("原","qwe123","12345675555", UserType.Client);
  
         boolean result4 = loginAndSignUpService.add(userVO);
         if(result4)

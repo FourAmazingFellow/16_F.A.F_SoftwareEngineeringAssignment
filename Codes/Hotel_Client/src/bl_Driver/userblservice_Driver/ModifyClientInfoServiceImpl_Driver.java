@@ -1,7 +1,7 @@
 package bl_Driver.userblservice_Driver;
 
 import businesslogicservice.userblservice.ManageUserInfoService;
-import vo.UserType;
+import po.UserType;
 import vo.UserVO;
 
 /**

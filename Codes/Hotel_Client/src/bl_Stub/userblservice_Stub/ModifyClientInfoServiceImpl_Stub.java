@@ -1,7 +1,7 @@
 package bl_Stub.userblservice_Stub;
 
 import businesslogicservice.userblservice.ModifyClientInfoService;
-import vo.UserType;
+import po.UserType;
 import vo.UserVO;
 
 /**
@@ -31,7 +31,7 @@ public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService
 	 
 	@Override
 	public UserVO getUserInfo(String userID, UserType userType) {
-		return new UserVO(userID, passpord, telNum);
+		return new UserVO(userID, passpord, telNum, UserType);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package businesslogic.userbl.mamageUserInfo;
 
 import businesslogicservice.userblservice.ManageUserInfoService;
-import vo.UserType;
+import po.UserType;
 import vo.UserVO;
 import vo.WebMarketStaffInfoVO;
 
