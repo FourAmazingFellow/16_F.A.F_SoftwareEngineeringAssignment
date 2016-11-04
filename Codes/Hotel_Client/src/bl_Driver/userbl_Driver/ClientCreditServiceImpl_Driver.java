@@ -1,6 +1,6 @@
 package bl_Driver.userbl_Driver;
 
-import businesslogic.userbl.ClientCreditService;
+import businesslogic.userbl.ClientCreditInfo;
 
 /**
  * 
@@ -9,7 +9,7 @@ import businesslogic.userbl.ClientCreditService;
  * @see
  */
 public class ClientCreditServiceImpl_Driver {
-    public void drive(ClientCreditService clientCreditService){
+    public void drive(ClientCreditInfo clientCreditService){
         int creditValue = clientCreditService.getCreditValue("原");
         System.out.println("The client's credit value is: "+creditValue);
     

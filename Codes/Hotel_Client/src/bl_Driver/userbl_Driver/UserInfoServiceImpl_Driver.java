@@ -1,6 +1,6 @@
 package bl_Driver.userbl_Driver;
 
-import businesslogic.userbl.UserInfoService;
+import businesslogic.userbl.VipInfo;
 import vo.UserVO;
 
 /**
@@ -10,7 +10,7 @@ import vo.UserVO;
  * @see
  */
 public class UserInfoServiceImpl_Driver {
-    public void drive(UserInfoService userInfoService){
+    public void drive(VipInfo userInfoService){
         UserVO userVO1 = userInfoService.getRegularVipInfo("原");
         System.out.println("The regular VIP's credit information are: "+userVO1);
         

@@ -1,6 +1,7 @@
 package bl_Stub.userbl_Stub;
 
-import businesslogic.userbl.ClientCreditService;
+import businesslogic.userbl.ClientCreditInfo;
+import vo.ClientCreditRecordVO;
 
 /**
  * 
@@ -8,7 +9,7 @@ import businesslogic.userbl.ClientCreditService;
  * @version 
  * @see
  */
-public class ClientCreditServiceImpl_Stub implements ClientCreditService {
+public class ClientCreditServiceImpl_Stub implements ClientCreditInfo {
 
     public long userID;
     public String passpord;
@@ -31,6 +32,11 @@ public class ClientCreditServiceImpl_Stub implements ClientCreditService {
     @Override
     public boolean changeCreditValue(String userID, int num) {
         return false;
+    }
+
+    @Override
+    public ClientCreditRecordVO getClientCreditInfo(String userID) {
+        return null;
     }
     
 }

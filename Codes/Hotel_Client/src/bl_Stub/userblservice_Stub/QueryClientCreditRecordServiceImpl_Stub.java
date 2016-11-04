@@ -1,8 +1,7 @@
 package bl_Stub.userblservice_Stub;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
-import vo.ClientInfoVO;
-import vo.UserVO;
+import vo.ClientCreditRecordVO;
 
 /**
  * 
@@ -28,8 +27,8 @@ public class QueryClientCreditRecordServiceImpl_Stub implements QueryClientCredi
 	}
     
 	@Override
-	public UserVO queryCredit(String userID) {
-		return new ClientInfoVO(userID, passpord, telNum, creditRecord, creditValue);
+	public ClientCreditRecordVO queryCreditRecord(String userID) {
+		return new ClientCreditRecordVO(userID, creditRecord);
 	}
 
 }

@@ -2,7 +2,7 @@ package bl_Stub.userbl_Stub;
 
 import java.sql.Date;
 
-import businesslogic.userbl.UserInfoService;
+import businesslogic.userbl.VipInfo;
 import po.UserType;
 import vo.UserVO;
 import vo.VipInfoVO;
@@ -13,7 +13,7 @@ import vo.VipInfoVO;
  * @version 
  * @see
  */
-public class UserInfoServiceImpl_Stub implements UserInfoService{
+public class UserInfoServiceImpl_Stub implements VipInfo{
    
     public String userID;
     public String passpord;
@@ -38,13 +38,13 @@ public class UserInfoServiceImpl_Stub implements UserInfoService{
     }
 
     @Override
-    public UserVO getRegularVipInfo(String userID) {
-        return new VipInfoVO(userID, passpord, telNum, birth, null, null);
+    public VipInfoVO getRegularVipInfo(String userID) {
+        return new VipInfoVO(userID, passpord, telNum, birth);
     }
 
     @Override
-    public UserVO getEnterpriseVipInfo(String userID) {
-        return new VipInfoVO(userID, passpord, telNum, null, enterpriseID, enterprisePasspord);
+    public VipInfoVO getEnterpriseVipInfo(String userID) {
+        return new VipInfoVO(userID, passpord, telNum, enterpriseID, enterprisePasspord);
                 
     }
     

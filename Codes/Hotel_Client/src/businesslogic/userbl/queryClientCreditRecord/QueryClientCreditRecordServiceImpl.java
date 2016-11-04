@@ -1,7 +1,7 @@
 package businesslogic.userbl.queryClientCreditRecord;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
-import vo.UserVO;
+import vo.ClientCreditRecordVO;
 
 /**
  * 
@@ -11,10 +11,11 @@ import vo.UserVO;
  */
 public class QueryClientCreditRecordServiceImpl implements QueryClientCreditRecordService {
 
+    private ClientCreditRecordVO ccrVO;
+
     @Override
-    public UserVO queryCredit(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+    public ClientCreditRecordVO queryCreditRecord(String userID) {
+        return ccrVO;
     }
 
 
