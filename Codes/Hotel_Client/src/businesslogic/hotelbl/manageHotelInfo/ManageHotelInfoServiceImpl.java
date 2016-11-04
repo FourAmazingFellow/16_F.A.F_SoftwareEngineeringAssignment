@@ -2,7 +2,7 @@ package businesslogic.hotelbl.manageHotelInfo;
 
 import java.rmi.RemoteException;
 
-import businesslogic.userbl.UserService;
+import businesslogic.userbl.UserInfo;
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import dataservice.hotelDAO.HotelDAO;
 import po.HotelPO;
@@ -12,7 +12,7 @@ import vo.UserVO;
 public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 
 	HotelDAO hotelDAO;
-	UserService userService;
+	UserInfo userService;
 	
 	
 	@Override
