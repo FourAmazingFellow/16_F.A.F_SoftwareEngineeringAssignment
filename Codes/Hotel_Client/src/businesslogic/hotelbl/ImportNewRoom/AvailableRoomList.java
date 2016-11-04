@@ -1,4 +1,4 @@
-package businesslogic.hotelbl.importNewRoom;
+package businesslogic.hotelbl.ImportNewRoom;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;

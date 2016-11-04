@@ -6,4 +6,4 @@
  * @version
  * @see
  */
-package businesslogic.hotelbl.checkOrderedHotel;
+package businesslogic.hotelbl.CheckOrderedHotel;
