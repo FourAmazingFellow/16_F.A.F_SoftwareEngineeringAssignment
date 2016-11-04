@@ -1,7 +1,6 @@
 package businesslogicservice.orderblservice;
 
 import java.util.ArrayList;
-import po.OrderType;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -20,7 +19,7 @@ public interface GetOrderDoneService {
 	 * @return 该酒店的所有订单OrderVO的ArrayList
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoVO>  getHotelOrderList (String address, Enum<OrderType> orderType);
+	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address);
 
 	/**
 	 * 得到酒店订单详情

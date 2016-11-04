@@ -105,4 +105,10 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 		System.out.println("OrderDAO finish.");
 	}
 
+	@Override
+	public OrderPO getDetailedOrder(String orderID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

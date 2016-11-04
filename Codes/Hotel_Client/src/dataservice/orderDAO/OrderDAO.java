@@ -84,7 +84,7 @@ public interface OrderDAO {
 	public ArrayList<BriefOrderInfoPO> getAllAbnormalList (Date date) throws RemoteException;
 	
 	/**
-	 * 得到对应酒店该订单号对应的详情（检测该订单是否属于该酒店）
+	 * 得到对应酒店该订单号对应的详情（检测该订单是否属于该酒店）(防止通过订单号直接搜索时出现信息泄漏)
 	 * @param address String类型 酒店地址
 	 * @param orderID String类型 订单号
 	 * @return 该酒店中该订单号对应的详情
@@ -92,6 +92,15 @@ public interface OrderDAO {
 	 * @see
 	 */
 	public OrderPO getSingleOrder(String address, String orderID) throws RemoteException;
+	
+	/**
+	 * 用户得到订单详情时所需调用的方法
+	 * @param orderID String类型 订单号
+	 * @return 该订单号对应的订单详情
+	 * @throws RemoteException
+	 * @see
+	 */
+	public OrderPO getDetailedOrder(String orderID) throws RemoteException;
 	
 	/**
 	 * 在数据库中增加一个po记录

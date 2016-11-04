@@ -23,7 +23,7 @@ public class CheckAbnormalOrderServiceImpl_Driver {
 			
 			System.out.println("网站营销人员选择撤销订单");
 			
-			if(checkAbnormalOrderService.systemWithdrawOrder(orderVO)){
+			if(checkAbnormalOrderService.systemWithdrawOrder(orderVO, true)){
 				System.out.println("网站营销人员撤销订单成功");
 			}else{
 				System.out.println("网站营销人员撤销订单失败");

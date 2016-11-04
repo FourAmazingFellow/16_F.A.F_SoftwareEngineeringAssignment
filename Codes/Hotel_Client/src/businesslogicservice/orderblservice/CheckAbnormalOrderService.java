@@ -36,6 +36,6 @@ public interface CheckAbnormalOrderService {
 	 * @return 撤销操作是否成功
 	 * @see
 	 */
-	public boolean systemWithdrawOrder(OrderVO vo); 
+	public boolean systemWithdrawOrder(OrderVO vo, boolean isRecoverHalf); 
 
 }

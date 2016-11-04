@@ -37,7 +37,7 @@ public class CheckAbnormalOrderServiceImpl_Stub implements CheckAbnormalOrderSer
 	}
 
 	@Override
-	public boolean systemWithdrawOrder(OrderVO vo) {
+	public boolean systemWithdrawOrder(OrderVO vo, boolean isRecoverHalfCredit) {
 		// TODO Auto-generated method stub
 		System.out.println("网站营销人员撤销订单");
 		return false;

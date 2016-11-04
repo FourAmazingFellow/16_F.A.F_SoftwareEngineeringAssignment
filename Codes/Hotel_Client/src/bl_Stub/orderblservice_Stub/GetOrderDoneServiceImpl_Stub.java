@@ -5,7 +5,6 @@ import java.util.Date;
 
 import businesslogicservice.orderblservice.GetOrderDoneService;
 import po.OrderState;
-import po.OrderType;
 import po.RoomType;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
@@ -23,7 +22,7 @@ public class GetOrderDoneServiceImpl_Stub implements GetOrderDoneService {
 	}
 	
 	@Override
-	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) {
+	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address) {
 		// TODO Auto-generated method stub
 		System.out.println("得到酒店所有订单列表");
 		ArrayList<BriefOrderInfoVO> a = new ArrayList<BriefOrderInfoVO>();
