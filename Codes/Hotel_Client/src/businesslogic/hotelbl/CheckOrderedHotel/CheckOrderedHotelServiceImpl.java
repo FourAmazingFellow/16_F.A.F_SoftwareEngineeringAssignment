@@ -16,3 +16,4 @@ public class CheckOrderedHotelServiceImpl implements CheckOrderedHotelService {
 	}
 
 }
+

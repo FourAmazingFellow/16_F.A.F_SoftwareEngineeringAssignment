@@ -29,5 +29,4 @@ public class AvailableRoomList {
 			return null;
 		}
 	}
-	
 }
