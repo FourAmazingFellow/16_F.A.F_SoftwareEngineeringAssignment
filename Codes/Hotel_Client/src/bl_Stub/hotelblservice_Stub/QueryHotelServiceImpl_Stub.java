@@ -7,9 +7,9 @@ import java.util.HashMap;
 import businesslogicservice.hotelblservice.QueryHotelService;
 import po.OrderState;
 import po.RoomType;
-import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 import vo.OrderVO;
+import vo.OrderedHotelInfoVO;
 
 public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 
@@ -96,10 +96,12 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	}
 	
 	@Override
-	public ArrayList<BriefHotelInfoVO> getHotelBriefInfoListByQuerying(String[] condition) {
-		ArrayList<BriefHotelInfoVO> briefHotelInfoVOList = new ArrayList<>();
-		briefHotelInfoVOList.add(new BriefHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark));
-		return briefHotelInfoVOList;
+	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying(String[] condition) {
+		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOList = new ArrayList<>();
+		ArrayList<OrderState> orderStates = new ArrayList<>();
+		orderStates.add(OrderState.DONE_ORDER);
+		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, orderStates));
+		return orderedHotelInfoVOList;
 	}
 
 	@Override

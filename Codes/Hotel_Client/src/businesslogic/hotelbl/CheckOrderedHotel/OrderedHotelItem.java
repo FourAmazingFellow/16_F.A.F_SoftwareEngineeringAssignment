@@ -1,4 +1,4 @@
-package businesslogic.hotelbl.checkOrderedHotel;
+package businesslogic.hotelbl.CheckOrderedHotel;
 
 import java.rmi.RemoteException;
 

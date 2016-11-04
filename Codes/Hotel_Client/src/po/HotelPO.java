@@ -2,6 +2,8 @@ package po;
 
 import java.util.HashMap;
 
+import vo.HotelVO;
+
 /**
  * 酒店详细信息的实体类，负责持久化数据传输
  * @author 原
@@ -26,6 +28,16 @@ public class HotelPO extends BriefHotelInfoPO {
 		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
 	}
+	
+	public HotelPO(HotelVO hotelVO) {
+		super(hotelVO);
+		this.briefIntroduction = hotelVO.briefIntroduction;
+		this.facilityAndService = hotelVO.facilityAndService;
+		this.roomTypeAndPrice = hotelVO.roomTypeAndPrice;
+		this.roomTypeAndNums = hotelVO.roomTypeAndNums;
+		this.comments = hotelVO.comments;
+	}
+	
 	public String getBriefIntroduction() {
 		return briefIntroduction;
 	}

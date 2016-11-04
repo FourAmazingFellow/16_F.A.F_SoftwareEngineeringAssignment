@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
+import po.BriefOrderInfoPO;
 import po.HotelPO;
 import po.RoomType;
 
@@ -59,7 +60,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	}
 
 	@Override
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition) throws RemoteException {
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition, ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {
 		ArrayList<BriefHotelInfoPO> briefHotelInfoPOList = new ArrayList<>();
 		briefHotelInfoPOList.add(new BriefHotelInfoPO(hotelName, businessDistrict, hotelAddress, starLevel, mark));
 		return briefHotelInfoPOList;

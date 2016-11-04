@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.BriefHotelInfoPO;
+import po.BriefOrderInfoPO;
 import po.HotelPO;
 
 /**
@@ -39,7 +40,7 @@ public interface HotelDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying (String[] condition) throws RemoteException;
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying (String[] condition, ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException;
 	
 	/**
 	 * 获取酒店详情

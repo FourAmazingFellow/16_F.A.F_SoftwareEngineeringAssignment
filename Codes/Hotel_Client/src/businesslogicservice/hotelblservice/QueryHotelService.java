@@ -2,9 +2,9 @@ package businesslogicservice.hotelblservice;
 
 import java.util.ArrayList;
 
-import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 import vo.OrderVO;
+import vo.OrderedHotelInfoVO;
 
 /**
  * 为界面提供查看酒店信息所需要的方法
@@ -20,7 +20,7 @@ public interface QueryHotelService {
      * @return 返回符合输入条件的所有酒店的简要信息列表
      * @see
      */
-    public ArrayList<BriefHotelInfoVO> getHotelBriefInfoListByQuerying (String[] condition);
+    public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying (String[] condition);
     
     /**
      * 获取酒店详细信息

@@ -3,14 +3,14 @@ package bl_Driver.hotelblservice_Driver;
 import java.util.ArrayList;
 
 import businesslogicservice.hotelblservice.QueryHotelService;
-import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 import vo.OrderVO;
+import vo.OrderedHotelInfoVO;
 
 public class QueryHotelService_Driver {
 	public void driver(QueryHotelService queryHotelService) {
 		String[] conditions  = {"从低到高", "从高到低", "从高到低", "是"};
-		ArrayList<BriefHotelInfoVO> briefHotelInfoVOList = queryHotelService.getHotelBriefInfoListByQuerying(conditions);
+		ArrayList<OrderedHotelInfoVO> briefHotelInfoVOList = queryHotelService.getHotelBriefInfoListByQuerying(conditions);
 		if(briefHotelInfoVOList.isEmpty())
 			System.out.println("无满足此条件的酒店");
 		else
