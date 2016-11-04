@@ -86,7 +86,7 @@ public class UpdateStrategyServiceImpl_Stub implements UpdateStrategyService{
     }
 
     @Override
-    public boolean Valid(String address, StrategyVO strategy) {
+    public boolean valid(String address, StrategyVO strategy) {
         return true;
     }
 

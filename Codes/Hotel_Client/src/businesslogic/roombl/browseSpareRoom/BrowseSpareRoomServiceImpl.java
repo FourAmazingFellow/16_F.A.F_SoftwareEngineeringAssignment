@@ -2,6 +2,7 @@ package businesslogic.roombl.browseSpareRoom;
 
 import java.util.ArrayList;
 
+import businesslogicservice.roomblservice.BrowseSpareRoomService;
 import vo.RoomVO;
 
 
@@ -11,15 +12,16 @@ import vo.RoomVO;
  * @version 
  * @see
  */
-public class BrowseSpareRoom {
+public class BrowseSpareRoomServiceImpl implements BrowseSpareRoomService{
 
     /**
      * 得到空房列表
      * @param address String型，酒店地址
      * @return ArrayList<RoomVO>型，返回空房列表
      * @see
-     */
-    ArrayList<RoomVO> getSpareRoomList (String address){
+     */@Override
+    public ArrayList<RoomVO> getRoomInfoList(String address) {
+        // TODO Auto-generated method stub
         return null;
     }
 }

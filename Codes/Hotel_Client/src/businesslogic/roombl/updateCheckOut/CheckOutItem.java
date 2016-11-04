@@ -1,6 +1,6 @@
 package businesslogic.roombl.updateCheckOut;
 
-import java.sql.Date;
+import java.util.Date;
 
 import po.CheckInOutPO;
 import po.RoomPO;

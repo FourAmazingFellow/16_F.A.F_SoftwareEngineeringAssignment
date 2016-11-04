@@ -41,7 +41,7 @@ public class UpdateStrategyService_Driver {
         else
             System.out.println("delete Strategy Failed!\n");
         
-        boolean validStrategy=updateStrategyService.Valid("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        boolean validStrategy=updateStrategyService.valid("江苏省南京市栖霞区仙林大道163号", strategyVO);
         if(validStrategy)
             System.out.println("Strategy valid!\n");
         else

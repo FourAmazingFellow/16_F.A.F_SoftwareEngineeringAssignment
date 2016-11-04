@@ -16,7 +16,7 @@ public class SpareRoomList {
      * @return ArrayList<RoomVO>型，返回空房列表
      * @see
      */
-    ArrayList<SpareRoomItem> getSpareRoomList (String address){
+    ArrayList<SpareRoomItem> getRoomInfoList (String address){
         return null;
     }
 }

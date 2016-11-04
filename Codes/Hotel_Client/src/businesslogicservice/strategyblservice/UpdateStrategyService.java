@@ -65,6 +65,6 @@ public interface UpdateStrategyService {
      * @return boolean型，返回该策略信息是否符合规范
      * @see
      */
-    public boolean Valid(String address, StrategyVO strategy);
+    public boolean valid(String address, StrategyVO strategy);
     
 }

@@ -1,6 +1,6 @@
 package businesslogic.roombl;
 
-import java.sql.Date;
+import java.util.Date;
 
 import businesslogicservice.orderblservice.ResultMessage;
 import po.RoomType;

@@ -1,6 +1,6 @@
 package bl_Stub.roombl_Stub;
 
-import java.sql.Date;
+import java.util.Date;
 
 import businesslogic.roombl.RoomInfoService;
 import businesslogicservice.orderblservice.ResultMessage;

@@ -1,6 +1,6 @@
 package bl_Stub.roomblservice_Stub;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckOutService;
