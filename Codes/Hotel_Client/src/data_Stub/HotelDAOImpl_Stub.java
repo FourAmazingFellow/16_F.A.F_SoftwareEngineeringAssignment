@@ -20,6 +20,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	public String briefIntroduction;
 	public String facilityAndService;
 	public HashMap<RoomType, Integer> roomTypeAndPrice;
+	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
 	public HotelDAOImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark) {
@@ -31,7 +32,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	}
 	
 	public HotelDAOImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark,
-			String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice,
+			String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
@@ -41,6 +42,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;
+		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
 	}
 	
@@ -65,7 +67,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 
 	@Override
 	public HotelPO getHotelDetails(String address) throws RemoteException {
-		return new HotelPO(hotelName, businessDistrict, address, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, comments);
+		return new HotelPO(hotelName, businessDistrict, address, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Override

@@ -22,6 +22,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	public String briefIntroduction;
 	public String facilityAndService;
 	public HashMap<RoomType, Integer> roomTypeAndPrice;
+	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
 	public String userID;
@@ -40,9 +41,8 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	public boolean isCommented;
 	
 	public QueryHotelServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
-			int mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice,
+			int mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
-		super();
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;
@@ -51,6 +51,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;
+		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
 	}
 	
@@ -64,11 +65,11 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	}
 	
 	public QueryHotelServiceImpl_Stub(String briefIntroduction, String facilityAndService,
-			HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<String, String> comments) {
-		super();
+			HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums, HashMap<String, String> comments) {
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;
+		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
 	}
 	
@@ -76,7 +77,6 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 			Date beginDate, Date finishDate, RoomType roomType, int num, int totalPrice, Date orderProducedTime,
 			Date lastedOrderDoneTime, int numOfPerson, boolean isChildren, boolean isOnSale, OrderState orderState,
 			boolean isCommented) {
-		super();
 		this.hotelName = hotelName;
 		this.hotelAddress = hotelAddress;
 		this.userID = userID;
@@ -104,7 +104,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, comments);
+		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Override

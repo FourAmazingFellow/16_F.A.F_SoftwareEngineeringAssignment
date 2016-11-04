@@ -18,10 +18,11 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	public String briefIntroduction;
 	public String facilityAndService;
 	public HashMap<RoomType, Integer> roomTypeAndPrice;
+	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
 	public HotelInfoServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
-			int mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice,
+			int mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
@@ -31,6 +32,7 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;
+		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
 	}
 	
@@ -50,7 +52,7 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, comments);
+		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 }

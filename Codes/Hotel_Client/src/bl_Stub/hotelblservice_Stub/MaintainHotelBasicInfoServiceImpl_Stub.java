@@ -16,12 +16,12 @@ public class MaintainHotelBasicInfoServiceImpl_Stub implements MaintainHotelBasi
 	public String briefIntroduction;
 	public String facilityAndService;
 	public HashMap<RoomType, Integer> roomTypeAndPrice;
+	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
 	public MaintainHotelBasicInfoServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress,
 			int starLevel, int mark, String briefIntroduction, String facilityAndService,
-			HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<String, String> comments) {
-		super();
+			HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums, HashMap<String, String> comments) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;
@@ -30,11 +30,12 @@ public class MaintainHotelBasicInfoServiceImpl_Stub implements MaintainHotelBasi
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;
+		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
 	}
 	@Override
 	public HotelVO enrollHotelBasicInfo(String address) {
-		return new HotelVO(hotelName, businessDistrict, address, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, comments);
+		return new HotelVO(hotelName, businessDistrict, address, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Override
