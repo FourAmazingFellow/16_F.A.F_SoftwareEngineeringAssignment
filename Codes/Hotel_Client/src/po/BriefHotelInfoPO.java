@@ -1,5 +1,7 @@
 package po;
 
+import vo.BriefHotelInfoVO;
+
 /**
  * 
  * @author 原
@@ -20,6 +22,15 @@ public class BriefHotelInfoPO {
 		this.starLevel = starLevel;
 		this.mark = mark;
 	}
+	
+	public BriefHotelInfoPO(BriefHotelInfoVO briefHotelInfoVO) {
+		this.hotelName = briefHotelInfoVO.hotelName;
+		this.businessDistrict = briefHotelInfoVO.businessDistrict;
+		this.hotelAddress = briefHotelInfoVO.hotelAddress;
+		this.starLevel = briefHotelInfoVO.starLevel;
+		this.mark = briefHotelInfoVO.mark;
+	}
+	
 	public String getHotelName() {
 		return hotelName;
 	}

@@ -2,6 +2,7 @@ package vo;
 
 import java.util.HashMap;
 
+import po.HotelPO;
 import po.RoomType;
 
 /**
@@ -27,5 +28,14 @@ public class HotelVO extends BriefHotelInfoVO{
 		this.roomTypeAndPrice = roomTypeAndPrice;
 		this.roomTypeAndNums = roomTypeAndNums;
 		this.comments = comments;
+	}
+	
+	public HotelVO(HotelPO hotelPO) {
+		super(hotelPO);
+		this.briefIntroduction = hotelPO.getBriefIntroduction();
+		this.facilityAndService = hotelPO.getFacilityAndService();
+		this.roomTypeAndPrice = hotelPO.getRoomTypeAndPrice();
+		this.roomTypeAndNums = hotelPO.getRoomTypeAndNums();
+		this.comments = hotelPO.getComments();
 	}
 }
