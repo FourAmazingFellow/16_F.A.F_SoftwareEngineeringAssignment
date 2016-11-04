@@ -6,4 +6,4 @@
  * @version
  * @see
  */
-package businesslogic.hotelbl.ImportNewRoom;
+package businesslogic.hotelbl.importNewRoom;
