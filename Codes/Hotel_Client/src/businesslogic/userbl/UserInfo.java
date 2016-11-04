@@ -8,7 +8,7 @@ import vo.UserVO;
  * @version 
  * @see
  */
-public interface UserService {
+public interface UserInfo {
 
     /**
      * 酒店管理人员添加酒店工作人员
@@ -17,5 +17,13 @@ public interface UserService {
      * @see
      */
     public boolean insert(UserVO staff);
-    
+ 
+    /**
+     * 获取用户信息
+     * @param userID String型，业务逻辑层传递过来的用户标识
+     * @return 返回用户信息
+     * @see
+     */
+    public UserVO getUserInfo(String userID);
+ 
 }
