@@ -1,13 +1,13 @@
 package businesslogic.orderbl.withdrawOrder;
 
 import businesslogic.roombl.RoomInfoService;
-import businesslogic.userbl.ClientCreditService;
+import businesslogic.userbl.ClientCreditInfo;
 import dataservice.orderDAO.OrderDAO;
 import vo.OrderVO;
 
 public class OrderWithdrawer {
 	private OrderDAO orderDaoService;
-	private ClientCreditService userCreditService;
+	private ClientCreditInfo userCreditService;
 	private RoomInfoService addSpareRoomService;
 	
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
