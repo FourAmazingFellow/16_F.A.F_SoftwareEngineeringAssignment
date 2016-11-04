@@ -40,7 +40,7 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
     }
 
     @Override
-    public ArrayList<RoomVO> getCheckOutInfo(String address, Date time) {
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date time) {
         RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, time);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkOutVO);
@@ -48,7 +48,7 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
     }
 
     @Override
-    public ArrayList<RoomVO> getCheckOutInfo(String address, Enum<RoomType> roomType) {
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Enum<RoomType> roomType) {
         RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, actDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkOutVO);

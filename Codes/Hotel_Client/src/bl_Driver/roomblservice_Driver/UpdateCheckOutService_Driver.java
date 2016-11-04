@@ -23,12 +23,12 @@ public class UpdateCheckOutService_Driver {
             System.out.println("There are " + checkOutInfoList.size() + " checkOuts in this hotel!\n");
         
         Date checkOutTime=new Date(System.currentTimeMillis());
-        ArrayList<RoomVO> checkOutVOList1=updateCheckOutService.getCheckOutInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime);
+        ArrayList<RoomVO> checkOutVOList1=updateCheckOutService.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime);
         CheckInOutVO checkOutVO1=(CheckInOutVO) checkOutVOList1.get(0);
         System.out.println("the checkOutInfo includes "+checkOutVO1.roomNum + " 间"+ checkOutVO1.roomType);
         System.out.println("Actual depart time is "+checkOutVO1.actDepartTime+"/n");
         
-        ArrayList<RoomVO> checkOutVOList2=updateCheckOutService.getCheckOutInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
+        ArrayList<RoomVO> checkOutVOList2=updateCheckOutService.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
         CheckInOutVO checkOutVO2=(CheckInOutVO) checkOutVOList2.get(0);
         System.out.println("the checkOutInfo includes "+checkOutVO2.roomNum + " 间"+ checkOutVO2.roomType);
         System.out.println("Actual depart time is "+checkOutVO2.actDepartTime+"/n");

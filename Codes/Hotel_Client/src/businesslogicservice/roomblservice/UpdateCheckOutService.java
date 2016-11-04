@@ -29,7 +29,7 @@ public interface UpdateCheckOutService {
      * @return ArrayList<RoomVO>型，返回退房信息列表
      * @see
      */
-    public ArrayList<RoomVO> getCheckOutInfo(String address, Date time);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date time);
     
     /**
      * 按房间类型查找相应的退房信息
@@ -38,7 +38,7 @@ public interface UpdateCheckOutService {
      * @return ArrayList<RoomVO>型，返回退房信息列表
      * @see
      */
-    public ArrayList<RoomVO> getCheckOutInfo(String address, Enum<RoomType> roomType);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Enum<RoomType> roomType);
     
     /**
      * 增加退房信息
