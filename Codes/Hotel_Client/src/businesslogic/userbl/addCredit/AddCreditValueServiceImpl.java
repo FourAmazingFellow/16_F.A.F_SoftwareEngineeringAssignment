@@ -1,4 +1,4 @@
-package businesslogic.userbl.addCreditValue;
+package businesslogic.userbl.addCredit;
 
 import businesslogicservice.userblservice.AddCreditValueService;
 

@@ -6,4 +6,4 @@
  * @version 
  * @see
  */
-package businesslogic.userbl.addCreditValue;
+package businesslogic.userbl.addCredit;
