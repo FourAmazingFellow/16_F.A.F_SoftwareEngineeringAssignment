@@ -2,6 +2,7 @@ package businesslogic.roombl;
 
 import java.util.Date;
 
+import businesslogicservice.orderblservice.ResultMessage;
 import po.RoomType;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -27,9 +28,9 @@ public class RoomInfoServiceImpl implements RoomInfoService{
     }
 
     @Override
-    public boolean checkOrder(OrderVO vo) {
+    public ResultMessage checkOrder(OrderVO vo) {
         // TODO Auto-generated method stub
-        return false;
+        return null;
     }
 
     @Override
