@@ -1,4 +1,4 @@
-package businesslogic.hotelbl.ImportNewRoom;
+package businesslogic.hotelbl.importNewRoom;
 
 import java.util.ArrayList;
 
