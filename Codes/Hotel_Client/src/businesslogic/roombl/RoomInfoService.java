@@ -2,6 +2,7 @@ package businesslogic.roombl;
 
 import java.sql.Date;
 
+import businesslogicservice.orderblservice.ResultMessage;
 import po.RoomType;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -40,7 +41,7 @@ public interface RoomInfoService {
      * @return boolean 返回该订单在对应酒店能否得到满足
      * @see
      */
-    public boolean checkOrder(OrderVO vo);
+    public ResultMessage checkOrder(OrderVO vo);
     
     /**
      * 在更新可用客房后更新空房信息

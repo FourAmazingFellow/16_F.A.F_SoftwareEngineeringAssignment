@@ -108,7 +108,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void insert(OrderPO po) throws RemoteException;
+	public boolean insert(OrderPO po) throws RemoteException;
 	
 	/**
 	 * 在数据库中删除一个po
@@ -116,7 +116,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void delete(OrderPO po) throws RemoteException;
+	public boolean delete(OrderPO po) throws RemoteException;
 	
 	/**
 	 * 在数据库中更新一个po
@@ -124,12 +124,12 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void update(OrderPO po) throws RemoteException;
+	public boolean update(OrderPO po) throws RemoteException;
 	
 	/**
 	 * 结束持久化数据库的使用
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void finish() throws RemoteException;
+	public boolean finish() throws RemoteException;
 }

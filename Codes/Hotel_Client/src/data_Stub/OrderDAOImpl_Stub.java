@@ -82,27 +82,31 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	}
 
 	@Override
-	public void insert(OrderPO po) throws RemoteException {
+	public boolean insert(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("OrderDAO insert.");
+		return true;
 	}
 
 	@Override
-	public void delete(OrderPO po) throws RemoteException {
+	public boolean delete(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("OrderDAO delete");
+		return true;
 	}
 
 	@Override
-	public void update(OrderPO po) throws RemoteException {
+	public boolean update(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("OrderDAO update.");
+		return true;
 	}
 
 	@Override
-	public void finish() throws RemoteException {
+	public boolean finish() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("OrderDAO finish.");
+		return true;
 	}
 
 	@Override

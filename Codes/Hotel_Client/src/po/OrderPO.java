@@ -19,7 +19,7 @@ public class OrderPO extends BriefOrderInfoPO {
 	private boolean isCommented;
 
 	public OrderPO(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
-			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
+			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, Enum<OrderState> orderS,
 			boolean isCom) {
 
 		super(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);

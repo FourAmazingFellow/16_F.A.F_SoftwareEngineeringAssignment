@@ -1,9 +1,9 @@
 package businesslogicservice.orderblservice;
 
-import java.util.ArrayList;
+
+import po.RoomType;
 import vo.BriefHotelInfoVO;
 import vo.OrderVO;
-import vo.RoomVO;
 
 /**
  * 为生成订单界面提供所需要的所有服务
@@ -37,7 +37,7 @@ public interface CreateNewOrderService {
 	 * @return 所有房型的RoomVO的ArrayList
 	 * @see
 	 */
-	public  ArrayList<RoomVO> getHotelRoomInfo(String address);
+	 public int getAvailableRoomNum(String address, Enum<RoomType> roomType);
 	
 	/**
 	 * 获取订单总价
@@ -58,8 +58,8 @@ public interface CreateNewOrderService {
 	/**
 	 * 添加新的订单
 	 * @param vo 订单VO
-	 * @return ResultMassage
+	 * @return boolean 是否生成成功
 	 * @see
 	 */
-	public ResultMessage addNewOrder(OrderVO vo);
+	public boolean addNewOrder(OrderVO vo);
 }

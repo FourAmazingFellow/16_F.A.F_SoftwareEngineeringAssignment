@@ -3,6 +3,7 @@ package bl_Stub.roombl_Stub;
 import java.sql.Date;
 
 import businesslogic.roombl.RoomInfoService;
+import businesslogicservice.orderblservice.ResultMessage;
 import po.RoomType;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -41,9 +42,9 @@ public class RoomInfoService_Stub implements RoomInfoService{
     }
 
 	@Override
-	public boolean checkOrder(OrderVO vo) {
+	public ResultMessage checkOrder(OrderVO vo) {
 		// TODO Auto-generated method stub
-		return false;
+		return ResultMessage.SUCCEED;
 	}
 
 }

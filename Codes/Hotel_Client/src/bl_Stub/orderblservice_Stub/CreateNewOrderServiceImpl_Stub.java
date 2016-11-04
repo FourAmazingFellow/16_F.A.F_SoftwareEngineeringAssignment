@@ -1,6 +1,5 @@
 package bl_Stub.orderblservice_Stub;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogicservice.orderblservice.CreateNewOrderService;
@@ -51,9 +50,9 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	}
 
 	@Override
-	public ResultMessage addNewOrder(OrderVO vo) {
+	public boolean addNewOrder(OrderVO vo) {
 		System.out.println("添加订单");
-		return ResultMessage.SUCCEED;
+		return true;
 	}
 
 	@Override
@@ -63,11 +62,10 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	}
 
 	@Override
-	public ArrayList<RoomVO> getHotelRoomInfo(String address) {
-		System.out.println("得到酒店房间信息");
-		ArrayList<RoomVO> roomVOList = new ArrayList<RoomVO>();
-		roomVOList.add(testRoomVO);
- 		return roomVOList;
+	public int getAvailableRoomNum(String address, Enum<RoomType> roomType) {
+		// TODO Auto-generated method stub
+		return 3;
 	}
+
 
 }
