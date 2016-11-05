@@ -16,7 +16,7 @@ public class UserInfoImpl_Stub implements UserInfo {
     public String telNum;
     public Enum<UserType> UserType;
 
-    public UserInfoImpl_Stub(long userID, String password, String telNum, Enum<po.UserType> userType) {
+    public UserInfoImpl_Stub(long userID, String password, String telNum, UserType userType) {
         super();
         this.userID = userID;
         this.password = password;
@@ -29,15 +29,4 @@ public class UserInfoImpl_Stub implements UserInfo {
         return false;
     }
 
-    @Override
-    public UserVO getUserInfo(String userID) {
-        return new UserVO(userID, password, telNum, UserType);
-    }
-
-    @Override
-    public String getPassword(String userID) {
-        return password;
-    }
-    
-    
 }
