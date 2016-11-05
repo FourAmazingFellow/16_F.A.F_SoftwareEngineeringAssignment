@@ -10,9 +10,9 @@ import vo.BriefHotelInfoVO;
 
 public class SearchHotelServiceImpl implements SearchHotelService {
 
-	HotelDAO hotelDAO;
-	ArrayList<BriefHotelInfoPO> hotelList;
-	String[] conditions;
+	private HotelDAO hotelDAO;
+	private ArrayList<BriefHotelInfoPO> hotelList;
+	private String[] conditions;
 	
 	public SearchHotelServiceImpl(String[] condition) {
 		this.conditions = condition;

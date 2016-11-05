@@ -13,7 +13,7 @@ public class BriefHotelInfoVO{
     public String businessDistrict;
     public String hotelAddress;
     public int starLevel;
-    public int mark;
+    public float mark;
 
     public BriefHotelInfoVO(BriefHotelInfoPO briefHotelInfoPO) {
     	this.hotelName = briefHotelInfoPO.getHotelName();
@@ -23,7 +23,7 @@ public class BriefHotelInfoVO{
         this.mark = briefHotelInfoPO.getMark();
     }
     
-    public BriefHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark) {
+    public BriefHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark) {
         this.hotelName = hotelName;
         this.businessDistrict = businessDistrict;
         this.hotelAddress = hotelAddress;

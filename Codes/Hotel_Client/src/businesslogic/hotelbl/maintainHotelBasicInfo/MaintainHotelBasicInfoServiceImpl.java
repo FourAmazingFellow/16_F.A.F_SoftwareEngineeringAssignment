@@ -9,14 +9,14 @@ import vo.HotelVO;
 
 public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfoService{
 
-	HotelDAO hotelDAO;
-	HotelVO hotelVO;
-	String hotelAddress;
+	private HotelDAO hotelDAO;
+	private HotelVO hotelVO;
+	private String hotelAddress;
 	
 	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
 		try {
-			this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(hotelAddress));
+			this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

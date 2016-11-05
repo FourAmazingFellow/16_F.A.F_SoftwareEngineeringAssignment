@@ -9,10 +9,10 @@ public class OrderedHotelInfoVO {
 	 public String businessDistrict;
 	 public String hotelAddress;
 	 public int starLevel;
-	 public int mark;
+	 public float mark;
 	 public ArrayList<OrderState> hotelState;
 
-	 public OrderedHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark, ArrayList<OrderState> hotelState) {
+	 public OrderedHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, ArrayList<OrderState> hotelState) {
 		 this.hotelName = hotelName;
 		 this.businessDistrict = businessDistrict;
 	     this.hotelAddress = hotelAddress;

@@ -11,8 +11,8 @@ import vo.UserVO;
 
 public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 
-	HotelDAO hotelDAO;
-	UserInfo userService;
+	private HotelDAO hotelDAO;
+	private UserInfo userService;
 	
 	
 	@Override
