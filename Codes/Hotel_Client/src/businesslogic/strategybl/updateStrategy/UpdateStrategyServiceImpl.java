@@ -14,6 +14,8 @@ import vo.StrategyVO;
  */
 public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     
+    private StrategyList strategyList=new StrategyList();
+    
     /**
      * 得到某种策略类型的列表
      * @param address string型，酒店地址
@@ -23,8 +25,12 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public ArrayList<StrategyVO> getStrategyList(String address, Enum<StrategyType> StrategyType){
-        return null;
-        
+        ArrayList<StrategyItem> strategyItems=strategyList.getStrategyList(address, StrategyType);
+        ArrayList<StrategyVO> strategyVOs=new ArrayList<StrategyVO>();
+        for(StrategyItem strategyItem:strategyItems){
+            strategyVOs.add(strategyItem.toVO());
+        }
+        return strategyVOs;
     }
     
     /**
@@ -36,8 +42,8 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public StrategyVO getStrategyInfo(String address, String name){
-        return null;
-        
+        StrategyItem strategyItem=strategyList.getStrategyInfo(address, name);
+        return strategyItem.toVO();
     }
     
     /**
@@ -49,8 +55,8 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean add(String address, StrategyVO strategy){
-        return false;
-        
+        StrategyItem strategyItem=new StrategyItem(strategy);
+        return strategyItem.add(address);
     }
     
     /**
@@ -62,8 +68,8 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean modify(String address, StrategyVO strategy){
-        return false;
-        
+        StrategyItem strategyItem=new StrategyItem(strategy);
+        return strategyItem.modify(address);
     }
     
     /**
@@ -75,8 +81,8 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean delete(String address, StrategyVO strategy){
-        return false;
-        
+        StrategyItem strategyItem=new StrategyItem(strategy);
+        return strategyItem.delete(address);
     }
     
     /**
@@ -88,7 +94,7 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean valid(String address, StrategyVO strategy){
-        return false;
-        
+        StrategyItem strategyItem=new StrategyItem(strategy);
+        return strategyItem.valid();
     }
 }

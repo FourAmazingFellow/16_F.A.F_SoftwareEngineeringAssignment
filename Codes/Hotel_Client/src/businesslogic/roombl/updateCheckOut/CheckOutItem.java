@@ -1,7 +1,9 @@
 package businesslogic.roombl.updateCheckOut;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
+import dataservice.roomDAO.RoomDAO;
 import po.CheckInOutPO;
 import po.RoomPO;
 import po.RoomType;
@@ -20,6 +22,8 @@ public class CheckOutItem {
     private int roomNum;
     private String address;
     private Date actDepartTime;
+    
+    private RoomDAO checkOutDAO;
     
     /**
      * 
@@ -53,9 +57,15 @@ public class CheckOutItem {
      * @return
      * @see
      */
-    boolean AddCheckOut(String address){
-        return false;
-        
+    boolean addCheckOut(String address){
+        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        try {
+            checkOutDAO.insert(checkOutPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -64,9 +74,15 @@ public class CheckOutItem {
      * @return 返回是否修改成功
      * @see
      */
-    boolean ModifyCheckOut(String address){
-        return false;
-        
+    boolean modifyCheckOut(String address){
+        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        try {
+            checkOutDAO.update(checkOutPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -76,8 +92,14 @@ public class CheckOutItem {
      * @see
      */
     boolean delCheckOut(String address){
-        return false;
-        
+        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        try {
+            checkOutDAO.delete(checkOutPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -88,6 +110,15 @@ public class CheckOutItem {
     boolean validCheckOut(){
         return false;
         
+    }
+    
+    /**
+     * 转成checkInOutVO类型
+     * @return RoomVO型，包含了退房信息
+     * @see
+     */
+    public RoomVO toVO(){
+        return new CheckInOutVO(roomType, roomNum, address, actDepartTime);
     }
 }
 

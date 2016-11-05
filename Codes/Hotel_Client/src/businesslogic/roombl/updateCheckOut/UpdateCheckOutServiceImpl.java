@@ -15,6 +15,8 @@ import vo.RoomVO;
  */
 public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
 
+    private CheckOutList checkOutList;
+    
     /**
      * 得到退房信息列表
      * @param address String型，酒店地址
@@ -23,7 +25,12 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public ArrayList<RoomVO> getCheckOutList(String address){
-        return null;
+        ArrayList<CheckOutItem> checkOutItems=checkOutList.getCheckOutList(address);
+        ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
+        for(CheckOutItem checkOutItem:checkOutItems){
+            checkOutVOs.add(checkOutItem.toVO());
+        }
+        return checkOutVOs;
     }
     
     /**
@@ -35,7 +42,12 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public ArrayList<RoomVO> searchCheckOutInfo(String address ,Date time){
-        return null;
+        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, time);
+        ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
+        for(CheckOutItem checkOutItem:checkOutItems){
+            checkOutVOs.add(checkOutItem.toVO());
+        }
+        return checkOutVOs;
     }
     
     /**
@@ -47,8 +59,12 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public ArrayList<RoomVO> searchCheckOutInfo(String address ,Enum<RoomType> roomType){
-        return null;
-        
+        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, roomType);
+        ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
+        for(CheckOutItem checkOutItem:checkOutItems){
+            checkOutVOs.add(checkOutItem.toVO());
+        }
+        return checkOutVOs;
     }
     
     /**
@@ -60,8 +76,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public boolean addCheckOut(String address, RoomVO checkOut){
-        return false;
-        
+        return checkOutList.addCheckOut(address, checkOut);
     }
     
     /**
@@ -73,8 +88,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public boolean modifyCheckOut(String address, RoomVO checkOut){
-        return false;
-        
+        return checkOutList.modifyCheckOut(address, checkOut);
     }
     
     /**
@@ -86,8 +100,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public boolean delCheckOut(String address, RoomVO checkOut){
-        return false;
-        
+        return delCheckOut(address, checkOut);
     }
     
     /**
@@ -99,8 +112,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public boolean validCheckOut(String address, RoomVO checkOut){
-        return false;
-        
+        return validCheckOut(address, checkOut);
     }
 
 }

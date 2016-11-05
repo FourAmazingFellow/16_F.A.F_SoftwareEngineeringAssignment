@@ -1,6 +1,10 @@
 package businesslogic.roombl.browseSpareRoom;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+
+import dataservice.roomDAO.RoomDAO;
+import po.RoomPO;
 
 /**
  * 
@@ -10,6 +14,8 @@ import java.util.ArrayList;
  */
 public class SpareRoomList {
 
+    private RoomDAO roomDAO;
+    
     /**
      * 从数据层得到空房列表
      * @param address String型，酒店地址
@@ -17,6 +23,17 @@ public class SpareRoomList {
      * @see
      */
     ArrayList<SpareRoomItem> getRoomInfoList (String address){
-        return null;
+        ArrayList<RoomPO> roomPOs;
+        ArrayList<SpareRoomItem> spareRoomItems=new ArrayList<SpareRoomItem>();
+        try {
+            roomPOs=roomDAO.getCheckInInfoList(address);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO roomPO:roomPOs){
+            spareRoomItems.add(new SpareRoomItem(roomPO));
+        }
+        return spareRoomItems;
     }
 }

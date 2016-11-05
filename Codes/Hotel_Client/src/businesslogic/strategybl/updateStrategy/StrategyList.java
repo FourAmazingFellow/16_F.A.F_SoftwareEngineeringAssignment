@@ -1,7 +1,10 @@
 package businesslogic.strategybl.updateStrategy;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import dataservice.strategyDAO.StrategyDAO;
+import po.StrategyPO;
 import po.StrategyType;
 import vo.StrategyVO;
 
@@ -13,6 +16,7 @@ import vo.StrategyVO;
  */
 public class StrategyList {
 
+    private StrategyDAO strategyDAO;
     /**
      * 得到某种策略类型的列表
      * @param address string型，酒店地址
@@ -20,8 +24,19 @@ public class StrategyList {
      * @return 返回策略列表
      * @see
      */
-    ArrayList<StrategyItem> getStrategyList(String address, Enum<StrategyType> StrategyType){
-        return null;
+    ArrayList<StrategyItem> getStrategyList(String address, Enum<StrategyType> strategyType){
+        ArrayList<StrategyItem> strategyItems=new ArrayList<StrategyItem>();
+        ArrayList<StrategyPO> strategyPOs;
+        try {
+            strategyPOs=strategyDAO.getStrategyList(address, strategyType);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(StrategyPO strategyPO:strategyPOs){
+            strategyItems.add(new StrategyItem(strategyPO));
+        }
+        return strategyItems;
         
     }
     
@@ -33,8 +48,14 @@ public class StrategyList {
      * @see
      */
     StrategyItem getStrategyInfo(String address, String name){
-        return null;
-        
+        StrategyPO strategyPO;
+        try {
+            strategyPO=strategyDAO.getMarketStrategyInfo(address, name);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return new StrategyItem(strategyPO);
     }
     
     /**
@@ -44,9 +65,9 @@ public class StrategyList {
      * @return 返回是否增加成功
      * @see
      */
-    boolean add(String address, StrategyVO strategy){
-        return false;
-        
+    boolean add(String address, StrategyVO strategyVO){
+        StrategyItem strategyItem=new StrategyItem(strategyVO);
+        return strategyItem.add(address);
     }
     
     /**
@@ -56,9 +77,9 @@ public class StrategyList {
      * @return 返回是否修改成功
      * @see
      */
-    boolean modify(String address, StrategyVO strategy){
-        return false;
-        
+    boolean modify(String address, StrategyVO strategyVO){
+        StrategyItem strategyItem=new StrategyItem(strategyVO);
+        return strategyItem.modify(address);
     }
     
     /**
@@ -68,9 +89,9 @@ public class StrategyList {
      * @return 返回是否删除成功
      * @see
      */
-    boolean delete(String address, StrategyVO strategy){
-        return false;
-        
+    boolean delete(String address, StrategyVO strategyVO){
+        StrategyItem strategyItem=new StrategyItem(strategyVO);
+        return strategyItem.delete(address);
     }
     
     /**
@@ -80,8 +101,8 @@ public class StrategyList {
      * @return 返回该策略信息是否有效
      * @see
      */
-    boolean valid(String address, StrategyVO strategy){
-        return false;
-        
+    boolean valid(String address, StrategyVO strategyVO){
+        StrategyItem strategyItem=new StrategyItem(strategyVO);
+        return strategyItem.valid();
     }
 }

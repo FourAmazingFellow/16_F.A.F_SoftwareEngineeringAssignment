@@ -1,8 +1,11 @@
 package businesslogic.roombl.updateCheckOut;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dataservice.roomDAO.RoomDAO;
+import po.RoomPO;
 import po.RoomType;
 import vo.RoomVO;
 
@@ -14,6 +17,8 @@ import vo.RoomVO;
  */
 public class CheckOutList {
 
+    private RoomDAO roomDAO;
+    
     /**
      * 得到退房信息列表
      * @param address String型，酒店地址
@@ -21,7 +26,18 @@ public class CheckOutList {
      * @see
      */
     ArrayList<CheckOutItem> getCheckOutList(String address){
-        return null;
+        ArrayList<RoomPO> checkOutPOs;
+        ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
+        try {
+            checkOutPOs=roomDAO.getCheckOutInfoList(address);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO checkOutPO:checkOutPOs){
+            checkOutItems.add(new CheckOutItem(checkOutPO));
+        }
+        return checkOutItems;
     }
     
     /**
@@ -32,8 +48,18 @@ public class CheckOutList {
      * @see
      */
     ArrayList<CheckOutItem> searchCheckOutInfo(String address ,Date time){
-        return null;
-        
+        ArrayList<RoomPO> checkOutPOs;
+        ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
+        try {
+            checkOutPOs=roomDAO.getCheckOutInfo(address, time);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO checkOutPO:checkOutPOs){
+            checkOutItems.add(new CheckOutItem(checkOutPO));
+        }
+        return checkOutItems;
     }
     
     /**
@@ -44,8 +70,18 @@ public class CheckOutList {
      * @see
      */
     ArrayList<CheckOutItem> searchCheckOutInfo(String address ,Enum<RoomType> roomType){
-        return null;
-        
+        ArrayList<RoomPO> checkOutPOs;
+        ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
+        try {
+            checkOutPOs=roomDAO.getCheckInInfo(address, roomType);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO checkOutPO:checkOutPOs){
+            checkOutItems.add(new CheckOutItem(checkOutPO));
+        }
+        return checkOutItems;
     }
     
     /**
@@ -55,9 +91,9 @@ public class CheckOutList {
      * @return 返回是否增加成功
      * @see
      */
-    boolean AddCheckOut(String address, RoomVO CheckOut){
-        return false;
-        
+    boolean addCheckOut(String address, RoomVO checkOut){
+        CheckOutItem checkOutItem=new CheckOutItem(checkOut);
+        return checkOutItem.addCheckOut(address);
     }
     
     /**
@@ -67,9 +103,9 @@ public class CheckOutList {
      * @return 返回是否修改成功
      * @see
      */
-    boolean ModifyCheckOut(String address, RoomVO CheckOut){
-        return false;
-        
+    boolean modifyCheckOut(String address, RoomVO checkOut){
+        CheckOutItem checkOutItem=new CheckOutItem(checkOut);
+        return checkOutItem.modifyCheckOut(address);
     }
     
     /**
@@ -79,9 +115,9 @@ public class CheckOutList {
      * @return 返回是否删除成功
      * @see
      */
-    boolean delCheckOut(String address, RoomVO CheckOut){
-        return false;
-        
+    boolean delCheckOut(String address, RoomVO checkOut){
+        CheckOutItem checkOutItem=new CheckOutItem(checkOut);
+        return checkOutItem.delCheckOut(address);
     }
     
     /**
@@ -91,9 +127,9 @@ public class CheckOutList {
      * @return 返回是否退房信息有效
      * @see
      */
-    boolean validCheckOut(String address, RoomVO CheckOut){
-        return false;
-        
+    boolean validCheckOut(String address, RoomVO checkOut){
+        CheckOutItem checkOutItem=new CheckOutItem(checkOut);
+        return checkOutItem.validCheckOut();
     }
 }
 

@@ -1,8 +1,11 @@
 package businesslogic.roombl.updateCheckIn;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import dataservice.roomDAO.RoomDAO;
+import po.RoomPO;
 import po.RoomType;
 import vo.RoomVO;
 
@@ -14,6 +17,8 @@ import vo.RoomVO;
  */
 public class CheckInList {
 
+    private RoomDAO roomDAO;
+    
     /**
      * 得到入住信息列表
      * @param address String型，酒店地址
@@ -21,7 +26,18 @@ public class CheckInList {
      * @see
      */
     ArrayList<CheckInItem> getCheckInList(String address){
-        return null;
+        ArrayList<RoomPO> roomPOs;
+        ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
+        try {
+            roomPOs=roomDAO.getCheckInInfoList(address);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO roomPO:roomPOs){
+            checkInItems.add(new CheckInItem(roomPO));
+        }
+        return checkInItems;
     }
     
     /**
@@ -32,8 +48,18 @@ public class CheckInList {
      * @see
      */
     ArrayList<CheckInItem> searchCheckInInfo(String address ,Date time){
-        return null;
-        
+        ArrayList<RoomPO> roomPOs;
+        ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
+        try {
+            roomPOs=roomDAO.getCheckInInfo(address, time);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO roomPO:roomPOs){
+            checkInItems.add(new CheckInItem(roomPO));
+        }
+        return checkInItems;
     }
     
     /**
@@ -44,8 +70,18 @@ public class CheckInList {
      * @see
      */
     ArrayList<CheckInItem> searchCheckInInfo(String address ,Enum<RoomType> roomType){
-        return null;
-        
+        ArrayList<RoomPO> roomPOs;
+        ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
+        try {
+            roomPOs=roomDAO.getCheckInInfo(address, roomType);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
+        }
+        for(RoomPO roomPO:roomPOs){
+            checkInItems.add(new CheckInItem(roomPO));
+        }
+        return checkInItems;
     }
     
     /**
@@ -55,9 +91,9 @@ public class CheckInList {
      * @return 返回是否增加成功
      * @see
      */
-    boolean AddCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+    boolean addCheckIn(String address, RoomVO checkIn){
+        CheckInItem checkInItem=new CheckInItem(checkIn);
+        return checkInItem.addCheckIn(address);
     }
     
     /**
@@ -67,9 +103,9 @@ public class CheckInList {
      * @return 返回是否修改成功
      * @see
      */
-    boolean ModifyCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+    boolean modifyCheckIn(String address, RoomVO checkIn){
+        CheckInItem checkInItem=new CheckInItem(checkIn);
+        return checkInItem.modifyCheckIn(address);
     }
     
     /**
@@ -80,8 +116,8 @@ public class CheckInList {
      * @see
      */
     boolean delCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+        CheckInItem checkInItem=new CheckInItem(checkIn);
+        return checkInItem.delCheckIn(address);
     }
     
     /**
@@ -92,7 +128,7 @@ public class CheckInList {
      * @see
      */
     boolean validCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+        CheckInItem checkInItem=new CheckInItem(checkIn);
+        return checkInItem.validCheckIn();
     }
 }

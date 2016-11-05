@@ -2,7 +2,7 @@ package dataservice.roomDAO;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 
 import po.RoomPO;
 import po.RoomType;

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import po.RoomType;
+import vo.CheckInOutVO;
 import vo.RoomVO;
 
 /**
@@ -15,6 +16,8 @@ import vo.RoomVO;
  */
 public class UpdateCheckInServiceImpl implements UpdateCheckInService{
 
+    private CheckInList checkInList=new CheckInList();
+    
     /**
      * 得到入住信息列表
      * @param address String型，酒店地址
@@ -23,7 +26,12 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public ArrayList<RoomVO> getCheckInList(String address){
-        return null;
+        ArrayList<CheckInItem> checkInItems=checkInList.getCheckInList(address);
+        ArrayList<RoomVO> checkInVOs=new ArrayList<RoomVO>();
+        for(CheckInItem checkInItem:checkInItems){
+            checkInVOs.add(checkInItem.toVO());
+        }
+        return checkInVOs;
     }
     
     /**
@@ -35,7 +43,12 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public ArrayList<RoomVO> searchCheckInInfo(String address ,Date time){
-        return null;
+        ArrayList<CheckInItem> checkInItems=checkInList.searchCheckInInfo(address, time);
+        ArrayList<RoomVO> checkInVOs=new ArrayList<RoomVO>();
+        for(CheckInItem checkInItem:checkInItems){
+            checkInVOs.add(checkInItem.toVO());
+        }
+        return checkInVOs;
     }
     
     /**
@@ -47,8 +60,12 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public ArrayList<RoomVO> searchCheckInInfo(String address ,Enum<RoomType> roomType){
-        return null;
-        
+        ArrayList<CheckInItem> checkInItems=checkInList.searchCheckInInfo(address, roomType);
+        ArrayList<RoomVO> checkInVOs=new ArrayList<RoomVO>();
+        for(CheckInItem checkInItem:checkInItems){
+            checkInVOs.add(checkInItem.toVO());
+        }
+        return checkInVOs;
     }
     
     /**
@@ -60,8 +77,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public boolean addCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+        return checkInList.addCheckIn(address, checkIn);
     }
     
     /**
@@ -73,8 +89,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public boolean modifyCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+        return checkInList.modifyCheckIn(address, checkIn);
     }
     
     /**
@@ -86,8 +101,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public boolean delCheckIn(String address, RoomVO checkIn){
-        return false;
-        
+        return checkInList.delCheckIn(address, checkIn);
     }
     
     /**
@@ -99,7 +113,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      */
     @Override
     public boolean validCheckIn(String address, RoomVO checkIn){
-        return false;
+        return checkInList.validCheckIn(address, checkIn);
         
     }
 

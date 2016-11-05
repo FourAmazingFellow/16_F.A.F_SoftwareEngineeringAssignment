@@ -1,7 +1,9 @@
 package businesslogic.strategybl.updateStrategy;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 
+import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;
 import po.StrategyType;
 import vo.StrategyVO;
@@ -25,10 +27,14 @@ public class StrategyItem {
     private Date endTime;
     private String tradeArea;
     private int vipRank;
+    
+    private StrategyDAO strategyDAO;
 
     /**
      * 构造函数
-     * @param strategyPO PO类，包含策略信息
+     * 
+     * @param strategyPO
+     *            PO类，包含策略信息
      */
     public StrategyItem(StrategyPO strategyPO) {
         this.address = strategyPO.getAddress();
@@ -42,19 +48,21 @@ public class StrategyItem {
             this.securityCode = strategyPO.getSecurityCode();
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
-            this.startTime=strategyPO.getStartTime();
-            this.endTime=strategyPO.getEndTime();
-        }else if(strategyType.equals(StrategyType.VipTradeAreaMarket)){
-            this.vipRank=strategyPO.getVipRank();
-            this.tradeArea=strategyPO.getTradeArea();
-        }else if(strategyType.equals(StrategyType.MemberRankMarket)){
-            this.vipRank=strategyPO.getVipRank();
+            this.startTime = strategyPO.getStartTime();
+            this.endTime = strategyPO.getEndTime();
+        } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            this.vipRank = strategyPO.getVipRank();
+            this.tradeArea = strategyPO.getTradeArea();
+        } else if (strategyType.equals(StrategyType.MemberRankMarket)) {
+            this.vipRank = strategyPO.getVipRank();
         }
     }
-    
+
     /**
      * 构造函数
-     * @param strategyVO VO类，包含策略信息
+     * 
+     * @param strategyVO
+     *            VO类，包含策略信息
      */
     public StrategyItem(StrategyVO strategyVO) {
         this.address = strategyVO.address;
@@ -68,56 +76,146 @@ public class StrategyItem {
             this.securityCode = strategyVO.securityCode;
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
-            this.startTime=strategyVO.startTime;
-            this.endTime=strategyVO.endTime;
-        }else if(strategyType.equals(StrategyType.VipTradeAreaMarket)){
-            this.vipRank=strategyVO.vipRank;
-            this.tradeArea=strategyVO.tradeArea;
-        }else if(strategyType.equals(StrategyType.MemberRankMarket)){
-            this.vipRank=strategyVO.vipRank;
+            this.startTime = strategyVO.startTime;
+            this.endTime = strategyVO.endTime;
+        } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            this.vipRank = strategyVO.vipRank;
+            this.tradeArea = strategyVO.tradeArea;
+        } else if (strategyType.equals(StrategyType.MemberRankMarket)) {
+            this.vipRank = strategyVO.vipRank;
         }
     }
-    
+
     /**
      * 增加一个策略
-     * @param address string型，酒店地址
+     * 
+     * @param address
+     *            string型，酒店地址
      * @return 返回是否增加成功
      * @see
      */
-    boolean add(String address){
-        return false;
-        
+    boolean add(String address) {
+        StrategyPO strategyPO;
+        if(strategyType.equals(StrategyType.MultiRoomPromotion)){
+            strategyPO=new StrategyPO(address, strategyType, address, discount); 
+        }else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, minRoomNum);
+        } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, address, address);
+        } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
+                || strategyType.equals(StrategyType.SpecificTimeMarket)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+        } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, address);
+        } else{
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
+        }
+        try {
+            strategyDAO.insert(strategyPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
-    
+
     /**
      * 修改一个策略
-     * @param address string型，酒店地址
+     * 
+     * @param address
+     *            string型，酒店地址
      * @return 返回是否修改成功
      * @see
      */
-    boolean modify(String address){
-        return false;
-        
+    boolean modify(String address) {
+        StrategyPO strategyPO;
+        if(strategyType.equals(StrategyType.MultiRoomPromotion)){
+            strategyPO=new StrategyPO(address, strategyType, address, discount); 
+        }else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, minRoomNum);
+        } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, address, address);
+        } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
+                || strategyType.equals(StrategyType.SpecificTimeMarket)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+        } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, address);
+        } else{
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
+        }
+        try {
+            strategyDAO.update(strategyPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
-    
+
     /**
      * 删除一个策略
-     * @param address string型，酒店地址
+     * 
+     * @param address
+     *            string型，酒店地址
      * @return 返回是否删除成功
      * @see
      */
-    boolean delete(String address){
-        return false;
-        
+    boolean delete(String address) {
+        StrategyPO strategyPO;
+        if(strategyType.equals(StrategyType.MultiRoomPromotion)){
+            strategyPO=new StrategyPO(address, strategyType, address, discount); 
+        }else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, minRoomNum);
+        } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, address, address);
+        } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
+                || strategyType.equals(StrategyType.SpecificTimeMarket)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+        } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, address);
+        } else{
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
+        }
+        try {
+            strategyDAO.delete(strategyPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
-    
+
     /**
      * 判断该策略信息是否有效
+     * 
      * @return 返回该策略信息是否有效
      * @see
      */
-    boolean valid(){
+    boolean valid() {
         return false;
-        
+
+    }
+
+    /**
+     * 转成StrategyVO型的策略信息
+     * @return 返回StrategyVO，包含策略信息
+     * @see
+     */
+    public StrategyVO toVO() {
+        if (strategyType.equals(StrategyType.BirthdayPromotion)) {
+            return new StrategyVO(address, strategyType, strategyName, discount);
+        } else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+            return new StrategyVO(address, strategyType, strategyName, discount, minRoomNum);
+        } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
+            return new StrategyVO(address, strategyType, strategyName, discount, enterpriseName, securityCode);
+        } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
+                || strategyType.equals(StrategyType.SpecificTimeMarket)) {
+            return new StrategyVO(address, strategyType, strategyName, discount, startTime, endTime);
+        } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            return new StrategyVO(address, strategyType, strategyName, discount, vipRank, tradeArea);
+        } else if (strategyType.equals(StrategyType.MemberRankMarket)) {
+            return new StrategyVO(address, strategyType, strategyName, discount, vipRank);
+        }
+        return null;
     }
 }

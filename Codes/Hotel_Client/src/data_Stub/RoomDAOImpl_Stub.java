@@ -1,7 +1,7 @@
 package data_Stub;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import dataservice.roomDAO.RoomDAO;

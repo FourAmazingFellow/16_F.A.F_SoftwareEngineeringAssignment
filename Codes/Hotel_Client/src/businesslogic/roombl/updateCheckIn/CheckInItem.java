@@ -1,7 +1,9 @@
 package businesslogic.roombl.updateCheckIn;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
+import dataservice.roomDAO.RoomDAO;
 import po.CheckInOutPO;
 import po.RoomPO;
 import po.RoomType;
@@ -21,6 +23,8 @@ public class CheckInItem {
     private String address;
     private Date checkInTime;
     private Date expDepartTime;
+    
+    private RoomDAO checkInDAO;
     
     /**
      * 
@@ -56,9 +60,15 @@ public class CheckInItem {
      * @return
      * @see
      */
-    boolean AddCheckIn(String address){
-        return false;
-        
+    boolean addCheckIn(String address){
+        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
+        try {
+            checkInDAO.insert(checkInPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -67,9 +77,15 @@ public class CheckInItem {
      * @return 返回是否修改成功
      * @see
      */
-    boolean ModifyCheckIn(String address){
-        return false;
-        
+    boolean modifyCheckIn(String address){
+        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
+        try {
+            checkInDAO.update(checkInPO);;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -79,8 +95,14 @@ public class CheckInItem {
      * @see
      */
     boolean delCheckIn(String address){
-        return false;
-        
+        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
+        try {
+            checkInDAO.delete(checkInPO);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
     
     /**
@@ -90,6 +112,14 @@ public class CheckInItem {
      */
     boolean validCheckIn(){
         return false;
-        
+    }
+    
+    /**
+     * 转成CheckInOutVO型
+     * @return RoomVO型，包含入住信息
+     * @see
+     */
+    public RoomVO toVO(){
+        return new CheckInOutVO(roomType, roomNum, address, checkInTime, expDepartTime);
     }
 }

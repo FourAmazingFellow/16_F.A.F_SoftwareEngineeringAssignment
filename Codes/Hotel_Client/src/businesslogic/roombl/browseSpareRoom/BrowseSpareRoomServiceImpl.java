@@ -14,6 +14,8 @@ import vo.RoomVO;
  */
 public class BrowseSpareRoomServiceImpl implements BrowseSpareRoomService{
 
+    SpareRoomList spareRoomList=new SpareRoomList();
+    
     /**
      * 得到空房列表
      * @param address String型，酒店地址
@@ -21,7 +23,11 @@ public class BrowseSpareRoomServiceImpl implements BrowseSpareRoomService{
      * @see
      */@Override
     public ArrayList<RoomVO> getRoomInfoList(String address) {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<SpareRoomItem> spareRoomItems=spareRoomList.getRoomInfoList(address);
+        ArrayList<RoomVO> roomVOs=new ArrayList<RoomVO>();
+        for(SpareRoomItem spareRoomItem:spareRoomItems){
+            roomVOs.add(spareRoomItem.toVO());
+        }
+        return roomVOs;
     }
 }
