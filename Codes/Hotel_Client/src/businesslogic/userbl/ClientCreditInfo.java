@@ -1,7 +1,5 @@
 package businesslogic.userbl;
 
-import vo.ClientCreditRecordVO;
-
 /**
  * 
  * @author sparkler
@@ -27,11 +25,5 @@ public interface ClientCreditInfo {
      */
     public boolean changeCreditValue(String userID,int num);
     
-    /**
-     * 获得客户的信用记录
-     * @param userID String型，业务逻辑层传来的用户标识
-     * @return 返回客户的信用记录
-     * @see
-     */
-    public ClientCreditRecordVO getClientCreditInfo(String userID);
+
 }

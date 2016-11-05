@@ -11,7 +11,7 @@ import po.UserType;
 public class UserDAOImpl_Stub implements UserDAO{
     
     public String userID;
-    public String passpord;
+    public String password;
     public String telNum;
     
     public int creditValue;
@@ -28,13 +28,13 @@ public class UserDAOImpl_Stub implements UserDAO{
     public UserDAOImpl_Stub(String userID, String passpord, String telNum) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = passpord;
         this.telNum = telNum;
     }
     public UserDAOImpl_Stub(String userID, String passpord, String telNum, int creditValue, String[] creditRecord) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = passpord;
         this.telNum = telNum;
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
@@ -43,7 +43,7 @@ public class UserDAOImpl_Stub implements UserDAO{
             Date birth) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = passpord;
         this.telNum = telNum;
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
@@ -52,7 +52,7 @@ public class UserDAOImpl_Stub implements UserDAO{
     public UserDAOImpl_Stub(String userID, String passpord, String telNum, String enterpriseName) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = passpord;
         this.telNum = telNum;
         this.enterpriseName = enterpriseName;
     }
@@ -60,11 +60,11 @@ public class UserDAOImpl_Stub implements UserDAO{
     
     @Override
     public UserPO getUserInfo(String userID, UserType userType) throws RemoteException {
-        return new UserPO(userID, passpord, telNum, userType);
+        return new UserPO(userID, password, telNum, userType);
     }
     @Override
-    public UserPO queryCredit(String userID) throws RemoteException {
-        return new ClientInfoPO(userID, passpord, telNum, userType, creditValue, creditRecord);
+    public ClientInfoPO queryCreditRecord(String userID) throws RemoteException {
+        return new ClientInfoPO(userID, password, telNum, userType, creditValue, creditRecord);
     }
     @Override
     public int getCreditValue(String userID) throws RemoteException {

@@ -1,6 +1,8 @@
 package dataservice.userDAO;
 
 import java.rmi.RemoteException;
+
+import po.ClientInfoPO;
 import po.UserPO;
 import po.UserType;
 /**
@@ -28,7 +30,7 @@ public interface UserDAO {
      * @throws RemoteException
      * @see
      */
-    public UserPO queryCredit(String userID) throws RemoteException;
+    public ClientInfoPO queryCreditRecord(String userID) throws RemoteException;
     
     /**
       * 获取客户的信用值

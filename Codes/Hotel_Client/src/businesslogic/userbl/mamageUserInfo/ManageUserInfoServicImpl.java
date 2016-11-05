@@ -1,6 +1,10 @@
 package businesslogic.userbl.mamageUserInfo;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.ManageUserInfoService;
+import dataservice.userDAO.UserDAO;
+import po.UserPO;
 import po.UserType;
 import vo.UserVO;
 import vo.WebMarketStaffInfoVO;
@@ -13,22 +17,45 @@ import vo.WebMarketStaffInfoVO;
  */
 public class ManageUserInfoServicImpl implements ManageUserInfoService{
 
+    private UserDAO userDAO;
+    private UserType userType;
+    private String userID;
+    private UserVO userVO;
+    
+    public ManageUserInfoServicImpl(String userID) {
+        this.userID = userID;
+        try {
+            this.userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @Override
     public boolean modifyUserInfo(UserVO user) {
-        // TODO Auto-generated method stub
-        return false;
+        try {
+            userDAO.update(new UserPO(user));
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean add(WebMarketStaffInfoVO webMarketStaff) {
-        // TODO Auto-generated method stub
-        return false;
+        try {
+            userDAO.insert(new UserPO(webMarketStaff));
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public UserVO getUserInfo(String userID, UserType user) {
-        // TODO Auto-generated method stub
-        return null;
+        return userVO;
     }
 
 }

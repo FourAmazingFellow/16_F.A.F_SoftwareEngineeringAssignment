@@ -18,12 +18,6 @@ public interface UserInfo {
      */
     public boolean insert(UserVO staff);
  
-    /**
-     * 获取用户信息
-     * @param userID String型，业务逻辑层传递过来的用户标识
-     * @return 返回用户信息
-     * @see
-     */
-    public UserVO getUserInfo(String userID);
- 
+
+
 }

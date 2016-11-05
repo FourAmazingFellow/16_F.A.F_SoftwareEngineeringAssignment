@@ -1,6 +1,5 @@
 package po;
-
-import vo.ClientInfoVO;
+import vo.UserVO;
 
 /**
  * 用户信息PO，负责持久化数据传输
@@ -22,7 +21,7 @@ public class UserPO {
     }
     
 
-    public UserPO(ClientInfoVO clientInfoVO) {
+    public UserPO(UserVO user) {
     }
 
 

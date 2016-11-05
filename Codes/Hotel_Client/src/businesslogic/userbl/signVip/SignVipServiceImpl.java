@@ -1,6 +1,10 @@
 package businesslogic.userbl.signVip;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.SignVipService;
+import dataservice.userDAO.UserDAO;
+import po.UserPO;
 import vo.VipInfoVO;
 
 
@@ -12,16 +16,28 @@ import vo.VipInfoVO;
  */
 public class SignVipServiceImpl implements SignVipService {
 
+    private UserDAO userDAO;
+    
     @Override
     public boolean signRegularVip(VipInfoVO regularVip) {
-        // TODO Auto-generated method stub
-        return false;
+        try {
+            userDAO.update(new UserPO(regularVip));;
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public boolean signEnterpriseVip(VipInfoVO EnterpriseVip) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean signEnterpriseVip(VipInfoVO enterpriseVip) {
+        try {
+            userDAO.update(new UserPO(enterpriseVip));;
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

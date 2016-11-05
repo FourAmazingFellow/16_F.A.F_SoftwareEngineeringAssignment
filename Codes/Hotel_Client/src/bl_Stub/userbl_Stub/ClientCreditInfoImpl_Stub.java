@@ -1,7 +1,6 @@
 package bl_Stub.userbl_Stub;
 
 import businesslogic.userbl.ClientCreditInfo;
-import vo.ClientCreditRecordVO;
 
 /**
  * 
@@ -32,11 +31,6 @@ public class ClientCreditInfoImpl_Stub implements ClientCreditInfo {
     @Override
     public boolean changeCreditValue(String userID, int num) {
         return false;
-    }
-
-    @Override
-    public ClientCreditRecordVO getClientCreditInfo(String userID) {
-        return null;
     }
     
 }

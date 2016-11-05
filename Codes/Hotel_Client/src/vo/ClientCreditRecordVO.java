@@ -12,8 +12,8 @@ public class ClientCreditRecordVO {
         this.creditRecord = creditRecord;
     }
     
-    public ClientCreditRecordVO(ClientInfoPO po){
-        userID = po.getUserID();
-        creditRecord = po.getCreditRecord();
+    public ClientCreditRecordVO(ClientInfoPO clientInfoPO){
+        userID = clientInfoPO.getUserID();
+        creditRecord = clientInfoPO.getCreditRecord();
     }
 }

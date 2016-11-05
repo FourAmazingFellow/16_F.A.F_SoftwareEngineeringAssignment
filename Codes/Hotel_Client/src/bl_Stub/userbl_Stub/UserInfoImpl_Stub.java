@@ -12,14 +12,14 @@ import vo.UserVO;
  */
 public class UserInfoImpl_Stub implements UserInfo {
     public long userID;
-    public String passpord;
+    public String password;
     public String telNum;
     public Enum<UserType> UserType;
 
-    public UserInfoImpl_Stub(long userID, String passpord, String telNum, Enum<po.UserType> userType) {
+    public UserInfoImpl_Stub(long userID, String password, String telNum, Enum<po.UserType> userType) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = password;
         this.telNum = telNum;
         UserType = userType;
     }
@@ -31,7 +31,12 @@ public class UserInfoImpl_Stub implements UserInfo {
 
     @Override
     public UserVO getUserInfo(String userID) {
-        return new UserVO(userID, passpord, telNum, UserType);
+        return new UserVO(userID, password, telNum, UserType);
+    }
+
+    @Override
+    public String getPassword(String userID) {
+        return password;
     }
     
     
