@@ -3,28 +3,21 @@ package businesslogic.strategybl.updateStrategy;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;
 import po.StrategyType;
 import vo.StrategyVO;
 
-/**
- * 
- * @author 双
- * @version 
- * @see
- */
-public class StrategyList {
+public class MockStrategyList extends StrategyList{
 
     private StrategyDAO strategyDAO;
     
-    /**
-     * 得到某种策略类型的列表
-     * @param address string型，酒店地址
-     * @param StrategyType 枚举类，策略类型
-     * @return 返回策略列表
-     * @see
-     */
+    public MockStrategyList(){
+        strategyDAO=new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.BirthdayPromotion, "生日折扣", 80, 0, null, null, null, null, null, 0);
+    }
+    
+    @Override
     public ArrayList<StrategyItem> getStrategyList(String address, Enum<StrategyType> strategyType){
         ArrayList<StrategyItem> strategyItems=new ArrayList<StrategyItem>();
         ArrayList<StrategyPO> strategyPOs;
@@ -41,13 +34,7 @@ public class StrategyList {
         
     }
     
-    /**
-     * 得到对应策略名称的策略
-     * @param address string型，酒店地址
-     * @param name string型，策略名称
-     * @return 返回策略类
-     * @see
-     */
+    @Override
     public StrategyItem getStrategyInfo(String address, String name){
         StrategyPO strategyPO;
         try {
@@ -59,49 +46,25 @@ public class StrategyList {
         return new StrategyItem(strategyPO);
     }
     
-    /**
-     * 增加一个策略
-     * @param address string型，酒店地址
-     * @param strategy StrategyVO型，包含策略信息
-     * @return 返回是否增加成功
-     * @see
-     */
+    @Override
     public boolean add(String address, StrategyVO strategyVO){
         StrategyItem strategyItem=new StrategyItem(strategyVO);
         return strategyItem.add(address);
     }
     
-    /**
-     * 修改一个策略
-     * @param address string型，酒店地址
-     * @param strategy StrategyVO型，包含策略信息
-     * @return 返回是否修改成功
-     * @see
-     */
+    @Override
     public boolean modify(String address, StrategyVO strategyVO){
         StrategyItem strategyItem=new StrategyItem(strategyVO);
         return strategyItem.modify(address);
     }
     
-    /**
-     * 删除一个策略
-     * @param address string型，酒店地址
-     * @param strategy StrategyVO型，包含策略信息
-     * @return 返回是否删除成功
-     * @see
-     */
+    @Override
     public boolean delete(String address, StrategyVO strategyVO){
         StrategyItem strategyItem=new StrategyItem(strategyVO);
         return strategyItem.delete(address);
     }
     
-    /**
-     * 判断该策略信息是否有效
-     * @param address string型，酒店地址
-     * @param strategy StrategyVO型，包含策略信息
-     * @return 返回该策略信息是否有效
-     * @see
-     */
+    @Override
     public boolean valid(String address, StrategyVO strategyVO){
         StrategyItem strategyItem=new StrategyItem(strategyVO);
         return strategyItem.valid();

@@ -25,12 +25,18 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     private Date expDepartTime;
     private Date actDepartTime;
     
-    public RoomDAOImpl_Stub(Enum<RoomType> roomType, int roomNum, int roomPrice, String address) {
+    
+
+    public RoomDAOImpl_Stub(Enum<RoomType> roomType, int roomNum, int roomPrice, String address, Date checkInTime,
+            Date expDepartTime, Date actDepartTime) {
         super();
         this.roomType = roomType;
         this.roomNum = roomNum;
         this.roomPrice = roomPrice;
         this.address = address;
+        this.checkInTime = checkInTime;
+        this.expDepartTime = expDepartTime;
+        this.actDepartTime = actDepartTime;
     }
 
     @Override

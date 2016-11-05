@@ -25,5 +25,12 @@ public class StrategyInfoService_Driver {
         
         int bestDiscount=strategyInfoService.getBestDiscount(orderVO);
         System.out.println("the best discount of this order is "+bestDiscount);
+        
+        boolean verified=strategyInfoService.verifyEnterpriseMember("仙林大酒店", "万达公司", "123456");
+        if(verified){
+            System.out.println("verify this enterprise VIP succeed!");
+        }else{
+            System.out.println("verify this enterprise VIP failed!");
+        }
     }
 }

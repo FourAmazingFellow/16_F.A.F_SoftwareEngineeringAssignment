@@ -3,19 +3,14 @@ package businesslogic.strategybl.updateStrategy;
 import java.rmi.RemoteException;
 import java.sql.Date;
 
+import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;
 import po.StrategyType;
 import vo.StrategyVO;
 
-/**
- * 
- * @author 双
- * @version
- * @see
- */
-public class StrategyItem {
-    
+public class MockStrategyItem extends StrategyItem{
+
     private String address;
     private String hotelName;
     private Enum<StrategyType> strategyType;
@@ -30,17 +25,12 @@ public class StrategyItem {
     private int vipRank;
     
     private StrategyDAO strategyDAO;
-
-    public StrategyItem(){
-        
+    
+    public MockStrategyItem(){
+        strategyDAO=new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.BirthdayPromotion, "生日折扣", 80, 0, null, null, null, null, null, 0);
     }
     
-    /**
-     * 构造函数
-     * 
-     * @param strategyPO PO类，包含策略信息
-     */
-    public StrategyItem(StrategyPO strategyPO) {
+    public MockStrategyItem(StrategyPO strategyPO) {
         this.address = strategyPO.getAddress();
         this.strategyName = strategyPO.getStrategyName();
         this.discount = strategyPO.getDiscount();
@@ -62,12 +52,7 @@ public class StrategyItem {
         }
     }
 
-    /**
-     * 构造函数
-     * 
-     * @param strategyVO VO类，包含策略信息
-     */
-    public StrategyItem(StrategyVO strategyVO) {
+    public MockStrategyItem(StrategyVO strategyVO) {
         this.address = strategyVO.address;
         this.strategyName = strategyVO.strategyName;
         this.discount = strategyVO.discount;
@@ -89,13 +74,7 @@ public class StrategyItem {
         }
     }
 
-    /**
-     * 增加一个策略
-     * 
-     * @param address string型，酒店地址
-     * @return 返回是否增加成功
-     * @see
-     */
+    @Override
     public boolean add(String address) {
         StrategyPO strategyPO;
         if(strategyType.equals(StrategyType.MultiRoomPromotion)){
@@ -121,13 +100,7 @@ public class StrategyItem {
         return true;
     }
 
-    /**
-     * 修改一个策略
-     * 
-     * @param address string型，酒店地址
-     * @return 返回是否修改成功
-     * @see
-     */
+    @Override
     public boolean modify(String address) {
         StrategyPO strategyPO;
         if(strategyType.equals(StrategyType.MultiRoomPromotion)){
@@ -153,13 +126,7 @@ public class StrategyItem {
         return true;
     }
 
-    /**
-     * 删除一个策略
-     * 
-     * @param address string型，酒店地址
-     * @return 返回是否删除成功
-     * @see
-     */
+    @Override
     public boolean delete(String address) {
         StrategyPO strategyPO;
         if(strategyType.equals(StrategyType.MultiRoomPromotion)){
@@ -185,22 +152,13 @@ public class StrategyItem {
         return true;
     }
 
-    /**
-     * 判断该策略信息是否有效
-     * 
-     * @return 返回该策略信息是否有效
-     * @see
-     */
+    @Override
     public boolean valid() {
         return false;
 
     }
 
-    /**
-     * 转成StrategyVO型的策略信息
-     * @return 返回StrategyVO，包含策略信息
-     * @see
-     */
+    @Override
     public StrategyVO toVO() {
         if (strategyType.equals(StrategyType.BirthdayPromotion)) {
             return new StrategyVO(address, strategyType, strategyName, discount);

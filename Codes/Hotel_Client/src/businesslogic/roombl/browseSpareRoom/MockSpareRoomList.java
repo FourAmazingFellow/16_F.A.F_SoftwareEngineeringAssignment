@@ -3,28 +3,26 @@ package businesslogic.roombl.browseSpareRoom;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
+import po.RoomType;
 
 /**
- * 
+ * SpareRoomItemList的实现类
  * @author 双
- * @version
+ * @version 
  * @see
  */
-public class SpareRoomList {
-
+public class MockSpareRoomList extends SpareRoomList{
+    
     private RoomDAO roomDAO;
     
-    public SpareRoomList(){
-        
+    public MockSpareRoomList(){
+        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",null,null,null);
     }
-    /**
-     * 从数据层得到空房列表
-     * @param address String型，酒店地址
-     * @return ArrayList<RoomVO>型，返回空房列表
-     * @see
-     */
+    
+    @Override
     public ArrayList<SpareRoomItem> getRoomInfoList (String address){
         ArrayList<RoomPO> roomPOs;
         ArrayList<SpareRoomItem> spareRoomItems=new ArrayList<SpareRoomItem>();

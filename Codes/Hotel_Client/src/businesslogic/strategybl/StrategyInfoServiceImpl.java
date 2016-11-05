@@ -28,4 +28,10 @@ public class StrategyInfoServiceImpl implements StrategyInfoService{
         return 0;
     }
 
+    @Override
+    public boolean verifyEnterpriseMember(String hotelName, String enterpriseName, String securityCode) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }

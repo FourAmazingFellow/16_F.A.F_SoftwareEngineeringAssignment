@@ -3,6 +3,7 @@ package businesslogic.roombl.updateCheckIn;
 import java.rmi.RemoteException;
 import java.util.Date;
 
+import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.CheckInOutPO;
 import po.RoomPO;
@@ -10,13 +11,7 @@ import po.RoomType;
 import vo.CheckInOutVO;
 import vo.RoomVO;
 
-/**
- * 
- * @author 双
- * @version 
- * @see
- */
-public class CheckInItem {
+public class MockCheckInItem extends CheckInItem{
 
     private Enum<RoomType> roomType;
     private int roomNum;
@@ -26,15 +21,15 @@ public class CheckInItem {
     
     private RoomDAO checkInDAO;
     
-    public CheckInItem(){
-        
+    @SuppressWarnings("deprecation")
+    public MockCheckInItem(){
+        Date checkInTime=new Date(2016, 11, 5, 18, 0);
+        Date expDepartTime=new Date(2016, 11, 6, 12, 0);
+        checkInDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",checkInTime,expDepartTime,null);
     }
-    /**
-     * 
-     * @param roomPO RoomPO型，入住信息
-     */
-    public CheckInItem(RoomPO roomPO) {
-        super();
+    
+    public MockCheckInItem(RoomPO roomPO) {
+        this();
         CheckInOutPO checkInPO=(CheckInOutPO)roomPO;
         this.roomType = checkInPO.getRoomType();
         this.roomNum = checkInPO.getRoomNum();
@@ -43,12 +38,8 @@ public class CheckInItem {
         this.expDepartTime = checkInPO.getExpDepartTime();
     }
     
-    /**
-     * 
-     * @param roomVO RoomVO型，入住信息
-     */
-    public CheckInItem(RoomVO roomVO){
-        super();
+    public MockCheckInItem(RoomVO roomVO){
+        this();
         CheckInOutVO checkInVO=(CheckInOutVO)roomVO;
         this.roomType = checkInVO.roomType;
         this.roomNum = checkInVO.roomNum;
@@ -57,12 +48,7 @@ public class CheckInItem {
         this.expDepartTime = checkInVO.expDepartTime;
     }
     
-    /**
-     * 增加入住信息
-     * @param address string型，酒店地址
-     * @return
-     * @see
-     */
+    @Override
     boolean addCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
@@ -74,12 +60,7 @@ public class CheckInItem {
         return true;
     }
     
-    /**
-     * 修改 入住信息
-     * @param address string型，酒店地址
-     * @return 返回是否修改成功
-     * @see
-     */
+    @Override
     boolean modifyCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
@@ -91,12 +72,7 @@ public class CheckInItem {
         return true;
     }
     
-    /**
-     * 删除入住信息
-     * @param address string型，酒店地址
-     * @return 返回是否删除成功
-     * @see
-     */
+    @Override
     boolean delCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
@@ -108,20 +84,12 @@ public class CheckInItem {
         return true;
     }
     
-    /**
-     * 判断该入住信息是否有效
-     * @return 返回是否入住信息有效
-     * @see
-     */
+    @Override
     boolean validCheckIn(){
         return false;
     }
     
-    /**
-     * 转成CheckInOutVO型
-     * @return RoomVO型，包含入住信息
-     * @see
-     */
+    @Override
     public RoomVO toVO(){
         return new CheckInOutVO(roomType, roomNum, address, checkInTime, expDepartTime);
     }
