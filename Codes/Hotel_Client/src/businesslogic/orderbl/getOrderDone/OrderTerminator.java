@@ -11,12 +11,12 @@ public class OrderTerminator {
 	private RoomInfoService addSpareRoomService;
 	
 	public boolean getOrderDone(OrderVO vo) {
-		// TODO Codes 将该订单改为已执行状态，然后为该客户增加与订单价值等额的信用值, 并增加可用客房
+		// TODO Codes 将该订单改为已执行状态，记录入住时间，然后为该客户增加与订单价值等额的信用值, 并增加可用客房
 		return false;
 	}
 	
 	public boolean delayCheckIn(OrderVO vo){
-		// TODO Codes 将该订单置为已执行订单，恢复扣除的信用值
+		// TODO Codes 将该订单置为已执行订单，记录入住时间，恢复扣除的信用值, 并增加可用客房
 		return false;
 	}
 	

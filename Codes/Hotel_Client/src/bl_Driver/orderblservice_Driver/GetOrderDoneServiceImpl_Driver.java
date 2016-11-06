@@ -29,8 +29,8 @@ public class GetOrderDoneServiceImpl_Driver {
 				System.out.println("订单执行失败，请检查网络，稍后再试");
 			}
 			
-			System.out.println("酒店工作人员请求延迟入住时间两小时");
-			if(getOrderDoneService.delayCheckIn(orderVO_2, 2)){
+			System.out.println("酒店工作人员请求延迟入住");
+			if(getOrderDoneService.delayCheckIn(orderVO_2)){
 				System.out.println("2号订单已被延迟入住二小时");
 			}else{
 				System.out.println("延迟失败失败，请检查网络，稍后再试");

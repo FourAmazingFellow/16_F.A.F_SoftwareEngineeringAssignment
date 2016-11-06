@@ -41,9 +41,8 @@ public interface GetOrderDoneService {
 	/**
 	 * 延迟入住
 	 * @param vo OrderVO
-	 * @param hours 延迟入住时间（hours）
 	 * @return 是否延迟成功
 	 * @see
 	 */
-	public boolean delayCheckIn(OrderVO vo, int hours);
+	public boolean delayCheckIn(OrderVO vo);
 }

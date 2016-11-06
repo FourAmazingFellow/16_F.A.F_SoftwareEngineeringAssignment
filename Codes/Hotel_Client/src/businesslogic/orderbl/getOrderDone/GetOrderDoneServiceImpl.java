@@ -33,7 +33,7 @@ public class GetOrderDoneServiceImpl implements GetOrderDoneService {
 	}
 
 	@Override
-	public boolean delayCheckIn(OrderVO vo, int hours) {
+	public boolean delayCheckIn(OrderVO vo) {
 		
 		return orderTerminator.delayCheckIn(vo);
 	}

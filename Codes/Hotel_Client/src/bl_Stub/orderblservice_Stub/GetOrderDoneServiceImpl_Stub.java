@@ -45,7 +45,7 @@ public class GetOrderDoneServiceImpl_Stub implements GetOrderDoneService {
 	}
 
 	@Override
-	public boolean delayCheckIn(OrderVO vo, int hours) {
+	public boolean delayCheckIn(OrderVO vo) {
 		// TODO Auto-generated method stub
 		System.out.println("延迟入住");
 		return false;
