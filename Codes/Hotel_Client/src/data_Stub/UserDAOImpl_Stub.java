@@ -39,14 +39,12 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, String telNum, int creditValue, String[] creditRecord,
+    public UserDAOImpl_Stub(String userID, String passpord, String telNum,
             Date birth) {
         super();
         this.userID = userID;
         this.password = passpord;
         this.telNum = telNum;
-        this.creditValue = creditValue;
-        this.creditRecord = creditRecord;
         this.birth = birth;
     }
     public UserDAOImpl_Stub(String userID, String passpord, String telNum, String enterpriseName) {

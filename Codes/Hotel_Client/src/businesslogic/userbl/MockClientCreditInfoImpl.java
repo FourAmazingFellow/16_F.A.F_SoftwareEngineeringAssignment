@@ -2,16 +2,17 @@ package businesslogic.userbl;
 
 import java.rmi.RemoteException;
 
+import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
 import po.UserType;
 
-public class ClientCreditInfoImpl implements ClientCreditInfo{
-
-    private UserDAO userDAO;
-    private UserType userType;
-    private int creditValue;
-    private String userID;
+public class MockClientCreditInfoImpl extends ClientCreditInfoImpl{
+    private UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "12312312341", 400, null);
+    private UserType userType = UserType.Client;
+    private int creditValue = 400;
+    private String userID = "qwe123";
+    
     @Override
     public int getCreditValue(String userID) {
         try {

@@ -2,26 +2,19 @@ package businesslogic.userbl.addCreditValue;
 
 import java.rmi.RemoteException;
 
-import businesslogicservice.userblservice.AddCreditValueService;
+import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
 import po.UserType;
-import vo.UserVO;
 
-public class AddCreditValueServiceImpl implements AddCreditValueService {
-    UserDAO userDAO;
-    UserVO clientInfoVO;
-    String userID;
-    UserType userType;
-    int creditValue;
-    
-    public AddCreditValueServiceImpl(String userID, UserType userType) {
-        try {
-            this.clientInfoVO = new UserVO(userDAO.getUserInfo(userID, userType));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }    }
-    
+public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
+
+    public MockAddCreditValueServiceImpl(String userID, UserType userType) {
+        super(userID, userType);
+    }
+
+    UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "12345678901", 300, null);
+
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
         this.userID = userID;
@@ -35,6 +28,5 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
             return false;
         }
     }
-	
-
+    
 }
