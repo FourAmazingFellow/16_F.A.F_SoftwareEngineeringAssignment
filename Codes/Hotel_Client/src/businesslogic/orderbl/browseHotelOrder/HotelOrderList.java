@@ -17,6 +17,16 @@ public class HotelOrderList {
 	private POList2VOList poTransformer;
 	private OrderVO detailedOrderVO;
 	
+	private String hotelAddress;
+	private Enum<OrderType> orderType;
+	
+	
+	public HotelOrderList(String addresss){
+		hotelAddress = addresss;
+		orderType = OrderType.ALL;
+	}
+	
+	
 	/**
 	 * 得到简要酒店订单列表
 	 * @param address
