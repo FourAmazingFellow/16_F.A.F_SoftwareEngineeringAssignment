@@ -23,7 +23,7 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<OrderPO> getUserAllOrders(String user) throws RemoteException;
+	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException;
 	
 	/**
 	 * 得到客户可评价的订单PO列表（Hotel）

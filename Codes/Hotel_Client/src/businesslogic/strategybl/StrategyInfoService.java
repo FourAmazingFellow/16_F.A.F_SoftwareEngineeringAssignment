@@ -35,7 +35,7 @@ public interface StrategyInfoService {
     public int getBestDiscount(OrderVO order);
     
     /**
-     * 验证企业慧眼
+     * 验证企业会员
      * @param hotelName string型，酒店名称
      * @param enterpriseName string型，合作企业名称
      * @param securityCode string型，该企业对应的验证码

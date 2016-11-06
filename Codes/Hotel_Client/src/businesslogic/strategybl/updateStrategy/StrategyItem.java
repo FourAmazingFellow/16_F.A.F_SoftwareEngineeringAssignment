@@ -17,7 +17,6 @@ import vo.StrategyVO;
 public class StrategyItem {
     
     private String address;
-    private String hotelName;
     private Enum<StrategyType> strategyType;
     private String strategyName;
     private float discount;

@@ -14,6 +14,11 @@ public class UserOrderList {
 	private POList2VOList poTransformer;
 	private ArrayList<BriefOrderInfoVO> briefUserOrderlist;
 	private OrderVO detailedOrder;
+	private String userID;
+	
+	public UserOrderList(String userID){
+		this.userID = userID;
+	}
 	
 	
 	/**
