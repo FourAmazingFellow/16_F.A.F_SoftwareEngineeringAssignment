@@ -50,14 +50,6 @@ public interface UserDAO {
     public void insert(UserPO po) throws RemoteException;
     
     /**
-   * 用户注销账号或网站管理人员删除账号
-     * @param po UserPO型，业务逻辑层传递过来的用户信息
-     * @throws RemoteException
-     * @see
-     */
-    public void delete(UserPO po) throws RemoteException;
-    
-    /**
      * 更新用户信息
      * @param po UserPO型，业务逻辑层传递过来的用户信息
      * @throws RemoteException

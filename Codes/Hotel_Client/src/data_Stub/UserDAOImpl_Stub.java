@@ -73,11 +73,6 @@ public class UserDAOImpl_Stub implements UserDAO{
         System.out.println("Insert Succeed!\n");
     }
     @Override
-    public void delete(UserPO po) throws RemoteException {
-        System.out.println("Delete Succeed!\n");
-        
-    }
-    @Override
     public void update(UserPO po) throws RemoteException {
         System.out.println("Update Succeed!\n");
         

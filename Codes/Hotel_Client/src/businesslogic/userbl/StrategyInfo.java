@@ -6,7 +6,7 @@ package businesslogic.userbl;
  * @version 1.1
  * @see
  */
-public interface EnterpriseInfo {
+public interface StrategyInfo {
 
 	/**
 	 * 验证企业会员注册信息

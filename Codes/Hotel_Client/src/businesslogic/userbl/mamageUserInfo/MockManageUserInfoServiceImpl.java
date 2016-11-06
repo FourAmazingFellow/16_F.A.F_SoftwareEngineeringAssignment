@@ -9,16 +9,15 @@ import po.UserType;
 import vo.UserVO;
 import vo.WebMarketStaffInfoVO;
 
-public class MockManageUserInfoServicImpl extends ManageUserInfoServicImpl{
+public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
    
     UserDAO userDAO;
     UserVO userVO;
-    public MockManageUserInfoServicImpl(String userID) {
+    public MockManageUserInfoServiceImpl(String userID) {
         super(userID);
         userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "11111123424");
         userVO = new UserVO("qwe123", "qweqwe", "12345678905", null);
         }
-
     @Override
     public boolean modifyUserInfo(UserVO user) {
         try {
@@ -29,7 +28,6 @@ public class MockManageUserInfoServicImpl extends ManageUserInfoServicImpl{
             return false;
         }
     }
-
     @Override
     public boolean add(WebMarketStaffInfoVO webMarketStaff) {
         try {

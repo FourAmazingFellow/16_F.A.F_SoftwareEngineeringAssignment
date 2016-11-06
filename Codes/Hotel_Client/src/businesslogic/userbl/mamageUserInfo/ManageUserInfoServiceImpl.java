@@ -15,14 +15,14 @@ import vo.WebMarketStaffInfoVO;
  * @version
  * @see
  */
-public class ManageUserInfoServicImpl implements ManageUserInfoService{
+public class ManageUserInfoServiceImpl implements ManageUserInfoService{
 
     private UserDAO userDAO;
     private UserType userType;
     private String userID;
     private UserVO userVO;
     
-    public ManageUserInfoServicImpl(String userID) {
+    public ManageUserInfoServiceImpl(String userID) {
         this.userID = userID;
         try {
             this.userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
