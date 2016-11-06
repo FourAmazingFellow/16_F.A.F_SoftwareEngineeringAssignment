@@ -43,7 +43,9 @@ public class HotelDAO_Driver {
 		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 1000);
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "该酒店服务到位，应有尽有！");
-		HotelPO hotelPO = new HotelPO("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5, "南京市最好的酒店", "所有服务应有尽有", roomTypeAndPrice, comments);
+		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
+		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 20);
+		HotelPO hotelPO = new HotelPO("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市最好的酒店", "所有服务应有尽有", roomTypeAndPrice, roomTypeAndNums, comments);
 		try {
 			hotelDAO.update(hotelPO);
 			System.out.println("酒店信息更新成功！\n");
@@ -53,7 +55,7 @@ public class HotelDAO_Driver {
 			e.printStackTrace();
 		}
 		
-		HotelPO hotelPO2 = new HotelPO("HuiFu Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5, "南京市最好的酒店", "所有服务应有尽有", roomTypeAndPrice, comments);
+		HotelPO hotelPO2 = new HotelPO("HuiFu Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市最好的酒店", "所有服务应有尽有", roomTypeAndPrice, roomTypeAndNums, comments);
 		try {
 			hotelDAO.insert(hotelPO2);
 			System.out.println("插入酒店信息成功\n");

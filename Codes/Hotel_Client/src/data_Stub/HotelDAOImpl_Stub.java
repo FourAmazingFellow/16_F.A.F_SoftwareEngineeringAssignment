@@ -16,7 +16,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	public String businessDistrict;
 	public String hotelAddress;
 	public int starLevel;
-	public int mark;
+	public float mark;
 	
 	public String briefIntroduction;
 	public String facilityAndService;
@@ -24,7 +24,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
-	public HotelDAOImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark) {
+	public HotelDAOImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;
@@ -32,7 +32,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 		this.mark = mark;
 	}
 	
-	public HotelDAOImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark,
+	public HotelDAOImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark,
 			String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;

@@ -20,7 +20,7 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	private OrderInfo orderInfo;
 	private QueryHotelList hotelList;
 	private ArrayList<BriefOrderInfoVO> orderList;
-	private HotelDAO hotelDAO;
+	protected HotelDAO hotelDAO;
 	
 	/**
 	 * 获得地址不重复的订单列表
