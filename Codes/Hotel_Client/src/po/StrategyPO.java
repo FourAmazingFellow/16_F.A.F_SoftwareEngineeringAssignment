@@ -11,7 +11,6 @@ import java.sql.Date;
 public class StrategyPO {
     
     private String address;
-    private String hotelName;
 	private Enum<StrategyType> strategyType;
     private String strategyName;
     private float discount;
@@ -44,8 +43,8 @@ public class StrategyPO {
         }
     }
     
-    public StrategyPO(String hotelName, Enum<StrategyType> strategyType, String strategyName, float discount, String enterpriseName, String securityCode){
-        this.hotelName=hotelName;
+    public StrategyPO(String address, Enum<StrategyType> strategyType, String strategyName, float discount, String enterpriseName, String securityCode){
+        this.address=address;
         this.strategyType=strategyType;
         this.strategyName = strategyName;
         this.discount = discount;
@@ -158,14 +157,5 @@ public class StrategyPO {
     public void setVipRank(int vipRank) {
         this.vipRank = vipRank;
     }
-    
-    public String getHotelName() {
-		return hotelName;
-	}
-
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
-    
      
 }

@@ -22,7 +22,7 @@ public class SpareRoomList {
     /**
      * 从数据层得到空房列表
      * @param address String型，酒店地址
-     * @return ArrayList<RoomVO>型，返回空房列表
+     * @return ArrayList<SpareRoomItem>型，返回空房列表
      * @see
      */
     public ArrayList<SpareRoomItem> getRoomInfoList (String address){
