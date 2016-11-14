@@ -1,5 +1,6 @@
 package dataservice.strategyDAO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import po.StrategyType;
  * @version
  * @see
  */
-public interface StrategyDAO {
+public interface StrategyDAO extends Remote {
     
     /**
      * 获取某种策略类型的折扣列表

@@ -1,5 +1,6 @@
 package dataservice.roomDAO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -13,7 +14,7 @@ import po.RoomType;
  * @version 
  * @see
  */
-public interface RoomDAO {
+public interface RoomDAO extends Remote{
     
     /**
      * 获取空房信息列表

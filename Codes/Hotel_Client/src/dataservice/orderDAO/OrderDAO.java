@@ -1,5 +1,6 @@
 package dataservice.orderDAO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +15,7 @@ import po.OrderType;
  * @version 1.0
  * @see
  */
-public interface OrderDAO {
+public interface OrderDAO extends Remote{
 	
 	/**
 	 * 得到客户所有订单VO（Hotel）
@@ -131,6 +132,6 @@ public interface OrderDAO {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public boolean finish() throws RemoteException;
+	public void finish() throws RemoteException;
 
 }

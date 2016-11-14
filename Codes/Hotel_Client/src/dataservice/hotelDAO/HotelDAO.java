@@ -1,5 +1,6 @@
 package dataservice.hotelDAO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import po.HotelPO;
  * @version 1.0
  * @see
  */
-public interface HotelDAO {
+public interface HotelDAO extends Remote{
 	
 	/**
 	 * 获取酒店的基本信息

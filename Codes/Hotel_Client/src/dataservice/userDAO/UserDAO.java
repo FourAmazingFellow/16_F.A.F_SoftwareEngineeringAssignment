@@ -1,5 +1,6 @@
 package dataservice.userDAO;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import po.ClientInfoPO;
@@ -11,7 +12,7 @@ import po.UserType;
  * @version 
  * @see
  */
-public interface UserDAO {
+public interface UserDAO extends Remote {
     
     /**
      * 查询用户信息
