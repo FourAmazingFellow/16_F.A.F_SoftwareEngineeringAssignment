@@ -13,7 +13,7 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	public String businessDistrict;
 	public String hotelAddress;
 	public int starLevel;
-	public int mark;
+	public float mark;
 	
 	public String briefIntroduction;
 	public String facilityAndService;
@@ -22,7 +22,7 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	public HashMap<String, String> comments;
 	
 	public HotelInfoServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
-			int mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
+			float mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
@@ -37,7 +37,7 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	}
 	
 	public HotelInfoServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
-			int mark) {
+			float mark) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;

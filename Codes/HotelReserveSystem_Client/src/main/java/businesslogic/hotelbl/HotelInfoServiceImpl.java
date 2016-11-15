@@ -10,6 +10,10 @@ public class HotelInfoServiceImpl implements HotelInfoService {
 
 	private HotelDAO hotelDAO;
 	
+	public void setHotelDAO(HotelDAO hotelDAO) {
+		this.hotelDAO = hotelDAO;
+	}
+	
 	@Override
 	public BriefHotelInfoVO getHotelBriefInfo(String address) {
 		try {

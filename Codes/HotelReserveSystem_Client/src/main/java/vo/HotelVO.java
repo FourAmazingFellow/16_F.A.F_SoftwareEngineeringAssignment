@@ -19,7 +19,7 @@ public class HotelVO extends BriefHotelInfoVO{
 	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
-	public HotelVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, int mark,
+	public HotelVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark,
 			String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		super(hotelName, businessDistrict, hotelAddress, starLevel, mark);
