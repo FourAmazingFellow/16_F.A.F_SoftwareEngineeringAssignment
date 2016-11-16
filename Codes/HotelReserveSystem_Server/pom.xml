@@ -5,6 +5,8 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>HotelReserveSystem_Server</name>
   
+   
+   
    <dependencies>
   	<!-- http://mvnrepository.com/artifact/junit/junit -->
   	<dependency>
