@@ -3,6 +3,7 @@ package businesslogic.hotelbl.checkOrderedHotel;
 import java.util.ArrayList;
 
 import businesslogic.hotelbl.OrderInfo;
+import businesslogic.orderbl.MockOrderInfoImpl;
 import po.OrderState;
 import vo.BriefOrderInfoVO;
 import vo.OrderedHotelInfoVO;
@@ -13,8 +14,13 @@ public class OrderedHotelList {
 	private OrderedHotelItem hotelItem;
 	private String userID;
 	
+	public void setOrderInfo(OrderInfo orderInfo) {
+		this.orderInfo = orderInfo;
+	}
+	
 	public OrderedHotelList(String userID) {
 		this.userID = userID;
+		this.setOrderInfo(new MockOrderInfoImpl());
 		this.orderInfoList = orderInfo.getReservedOrderList(this.userID);
 	}
 	
@@ -39,7 +45,7 @@ public class OrderedHotelList {
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
 		for(BriefOrderInfoVO orderInfoVO : hotelList) {
 			hotelItem = new OrderedHotelItem(orderInfoVO.hotelAddress);
-			result.add(new OrderedHotelInfoVO(hotelItem.getbriefHotelInfo(), this.getStates(orderInfoVO.hotelAddress)));
+			result.add(new OrderedHotelInfoVO(hotelItem.getBriefHotelInfo(), this.getStates(orderInfoVO.hotelAddress)));
 		}
 		return result;
 	}

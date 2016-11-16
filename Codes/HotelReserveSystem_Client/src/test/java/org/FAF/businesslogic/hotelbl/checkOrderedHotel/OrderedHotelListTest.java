@@ -7,22 +7,23 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import businesslogic.hotelbl.checkOrderedHotel.CheckOrderedHotelServiceImpl;
+import businesslogic.hotelbl.checkOrderedHotel.MockOrderedHotelList;
+import businesslogic.hotelbl.checkOrderedHotel.OrderedHotelList;
 import po.OrderState;
 import vo.OrderedHotelInfoVO;
 
-public class CheckOrderedHotelServiceImplTest {
+public class OrderedHotelListTest {
 
-	private CheckOrderedHotelServiceImpl checkOrderedHotel;
+	private OrderedHotelList orderedHotelList;
 	
 	@Before
 	public void setUp() throws Exception {
 	}
 
 	@Test
-	public void testEnrollHotelBreifInfoList1() {
-		checkOrderedHotel = new CheckOrderedHotelServiceImpl();
-		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOs = checkOrderedHotel.enrollHotelBreifInfoList("原");
+	public void testEnrollHotelBreifInfoList() {
+		this.orderedHotelList = new MockOrderedHotelList("原");
+		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOs = orderedHotelList.enrollHotelBreifInfoList();
 		assertEquals(1, orderedHotelInfoVOs.size());
 		assertEquals("Jingling Hotel", orderedHotelInfoVOs.get(0).hotelName);
 		assertEquals("新街口", orderedHotelInfoVOs.get(0).businessDistrict);
@@ -32,12 +33,5 @@ public class CheckOrderedHotelServiceImplTest {
 		assertEquals(1, orderedHotelInfoVOs.get(0).hotelState.size());
 		assertEquals(OrderState.DONE_ORDER, orderedHotelInfoVOs.get(0).hotelState.get(0));
 	}
-	
-//	@Test
-//	public void testEnrollHotelBreifInfoList2() {
-//		checkOrderedHotel = new CheckOrderedHotelServiceImpl();
-//		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOs = checkOrderedHotel.enrollHotelBreifInfoList("Accident");
-//		assertEquals(null, orderedHotelInfoVOs);
-//	}
 
 }

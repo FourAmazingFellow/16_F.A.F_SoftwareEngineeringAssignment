@@ -68,13 +68,13 @@ public class HotelInfoServiceImplTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfo.mark, 0);				
 	}
 	
-	@Test
-	public void testGetHotelBriefInfo2() {
-		hotelInfo = new HotelInfoServiceImpl();
-		hotelInfo.setHotelDAO(hotelDAO);
-		BriefHotelInfoVO briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道166号");
-		assertNull(briefHotelInfo);				
-	}
+//	@Test
+//	public void testGetHotelBriefInfo2() {
+//		hotelInfo = new HotelInfoServiceImpl();
+//		hotelInfo.setHotelDAO(hotelDAO);
+//		BriefHotelInfoVO briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道166号");
+//		assertNull(briefHotelInfo);				
+//	}
 	
 	@Test
 	public void testGetHotelDetails1() {
@@ -93,13 +93,13 @@ public class HotelInfoServiceImplTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotelDetails.comments);
 	}
 	
-	@Test
-	public void testGetHotelDetails2() {
-		hotelInfo = new HotelInfoServiceImpl();
-		hotelInfo.setHotelDAO(hotelDAO);
-		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道166号");
-		assertNull(hotelDetails);
-	}
+//	@Test
+//	public void testGetHotelDetails2() {
+//		hotelInfo = new HotelInfoServiceImpl();
+//		hotelInfo.setHotelDAO(hotelDAO);
+//		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道166号");
+//		assertNull(hotelDetails);
+//	}
 	
 
 }
