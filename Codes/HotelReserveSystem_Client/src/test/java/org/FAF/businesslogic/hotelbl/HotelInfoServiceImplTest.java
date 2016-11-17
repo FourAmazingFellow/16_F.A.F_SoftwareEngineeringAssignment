@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Before;
@@ -28,6 +29,12 @@ public class HotelInfoServiceImplTest {
 	private HashMap<RoomType, Integer> roomTypeAndNums;
 	private HashMap<String, String> comments;
 	private HotelInfoServiceImpl hotelInfo;
+	public Date orderProducedTime;
+	public Date lastedOrderDoneTime;
+	public int numOfPerson;
+	public boolean isChildren;
+	public boolean isOnSale;
+	public boolean isCommented;
 	
 	@Before
 	public void setUp() throws Exception {

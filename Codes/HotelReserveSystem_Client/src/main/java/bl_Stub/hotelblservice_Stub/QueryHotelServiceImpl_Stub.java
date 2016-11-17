@@ -112,7 +112,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	@Override
 	public ArrayList<OrderVO> getOrders(String address, String userID) {
 		ArrayList<OrderVO> orderVOList = new ArrayList<>();
-		orderVOList.add(new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, orderState, isCommented));
+		orderVOList.add(new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice,  orderState,orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented));
 		return orderVOList;
 	}
 
