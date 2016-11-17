@@ -2,22 +2,25 @@ package org.FAF.businesslogic.orderbl.browseHotelOrder;
 
 import static org.junit.Assert.assertEquals;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import businesslogic.orderbl.browseHotelOrder.BrowseHotelOrderServiceImpl;
+import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
+import data_Stub.OrderDAOImpl_Stub;
+import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
-public class BrowseHotelOrderServiceImplTest {
-	private BrowseHotelOrderServiceImpl browseHotelOrderServiceImpl;
+public class HotelOrderListTest {
+
+	private HotelOrderList list;
+	private OrderDAO orderDAO;
 	public String userID;
 	public String orderID;
 	public String hotelName;
@@ -54,12 +57,14 @@ public class BrowseHotelOrderServiceImplTest {
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
+		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
+		list = new HotelOrderList(hotelAddress);
+		list.setOrderDAO(orderDAO);
 	}
 	
 	@Test
 	public void testHotelOrderArrayList_1(){
-		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
-		ArrayList<BriefOrderInfoVO> briefOrderInfoList = browseHotelOrderServiceImpl.getHotelOrderList("南京市栖霞区仙林大道163号", OrderType.ALL);
+		ArrayList<BriefOrderInfoVO> briefOrderInfoList = list.getHotelOrderList("南京市栖霞区仙林大道163号", OrderType.ALL);
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, fisrtOrder.userID);
@@ -75,13 +80,7 @@ public class BrowseHotelOrderServiceImplTest {
 	
 	@Test
 	public void testHotelOrderDetails_1() {
-		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
-		OrderVO detailedOrder = null;
-		try {
-			detailedOrder = browseHotelOrderServiceImpl.getSingleOrder("南京市栖霞区仙林大道163号", "0001000100010001");
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		OrderVO detailedOrder = list.getSingleOrder("南京市栖霞区仙林大道163号", "0001000100010001");
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, detailedOrder.orderID);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, detailedOrder.userID);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in hotelName!", hotelName, detailedOrder.hotelName);
@@ -99,4 +98,5 @@ public class BrowseHotelOrderServiceImplTest {
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in isOnSale!", isOnSale, detailedOrder.isOnSale);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in isCommented!", isCommented, detailedOrder.isCommented);
 	}
+	
 }

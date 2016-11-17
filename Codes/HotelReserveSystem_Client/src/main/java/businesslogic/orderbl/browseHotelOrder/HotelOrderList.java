@@ -12,23 +12,26 @@ import vo.OrderVO;
 public class HotelOrderList {
 	private OrderDAO orderDaoService;
 	private ArrayList<BriefOrderInfoVO> briefOrderlist;
-	
-	//PO to VO 转换类
+
+	// PO to VO 转换类
 	private POList2VOList poTransformer;
 	private OrderVO detailedOrderVO;
-	
+
 	private String hotelAddress;
 	private Enum<OrderType> orderType;
-	
-	
-	public HotelOrderList(String addresss){
+
+	public HotelOrderList(String addresss) {
 		hotelAddress = addresss;
 		orderType = OrderType.ALL;
 	}
-	
-	
+
+	public void setOrderDAO(OrderDAO orderDAO) {
+		orderDaoService = orderDAO;
+	}
+
 	/**
 	 * 得到简要酒店订单列表
+	 * 
 	 * @param address
 	 * @param orderType
 	 * @return
@@ -38,17 +41,17 @@ public class HotelOrderList {
 		try {
 			briefOrderlist = poTransformer.briefPo2voList(orderDaoService.getHotelOrderList(address, orderType));
 		} catch (RemoteException e) {
-			//异常捕捉代码
+			// 异常捕捉代码
 			e.printStackTrace();
 		}
 		return briefOrderlist;
 	}
-	
-	public OrderVO getSingleOrder(String address, String orderID){
+
+	public OrderVO getSingleOrder(String address, String orderID) {
 		try {
 			detailedOrderVO = poTransformer.orderPO2VO(orderDaoService.getSingleOrder(address, orderID));
 		} catch (RemoteException e) {
-			//异常捕捉代码
+			// 异常捕捉代码
 			e.printStackTrace();
 		}
 		return detailedOrderVO;
