@@ -23,7 +23,7 @@ public class OrderVO extends BriefOrderInfoVO {
 			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState, Date orderProducedTime,
 			Date lastedOrderDoneTime, int numOfPerson, boolean isChild, boolean isOnSale, boolean isCommented) {
 
-		super(userID, orderID, hotelAddress, hotelName, beginDate, finishDate, roomType, num, totalPrice, orderState);
+		super(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState);
 
 		this.orderProducedTime = orderProducedTime;
 		this.lastedOrderDoneTime = lastedOrderDoneTime;
