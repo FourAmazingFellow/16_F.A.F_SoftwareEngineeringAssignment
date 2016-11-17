@@ -12,27 +12,35 @@ import po.OrderType;
 import po.RoomType;
 
 public class OrderDAOImpl_Stub implements OrderDAO {
-	BriefOrderInfoPO testBriefOrderInfoPO;
-	OrderPO testOrderPO;
+	private BriefOrderInfoPO testBriefOrderInfoPO;
+	private OrderPO testOrderPO;
+	private boolean isReserved;
+	
 	
 	public OrderDAOImpl_Stub(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
 			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState, Date orderProducedTime,
-			Date lastedOrderDoneTime, int numOfPerson, boolean isChild, boolean isOnSale, boolean isCommented) {
+			Date lastedOrderDoneTime, int numOfPerson, boolean isChild, boolean isOnSale, boolean isCommented, boolean isReserved) {
 		testBriefOrderInfoPO = new BriefOrderInfoPO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState);
 		testOrderPO = new OrderPO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChild, isOnSale, isCommented);
+		this.isReserved = isReserved;
 	}
 	
 	@Override
 	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
 		a.add(testOrderPO);
 		return a;
 	}
 
 	@Override
+	public ArrayList<BriefOrderInfoPO> getReservedOrderList(String userID) {
+		ArrayList<BriefOrderInfoPO> a = new ArrayList<BriefOrderInfoPO>();
+		a.add(testBriefOrderInfoPO);
+		return a;
+	}
+
+	@Override
 	public ArrayList<OrderPO> getCommentableOrders(String userID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
 		a.add(testOrderPO);
 		return a;
@@ -40,13 +48,11 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 
 	@Override
 	public boolean isReserved(String userID, String address) throws RemoteException {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public ArrayList<OrderPO> getUserOrdersByHotel(String userID, String address) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
 		a.add(testOrderPO);
 		return a;
@@ -77,40 +83,34 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 
 	@Override
 	public OrderPO getSingleOrder(String address, String orderID) throws RemoteException {
-		// TODO Auto-generated method stub
 		return testOrderPO;
 	}
 	
 	@Override
 	public OrderPO getDetailedOrder(String orderID) throws RemoteException {
-		// TODO Auto-generated method stub
 		return testOrderPO;
 	}
 	
 	@Override
 	public boolean insert(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		System.out.println("OrderDAO insert.");
 		return true;
 	}
 
 	@Override
 	public boolean delete(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		System.out.println("OrderDAO delete");
 		return true;
 	}
 
 	@Override
 	public boolean update(OrderPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		System.out.println("OrderDAO update.");
 		return true;
 	}
 
 	@Override
 	public void  finish() throws RemoteException {
-		// TODO Auto-generated method stub
 		System.out.println("OrderDAO finish.");
 	}
 

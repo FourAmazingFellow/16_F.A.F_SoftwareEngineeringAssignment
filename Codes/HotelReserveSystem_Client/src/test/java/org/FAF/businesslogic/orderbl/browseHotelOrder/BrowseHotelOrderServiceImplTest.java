@@ -39,6 +39,7 @@ public class BrowseHotelOrderServiceImplTest {
 	private boolean isChildren;
 	private boolean isOnSale;
 	private boolean isCommented;
+	private boolean isReserved;
 	
 	@SuppressWarnings("deprecation")
 	@Before
@@ -53,13 +54,15 @@ public class BrowseHotelOrderServiceImplTest {
 		this.num = 1;
 		this.totalPrice = 200;
 		this.orderState = OrderState.NOT_DONE_ORDER;
-		this.orderProducedTime = new Date(2016, 12, 15);
-		this.lastedOrderDoneTime = new Date(2016, 12, 20);
+		this.orderProducedTime = new Date(2016, 12, 15, 18, 0);
+		this.lastedOrderDoneTime = new Date(2016, 12, 20, 21, 0);
 		this.numOfPerson = 2;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
-		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
+		
+		this.isReserved = true;
+		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress,beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented, isReserved);
 		list = new HotelOrderList(hotelAddress);
 		list.setOrderDAO(orderDAO);
 	}

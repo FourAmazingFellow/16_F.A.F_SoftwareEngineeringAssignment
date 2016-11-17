@@ -27,6 +27,14 @@ public interface OrderDAO extends Remote{
 	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException;
 	
 	/**
+	 * 得到该客户所有已执行、已撤销和异常订单列表
+	 * @param userID String型 客户ID
+	 * @return 该客户所有已执行、已撤销和异常订单列表
+	 * @see
+	 */
+	public ArrayList<BriefOrderInfoPO> getReservedOrderList(String userID) throws RemoteException;
+	
+	/**
 	 * 得到客户可评价的订单PO列表（Hotel）
 	 * @param userID String型 客户ID
 	 * @return 用户可评价的订单列表（OrderPO）
