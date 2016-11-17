@@ -19,16 +19,17 @@ public class OrderVO extends BriefOrderInfoVO {
 	public boolean isOnSale;
 	public boolean isCommented;
 
-	public OrderVO(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
-			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS, boolean isCom) {
+	public OrderVO(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
+			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState, Date orderProducedTime,
+			Date lastedOrderDoneTime, int numOfPerson, boolean isChild, boolean isOnSale, boolean isCommented) {
 
-		super(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);
+		super(userID, orderID, hotelAddress, hotelName, beginDate, finishDate, roomType, num, totalPrice, orderState);
 
-		orderProducedTime = oPT;
-		lastedOrderDoneTime = lODT;
-		numOfPerson = nOP;
-		isChildren = isChild;
+		this.orderProducedTime = orderProducedTime;
+		this.lastedOrderDoneTime = lastedOrderDoneTime;
+		this.numOfPerson = numOfPerson;
+		this.isChildren = isChild;
 		this.isOnSale = isOnSale;
-		isCommented = isCom;
+		this.isCommented = isCommented;
 	}
 }

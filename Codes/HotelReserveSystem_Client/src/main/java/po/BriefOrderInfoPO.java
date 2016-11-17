@@ -15,22 +15,22 @@ public class BriefOrderInfoPO {
 	private String hotelAddress;
 	private Date beginDate;
 	private Date finishDate;
-	private RoomType roomType;
+	private Enum<RoomType> roomType;
 	private int num;
 	private int totalPrice;
 	public Enum<OrderState> orderState;
 
-	public BriefOrderInfoPO(String userID, String orderID, String hN, String hA, Date bD,
-			Date fD, RoomType rT, int n, int tP, Enum<OrderState> orderState) {
+	public BriefOrderInfoPO(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
+			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState) {
 		this.orderID = orderID;
 		this.userID = userID;
-		hotelName = hN;
-		hotelAddress = hA;
-		beginDate = bD;
-		finishDate = fD;
-		roomType = rT;
-		num = n;
-		totalPrice = tP;
+		this.hotelName = hotelName;
+		this.hotelAddress = hotelAddress;
+		this.beginDate = beginDate;
+		this.finishDate = finishDate;
+		this.roomType = roomType;
+		this.num = num;
+		this.totalPrice = totalPrice;
 		this.orderState = orderState;
 	}
 	
@@ -58,7 +58,7 @@ public class BriefOrderInfoPO {
 		return finishDate;
 	}
 
-	public RoomType getRoomType() {
+	public Enum<RoomType> getRoomType() {
 		return roomType;
 	}
 

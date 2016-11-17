@@ -16,8 +16,8 @@ public class MockNewOrder extends NewOrder {
 		this.price = price;
 		this.result = result;
 		initailedOrder = new OrderVO(userID, "0001000100010002", "汉庭", address, new Date(2016,10,16),
-				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,-1,new Date(2016,10,16,18,0),
-				new java.util.Date(2016, 10, 16, 20, 0),2,false,true,OrderState.ABNORMAL_ORDER,false);
+				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,-1, OrderState.ABNORMAL_ORDER, new Date(2016,10,16,18,0),
+				new java.util.Date(2016, 10, 16, 20, 0),2,false,true,false);
 	}
 	
 	public OrderVO initNewOrder(String userID, String address) {

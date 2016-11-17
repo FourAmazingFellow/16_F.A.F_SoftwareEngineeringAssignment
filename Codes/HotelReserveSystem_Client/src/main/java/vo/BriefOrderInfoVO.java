@@ -19,23 +19,23 @@ public class BriefOrderInfoVO {
 	public String hotelAddress;
 	public Date beginDate;
 	public Date finishDate;
-	public RoomType roomType;
+	public Enum<RoomType> roomType;
 	public int num;
 	public int totalPrice;
 	public Enum<OrderState> orderState;
 	
-	public BriefOrderInfoVO(String userID, String orderID, String hN, String hA, Date bD,
-			Date fD, RoomType rT, int n, int tP, Enum<OrderState> orderS) {
+	public BriefOrderInfoVO(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
+			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState) {
 		this.orderID = orderID;
 		this.userID = userID;
-		hotelName = hN;
-		hotelAddress = hA;
-		beginDate = bD;
-		finishDate = fD;
-		roomType = rT;
-		num = n;
-		totalPrice = tP;
-		orderState = orderS;
+		this.hotelName = hotelName;
+		this.hotelAddress = hotelAddress;
+		this.beginDate = beginDate;
+		this.finishDate = finishDate;
+		this.roomType = roomType;
+		this.num = num;
+		this.totalPrice = totalPrice;
+		this.orderState = orderState;
 	}
 	
 	public BriefOrderInfoVO(BriefOrderInfoPO po){

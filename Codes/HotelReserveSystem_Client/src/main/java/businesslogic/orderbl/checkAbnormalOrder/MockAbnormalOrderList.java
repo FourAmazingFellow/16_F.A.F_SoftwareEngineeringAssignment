@@ -18,8 +18,8 @@ public class MockAbnormalOrderList extends AbnormalOrderList {
 				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100, OrderState.ABNORMAL_ORDER);
 		
 		mockAbnormalOrderVO = new OrderVO("Wan","0001000100010001","仙林大酒店", "仙林大道163号" ,new Date(2016,10,16),
-				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100,new Date(2016,10,16,18,0),
-				new java.util.Date(2016, 10, 16, 20, 0),2,false,true,OrderState.ABNORMAL_ORDER,false);
+				new Date(2016,10,17), RoomType.KING_SIZE_ROOM, 1, 100, OrderState.ABNORMAL_ORDER, new Date(2016,10,16,18,0),
+				new java.util.Date(2016, 10, 16, 20, 0),2,false,true,false);
 	}
 	
 	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) {
