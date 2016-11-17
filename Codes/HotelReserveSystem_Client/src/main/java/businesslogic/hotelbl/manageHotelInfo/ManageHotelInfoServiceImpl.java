@@ -14,6 +14,13 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	private HotelDAO hotelDAO;
 	private UserInfo userService;
 	
+	public void setHotelDAO(HotelDAO hotelDAO) {
+		this.hotelDAO = hotelDAO;
+	}
+	
+	public void setUserService(UserInfo userService) {
+		this.userService = userService;
+	}
 	
 	@Override
 	public boolean addHotel(HotelVO hotel) {
@@ -25,6 +32,7 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 			return false;
 		}
 	}
+	
 	@Override
 	public boolean addHotelStaff(UserVO staff) {
 		return userService.insert(staff);

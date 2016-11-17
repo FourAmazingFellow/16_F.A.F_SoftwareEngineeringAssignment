@@ -17,7 +17,7 @@ public class MockSearchHotelServiceImpl extends SearchHotelServiceImpl {
 	public MockSearchHotelServiceImpl(String[] condition) {
 		super(condition);
 		this.conditions = condition;
-		this.hotelDAO = new HotelDAOImpl_Stub("金陵大酒店", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f);
+		this.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f);
 		try {
 			this.hotelList = hotelDAO.getHotelBriefInfoListBySearching(this.conditions);
 		} catch (RemoteException e) {

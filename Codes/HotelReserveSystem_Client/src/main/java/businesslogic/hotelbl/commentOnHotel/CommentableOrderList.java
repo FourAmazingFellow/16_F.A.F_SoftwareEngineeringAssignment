@@ -9,6 +9,10 @@ public class CommentableOrderList {
 	private OrderInfo orderInfo;
 	private String userID;
 	
+	public void setOrderInfo(OrderInfo orderInfo) {
+		this.orderInfo = orderInfo;
+	}
+	
 	public CommentableOrderList(String userID) {
 		this.userID = userID;
 	}

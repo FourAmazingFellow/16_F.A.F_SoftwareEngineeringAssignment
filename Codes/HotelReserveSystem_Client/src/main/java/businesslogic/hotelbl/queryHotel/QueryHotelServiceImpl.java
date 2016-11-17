@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.hotelbl.OrderInfo;
+import businesslogic.orderbl.MockOrderInfoImpl;
 import businesslogicservice.hotelblservice.QueryHotelService;
 import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
@@ -39,6 +40,8 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	}
 	
 	public QueryHotelServiceImpl(String userID) {
+		this.orderInfo = new MockOrderInfoImpl();
+		this.hotelList = new MockQueryHotelList();
 		orderList = orderInfo.getReservedOrderList(userID);
 	}
 	

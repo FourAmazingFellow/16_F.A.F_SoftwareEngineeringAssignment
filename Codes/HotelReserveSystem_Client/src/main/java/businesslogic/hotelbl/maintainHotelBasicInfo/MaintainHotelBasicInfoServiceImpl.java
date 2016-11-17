@@ -13,6 +13,10 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 	private HotelVO hotelVO;
 	private String hotelAddress;
 	
+	public void setHotelDAO(HotelDAO hotelDAO) {
+		this.hotelDAO = hotelDAO;
+	}
+	
 	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
 		try {

@@ -13,13 +13,13 @@ public class ImportNewRoomServiceImpl implements ImportNewRoomService {
 	@Override
 	public ArrayList<RoomVO> getAvailableRoomList(String address) {
 		this.hotelAddress = address;
-		availableRoomList = new AvailableRoomList(address);
+		availableRoomList = new MockAvailableRoomList(address);
 		return availableRoomList.getAvailableRoomList();
 	}
 
 	@Override
 	public boolean addRoom(RoomVO room) {
-		availableRoomItem = new AvailableRoomItem(hotelAddress);
+		availableRoomItem = new MockAvailableRoomItem(hotelAddress);
 		return availableRoomItem.addRoom(room);
 	}
 
