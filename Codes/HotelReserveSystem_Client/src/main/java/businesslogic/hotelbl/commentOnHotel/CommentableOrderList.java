@@ -3,6 +3,7 @@ package businesslogic.hotelbl.commentOnHotel;
 import java.util.ArrayList;
 
 import businesslogic.hotelbl.OrderInfo;
+import businesslogic.orderbl.MockOrderInfoImpl;
 import vo.OrderVO;
 
 public class CommentableOrderList {
@@ -15,6 +16,7 @@ public class CommentableOrderList {
 	
 	public CommentableOrderList(String userID) {
 		this.userID = userID;
+		this.setOrderInfo(new MockOrderInfoImpl());
 	}
 	
 	public ArrayList<OrderVO> getCommentableOrderList() {

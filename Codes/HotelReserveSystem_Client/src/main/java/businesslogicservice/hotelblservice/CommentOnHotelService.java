@@ -30,6 +30,6 @@ public interface CommentOnHotelService {
 	 * @return 评价成功返回true，评价失败返回false
 	 * @see
 	 */
-	public boolean confirmComment(String username, int mark, String comment, String hotelAddress);
+	public boolean confirmComment(String username, float mark, String comment, String hotelAddress);
 
 }

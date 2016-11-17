@@ -59,8 +59,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 
 	@Test
 	public void testEnrollHotelBasicInfo() {
-		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
-		maintainHotelBasicInfo.setHotelDAO(this.hotelDAO);
+		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress, this.hotelDAO);
 		HotelVO hotel = maintainHotelBasicInfo.enrollHotelBasicInfo(this.hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotel.hotelName);
 	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in businessDistrict!", businessDistrict, hotel.businessDistrict);
@@ -76,8 +75,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 	
 	@Test
 	public void testConfirmModify() {
-		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
-		maintainHotelBasicInfo.setHotelDAO(this.hotelDAO);
+		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress, this.hotelDAO);
 		boolean result = maintainHotelBasicInfo.confirmModify(modified);
 		assertEquals(true, result);
 	}

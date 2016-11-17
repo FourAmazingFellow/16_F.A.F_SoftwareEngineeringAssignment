@@ -17,8 +17,9 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 		this.hotelDAO = hotelDAO;
 	}
 	
-	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) {
+	public MaintainHotelBasicInfoServiceImpl(String hotelAddress, HotelDAO hotelDAO) {
 		this.hotelAddress = hotelAddress;
+		this.setHotelDAO(hotelDAO);
 		try {
 			this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
 		} catch (RemoteException e) {
