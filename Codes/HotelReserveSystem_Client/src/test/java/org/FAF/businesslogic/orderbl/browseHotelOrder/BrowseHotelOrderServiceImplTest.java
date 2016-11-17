@@ -10,6 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseHotelOrder.BrowseHotelOrderServiceImpl;
+import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
+import data_Stub.OrderDAOImpl_Stub;
+import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
@@ -18,22 +21,24 @@ import vo.OrderVO;
 
 public class BrowseHotelOrderServiceImplTest {
 	private BrowseHotelOrderServiceImpl browseHotelOrderServiceImpl;
-	public String userID;
-	public String orderID;
-	public String hotelName;
-	public String hotelAddress;
-	public Date beginDate;
-	public Date finishDate;
-	public RoomType roomType;
-	public int num;
-	public int totalPrice;
-	public Enum<OrderState> orderState;
-	public Date orderProducedTime;
-	public Date lastedOrderDoneTime;
-	public int numOfPerson;
-	public boolean isChildren;
-	public boolean isOnSale;
-	public boolean isCommented;
+	private OrderDAO orderDAO;
+	private HotelOrderList list;
+	private String userID;
+	private String orderID;
+	private String hotelName;
+	private String hotelAddress;
+	private Date beginDate;
+	private Date finishDate;
+	private RoomType roomType;
+	private int num;
+	private int totalPrice;
+	private Enum<OrderState> orderState;
+	private Date orderProducedTime;
+	private Date lastedOrderDoneTime;
+	private int numOfPerson;
+	private boolean isChildren;
+	private boolean isOnSale;
+	private boolean isCommented;
 	
 	@SuppressWarnings("deprecation")
 	@Before
@@ -54,11 +59,15 @@ public class BrowseHotelOrderServiceImplTest {
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
+		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
+		list = new HotelOrderList(hotelAddress);
+		list.setOrderDAO(orderDAO);
 	}
 	
 	@Test
 	public void testHotelOrderArrayList_1(){
 		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
+		browseHotelOrderServiceImpl.setListHelper(list);
 		ArrayList<BriefOrderInfoVO> briefOrderInfoList = browseHotelOrderServiceImpl.getHotelOrderList("南京市栖霞区仙林大道163号", OrderType.ALL);
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
@@ -76,6 +85,7 @@ public class BrowseHotelOrderServiceImplTest {
 	@Test
 	public void testHotelOrderDetails_1() {
 		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
+		browseHotelOrderServiceImpl.setListHelper(list);
 		OrderVO detailedOrder = null;
 		try {
 			detailedOrder = browseHotelOrderServiceImpl.getSingleOrder("南京市栖霞区仙林大道163号", "0001000100010001");

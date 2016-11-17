@@ -17,12 +17,9 @@ public class HotelOrderList {
 	private POList2VOList poTransformer;
 	private OrderVO detailedOrderVO;
 
-	private String hotelAddress;
-	private Enum<OrderType> orderType;
 
 	public HotelOrderList(String addresss) {
-		hotelAddress = addresss;
-		orderType = OrderType.ALL;
+		poTransformer = new POList2VOList();
 	}
 
 	public void setOrderDAO(OrderDAO orderDAO) {

@@ -18,7 +18,7 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	public OrderDAOImpl_Stub(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
 			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState, Date orderProducedTime,
 			Date lastedOrderDoneTime, int numOfPerson, boolean isChild, boolean isOnSale, boolean isCommented) {
-		testBriefOrderInfoPO = new BriefOrderInfoPO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, numOfPerson, totalPrice, orderState);
+		testBriefOrderInfoPO = new BriefOrderInfoPO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState);
 		testOrderPO = new OrderPO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChild, isOnSale, isCommented);
 	}
 	

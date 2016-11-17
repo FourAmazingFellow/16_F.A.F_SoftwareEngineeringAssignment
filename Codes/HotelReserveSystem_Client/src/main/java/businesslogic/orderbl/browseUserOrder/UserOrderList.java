@@ -14,13 +14,14 @@ public class UserOrderList {
 	private POList2VOList poTransformer;
 	private ArrayList<BriefOrderInfoVO> briefUserOrderlist;
 	private OrderVO detailedOrder;
-	private String userID;
 	
 	public UserOrderList(String userID){
-		this.userID = userID;
+		poTransformer = new POList2VOList();
 	}
 	
-	
+	public void setOrderDAO(OrderDAO orderDAO) {
+		orderDaoService = orderDAO;
+	}
 	/**
 	 * 得到客户简要订单列表
 	 * @param userID

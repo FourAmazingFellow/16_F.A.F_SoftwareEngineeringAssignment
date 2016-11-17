@@ -1,6 +1,7 @@
 package businesslogic.orderbl.browseUserOrder;
 
 import java.util.ArrayList;
+
 import businesslogicservice.orderblservice.BrowseUserOrderService;
 import po.OrderType;
 import vo.BriefOrderInfoVO;
@@ -8,6 +9,10 @@ import vo.OrderVO;
 
 public class BrowseUserOrderServiceImpl implements BrowseUserOrderService {
 	private UserOrderList userListHelper;
+	
+	public void setListHelper(UserOrderList userListHelper){
+		this.userListHelper = userListHelper;
+	}
 	
 	@Override
 	public ArrayList<BriefOrderInfoVO> getUserOrderList(String userID, Enum<OrderType> orderType) {

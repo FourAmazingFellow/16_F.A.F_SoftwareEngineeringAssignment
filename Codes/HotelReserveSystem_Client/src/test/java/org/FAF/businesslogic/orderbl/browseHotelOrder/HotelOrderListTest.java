@@ -21,22 +21,22 @@ public class HotelOrderListTest {
 
 	private HotelOrderList list;
 	private OrderDAO orderDAO;
-	public String userID;
-	public String orderID;
-	public String hotelName;
-	public String hotelAddress;
-	public Date beginDate;
-	public Date finishDate;
-	public RoomType roomType;
-	public int num;
-	public int totalPrice;
-	public Enum<OrderState> orderState;
-	public Date orderProducedTime;
-	public Date lastedOrderDoneTime;
-	public int numOfPerson;
-	public boolean isChildren;
-	public boolean isOnSale;
-	public boolean isCommented;
+	private String userID;
+	private String orderID;
+	private String hotelName;
+	private String hotelAddress;
+	private Date beginDate;
+	private Date finishDate;
+	private RoomType roomType;
+	private int num;
+	private int totalPrice;
+	private Enum<OrderState> orderState;
+	private Date orderProducedTime;
+	private Date lastedOrderDoneTime;
+	private int numOfPerson;
+	private boolean isChildren;
+	private boolean isOnSale;
+	private boolean isCommented;
 	
 	@SuppressWarnings("deprecation")
 	@Before
