@@ -48,7 +48,7 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 
 	@Override
 	public boolean isReserved(String userID, String address) throws RemoteException {
-		return false;
+		return isReserved;
 	}
 
 	@Override

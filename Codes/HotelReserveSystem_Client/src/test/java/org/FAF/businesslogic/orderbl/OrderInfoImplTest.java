@@ -105,7 +105,7 @@ public class OrderInfoImplTest {
 	@Test
 	public void isReservedTest_1() {
 		boolean result = orderInfoImpl.isReserved("19970206", "南京市栖霞区仙林大道163号");
-		assertEquals(result, isReserved);
+		assertEquals(isReserved, result);
 	}
 
 	@Test
@@ -143,6 +143,5 @@ public class OrderInfoImplTest {
 				firstOrder.isOnSale);
 		assertEquals("OrderInfoImpl.getCommentableOrderList(String userID) has an error in isCommented!", isCommented,
 				firstOrder.isCommented);
-
 	}
 }
