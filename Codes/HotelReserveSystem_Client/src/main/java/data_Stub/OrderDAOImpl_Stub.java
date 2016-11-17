@@ -80,7 +80,13 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 		// TODO Auto-generated method stub
 		return testOrderPO;
 	}
-
+	
+	@Override
+	public OrderPO getDetailedOrder(String orderID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return testOrderPO;
+	}
+	
 	@Override
 	public boolean insert(OrderPO po) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -106,12 +112,6 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	public void  finish() throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("OrderDAO finish.");
-	}
-
-	@Override
-	public OrderPO getDetailedOrder(String orderID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
