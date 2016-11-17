@@ -17,7 +17,9 @@ public class POList2VOList {
 	 */
 	public ArrayList<BriefOrderInfoVO> briefPo2voList(ArrayList<BriefOrderInfoPO> briefPoList){
 		ArrayList<BriefOrderInfoVO> voList = new ArrayList<BriefOrderInfoVO>();
-		//briefPoList TO BriefVOList 转化代码
+		for(BriefOrderInfoPO po:briefPoList){
+			voList.add(briefPO2VO(po));
+		}
 		return voList;
 	}
 	
@@ -29,7 +31,9 @@ public class POList2VOList {
 	 */
 	public ArrayList<OrderVO> detailedPo2voList(ArrayList<OrderPO> poList){
 		ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
-		//POList TO VOList 转化代码
+		for(OrderPO po:poList){
+			voList.add(orderPO2VO(po));
+		}
 		return voList;
 	}
 	
@@ -40,8 +44,17 @@ public class POList2VOList {
 	 * @see
 	 */
 	public OrderVO orderPO2VO(OrderPO po){
-		OrderVO vo = null;
-		//PO TO VO 转化代码
+		OrderVO vo = new OrderVO(po.getUserID(), po.getOrderID(), po.getHotelName(), po.getHotelAddress(),
+				po.getBeginDate(), po.getFinishDate(), po.getRoomType(), po.getNum(), po.getTotalPrice(), po.getOrderState(), 
+				po.getOrderProducedTime(), po.getLastedOrderDoneTime(), po.getNumOfPerson(), po.isChildren(), po.isOnSale(), po.isCommented());
+		
 		return vo;
+	}
+	
+	private BriefOrderInfoVO briefPO2VO(BriefOrderInfoPO po){
+		BriefOrderInfoVO result = new BriefOrderInfoVO( po.getUserID(), po.getOrderID(), po.getHotelName(), po.getHotelAddress(),
+				po.getBeginDate(), po.getFinishDate(), po.getRoomType(), po.getNum(), po.getTotalPrice(), po.getOrderState());
+		return result;
+		
 	}
 }
