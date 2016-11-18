@@ -28,6 +28,7 @@ public class HotelInfoServiceImplTest {
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
 	private HashMap<RoomType, Integer> roomTypeAndNums;
 	private HashMap<String, String> comments;
+	
 	private HotelInfoServiceImpl hotelInfo;
 	public Date orderProducedTime;
 	public Date lastedOrderDoneTime;

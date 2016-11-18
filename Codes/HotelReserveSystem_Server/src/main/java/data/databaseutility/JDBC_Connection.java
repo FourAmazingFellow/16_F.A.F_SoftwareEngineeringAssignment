@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class JDBC_Connection {
 	static String drivername = "com.mysql.jdbc.Driver";
-	static String url = "jdbc:mysql://localhost:3306/test?useSSL=false";
+	static String url = "jdbc:mysql://localhost:3306/reserveHotel?useSSL=false";
 	static String username = "root";
 	static String password = "ty13655258245.";
 	static {
@@ -23,7 +23,6 @@ public class JDBC_Connection {
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("连接数据库成功");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -35,21 +34,18 @@ public class JDBC_Connection {
 			if(rs != null)
 				rs.close();
 		} catch(SQLException e) {
-			System.out.println("关闭ResultSet失败!");
 			e.printStackTrace();
 		} finally {
 			try {
 				if(conn != null)
 					conn.close();
 			} catch(SQLException e) {
-				System.out.println("关闭Connection失败！");
 				e.printStackTrace();
 			} finally {
 				try {
 					if(stmt != null)
 						stmt.close();
 				} catch(SQLException e) {
-					System.out.println("关闭Statement失败！");
 					e.printStackTrace();
 				}
 			}

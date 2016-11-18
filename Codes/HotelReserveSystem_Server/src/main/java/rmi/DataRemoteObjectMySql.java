@@ -27,7 +27,7 @@ import po.StrategyType;
 import po.UserPO;
 import po.UserType;
 
-public class DataRemoteObject extends UnicastRemoteObject implements HotelDAO, OrderDAO, RoomDAO, StrategyDAO, UserDAO{
+public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelDAO, OrderDAO, RoomDAO, StrategyDAO, UserDAO{
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements HotelDAO, O
 	private StrategyDAO strategyDAO;
 	private UserDAO userDAO;
 	
-	protected DataRemoteObject() throws RemoteException {
+	protected DataRemoteObjectMySql() throws RemoteException {
 		hotelDAO = new HotelDAOImpl();
 		orderDAO = new OrderDAOImpl();
 		roomDAO = new RoomDAOImpl();
@@ -231,6 +231,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements HotelDAO, O
 	}
 
 	@Override
+	public ArrayList<BriefOrderInfoPO> getReservedOrderList(String userID) throws RemoteException {
+		return orderDAO.getReservedOrderList(userID);
+	}
+	
+	@Override
 	public BriefHotelInfoPO getHotelBriefInfo(String address) throws RemoteException {
 		return hotelDAO.getHotelBriefInfo(address);
 	}
@@ -265,4 +270,5 @@ public class DataRemoteObject extends UnicastRemoteObject implements HotelDAO, O
 	public void init() throws RemoteException {
 		hotelDAO.init();
 	}
+
 }

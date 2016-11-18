@@ -77,4 +77,10 @@ public class OrderDAOImpl implements OrderDAO {
 	public void finish() throws RemoteException {
 	}
 
+	@Override
+	public ArrayList<BriefOrderInfoPO> getReservedOrderList(String userID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
