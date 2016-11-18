@@ -41,7 +41,8 @@ public class SignVipServiceImpl implements SignVipService {
             if(strategyInfo.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword)){
             userDAO.update(new UserPO(enterpriseVip));
             return true;
-            }
+            }else
+                return false;
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
