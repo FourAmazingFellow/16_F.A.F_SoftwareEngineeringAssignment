@@ -30,7 +30,7 @@ public class StrategyInfoService_Stub implements StrategyInfoService{
     }
 
     @Override
-    public boolean verifyEnterpriseMember(String hotelName, String enterpriseName, String securityCode) {
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
         return false;
     }
 

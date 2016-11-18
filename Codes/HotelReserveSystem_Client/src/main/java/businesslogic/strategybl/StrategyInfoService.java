@@ -42,5 +42,5 @@ public interface StrategyInfoService {
      * @return
      * @see
      */
-    public boolean verifyEnterpriseMember(String hotelName, String enterpriseName, String securityCode);
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode);
 }

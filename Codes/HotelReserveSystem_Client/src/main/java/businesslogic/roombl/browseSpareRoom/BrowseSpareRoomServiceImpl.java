@@ -14,7 +14,7 @@ import vo.RoomVO;
  */
 public class BrowseSpareRoomServiceImpl implements BrowseSpareRoomService{
 
-    SpareRoomList spareRoomList=new SpareRoomList();
+    SpareRoomList spareRoomList=new MockSpareRoomList();
     
     /**
      * 得到空房列表

@@ -23,8 +23,8 @@ public class MockCheckInItem extends CheckInItem{
     
     @SuppressWarnings("deprecation")
     public MockCheckInItem(){
-        Date checkInTime=new Date(2016, 11, 5, 18, 0);
-        Date expDepartTime=new Date(2016, 11, 6, 12, 0);
+        Date checkInTime=new Date(2016, 11, 11, 12, 0);
+        Date expDepartTime=new Date(2016, 11, 12, 12, 0);
         checkInDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",checkInTime,expDepartTime,null);
     }
     
@@ -49,7 +49,7 @@ public class MockCheckInItem extends CheckInItem{
     }
     
     @Override
-    boolean addCheckIn(String address){
+    public boolean addCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.insert(checkInPO);
@@ -61,7 +61,7 @@ public class MockCheckInItem extends CheckInItem{
     }
     
     @Override
-    boolean modifyCheckIn(String address){
+    public boolean modifyCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.update(checkInPO);;
@@ -73,7 +73,7 @@ public class MockCheckInItem extends CheckInItem{
     }
     
     @Override
-    boolean delCheckIn(String address){
+    public boolean delCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.delete(checkInPO);
@@ -85,8 +85,8 @@ public class MockCheckInItem extends CheckInItem{
     }
     
     @Override
-    boolean validCheckIn(){
-        return false;
+    public boolean validCheckIn(){
+        return true;
     }
     
     @Override

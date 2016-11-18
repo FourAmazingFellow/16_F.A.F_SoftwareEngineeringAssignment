@@ -1,7 +1,7 @@
 package businesslogic.strategybl.updateStrategy;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 
 import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
@@ -27,10 +27,11 @@ public class MockStrategyItem extends StrategyItem{
     private StrategyDAO strategyDAO;
     
     public MockStrategyItem(){
-        strategyDAO=new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.BirthdayPromotion, "生日折扣", 80, 0, null, null, null, null, null, 0);
+        strategyDAO=new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion, "双十一折扣", 80, 0, null, null, new Date(2016,11,10,00,00,00), new Date(2016,11,12,00,00,00), null, 0);
     }
     
     public MockStrategyItem(StrategyPO strategyPO) {
+        this();
         this.address = strategyPO.getAddress();
         this.strategyName = strategyPO.getStrategyName();
         this.discount = strategyPO.getDiscount();
@@ -53,6 +54,7 @@ public class MockStrategyItem extends StrategyItem{
     }
 
     public MockStrategyItem(StrategyVO strategyVO) {
+        this();
         this.address = strategyVO.address;
         this.strategyName = strategyVO.strategyName;
         this.discount = strategyVO.discount;
@@ -154,7 +156,7 @@ public class MockStrategyItem extends StrategyItem{
 
     @Override
     public boolean valid() {
-        return false;
+        return true;
 
     }
 

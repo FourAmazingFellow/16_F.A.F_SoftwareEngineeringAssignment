@@ -63,7 +63,7 @@ public class CheckInItem {
      * @return
      * @see
      */
-    boolean addCheckIn(String address){
+    public boolean addCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.insert(checkInPO);
@@ -80,7 +80,7 @@ public class CheckInItem {
      * @return 返回是否修改成功
      * @see
      */
-    boolean modifyCheckIn(String address){
+    public boolean modifyCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.update(checkInPO);;
@@ -97,7 +97,7 @@ public class CheckInItem {
      * @return 返回是否删除成功
      * @see
      */
-    boolean delCheckIn(String address){
+    public boolean delCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.delete(checkInPO);
@@ -113,8 +113,8 @@ public class CheckInItem {
      * @return 返回是否入住信息有效
      * @see
      */
-    boolean validCheckIn(){
-        return false;
+    public boolean validCheckIn(){
+        return true;
     }
     
     /**

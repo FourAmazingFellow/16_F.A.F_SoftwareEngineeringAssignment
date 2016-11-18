@@ -15,7 +15,7 @@ import vo.RoomVO;
  */
 public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
 
-    private CheckOutList checkOutList;
+    private CheckOutList checkOutList=new MockCheckOutList();
     
     /**
      * 得到退房信息列表
@@ -100,7 +100,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public boolean delCheckOut(String address, RoomVO checkOut){
-        return delCheckOut(address, checkOut);
+        return checkOutList.delCheckOut(address, checkOut);
     }
     
     /**
@@ -112,7 +112,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      */
     @Override
     public boolean validCheckOut(String address, RoomVO checkOut){
-        return validCheckOut(address, checkOut);
+        return checkOutList.validCheckOut(address, checkOut);
     }
 
 }

@@ -1,6 +1,6 @@
 package po;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 酒店促销策略和网站营销策略信息PO，负责持久化数据传输

@@ -73,7 +73,7 @@ public class CheckOutList {
         ArrayList<RoomPO> checkOutPOs;
         ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
         try {
-            checkOutPOs=roomDAO.getCheckInInfo(address, roomType);
+            checkOutPOs=roomDAO.getCheckOutInfo(address, roomType);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

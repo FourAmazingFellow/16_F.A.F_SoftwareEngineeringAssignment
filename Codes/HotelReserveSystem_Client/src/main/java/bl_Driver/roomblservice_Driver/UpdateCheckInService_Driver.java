@@ -1,6 +1,6 @@
 package bl_Driver.roomblservice_Driver;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
@@ -15,6 +15,8 @@ import vo.RoomVO;
  * @see
  */
 public class UpdateCheckInService_Driver {
+    
+    @SuppressWarnings("deprecation")
     public void drive(UpdateCheckInService updateCheckInService){
         ArrayList<RoomVO> checkInInfoList=updateCheckInService.getCheckInList("江苏省南京市栖霞区仙林大道163号");
         if(checkInInfoList.isEmpty())
@@ -22,7 +24,7 @@ public class UpdateCheckInService_Driver {
         else
             System.out.println("There are " + checkInInfoList.size() + " checkIns in this hotel!\n");
         
-        Date checkInTime=new Date(System.currentTimeMillis());
+        Date checkInTime= new Date(2016, 11, 11, 12, 0);
         ArrayList<RoomVO> checkInVOList1= updateCheckInService.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime);
         CheckInOutVO checkInVO1=(CheckInOutVO) checkInVOList1.get(0);
         System.out.println("the checkInInfo includes "+checkInVO1.roomNum + " 间"+ checkInVO1.roomType);
@@ -35,7 +37,7 @@ public class UpdateCheckInService_Driver {
         System.out.println("checkin time is "+checkInVO2.checkInTime);
         System.out.println("expected time is "+checkInVO2.expDepartTime+"/n");
         
-        Date expDepartTime=new Date(System.currentTimeMillis());
+        Date expDepartTime=new Date(2016, 11, 11, 12, 0);
         CheckInOutVO checkIn=new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
         boolean addCheckIn=updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
         if(addCheckIn)
