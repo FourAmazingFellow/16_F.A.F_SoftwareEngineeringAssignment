@@ -9,11 +9,18 @@ import vo.BriefHotelInfoVO;
 import vo.OrderVO;
 
 public class CreateNewOrderServiceImpl implements CreateNewOrderService {
-	HotelInfoService hotelInfoGetter;
-	RoomInfoService roomInfoService;
-	Checker checker;
-	NewOrder newOrder;
+	private HotelInfoService hotelInfoGetter;
+	private RoomInfoService roomInfoService;
+	private Checker checker;
+	private NewOrder newOrder;
 
+	public void set(HotelInfoService h, RoomInfoService r, Checker c, NewOrder n){
+		hotelInfoGetter = h;
+		roomInfoService = r;
+		checker = c;
+		newOrder = n;
+	}
+	
 	@Override
 	public BriefHotelInfoVO getHotelBriefInfo(String address) {
 		// 得到的同时界面层应将可选房型置好

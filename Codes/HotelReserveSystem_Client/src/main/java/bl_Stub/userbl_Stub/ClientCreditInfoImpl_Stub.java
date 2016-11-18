@@ -10,12 +10,12 @@ import businesslogic.userbl.ClientCreditInfo;
  */
 public class ClientCreditInfoImpl_Stub implements ClientCreditInfo {
 
-    public long userID;
+    public String userID;
     public String passpord;
     public int creditValue;
     public String[] creditRecord;
     
-    public ClientCreditInfoImpl_Stub(long userID, String passpord, int creditValue, String[] creditRecord) {
+    public ClientCreditInfoImpl_Stub(String userID, String passpord, int creditValue, String[] creditRecord) {
         super();
         this.userID = userID;
         this.passpord = passpord;

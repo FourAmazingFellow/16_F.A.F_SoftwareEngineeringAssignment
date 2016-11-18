@@ -4,8 +4,8 @@ import businesslogicservice.orderblservice.ResultMessage;
 import vo.OrderVO;
 
 public class MockChecker extends Checker {
-	boolean canUserCreateNewOrder;
-	ResultMessage resultMessage;
+	private boolean canUserCreateNewOrder;
+	private ResultMessage resultMessage;
 	
 	public MockChecker(boolean canUserCreateNewOrder, ResultMessage resultMessage){
 		this.canUserCreateNewOrder = canUserCreateNewOrder;

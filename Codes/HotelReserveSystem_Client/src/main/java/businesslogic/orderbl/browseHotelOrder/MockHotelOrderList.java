@@ -17,12 +17,14 @@ public class MockHotelOrderList extends HotelOrderList{
 	public MockHotelOrderList(String addresss) {
 		super(addresss);
 		// TODO Auto-generated constructor stub
-		mockBriefOrderInfoVO = new BriefOrderInfoVO("原","0001000100010001","仙林大酒店", addresss ,new Date(2016,10,16),
-				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100, OrderState.NOT_DONE_ORDER);
+		mockBriefOrderInfoVO = new BriefOrderInfoVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 
+				new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
+				1, 200, OrderState.NOT_DONE_ORDER);
 		
-		mockOrderVO = new OrderVO("原","0001000100010001","仙林大酒店", addresss ,new Date(2016,10,16),
-				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100, OrderState.NOT_DONE_ORDER,new Date(2016,10,16,18,0),
-				new java.util.Date(2016, 10, 16, 20, 0),2,false,true,false);
+		mockOrderVO = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 
+				new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
+				1, 200, OrderState.NOT_DONE_ORDER, new Date(2016, 12, 15, 18, 0), new Date(2016, 12, 20, 22, 0), 2, 
+				false, false, false);
 	}
 	
 	/**

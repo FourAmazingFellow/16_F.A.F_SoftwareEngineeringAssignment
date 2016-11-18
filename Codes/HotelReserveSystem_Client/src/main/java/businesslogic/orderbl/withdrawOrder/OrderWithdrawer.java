@@ -10,9 +10,15 @@ public class OrderWithdrawer {
 	private ClientCreditInfo userCreditService;
 	private RoomInfoService addSpareRoomService;
 	
+	public void set(OrderDAO orderDAO, ClientCreditInfo c, RoomInfoService r){
+		orderDaoService = orderDAO;
+		userCreditService = c;
+		addSpareRoomService = r;
+	}
+	
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
 		// TODO Codes 更改订单信息，置为已撤销状态，记录撤销时间, 根据isTooLate更改客户信用值
-		return false;
+		return true;
 	}
 	
 	//下面是该类的各种私有方法, 要用到orderDaoService, userCreditService, addSpareRoomService

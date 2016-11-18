@@ -24,6 +24,7 @@ public class NewOrder {
 	
 	public OrderVO initNewOrder(String userID, String address) {
 		// orderVO的构造函数以后添加,现在为暂时的Mock
+		@SuppressWarnings("deprecation")
 		OrderVO newOrderVO = new OrderVO(userID, "0001000100010001", "汉庭酒店", address, 
 				new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
 				1, 200, OrderState.NOT_DONE_ORDER, new Date(2016, 12, 15, 18, 0), new Date(2016, 12, 20, 22, 0), 2, 
@@ -38,14 +39,14 @@ public class NewOrder {
 	}
 
 	public boolean addNewOrder(OrderVO vo) {
-		OrderPO newOrderPO = voTransformer.orderVO2PO(vo);
-		boolean result = false;
-		try {
-			 result = orderDao.insert(newOrderPO);
-		} catch (RemoteException e) {
-			//异常捕捉代码
-			e.printStackTrace();
-		}
+//		OrderPO newOrderPO = voTransformer.orderVO2PO(vo);
+		boolean result = true;
+//		try {
+//			 result = orderDao.insert(newOrderPO);
+//		} catch (RemoteException e) {
+//			//异常捕捉代码
+//			e.printStackTrace();
+//		}
 		return result;
 	}
 }

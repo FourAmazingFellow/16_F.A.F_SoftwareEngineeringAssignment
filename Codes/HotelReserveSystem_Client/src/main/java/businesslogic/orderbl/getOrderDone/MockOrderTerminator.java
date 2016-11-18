@@ -2,7 +2,7 @@ package businesslogic.orderbl.getOrderDone;
 
 import vo.OrderVO;
 
-public class MockOrderTerminator {
+public class MockOrderTerminator extends OrderTerminator{
 	private boolean doneResult;
 	private boolean delayResult;
 	

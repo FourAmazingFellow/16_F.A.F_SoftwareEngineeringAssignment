@@ -19,6 +19,7 @@ import vo.OrderVO;
 public class AbnormalOrderListTest {
 	private AbnormalOrderList abnormalOrderList;
 	private OrderDAO orderDAO;
+	
 	private String userID;
 	private String orderID;
 	private String hotelName;

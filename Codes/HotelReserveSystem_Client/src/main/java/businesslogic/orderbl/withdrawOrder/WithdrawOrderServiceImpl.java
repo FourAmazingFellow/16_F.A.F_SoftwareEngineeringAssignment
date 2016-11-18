@@ -4,12 +4,15 @@ import businesslogicservice.orderblservice.WithdrawOrderService;
 import vo.OrderVO;
 
 public class WithdrawOrderServiceImpl implements WithdrawOrderService {
-	OrderWithdrawer OrderWithdrawer;
+	private OrderWithdrawer orderWithdrawer;
 	
+	public void set(OrderWithdrawer orderWithdrawer){
+		this.orderWithdrawer = orderWithdrawer;
+	}
 	@Override
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
 		
-		return OrderWithdrawer.withdrawOrder(vo, isTooLate);
+		return orderWithdrawer.withdrawOrder(vo, isTooLate);
 	}
 
 }

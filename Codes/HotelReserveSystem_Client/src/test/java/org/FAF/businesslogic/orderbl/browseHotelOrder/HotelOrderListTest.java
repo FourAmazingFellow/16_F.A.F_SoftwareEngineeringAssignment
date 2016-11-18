@@ -46,7 +46,7 @@ public class HotelOrderListTest {
 		this.orderID = "0001000100010001";
 		this.userID = "19970206";
 		this.hotelName = "汉庭酒店";
-		this.hotelAddress = "南京市栖霞区仙林大道163号";
+		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.beginDate = new Date(2016, 12, 20);
 		this.finishDate = new Date(2016, 12, 21);
 		this.roomType = RoomType.STANDARD_ROOM;
@@ -54,7 +54,7 @@ public class HotelOrderListTest {
 		this.totalPrice = 200;
 		this.orderState = OrderState.NOT_DONE_ORDER;
 		this.orderProducedTime = new Date(2016, 12, 15, 18, 0);
-		this.lastedOrderDoneTime = new Date(2016, 12, 20, 21, 0);
+		this.lastedOrderDoneTime = new Date(2016, 12, 20, 22, 0);
 		this.numOfPerson = 2;
 		this.isChildren = false;
 		this.isOnSale = false;
@@ -67,8 +67,8 @@ public class HotelOrderListTest {
 	}
 	
 	@Test
-	public void testHotelOrderArrayList_1(){
-		ArrayList<BriefOrderInfoVO> briefOrderInfoList = list.getHotelOrderList("南京市栖霞区仙林大道163号", OrderType.ALL);
+	public void getHotelOrderListTest_1(){
+		ArrayList<BriefOrderInfoVO> briefOrderInfoList = list.getHotelOrderList("江苏省南京市栖霞区仙林大道163号", OrderType.ALL);
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, fisrtOrder.userID);
@@ -83,8 +83,8 @@ public class HotelOrderListTest {
 	}
 	
 	@Test
-	public void testHotelOrderDetails_1() {
-		OrderVO detailedOrder = list.getSingleOrder("南京市栖霞区仙林大道163号", "0001000100010001");
+	public void getSingleOrderTest_1() {
+		OrderVO detailedOrder = list.getSingleOrder("江苏省南京市栖霞区仙林大道163号", "0001000100010001");
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, detailedOrder.orderID);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, detailedOrder.userID);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in hotelName!", hotelName, detailedOrder.hotelName);

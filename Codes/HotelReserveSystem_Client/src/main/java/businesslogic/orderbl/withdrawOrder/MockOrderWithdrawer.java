@@ -2,7 +2,7 @@ package businesslogic.orderbl.withdrawOrder;
 
 import vo.OrderVO;
 
-public class MockOrderWithdrawer {
+public class MockOrderWithdrawer extends OrderWithdrawer{
 	private boolean withdrawResult;
 	
 	public MockOrderWithdrawer(boolean withdrawResult){
