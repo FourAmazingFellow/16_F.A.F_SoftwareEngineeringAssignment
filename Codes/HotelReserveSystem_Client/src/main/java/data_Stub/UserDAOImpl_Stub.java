@@ -66,7 +66,7 @@ public class UserDAOImpl_Stub implements UserDAO{
     }
     @Override
     public int getCreditValue(String userID) throws RemoteException {
-        return 0;
+        return creditValue;
     }
     @Override
     public void insert(UserPO po) throws RemoteException {

@@ -9,6 +9,12 @@ public class Checker {
 	private ClientCreditInfo clientCreditGetter;
 	private RoomInfoService orderChecker;
 
+	public void setCreditHelper(ClientCreditInfo c){
+		clientCreditGetter = c;
+	}
+	public void setRoomHelper(RoomInfoService r){
+		orderChecker = r;
+	}
 	/**
 	 * 判断该客户能否生成订单
 	 * @param UserID
@@ -16,7 +22,8 @@ public class Checker {
 	 * @see
 	 */
 	public boolean canUserCreateNewOrder(String userID) {
-		if (clientCreditGetter.getCreditValue(userID) <= 0) {
+		int credit = clientCreditGetter.getCreditValue(userID);
+		if (credit <= 0) {
 			return false;
 		} else
 			return true;
