@@ -68,6 +68,7 @@ public class HotelDAOImpl implements HotelDAO {
 				briefHotelInfoPO.setHotelAddress(rs.getString("hotelAddress"));
 				briefHotelInfoPO.setStarLevel(rs.getInt("starLevel"));
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
+				briefHotelInfoPO.setCity(rs.getString("city"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -123,6 +124,7 @@ public class HotelDAOImpl implements HotelDAO {
 				hotelPO.setHotelAddress(rs_Hotel.getString("hotelAddress"));
 				hotelPO.setStarLevel(rs_Hotel.getInt("starLevel"));
 				hotelPO.setMark(rs_Hotel.getFloat("mark"));
+				hotelPO.setCity(rs_Hotel.getString("city"));
 				hotelPO.setBriefIntroduction(rs_Hotel.getString("briefIntroduction"));
 				hotelPO.setFacilityAndService(rs_Hotel.getString("facilityAndService"));
 				
@@ -159,7 +161,7 @@ public class HotelDAOImpl implements HotelDAO {
 	public void update(HotelPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt_Hotel = null;
-		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ? where hotelAddress = ?";
+		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ?, city = ? where hotelAddress = ?";
 		PreparedStatement pstmt_DeleteRoom = null;
 		String sql_DeleteRoom = "delete from roomtypeandprice where address = ?";
 		PreparedStatement pstmt_AddRoom = null;
@@ -180,7 +182,8 @@ public class HotelDAOImpl implements HotelDAO {
 			pstmt_Hotel.setFloat(3, po.getMark());
 			pstmt_Hotel.setString(4, po.getBriefIntroduction());
 			pstmt_Hotel.setString(5, po.getFacilityAndService());
-			pstmt_Hotel.setString(6, po.getHotelAddress());
+			pstmt_Hotel.setString(6, po.getCity());
+			pstmt_Hotel.setString(7, po.getHotelAddress());
 			pstmt_Hotel.executeUpdate();
 			
 			//删除酒店原来所有的房间信息
@@ -238,7 +241,7 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//插入酒店信息
-			String sql_Hotel = "insert into hotel(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService) values(?,?,?,?,?,?,?)";
+			String sql_Hotel = "insert into hotel(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city) values(?,?,?,?,?,?,?,?)";
 			pstm_Hotel = conn.prepareStatement(sql_Hotel);
 			pstm_Hotel.setString(1, po.getHotelName());
 			pstm_Hotel.setString(2, po.getBusinessDistrict());
@@ -247,6 +250,7 @@ public class HotelDAOImpl implements HotelDAO {
 			pstm_Hotel.setFloat(5, po.getMark());
 			pstm_Hotel.setString(6, po.getBriefIntroduction());
 			pstm_Hotel.setString(7, po.getFacilityAndService());
+			pstm_Hotel.setString(8, po.getCity());
 			pstm_Hotel.executeUpdate();
 			
 			//插入酒店房间信息

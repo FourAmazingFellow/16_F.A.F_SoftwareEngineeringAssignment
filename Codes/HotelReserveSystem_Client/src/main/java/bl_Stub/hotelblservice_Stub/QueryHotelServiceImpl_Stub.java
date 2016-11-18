@@ -17,7 +17,8 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	public String businessDistrict;
 	public String hotelAddress;
 	public int starLevel;
-	public int mark;
+	public float mark;
+	public String city;
 	
 	public String briefIntroduction;
 	public String facilityAndService;
@@ -41,13 +42,14 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	public boolean isCommented;
 	
 	public QueryHotelServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
-			int mark, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
+			float mark, String city, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
+		this.city = city;
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;
@@ -56,12 +58,13 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	}
 	
 	public QueryHotelServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
-			int mark) {
+			float mark, String city) {
 		this.hotelName = hotelName;
 		this.businessDistrict = businessDistrict;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
+		this.city = city;
 	}
 	
 	public QueryHotelServiceImpl_Stub(String briefIntroduction, String facilityAndService,
@@ -106,7 +109,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Override

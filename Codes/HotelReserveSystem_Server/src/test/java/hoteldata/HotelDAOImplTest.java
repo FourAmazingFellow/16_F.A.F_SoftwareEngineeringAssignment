@@ -22,6 +22,7 @@ public class HotelDAOImplTest {
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
+	private String city;
 	private String briefIntroduction;
 	private String facilityAndService;
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
@@ -38,6 +39,7 @@ public class HotelDAOImplTest {
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
+		this.city = "南京市";
 		this.briefIntroduction = "南京最好的酒店";
 		this.facilityAndService = "wifi;washer;park;air-condition;elevator";
 		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
@@ -55,10 +57,10 @@ public class HotelDAOImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		po = new HotelPO("格林豪泰", "栖霞区", "江苏省南京市栖霞区仙林大道166号", 4, 4.5f, "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		po = new HotelPO("格林豪泰", "栖霞区", "江苏省南京市栖霞区仙林大道166号", 4, 4.5f, city, "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		comments.put("Accident", "不愧是南京市最好的酒店");
 		comments.put("Superman", "舒服的我都不想飞走了");
-		updatePO = new HotelPO(hotelName, businessDistrict, hotelAddress, starLevel, 5.0f, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		updatePO = new HotelPO(hotelName, businessDistrict, hotelAddress, starLevel, 5.0f, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Test
@@ -70,6 +72,7 @@ public class HotelDAOImplTest {
 			assertEquals("HotelDAOImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, briefHotelInfoPO.getHotelAddress());
 			assertEquals("HotelDAOImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, briefHotelInfoPO.getStarLevel());
 			assertEquals("HotelDAOImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfoPO.getMark(), 0);	
+			assertEquals("HotelDAOImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, briefHotelInfoPO.getCity());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			fail("RemoteException has happened!");
@@ -85,6 +88,7 @@ public class HotelDAOImplTest {
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotelDetails.getHotelAddress());
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotelDetails.getStarLevel());
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotelDetails.getMark(), 0);
+			assertEquals("HotelDAOImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotelDetails.getCity());
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotelDetails.getBriefIntroduction());
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotelDetails.getFacilityAndService());
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotelDetails.getRoomTypeAndPrice());

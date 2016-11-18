@@ -21,10 +21,10 @@ public class HotelPO extends BriefHotelInfoPO {
 		
 	}
 	
-	public HotelPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark,
+	public HotelPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, String city,
 			String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice,HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
-		super(hotelName, businessDistrict, hotelAddress, starLevel, mark);
+		super(hotelName, businessDistrict, hotelAddress, starLevel, mark, city);
 		this.briefIntroduction = briefIntroduction;
 		this.facilityAndService = facilityAndService;
 		this.roomTypeAndPrice = roomTypeAndPrice;

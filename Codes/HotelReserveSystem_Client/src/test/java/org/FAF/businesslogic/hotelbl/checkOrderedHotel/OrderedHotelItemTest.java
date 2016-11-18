@@ -19,6 +19,7 @@ public class OrderedHotelItemTest {
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
+	private String city;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -27,7 +28,8 @@ public class OrderedHotelItemTest {
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
-		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark);
+		this.city = "南京市";
+		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark, city);
 	}
 
 	@Test
@@ -40,6 +42,7 @@ public class OrderedHotelItemTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, briefHotelInfo.hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, briefHotelInfo.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfo.mark, 0);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, briefHotelInfo.city);
 	}
 	
 //	@Test

@@ -22,6 +22,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
+	private String city;
 	private String briefIntroduction;
 	private String facilityAndService;
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
@@ -36,6 +37,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
+		this.city = "南京市";
 		this.briefIntroduction = "南京最好的酒店";
 		this.facilityAndService = "wifi;washer;park;air-condition;elevator";
 		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
@@ -53,8 +55,8 @@ public class MaintainHotelBasicInfoServiceImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, this.roomTypeAndPrice, this.roomTypeAndNums, this.comments);
-		modified = new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, this.roomTypeAndPrice, this.roomTypeAndNums, this.comments);
+		modified = new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Test
@@ -66,6 +68,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotel.hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotel.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotel.mark, 0);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotel.city);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotel.briefIntroduction);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotel.facilityAndService);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotel.roomTypeAndPrice);

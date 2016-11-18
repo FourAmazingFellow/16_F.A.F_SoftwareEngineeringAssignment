@@ -25,6 +25,7 @@ public class ManageHotelInfoServiceImplTest {
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
+	private String city;
 	private String briefIntroduction;
 	private String facilityAndService;
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
@@ -40,6 +41,7 @@ public class ManageHotelInfoServiceImplTest {
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
+		this.city = "南京市";
 		this.briefIntroduction = "南京最好的酒店";
 		this.facilityAndService = "wifi;washer;park;air-condition;elevator";
 		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
@@ -57,8 +59,8 @@ public class ManageHotelInfoServiceImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, this.roomTypeAndPrice, this.roomTypeAndNums, this.comments);
-		hotelVO = new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark, city,  briefIntroduction, facilityAndService, this.roomTypeAndPrice, this.roomTypeAndNums, this.comments);
+		hotelVO = new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		this.hotelStaff = new HotelStaffInfoVO("Accident", "123456789", "13655255834", UserType.HotelStaff, "江苏省南京市栖霞区仙林大道163号");
 	}
 

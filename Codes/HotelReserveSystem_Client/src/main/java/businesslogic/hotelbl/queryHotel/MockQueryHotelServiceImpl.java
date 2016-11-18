@@ -15,7 +15,7 @@ public class MockQueryHotelServiceImpl extends QueryHotelServiceImpl {
 		comments.put("原", "该酒店服务到位，应有尽有！");
 		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
 		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 20);
-		super.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市最好的酒店", "所有服务应有尽有", roomTypeAndPrice, roomTypeAndNums, comments);
+		super.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市", "南京市最好的酒店", "所有服务应有尽有", roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 	
 }

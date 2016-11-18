@@ -63,6 +63,7 @@ public class CreateNewOrderServiceImplTest {
 	private String hotelAddress_;
 	private int starLevel;
 	private float mark;
+	private String city;
 
 	// DetailedHotel
 	private String briefIntroduction;
@@ -101,6 +102,7 @@ public class CreateNewOrderServiceImplTest {
 		this.hotelAddress_ = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
+		this.city = "南京市";
 		this.briefIntroduction = "南京最好的酒店";
 		this.facilityAndService = "wifi;washer;park;air-condition;elevator";
 		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
@@ -120,8 +122,8 @@ public class CreateNewOrderServiceImplTest {
 		this.comments = comments;
 
 		BriefHotelInfoVO briefHotelInfoVO = new BriefHotelInfoVO(hotelName_, businessDistrict, hotelAddress_, starLevel,
-				mark);
-		HotelVO hotelvo = new HotelVO(hotelName_, businessDistrict, hotelAddress_, starLevel, mark, briefIntroduction,
+				mark,city);
+		HotelVO hotelvo = new HotelVO(hotelName_, businessDistrict, hotelAddress_, starLevel, mark, city, briefIntroduction,
 				facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 
 		createNewOrderServiceImpl = new CreateNewOrderServiceImpl();
