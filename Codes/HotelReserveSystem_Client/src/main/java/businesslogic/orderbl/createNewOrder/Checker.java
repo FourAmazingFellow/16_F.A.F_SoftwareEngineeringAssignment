@@ -6,8 +6,8 @@ import businesslogicservice.orderblservice.ResultMessage;
 import vo.OrderVO;
 
 public class Checker {
-	ClientCreditInfo clientCreditGetter;
-	RoomInfoService orderChecker;
+	private ClientCreditInfo clientCreditGetter;
+	private RoomInfoService orderChecker;
 
 	/**
 	 * 判断该客户能否生成订单

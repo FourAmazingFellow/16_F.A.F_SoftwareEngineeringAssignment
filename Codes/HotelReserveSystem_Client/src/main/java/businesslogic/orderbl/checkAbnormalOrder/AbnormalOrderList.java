@@ -14,7 +14,15 @@ public class AbnormalOrderList {
 	private OrderDAO orderDaoService;
 	private POList2VOList poTransformer;
 	private OrderVO detailedAbnormalOrder;
-	
+
+	public AbnormalOrderList() {
+		poTransformer = new POList2VOList();
+	}
+
+	public void setOrderDAO(OrderDAO order) {
+		orderDaoService = order;
+	}
+
 	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) {
 		try {
 			abnormalOrderList = poTransformer.briefPo2voList(orderDaoService.getAllAbnormalList(date));
@@ -24,7 +32,7 @@ public class AbnormalOrderList {
 		}
 		return abnormalOrderList;
 	}
-	
+
 	public OrderVO getDetailedOrder(String orderID) {
 		try {
 			detailedAbnormalOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
@@ -32,10 +40,9 @@ public class AbnormalOrderList {
 			// 异常捕捉代码
 			e.printStackTrace();
 		}
-		
-		//检查该订单号对应的订单是不是异常订单 - Codes
-		
-		
+
+		// 检查该订单号对应的订单是不是异常订单 - Codes
+
 		return detailedAbnormalOrder;
 	}
 }

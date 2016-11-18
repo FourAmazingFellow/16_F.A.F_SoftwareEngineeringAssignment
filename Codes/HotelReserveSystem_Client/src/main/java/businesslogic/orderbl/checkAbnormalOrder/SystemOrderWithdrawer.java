@@ -20,7 +20,7 @@ public class SystemOrderWithdrawer {
 	public boolean systemWithdrawOrder(OrderVO vo, boolean isRecoverHalfCredit){
 		//Codes To be written
 		//撤销此异常订单并将其状态置为已撤销、记录撤销时间，恢复此客户信用值的全部或一半
-		return false;
+		return true;
 	}
 	
 	//下面是该类的各种私有方法, 要用到orderDaoService, userCreditService, addSpareRoomService
