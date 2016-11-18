@@ -22,7 +22,7 @@ public class MockCheckLoginInfo extends CheckLoginInfo{
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        this.password = userPO.getPasspord();
+        this.password = userPO.getPassword();
         if (this.password == password) {
             return false;
         } else

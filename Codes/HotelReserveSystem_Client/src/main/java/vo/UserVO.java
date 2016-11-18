@@ -10,19 +10,19 @@ import po.UserType;
 public class UserVO {
   
     public String userID;
-    public String passpord;
+    public String password;
     public String telNum;
     public Enum<UserType> userType;
  
-    public UserVO(String userID, String passpord, String telNum, Enum<UserType> userType) {
+    public UserVO(String userID, String password, String telNum, Enum<UserType> userType) {
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = password;
         this.telNum = telNum;
         this.userType = userType;
     }
     public UserVO(UserPO userPO){
         this.userID = userPO.getUserID();
-        this.passpord = userPO.getPasspord();
+        this.password = userPO.getPassword();
         this.telNum = userPO.getTelNum();
         this.userType = userPO.getUserType();
     }

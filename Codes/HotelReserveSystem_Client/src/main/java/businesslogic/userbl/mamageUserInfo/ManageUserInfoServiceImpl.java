@@ -3,11 +3,11 @@ package businesslogic.userbl.mamageUserInfo;
 import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.ManageUserInfoService;
+import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
 import po.UserType;
 import vo.UserVO;
-import vo.WebMarketStaffInfoVO;
 
 /**
  * 
@@ -20,12 +20,15 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
     private UserDAO userDAO;
     private UserType userType;
     private String userID;
+    private String password;
+    private String telNum;
     private UserVO userVO;
     
     public ManageUserInfoServiceImpl(String userID) {
         this.userID = userID;
+        this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         try {
-            this.userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
+            userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -43,9 +46,9 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
     }
 
     @Override
-    public boolean add(WebMarketStaffInfoVO webMarketStaff) {
+    public boolean add(UserVO user) {
         try {
-            userDAO.insert(new UserPO(webMarketStaff));
+            userDAO.insert(new UserPO(user));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -55,6 +58,12 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
 
     @Override
     public UserVO getUserInfo(String userID, UserType user) {
+        this.userID = userID;
+        try {
+            userVO = new UserVO(userDAO.getUserInfo(userID, user));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         return userVO;
     }
 

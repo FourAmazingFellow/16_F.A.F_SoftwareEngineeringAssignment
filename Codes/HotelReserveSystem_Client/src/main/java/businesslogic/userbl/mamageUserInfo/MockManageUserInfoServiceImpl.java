@@ -7,7 +7,6 @@ import dataservice.userDAO.UserDAO;
 import po.UserPO;
 import po.UserType;
 import vo.UserVO;
-import vo.WebMarketStaffInfoVO;
 
 public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
    
@@ -15,8 +14,8 @@ public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
     UserVO userVO;
     public MockManageUserInfoServiceImpl(String userID) {
         super(userID);
-        userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "11111123424");
-        userVO = new UserVO("qwe123", "qweqwe", "12345678905", null);
+        userDAO = new UserDAOImpl_Stub("原", "qwe123", "1234567890");
+        userVO = new UserVO("原", "qwe123", "12345678900", null);
         }
     @Override
     public boolean modifyUserInfo(UserVO user) {
@@ -29,9 +28,9 @@ public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
         }
     }
     @Override
-    public boolean add(WebMarketStaffInfoVO webMarketStaff) {
+    public boolean add(UserVO user) {
         try {
-            userDAO.insert(new UserPO(webMarketStaff));
+            userDAO.insert(new UserPO(user));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

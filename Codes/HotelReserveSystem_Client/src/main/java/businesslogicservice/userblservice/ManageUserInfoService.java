@@ -1,7 +1,7 @@
 package businesslogicservice.userblservice;
 
 
-import vo.WebMarketStaffInfoVO;
+import vo.UserVO;
 
 /**
  * 
@@ -16,6 +16,7 @@ public interface ManageUserInfoService extends ModifyClientInfoService{
      * @return 添加成功则返回true，添加失败则返回false
      * @see
      */
-    public boolean add(WebMarketStaffInfoVO webMarketStaff);
+    public boolean add(UserVO user);
+
 
 }

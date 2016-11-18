@@ -21,38 +21,39 @@ public class UserDAOImpl_Stub implements UserDAO{
 
     public Date birth;
     public String enterpriseID;
-    public String enterprisePasspord;
+    public String enterprisePassword;
     
     public UserType userType;
     
-    public UserDAOImpl_Stub(String userID, String passpord, String telNum) {
+    public UserDAOImpl_Stub(String userID, String password, String telNum) {
         super();
         this.userID = userID;
-        this.password = passpord;
+        this.password = password;
         this.telNum = telNum;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, String telNum, int creditValue, String[] creditRecord) {
+    public UserDAOImpl_Stub(String userID, String password, String telNum, int creditValue, String[] creditRecord) {
         super();
         this.userID = userID;
-        this.password = passpord;
+        this.password = password;
         this.telNum = telNum;
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, String telNum,
+    public UserDAOImpl_Stub(String userID, String password, String telNum,
             Date birth) {
         super();
         this.userID = userID;
-        this.password = passpord;
+        this.password = password;
         this.telNum = telNum;
         this.birth = birth;
     }
-    public UserDAOImpl_Stub(String userID, String passpord, String telNum, String enterpriseName) {
+    public UserDAOImpl_Stub(String userID, String password, String telNum, String enterpriseName,String enterprisePassword) {
         super();
         this.userID = userID;
-        this.password = passpord;
+        this.password = password;
         this.telNum = telNum;
         this.enterpriseName = enterpriseName;
+        this.enterprisePassword = enterprisePassword;
     }
 
     
