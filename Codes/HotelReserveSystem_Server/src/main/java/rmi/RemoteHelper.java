@@ -12,11 +12,11 @@ public class RemoteHelper {
 	}
 	
 	public void initServer(){
-		DataRemoteObjectMySql dataRemoteObject;
+		DataRemoteObjectMySql dataRemoteObjectMySql;
 		try {
-			dataRemoteObject = new DataRemoteObjectMySql();
+			dataRemoteObjectMySql = new DataRemoteObjectMySql();
 			LocateRegistry.createRegistry(8888);
-			Naming.bind("rmi://localhost:8888/DataRemoteObject", dataRemoteObject);
+			Naming.bind("rmi://localhost:8888/DataRemoteObjectMySql", dataRemoteObjectMySql);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {

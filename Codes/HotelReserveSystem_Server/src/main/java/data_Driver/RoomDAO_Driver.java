@@ -64,11 +64,9 @@ public class RoomDAO_Driver {
         
         
         RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
-        roomDAO.update(roomPo);
-        roomDAO.insert(roomPo);
-        roomDAO.delete(roomPo);
-        roomDAO.init();
-        roomDAO.finish();
+        roomDAO.updateRoom(roomPo);
+        roomDAO.insertRoom(roomPo);
+        roomDAO.deleteRoom(roomPo);
 
     }
 }

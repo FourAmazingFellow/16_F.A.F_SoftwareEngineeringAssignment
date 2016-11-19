@@ -21,7 +21,7 @@ public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
     @Override
     public boolean modifyUserInfo(UserVO user) {
         try {
-            userDAO.update(new UserPO(user));
+            userDAO.updateUser(new UserPO(user));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
     @Override
     public boolean add(WebMarketStaffInfoVO webMarketStaff) {
         try {
-            userDAO.insert(new UserPO(webMarketStaff));
+            userDAO.insertUser(new UserPO(webMarketStaff));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

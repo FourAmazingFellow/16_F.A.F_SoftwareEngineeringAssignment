@@ -14,7 +14,7 @@ import po.HotelPO;
  * @version 1.0
  * @see
  */
-public interface HotelDAO extends Remote{
+public interface HotelDAO extends Remote {
 	
 	/**
 	 * 获取酒店的基本信息
@@ -58,7 +58,7 @@ public interface HotelDAO extends Remote{
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void update(HotelPO po) throws RemoteException;
+	public void updateHotel(HotelPO po) throws RemoteException;
 	
 	/**
 	 * 增加新的酒店
@@ -66,21 +66,6 @@ public interface HotelDAO extends Remote{
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void insert(HotelPO po) throws RemoteException;
-	
-	/**
-	 * 初始化持久化数据存储
-	 * @throws RemoteException
-	 * @see
-	 */
-	public void init() throws RemoteException;
-	
-	
-	/**
-	 * 结束持久化数据存储的使用
-	 * @throws RemoteException
-	 * @see
-	 */
-	public void finish() throws RemoteException;
+	public void insertHotel(HotelPO po) throws RemoteException;
 
 }

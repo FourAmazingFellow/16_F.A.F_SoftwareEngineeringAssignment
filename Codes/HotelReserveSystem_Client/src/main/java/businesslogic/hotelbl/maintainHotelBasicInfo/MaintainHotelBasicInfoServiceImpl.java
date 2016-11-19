@@ -35,7 +35,7 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 	@Override
 	public boolean confirmModify(HotelVO modified) {
 		try {
-			hotelDAO.update(new HotelPO(modified));
+			hotelDAO.updateHotel(new HotelPO(modified));
 			return true;
 		} catch (RemoteException e) {
 			e.printStackTrace();

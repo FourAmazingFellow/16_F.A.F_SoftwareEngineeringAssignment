@@ -12,7 +12,7 @@ public class LinkToServer {
 	public void linkToServer() {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
-			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
+			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObjectMySql"));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

@@ -71,16 +71,14 @@ public class OrderDAO_Driver {
 			OrderPO orderPO_4 = orderDAO.getSingleOrder("江苏省南京市栖霞区仙林大道163号","0001000100010001");
 			System.out.println("更改其状态为已执行");
 			orderPO_4.setOrderState(OrderState.DONE_ORDER);
-			orderDAO.update(orderPO_4);
+			orderDAO.updateOrder(orderPO_4);
 			System.out.println("订单状态已更新");
 			System.out.println("删除该订单");
-			orderDAO.delete(orderPO_4);
+			orderDAO.deleteOrder(orderPO_4);
 			System.out.println("订单已删除");
 			System.out.println("重新插入该订单");
-			orderDAO.insert(orderPO_4);
+			orderDAO.insertOrder(orderPO_4);
 			System.out.println("订单已插入");
-			orderDAO.finish();
-			System.out.println("结束对数据库的引用");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			System.out.println("网络通信故障");

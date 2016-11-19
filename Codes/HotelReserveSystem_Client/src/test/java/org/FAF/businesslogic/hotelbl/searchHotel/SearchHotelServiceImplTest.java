@@ -30,6 +30,7 @@ public class SearchHotelServiceImplTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道163号", briefHotelInfoVOs.get(0).hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 5, briefHotelInfoVOs.get(0).starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 5.0f, briefHotelInfoVOs.get(0).mark, 0);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", "南京市", briefHotelInfoVOs.get(0).city);
 	}
 
 }

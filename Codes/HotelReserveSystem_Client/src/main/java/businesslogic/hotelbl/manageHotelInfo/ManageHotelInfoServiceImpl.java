@@ -25,7 +25,7 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	@Override
 	public boolean addHotel(HotelVO hotel) {
 		try {
-			hotelDAO.insert(new HotelPO(hotel));
+			hotelDAO.insertHotel(new HotelPO(hotel));
 			return true;
 		} catch (RemoteException e) {
 			e.printStackTrace();

@@ -69,18 +69,17 @@ public class UserDAOImpl_Stub implements UserDAO{
         return creditValue;
     }
     @Override
-    public void insert(UserPO po) throws RemoteException {
+    public void insertUser(UserPO po) throws RemoteException {
         System.out.println("Insert Succeed!\n");
     }
     @Override
-    public void update(UserPO po) throws RemoteException {
+    public void updateUser(UserPO po) throws RemoteException {
         System.out.println("Update Succeed!\n");
         
     }
-    @Override
-    public void finish() throws RemoteException {   
-        System.out.println("Finish succeed!\n");
-        
-    }
+	@Override
+	public void deleteUser(UserPO po) throws RemoteException {
+		
+	}
     
 }

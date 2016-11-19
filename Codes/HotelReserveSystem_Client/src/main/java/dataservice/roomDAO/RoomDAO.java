@@ -101,7 +101,7 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public RoomPO find(String userID) throws RemoteException;
+    public RoomPO findRoom(String userID) throws RemoteException;
     
     /**
      * 更新某个房间信息
@@ -109,7 +109,7 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public void update(RoomPO po) throws RemoteException;
+    public void updateRoom(RoomPO po) throws RemoteException;
     
     /**
      * 插入一个房间信息
@@ -117,7 +117,7 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public void insert(RoomPO po) throws RemoteException;
+    public void insertRoom(RoomPO po) throws RemoteException;
     
     /**
      * 删除一个房间信息
@@ -125,20 +125,5 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public void delete(RoomPO po) throws RemoteException;
-    
-    /**
-     * 初始化持久化数据存储
-     * @throws RemoteException
-     * @see
-     */
-    public void init() throws RemoteException;
-    
-    /**
-     * 结束持久化数据存储的使用
-     * @throws RemoteException
-     * @see
-     */
-    public void finish() throws RemoteException;
-    
+    public void deleteRoom(RoomPO po) throws RemoteException;
 }

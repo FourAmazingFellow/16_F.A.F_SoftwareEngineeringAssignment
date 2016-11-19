@@ -26,10 +26,8 @@ public class StrategyDAO_Driver {
         
         
         StrategyPO strategyPO=new StrategyPO("江苏省南京市栖霞区仙林大道163号",StrategyType.BirthdayPromotion, "普通会员生日折扣", 0.8f);
-        strategyDAO.update(strategyPO);
-        strategyDAO.insert(strategyPO);
-        strategyDAO.delete(strategyPO);
-        strategyDAO.init();
-        strategyDAO.finish();
+        strategyDAO.updateStrategy(strategyPO);
+        strategyDAO.insertStrategy(strategyPO);
+        strategyDAO.deleteStrategy(strategyPO);
     }
 }

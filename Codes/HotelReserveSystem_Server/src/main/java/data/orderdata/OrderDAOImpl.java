@@ -59,23 +59,20 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public boolean insert(OrderPO po) throws RemoteException {
+	public boolean insertOrder(OrderPO po) throws RemoteException {
 		return false;
 	}
 
 	@Override
-	public boolean delete(OrderPO po) throws RemoteException {
+	public boolean deleteOrder(OrderPO po) throws RemoteException {
 		return false;
 	}
 
 	@Override
-	public boolean update(OrderPO po) throws RemoteException {
+	public boolean updateOrder(OrderPO po) throws RemoteException {
 		return false;
 	}
 
-	@Override
-	public void finish() throws RemoteException {
-	}
 
 	@Override
 	public ArrayList<BriefOrderInfoPO> getReservedOrderList(String userID) throws RemoteException {

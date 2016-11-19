@@ -19,7 +19,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 	private HotelDAO hotelDAO;
 	private String hotelName;
 	private String businessDistrict;
-	private String hotelAddress;
+	private String hotelAddress; 
 	private int starLevel;
 	private float mark;
 	private String city;

@@ -3,6 +3,7 @@ package businesslogic.hotelbl;
 import java.rmi.RemoteException;
 
 import dataservice.hotelDAO.HotelDAO;
+import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
@@ -12,6 +13,10 @@ public class HotelInfoServiceImpl implements HotelInfoService {
 	
 	public void setHotelDAO(HotelDAO hotelDAO) {
 		this.hotelDAO = hotelDAO;
+	}
+	
+	public HotelInfoServiceImpl() {
+		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
 	}
 	
 	@Override

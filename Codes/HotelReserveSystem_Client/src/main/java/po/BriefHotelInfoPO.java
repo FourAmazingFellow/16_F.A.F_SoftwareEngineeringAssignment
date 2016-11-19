@@ -15,6 +15,7 @@ public class BriefHotelInfoPO {
 	private int starLevel;
 	private float mark;
 	private String city;
+	private int min_Price;
 	
 	public BriefHotelInfoPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, String city) {
 		this.hotelName = hotelName;
@@ -32,6 +33,7 @@ public class BriefHotelInfoPO {
 		this.starLevel = briefHotelInfoVO.starLevel;
 		this.mark = briefHotelInfoVO.mark;
 		this.city = briefHotelInfoVO.city;
+		this.min_Price = briefHotelInfoVO.min_Price;
 	}
 	
 	public String getHotelName() {
@@ -69,6 +71,12 @@ public class BriefHotelInfoPO {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public int getMin_Price() {
+		return min_Price;
+	}
+	public void setMin_Price(int min_Price) {
+		this.min_Price = min_Price;
 	}
 
 }

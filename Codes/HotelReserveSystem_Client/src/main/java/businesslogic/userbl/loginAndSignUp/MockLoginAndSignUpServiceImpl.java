@@ -19,7 +19,7 @@ public class MockLoginAndSignUpServiceImpl extends LoginAndSignUpServiceImpl{
     @Override
     public boolean add(UserVO user) {
         try {
-            userDAO.insert(new UserPO(user));
+            userDAO.insertUser(new UserPO(user));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

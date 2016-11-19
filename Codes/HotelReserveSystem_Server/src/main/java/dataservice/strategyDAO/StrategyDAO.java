@@ -41,7 +41,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void update(StrategyPO po) throws RemoteException;
+    public void updateStrategy(StrategyPO po) throws RemoteException;
     
     /**
      * 
@@ -49,7 +49,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insert(StrategyPO po) throws RemoteException;
+    public void insertStrategy(StrategyPO po) throws RemoteException;
     
     /**
      * 
@@ -57,20 +57,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void delete(StrategyPO po) throws RemoteException;
+    public void deleteStrategy(StrategyPO po) throws RemoteException;
     
-    /**
-     * 初始化持久化数据存储
-     * @throws RemoteException
-     * @see
-     */
-    public void init() throws RemoteException;
-    
-    /**
-     * 结束持久化数据存储的使用
-     * @throws RemoteException
-     * @see
-     */
-    public void finish() throws RemoteException;
-    
+    public StrategyPO findStrategy(String userID) throws RemoteException;
 }

@@ -64,7 +64,7 @@ public class CheckOutItem {
     public boolean addCheckOut(String address){
         RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
         try {
-            checkOutDAO.insert(checkOutPO);
+            checkOutDAO.insertRoom(checkOutPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -81,7 +81,7 @@ public class CheckOutItem {
     public boolean modifyCheckOut(String address){
         RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
         try {
-            checkOutDAO.update(checkOutPO);
+            checkOutDAO.updateRoom(checkOutPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -98,7 +98,7 @@ public class CheckOutItem {
     public boolean delCheckOut(String address){
         RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
         try {
-            checkOutDAO.delete(checkOutPO);
+            checkOutDAO.deleteRoom(checkOutPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;

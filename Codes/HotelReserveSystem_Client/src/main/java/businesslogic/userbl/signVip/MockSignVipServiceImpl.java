@@ -13,7 +13,7 @@ public class MockSignVipServiceImpl extends SignVipServiceImpl{
     @Override
     public boolean signRegularVip(VipInfoVO regularVip) {
         try {
-            userDAO.update(new UserPO(regularVip));;
+            userDAO.updateUser(new UserPO(regularVip));;
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

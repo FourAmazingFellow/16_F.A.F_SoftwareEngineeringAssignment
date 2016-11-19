@@ -52,7 +52,7 @@ public class MockCheckInItem extends CheckInItem{
     boolean addCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
-            checkInDAO.insert(checkInPO);
+            checkInDAO.insertRoom(checkInPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -64,7 +64,7 @@ public class MockCheckInItem extends CheckInItem{
     boolean modifyCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
-            checkInDAO.update(checkInPO);;
+            checkInDAO.updateRoom(checkInPO);;
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -76,7 +76,7 @@ public class MockCheckInItem extends CheckInItem{
     boolean delCheckIn(String address){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
-            checkInDAO.delete(checkInPO);
+            checkInDAO.deleteRoom(checkInPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;

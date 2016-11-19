@@ -10,16 +10,16 @@ import po.OrderPO;
 import po.OrderType;
 
 /**
- * 数据层提供该接口的实现
+ * 为业务逻辑层提供所需要的订单数据
  * @author Accident
  * @version 1.0
  * @see
  */
-public interface OrderDAO extends Remote{
-	
+public interface OrderDAO extends Remote {
+
 	/**
 	 * 得到客户所有订单VO（Hotel）
-	 * @param userID String型 客户ID
+	 * @param ID long类型 用户ID
 	 * @return 用户所有订单PO
 	 * @throws RemoteException
 	 * @see
@@ -36,7 +36,7 @@ public interface OrderDAO extends Remote{
 	
 	/**
 	 * 得到客户可评价的订单PO列表（Hotel）
-	 * @param userID String型 客户ID
+	 * @param ID long类型 用户ID
 	 * @return 用户可评价的订单列表（OrderPO）
 	 * @throws RemoteException
 	 * @see
@@ -45,7 +45,7 @@ public interface OrderDAO extends Remote{
 	
 	/**
 	 * 判断该客户是否预定过该酒店（Hotel）
-	 * @param userID String型 客户ID
+	 * @param ID long类型 用户ID
 	 * @param address String类型 酒店地址
 	 * @return boolean 该客户是否预定过该酒店
 	 * @throws RemoteException
@@ -55,7 +55,7 @@ public interface OrderDAO extends Remote{
 	
 	/**
 	 * 得到该用户在该酒店的所有订单OrderPO的ArrayList
-	 * @param userID String型 客户ID
+	 * @param ID long类型 用户ID
 	 * @param address String类型 酒店地址
 	 * @return 该用户在该酒店的所有订单OrderPO的ArrayList
 	 * @throws RemoteException
@@ -65,7 +65,7 @@ public interface OrderDAO extends Remote{
 
 	/**
 	 * 得到客户订单列表（简要信息）
-	 * @param userID String型 客户ID
+	 * @param ID long类型 用户ID
 	 * @param orderType 枚举类型
 	 * @return 客户订单列表（简要信息）
 	 * @throws RemoteException
@@ -117,7 +117,7 @@ public interface OrderDAO extends Remote{
 	 * @throws RemoteException
 	 * @see
 	 */
-	public boolean insert(OrderPO po) throws RemoteException;
+	public boolean insertOrder(OrderPO po) throws RemoteException;
 	
 	/**
 	 * 在数据库中删除一个po
@@ -125,7 +125,7 @@ public interface OrderDAO extends Remote{
 	 * @throws RemoteException
 	 * @see
 	 */
-	public boolean delete(OrderPO po) throws RemoteException;
+	public boolean deleteOrder(OrderPO po) throws RemoteException;
 	
 	/**
 	 * 在数据库中更新一个po
@@ -133,13 +133,6 @@ public interface OrderDAO extends Remote{
 	 * @throws RemoteException
 	 * @see
 	 */
-	public boolean update(OrderPO po) throws RemoteException;
+	public boolean updateOrder(OrderPO po) throws RemoteException;
 	
-	/**
-	 * 结束持久化数据库的使用
-	 * @throws RemoteException
-	 * @see
-	 */
-	public void finish() throws RemoteException;
-
 }

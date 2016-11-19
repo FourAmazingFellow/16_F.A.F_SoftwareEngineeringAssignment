@@ -2,6 +2,8 @@ package dataservice.userDAO;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+
+import po.ClientInfoPO;
 import po.UserPO;
 import po.UserType;
 /**
@@ -29,7 +31,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public UserPO queryCredit(String userID) throws RemoteException;
+    public ClientInfoPO queryCreditRecord(String userID) throws RemoteException;
     
     /**
       * 获取客户的信用值
@@ -46,7 +48,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insert(UserPO po) throws RemoteException;
+    public void insertUser(UserPO po) throws RemoteException;
     
     /**
    * 用户注销账号或网站管理人员删除账号
@@ -54,7 +56,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void delete(UserPO po) throws RemoteException;
+    public void deleteUser(UserPO po) throws RemoteException;
     
     /**
      * 更新用户信息
@@ -62,12 +64,5 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void update(UserPO po) throws RemoteException;
-    
-    /**
-     * 结束持久化数据存储的使用
-     * @throws RemoteException
-     * @see
-     */
-    public void finish() throws RemoteException;
+    public void updateUser(UserPO po) throws RemoteException;
 }

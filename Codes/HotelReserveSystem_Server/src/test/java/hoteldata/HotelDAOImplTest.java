@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Before;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import data.hoteldata.HotelDAOImpl;
 import po.BriefHotelInfoPO;
+import po.BriefOrderInfoPO;
 import po.HotelPO;
 import po.RoomType;
 
@@ -60,6 +62,7 @@ public class HotelDAOImplTest {
 		po = new HotelPO("格林豪泰", "栖霞区", "江苏省南京市栖霞区仙林大道166号", 4, 4.5f, city, "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		comments.put("Accident", "不愧是南京市最好的酒店");
 		comments.put("Superman", "舒服的我都不想飞走了");
+		comments.put("Slow_Time", "隔音效果有点差");
 		updatePO = new HotelPO(hotelName, businessDistrict, hotelAddress, starLevel, 5.0f, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
@@ -103,7 +106,7 @@ public class HotelDAOImplTest {
 	@Test
 	public void testInsert() {
 		try {
-			hotelDAO.insert(po);
+			hotelDAO.insertHotel(po);
 		} catch(RemoteException e) {
 			e.printStackTrace();
 			fail("RemoteException has happened!");
@@ -113,8 +116,24 @@ public class HotelDAOImplTest {
 	@Test
 	public void testUpdate() {
 		try {
-			hotelDAO.update(updatePO);
+			hotelDAO.updateHotel(updatePO);
 		} catch(RemoteException e) {
+			e.printStackTrace();
+			fail("RemoteException has happened!");
+		}
+	}
+	
+	@Test
+	public void testGetHotelBriefInfoListByQuerying() {
+		String condition[] = {"南京市", "栖霞区", "mark desc", "0"};
+		ArrayList<BriefOrderInfoPO> orderedHotelList = new ArrayList<>();
+		try {
+			ArrayList<BriefHotelInfoPO> briefHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
+			assertEquals(3, briefHotelInfoPOs.size());
+			assertEquals("格林豪泰", briefHotelInfoPOs.get(0).getHotelName());
+			assertEquals("汉庭酒店", briefHotelInfoPOs.get(1).getHotelName());
+			assertEquals("如家酒店", briefHotelInfoPOs.get(2).getHotelName());
+		} catch (RemoteException e) {
 			e.printStackTrace();
 			fail("RemoteException has happened!");
 		}

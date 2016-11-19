@@ -20,28 +20,24 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 	}
 
 	@Override
-	public void update(StrategyPO po) throws RemoteException {
+	public void updateStrategy(StrategyPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void insert(StrategyPO po) throws RemoteException {
+	public void insertStrategy(StrategyPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void delete(StrategyPO po) throws RemoteException {
+	public void deleteStrategy(StrategyPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void init() throws RemoteException {
-
-	}
-
-	@Override
-	public void finish() throws RemoteException {
-
+	public StrategyPO findStrategy(String userID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

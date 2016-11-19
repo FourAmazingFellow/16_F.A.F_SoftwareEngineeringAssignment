@@ -102,39 +102,26 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO find(String userID) throws RemoteException {
+    public RoomPO findRoom(String userID) throws RemoteException {
         RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
         return roomPO;
     }
 
     @Override
-    public void update(RoomPO po) throws RemoteException {
+    public void updateRoom(RoomPO po) throws RemoteException {
         System.out.println("更新该房间信息成功");
         
     }
 
     @Override
-    public void insert(RoomPO po) throws RemoteException {
+    public void insertRoom(RoomPO po) throws RemoteException {
         System.out.println("插入该房间信息成功");
         
     }
 
     @Override
-    public void delete(RoomPO po) throws RemoteException {
+    public void deleteRoom(RoomPO po) throws RemoteException {
         System.out.println("删除该房间信息成功");
         
     }
-
-    @Override
-    public void init() throws RemoteException {
-        System.out.println("初始化room持久化数据存储成功");
-        
-    }
-
-    @Override
-    public void finish() throws RemoteException {
-        System.out.println("结束room持久化数据存储的使用成功");
-        
-    }
-
 }

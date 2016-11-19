@@ -44,6 +44,18 @@ public class HotelDAOImpl implements HotelDAO {
 			return 3;
 	}
 	
+	//判断一个hotel是否在用户预订列表中
+	private boolean isExist(BriefHotelInfoPO hotelInfoPO, ArrayList<BriefOrderInfoPO> orderedHotelList) {
+		boolean result = false;
+		for(BriefOrderInfoPO order : orderedHotelList) {
+			if(hotelInfoPO.getHotelAddress().equals(order.getHotelAddress())) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
+	
 	
 	@Override
 	public BriefHotelInfoPO getHotelBriefInfo(String address) throws RemoteException {
@@ -69,6 +81,7 @@ public class HotelDAOImpl implements HotelDAO {
 				briefHotelInfoPO.setStarLevel(rs.getInt("starLevel"));
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
 				briefHotelInfoPO.setCity(rs.getString("city"));
+				briefHotelInfoPO.setMin_Price(rs.getInt("min_Price"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -88,7 +101,53 @@ public class HotelDAOImpl implements HotelDAO {
 	@Override
 	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition,
 			ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {
-		return null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<BriefHotelInfoPO> briefHotelInfoPOs = new ArrayList<>();
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			//根据酒店地址获得数据库数据
+			pstmt = conn.prepareStatement("select * from hotel where city = ? and businessDistrict = ? order by " + condition[2]);
+			pstmt.setString(1, condition[0]);
+			pstmt.setString(2, condition[1]);
+			rs = pstmt.executeQuery();
+			
+			//遍历结果，构造briefHotelInfoPO，并添加到列表中
+			while(rs.next()) {
+				BriefHotelInfoPO briefHotelInfoPO = new BriefHotelInfoPO();
+				briefHotelInfoPO.setHotelName(rs.getString("hotelName"));
+				briefHotelInfoPO.setBusinessDistrict(rs.getString("businessDistrict"));
+				briefHotelInfoPO.setHotelAddress(rs.getString("hotelAddress"));
+				briefHotelInfoPO.setStarLevel(rs.getInt("starLevel"));
+				briefHotelInfoPO.setMark(rs.getFloat("mark"));
+				briefHotelInfoPO.setCity(rs.getString("city"));
+				briefHotelInfoPO.setMin_Price(rs.getInt("min_Price"));
+				briefHotelInfoPOs.add(briefHotelInfoPO);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(rs, conn, pstmt);
+		}
+		
+		ArrayList<BriefHotelInfoPO> result = new ArrayList<>();
+		
+		//筛选预订过的酒店
+		if(condition[3].equals("1")) {
+			for(BriefHotelInfoPO hotelInfoPO : briefHotelInfoPOs) {
+				if(isExist(hotelInfoPO, orderedHotelList))
+					result.add(hotelInfoPO);
+			}
+		}
+		else {
+			result = briefHotelInfoPOs;
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -125,6 +184,7 @@ public class HotelDAOImpl implements HotelDAO {
 				hotelPO.setStarLevel(rs_Hotel.getInt("starLevel"));
 				hotelPO.setMark(rs_Hotel.getFloat("mark"));
 				hotelPO.setCity(rs_Hotel.getString("city"));
+				hotelPO.setMin_Price(rs_Hotel.getInt("min_Price"));
 				hotelPO.setBriefIntroduction(rs_Hotel.getString("briefIntroduction"));
 				hotelPO.setFacilityAndService(rs_Hotel.getString("facilityAndService"));
 				
@@ -158,10 +218,10 @@ public class HotelDAOImpl implements HotelDAO {
 	}
 
 	@Override
-	public void update(HotelPO po) throws RemoteException {
+	public void updateHotel(HotelPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt_Hotel = null;
-		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ?, city = ? where hotelAddress = ?";
+		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ?, city = ?, min_Price = ? where hotelAddress = ?";
 		PreparedStatement pstmt_DeleteRoom = null;
 		String sql_DeleteRoom = "delete from roomtypeandprice where address = ?";
 		PreparedStatement pstmt_AddRoom = null;
@@ -183,7 +243,8 @@ public class HotelDAOImpl implements HotelDAO {
 			pstmt_Hotel.setString(4, po.getBriefIntroduction());
 			pstmt_Hotel.setString(5, po.getFacilityAndService());
 			pstmt_Hotel.setString(6, po.getCity());
-			pstmt_Hotel.setString(7, po.getHotelAddress());
+			pstmt_Hotel.setInt(7, po.getMin_Price());
+			pstmt_Hotel.setString(8, po.getHotelAddress());
 			pstmt_Hotel.executeUpdate();
 			
 			//删除酒店原来所有的房间信息
@@ -231,7 +292,7 @@ public class HotelDAOImpl implements HotelDAO {
 	}
 
 	@Override
-	public void insert(HotelPO po) throws RemoteException {
+	public void insertHotel(HotelPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstm_Hotel = null;
 		PreparedStatement pstm_Room = null;
@@ -241,7 +302,7 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//插入酒店信息
-			String sql_Hotel = "insert into hotel(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city) values(?,?,?,?,?,?,?,?)";
+			String sql_Hotel = "insert into hotel(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city, min_Price) values(?,?,?,?,?,?,?,?,?)";
 			pstm_Hotel = conn.prepareStatement(sql_Hotel);
 			pstm_Hotel.setString(1, po.getHotelName());
 			pstm_Hotel.setString(2, po.getBusinessDistrict());
@@ -251,6 +312,7 @@ public class HotelDAOImpl implements HotelDAO {
 			pstm_Hotel.setString(6, po.getBriefIntroduction());
 			pstm_Hotel.setString(7, po.getFacilityAndService());
 			pstm_Hotel.setString(8, po.getCity());
+			pstm_Hotel.setInt(9, po.getMin_Price());
 			pstm_Hotel.executeUpdate();
 			
 			//插入酒店房间信息
@@ -272,16 +334,6 @@ public class HotelDAOImpl implements HotelDAO {
 			JDBC_Connection.free(rs, conn, pstm_Hotel);
 			JDBC_Connection.free(rs, conn, pstm_Room);
 		}
-	}
-
-	@Override
-	public void init() throws RemoteException {
-
-	}
-
-	@Override
-	public void finish() throws RemoteException {
-
 	}
 
 }

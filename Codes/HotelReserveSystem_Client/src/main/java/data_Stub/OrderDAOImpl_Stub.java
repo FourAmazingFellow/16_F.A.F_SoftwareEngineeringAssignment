@@ -92,26 +92,20 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 	}
 	
 	@Override
-	public boolean insert(OrderPO po) throws RemoteException {
+	public boolean insertOrder(OrderPO po) throws RemoteException {
 		System.out.println("OrderDAO insert.");
 		return true;
 	}
 
 	@Override
-	public boolean delete(OrderPO po) throws RemoteException {
+	public boolean deleteOrder(OrderPO po) throws RemoteException {
 		System.out.println("OrderDAO delete");
 		return true;
 	}
 
 	@Override
-	public boolean update(OrderPO po) throws RemoteException {
+	public boolean updateOrder(OrderPO po) throws RemoteException {
 		System.out.println("OrderDAO update.");
 		return true;
 	}
-
-	@Override
-	public void  finish() throws RemoteException {
-		System.out.println("OrderDAO finish.");
-	}
-
 }

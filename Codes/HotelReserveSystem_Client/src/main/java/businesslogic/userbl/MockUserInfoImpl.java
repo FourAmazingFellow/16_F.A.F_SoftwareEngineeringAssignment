@@ -13,7 +13,7 @@ public class MockUserInfoImpl extends UserInfoImpl{
     @Override
     public boolean insert(UserVO staff) {
         try {
-            userDAO.insert(new UserPO(staff));
+            userDAO.insertUser(new UserPO(staff));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

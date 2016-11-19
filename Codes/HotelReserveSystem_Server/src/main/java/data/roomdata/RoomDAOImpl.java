@@ -1,7 +1,7 @@
 package data.roomdata;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import dataservice.roomDAO.RoomDAO;
@@ -51,32 +51,22 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 
 	@Override
-	public RoomPO find(String userID) throws RemoteException {
+	public RoomPO findRoom(String userID) throws RemoteException {
 		return null;
 	}
 
 	@Override
-	public void update(RoomPO po) throws RemoteException {
+	public void updateRoom(RoomPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void insert(RoomPO po) throws RemoteException {
+	public void insertRoom(RoomPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void delete(RoomPO po) throws RemoteException {
-
-	}
-
-	@Override
-	public void init() throws RemoteException {
-
-	}
-
-	@Override
-	public void finish() throws RemoteException {
+	public void deleteRoom(RoomPO po) throws RemoteException {
 
 	}
 

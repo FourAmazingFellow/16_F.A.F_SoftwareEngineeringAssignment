@@ -13,6 +13,7 @@ public class BriefHotelInfoPO {
 	private int starLevel;
 	private float mark;
 	private String city;
+	private int min_Price;
 	
 	public BriefHotelInfoPO() {
 		
@@ -61,6 +62,12 @@ public class BriefHotelInfoPO {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public int getMin_Price() {
+		return min_Price;
+	}
+	public void setMin_Price(int min_Price) {
+		this.min_Price = min_Price;
 	}
 
 }

@@ -21,7 +21,7 @@ public class SignVipServiceImpl implements SignVipService {
     @Override
     public boolean signRegularVip(VipInfoVO regularVip) {
         try {
-            userDAO.update(new UserPO(regularVip));;
+            userDAO.updateUser(new UserPO(regularVip));;
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -32,7 +32,7 @@ public class SignVipServiceImpl implements SignVipService {
     @Override
     public boolean signEnterpriseVip(VipInfoVO enterpriseVip) {
         try {
-            userDAO.update(new UserPO(enterpriseVip));;
+            userDAO.updateUser(new UserPO(enterpriseVip));;
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

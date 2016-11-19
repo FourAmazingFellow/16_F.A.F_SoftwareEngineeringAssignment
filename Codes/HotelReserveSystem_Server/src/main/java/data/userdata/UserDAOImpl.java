@@ -3,6 +3,7 @@ package data.userdata;
 import java.rmi.RemoteException;
 
 import dataservice.userDAO.UserDAO;
+import po.ClientInfoPO;
 import po.UserPO;
 import po.UserType;
 
@@ -14,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public UserPO queryCredit(String userID) throws RemoteException {
+	public ClientInfoPO queryCreditRecord(String userID) throws RemoteException {
 		return null;
 	}
 
@@ -24,22 +25,17 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void insert(UserPO po) throws RemoteException {
+	public void insertUser(UserPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void delete(UserPO po) throws RemoteException {
+	public void deleteUser(UserPO po) throws RemoteException {
 
 	}
 
 	@Override
-	public void update(UserPO po) throws RemoteException {
-
-	}
-
-	@Override
-	public void finish() throws RemoteException {
+	public void updateUser(UserPO po) throws RemoteException {
 
 	}
 

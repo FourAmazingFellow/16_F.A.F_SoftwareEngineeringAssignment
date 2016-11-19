@@ -27,7 +27,7 @@ public class MockModifyClientInfoServiceImpl extends ModifyClientInfoServiceImpl
     @Override
     public boolean modifyUserInfo(UserVO user) {
         try {
-            userDAO.update(new UserPO(user));
+            userDAO.updateUser(new UserPO(user));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

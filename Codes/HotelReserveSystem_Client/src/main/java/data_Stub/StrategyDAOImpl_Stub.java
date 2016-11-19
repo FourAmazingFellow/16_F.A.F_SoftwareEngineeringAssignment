@@ -75,39 +75,26 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
     }
 
     @Override
-    public StrategyPO find(String userID) throws RemoteException {
+    public StrategyPO findStrategy(String userID) throws RemoteException {
         StrategyPO strategyPO=new StrategyPO(address, strategyType, strategyName, discount);
         return strategyPO;
     }
 
     @Override
-    public void update(StrategyPO po) throws RemoteException {
+    public void updateStrategy(StrategyPO po) throws RemoteException {
         System.out.println("更新该策略信息成功");
         
     }
 
     @Override
-    public void insert(StrategyPO po) throws RemoteException {
+    public void insertStrategy(StrategyPO po) throws RemoteException {
         System.out.println("插入该策略信息成功");
         
     }
 
     @Override
-    public void delete(StrategyPO po) throws RemoteException {
+    public void deleteStrategy(StrategyPO po) throws RemoteException {
         System.out.println("删除该策略信息成功");
         
     }
-
-    @Override
-    public void init() throws RemoteException {
-        System.out.println("初始化Strategy持久化数据存储成功");
-        
-    }
-
-    @Override
-    public void finish() throws RemoteException {
-        System.out.println("结束Strategy持久化数据存储的使用成功");
-        
-    }
-
 }

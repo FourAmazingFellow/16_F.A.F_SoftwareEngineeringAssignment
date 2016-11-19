@@ -22,7 +22,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public UserPO getUserInfo(String userID, UserType userType) throws RemoteException;
+    public UserPO getUserInfo(String userID, UserType UserType) throws RemoteException;
     
     /**
     * 查询信用记录
@@ -48,7 +48,15 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insert(UserPO po) throws RemoteException;
+    public void insertUser(UserPO po) throws RemoteException;
+    
+    /**
+   * 用户注销账号或网站管理人员删除账号
+     * @param po UserPO型，业务逻辑层传递过来的用户信息
+     * @throws RemoteException
+     * @see
+     */
+    public void deleteUser(UserPO po) throws RemoteException;
     
     /**
      * 更新用户信息
@@ -56,12 +64,5 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void update(UserPO po) throws RemoteException;
-    
-    /**
-     * 结束持久化数据存储的使用
-     * @throws RemoteException
-     * @see
-     */
-    public void finish() throws RemoteException;
+    public void updateUser(UserPO po) throws RemoteException;
 }

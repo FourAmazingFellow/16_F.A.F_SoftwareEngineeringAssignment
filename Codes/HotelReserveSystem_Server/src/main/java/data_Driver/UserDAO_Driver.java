@@ -17,7 +17,7 @@ public class UserDAO_Driver {
         }
         
         try {
-            UserPO userPO = userDAO.queryCredit("原");
+            UserPO userPO = userDAO.queryCreditRecord("原");
             System.out.println("得到了" + userPO.getUserID() + "的信用值记录");
         } catch (RemoteException e) {
             System.out.println("网络通信失败");
@@ -36,7 +36,7 @@ public class UserDAO_Driver {
         
         try {
             UserPO userPO = new UserPO("原", "qwe123", 11265768, UserType.Client);
-            userDAO.insert(userPO);
+            userDAO.insertUser(userPO);
             System.out.println("酒店信息更新成功！\n");
         } catch (RemoteException e) {
             System.out.println("网络通信失败");
@@ -46,7 +46,7 @@ public class UserDAO_Driver {
         
         try {
             UserPO userPO = userDAO.getUserInfo("原", UserType.Client);
-            userDAO.delete(userPO);
+            userDAO.deleteUser(userPO);
             System.out.println("插入酒店信息成功\n");
         } catch (RemoteException e) {
             System.out.println("网络通信失败");
@@ -56,20 +56,11 @@ public class UserDAO_Driver {
         
         try {
             UserPO userPO = userDAO.getUserInfo("原", UserType.Client);
-            userDAO.update(userPO);
+            userDAO.updateUser(userPO);
             System.out.println("初始化持久化数据存储成功！\n");
         } catch (RemoteException e) {
             System.out.println("网络通信失败");
             System.out.println("初始化持久化数据存储失败！\n");
-            e.printStackTrace();
-        }
-        
-        try {
-            userDAO.finish();
-            System.out.println("结束持久化数据存储成功！\n");
-        } catch (RemoteException e) {
-            System.out.println("网络通信失败");
-            System.out.println("结束持久化数据存储失败！\n");
             e.printStackTrace();
         }
     }

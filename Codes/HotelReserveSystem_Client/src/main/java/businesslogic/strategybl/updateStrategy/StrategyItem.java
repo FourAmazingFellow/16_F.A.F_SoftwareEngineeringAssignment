@@ -112,7 +112,7 @@ public class StrategyItem {
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         }
         try {
-            strategyDAO.insert(strategyPO);
+            strategyDAO.insertStrategy(strategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -144,7 +144,7 @@ public class StrategyItem {
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         }
         try {
-            strategyDAO.update(strategyPO);
+            strategyDAO.updateStrategy(strategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -176,7 +176,7 @@ public class StrategyItem {
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         }
         try {
-            strategyDAO.delete(strategyPO);
+            strategyDAO.deleteStrategy(strategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;

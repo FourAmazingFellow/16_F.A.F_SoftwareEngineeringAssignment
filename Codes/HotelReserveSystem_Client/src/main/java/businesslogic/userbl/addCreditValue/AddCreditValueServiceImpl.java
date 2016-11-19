@@ -28,7 +28,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
         ClientInfoPO clientInfoPO = new ClientInfoPO(this.userID, null, null, null, creditValue, null);
         creditValue = clientInfoPO.getCreditValue();
         try {
-            userDAO.update(new ClientInfoPO(userID, null, null, userType, creditValue+creditAdded, null));;
+            userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue+creditAdded, null));;
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
