@@ -1,6 +1,7 @@
 package runner;
 
 
+
 import rmi.LinkToServer;
 
 public class ClientRunner {
@@ -18,6 +19,9 @@ public class ClientRunner {
 	public static void main(String[] args) {
 		ClientRunner clientRunner = new ClientRunner();
 		clientRunner.start();
+		while(true) {
+			
+		}
 	}
 
 }

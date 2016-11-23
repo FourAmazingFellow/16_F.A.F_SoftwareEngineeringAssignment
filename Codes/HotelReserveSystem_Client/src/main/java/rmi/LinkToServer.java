@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+
 public class LinkToServer {
 
 	private RemoteHelper remoteHelper;
@@ -13,6 +14,7 @@ public class LinkToServer {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObjectMySql"));
+			System.out.println("连接成功");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {

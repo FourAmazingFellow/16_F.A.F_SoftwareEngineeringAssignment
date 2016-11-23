@@ -14,7 +14,7 @@ import vo.StrategyVO;
  */
 public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     
-    private StrategyList strategyList=new StrategyList();
+    private StrategyList strategyList=new MockStrategyList();
     
     /**
      * 得到某种策略类型的列表
@@ -55,8 +55,7 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean add(String address, StrategyVO strategy){
-        StrategyItem strategyItem=new StrategyItem(strategy);
-        return strategyItem.add(address);
+        return strategyList.add(address,strategy);
     }
     
     /**
@@ -68,8 +67,7 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean modify(String address, StrategyVO strategy){
-        StrategyItem strategyItem=new StrategyItem(strategy);
-        return strategyItem.modify(address);
+        return strategyList.modify(address,strategy);
     }
     
     /**
@@ -81,8 +79,7 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean delete(String address, StrategyVO strategy){
-        StrategyItem strategyItem=new StrategyItem(strategy);
-        return strategyItem.delete(address);
+        return strategyList.delete(address,strategy);
     }
     
     /**
@@ -94,7 +91,6 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      */
     @Override
     public boolean valid(String address, StrategyVO strategy){
-        StrategyItem strategyItem=new StrategyItem(strategy);
-        return strategyItem.valid();
+        return strategyList.valid(address,strategy);
     }
 }

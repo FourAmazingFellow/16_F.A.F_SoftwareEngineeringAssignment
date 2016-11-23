@@ -6,18 +6,19 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.HotelInfoServiceImpl;
-import data_Stub.HotelDAOImpl_Stub;
-import dataservice.hotelDAO.HotelDAO;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
 public class HotelInfoServiceImplTest {
 
-	private HotelDAO hotelDAO;
+	private static LinkToServer linkToServer;
+	
 	private String hotelName;
 	private String businessDistrict;
 	private String hotelAddress;
@@ -39,6 +40,13 @@ public class HotelInfoServiceImplTest {
 	public boolean isOnSale;
 	public boolean isCommented;
 	
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		this.hotelName = "Jingling Hotel";
@@ -57,18 +65,17 @@ public class HotelInfoServiceImplTest {
 		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 400);
 		this.roomTypeAndPrice = roomTypeAndPrice;
 		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
-		roomTypeAndNums.put(RoomType.SINGLE_ROOM, 40);
+		roomTypeAndNums.put(RoomType.SINGLE_ROOM, 50);
 		roomTypeAndNums.put(RoomType.STANDARD_ROOM, 50);
 		roomTypeAndNums.put(RoomType.TRIBLE_ROOM, 50);
 		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 50);
 		this.roomTypeAndNums = roomTypeAndNums;
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
-		comments.put("Accident", "不愧是南京是最好的酒店");
+		comments.put("Accident", "不愧是南京市最好的酒店");
 		comments.put("Superman", "舒服的我都不想飞走了");
 		comments.put("Slow_Time", "隔音效果有点差");
 		this.comments = comments;
-		hotelDAO = new HotelDAOImpl_Stub(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, this.roomTypeAndPrice, this.roomTypeAndNums, this.comments);
 	}
 
 	@Test
@@ -82,12 +89,13 @@ public class HotelInfoServiceImplTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, briefHotelInfo.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfo.mark, 0);	
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, briefHotelInfo.city);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, briefHotelInfo.min_Price);
 	}
 	
 	@Test
 	public void testGetHotelBriefInfo2() {
 		hotelInfo = new HotelInfoServiceImpl();
-		hotelInfo.setHotelDAO(hotelDAO);
+//		hotelInfo.setHotelDAO(hotelDAO);
 		BriefHotelInfoVO briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道169号");
 		assertNull(briefHotelInfo);				
 	}
@@ -103,6 +111,7 @@ public class HotelInfoServiceImplTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotelDetails.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotelDetails.mark, 0);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotelDetails.city);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, hotelDetails.min_Price);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotelDetails.briefIntroduction);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotelDetails.facilityAndService);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotelDetails.roomTypeAndPrice);
@@ -113,7 +122,7 @@ public class HotelInfoServiceImplTest {
 	@Test
 	public void testGetHotelDetails2() {
 		hotelInfo = new HotelInfoServiceImpl();
-		hotelInfo.setHotelDAO(hotelDAO);
+//		hotelInfo.setHotelDAO(hotelDAO);
 		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道168号");
 		assertNull(hotelDetails);
 	}

@@ -3,6 +3,7 @@ package businesslogic.hotelbl.checkOrderedHotel;
 import java.rmi.RemoteException;
 
 import dataservice.hotelDAO.HotelDAO;
+import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 
 public class OrderedHotelItem {
@@ -15,6 +16,7 @@ public class OrderedHotelItem {
 	
 	public OrderedHotelItem(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
+		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
 	}
 	
 	public BriefHotelInfoVO getBriefHotelInfo() {

@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -8,9 +9,15 @@ import java.sql.Date;
  * @version 
  * @see
  */
-public class StrategyPO {
+public class StrategyPO implements Serializable {
     
-    private String address;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4603925317391648515L;
+	
+	
+	private String address;
     private String hotelName;
 	private Enum<StrategyType> strategyType;
     private String strategyName;
@@ -44,8 +51,8 @@ public class StrategyPO {
         }
     }
     
-    public StrategyPO(String hotelName, Enum<StrategyType> strategyType, String strategyName, float discount, String enterpriseName, String securityCode){
-        this.hotelName=hotelName;
+    public StrategyPO(String hotelAddress, Enum<StrategyType> strategyType, String strategyName, float discount, String enterpriseName, String securityCode){
+        this.address=hotelAddress;
         this.strategyType=strategyType;
         this.strategyName = strategyName;
         this.discount = discount;

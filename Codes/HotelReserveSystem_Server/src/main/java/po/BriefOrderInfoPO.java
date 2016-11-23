@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -8,7 +9,13 @@ import java.util.Date;
  * @version 1.0
  * @see
  */
-public class BriefOrderInfoPO {
+public class BriefOrderInfoPO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2113659845961650644L;
+	
+	
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -20,6 +27,10 @@ public class BriefOrderInfoPO {
 	private int totalPrice;
 	public Enum<OrderState> orderState;
 
+	public BriefOrderInfoPO() {
+		
+	}
+	
 	public BriefOrderInfoPO(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
 			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState) {
 		this.orderID = orderID;

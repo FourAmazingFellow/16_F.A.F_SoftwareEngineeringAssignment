@@ -8,7 +8,7 @@ import po.UserPO;
 import vo.VipInfoVO;
 
 public class MockSignVipServiceImpl extends SignVipServiceImpl{
-   private UserDAO userDAO = new UserDAOImpl_Stub("asd123", "asdasd", "12312312312", "如家");
+   private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900");
     
     @Override
     public boolean signRegularVip(VipInfoVO regularVip) {

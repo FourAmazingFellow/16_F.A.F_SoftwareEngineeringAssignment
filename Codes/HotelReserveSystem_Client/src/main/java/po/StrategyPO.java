@@ -1,6 +1,7 @@
 package po;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 酒店促销策略和网站营销策略信息PO，负责持久化数据传输
@@ -8,8 +9,14 @@ import java.sql.Date;
  * @version 
  * @see
  */
-public class StrategyPO {
-    
+public class StrategyPO implements Serializable {
+	 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4603925317391648515L;
+	
+	
     private String address;
 	private Enum<StrategyType> strategyType;
     private String strategyName;

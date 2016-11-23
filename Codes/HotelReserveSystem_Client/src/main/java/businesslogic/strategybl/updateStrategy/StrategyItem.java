@@ -1,7 +1,7 @@
 package businesslogic.strategybl.updateStrategy;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 
 import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;

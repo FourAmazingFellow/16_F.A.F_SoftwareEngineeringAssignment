@@ -1,35 +1,36 @@
 package businesslogic.userbl;
 
-import java.rmi.RemoteException;
+import java.sql.Date;
 
-import dataservice.userDAO.UserDAO;
 import po.UserType;
-import po.VipInfoPO;
 import vo.VipInfoVO;
 
-public class VipInfoImpl implements VipInfo{
+public class VipInfoImpl implements VipInfo {
 
     private VipInfoVO vipInfoVO;
     private UserType userType = UserType.Client;
-    private UserDAO userDAO;
-    
+    private String userID;
+    private String password;
+    private String telNum;
+    private Date birth;
+    private String enterpriseID;
+    private String enterprisePassword;
+
     @Override
     public VipInfoVO getRegularVipInfo(String userID) {
-        try {
-            this.vipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO) userDAO.getUserInfo(userID, userType));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.userID = userID;
+        // this.vipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO)
+        // userDAO.getUserInfo(userID, userType));
+        this.vipInfoVO = new VipInfoVO(this.userID, password, telNum, userType, birth);
         return vipInfoVO;
     }
 
     @Override
     public VipInfoVO getEnterpriseVipInfo(String userID) {
-        try {
-            this.vipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO) userDAO.getUserInfo(userID, userType));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.userID = userID;
+        // this.vipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO)
+        // userDAO.getUserInfo(userID, userType));
+        this.vipInfoVO = new VipInfoVO(this.userID, password, telNum, userType, enterpriseID, enterprisePassword);
         return vipInfoVO;
     }
 

@@ -12,6 +12,10 @@ import vo.HotelVO;
  */
 public class HotelPO extends BriefHotelInfoPO {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5323675892066362088L;
 	private String briefIntroduction;
 	private String facilityAndService;
 	private HashMap<RoomType, Integer> roomTypeAndPrice;

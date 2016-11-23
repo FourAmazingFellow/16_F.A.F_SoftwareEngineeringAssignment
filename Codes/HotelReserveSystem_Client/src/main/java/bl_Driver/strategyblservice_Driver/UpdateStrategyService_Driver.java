@@ -14,13 +14,13 @@ import vo.StrategyVO;
  */
 public class UpdateStrategyService_Driver {
     public void drive(UpdateStrategyService updateStrategyService){
-        ArrayList<StrategyVO> strategyList=updateStrategyService.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.BirthdayPromotion);
+        ArrayList<StrategyVO> strategyList=updateStrategyService.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
         if(strategyList.isEmpty())
             System.out.println("This kind of strategy doesn't exit!\n");
         else
             System.out.println("There are " + strategyList.size() + " checkIns in this hotel!\n");
         
-        StrategyVO strategyVO=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.BirthdayPromotion, "双十一折扣", 80);
+        StrategyVO strategyVO=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣", 80);
         System.out.println("The strategy "+strategyVO.strategyName+" has discount "+strategyVO.discount+"/n");
         
         boolean addStrategy=updateStrategyService.add("江苏省南京市栖霞区仙林大道163号", strategyVO);

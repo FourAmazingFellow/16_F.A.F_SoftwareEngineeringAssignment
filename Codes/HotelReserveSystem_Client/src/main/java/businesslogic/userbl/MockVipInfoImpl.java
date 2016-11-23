@@ -1,39 +1,30 @@
 package businesslogic.userbl;
 
-import java.rmi.RemoteException;
 import java.sql.Date;
 
-import data_Stub.UserDAOImpl_Stub;
-import dataservice.userDAO.UserDAO;
 import po.UserType;
-import po.VipInfoPO;
 import vo.VipInfoVO;
 
 public class MockVipInfoImpl extends VipInfoImpl{
     private VipInfoVO rVipInfoVO;
     private VipInfoVO eVipInfoVO;
     private UserType userType = UserType.Client;
-    private Date birth;
-    private UserDAO userDAO1 = new UserDAOImpl_Stub("qwe121", "qwedsa", "23123455431", birth);
-    private UserDAO userDAO2 = new UserDAOImpl_Stub("qwe123", "qweqwe", "12312312312", "如家");
+//    @SuppressWarnings("deprecation")
+//    private UserDAO userDAO1 = new UserDAOImpl_Stub("原", "qwe123", "12345678900", new Date(1997, 10, 10));
+//    private UserDAO userDAO2 = new UserDAOImpl_Stub("原", "qwe123", "12345678900", "如家","rujia");
     
+    @SuppressWarnings("deprecation")
     @Override
     public VipInfoVO getRegularVipInfo(String userID) {
-        try {
-            this.rVipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO) userDAO1.getUserInfo(userID, userType));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        //            this.rVipInfoVO = new VipInfoVO((VipInfoPO) userDAO1.getUserInfo(userID, userType));
+          this.rVipInfoVO = new VipInfoVO("原", "qwe123", "12345678900", userType, new Date(1997, 10, 10));
         return rVipInfoVO;
     }
 
     @Override
     public VipInfoVO getEnterpriseVipInfo(String userID) {
-        try {
-            this.eVipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO) userDAO2.getUserInfo(userID, userType));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        //            this.eVipInfoVO = new VipInfoVO((VipInfoPO) userDAO2.getUserInfo(userID, userType));
+        this.eVipInfoVO = new VipInfoVO("原", "qwe123", "12345678900",userType, "如家","rujia");
         return eVipInfoVO;
     }
 

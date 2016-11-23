@@ -1,13 +1,21 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * 酒店房间信息PO，负责持久化数据传输
  * @author 双
  * @version 
  * @see
  */
-public class RoomPO {
-    
+public class RoomPO implements Serializable {
+	 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5728643889668217710L;
+	
+	
     private Enum<RoomType> roomType;
     private int roomNum;
     private int roomPrice;

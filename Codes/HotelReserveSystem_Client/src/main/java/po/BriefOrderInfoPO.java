@@ -1,6 +1,9 @@
 package po;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import vo.BriefOrderInfoVO;
 
 /**
  * 简要订单信息PO，负责持久化数据传输
@@ -8,7 +11,13 @@ import java.util.Date;
  * @version 1.0
  * @see
  */
-public class BriefOrderInfoPO {
+public class BriefOrderInfoPO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2113659845961650644L;
+	
+	
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -34,6 +43,19 @@ public class BriefOrderInfoPO {
 		this.orderState = orderState;
 	}
 	
+	public BriefOrderInfoPO(BriefOrderInfoVO order) {
+		this.orderID = order.orderID;
+		this.userID = order.userID;
+		this.hotelName = order.hotelName;
+		this.hotelAddress = order.hotelAddress;
+		this.beginDate = order.beginDate;
+		this.finishDate = order.finishDate;
+		this.roomType = order.roomType;
+		this.num = order.num;
+		this.totalPrice = order.totalPrice;
+		this.orderState = order.orderState;
+	}
+
 	public String getUserID() {
 		return userID;
 	}

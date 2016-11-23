@@ -1,7 +1,7 @@
 package data_Stub;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import dataservice.strategyDAO.StrategyDAO;
@@ -70,7 +70,7 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
 
     @Override
     public StrategyPO getMarketStrategyInfo(String address, String strategyName) throws RemoteException {
-        StrategyPO strategyPO=new StrategyPO(address, strategyType, strategyName, discount);
+        StrategyPO strategyPO=new StrategyPO(address, strategyType, strategyName, discount, startTime, endTime);
         return strategyPO;
     }
 

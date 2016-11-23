@@ -1,13 +1,21 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * 用户信息PO，负责持久化数据传输
  * @author sparkler
  * @version 1.0
  */
-public class UserPO {
+public class UserPO implements Serializable {
   
-    private String userID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7056482237634796341L;
+	
+	
+	private String userID;
     private String passpord;
     private long telNum;
     private Enum<UserType> UserType;

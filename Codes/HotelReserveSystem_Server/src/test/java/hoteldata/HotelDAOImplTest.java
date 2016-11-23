@@ -103,40 +103,40 @@ public class HotelDAOImplTest {
 		}
 	}
 	
-	@Test
-	public void testInsert() {
-		try {
-			hotelDAO.insertHotel(po);
-		} catch(RemoteException e) {
-			e.printStackTrace();
-			fail("RemoteException has happened!");
-		}
-	}
-	
-	@Test
-	public void testUpdate() {
-		try {
-			hotelDAO.updateHotel(updatePO);
-		} catch(RemoteException e) {
-			e.printStackTrace();
-			fail("RemoteException has happened!");
-		}
-	}
-	
-	@Test
-	public void testGetHotelBriefInfoListByQuerying() {
-		String condition[] = {"南京市", "栖霞区", "mark desc", "0"};
-		ArrayList<BriefOrderInfoPO> orderedHotelList = new ArrayList<>();
-		try {
-			ArrayList<BriefHotelInfoPO> briefHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
-			assertEquals(3, briefHotelInfoPOs.size());
-			assertEquals("格林豪泰", briefHotelInfoPOs.get(0).getHotelName());
-			assertEquals("汉庭酒店", briefHotelInfoPOs.get(1).getHotelName());
-			assertEquals("如家酒店", briefHotelInfoPOs.get(2).getHotelName());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("RemoteException has happened!");
-		}
-	}
+//	@Test
+//	public void testInsert() {
+//		try {
+//			hotelDAO.insertHotel(po);
+//		} catch(RemoteException e) {
+//			e.printStackTrace();
+//			fail("RemoteException has happened!");
+//		}
+//	}
+//	
+//	@Test
+//	public void testUpdate() {
+//		try {
+//			hotelDAO.updateHotel(updatePO);
+//		} catch(RemoteException e) {
+//			e.printStackTrace();
+//			fail("RemoteException has happened!");
+//		}
+//	}
+//	
+//	@Test
+//	public void testGetHotelBriefInfoListByQuerying() {
+//		String condition[] = {"南京市", "栖霞区", "mark desc", "0"};
+//		ArrayList<BriefOrderInfoPO> orderedHotelList = new ArrayList<>();
+//		try {
+//			ArrayList<BriefHotelInfoPO> briefHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
+//			assertEquals(3, briefHotelInfoPOs.size());
+//			assertEquals("格林豪泰", briefHotelInfoPOs.get(0).getHotelName());
+//			assertEquals("汉庭酒店", briefHotelInfoPOs.get(1).getHotelName());
+//			assertEquals("如家酒店", briefHotelInfoPOs.get(2).getHotelName());
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("RemoteException has happened!");
+//		}
+//	}
 
 }

@@ -2,6 +2,8 @@ package businesslogic.hotelbl.queryHotel;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.orderbl.MockOrderInfoImpl;
@@ -10,6 +12,7 @@ import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.OrderState;
+import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.BriefOrderInfoVO;
 import vo.HotelVO;
@@ -29,25 +32,47 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	 * @return
 	 * @see
 	 */
-	private ArrayList<BriefOrderInfoPO> getAddress(ArrayList<BriefOrderInfoVO> orderInfoList) {
+	private ArrayList<BriefOrderInfoPO> getAddress() {
 		ArrayList<BriefOrderInfoPO> hotelList = new ArrayList<>();
+		for(BriefOrderInfoVO order: orderList) {
+			hotelList.add(new BriefOrderInfoPO(order));
+		}
+		for(int i = 0; i < hotelList.size(); i++) {
+			for(int j = i + 1; j < hotelList.size(); j++) {
+				if(hotelList.get(i).getHotelAddress().equals(hotelList.get(j).getHotelAddress())) {
+					hotelList.remove(j);
+				}
+			}
+		}
 		return hotelList;
 	}
 	
-	private ArrayList<OrderState> getStates(String hotelAddress) {
-		ArrayList<OrderState> hotelState = new ArrayList<>();
+	/**
+	 * 获得该用户在该酒店的所有订单类型
+	 * @param hotelAddress
+	 * @return
+	 * @see
+	 */
+	private Set<Enum<OrderState>> getStates(String hotelAddress) {
+		Set<Enum<OrderState>> hotelState = new HashSet<>();
+		for(BriefOrderInfoVO orderInfoVO : orderList) {
+			if(orderInfoVO.hotelAddress.equals(hotelAddress)) {
+				hotelState.add(orderInfoVO.orderState);
+			}
+		}
 		return hotelState;
 	}
 	
 	public QueryHotelServiceImpl(String userID) {
+		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.orderInfo = new MockOrderInfoImpl();
-		this.hotelList = new MockQueryHotelList();
+		this.hotelList = new QueryHotelList();
 		orderList = orderInfo.getReservedOrderList(userID);
 	}
 	
 	@Override
 	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying(String[] condition) {
-		ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress(orderList);
+		ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress();
 		ArrayList<BriefHotelInfoPO> list = hotelList.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
 		for(BriefHotelInfoPO hotelInfoPO : list) {

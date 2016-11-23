@@ -8,8 +8,11 @@ import java.sql.Date;
  * @version 1.0
  */
 public class VipInfoPO extends UserPO {
-   
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8906068652233749202L;
+	
     private Date birth;
     private String enterpriseID;
     private String enterprisePasspord;

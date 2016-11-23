@@ -15,7 +15,7 @@ public class VipInfoVO extends UserVO {
 
     public Date birth;
     public String enterpriseID;
-    public String enterprisePasspord;
+    public String enterprisePassword;
     public VipInfoVO(String userID, String passpord, String telNum, Enum<UserType> userType, Date birth) {
         super(userID, passpord, telNum, userType);
         this.birth = birth;
@@ -24,12 +24,12 @@ public class VipInfoVO extends UserVO {
             String enterprisePasspord) {
         super(userID, passpord, telNum, userType);
         this.enterpriseID = enterpriseID;
-        this.enterprisePasspord = enterprisePasspord;
+        this.enterprisePassword = enterprisePasspord;
     }
     public VipInfoVO(VipInfoPO vipInfo) {
         super(vipInfo);
         this.enterpriseID = vipInfo.getEnterpriseID();
-        this.enterprisePasspord = vipInfo.getEnterprisePasspord();
+        this.enterprisePassword = vipInfo.getEnterprisePasspord();
     }
 
 

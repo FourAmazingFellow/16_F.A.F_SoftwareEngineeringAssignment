@@ -1,6 +1,6 @@
 package vo;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 import po.OrderState;
 
@@ -10,9 +10,9 @@ public class OrderedHotelInfoVO {
 	 public String hotelAddress;
 	 public int starLevel;
 	 public float mark;
-	 public ArrayList<OrderState> hotelState;
+	 public Set<Enum<OrderState>> hotelState;
 
-	 public OrderedHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, ArrayList<OrderState> hotelState) {
+	 public OrderedHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, Set<Enum<OrderState>> hotelState) {
 		 this.hotelName = hotelName;
 		 this.businessDistrict = businessDistrict;
 	     this.hotelAddress = hotelAddress;
@@ -21,7 +21,7 @@ public class OrderedHotelInfoVO {
 	     this.hotelState = hotelState;
 	 }
 	 
-	 public OrderedHotelInfoVO(BriefHotelInfoVO briefHotelInfoVO, ArrayList<OrderState> hotelState) {
+	 public OrderedHotelInfoVO(BriefHotelInfoVO briefHotelInfoVO, Set<Enum<OrderState>> hotelState) {
 		 this.hotelName = briefHotelInfoVO.hotelName;
 		 this.businessDistrict = briefHotelInfoVO.businessDistrict;
 	     this.hotelAddress = briefHotelInfoVO.hotelAddress;

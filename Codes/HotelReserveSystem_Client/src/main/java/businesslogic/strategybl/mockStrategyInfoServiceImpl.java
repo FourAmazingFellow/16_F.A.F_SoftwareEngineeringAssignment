@@ -21,7 +21,7 @@ public class mockStrategyInfoServiceImpl extends StrategyInfoServiceImpl{
 	}
 
 	@Override
-	public boolean verifyEnterpriseMember(String hotelName, String enterpriseName, String securityCode) {
+	public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
 		return true;
 	}
 	

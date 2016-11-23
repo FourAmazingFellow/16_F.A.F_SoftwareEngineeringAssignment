@@ -30,7 +30,7 @@ public class CheckOrderedHotelServiceImplTest {
 		assertEquals(5, orderedHotelInfoVOs.get(0).starLevel);
 		assertEquals(5.0f, orderedHotelInfoVOs.get(0).mark, 0);
 		assertEquals(1, orderedHotelInfoVOs.get(0).hotelState.size());
-		assertEquals(OrderState.DONE_ORDER, orderedHotelInfoVOs.get(0).hotelState.get(0));
+		assertEquals(true, orderedHotelInfoVOs.get(0).hotelState.contains(OrderState.DONE_ORDER));
 	}
 	
 //	@Test

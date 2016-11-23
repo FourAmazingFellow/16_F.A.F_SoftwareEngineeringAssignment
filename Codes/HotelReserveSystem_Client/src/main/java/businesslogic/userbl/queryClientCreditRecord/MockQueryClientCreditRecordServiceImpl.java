@@ -7,8 +7,7 @@ import dataservice.userDAO.UserDAO;
 import vo.ClientCreditRecordVO;
 
 public class MockQueryClientCreditRecordServiceImpl extends QueryClientCreditRecordServiceImpl{
- private UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qwe123", "12312312312", 500, null);
-    
+ private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900", 500, null);
     @Override
     public ClientCreditRecordVO queryCreditRecord(String userID) {
         try {

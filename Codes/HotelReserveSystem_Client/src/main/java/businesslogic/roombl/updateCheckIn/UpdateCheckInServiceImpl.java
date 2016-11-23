@@ -16,7 +16,7 @@ import vo.RoomVO;
  */
 public class UpdateCheckInServiceImpl implements UpdateCheckInService{
 
-    private CheckInList checkInList=new CheckInList();
+    private CheckInList checkInList=new MockCheckInList();
     
     /**
      * 得到入住信息列表

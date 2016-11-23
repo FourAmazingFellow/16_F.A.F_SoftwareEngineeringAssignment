@@ -9,8 +9,13 @@ import java.util.Date;
  * @see
  */
 public class CheckInOutPO extends RoomPO{
-    
-    private Date checkInTime;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5123885900595460789L;
+	
+	
+	private Date checkInTime;
     private Date expDepartTime;
     private Date actDepartTime;
     

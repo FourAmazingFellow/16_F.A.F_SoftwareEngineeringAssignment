@@ -22,8 +22,8 @@ public class MockCheckOutItem extends CheckOutItem{
     
     @SuppressWarnings("deprecation")
     public MockCheckOutItem(){
-        Date actDepartTime=new Date(2016, 11, 6, 12, 0);
-        checkOutDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",null,null,actDepartTime);
+        Date actDepartTime=new Date(2016, 11, 12, 12, 0);
+        checkOutDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 0, "江苏省南京市栖霞区仙林大道163号",null,null,actDepartTime);
     }
     
     public MockCheckOutItem(RoomPO roomPO) {
@@ -82,7 +82,7 @@ public class MockCheckOutItem extends CheckOutItem{
     
     @Override
     public boolean validCheckOut(){
-        return false;
+        return true;
         
     }
     

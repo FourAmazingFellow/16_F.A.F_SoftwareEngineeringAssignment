@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import businesslogicservice.hotelblservice.MaintainHotelBasicInfoService;
 import dataservice.hotelDAO.HotelDAO;
 import po.HotelPO;
+import rmi.RemoteHelper;
 import vo.HotelVO;
 
 public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfoService{
@@ -17,9 +18,9 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 		this.hotelDAO = hotelDAO;
 	}
 	
-	public MaintainHotelBasicInfoServiceImpl(String hotelAddress, HotelDAO hotelDAO) {
+	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
-		this.setHotelDAO(hotelDAO);
+		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
 		try {
 			this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
 		} catch (RemoteException e) {

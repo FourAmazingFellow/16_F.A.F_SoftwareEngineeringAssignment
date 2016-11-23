@@ -3,6 +3,8 @@ package bl_Stub.hotelblservice_Stub;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import businesslogicservice.hotelblservice.QueryHotelService;
 import po.OrderState;
@@ -101,7 +103,7 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	@Override
 	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying(String[] condition) {
 		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOList = new ArrayList<>();
-		ArrayList<OrderState> orderStates = new ArrayList<>();
+		Set<Enum<OrderState>> orderStates = new HashSet<>();
 		orderStates.add(OrderState.DONE_ORDER);
 		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, orderStates));
 		return orderedHotelInfoVOList;

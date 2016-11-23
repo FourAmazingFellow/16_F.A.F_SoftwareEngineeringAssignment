@@ -5,8 +5,13 @@ package po;
  * @version 
  * @see
  */
-public class HotelStaffInfoPO extends UserPO{
-    
+public class HotelStaffInfoPO extends UserPO {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2080081292141695387L;
+	
+	    
     private String enterpriseName;
     
     public HotelStaffInfoPO(String userID, String passpord, long telNum, String creditChangeRecord,

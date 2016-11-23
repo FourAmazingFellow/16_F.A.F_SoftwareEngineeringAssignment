@@ -9,14 +9,17 @@ import vo.ClientInfoVO;
  * @see
  */
 public class ClientInfoPO extends UserPO{
- 
- 
-
-    private int creditValue;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7813562391061517043L;
+	
+	
+	private int creditValue;
     private String[] creditRecord;
 
-    public ClientInfoPO(String userID, String passpord, String telNum, UserType userType, int creditValue, String[] creditRecord) {
-        super(userID, passpord, telNum, userType);
+    public ClientInfoPO(String userID, String password, String telNum, UserType userType, int creditValue, String[] creditRecord) {
+        super(userID, password, telNum, userType);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }

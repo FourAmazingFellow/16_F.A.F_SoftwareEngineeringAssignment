@@ -1,4 +1,6 @@
 package po;
+import java.io.Serializable;
+
 import vo.UserVO;
 
 /**
@@ -6,16 +8,22 @@ import vo.UserVO;
  * @author sparkler
  * @version 1.0
  */
-public class UserPO {
-  
+public class UserPO implements Serializable {
+	  
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7056482237634796341L;
+	
+	  
     private String userID;
-    private String passpord;
+    private String password;
     private String telNum;
     public Enum<UserType> userType;
     
-    public UserPO(String userID, String passpord, String telNum, Enum<UserType> userType) {
+    public UserPO(String userID, String password, String telNum, Enum<UserType> userType) {
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = password;
         this.telNum = telNum;
         this.userType = userType;
     }
@@ -32,10 +40,10 @@ public class UserPO {
         return userID;
     }
     public void setPasspord(String passpord) {
-        this.passpord = passpord;
+        this.password = passpord;
     }
-    public String getPasspord() {
-        return passpord;
+    public String getPassword() {
+        return password;
     }
     public void setTelNum(String telNum) {
         this.telNum = telNum;

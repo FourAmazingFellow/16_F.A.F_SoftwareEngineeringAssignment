@@ -3,6 +3,7 @@ package businesslogic.userbl.modifyClientInfo;
 import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.ModifyClientInfoService;
+import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
 import po.UserType;
@@ -12,11 +13,14 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
 
     private UserDAO userDAO;
     private String userID;
+    private String password;
+    private String telNum;
     private UserType userType;
     private UserVO userVO;
     
     public ModifyClientInfoServiceImpl(String userID) {
         this.userID = userID;
+        this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         try {
             this.userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
         } catch (RemoteException e) {

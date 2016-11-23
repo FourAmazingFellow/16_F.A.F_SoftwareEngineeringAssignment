@@ -6,6 +6,7 @@ import businesslogic.userbl.UserInfo;
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import dataservice.hotelDAO.HotelDAO;
 import po.HotelPO;
+import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.UserVO;
 
@@ -20,6 +21,10 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	
 	public void setUserService(UserInfo userService) {
 		this.userService = userService;
+	}
+	
+	public ManageHotelInfoServiceImpl() {
+		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
 	}
 	
 	@Override

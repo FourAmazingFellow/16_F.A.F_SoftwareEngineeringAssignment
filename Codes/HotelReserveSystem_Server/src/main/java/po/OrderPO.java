@@ -11,6 +11,12 @@ import java.util.Date;
  */
 
 public class OrderPO extends BriefOrderInfoPO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4607107470458436118L;
+	
+	
 	private Date orderProducedTime;
 	private Date lastedOrderDoneTime;
 	private int numOfPerson;
@@ -30,6 +36,9 @@ public class OrderPO extends BriefOrderInfoPO {
 		this.isChildren = isChild;
 		this.isOnSale = isOnSale;
 		this.isCommented = isCommented;
+	}
+
+	public OrderPO() {
 	}
 
 	public Date getOrderProducedTime() {

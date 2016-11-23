@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import vo.BriefHotelInfoVO;
 
 /**
@@ -8,7 +10,12 @@ import vo.BriefHotelInfoVO;
  * @version 1.0
  * @see
  */
-public class BriefHotelInfoPO {
+public class BriefHotelInfoPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7803949077367829494L;
+	
 	private String hotelName;
 	private String businessDistrict;
 	private String hotelAddress;
@@ -63,7 +70,7 @@ public class BriefHotelInfoPO {
 	public float getMark() {
 		return mark;
 	}
-	public void setMark(int mark) {
+	public void setMark(float mark) {
 		this.mark = mark;
 	}
 	public String getCity() {

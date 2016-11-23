@@ -1,6 +1,8 @@
 package businesslogic.hotelbl.checkOrderedHotel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.orderbl.MockOrderInfoImpl;
@@ -30,18 +32,36 @@ public class OrderedHotelList {
 	 * @return
 	 * @see
 	 */
-	private ArrayList<BriefOrderInfoVO> getAddress(ArrayList<BriefOrderInfoVO> orderInfoList) {
-		ArrayList<BriefOrderInfoVO> hotelList = new ArrayList<>();
+	private ArrayList<BriefOrderInfoVO> getAddress() {
+		ArrayList<BriefOrderInfoVO> hotelList = new ArrayList<>(orderInfoList);
+		for(int i = 0; i < hotelList.size(); i++) {
+			for(int j = i + 1; j < hotelList.size(); j++) {
+				if(hotelList.get(i).hotelAddress.equals(hotelList.get(j).hotelAddress)) {
+					hotelList.remove(j);
+				}
+			}
+		}
 		return hotelList;
 	}
 	
-	private ArrayList<OrderState> getStates(String hotelAddress) {
-		ArrayList<OrderState> hotelState = new ArrayList<>();
+	/**
+	 * 获得该用户在该酒店的所有订单类型
+	 * @param hotelAddress
+	 * @return
+	 * @see
+	 */
+	private Set<Enum<OrderState>> getStates(String hotelAddress) {
+		Set<Enum<OrderState>> hotelState = new HashSet<>();
+		for(BriefOrderInfoVO orderInfoVO : orderInfoList) {
+			if(orderInfoVO.hotelAddress.equals(hotelAddress)) {
+				hotelState.add(orderInfoVO.orderState);
+			}
+		}
 		return hotelState;
 	}
 	
 	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList() {
-		ArrayList<BriefOrderInfoVO> hotelList = this.getAddress(orderInfoList);
+		ArrayList<BriefOrderInfoVO> hotelList = this.getAddress();
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
 		for(BriefOrderInfoVO orderInfoVO : hotelList) {
 			hotelItem = new OrderedHotelItem(orderInfoVO.hotelAddress);

@@ -2,6 +2,7 @@ package businesslogic.userbl.loginAndSignUp;
 
 import java.rmi.RemoteException;
 
+import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
 import po.UserType;
@@ -12,6 +13,7 @@ public class CheckLoginInfo {
     private UserType userType;
     private UserPO userPO;
     private String password;
+    private String telNum;
     /**
      * 验证登录信息
      * @param userID 业务逻辑层传来的用户标识
@@ -21,16 +23,17 @@ public class CheckLoginInfo {
      */
     public boolean checkUser(String userID,String password) {
         this.userID = userID;
-        this.userType = null;
+        this.userType = UserType.Client;
+        this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         try {
-            userPO = userDAO.getUserInfo(this.userID, userType);
+            userPO = userDAO.getUserInfo(this.userID, this.userType);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        this.password = userPO.getPasspord();
+        this.password = userPO.getPassword();
         if (this.password == password) {
-            return false;
-        } else
             return true;
+        } else
+            return false;
     }
 }

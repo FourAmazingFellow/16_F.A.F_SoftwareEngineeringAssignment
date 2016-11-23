@@ -1,12 +1,19 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author 原
  * @version 1.0
  * @see
  */
-public class BriefHotelInfoPO {
+public class BriefHotelInfoPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7803949077367829494L;
+	
 	private String hotelName;
 	private String businessDistrict;
 	private String hotelAddress;
