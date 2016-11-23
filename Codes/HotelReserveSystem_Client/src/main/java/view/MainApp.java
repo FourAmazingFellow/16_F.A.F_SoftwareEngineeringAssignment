@@ -25,13 +25,14 @@ public class MainApp extends Application {
 
 		showLoginView();
 	}
-	
+
 	public void showLoginView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
+
 			loader.setLocation(MainApp.class.getResource("login/Login.fxml"));
 			loginPanel = (AnchorPane) loader.load();
-			
+
 			Scene scene = new Scene(loginPanel);
 			primaryStage.setScene(scene);
 
@@ -43,14 +44,14 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showClientView() {
 
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("client/SearchPanel.fxml"));
 			searchPanel = (AnchorPane) loader.load();
-			
+
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(searchPanel);
 			primaryStage.setScene(scene);
