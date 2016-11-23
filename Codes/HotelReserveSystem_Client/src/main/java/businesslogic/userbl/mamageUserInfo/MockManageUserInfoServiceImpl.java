@@ -7,7 +7,6 @@ import dataservice.userDAO.UserDAO;
 import po.UserPO;
 import po.UserType;
 import vo.UserVO;
-import vo.WebMarketStaffInfoVO;
 
 public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
    
@@ -29,9 +28,9 @@ public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl{
         }
     }
     @Override
-    public boolean add(WebMarketStaffInfoVO webMarketStaff) {
+    public boolean add(UserVO user) {
         try {
-            userDAO.insertUser(new UserPO(webMarketStaff));
+            userDAO.insertUser(new UserPO(user));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
