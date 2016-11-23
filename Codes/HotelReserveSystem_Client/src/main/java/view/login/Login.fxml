@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" styleClass="background" stylesheets="@../client/DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.login.LoginController">
+   <children>
+      <GridPane layoutX="157.0" layoutY="300.0" prefHeight="194.0" prefWidth="710.0" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="133.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.7164611816406" minWidth="10.0" prefWidth="153.7509765625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="534.2490234375" minWidth="10.0" prefWidth="534.2490234375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="102.85440063476562" minHeight="10.0" prefHeight="101.28350830078125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="98.57086181640625" minHeight="10.0" prefHeight="92.71649169921875" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="77.0" prefWidth="223.0" styleClass="label-header" text="用户名 : " />
+            <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="79.0" prefWidth="223.0" styleClass="label-header" text="    密码 : " GridPane.rowIndex="1" />
+            <TextField fx:id="userIDTextArea" prefHeight="60.0" prefWidth="300.0" promptText="请输入用户名..." GridPane.columnIndex="1" />
+            <TextField fx:id="passwordTextArea" prefHeight="60.0" prefWidth="300.0" promptText="请输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Button fx:id="loginButton" layoutX="320.0" layoutY="561.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="登陆" />
+      <Button fx:id="registerButton" layoutX="577.0" layoutY="564.0" mnemonicParsing="false" opacity="0.71" prefHeight="50.0" prefWidth="150.0" text="注册" />
+      <Text fill="WHITE" layoutX="149.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F.A.F. 酒店预定系统" textAlignment="CENTER" wrappingWidth="763.9618530273438">
+         <font>
+            <Font name="书体坊向佳红毛笔行书" size="79.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
