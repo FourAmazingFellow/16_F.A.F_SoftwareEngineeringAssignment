@@ -20,7 +20,6 @@ public class StrategyDAOImplTest {
 
 	private StrategyDAO strategyDAO;
 	private String address;
-    private String hotelName;
 	private Enum<StrategyType> strategyType;
     private String strategyName;
     private float discount;
@@ -31,18 +30,24 @@ public class StrategyDAOImplTest {
     private Date endTime;
     private String tradeArea;
     private int vipRank;
+    private StrategyPO updatepo;
+    private StrategyPO insertpo;
     
     
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
 		strategyDAO = new StrategyDAOImpl();
-		this.address = "江苏省南京市栖霞区仙林大道163号";
+		this.address = "Web";
 		this.discount = 0.85f;
 		this.strategyType = StrategyType.SpecificTimeMarket;
 		this.strategyName = "中秋促销折扣";
 		this.startTime = new Date(116, 8, 20);
 		this.endTime = new Date(116, 8, 22);
+		Date startTimeOfInsert = new Date(116, 10, 24);
+		Date endTimeOfInsert = new Date(116, 10, 25);
+		this.updatepo = new StrategyPO("Web", StrategyType.VipTradeAreaMarket, "栖霞区折扣", 0.9f, 1, "栖霞区");
+		this.insertpo = new StrategyPO("Web", StrategyType.SpecificTimeMarket, "感恩节促销折扣", discount, startTimeOfInsert, endTimeOfInsert);
 	}
 
 	@Test
@@ -63,6 +68,16 @@ public class StrategyDAOImplTest {
 		}
 	}
 	
+//	@Test
+//	public void testInsertStrategy() {
+//		try {
+//			strategyDAO.insertStrategy(insertpo);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
+	
 	@Test
 	public void testGetStrategyInfo() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -79,5 +94,25 @@ public class StrategyDAOImplTest {
 			fail("Not yet implemented");
 		}
 	}
+	
+	@Test
+	public void testUpdateStrategy() {
+		try {
+			strategyDAO.updateStrategy(updatepo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
+	}
+	
+//	@Test
+//	public void testDeleteStrategy() {
+//		try {
+//			strategyDAO.deleteStrategy(insertpo);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
 
 }

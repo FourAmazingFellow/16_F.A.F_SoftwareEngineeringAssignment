@@ -147,17 +147,181 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 
 	@Override
 	public void updateStrategy(StrategyPO po) throws RemoteException {
-
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			String sql = null;
+			if(po.getStrategyType() == StrategyType.BirthdayPromotion) {
+				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setFloat(1, po.getDiscount());
+				pstmt.setString(2, po.getAddress());
+				pstmt.setString(3, po.getStrategyName());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.MultiRoomPromotion) {
+				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, minRoomNumOrVipRank = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setFloat(1, po.getDiscount());
+				pstmt.setInt(2, po.getMinRoomNum());
+				pstmt.setString(3, po.getAddress());
+				pstmt.setString(4, po.getStrategyName());
+				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.MemberRankMarket) {
+				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, minRoomNumOrVipRank = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setFloat(1, po.getDiscount());
+				pstmt.setInt(2, po.getVipRank());
+				pstmt.setString(3, po.getAddress());
+				pstmt.setString(4, po.getStrategyName());
+				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
+				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, securityCode = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setFloat(1, po.getDiscount());
+				pstmt.setString(2, po.getEnterpriseName());
+				pstmt.setString(3, po.getAddress());
+				pstmt.setString(4, po.getStrategyName());
+				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.SpecificTimePromotion || po.getStrategyType() == StrategyType.SpecificTimeMarket) {
+				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, startTime = ?, endTime = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setFloat(1, po.getDiscount());
+				pstmt.setDate(2, new java.sql.Date(po.getStartTime().getTime()));
+				pstmt.setDate(3, new java.sql.Date(po.getEndTime().getTime()));
+				pstmt.setString(4, po.getAddress());
+				pstmt.setString(5, po.getStrategyName());
+				pstmt.setInt(6, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+			else {
+				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, vipRank = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setFloat(1, po.getDiscount());
+				pstmt.setInt(2, po.getVipRank());
+				pstmt.setString(3, po.getAddress());
+				pstmt.setString(4, po.getStrategyName());
+				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(null, conn, pstmt);
+		}
 	}
 
 	@Override
 	public void insertStrategy(StrategyPO po) throws RemoteException {
-
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			String sql = null;
+			if(po.getStrategyType() == StrategyType.BirthdayPromotion) {
+				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType) values(?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, po.getAddress());
+				pstmt.setString(2, po.getStrategyName());
+				pstmt.setFloat(3, po.getDiscount());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.MultiRoomPromotion) {
+				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, minRoomNumOrVipRank) values(?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, po.getAddress());
+				pstmt.setString(2, po.getStrategyName());
+				pstmt.setFloat(3, po.getDiscount());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.setInt(5, po.getMinRoomNum());
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.MemberRankMarket) {
+				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, minRoomNumOrVipRank) values(?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, po.getAddress());
+				pstmt.setString(2, po.getStrategyName());
+				pstmt.setFloat(3, po.getDiscount());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.setInt(5, po.getVipRank());
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
+				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, enterpriseName, securityCode) values(?,?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, po.getAddress());
+				pstmt.setString(2, po.getStrategyName());
+				pstmt.setFloat(3, po.getDiscount());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.setString(5, po.getEnterpriseName());
+				pstmt.setString(6, po.getSecurityCode());
+				pstmt.executeUpdate();
+			}
+			else if(po.getStrategyType() == StrategyType.SpecificTimePromotion || po.getStrategyType() == StrategyType.SpecificTimeMarket) {
+				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, startTime, endTime) values(?,?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, po.getAddress());
+				pstmt.setString(2, po.getStrategyName());
+				pstmt.setFloat(3, po.getDiscount());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.setDate(5, new java.sql.Date(po.getStartTime().getTime()));
+				pstmt.setDate(6, new java.sql.Date(po.getEndTime().getTime()));
+				pstmt.executeUpdate();
+			}
+			else {
+				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, vipRank, tradeArea) values(?,?,?,?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, po.getAddress());
+				pstmt.setString(2, po.getStrategyName());
+				pstmt.setFloat(3, po.getDiscount());
+				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
+				pstmt.setInt(5, po.getVipRank());
+				pstmt.setString(6, po.getTradeArea());
+				pstmt.executeUpdate();
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(null, conn, pstmt);
+		}
 	}
 
 	@Override
 	public void deleteStrategy(StrategyPO po) throws RemoteException {
-
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			String sql = "delete from " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " where hotelAddress = ? and strategyType = ? and strategyName = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, po.getAddress());
+			pstmt.setInt(2, convertFromStrategyTypeToInt(po.getStrategyType()));
+			pstmt.setString(3, po.getStrategyName());
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(null, conn, pstmt);
+		}
 	}
 
 	@Override
