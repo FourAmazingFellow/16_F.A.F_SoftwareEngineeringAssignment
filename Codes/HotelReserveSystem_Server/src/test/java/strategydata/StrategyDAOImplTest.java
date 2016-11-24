@@ -62,5 +62,22 @@ public class StrategyDAOImplTest {
 			fail("Not yet implemented");
 		}
 	}
+	
+	@Test
+	public void testGetStrategyInfo() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			StrategyPO strategyPO = strategyDAO.getStrategyInfo(address, strategyType, strategyName);
+			assertEquals(address, strategyPO.getAddress());
+			assertEquals(discount, strategyPO.getDiscount(), 0);
+			assertEquals(strategyType, strategyPO.getStrategyType());
+			assertEquals(strategyName, strategyPO.getStrategyName());
+			assertEquals(sdf.format(startTime), sdf.format(strategyPO.getStartTime()));
+			assertEquals(sdf.format(endTime), sdf.format(strategyPO.getEndTime()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
+	}
 
 }
