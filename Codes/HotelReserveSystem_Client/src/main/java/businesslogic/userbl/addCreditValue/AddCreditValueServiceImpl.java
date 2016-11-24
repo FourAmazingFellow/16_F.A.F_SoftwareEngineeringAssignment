@@ -20,7 +20,8 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
             this.clientInfoVO = new UserVO(userDAO.getUserInfo(userID, userType));
         } catch (RemoteException e) {
             e.printStackTrace();
-        }    }
+        }    
+    }
     
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {

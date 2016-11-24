@@ -33,7 +33,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public StrategyPO getMarketStrategyInfo(String address, String strategyName) throws RemoteException;
+    public StrategyPO getStrategyInfo(String address, Enum<StrategyType> strategyType, String strategyName) throws RemoteException;
     
     /**
      * 更新某条策略信息

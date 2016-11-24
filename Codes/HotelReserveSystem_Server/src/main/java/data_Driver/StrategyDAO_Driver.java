@@ -21,7 +21,7 @@ public class StrategyDAO_Driver {
         else
             System.out.println("There are " + strategyList.size() + " checkIns in this hotel!\n");
         
-        StrategyPO strategyPO1=strategyDAO.getMarketStrategyInfo("江苏省南京市栖霞区仙林大道163号", "雙十一折扣");
+        StrategyPO strategyPO1=strategyDAO.getStrategyInfo("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣");
         System.out.println("The strategy "+strategyPO1.getStrategyName()+" has discount "+strategyPO1.getDiscount()+"/n");
         
         

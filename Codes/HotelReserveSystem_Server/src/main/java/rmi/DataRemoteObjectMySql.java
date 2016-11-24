@@ -85,8 +85,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public StrategyPO getMarketStrategyInfo(String address, String strategyName) throws RemoteException {
-		return strategyDAO.getMarketStrategyInfo(address, strategyName);
+	public StrategyPO getStrategyInfo(String address, String strategyName) throws RemoteException {
+		return strategyDAO.getStrategyInfo(address, strategyName);
 	}
 
 	@Override

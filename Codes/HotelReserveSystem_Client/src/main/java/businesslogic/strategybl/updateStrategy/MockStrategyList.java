@@ -40,7 +40,7 @@ public class MockStrategyList extends StrategyList{
     public StrategyItem getStrategyInfo(String address, String name){
         StrategyPO strategyPO;
         try {
-            strategyPO=strategyDAO.getMarketStrategyInfo(address, name);
+            strategyPO=strategyDAO.getStrategyInfo(address, name);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

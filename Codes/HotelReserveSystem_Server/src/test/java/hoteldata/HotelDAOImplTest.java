@@ -37,7 +37,7 @@ public class HotelDAOImplTest {
 	public void setUp() throws Exception {
 		hotelDAO = new HotelDAOImpl();
 		this.hotelName = "Jingling Hotel";
-		this.businessDistrict = "新街口";
+		this.businessDistrict = "栖霞区";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
@@ -59,7 +59,8 @@ public class HotelDAOImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		po = new HotelPO("格林豪泰", "栖霞区", "江苏省南京市栖霞区仙林大道166号", 4, 4.5f, city, "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		po = new HotelPO("锦江之星", "松江区", "上海松江区九亭涞坊路1000号", 3, 3.5f, "上海市", "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		po.setMin_Price(100);
 		comments.put("Accident", "不愧是南京市最好的酒店");
 		comments.put("Superman", "舒服的我都不想飞走了");
 		comments.put("Slow_Time", "隔音效果有点差");
@@ -103,15 +104,15 @@ public class HotelDAOImplTest {
 		}
 	}
 	
-//	@Test
-//	public void testInsert() {
-//		try {
-//			hotelDAO.insertHotel(po);
-//		} catch(RemoteException e) {
-//			e.printStackTrace();
-//			fail("RemoteException has happened!");
-//		}
-//	}
+	@Test
+	public void testInsert() {
+		try {
+			hotelDAO.insertHotel(po);
+		} catch(RemoteException e) {
+			e.printStackTrace();
+			fail("RemoteException has happened!");
+		}
+	}
 //	
 //	@Test
 //	public void testUpdate() {
