@@ -17,7 +17,7 @@ public interface StrategyDAO extends Remote {
     
     /**
      * 获取某种策略类型的折扣列表
-     * @param address String型，业务逻辑层传递来的酒店地址
+     * @param address String型，业务逻辑层传递来的酒店地址,如果是网站促销策略，address="Web"
      * @param StrategyType Enum型，策略类型
      * @return 返回折扣策略列表
      * @throws RemoteException
@@ -27,7 +27,7 @@ public interface StrategyDAO extends Remote {
     
     /**
      * 获取对应折扣名称的策略信息
-     * @param address String型，业务逻辑层传递来的酒店地址
+     * @param address String型，业务逻辑层传递来的酒店地址,如果是网站促销策略，address="Web"
      * @param strategyName String型，折扣名称
      * @return 返回策略信息
      * @throws RemoteException
@@ -58,6 +58,4 @@ public interface StrategyDAO extends Remote {
      * @see
      */
     public void deleteStrategy(StrategyPO po) throws RemoteException;
-    
-    public StrategyPO findStrategy(String userID) throws RemoteException;
 }

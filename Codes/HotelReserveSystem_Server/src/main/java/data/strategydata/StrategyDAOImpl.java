@@ -324,9 +324,4 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 		}
 	}
 
-	@Override
-	public StrategyPO findStrategy(String userID) throws RemoteException {
-		return null;
-	}
-
 }

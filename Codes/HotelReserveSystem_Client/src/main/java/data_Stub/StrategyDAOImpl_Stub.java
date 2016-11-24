@@ -75,12 +75,6 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
     }
 
     @Override
-    public StrategyPO findStrategy(String userID) throws RemoteException {
-        StrategyPO strategyPO=new StrategyPO(address, strategyType, strategyName, discount);
-        return strategyPO;
-    }
-
-    @Override
     public void updateStrategy(StrategyPO po) throws RemoteException {
         System.out.println("更新该策略信息成功");
         

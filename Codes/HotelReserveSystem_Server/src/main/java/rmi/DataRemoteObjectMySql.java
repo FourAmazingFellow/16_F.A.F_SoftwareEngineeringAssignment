@@ -17,6 +17,7 @@ import dataservice.strategyDAO.StrategyDAO;
 import dataservice.userDAO.UserDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.CheckInOutPO;
 import po.ClientInfoPO;
 import po.HotelPO;
 import po.HotelStaffInfoPO;
@@ -158,25 +159,35 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public RoomPO findRoom(String userID) throws RemoteException {
-		return roomDAO.findRoom(userID);
-	}
-
-	@Override
 	public void updateRoom(RoomPO po) throws RemoteException {
 		roomDAO.updateRoom(po);
 	}
 
+	@Override
+	public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
+	    roomDAO.updateCheckInOut(po);
+	}
+	
 	@Override
 	public void insertRoom(RoomPO po) throws RemoteException {
 		roomDAO.insertRoom(po);
 	}
 
 	@Override
+	public void insertCheckInOut(CheckInOutPO po) throws RemoteException {
+	    roomDAO.insertCheckInOut(po);
+	}
+	
+	@Override
 	public void deleteRoom(RoomPO po) throws RemoteException {
 		roomDAO.deleteRoom(po);
 	}
 
+	@Override
+	public void deleteCheckInOut(RoomPO po) throws RemoteException {
+	    roomDAO.deleteCheckInOut(po);
+	}
+	
 	@Override
 	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException {
 		return orderDAO.getUserAllOrders(userID);
@@ -274,15 +285,6 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	public void insertHotel(HotelPO po) throws RemoteException {
 		hotelDAO.insertHotel(po);
 	}
-
-	@Override
-	public StrategyPO findStrategy(String userID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-    
-
 
 
 }

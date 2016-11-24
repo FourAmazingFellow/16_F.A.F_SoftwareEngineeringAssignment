@@ -102,12 +102,6 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO findRoom(String userID) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
-        return roomPO;
-    }
-
-    @Override
     public void updateRoom(RoomPO po) throws RemoteException {
         System.out.println("更新该房间信息成功");
         
@@ -122,6 +116,24 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     @Override
     public void deleteRoom(RoomPO po) throws RemoteException {
         System.out.println("删除该房间信息成功");
+        
+    }
+
+    @Override
+    public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
+        System.out.println("更新该入住或退房信息成功");
+        
+    }
+
+    @Override
+    public void insertCheckInOut(CheckInOutPO po) throws RemoteException {
+        System.out.println("插入该入住或退房信息成功");
+        
+    }
+
+    @Override
+    public void deleteCheckInOut(RoomPO po) throws RemoteException {
+        System.out.println("删除该入住或退房信息成功");
         
     }
 }
