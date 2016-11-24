@@ -15,17 +15,17 @@ public class SignVipServiceImpl_Stub implements SignVipService {
 
     public Date birth;
     public String enterpriseID;
-    public String enterprisePasspord;
+    public String enterprisepassword;
     
     public SignVipServiceImpl_Stub(Date birth) {
         super();
         this.birth = birth;
     }
 
-    public SignVipServiceImpl_Stub(String enterpriseID, String enterprisePasspord) {
+    public SignVipServiceImpl_Stub(String enterpriseID, String enterprisepassword) {
         super();
         this.enterpriseID = enterpriseID;
-        this.enterprisePasspord = enterprisePasspord;
+        this.enterprisepassword = enterprisepassword;
     }
 
     @Override

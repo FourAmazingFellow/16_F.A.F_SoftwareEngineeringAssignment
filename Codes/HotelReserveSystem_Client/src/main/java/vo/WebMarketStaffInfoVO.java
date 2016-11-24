@@ -10,8 +10,8 @@ import po.UserType;
  */
 public class WebMarketStaffInfoVO extends UserVO{
 
-    public WebMarketStaffInfoVO(String userID, String passpord, String telNum, UserType client) {
-        super(userID, passpord, telNum, client);
+    public WebMarketStaffInfoVO(String userID, String password, String telNum, UserType client) {
+        super(userID, password, telNum, client);
     }
 
 }

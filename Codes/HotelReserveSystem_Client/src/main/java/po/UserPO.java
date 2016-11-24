@@ -39,8 +39,8 @@ public class UserPO implements Serializable {
     public String getUserID() {
         return userID;
     }
-    public void setPasspord(String passpord) {
-        this.password = passpord;
+    public void setpassword(String password) {
+        this.password = password;
     }
     public String getPassword() {
         return password;

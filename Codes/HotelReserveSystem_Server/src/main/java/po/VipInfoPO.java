@@ -13,17 +13,23 @@ public class VipInfoPO extends UserPO {
 	 */
 	private static final long serialVersionUID = -8906068652233749202L;
 	
-    private Date birth;
+	private Date birth;
     private String enterpriseID;
-    private String enterprisePasspord;
+    private String enterprisePassword;
+    private int vipRank;
     
-    public VipInfoPO(String userID, String passpord, long telNum, UserType userType, Date birth, String enterpriseID,
-            String enterprisePasspord) {
-        super(userID, passpord, telNum, userType);
-        this.birth = birth;
+    public VipInfoPO(String userID, String password, String telNum, UserType userType, String enterpriseID,
+            String enterprisePassword) {
+        super(userID, password, telNum, userType);
         this.enterpriseID = enterpriseID;
-        this.enterprisePasspord = enterprisePasspord;
+        this.enterprisePassword = enterprisePassword;
     }
+    public VipInfoPO(String userID, String password, String telNum, UserType userType, Date birth, int vipRank) {
+        super(userID, password, telNum, userType);
+        this.birth = birth;
+        this.vipRank = vipRank;
+    }
+    
     
     public void setBirth(Date birth){
         this.birth = birth;
@@ -37,10 +43,18 @@ public class VipInfoPO extends UserPO {
     public String getEnterpriseID(){
         return enterpriseID;
     }
-    public void setEnterprisePasspord(String enterprisePasspord){
-        this.enterprisePasspord = enterprisePasspord;
+    public void setEnterprisepassword(String enterprisepassword){
+        this.enterprisePassword = enterprisepassword;
     }
-    public String getEnterprisePasspord(){
-        return enterprisePasspord;
+    public String getEnterprisepassword(){
+        return enterprisePassword;
     }
+    public int getVipRank() {
+        return vipRank;
+    }
+    public void setVipRank(int vipRank) {
+        this.vipRank = vipRank;
+    }
+    
+    
 }

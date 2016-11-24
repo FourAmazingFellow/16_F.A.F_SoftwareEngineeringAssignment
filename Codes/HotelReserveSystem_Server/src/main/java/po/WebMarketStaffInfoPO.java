@@ -11,9 +11,9 @@ public class WebMarketStaffInfoPO extends UserPO {
 	 */
 	private static final long serialVersionUID = 3756890541606953956L;
 	
-    public WebMarketStaffInfoPO(String userID, String passpord, long telNum, String creditChangeRecord,
+    public WebMarketStaffInfoPO(String userID, String password, String telNum, String creditChangeRecord,
             UserType userType) {
-        super(userID, passpord, telNum, userType);
+        super(userID, password, telNum, userType);
     }
 
 }

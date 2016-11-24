@@ -19,6 +19,7 @@ import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.ClientInfoPO;
 import po.HotelPO;
+import po.HotelStaffInfoPO;
 import po.OrderPO;
 import po.OrderType;
 import po.RoomPO;
@@ -64,9 +65,21 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void insertUser(UserPO po) throws RemoteException {
-		userDAO.insertUser(po);
+	public void insertUser(UserPO userPO) throws RemoteException {
+		userDAO.insertUser(userPO);
 	}
+	
+	@Override
+    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
+        userDAO.insertClient(clientInfoPO);
+        
+    }
+
+    @Override
+    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
+        userDAO.insertHotelStaff(hotelStaffInfoPO);
+        
+    }
 
 	@Override
 	public void deleteUser(UserPO po) throws RemoteException {
@@ -267,6 +280,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    
 
 
 

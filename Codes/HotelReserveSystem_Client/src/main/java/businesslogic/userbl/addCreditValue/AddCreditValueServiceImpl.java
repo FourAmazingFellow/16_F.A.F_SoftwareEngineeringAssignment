@@ -15,14 +15,14 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     UserType userType;
     int creditValue;
     
-    public AddCreditValueServiceImpl(String userID, UserType userType) {
+    public AddCreditValueServiceImpl() {
         try {
             this.clientInfoVO = new UserVO(userDAO.getUserInfo(userID, userType));
         } catch (RemoteException e) {
             e.printStackTrace();
         }    
     }
-    
+
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
         this.userID = userID;

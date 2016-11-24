@@ -16,7 +16,7 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 	public HashMap<String, String> comments;
 	
 	public long userID;
-	public String passpord;
+	public String password;
 	public long telNum;
 	public String creditChangeRecord;
 	public Enum<UserType> UserType;
@@ -29,10 +29,10 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 		this.comments = comments;
 	}
 	
-	public ManageHotelInfoServiceImpl_Stub(long userID, String passpord, long telNum, String creditChangeRecord,
+	public ManageHotelInfoServiceImpl_Stub(long userID, String password, long telNum, String creditChangeRecord,
 			Enum<po.UserType> userType) {
 		this.userID = userID;
-		this.passpord = passpord;
+		this.password = password;
 		this.telNum = telNum;
 		this.creditChangeRecord = creditChangeRecord;
 		UserType = userType;

@@ -15,21 +15,21 @@ import vo.VipInfoVO;
 public class VipInfoImpl_Stub implements VipInfo{
    
     public String userID;
-    public String passpord;
+    public String password;
     public String telNum;
     public Enum<UserType> UserType;
     public int creditValue;
     public Date birth;
     public String enterpriseID;
-    public String enterprisePasspord;
+    public String enterprisepassword;
     
 
 
-    public VipInfoImpl_Stub(String userID, String passpord, String telNum, Enum<po.UserType> userType, int creditValue,
+    public VipInfoImpl_Stub(String userID, String password, String telNum, Enum<po.UserType> userType, int creditValue,
             Date birth) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = password;
         this.telNum = telNum;
         UserType = userType;
         this.creditValue = creditValue;
@@ -38,28 +38,28 @@ public class VipInfoImpl_Stub implements VipInfo{
     
     
 
-    public VipInfoImpl_Stub(String userID, String passpord, String telNum, Enum<po.UserType> userType, int creditValue,
-            String enterpriseID, String enterprisePasspord) {
+    public VipInfoImpl_Stub(String userID, String password, String telNum, Enum<po.UserType> userType, int creditValue,
+            String enterpriseID, String enterprisepassword) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = password;
         this.telNum = telNum;
         UserType = userType;
         this.creditValue = creditValue;
         this.enterpriseID = enterpriseID;
-        this.enterprisePasspord = enterprisePasspord;
+        this.enterprisepassword = enterprisepassword;
     }
 
 
 
     @Override
     public VipInfoVO getRegularVipInfo(String userID) {
-        return new VipInfoVO(userID, passpord, telNum, UserType, birth);
+        return new VipInfoVO(userID, password, telNum, UserType, birth);
     }
 
     @Override
     public VipInfoVO getEnterpriseVipInfo(String userID) {
-        return new VipInfoVO(userID, passpord, telNum,UserType, enterpriseID, enterprisePasspord);
+        return new VipInfoVO(userID, password, telNum,UserType, enterpriseID, enterprisepassword);
                 
     }
     

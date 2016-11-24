@@ -12,15 +12,15 @@ import vo.ClientCreditRecordVO;
 public class QueryClientCreditRecordServiceImpl_Stub implements QueryClientCreditRecordService {
 
 	public long userID;
-	public String passpord;
+	public String password;
     public String telNum;
     public int creditValue;
     public String[] creditRecord;
 	
-    public QueryClientCreditRecordServiceImpl_Stub(long userID, String passpord, String telNum, int creditValue,
+    public QueryClientCreditRecordServiceImpl_Stub(long userID, String password, String telNum, int creditValue,
 			String[] creditRecord) {
 		this.userID = userID;
-		this.passpord = passpord;
+		this.password = password;
 		this.telNum = telNum;
 		this.creditValue = creditValue;
 		this.creditRecord = creditRecord;

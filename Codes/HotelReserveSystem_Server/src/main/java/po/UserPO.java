@@ -16,14 +16,14 @@ public class UserPO implements Serializable {
 	
 	
 	private String userID;
-    private String passpord;
-    private long telNum;
+    private String password;
+    private String telNum;
     private Enum<UserType> UserType;
     
-    public UserPO(String userID, String passpord, long telNum, UserType userType) {
+    public UserPO(String userID, String password, String telNum, UserType userType) {
         super();
         this.userID = userID;
-        this.passpord = passpord;
+        this.password = password;
         this.telNum = telNum;
         this.UserType = userType;
     }
@@ -34,16 +34,16 @@ public class UserPO implements Serializable {
     public String getUserID() {
         return userID;
     }
-    public void setPasspord(String passpord) {
-        this.passpord = passpord;
+    public void setpassword(String password) {
+        this.password = password;
     }
-    public String getPasspord() {
-        return passpord;
+    public String getpassword() {
+        return password;
     }
-    public void setTelNum(long telNum) {
+    public void setTelNum(String telNum) {
         this.telNum = telNum;
     }
-    public long getTelNum() {
+    public String getTelNum() {
         return telNum;
     }
     public Enum<UserType> getUserType() {

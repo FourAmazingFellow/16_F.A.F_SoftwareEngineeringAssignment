@@ -17,7 +17,7 @@ public class CheckLoginInfo {
     /**
      * 验证登录信息
      * @param userID 业务逻辑层传来的用户标识
-     * @param passpord 业务逻辑层传来的用户密码
+     * @param password 业务逻辑层传来的用户密码
      * @return 验证成功则返回true，否则返回false
      * @see
      */

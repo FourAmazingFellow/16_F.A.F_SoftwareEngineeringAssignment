@@ -11,9 +11,9 @@ import po.UserType;
 public class HotelStaffInfoVO extends UserVO{
     private String enterpriseName;
     
-    public HotelStaffInfoVO(String userID, String passpord, String telNum, Enum<UserType> userType,
+    public HotelStaffInfoVO(String userID, String password, String telNum, Enum<UserType> userType,
             String enterpriseName) {
-        super(userID, passpord, telNum, userType);
+        super(userID, password, telNum, userType);
         this.enterpriseName = enterpriseName;
     }
     public void setEnterpriseName(String enterpriseName) {

@@ -17,14 +17,20 @@ public class VipInfoPO extends UserPO {
 	private Date birth;
     private String enterpriseID;
     private String enterprisePassword;
+    private int vipRank;
     
-    public VipInfoPO(String userID, String password, String telNum, UserType userType, Date birth,
-            String enterpriseID, String enterprisePasspord) {
+    public VipInfoPO(String userID, String password, String telNum, UserType userType, String enterpriseID,
+            String enterprisePassword) {
+        super(userID, password, telNum, userType);
+        this.enterpriseID = enterpriseID;
+        this.enterprisePassword = enterprisePassword;
+    }
+    public VipInfoPO(String userID, String password, String telNum, UserType userType, Date birth, int vipRank) {
         super(userID, password, telNum, userType);
         this.birth = birth;
-        this.enterpriseID = enterpriseID;
-        this.enterprisePassword = enterprisePasspord;
+        this.vipRank = vipRank;
     }
+    
     
     public void setBirth(Date birth){
         this.birth = birth;
@@ -38,10 +44,18 @@ public class VipInfoPO extends UserPO {
     public String getEnterpriseID(){
         return enterpriseID;
     }
-    public void setEnterprisePasspord(String enterprisePasspord){
-        this.enterprisePassword = enterprisePasspord;
+    public void setEnterprisepassword(String enterprisepassword){
+        this.enterprisePassword = enterprisepassword;
     }
-    public String getEnterprisePasspord(){
+    public String getEnterprisepassword(){
         return enterprisePassword;
     }
+    public int getVipRank() {
+        return vipRank;
+    }
+    public void setVipRank(int vipRank) {
+        this.vipRank = vipRank;
+    }
+    
+    
 }

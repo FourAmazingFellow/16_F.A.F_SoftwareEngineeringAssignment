@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import po.ClientInfoPO;
+import po.HotelStaffInfoPO;
 import po.UserPO;
 import po.UserType;
 /**
@@ -43,20 +44,29 @@ public interface UserDAO extends Remote {
     public int getCreditValue(String userID) throws RemoteException;
     
     /**
-     * 用户注册新账号或网站管理人员增加账号
+     * 用户（网站管理人员或网站管理人员）注册新账号或网站管理人员添加网站营销人员
      * @param po UserPO型，界面传递过来的用户信息
      * @throws RemoteException
      * @see
      */
-    public void insertUser(UserPO po) throws RemoteException;
+    public void insertUser(UserPO userPO) throws RemoteException;
     
     /**
-   * 用户注销账号或网站管理人员删除账号
-     * @param po UserPO型，业务逻辑层传递过来的用户信息
+     * 客户注册新账号
+     * @param po UserPO型，界面传递过来的用户信息
      * @throws RemoteException
      * @see
      */
-    public void deleteUser(UserPO po) throws RemoteException;
+    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException;
+    
+    /**
+     * 用户（酒店工作人员）注册新账号或网站管理人员添加酒店工作人员
+     * @param po UserPO型，界面传递过来的用户信息
+     * @throws RemoteException
+     * @see
+     */
+    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException;
+    
     
     /**
      * 更新用户信息

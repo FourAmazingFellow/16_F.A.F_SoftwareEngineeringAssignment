@@ -13,16 +13,16 @@ import vo.UserVO;
 public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService {
 
 	 public long userID;
-	 public String passpord;
+	 public String password;
 	 public String telNum;
 	 public Enum<UserType> UserType;
 	 public int creditValue;
 	 public String enterpriseName;
 	
-	 public ModifyClientInfoServiceImpl_Stub(long userID, String passpord, String telNum, UserType userType,
+	 public ModifyClientInfoServiceImpl_Stub(long userID, String password, String telNum, UserType userType,
 			int creditValue, String enterpriseName) {
 		this.userID = userID;
-		this.passpord = passpord;
+		this.password = password;
 		this.telNum = telNum;
 		UserType = userType;
 		this.creditValue = creditValue;
@@ -31,7 +31,7 @@ public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService
 	 
 	@Override
 	public UserVO getUserInfo(String userID, UserType userType) {
-		return new UserVO(userID, passpord, telNum, UserType);
+		return new UserVO(userID, password, telNum, UserType);
 	}
 
 	@Override

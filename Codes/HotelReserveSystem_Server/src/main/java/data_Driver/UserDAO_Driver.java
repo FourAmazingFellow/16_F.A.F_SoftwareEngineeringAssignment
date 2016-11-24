@@ -35,7 +35,7 @@ public class UserDAO_Driver {
         
         
         try {
-            UserPO userPO = new UserPO("原", "qwe123", 11265768, UserType.Client);
+            UserPO userPO = new UserPO("原", "qwe123", "12345678900", UserType.Client);
             userDAO.insertUser(userPO);
             System.out.println("酒店信息更新成功！\n");
         } catch (RemoteException e) {

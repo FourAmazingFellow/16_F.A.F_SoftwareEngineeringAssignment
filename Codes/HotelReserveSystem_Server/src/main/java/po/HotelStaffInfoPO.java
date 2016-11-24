@@ -12,17 +12,17 @@ public class HotelStaffInfoPO extends UserPO {
 	private static final long serialVersionUID = -2080081292141695387L;
 	
 	    
-    private String enterpriseName;
+    private String hotelAddress;
     
-    public HotelStaffInfoPO(String userID, String passpord, long telNum, String creditChangeRecord,
-            UserType userType, String enterpriseName) {
-        super(userID, passpord, telNum, userType);
-        this.enterpriseName = enterpriseName;
+    public HotelStaffInfoPO(String userID, String password, String telNum, String creditChangeRecord,
+            UserType userType, String hotelAddress) {
+        super(userID, password, telNum, userType);
+        this.hotelAddress = hotelAddress;
     }
     public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName;
+        this.hotelAddress = enterpriseName;
     }
     public String getEnterpriseName() {
-        return enterpriseName;
+        return hotelAddress;
     }
 }
