@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
+import po.HotelStaffInfoPO;
 import po.UserPO;
 import po.UserType;
 
@@ -78,9 +79,16 @@ public class UserDAOImpl_Stub implements UserDAO{
         System.out.println("Update Succeed!\n");
         
     }
-	@Override
-	public void deleteUser(UserPO po) throws RemoteException {
-		
-	}
+	
+    @Override
+    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
     
 }
