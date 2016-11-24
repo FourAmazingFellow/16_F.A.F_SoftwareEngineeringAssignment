@@ -48,7 +48,7 @@ public class StrategyListTest {
     
     @Test
     public void testGetStrategyInfo(){
-        StrategyItem strategyItem=strategyList.getStrategyInfo(address, name);
+        StrategyItem strategyItem=strategyList.getStrategyInfo(address, strategyType, name);
         StrategyVO strategyInfo=strategyItem.toVO();
         assertEquals(strategyVO.address, strategyInfo.address);
         assertEquals(strategyVO.strategyType, strategyInfo.strategyType);

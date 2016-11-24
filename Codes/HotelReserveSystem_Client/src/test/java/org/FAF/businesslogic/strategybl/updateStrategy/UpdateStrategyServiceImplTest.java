@@ -45,7 +45,7 @@ public class UpdateStrategyServiceImplTest {
     
     @Test
     public void testGetStrategyInfo(){
-        StrategyVO strategyInfo=updateStrategyServiceImpl.getStrategyInfo(address, name);
+        StrategyVO strategyInfo=updateStrategyServiceImpl.getStrategyInfo(address, strategyType, name);
         assertEquals(strategyVO.address, strategyInfo.address);
         assertEquals(strategyVO.strategyType, strategyInfo.strategyType);
         assertEquals(strategyVO.strategyName, strategyInfo.strategyName);
