@@ -29,7 +29,7 @@ public interface UpdateStrategyService {
      * @return StrategyVO型，返回折扣信息
      * @see
      */
-    public StrategyVO getStrategyInfo(String address, String name);
+    public StrategyVO getStrategyInfo(String address, Enum<StrategyType> strategyType, String name);
     
     /**
      * 制定折扣策略

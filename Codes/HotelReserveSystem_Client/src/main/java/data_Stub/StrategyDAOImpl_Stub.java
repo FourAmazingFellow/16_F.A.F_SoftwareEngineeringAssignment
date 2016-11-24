@@ -69,7 +69,7 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
     }
 
     @Override
-    public StrategyPO getStrategyInfo(String address, String strategyName) throws RemoteException {
+    public StrategyPO getStrategyInfo(String address, Enum<StrategyType> strategyType, String strategyName) throws RemoteException {
         StrategyPO strategyPO=new StrategyPO(address, strategyType, strategyName, discount, startTime, endTime);
         return strategyPO;
     }

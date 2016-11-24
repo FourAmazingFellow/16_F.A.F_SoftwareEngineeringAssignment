@@ -41,8 +41,8 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @see
      */
     @Override
-    public StrategyVO getStrategyInfo(String address, String name){
-        StrategyItem strategyItem=strategyList.getStrategyInfo(address, name);
+    public StrategyVO getStrategyInfo(String address, Enum<StrategyType> strategyType, String name){
+        StrategyItem strategyItem=strategyList.getStrategyInfo(address, strategyType, name);
         return strategyItem.toVO();
     }
     

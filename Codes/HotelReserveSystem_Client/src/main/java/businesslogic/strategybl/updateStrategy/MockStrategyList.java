@@ -37,10 +37,10 @@ public class MockStrategyList extends StrategyList{
     }
     
     @Override
-    public StrategyItem getStrategyInfo(String address, String name){
+    public StrategyItem getStrategyInfo(String address, Enum<StrategyType> strategyType, String name){
         StrategyPO strategyPO;
         try {
-            strategyPO=strategyDAO.getStrategyInfo(address, name);
+            strategyPO=strategyDAO.getStrategyInfo(address, strategyType, name);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

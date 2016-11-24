@@ -65,7 +65,7 @@ public class UpdateStrategyServiceImpl_Stub implements UpdateStrategyService{
     }
 
     @Override
-    public StrategyVO getStrategyInfo(String address, String name) {
+    public StrategyVO getStrategyInfo(String address, Enum<StrategyType> strategyType, String name) {
         StrategyVO strategyVO=new StrategyVO(address, strategyType, name, discount);
         return strategyVO;
     }
