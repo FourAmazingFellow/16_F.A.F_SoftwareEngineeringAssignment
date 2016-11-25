@@ -17,7 +17,7 @@ public interface UserDAO extends Remote {
     
     /**
      * 查询用户信息
-     * @param ID long型，业务逻辑层传递来的用户账号
+     * @param ID String型，业务逻辑层传递来的用户账号
      * @param UserType Enum<UserType>型，业务逻辑层传递来的用户类型
      * @return 返回用户信息
      * @throws RemoteException
