@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import po.CheckInOutPO;
 import po.RoomPO;
 import po.RoomType;
 
@@ -94,14 +95,6 @@ public interface RoomDAO extends Remote{
      */
     public ArrayList<RoomPO> getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException;
     
-    /**
-     * 查找一个房间类型
-     * @param id long型，RoomPO对应的ID
-     * @return RooomPO型，返回房间信息
-     * @throws RemoteException
-     * @see
-     */
-    public RoomPO findRoom(String userID) throws RemoteException;
     
     /**
      * 更新某个房间信息
@@ -112,6 +105,14 @@ public interface RoomDAO extends Remote{
     public void updateRoom(RoomPO po) throws RemoteException;
     
     /**
+     * 更新某个入住或退房信息
+     * @param po CheckInOutPO型，业务逻辑层传递来的入住或退房信息
+     * @throws RemoteException
+     * @see
+     */
+    public void updateCheckInOut(CheckInOutPO po) throws RemoteException;
+    
+    /**
      * 插入一个房间信息
      * @param po RoomPO型，业务逻辑层传递来的房间信息
      * @throws RemoteException
@@ -120,10 +121,26 @@ public interface RoomDAO extends Remote{
     public void insertRoom(RoomPO po) throws RemoteException;
     
     /**
+     * 插入一个入住或退房信息
+     * @param po CheckInOutPO型，业务逻辑层传递来的入住或退房信息
+     * @throws RemoteException
+     * @see
+     */
+    public void insertCheckInOut(CheckInOutPO po) throws RemoteException;
+    
+    /**
      * 删除一个房间信息
      * @param po RoomPO型，业务逻辑层传递来的房间信息
      * @throws RemoteException
      * @see
      */
     public void deleteRoom(RoomPO po) throws RemoteException;
+    
+    /**
+     * 删除一个入住或退房信息
+     * @param po CheckInOutPO型，业务逻辑层传递来的入住或退房信息
+     * @throws RemoteException
+     * @see
+     */
+    public void deleteCheckInOut(RoomPO po) throws RemoteException;
 }
