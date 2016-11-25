@@ -55,31 +55,7 @@ public class MockCheckOutItem extends CheckOutItem{
         }
         return true;
     }
-    
-    @Override
-    public boolean modifyCheckOut(String address){
-        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
-        try {
-            checkOutDAO.updateRoom(checkOutPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    @Override
-    public boolean delCheckOut(String address){
-        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
-        try {
-            checkOutDAO.deleteRoom(checkOutPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
+  
     @Override
     public boolean validCheckOut(){
         return true;

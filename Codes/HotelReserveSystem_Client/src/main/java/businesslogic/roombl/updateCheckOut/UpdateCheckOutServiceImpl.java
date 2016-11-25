@@ -41,8 +41,8 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * @see
      */
     @Override
-    public ArrayList<RoomVO> searchCheckOutInfo(String address ,Date time){
-        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, time);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address , Date startTime, Date endTime){
+        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, startTime, endTime);
         ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
         for(CheckOutItem checkOutItem:checkOutItems){
             checkOutVOs.add(checkOutItem.toVO());
@@ -78,31 +78,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
     public boolean addCheckOut(String address, RoomVO checkOut){
         return checkOutList.addCheckOut(address, checkOut);
     }
-    
-    /**
-     * 修改 退房信息
-     * @param address String型，酒店地址
-     * @param checkOut Room VO型，退房信息
-     * @return 返回是否修改成功
-     * @see
-     */
-    @Override
-    public boolean modifyCheckOut(String address, RoomVO checkOut){
-        return checkOutList.modifyCheckOut(address, checkOut);
-    }
-    
-    /**
-     * 删除退房信息
-     * @param address String型，酒店地址
-     * @param checkOut Room VO型，退房信息
-     * @return 返回是否删除成功
-     * @see
-     */
-    @Override
-    public boolean delCheckOut(String address, RoomVO checkOut){
-        return checkOutList.delCheckOut(address, checkOut);
-    }
-    
+  
     /**
      * 判断该退房信息是否有效
      * @param address String型，酒店地址

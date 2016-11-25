@@ -31,19 +31,7 @@ public class CheckOutItemTest {
         boolean added=checkOutItem.addCheckOut(address);
         assertTrue(added);
     }
-    
-    @Test
-    public void testModifyCheckOut(){
-        boolean modifyed=checkOutItem.modifyCheckOut(address);
-        assertTrue(modifyed);
-    }
-    
-    @Test
-    public void testDelCheckOut(){
-        boolean deleted=checkOutItem.delCheckOut(address);
-        assertTrue(deleted);
-    }
-    
+
     @Test
     public void testValidCheckOut(){
         boolean valied=checkOutItem.validCheckOut();

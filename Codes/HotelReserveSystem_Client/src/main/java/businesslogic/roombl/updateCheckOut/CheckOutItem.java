@@ -71,41 +71,7 @@ public class CheckOutItem {
         }
         return true;
     }
-    
-    /**
-     * 修改 退房信息
-     * @param address string型，酒店地址
-     * @return 返回是否修改成功
-     * @see
-     */
-    public boolean modifyCheckOut(String address){
-        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
-        try {
-            checkOutDAO.updateRoom(checkOutPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * 删除退房信息
-     * @param address string型，酒店地址
-     * @return 返回是否删除成功
-     * @see
-     */
-    public boolean delCheckOut(String address){
-        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
-        try {
-            checkOutDAO.deleteRoom(checkOutPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
+  
     /**
      * 判断该退房信息是否有效
      * @return 返回是否退房信息有效

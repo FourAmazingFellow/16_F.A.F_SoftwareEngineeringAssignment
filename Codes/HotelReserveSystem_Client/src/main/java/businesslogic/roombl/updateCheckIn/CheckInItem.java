@@ -75,40 +75,6 @@ public class CheckInItem {
     }
     
     /**
-     * 修改 入住信息
-     * @param address string型，酒店地址
-     * @return 返回是否修改成功
-     * @see
-     */
-    public boolean modifyCheckIn(String address){
-        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
-        try {
-            checkInDAO.updateRoom(checkInPO);;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * 删除入住信息
-     * @param address string型，酒店地址
-     * @return 返回是否删除成功
-     * @see
-     */
-    public boolean delCheckIn(String address){
-        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
-        try {
-            checkInDAO.deleteRoom(checkInPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    /**
      * 判断该入住信息是否有效
      * @return 返回是否入住信息有效
      * @see

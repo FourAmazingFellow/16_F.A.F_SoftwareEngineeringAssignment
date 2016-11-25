@@ -42,8 +42,8 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      * @see
      */
     @Override
-    public ArrayList<RoomVO> searchCheckInInfo(String address ,Date time){
-        ArrayList<CheckInItem> checkInItems=checkInList.searchCheckInInfo(address, time);
+    public ArrayList<RoomVO> searchCheckInInfo(String address , Date startTime, Date endTime){
+        ArrayList<CheckInItem> checkInItems=checkInList.searchCheckInInfo(address, startTime, endTime);
         ArrayList<RoomVO> checkInVOs=new ArrayList<RoomVO>();
         for(CheckInItem checkInItem:checkInItems){
             checkInVOs.add(checkInItem.toVO());
@@ -79,31 +79,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
     public boolean addCheckIn(String address, RoomVO checkIn){
         return checkInList.addCheckIn(address, checkIn);
     }
-    
-    /**
-     * 修改 入住信息
-     * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
-     * @return 返回是否修改成功
-     * @see
-     */
-    @Override
-    public boolean modifyCheckIn(String address, RoomVO checkIn){
-        return checkInList.modifyCheckIn(address, checkIn);
-    }
-    
-    /**
-     * 删除入住信息
-     * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
-     * @return 返回是否删除成功
-     * @see
-     */
-    @Override
-    public boolean delCheckIn(String address, RoomVO checkIn){
-        return checkInList.delCheckIn(address, checkIn);
-    }
-    
+   
     /**
      * 判断该入住信息是否有效
      * @param address string型，酒店地址

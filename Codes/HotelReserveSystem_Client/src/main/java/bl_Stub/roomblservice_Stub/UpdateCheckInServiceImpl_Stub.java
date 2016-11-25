@@ -42,8 +42,8 @@ public class UpdateCheckInServiceImpl_Stub implements UpdateCheckInService{
     }
 
     @Override
-    public ArrayList<RoomVO> searchCheckInInfo(String address, Date time) {
-        RoomVO checkInVO=new CheckInOutVO(roomType, roomNum, address, time, expDepartTime);
+    public ArrayList<RoomVO> searchCheckInInfo(String address, Date startTime, Date endTime) {
+        RoomVO checkInVO=new CheckInOutVO(roomType, roomNum, address, startTime, expDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkInVO);
         return arrayList;
@@ -59,16 +59,6 @@ public class UpdateCheckInServiceImpl_Stub implements UpdateCheckInService{
 
     @Override
     public boolean addCheckIn(String address, RoomVO checkIn) {
-        return true;
-    }
-
-    @Override
-    public boolean modifyCheckIn(String address, RoomVO checkIn) {
-        return true;
-    }
-
-    @Override
-    public boolean delCheckIn(String address, RoomVO checkIn) {
         return true;
     }
 

@@ -37,11 +37,11 @@ public class MockCheckOutList extends CheckOutList{
     }
     
     @Override
-    public ArrayList<CheckOutItem> searchCheckOutInfo(String address ,Date time){
+    public ArrayList<CheckOutItem> searchCheckOutInfo(String address , Date startTime, Date endTime){
         ArrayList<RoomPO> checkOutPOs;
         ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
         try {
-            checkOutPOs=roomDAO.getCheckOutInfo(address, time);
+            checkOutPOs=roomDAO.getCheckOutInfo(address, startTime, endTime);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
@@ -72,18 +72,6 @@ public class MockCheckOutList extends CheckOutList{
     public boolean addCheckOut(String address, RoomVO checkOut){
         CheckOutItem checkOutItem=new MockCheckOutItem(checkOut);
         return checkOutItem.addCheckOut(address);
-    }
-    
-    @Override
-    public boolean modifyCheckOut(String address, RoomVO checkOut){
-        CheckOutItem checkOutItem=new MockCheckOutItem(checkOut);
-        return checkOutItem.modifyCheckOut(address);
-    }
-    
-    @Override
-    public boolean delCheckOut(String address, RoomVO checkOut){
-        CheckOutItem checkOutItem=new MockCheckOutItem(checkOut);
-        return checkOutItem.delCheckOut(address);
     }
     
     @Override

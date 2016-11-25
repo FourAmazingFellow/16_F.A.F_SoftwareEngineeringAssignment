@@ -25,7 +25,7 @@ public class UpdateCheckInService_Driver {
             System.out.println("There are " + checkInInfoList.size() + " checkIns in this hotel!\n");
         
         Date checkInTime= new Date(2016, 11, 11, 12, 0);
-        ArrayList<RoomVO> checkInVOList1= updateCheckInService.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime);
+        ArrayList<RoomVO> checkInVOList1= updateCheckInService.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime, checkInTime);
         CheckInOutVO checkInVO1=(CheckInOutVO) checkInVOList1.get(0);
         System.out.println("the checkInInfo includes "+checkInVO1.roomNum + " 间"+ checkInVO1.roomType);
         System.out.println("checkin time is "+checkInVO1.checkInTime);
@@ -44,19 +44,7 @@ public class UpdateCheckInService_Driver {
             System.out.println("add checkIn Succeed!\n");
         else
             System.out.println("add checkIn Failed!\n");
-        
-        boolean modifyCheckIn=updateCheckInService.modifyCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
-        if(modifyCheckIn)
-            System.out.println("modify checkIn Succeed!\n");
-        else
-            System.out.println("modify checkIn Failed!\n");
-        
-        boolean delCheckIn=updateCheckInService.delCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
-        if(delCheckIn)
-            System.out.println("delete checkIn Succeed!\n");
-        else
-            System.out.println("delete checkIn Failed!\n");
-        
+       
         boolean validCheckIn=updateCheckInService.validCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
         if(validCheckIn)
             System.out.println("This checkIn valid!\n");

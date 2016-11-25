@@ -47,11 +47,11 @@ public class CheckOutList {
      * @return ArrayList<CheckOutItem>型，返回符合条件的退房信息列表
      * @see
      */
-    public ArrayList<CheckOutItem> searchCheckOutInfo(String address ,Date time){
+    public ArrayList<CheckOutItem> searchCheckOutInfo(String address , Date startTime, Date endTime){
         ArrayList<RoomPO> checkOutPOs;
         ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
         try {
-            checkOutPOs=roomDAO.getCheckOutInfo(address, time);
+            checkOutPOs=roomDAO.getCheckOutInfo(address, startTime, endTime);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
@@ -95,31 +95,7 @@ public class CheckOutList {
         CheckOutItem checkOutItem=new CheckOutItem(checkOut);
         return checkOutItem.addCheckOut(address);
     }
-    
-    /**
-     * 修改 退房信息
-     * @param address string型，酒店地址
-     * @param CheckOut Room VO型，退房信息
-     * @return 返回是否修改成功
-     * @see
-     */
-    public boolean modifyCheckOut(String address, RoomVO checkOut){
-        CheckOutItem checkOutItem=new CheckOutItem(checkOut);
-        return checkOutItem.modifyCheckOut(address);
-    }
-    
-    /**
-     * 删除退房信息
-     * @param address string型，酒店地址
-     * @param CheckOut Room VO型，退房信息
-     * @return 返回是否删除成功
-     * @see
-     */
-    public boolean delCheckOut(String address, RoomVO checkOut){
-        CheckOutItem checkOutItem=new CheckOutItem(checkOut);
-        return checkOutItem.delCheckOut(address);
-    }
-    
+
     /**
      * 判断该退房信息是否有效
      * @param address string型，酒店地址
