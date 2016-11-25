@@ -304,7 +304,6 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
         return strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
     }
 
-<<<<<<< HEAD
     @Override
     public RegularVipPO getRegularVipInfo(String userID) {
         // TODO Auto-generated method stub
@@ -317,10 +316,4 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
         return null;
     }
 
-    
-
-
-
-=======
->>>>>>> origin/master
 }
