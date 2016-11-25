@@ -270,38 +270,31 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 
     @Override
     public ClientInfoPO getClientInfo(String userID) throws RemoteException {
-        // TODO Auto-generated method stub
-        return null;
+        return userDAO.getClientInfo(userID);
     }
 
     @Override
     public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException {
-        // TODO Auto-generated method stub
-        return null;
+        return userDAO.getHotelStaffInfo(userID);
     }
 
     @Override
     public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException {
-        // TODO Auto-generated method stub
-        
+    	userDAO.updateClient(clientInfoPO);
     }
 
     @Override
     public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
-        // TODO Auto-generated method stub
-        
+    	userDAO.signRegularVip(regularVipPO);
     }
 
     @Override
     public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
-        // TODO Auto-generated method stub
-        
+    	userDAO.signEnterpriseVip(enterpriseVipPO);
     }
 
     @Override
     public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override
@@ -318,8 +311,7 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 
     @Override
     public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
-        // TODO Auto-generated method stub
-        return false;
+        return strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
     }
 
     
