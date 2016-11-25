@@ -18,10 +18,12 @@ import dataservice.userDAO.UserDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.ClientInfoPO;
+import po.EnterpriseVipPO;
 import po.HotelPO;
 import po.HotelStaffInfoPO;
 import po.OrderPO;
 import po.OrderType;
+import po.RegularVipPO;
 import po.RoomPO;
 import po.RoomType;
 import po.StrategyPO;
@@ -80,11 +82,6 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
         userDAO.insertHotelStaff(hotelStaffInfoPO);
         
     }
-
-	@Override
-	public void deleteUser(UserPO po) throws RemoteException {
-		userDAO.deleteUser(po);
-	}
 
 	@Override
 	public void updateUser(UserPO po) throws RemoteException {
@@ -280,6 +277,36 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    @Override
+    public ClientInfoPO getClientInfo(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
 
     
 

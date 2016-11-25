@@ -4,7 +4,9 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import po.ClientInfoPO;
+import po.EnterpriseVipPO;
 import po.HotelStaffInfoPO;
+import po.RegularVipPO;
 import po.UserPO;
 import po.UserType;
 /**
@@ -16,14 +18,32 @@ import po.UserType;
 public interface UserDAO extends Remote {
     
     /**
-     * 查询用户信息
+     * 查询用户（网站管理人员、网站营销人员）信息
      * @param ID long型，业务逻辑层传递来的用户账号
-     * @param UserType Enum<UserType>型，业务逻辑层传递来的用户类型
+     * @param userType UserType型，业务逻辑层传递来的用户类型
      * @return 返回用户信息
      * @throws RemoteException
      * @see
      */
-    public UserPO getUserInfo(String userID, UserType UserType) throws RemoteException;
+    public UserPO getUserInfo(String userID, UserType userType) throws RemoteException;
+    
+    /**
+     * 查询客户信息
+     * @param userID String型，业务逻辑层传递来的客户账号
+     * @return 返回客户信息
+     * @throws RemoteException
+     * @see
+     */
+    public ClientInfoPO getClientInfo(String userID) throws RemoteException;
+    
+    /**
+     * 查询酒店工作人员信息
+     * @param userID String型，业务逻辑层传递来的酒店工作人员账号
+     * @return 返回酒店工作人员信息
+     * @throws RemoteException
+     * @see
+     */
+    public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException;
     
     /**
     * 查询信用记录
@@ -66,20 +86,38 @@ public interface UserDAO extends Remote {
      * @see
      */
     public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException;
+  
     
     /**
-   * 用户注销账号或网站管理人员删除账号
-     * @param po UserPO型，业务逻辑层传递过来的用户信息
+     * 更新用户（网站管理人员、网站营销人员、酒店工作人员）信息
+     * @param userPO UserPO型，业务逻辑层传递过来的用户信息
      * @throws RemoteException
      * @see
      */
-    public void deleteUser(UserPO po) throws RemoteException;
+    public void updateUser(UserPO userPO) throws RemoteException;
     
     /**
-     * 更新用户信息
-     * @param po UserPO型，业务逻辑层传递过来的用户信息
+     * 更新客户信息
+     * @param clientInfoPO ClientInfoPO型，业务逻辑层传递过来的客户信息
      * @throws RemoteException
      * @see
      */
-    public void updateUser(UserPO po) throws RemoteException;
+    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException;
+    
+    /**
+     * 注册普通会员
+     * @param regularVipPO RegularVipPO型，业务逻辑层传递过来的普通会员信息
+     * @throws RemoteException
+     * @see
+     */
+    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException;
+    
+    /**
+     * 注册企业会员
+     * @param enterpriseVipPO EnterpriseVipPO型，业务逻辑层传递过来的企业会员信息
+     * @throws RemoteException
+     * @see
+     */
+    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException;
+
 }

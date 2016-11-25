@@ -17,14 +17,14 @@ public class MockVipInfoImpl extends VipInfoImpl{
     @Override
     public VipInfoVO getRegularVipInfo(String userID) {
         //            this.rVipInfoVO = new VipInfoVO((VipInfoPO) userDAO1.getUserInfo(userID, userType));
-          this.rVipInfoVO = new VipInfoVO("原", "qwe123", "12345678900", userType, new Date(1997, 10, 10));
+          this.rVipInfoVO = new VipInfoVO("原", "qwe123", "12345678900", userType, 0, null, new Date(1997, 10, 10), 0);
         return rVipInfoVO;
     }
 
     @Override
     public VipInfoVO getEnterpriseVipInfo(String userID) {
         //            this.eVipInfoVO = new VipInfoVO((VipInfoPO) userDAO2.getUserInfo(userID, userType));
-        this.eVipInfoVO = new VipInfoVO("原", "qwe123", "12345678900",userType, "如家","rujia");
+        this.eVipInfoVO = new VipInfoVO("原", "qwe123", "12345678900",userType, 0, null, "如家","rujia");
         return eVipInfoVO;
     }
 

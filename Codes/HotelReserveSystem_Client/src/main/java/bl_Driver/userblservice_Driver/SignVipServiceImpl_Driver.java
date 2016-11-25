@@ -6,7 +6,7 @@ import vo.VipInfoVO;
 
 public class SignVipServiceImpl_Driver {
     public void drive(SignVipService signVipService){
-       VipInfoVO VipInfoVO = new VipInfoVO("原", "qwe123", "12327777345", UserType.Client, "hotel123", "12341234");
+       VipInfoVO VipInfoVO = new VipInfoVO("原", "qwe123", "12327777345", UserType.Client, 0, null, "hotel123", "12341234");
         
         boolean result2 = signVipService.signRegularVip(VipInfoVO);
         if(result2)

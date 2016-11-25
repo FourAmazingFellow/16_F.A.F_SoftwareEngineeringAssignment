@@ -35,7 +35,7 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignRegularVip() {
         signVip = new MockSignVipServiceImpl();
-        VipInfoVO regularVip = new VipInfoVO(userID, password, telNum, userType, birth);
+        VipInfoVO regularVip = new VipInfoVO(userID, password, telNum, userType, 0, null, birth, 0);
         boolean result = signVip.signRegularVip(regularVip);
         assertEquals(true,result);
     }
@@ -43,7 +43,7 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignEnterpriseVip() {
         signVip = new MockSignVipServiceImpl();
-        VipInfoVO enterpriseVip = new VipInfoVO(userID, password, telNum, userType, enterpriseID, enterprisePassword);
+        VipInfoVO enterpriseVip = new VipInfoVO(userID, password, telNum, userType, 0, null, enterpriseID, enterprisePassword);
         boolean result = signVip.signEnterpriseVip(enterpriseVip);
         assertEquals(true,result);
     }
