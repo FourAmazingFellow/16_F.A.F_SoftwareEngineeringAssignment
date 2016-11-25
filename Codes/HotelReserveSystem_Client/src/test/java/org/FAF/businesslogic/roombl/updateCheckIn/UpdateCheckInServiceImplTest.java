@@ -20,6 +20,8 @@ public class UpdateCheckInServiceImplTest {
     private Date checkInTime;
     private Enum<RoomType> roomType;
     private CheckInOutVO checkInVO;
+    private Date startTime;
+    private Date endTime;
 
     @SuppressWarnings("deprecation")
     @Before
@@ -27,6 +29,8 @@ public class UpdateCheckInServiceImplTest {
         updateCheckInServiceImpl = new UpdateCheckInServiceImpl();
         address = "江苏省南京市栖霞区仙林大道163号";
         checkInTime = new Date(2016, 11, 11, 12, 0);
+        startTime=new Date(2016, 11, 11, 00, 00, 00);
+        startTime=new Date(2016, 11, 12, 00, 00, 00);
         roomType = RoomType.SINGLE_ROOM;
         checkInVO = new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime,
                 new Date(2016, 11, 12, 12, 0));
@@ -46,7 +50,7 @@ public class UpdateCheckInServiceImplTest {
 
     @Test
     public void testSearchCheckInInfo1() {
-        ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo(address, checkInTime);
+        ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo(address,startTime,endTime);
         assertEquals(1,checkInVOs.size());
         CheckInOutVO checkInfromArray=(CheckInOutVO)checkInVOs.get(0);
         assertEquals(checkInVO.address, checkInfromArray.address);
@@ -72,18 +76,6 @@ public class UpdateCheckInServiceImplTest {
     public void testAddCheckIn() {
         boolean added=updateCheckInServiceImpl.addCheckIn(address, checkInVO);
         assertTrue(added);
-    }
-
-    @Test
-    public void testModifyCheckIn() {
-        boolean modifyed=updateCheckInServiceImpl.modifyCheckIn(address, checkInVO);
-        assertTrue(modifyed);
-    }
-
-    @Test
-    public void testDeCheckIn() {
-        boolean deleted=updateCheckInServiceImpl.delCheckIn(address, checkInVO);
-        assertTrue(deleted);
     }
 
     @Test

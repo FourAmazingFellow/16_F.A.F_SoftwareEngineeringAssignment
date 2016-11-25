@@ -31,19 +31,7 @@ public class CheckInItemTest {
         boolean added=checkInItem.addCheckIn(address);
         assertTrue(added);
     }
-    
-    @Test
-    public void testModifyCheckIn(){
-        boolean modifyed=checkInItem.modifyCheckIn(address);
-        assertTrue(modifyed);
-    }
-    
-    @Test
-    public void testDelCheckIn(){
-        boolean deleted=checkInItem.modifyCheckIn(address);
-        assertTrue(deleted);
-    }
-    
+
     public void testValidCheckIn(){
         boolean valid=checkInItem.validCheckIn();
         assertTrue(valid);

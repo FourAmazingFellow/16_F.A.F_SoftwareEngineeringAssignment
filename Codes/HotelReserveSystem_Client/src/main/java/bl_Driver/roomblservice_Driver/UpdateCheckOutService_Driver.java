@@ -23,7 +23,7 @@ public class UpdateCheckOutService_Driver {
             System.out.println("There are " + checkOutInfoList.size() + " checkOuts in this hotel!\n");
         
         Date checkOutTime=new Date(System.currentTimeMillis());
-        ArrayList<RoomVO> checkOutVOList1=updateCheckOutService.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime);
+        ArrayList<RoomVO> checkOutVOList1=updateCheckOutService.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime, checkOutTime);
         CheckInOutVO checkOutVO1=(CheckInOutVO) checkOutVOList1.get(0);
         System.out.println("the checkOutInfo includes "+checkOutVO1.roomNum + " 间"+ checkOutVO1.roomType);
         System.out.println("Actual depart time is "+checkOutVO1.actDepartTime+"/n");
@@ -40,19 +40,7 @@ public class UpdateCheckOutService_Driver {
             System.out.println("add checkOut Succeed!\n");
         else
             System.out.println("add checkOut Failed!\n");
-        
-        boolean modifyCheckOut=updateCheckOutService.modifyCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
-        if(modifyCheckOut)
-            System.out.println("modify checkOut Succeed!\n");
-        else
-            System.out.println("modify checkOut Failed!\n");
-        
-        boolean delCheckOut=updateCheckOutService.delCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
-        if(delCheckOut)
-            System.out.println("delete checkOut Succeed!\n");
-        else
-            System.out.println("delete checkOut Failed!\n");
-        
+       
         boolean validCheckOut=updateCheckOutService.validCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
         if(validCheckOut)
             System.out.println("This checkOut valid!\n");

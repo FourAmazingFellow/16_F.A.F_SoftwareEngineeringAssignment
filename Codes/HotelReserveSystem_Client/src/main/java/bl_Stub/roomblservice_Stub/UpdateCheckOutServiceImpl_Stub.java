@@ -40,8 +40,8 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
     }
 
     @Override
-    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date time) {
-        RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, time);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date startTime, Date endTime) {
+        RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, startTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkOutVO);
         return arrayList;
@@ -57,16 +57,6 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
 
     @Override
     public boolean addCheckOut(String address, RoomVO roomvo) {
-        return true;
-    }
-
-    @Override
-    public boolean modifyCheckOut(String address, RoomVO roomvo) {
-        return true;
-    }
-
-    @Override
-    public boolean delCheckOut(String address, RoomVO roomvo) {
         return true;
     }
 

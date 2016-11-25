@@ -59,31 +59,7 @@ public class MockCheckInItem extends CheckInItem{
         }
         return true;
     }
-    
-    @Override
-    public boolean modifyCheckIn(String address){
-        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
-        try {
-            checkInDAO.updateRoom(checkInPO);;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    @Override
-    public boolean delCheckIn(String address){
-        RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
-        try {
-            checkInDAO.deleteRoom(checkInPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
+      
     @Override
     public boolean validCheckIn(){
         return true;

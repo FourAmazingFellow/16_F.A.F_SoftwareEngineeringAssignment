@@ -23,13 +23,13 @@ public interface UpdateCheckInService {
     public ArrayList<RoomVO> getCheckInList(String address);
     
     /**
-     * 按入住时间查找相应的入住信息
+     * 搜索入住时间在某个时间段的入住信息列表
      * @param address String型， 酒店地址
      * @param time Date型，入住时间
      * @return ArrayList<RoomVO>型，返回入住信息列表
      * @see
      */
-    public ArrayList<RoomVO> searchCheckInInfo(String address ,Date time);
+    public ArrayList<RoomVO> searchCheckInInfo(String address, Date startTime, Date endTime);
     
     /**
      * 按房间类型查找相应的入住信息
@@ -48,25 +48,7 @@ public interface UpdateCheckInService {
      * @see
      */
     public boolean addCheckIn(String address, RoomVO checkIn);
-    
-    /**
-     * 修改某条入住信息
-     * @param address String型， 酒店地址
-     * @param checkIn RoomVO型，入住信息
-     * @return boolean型，返回是否修改入住信息成功
-     * @see
-     */
-    public boolean modifyCheckIn(String address, RoomVO checkIn);
-    
-    /**
-     * 删除某条入住信息
-     * @param address String型， 酒店地址
-     * @param checkIn RoomVO型，入住信息
-     * @return boolean型，返回是否删除入住信息成功
-     * @see
-     */
-    public boolean delCheckIn(String address, RoomVO checkIn);
-    
+
     /**
      * 检查入住信息是否符合规范
      * @param address String型， 酒店地址

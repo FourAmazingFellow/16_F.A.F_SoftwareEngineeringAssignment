@@ -23,13 +23,13 @@ public interface UpdateCheckOutService {
     public ArrayList<RoomVO> getCheckOutList(String address);
     
     /**
-     * 按实际离开时间查找相应的退房信息
+     * 搜索实际离开时间在某个时间段的退房信息列表
      * @param address String型， 酒店地址
      * @param time Date型，实际离开时间
      * @return ArrayList<RoomVO>型，返回退房信息列表
      * @see
      */
-    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date time);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date startTime, Date endTime);
     
     /**
      * 按房间类型查找相应的退房信息
@@ -48,24 +48,6 @@ public interface UpdateCheckOutService {
      * @see
      */
     public boolean addCheckOut(String address, RoomVO roomvo);
-    
-    /**
-     * 修改某条退房信息
-     * @param address String型， 酒店地址
-     * @param checkIn RoomVO型，退房信息
-     * @return boolean型，返回是否修改退房信息成功
-     * @see
-     */
-    public boolean modifyCheckOut(String address, RoomVO roomvo);
-    
-    /**
-     *  删除某条退房信息
-     * @param address String型， 酒店地址
-     * @param checkIn RoomVO型，退房信息
-     * @return boolean型，返回是否删除退房信息成功
-     * @see
-     */
-    public boolean delCheckOut(String address, RoomVO roomvo);
     
     /**
      *  检查退房信息是否符合规范

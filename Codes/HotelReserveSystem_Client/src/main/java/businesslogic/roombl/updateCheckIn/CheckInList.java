@@ -47,11 +47,11 @@ public class CheckInList {
      * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
      * @see
      */
-    public ArrayList<CheckInItem> searchCheckInInfo(String address ,Date time){
+    public ArrayList<CheckInItem> searchCheckInInfo(String address , Date startTime, Date endTime){
         ArrayList<RoomPO> roomPOs;
         ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
         try {
-            roomPOs=roomDAO.getCheckInInfo(address, time);
+            roomPOs=roomDAO.getCheckInInfo(address, startTime, endTime);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
@@ -95,31 +95,7 @@ public class CheckInList {
         CheckInItem checkInItem=new CheckInItem(checkIn);
         return checkInItem.addCheckIn(address);
     }
-    
-    /**
-     * 修改 入住信息
-     * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
-     * @return 返回是否修改成功
-     * @see
-     */
-    public boolean modifyCheckIn(String address, RoomVO checkIn){
-        CheckInItem checkInItem=new CheckInItem(checkIn);
-        return checkInItem.modifyCheckIn(address);
-    }
-    
-    /**
-     * 删除入住信息
-     * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
-     * @return 返回是否删除成功
-     * @see
-     */
-    public boolean delCheckIn(String address, RoomVO checkIn){
-        CheckInItem checkInItem=new CheckInItem(checkIn);
-        return checkInItem.delCheckIn(address);
-    }
-    
+
     /**
      * 判断该入住信息是否有效
      * @param address string型，酒店地址

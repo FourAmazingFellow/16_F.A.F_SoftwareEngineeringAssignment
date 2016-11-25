@@ -22,6 +22,8 @@ public class CheckOutListTest {
     private Date actDepartTime;
     private Enum<RoomType> roomType;
     private CheckInOutVO checkOutVO;
+    private Date startTime;
+    private Date endTime;
     
     @SuppressWarnings("deprecation")
     @Before
@@ -29,6 +31,8 @@ public class CheckOutListTest {
         checkOutList=new MockCheckOutList();
         address = "江苏省南京市栖霞区仙林大道163号";
         actDepartTime = new Date(2016, 11, 12, 12, 0);
+        startTime=new Date(2016, 11, 12, 00, 00, 00);
+        startTime=new Date(2016, 11, 13, 00, 00, 00);
         roomType = RoomType.SINGLE_ROOM;
         checkOutVO=new CheckInOutVO(roomType, 3, address, actDepartTime);
     }
@@ -46,7 +50,7 @@ public class CheckOutListTest {
     
     @Test
     public void testSearchCheckOutInfo1(){
-        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, actDepartTime);
+        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, startTime, endTime);
         assertEquals(1,checkOutItems.size());
         CheckInOutVO checkOutVOFromArray=(CheckInOutVO) checkOutItems.get(0).toVO();
         assertEquals(checkOutVO.address, checkOutVOFromArray.address);
@@ -71,19 +75,7 @@ public class CheckOutListTest {
         boolean added=checkOutList.addCheckOut(address, checkOutVO);
         assertTrue(added);
     }
-    
-    @Test
-    public void testModifyCheckOut(){
-        boolean modifyed=checkOutList.modifyCheckOut(address, checkOutVO);
-        assertTrue(modifyed);
-    }
-    
-    @Test
-    public void testDelCheckOut(){
-        boolean deleted=checkOutList.delCheckOut(address, checkOutVO);
-        assertTrue(deleted);
-    }
-    
+
     @Test
     public void testValidCheckOut(){
         boolean valid=checkOutList.validCheckOut(address, checkOutVO);
