@@ -91,4 +91,10 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
         System.out.println("删除该策略信息成功");
         
     }
+
+    @Override
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
+        return true;
+    }
+
 }

@@ -58,4 +58,12 @@ public interface StrategyDAO extends Remote {
      * @see
      */
     public void deleteStrategy(StrategyPO po) throws RemoteException;
+    
+    /**
+     * 验证企业会员
+     * @param enterpriseName String型，企业名称
+     * @param securityCode Sring型，企业验证码
+     * @see
+     */
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode);
 }

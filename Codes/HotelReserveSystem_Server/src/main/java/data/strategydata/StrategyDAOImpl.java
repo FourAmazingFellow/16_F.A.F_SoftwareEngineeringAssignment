@@ -324,4 +324,11 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 		}
 	}
 
+
+    @Override
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }
