@@ -39,7 +39,7 @@ public class RoomDAO_Driver {
         System.out.println("expected time is "+checkInPO1.getExpDepartTime()+"/n");
         
         Date checkInTime=new Date(System.currentTimeMillis());
-        ArrayList<RoomPO> checkInPOlist2=roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime);
+        ArrayList<RoomPO> checkInPOlist2=roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime, checkInTime);
         CheckInOutPO checkInPO2=(CheckInOutPO) checkInPOlist2.get(0);
         System.out.println("the checkInInfo includes "+checkInPO2.getRoomNum() + " "+ checkInPO2.getRoomType());
         System.out.println("checkin time is "+checkInPO2.getCheckInTime());
@@ -57,7 +57,7 @@ public class RoomDAO_Driver {
         System.out.println("checkOut time is "+checkOutPO1.getActDepartTime()+"/n");
         
         Date checkOutTime=new Date(System.currentTimeMillis());
-        ArrayList<RoomPO> checkOutPOlist2=roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime);
+        ArrayList<RoomPO> checkOutPOlist2=roomDAO.getCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime, checkOutTime);
         CheckInOutPO checkOutPO2=(CheckInOutPO) checkOutPOlist2.get(0);
         System.out.println("the checkInInfo includes "+checkOutPO2.getRoomNum() + " "+ checkOutPO2.getRoomType());
         System.out.println("checkOut time is "+checkOutPO2.getActDepartTime()+"/n");
@@ -66,7 +66,6 @@ public class RoomDAO_Driver {
         RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
         roomDAO.updateRoom(roomPo);
         roomDAO.insertRoom(roomPo);
-        roomDAO.deleteRoom(roomPo);
 
     }
 }

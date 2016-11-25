@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import dataservice.roomDAO.RoomDAO;
 import po.CheckInOutPO;
+import po.CheckInPO;
+import po.CheckOutPO;
 import po.RoomPO;
 import po.RoomType;
 
@@ -62,8 +64,8 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public ArrayList<RoomPO> getCheckInInfo(String address, Date time) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, time, expDepartTime);
+    public ArrayList<RoomPO> getCheckInInfo(String address, Date startTime, Date endTime) throws RemoteException {
+        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, startTime, expDepartTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -86,8 +88,8 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public ArrayList<RoomPO> getCheckOutInfo(String address, Date time) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, time);
+    public ArrayList<RoomPO> getCheckOutInfo(String address, Date startTime, Date endTime) throws RemoteException {
+        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, startTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -114,26 +116,12 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public void deleteRoom(RoomPO po) throws RemoteException {
-        System.out.println("删除该房间信息成功");
-        
+    public void insertCheckIn(CheckInPO po) throws RemoteException {
+        System.out.println("插入该入住信息成功");
     }
 
     @Override
-    public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
-        System.out.println("更新该入住或退房信息成功");
-        
-    }
-
-    @Override
-    public void insertCheckInOut(CheckInOutPO po) throws RemoteException {
-        System.out.println("插入该入住或退房信息成功");
-        
-    }
-
-    @Override
-    public void deleteCheckInOut(RoomPO po) throws RemoteException {
-        System.out.println("删除该入住或退房信息成功");
-        
+    public void insertCheckOut(CheckOutPO po) throws RemoteException {
+        System.out.println("插入该退房信息成功");
     }
 }

@@ -17,7 +17,8 @@ import dataservice.strategyDAO.StrategyDAO;
 import dataservice.userDAO.UserDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
-import po.CheckInOutPO;
+import po.CheckInPO;
+import po.CheckOutPO;
 import po.ClientInfoPO;
 import po.EnterpriseVipPO;
 import po.HotelPO;
@@ -131,8 +132,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public ArrayList<RoomPO> getCheckInInfo(String address, Date time) throws RemoteException {
-		return roomDAO.getCheckInInfo(address, time);
+	public ArrayList<RoomPO> getCheckInInfo(String address, Date startTime, Date endTime) throws RemoteException {
+		return roomDAO.getCheckInInfo(address, startTime, endTime);
 	}
 
 	@Override
@@ -146,8 +147,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public ArrayList<RoomPO> getCheckOutInfo(String address, Date time) throws RemoteException {
-		return roomDAO.getCheckOutInfo(address, time);
+	public ArrayList<RoomPO> getCheckOutInfo(String address, Date startTime, Date endTime) throws RemoteException {
+		return roomDAO.getCheckOutInfo(address, startTime, endTime);
 	}
 
 	@Override
@@ -164,10 +165,15 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	public void insertRoom(RoomPO po) throws RemoteException {
 		roomDAO.insertRoom(po);
 	}
-
+	
 	@Override
-	public void deleteRoom(RoomPO po) throws RemoteException {
-		roomDAO.deleteRoom(po);
+	public void insertCheckIn(CheckInPO po) throws RemoteException {
+	    roomDAO.insertCheckIn(po);
+	}
+	
+	@Override
+	public void insertCheckOut(CheckOutPO po) throws RemoteException {
+	    roomDAO.insertCheckOut(po);
 	}
 
 	@Override
@@ -294,28 +300,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     }
 
     @Override
-    public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
-    }
-
-    @Override
-    public void insertCheckInOut(CheckInOutPO po) throws RemoteException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void deleteCheckInOut(RoomPO po) throws RemoteException {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
         return strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
     }
-
-    
-
-
 
 }
