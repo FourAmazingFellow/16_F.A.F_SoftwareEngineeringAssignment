@@ -316,6 +316,12 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
         
     }
 
+    @Override
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
     
 
 
