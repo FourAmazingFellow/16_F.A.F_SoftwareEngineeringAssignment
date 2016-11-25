@@ -1,6 +1,7 @@
 package po;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class RegularVipPO extends ClientInfoPO{
 
@@ -12,7 +13,7 @@ public class RegularVipPO extends ClientInfoPO{
     private Date birth;
     private int vipRank;
     public RegularVipPO(String userID, String password, String telNum, po.UserType userType, int creditValue,
-            String[] creditRecord, Date birth, int vipRank) {
+            ArrayList<CreditRecordPO> creditRecord, Date birth, int vipRank) {
         super(userID, password, telNum, userType, creditValue, creditRecord);
         this.birth = birth;
         this.vipRank = vipRank;

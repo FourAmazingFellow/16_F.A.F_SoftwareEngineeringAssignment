@@ -15,14 +15,13 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
     private String userID;
     private String password;
     private String telNum;
-    private UserType userType;
     private UserVO userVO;
     
     public ModifyClientInfoServiceImpl(String userID) {
         this.userID = userID;
         this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         try {
-            this.userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
+            this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
         } catch (RemoteException e) {
             e.printStackTrace();
         }

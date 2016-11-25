@@ -1,19 +1,20 @@
 package data.userdata;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
+import po.CreditRecordPO;
 import po.EnterpriseVipPO;
 import po.HotelStaffInfoPO;
 import po.RegularVipPO;
 import po.UserPO;
-import po.UserType;
 
 public class UserDAOImpl implements UserDAO {
 
     @Override
-    public UserPO getUserInfo(String userID, UserType userType) throws RemoteException {
+    public UserPO getUserInfo(String userID) throws RemoteException {
         // TODO Auto-generated method stub
         return null;
     }
@@ -26,12 +27,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public ClientInfoPO queryCreditRecord(String userID) throws RemoteException {
         // TODO Auto-generated method stub
         return null;
     }
@@ -82,6 +77,24 @@ public class UserDAOImpl implements UserDAO {
     public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public ArrayList<CreditRecordPO> queryCreditRecord(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public RegularVipPO getRegularVipInfo(String userID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
    

@@ -1,6 +1,9 @@
 package bl_Stub.userblservice_Stub;
 
+import java.util.ArrayList;
+
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
+import po.CreditRecordPO;
 import vo.ClientCreditRecordVO;
 
 /**
@@ -15,10 +18,10 @@ public class QueryClientCreditRecordServiceImpl_Stub implements QueryClientCredi
 	public String password;
     public String telNum;
     public int creditValue;
-    public String[] creditRecord;
+    public ArrayList<CreditRecordPO> creditRecord;
 	
     public QueryClientCreditRecordServiceImpl_Stub(long userID, String password, String telNum, int creditValue,
-			String[] creditRecord) {
+			ArrayList<CreditRecordPO> creditRecord) {
 		this.userID = userID;
 		this.password = password;
 		this.telNum = telNum;

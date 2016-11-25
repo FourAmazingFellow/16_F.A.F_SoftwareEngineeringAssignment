@@ -2,10 +2,13 @@ package org.FAF.businesslogic.userbl.addCreditValue;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.userbl.addCreditValue.AddCreditValueServiceImpl;
+import po.CreditRecordPO;
 import po.UserType;
 import vo.ClientInfoVO;
 
@@ -17,7 +20,7 @@ public class AddCreditValueServiceImplTest {
     private UserType userType;
     private int creditValue;
     private int creditAdded;
-    private String[] creditRecord = {"原-20161111-add-500"};
+    private ArrayList<CreditRecordPO> creditRecord ;
     private ClientInfoVO clientInfoVO;
     
     @Before

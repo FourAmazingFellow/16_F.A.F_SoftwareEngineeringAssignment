@@ -5,12 +5,10 @@ import java.rmi.RemoteException;
 import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
-import po.UserType;
 
 public class CheckLoginInfo {
     private UserDAO userDAO;
     private String userID;
-    private UserType userType;
     private UserPO userPO;
     private String password;
     private String telNum;
@@ -23,10 +21,9 @@ public class CheckLoginInfo {
      */
     public boolean checkUser(String userID,String password) {
         this.userID = userID;
-        this.userType = null;
         this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         try {
-            userPO = userDAO.getUserInfo(this.userID, this.userType);
+            userPO = userDAO.getUserInfo(this.userID);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

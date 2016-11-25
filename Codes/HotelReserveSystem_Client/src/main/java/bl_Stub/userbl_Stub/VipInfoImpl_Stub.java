@@ -17,7 +17,7 @@ public class VipInfoImpl_Stub implements VipInfo{
     public String userID;
     public String password;
     public String telNum;
-    public Enum<UserType> UserType;
+    public UserType UserType;
     public int creditValue;
     public Date birth;
     public String enterpriseID;
@@ -25,7 +25,7 @@ public class VipInfoImpl_Stub implements VipInfo{
     
 
 
-    public VipInfoImpl_Stub(String userID, String password, String telNum, Enum<po.UserType> userType, int creditValue,
+    public VipInfoImpl_Stub(String userID, String password, String telNum, UserType userType, int creditValue,
             Date birth) {
         super();
         this.userID = userID;
@@ -38,7 +38,7 @@ public class VipInfoImpl_Stub implements VipInfo{
     
     
 
-    public VipInfoImpl_Stub(String userID, String password, String telNum, Enum<po.UserType> userType, int creditValue,
+    public VipInfoImpl_Stub(String userID, String password, String telNum, UserType userType, int creditValue,
             String enterpriseID, String enterprisepassword) {
         super();
         this.userID = userID;

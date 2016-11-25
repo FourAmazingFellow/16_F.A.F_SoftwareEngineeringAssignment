@@ -1,5 +1,7 @@
 package po;
 
+import java.util.ArrayList;
+
 /**
  * 会员信息PO（继承于用户信息PO），负责持久化数据传输
  * @author sparkler
@@ -16,7 +18,7 @@ public class EnterpriseVipPO extends ClientInfoPO {
     private String enterprisePassword;
 
     public EnterpriseVipPO(String userID, String password, String telNum, po.UserType userType, int creditValue,
-            String[] creditRecord, String enterpriseID, String enterprisePassword) {
+            ArrayList<CreditRecordPO> creditRecord, String enterpriseID, String enterprisePassword) {
         super(userID, password, telNum, userType, creditValue, creditRecord);
         this.enterpriseID = enterpriseID;
         this.enterprisePassword = enterprisePassword;

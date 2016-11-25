@@ -19,6 +19,7 @@ import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.CheckInOutPO;
 import po.ClientInfoPO;
+import po.CreditRecordPO;
 import po.EnterpriseVipPO;
 import po.HotelPO;
 import po.HotelStaffInfoPO;
@@ -30,7 +31,6 @@ import po.RoomType;
 import po.StrategyPO;
 import po.StrategyType;
 import po.UserPO;
-import po.UserType;
 
 public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelDAO, OrderDAO, RoomDAO, StrategyDAO, UserDAO{
 
@@ -53,12 +53,12 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public UserPO getUserInfo(String userID, UserType UserType) throws RemoteException {
-		return userDAO.getUserInfo(userID, UserType);
+	public UserPO getUserInfo(String userID) throws RemoteException {
+		return userDAO.getUserInfo(userID);
 	}
 
 	@Override
-	public ClientInfoPO queryCreditRecord(String userID) throws RemoteException {
+	public ArrayList<CreditRecordPO> queryCreditRecord(String userID) throws RemoteException {
 		return userDAO.queryCreditRecord(userID);
 	}
 
@@ -320,6 +320,18 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
         // TODO Auto-generated method stub
         return false;
+    }
+
+    @Override
+    public RegularVipPO getRegularVipInfo(String userID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     

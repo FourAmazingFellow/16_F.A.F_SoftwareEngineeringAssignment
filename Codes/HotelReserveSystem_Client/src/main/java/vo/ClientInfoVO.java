@@ -1,6 +1,9 @@
 package vo;
 
+import java.util.ArrayList;
+
 import po.ClientInfoPO;
+import po.CreditRecordPO;
 import po.UserType;
 
 /**
@@ -12,10 +15,10 @@ import po.UserType;
 public class ClientInfoVO extends UserVO{
 
     public int creditValue;
-    public String[] creditRecord;
+    public ArrayList<CreditRecordPO> creditRecord;
 
     public ClientInfoVO(String userID, String password, String telNum, Enum<UserType> userType, int creditValue,
-            String[] creditRecord) {
+            ArrayList<CreditRecordPO> creditRecord) {
         super(userID, password, telNum, userType);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;

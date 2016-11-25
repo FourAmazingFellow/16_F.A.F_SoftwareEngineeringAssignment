@@ -17,7 +17,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     
     public AddCreditValueServiceImpl() {
         try {
-            this.clientInfoVO = new UserVO(userDAO.getUserInfo(userID, userType));
+            this.clientInfoVO = new UserVO(userDAO.getUserInfo(userID));
         } catch (RemoteException e) {
             e.printStackTrace();
         }    

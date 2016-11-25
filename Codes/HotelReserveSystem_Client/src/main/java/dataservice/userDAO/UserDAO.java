@@ -2,8 +2,10 @@ package dataservice.userDAO;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import po.ClientInfoPO;
+import po.CreditRecordPO;
 import po.EnterpriseVipPO;
 import po.HotelStaffInfoPO;
 import po.RegularVipPO;
@@ -25,7 +27,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public UserPO getUserInfo(String userID, UserType userType) throws RemoteException;
+    public UserPO getUserInfo(String userID) throws RemoteException;
     
     /**
      * 查询客户信息
@@ -52,7 +54,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public ClientInfoPO queryCreditRecord(String userID) throws RemoteException;
+    public ArrayList<CreditRecordPO> queryCreditRecord(String userID) throws RemoteException;
     
     /**
       * 获取客户的信用值
@@ -119,5 +121,21 @@ public interface UserDAO extends Remote {
      * @see
      */
     public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException;
+    
+    /**
+     * 得到普通会员信息
+     * @param userID String型，业务逻辑层传递过来的用户标识
+     * @return 返回普通会员信息
+     * @see
+     */
+    public RegularVipPO getRegularVipInfo(String userID);
+    
+    /**
+     * 得到企业会员信息
+     * @param userID String型，业务逻辑层传递过来的用户标识
+     * @return 返回企业会员信息
+     * @see
+     */
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID);
 
 }

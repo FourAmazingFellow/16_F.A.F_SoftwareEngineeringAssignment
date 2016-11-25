@@ -1,5 +1,7 @@
 package po;
 
+import java.util.ArrayList;
+
 import vo.ClientInfoVO;
 
 /**
@@ -16,9 +18,9 @@ public class ClientInfoPO extends UserPO{
 	
 	
 	private int creditValue;
-    private String[] creditRecord;
+    private ArrayList<CreditRecordPO> creditRecord;
 
-    public ClientInfoPO(String userID, String password, String telNum, UserType userType, int creditValue, String[] creditRecord) {
+    public ClientInfoPO(String userID, String password, String telNum, UserType userType, int creditValue, ArrayList<CreditRecordPO> creditRecord) {
         super(userID, password, telNum, userType);
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
@@ -36,10 +38,10 @@ public class ClientInfoPO extends UserPO{
     public int getCreditValue() {
         return creditValue;
     }
-    public String[] getCreditRecord() {
+    public ArrayList<CreditRecordPO> getCreditRecord() {
         return creditRecord;
     }
-    public void setCreditRecord(String[] creditRecord) {
+    public void setCreditRecord(ArrayList<CreditRecordPO> creditRecord) {
         this.creditRecord = creditRecord;
     }
 }

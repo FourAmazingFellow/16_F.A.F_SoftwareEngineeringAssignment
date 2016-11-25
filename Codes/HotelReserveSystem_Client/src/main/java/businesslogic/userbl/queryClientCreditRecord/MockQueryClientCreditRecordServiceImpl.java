@@ -11,7 +11,7 @@ public class MockQueryClientCreditRecordServiceImpl extends QueryClientCreditRec
     @Override
     public ClientCreditRecordVO queryCreditRecord(String userID) {
         try {
-            return new ClientCreditRecordVO(userDAO.queryCreditRecord(userID));
+            return new ClientCreditRecordVO(userID, userDAO.queryCreditRecord(userID));
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

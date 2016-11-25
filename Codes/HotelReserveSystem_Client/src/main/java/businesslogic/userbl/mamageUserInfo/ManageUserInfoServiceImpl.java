@@ -17,14 +17,13 @@ import vo.UserVO;
 public class ManageUserInfoServiceImpl implements ManageUserInfoService{
 
     private UserDAO userDAO;
-    private UserType userType;
     private String userID;
     private UserVO userVO;
     
     public ManageUserInfoServiceImpl(String userID) {
         this.userID = userID;
         try {
-            this.userVO = new UserVO(userDAO.getUserInfo(this.userID, userType));
+            this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
