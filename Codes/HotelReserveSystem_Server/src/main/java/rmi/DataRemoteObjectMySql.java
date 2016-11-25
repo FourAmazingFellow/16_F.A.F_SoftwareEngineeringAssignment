@@ -19,10 +19,12 @@ import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.CheckInOutPO;
 import po.ClientInfoPO;
+import po.EnterpriseVipPO;
 import po.HotelPO;
 import po.HotelStaffInfoPO;
 import po.OrderPO;
 import po.OrderType;
+import po.RegularVipPO;
 import po.RoomPO;
 import po.RoomType;
 import po.StrategyPO;
@@ -81,11 +83,6 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
         userDAO.insertHotelStaff(hotelStaffInfoPO);
         
     }
-
-	@Override
-	public void deleteUser(UserPO po) throws RemoteException {
-		userDAO.deleteUser(po);
-	}
 
 	@Override
 	public void updateUser(UserPO po) throws RemoteException {
@@ -164,30 +161,15 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
-	    roomDAO.updateCheckInOut(po);
-	}
-	
-	@Override
 	public void insertRoom(RoomPO po) throws RemoteException {
 		roomDAO.insertRoom(po);
 	}
 
 	@Override
-	public void insertCheckInOut(CheckInOutPO po) throws RemoteException {
-	    roomDAO.insertCheckInOut(po);
-	}
-	
-	@Override
 	public void deleteRoom(RoomPO po) throws RemoteException {
 		roomDAO.deleteRoom(po);
 	}
 
-	@Override
-	public void deleteCheckInOut(RoomPO po) throws RemoteException {
-	    roomDAO.deleteCheckInOut(po);
-	}
-	
 	@Override
 	public ArrayList<OrderPO> getUserAllOrders(String userID) throws RemoteException {
 		return orderDAO.getUserAllOrders(userID);
@@ -285,6 +267,57 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	public void insertHotel(HotelPO po) throws RemoteException {
 		hotelDAO.insertHotel(po);
 	}
+
+    @Override
+    public ClientInfoPO getClientInfo(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void updateCheckInOut(CheckInOutPO po) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void insertCheckInOut(CheckInOutPO po) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deleteCheckInOut(RoomPO po) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    
+
 
 
 }

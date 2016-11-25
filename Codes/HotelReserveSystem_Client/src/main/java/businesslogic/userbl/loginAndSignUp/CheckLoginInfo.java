@@ -23,7 +23,7 @@ public class CheckLoginInfo {
      */
     public boolean checkUser(String userID,String password) {
         this.userID = userID;
-        this.userType = UserType.Client;
+        this.userType = null;
         this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         try {
             userPO = userDAO.getUserInfo(this.userID, this.userType);

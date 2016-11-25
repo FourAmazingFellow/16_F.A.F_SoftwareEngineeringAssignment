@@ -44,15 +44,6 @@ public class UserDAO_Driver {
             e.printStackTrace();
         }
         
-        try {
-            UserPO userPO = userDAO.getUserInfo("原", UserType.Client);
-            userDAO.deleteUser(userPO);
-            System.out.println("插入酒店信息成功\n");
-        } catch (RemoteException e) {
-            System.out.println("网络通信失败");
-            System.out.println("插入酒店信息失败\n");
-            e.printStackTrace();
-        }
         
         try {
             UserPO userPO = userDAO.getUserInfo("原", UserType.Client);

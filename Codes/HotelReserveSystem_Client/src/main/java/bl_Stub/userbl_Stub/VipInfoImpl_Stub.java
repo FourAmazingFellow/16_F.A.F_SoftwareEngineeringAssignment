@@ -54,12 +54,12 @@ public class VipInfoImpl_Stub implements VipInfo{
 
     @Override
     public VipInfoVO getRegularVipInfo(String userID) {
-        return new VipInfoVO(userID, password, telNum, UserType, birth);
+        return new VipInfoVO(userID, password, telNum, UserType, creditValue, null, birth, creditValue);
     }
 
     @Override
     public VipInfoVO getEnterpriseVipInfo(String userID) {
-        return new VipInfoVO(userID, password, telNum,UserType, enterpriseID, enterprisepassword);
+        return new VipInfoVO(userID, password, telNum,UserType, creditValue, null, enterpriseID, enterprisepassword);
                 
     }
     

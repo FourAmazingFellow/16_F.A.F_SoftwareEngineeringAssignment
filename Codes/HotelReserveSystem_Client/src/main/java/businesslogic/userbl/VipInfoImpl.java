@@ -21,7 +21,7 @@ public class VipInfoImpl implements VipInfo {
         this.userID = userID;
         // this.vipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO)
         // userDAO.getUserInfo(userID, userType));
-        this.vipInfoVO = new VipInfoVO(this.userID, password, telNum, userType, birth);
+        this.vipInfoVO = new VipInfoVO(this.userID, password, telNum, userType, 0, null, birth, 0);
         return vipInfoVO;
     }
 
@@ -30,7 +30,7 @@ public class VipInfoImpl implements VipInfo {
         this.userID = userID;
         // this.vipInfoVO = (VipInfoVO) new VipInfoVO((VipInfoPO)
         // userDAO.getUserInfo(userID, userType));
-        this.vipInfoVO = new VipInfoVO(this.userID, password, telNum, userType, enterpriseID, enterprisePassword);
+        this.vipInfoVO = new VipInfoVO(this.userID, password, telNum, userType, 0, null, enterpriseID, enterprisePassword);
         return vipInfoVO;
     }
 

@@ -5,7 +5,9 @@ import java.sql.Date;
 
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
+import po.EnterpriseVipPO;
 import po.HotelStaffInfoPO;
+import po.RegularVipPO;
 import po.UserPO;
 import po.UserType;
 
@@ -87,6 +89,31 @@ public class UserDAOImpl_Stub implements UserDAO{
     }
     @Override
     public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public ClientInfoPO getClientInfo(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
         // TODO Auto-generated method stub
         
     }
