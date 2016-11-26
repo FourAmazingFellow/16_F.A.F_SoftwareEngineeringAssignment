@@ -49,7 +49,7 @@ public class UserDAO_Driver {
         
         try {
             UserPO userPO = userDAO.getUserInfo("原");
-            userDAO.updateUser(userPO);
+            userDAO.updateUser(userPO, "原");
             System.out.println("初始化持久化数据存储成功！\n");
         } catch (RemoteException e) {
             System.out.println("网络通信失败");

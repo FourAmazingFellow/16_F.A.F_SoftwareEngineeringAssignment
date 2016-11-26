@@ -79,7 +79,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         System.out.println("Insert Succeed!\n");
     }
     @Override
-    public void updateUser(UserPO po) throws RemoteException {
+    public void updateUser(UserPO po, String oldUserID) throws RemoteException {
         System.out.println("Update Succeed!\n");
         
     }
@@ -105,7 +105,7 @@ public class UserDAOImpl_Stub implements UserDAO{
         return null;
     }
     @Override
-    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException {
+    public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
         // TODO Auto-generated method stub
         
     }

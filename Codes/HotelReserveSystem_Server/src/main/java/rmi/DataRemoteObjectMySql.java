@@ -86,8 +86,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     }
 
 	@Override
-	public void updateUser(UserPO po) throws RemoteException {
-		userDAO.updateUser(po);
+	public void updateUser(UserPO po, String oldUserID) throws RemoteException {
+		userDAO.updateUser(po, oldUserID);
 	}
 
 	@Override
@@ -285,8 +285,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     }
 
     @Override
-    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException {
-    	userDAO.updateClient(clientInfoPO);
+    public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
+    	userDAO.updateClient(clientInfoPO, oldUserID);
     }
 
     @Override
@@ -306,14 +306,12 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 
     @Override
     public RegularVipPO getRegularVipInfo(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+        return userDAO.getRegularVipInfo(userID);
     }
 
     @Override
     public EnterpriseVipPO getEnterpriseVipInfo(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+        return userDAO.getEnterpriseVipInfo(userID);
     }
 
 }

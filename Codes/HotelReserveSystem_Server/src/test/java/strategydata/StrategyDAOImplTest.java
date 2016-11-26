@@ -95,15 +95,15 @@ public class StrategyDAOImplTest {
 		}
 	}
 	
-	@Test
-	public void testUpdateStrategy() {
-		try {
-			strategyDAO.updateStrategy(updatepo);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
+//	@Test
+//	public void testUpdateStrategy() {
+//		try {
+//			strategyDAO.updateStrategy(updatepo);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
 	
 //	@Test
 //	public void testDeleteStrategy() {
@@ -115,4 +115,10 @@ public class StrategyDAOImplTest {
 //		}
 //	}
 
+	@Test
+	public void testVerifyEnterpriseMember() {
+		boolean result = strategyDAO.verifyEnterpriseMember("万达", "wanda666");
+		assertEquals(true, result);
+	}
+	
 }

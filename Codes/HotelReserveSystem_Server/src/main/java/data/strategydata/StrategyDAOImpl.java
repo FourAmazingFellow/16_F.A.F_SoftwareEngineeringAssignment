@@ -14,7 +14,7 @@ import po.StrategyType;
 
 public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 
-	private String[] tableNames = {"birthdayPromotion", "MultiRoomPromotionandMemberRankMarket", "cooperativeEnterprise",
+	private static String[] tableNames = {"birthdayPromotion", "MultiRoomPromotionandMemberRankMarket", "cooperativeEnterprise",
 								   "specificTimePromotion", "specificTimePromotion", "vipTradeAreaMarket", "MultiRoomPromotionandMemberRankMarket"
 								  };
 	
@@ -327,8 +327,29 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 
     @Override
     public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
-        // TODO Auto-generated method stub
-        return false;
+    	Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			String sql = "select * from cooperativeenterprise where enterpriseName = ? and securityCode = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, enterpriseName);
+			pstmt.setString(2, securityCode);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				return true;
+			}
+			return false;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(rs, conn, pstmt);
+		}
     }
 
 }

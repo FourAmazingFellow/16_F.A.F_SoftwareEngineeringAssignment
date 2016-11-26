@@ -28,7 +28,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
         ClientInfoPO clientInfoPO = new ClientInfoPO(this.userID, null, null, null, creditValue, null);
         creditValue = clientInfoPO.getCreditValue();
         try {
-            userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue, null));;
+            userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue, null), "原");;
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
