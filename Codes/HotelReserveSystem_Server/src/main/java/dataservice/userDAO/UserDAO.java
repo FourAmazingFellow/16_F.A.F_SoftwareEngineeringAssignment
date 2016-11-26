@@ -125,15 +125,17 @@ public interface UserDAO extends Remote {
      * 得到普通会员信息
      * @param userID String型，业务逻辑层传递过来的用户标识
      * @return 返回普通会员信息
+     * @throws RemoteException 
      * @see
      */
-    public RegularVipPO getRegularVipInfo(String userID);
+    public RegularVipPO getRegularVipInfo(String userID) throws RemoteException;
     
     /**
      * 得到企业会员信息
      * @param userID String型，业务逻辑层传递过来的用户标识
      * @return 返回企业会员信息
+     * @throws RemoteException 
      * @see
      */
-    public EnterpriseVipPO getEnterpriseVipInfo(String userID);
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID) throws RemoteException;
 }

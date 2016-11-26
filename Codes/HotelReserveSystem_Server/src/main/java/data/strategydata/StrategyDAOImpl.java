@@ -326,7 +326,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 
 
     @Override
-    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

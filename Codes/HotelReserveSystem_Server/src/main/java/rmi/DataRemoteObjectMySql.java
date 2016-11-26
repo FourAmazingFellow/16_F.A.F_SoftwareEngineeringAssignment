@@ -300,17 +300,17 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     }
 
     @Override
-    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) throws RemoteException {
         return strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
     }
 
     @Override
-    public RegularVipPO getRegularVipInfo(String userID) {
+    public RegularVipPO getRegularVipInfo(String userID) throws RemoteException {
         return userDAO.getRegularVipInfo(userID);
     }
 
     @Override
-    public EnterpriseVipPO getEnterpriseVipInfo(String userID) {
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID) throws RemoteException {
         return userDAO.getEnterpriseVipInfo(userID);
     }
 

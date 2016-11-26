@@ -20,6 +20,10 @@ public class ClientInfoPO extends UserPO{
 	private int creditValue;
     private ArrayList<CreditRecordPO> creditRecord;
 
+    public ClientInfoPO() {
+    	
+    }
+    
     public ClientInfoPO(String userID, String password, String telNum, UserType userType, int creditValue, ArrayList<CreditRecordPO> creditRecord) {
         super(userID, password, telNum, userType);
         this.creditValue = creditValue;

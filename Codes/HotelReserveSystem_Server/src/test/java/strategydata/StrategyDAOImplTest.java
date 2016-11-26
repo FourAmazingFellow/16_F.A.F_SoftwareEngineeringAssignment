@@ -117,8 +117,15 @@ public class StrategyDAOImplTest {
 
 	@Test
 	public void testVerifyEnterpriseMember() {
-		boolean result = strategyDAO.verifyEnterpriseMember("万达", "wanda666");
-		assertEquals(true, result);
+		boolean result;
+		try {
+			result = strategyDAO.verifyEnterpriseMember("万达", "wanda666");
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
+		
 	}
 	
 }

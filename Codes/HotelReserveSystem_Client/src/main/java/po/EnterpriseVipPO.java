@@ -17,6 +17,10 @@ public class EnterpriseVipPO extends ClientInfoPO {
     private String enterpriseID;
     private String enterprisePassword;
 
+    public EnterpriseVipPO() {
+    	
+    }
+    
     public EnterpriseVipPO(String userID, String password, String telNum, po.UserType userType, int creditValue,
             ArrayList<CreditRecordPO> creditRecord, String enterpriseID, String enterprisePassword) {
         super(userID, password, telNum, userType, creditValue, creditRecord);

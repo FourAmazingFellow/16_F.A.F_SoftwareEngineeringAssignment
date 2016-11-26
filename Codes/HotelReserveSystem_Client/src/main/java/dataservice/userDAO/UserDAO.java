@@ -127,7 +127,7 @@ public interface UserDAO extends Remote {
      * @return 返回普通会员信息
      * @see
      */
-    public RegularVipPO getRegularVipInfo(String userID);
+    public RegularVipPO getRegularVipInfo(String userID) throws RemoteException;
     
     /**
      * 得到企业会员信息
@@ -135,6 +135,6 @@ public interface UserDAO extends Remote {
      * @return 返回企业会员信息
      * @see
      */
-    public EnterpriseVipPO getEnterpriseVipInfo(String userID);
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID) throws RemoteException;
 
 }
