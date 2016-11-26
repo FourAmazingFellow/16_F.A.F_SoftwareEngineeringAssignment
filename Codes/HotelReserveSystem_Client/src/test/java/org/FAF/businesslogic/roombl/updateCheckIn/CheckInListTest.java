@@ -24,6 +24,7 @@ public class CheckInListTest {
     private CheckInOutVO checkInVO;
     private Date startTime;
     private Date endTime;
+    private boolean updateSpareRoom;
     
     @SuppressWarnings("deprecation")
     @Before
@@ -36,6 +37,7 @@ public class CheckInListTest {
         roomType = RoomType.SINGLE_ROOM;
         checkInVO = new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime,
                 new Date(2016, 11, 12, 12, 0));
+        updateSpareRoom=true;
     }
 
     @Test
@@ -76,7 +78,7 @@ public class CheckInListTest {
 
     @Test
     public void testAddCheckIn() {
-        boolean added=checkInList.addCheckIn(address, checkInVO);
+        boolean added=checkInList.addCheckIn(address, checkInVO, updateSpareRoom);
         assertTrue(added);
     }
 

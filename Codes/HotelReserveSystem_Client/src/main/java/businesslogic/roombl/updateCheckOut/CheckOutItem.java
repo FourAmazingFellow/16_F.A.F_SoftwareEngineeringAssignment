@@ -69,6 +69,8 @@ public class CheckOutItem {
             e.printStackTrace();
             return false;
         }
+        //更新空房信息
+        
         return true;
     }
   
@@ -78,6 +80,8 @@ public class CheckOutItem {
      * @see
      */
     public boolean validCheckOut(){
+        //roomNum是否小于可用客房数-空房数
+        //实际离开时间小于等于当前时间
         return false;
         
     }

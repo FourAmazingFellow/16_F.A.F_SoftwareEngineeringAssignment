@@ -70,9 +70,9 @@ public class MockCheckInList extends CheckInList{
     }
     
     @Override
-    public boolean addCheckIn(String address, RoomVO checkIn){
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom){
         CheckInItem checkInItem=new MockCheckInItem(checkIn);
-        return checkInItem.addCheckIn(address);
+        return checkInItem.addCheckIn(address,updateSpareRoom);
     }
    
     @Override
