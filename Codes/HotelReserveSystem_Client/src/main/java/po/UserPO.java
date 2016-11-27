@@ -21,6 +21,10 @@ public class UserPO implements Serializable {
     private String telNum;
     public UserType userType;
     
+    public UserPO() {
+
+    }
+
     public UserPO(String userID, String password, String telNum, UserType userType) {
         this.userID = userID;
         this.password = password;
