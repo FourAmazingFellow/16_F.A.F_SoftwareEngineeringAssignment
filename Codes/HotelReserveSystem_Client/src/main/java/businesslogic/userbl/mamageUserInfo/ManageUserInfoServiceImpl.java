@@ -32,7 +32,7 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
     @Override
     public boolean modifyUserInfo(UserVO user) {
         try {
-            userDAO.updateUser(new UserPO(user));
+            userDAO.updateUser(new UserPO(user), "原");
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

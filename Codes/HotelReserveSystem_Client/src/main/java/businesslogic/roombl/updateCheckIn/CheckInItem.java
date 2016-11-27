@@ -63,7 +63,7 @@ public class CheckInItem {
      * @return
      * @see
      */
-    public boolean addCheckIn(String address){
+    public boolean addCheckIn(String address, boolean updateSpareRoom){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.insertRoom(checkInPO);
@@ -71,6 +71,8 @@ public class CheckInItem {
             e.printStackTrace();
             return false;
         }
+        //根据布尔值决定是否更新空房
+        
         return true;
     }
     
@@ -80,6 +82,9 @@ public class CheckInItem {
      * @see
      */
     public boolean validCheckIn(){
+        //roomNum小于空房数量大于0
+        //入住时间大于等于当前时间
+        //预计离开时间大于入住时间
         return true;
     }
     

@@ -14,7 +14,9 @@ public class ClientInfoPO extends UserPO {
 	 */
 	private static final long serialVersionUID = -7813562391061517043L;
 	
-	
+	public ClientInfoPO() {
+		
+	}
  
     public ClientInfoPO(String userID, String password, String telNum, UserType userType, int creditValue, ArrayList<CreditRecordPO> creditRecord) {
         super(userID, password, telNum, userType);

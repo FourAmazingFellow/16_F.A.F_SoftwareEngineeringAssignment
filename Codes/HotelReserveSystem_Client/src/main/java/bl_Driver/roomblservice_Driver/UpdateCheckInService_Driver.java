@@ -39,7 +39,7 @@ public class UpdateCheckInService_Driver {
         
         Date expDepartTime=new Date(2016, 11, 11, 12, 0);
         CheckInOutVO checkIn=new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
-        boolean addCheckIn=updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
+        boolean addCheckIn=updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn,true);
         if(addCheckIn)
             System.out.println("add checkIn Succeed!\n");
         else

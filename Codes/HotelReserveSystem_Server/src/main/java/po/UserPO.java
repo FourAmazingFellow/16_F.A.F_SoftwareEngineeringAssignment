@@ -20,6 +20,10 @@ public class UserPO implements Serializable {
     private String telNum;
     private Enum<UserType> UserType;
     
+    public UserPO() {
+    	
+    }
+    
     public UserPO(String userID, String password, String telNum, UserType userType) {
         super();
         this.userID = userID;

@@ -12,6 +12,12 @@ public class RegularVipPO extends ClientInfoPO{
 
     private Date birth;
     private int vipRank;
+    
+    
+    public RegularVipPO() {
+    	
+    }
+    
     public RegularVipPO(String userID, String password, String telNum, po.UserType userType, int creditValue,
             ArrayList<CreditRecordPO> creditRecord, Date birth, int vipRank) {
         super(userID, password, telNum, userType, creditValue, creditRecord);

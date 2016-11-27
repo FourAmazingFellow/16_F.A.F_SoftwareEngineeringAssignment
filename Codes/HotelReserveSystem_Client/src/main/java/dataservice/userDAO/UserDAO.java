@@ -10,7 +10,6 @@ import po.EnterpriseVipPO;
 import po.HotelStaffInfoPO;
 import po.RegularVipPO;
 import po.UserPO;
-import po.UserType;
 /**
  * 为业务逻辑层提供所需要的用户数据
  * @author sparkler
@@ -96,7 +95,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void updateUser(UserPO userPO) throws RemoteException;
+    public void updateUser(UserPO userPO, String oldUserID) throws RemoteException;
     
     /**
      * 更新客户信息
@@ -104,7 +103,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void updateClient(ClientInfoPO clientInfoPO) throws RemoteException;
+    public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException;
     
     /**
      * 注册普通会员
@@ -128,7 +127,7 @@ public interface UserDAO extends Remote {
      * @return 返回普通会员信息
      * @see
      */
-    public RegularVipPO getRegularVipInfo(String userID);
+    public RegularVipPO getRegularVipInfo(String userID) throws RemoteException;
     
     /**
      * 得到企业会员信息
@@ -136,6 +135,6 @@ public interface UserDAO extends Remote {
      * @return 返回企业会员信息
      * @see
      */
-    public EnterpriseVipPO getEnterpriseVipInfo(String userID);
+    public EnterpriseVipPO getEnterpriseVipInfo(String userID) throws RemoteException;
 
 }

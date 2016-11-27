@@ -96,19 +96,25 @@ public class StrategyItem {
      * @see
      */
     public boolean add(String address) {
+        //该折扣名称是否已存在，存在则无法添加
         StrategyPO strategyPO;
-        if(strategyType.equals(StrategyType.MultiRoomPromotion)){
+        if(strategyType.equals(StrategyType.BirthdayPromotion)){
+            //是否已存在生日折扣，生日折扣只能有一种
             strategyPO=new StrategyPO(address, strategyType, address, discount); 
         }else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+            //该房间数是否已存在
             strategyPO=new StrategyPO(address, strategyType, address, discount, minRoomNum);
         } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
-            strategyPO=new StrategyPO(address, strategyType, address, discount, address, address);
+            //合作企业折扣，该合作企业是否已存在
+            strategyPO=new StrategyPO(address, strategyType, address, discount, enterpriseName, securityCode);
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
             strategyPO=new StrategyPO(address, strategyType, address, discount, startTime, endTime);
         } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
-            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, address);
+            //对应vip和商圈的折扣是否已存在
+            strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, tradeArea);
         } else{
+            //对应vip等级是否已存在
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         }
         try {
@@ -128,19 +134,24 @@ public class StrategyItem {
      * @see
      */
     public boolean modify(String address) {
+      //该折扣名称是否已存在，不存在则无法修改
         StrategyPO strategyPO;
-        if(strategyType.equals(StrategyType.MultiRoomPromotion)){
+        if(strategyType.equals(StrategyType.BirthdayPromotion)){
             strategyPO=new StrategyPO(address, strategyType, address, discount); 
         }else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+          //该房间数是否已存在
             strategyPO=new StrategyPO(address, strategyType, address, discount, minRoomNum);
         } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
-            strategyPO=new StrategyPO(address, strategyType, address, discount, address, address);
+          //合作企业折扣，该合作企业是否已存在
+            strategyPO=new StrategyPO(address, strategyType, address, discount, enterpriseName, securityCode);
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
             strategyPO=new StrategyPO(address, strategyType, address, discount, startTime, endTime);
         } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+          //对应vip和商圈的折扣是否已存在
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank, address);
         } else{
+          //对应vip等级是否已存在
             strategyPO=new StrategyPO(address, strategyType, address, discount, vipRank);
         }
         try {
@@ -160,6 +171,7 @@ public class StrategyItem {
      * @see
      */
     public boolean delete(String address) {
+        //判断该折扣名称是否存在，不存在无法删除
         StrategyPO strategyPO;
         if(strategyType.equals(StrategyType.MultiRoomPromotion)){
             strategyPO=new StrategyPO(address, strategyType, address, discount); 
@@ -191,6 +203,15 @@ public class StrategyItem {
      * @see
      */
     public boolean valid() {
+        //格式验证
+        //验证折扣名称是否含非法字符
+        //验证折扣百分比是否0<x<100
+        //若是企业折扣，企业名称是否合理，验证码是否是8位
+        //如果是商圈折扣，商圈名称正确，vip为正整数
+        //如果是特殊期间折扣，时间格式是否正确，起始时间是否小于结束时间
+        //非格式验证
+        //如果是房间数折扣，最少房间数是否小于可用客房数量大于0
+        //如果是商圈折扣，商圈是否存在,minVIP<vip<maxVIP
         return false;
 
     }

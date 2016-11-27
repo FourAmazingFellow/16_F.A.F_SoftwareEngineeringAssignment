@@ -14,7 +14,7 @@ public class HotelStaffInfoPO extends UserPO {
 	    
     private String hotelAddress;
     
-    public HotelStaffInfoPO(String userID, String password, String telNum, String creditChangeRecord,
+    public HotelStaffInfoPO(String userID, String password, String telNum,
             UserType userType, String hotelAddress) {
         super(userID, password, telNum, userType);
         this.hotelAddress = hotelAddress;

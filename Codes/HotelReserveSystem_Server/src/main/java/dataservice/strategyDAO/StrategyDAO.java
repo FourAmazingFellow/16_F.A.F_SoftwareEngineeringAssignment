@@ -63,7 +63,8 @@ public interface StrategyDAO extends Remote {
      * 验证企业会员
      * @param enterpriseName String型，企业名称
      * @param securityCode Sring型，企业验证码
+     * @throws RemoteException 
      * @see
      */
-    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode);
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) throws RemoteException;
 }

@@ -49,7 +49,7 @@ public class MockCheckInItem extends CheckInItem{
     }
     
     @Override
-    public boolean addCheckIn(String address){
+    public boolean addCheckIn(String address, boolean updateSpareRoom){
         RoomPO checkInPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
         try {
             checkInDAO.insertRoom(checkInPO);

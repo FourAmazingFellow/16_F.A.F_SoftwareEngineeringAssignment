@@ -16,6 +16,7 @@ import vo.StrategyVO;
  */
 public class StrategyList {
 
+    //如果要储存策略列表，那么要设置成单件模式？
     private StrategyDAO strategyDAO;
     
     /**

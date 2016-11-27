@@ -44,10 +44,11 @@ public interface UpdateCheckInService {
      * 增加入住信息
      * @param address String型， 酒店地址
      * @param checkIn RoomVO型，入住信息
+     * @param updateSpareRoom boolean型，是否更新空房
      * @return boolean型，返回是否增加入住信息成功
      * @see
      */
-    public boolean addCheckIn(String address, RoomVO checkIn);
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom);
 
     /**
      * 检查入住信息是否符合规范

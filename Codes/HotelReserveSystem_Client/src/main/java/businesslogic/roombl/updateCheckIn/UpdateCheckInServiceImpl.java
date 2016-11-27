@@ -5,7 +5,6 @@ import java.util.Date;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import po.RoomType;
-import vo.CheckInOutVO;
 import vo.RoomVO;
 
 /**
@@ -76,8 +75,8 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      * @see
      */
     @Override
-    public boolean addCheckIn(String address, RoomVO checkIn){
-        return checkInList.addCheckIn(address, checkIn);
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom){
+        return checkInList.addCheckIn(address, checkIn, updateSpareRoom);
     }
    
     /**

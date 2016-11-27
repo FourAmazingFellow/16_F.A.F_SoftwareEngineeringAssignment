@@ -91,9 +91,9 @@ public class CheckInList {
      * @return 返回是否增加成功
      * @see
      */
-    public boolean addCheckIn(String address, RoomVO checkIn){
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom){
         CheckInItem checkInItem=new CheckInItem(checkIn);
-        return checkInItem.addCheckIn(address);
+        return checkInItem.addCheckIn(address, updateSpareRoom);
     }
 
     /**
