@@ -29,10 +29,10 @@ public interface StrategyInfoService {
     /**
      * 获取某订单的最终的折扣百分比
      * @param order OrderVO型，同层调用传来的订单信息
-     * @return int型，返回某订单的最终折扣百分比
+     * @return float型，返回某订单的最终折扣百分比
      * @see
      */
-    public int getBestDiscount(OrderVO order);
+    public float getBestDiscount(OrderVO order);
     
     /**
      * 验证企业会员

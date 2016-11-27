@@ -7,6 +7,7 @@ import java.util.Date;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
+import rmi.RemoteHelper;
 import vo.RoomVO;
 
 /**
@@ -18,6 +19,10 @@ import vo.RoomVO;
 public class CheckInList {
 
     private RoomDAO roomDAO;
+    
+    public CheckInList(){
+        roomDAO=RemoteHelper.getInstance().getRoomDAO();
+    }
     
     /**
      * 得到入住信息列表
@@ -48,6 +53,7 @@ public class CheckInList {
      * @see
      */
     public ArrayList<CheckInItem> searchCheckInInfo(String address , Date startTime, Date endTime){
+        //改变接口，只传一个Date,startTime ,endTime 自己计算出
         ArrayList<RoomPO> roomPOs;
         ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
         try {

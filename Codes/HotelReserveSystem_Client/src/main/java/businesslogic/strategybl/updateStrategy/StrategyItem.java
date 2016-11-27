@@ -13,6 +13,7 @@ import po.BusinessDistrictPO;
 import po.RoomType;
 import po.StrategyPO;
 import po.StrategyType;
+import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.StrategyVO;
 
@@ -42,7 +43,7 @@ public class StrategyItem {
     private HotelInfoService hotelInfoService = new HotelInfoServiceImpl();
 
     public StrategyItem() {
-
+        strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
     }
 
     /**
@@ -52,6 +53,7 @@ public class StrategyItem {
      *            PO类，包含策略信息
      */
     public StrategyItem(StrategyPO strategyPO) {
+        this();
         this.address = strategyPO.getAddress();
         this.strategyName = strategyPO.getStrategyName();
         this.discount = strategyPO.getDiscount();
@@ -80,6 +82,7 @@ public class StrategyItem {
      *            VO类，包含策略信息
      */
     public StrategyItem(StrategyVO strategyVO) {
+        this();
         this.address = strategyVO.address;
         this.strategyName = strategyVO.strategyName;
         this.discount = strategyVO.discount;
@@ -346,9 +349,4 @@ public class StrategyItem {
         return null;
     }
     
-    @SuppressWarnings("deprecation")
-    public static void main(String[] args){
-        Date day=new Date(2017,13,2);
-        System.out.println(day.toGMTString());
-    }
 }

@@ -23,7 +23,7 @@ public class StrategyInfoService_Driver {
         String availMarketStrategy=strategyInfoService.getAvailbleMarketStrategyName(orderVO);
         System.out.println("the availble Market Strategy of this order is "+availMarketStrategy);
         
-        int bestDiscount=strategyInfoService.getBestDiscount(orderVO);
+        float bestDiscount=strategyInfoService.getBestDiscount(orderVO);
         System.out.println("the best discount of this order is "+bestDiscount);
         
 //        boolean verified=strategyInfoService.verifyEnterpriseMember("万达公司", "123456");

@@ -16,7 +16,7 @@ public class mockStrategyInfoServiceImpl extends StrategyInfoServiceImpl{
 	}
 
 	@Override
-	public int getBestDiscount(OrderVO order) {
+	public float getBestDiscount(OrderVO order) {
 		return 70;
 	}
 

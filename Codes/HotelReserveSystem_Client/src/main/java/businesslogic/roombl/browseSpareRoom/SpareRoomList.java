@@ -14,6 +14,7 @@ import po.RoomPO;
  */
 public class SpareRoomList {
 
+    //设置成单件模式
     private RoomDAO roomDAO;
     
     public SpareRoomList(){

@@ -24,7 +24,7 @@ public class StrategyInfoService_Stub implements StrategyInfoService{
     }
 
     @Override
-    public int getBestDiscount(OrderVO order) {
+    public float getBestDiscount(OrderVO order) {
         System.out.println("获取订单的最优折扣成功");
         return 0;
     }

@@ -88,6 +88,10 @@ public class StrategyList {
      * @see
      */
     public ArrayList<StrategyItem> getStrategyList(String address, Enum<StrategyType> strategyType) {
+        //如果传入address不是该类的address,即查看非本酒店的策略，则返回null
+        if(this.address!=address){
+            return null;
+        }
         if(allStrategyList!=null){
             return allStrategyList.get(strategyType);
         }
