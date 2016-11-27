@@ -9,6 +9,10 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.MockStrategyList;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
@@ -26,8 +30,8 @@ public class StrategyListTest {
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception{
-        strategyList=new MockStrategyList();
         address="江苏省南京市栖霞区仙林大道163号";
+        strategyList=MockStrategyList.getInstance(address);
         strategyType=StrategyType.SpecificTimePromotion;
         name="双十一折扣";
         strategyVO=new StrategyVO(address, strategyType, name, 80, new Date(2016,11,10,00,00,00), new Date(2016,11,12,00,00,00));
@@ -60,25 +64,45 @@ public class StrategyListTest {
     
     @Test
     public void testAdd(){
-        boolean added=strategyList.add(address, strategyVO);
+        boolean added = false;
+        try {
+            added = strategyList.add(address, strategyVO);
+        } catch (UnableAddStrategyException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(added);
     }
     
     @Test
     public void testModify(){
-        boolean modifyed=strategyList.modify(address, strategyVO);
+        boolean modifyed = false;
+        try {
+            modifyed =strategyList.modify(address, strategyVO);
+        } catch (UnableToModifyStrategyException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(modifyed);
     }
     
     @Test
     public void testDelete(){
-        boolean deleted=strategyList.delete(address, strategyVO);
+        boolean deleted = false;
+        try {
+            deleted = strategyList.delete(address, strategyVO);
+        } catch (UnableToDeleteStrategyException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(deleted);
     }
     
     @Test
     public void testValid(){
-        boolean valied=strategyList.valid(address, strategyVO);
+        boolean valied = false;
+        try {
+            valied =strategyList.valid(address, strategyVO);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(valied);
     }
 }

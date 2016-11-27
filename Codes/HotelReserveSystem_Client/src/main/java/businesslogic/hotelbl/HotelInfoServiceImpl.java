@@ -1,8 +1,10 @@
 package businesslogic.hotelbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import dataservice.hotelDAO.HotelDAO;
+import po.BusinessDistrictPO;
 import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
@@ -49,6 +51,10 @@ public class HotelInfoServiceImpl implements HotelInfoService {
 		}
 	}
 
-	
+    @Override
+    public ArrayList<BusinessDistrictPO> getBusinessDistrctList() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

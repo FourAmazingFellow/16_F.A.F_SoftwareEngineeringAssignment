@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
 import po.StrategyPO;
@@ -15,7 +16,8 @@ public class MockStrategyList extends StrategyList{
     private StrategyDAO strategyDAO;
     
     @SuppressWarnings("deprecation")
-    public MockStrategyList(){
+    public MockStrategyList(String address){
+        super(address);
         strategyDAO=new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion, "双十一折扣", 80, 0, null, null, new Date(2016,11,10,00,00,00), new Date(2016,11,12,00,00,00), null, 0);
     }
     
@@ -67,7 +69,7 @@ public class MockStrategyList extends StrategyList{
     }
     
     @Override
-    public boolean valid(String address, StrategyVO strategyVO){
+    public boolean valid(String address, StrategyVO strategyVO) throws WrongInputException{
         StrategyItem strategyItem=new MockStrategyItem(strategyVO);
         return strategyItem.valid();
     }

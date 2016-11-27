@@ -20,9 +20,4 @@ public class mockStrategyInfoServiceImpl extends StrategyInfoServiceImpl{
 		return 70;
 	}
 
-	@Override
-	public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
-		return true;
-	}
-	
 }

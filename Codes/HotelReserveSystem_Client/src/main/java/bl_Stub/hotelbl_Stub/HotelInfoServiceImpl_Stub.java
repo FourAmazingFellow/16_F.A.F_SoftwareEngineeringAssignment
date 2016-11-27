@@ -1,8 +1,10 @@
 package bl_Stub.hotelbl_Stub;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import businesslogic.hotelbl.HotelInfoService;
+import po.BusinessDistrictPO;
 import po.RoomType;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
@@ -57,5 +59,11 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	public HotelVO getHotelDetails(String address) {
 		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
+
+    @Override
+    public ArrayList<BusinessDistrictPO> getBusinessDistrctList() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

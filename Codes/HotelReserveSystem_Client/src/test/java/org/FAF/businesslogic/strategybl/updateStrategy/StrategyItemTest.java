@@ -7,6 +7,10 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.MockStrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import po.StrategyType;
@@ -28,21 +32,33 @@ public class StrategyItemTest {
     
     @Test
     public void testAdd(){
-        assertTrue(strategyItem.add(address));
+        boolean added = false;
+            added = strategyItem.add(address);
+        assertTrue(added);
     }
     
     @Test
     public void testModify(){
-        assertTrue(strategyItem.modify(address));
+        boolean modifyed = false;
+            modifyed =strategyItem.modify(address);
+        assertTrue(modifyed);
     }
     
     @Test
     public void testDelete(){
-        assertTrue(strategyItem.delete(address));
+        boolean deleted = false;
+            deleted = strategyItem.delete(address);
+        assertTrue(deleted);
     }
     
     @Test
     public void testValid(){
-        assertTrue(strategyItem.valid());
+        boolean valied = false;
+            try {
+                valied =strategyItem.valid();
+            } catch (WrongInputException e) {
+                System.out.println(e.getMessage());
+            }
+        assertTrue(valied);
     }
 }

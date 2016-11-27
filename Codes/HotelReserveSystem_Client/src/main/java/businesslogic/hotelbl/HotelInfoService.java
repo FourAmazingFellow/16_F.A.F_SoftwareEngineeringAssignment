@@ -1,5 +1,8 @@
 package businesslogic.hotelbl;
 
+import java.util.ArrayList;
+
+import po.BusinessDistrictPO;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
@@ -26,5 +29,12 @@ public interface HotelInfoService {
 	 * @see
 	 */
 	public HotelVO getHotelDetails(String address);
+	
+	/**
+	 * 获得商圈列表
+	 * @return 返回商圈列表
+	 * @see
+	 */
+	public ArrayList<BusinessDistrictPO> getBusinessDistrctList();
 
 }

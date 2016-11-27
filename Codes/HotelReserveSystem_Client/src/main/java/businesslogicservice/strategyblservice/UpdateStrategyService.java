@@ -2,6 +2,10 @@ package businesslogicservice.strategyblservice;
 
 import java.util.ArrayList;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
+import businesslogic.strategybl.exception.WrongInputException;
 import po.StrategyType;
 import vo.StrategyVO;
 
@@ -36,35 +40,39 @@ public interface UpdateStrategyService {
      * @param address String型， 酒店地址
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回是否制定折扣策略成功
+     * @throws UnableAddStrategyException 
      * @see
      */
-    public boolean add(String address, StrategyVO strategy);
+    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException;
     
     /**
      * 修改某条折扣策略
      * @param address String型， 酒店地址
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回是否修改折扣策略成功
+     * @throws UnableToModifyStrategyException 
      * @see
      */
-    public boolean modify(String address, StrategyVO strategy);
+    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException;
     
     /**
      * 删除某条折扣策略
      * @param address String型， 酒店地址
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回是否删除折扣策略成功
+     * @throws UnableToDeleteStrategyException 
      * @see
      */
-    public boolean delete(String address, StrategyVO strategy);
+    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException;
     
     /**
      * 检查该策略信息是否符合规范
      * @param address String型， 酒店地址
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回该策略信息是否符合规范
+     * @throws WrongInputException 
      * @see
      */
-    public boolean valid(String address, StrategyVO strategy);
+    public boolean valid(String address, StrategyVO strategy) throws WrongInputException;
     
 }

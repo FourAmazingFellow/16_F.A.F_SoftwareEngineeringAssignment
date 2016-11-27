@@ -23,4 +23,5 @@ public class MockHotelInfoServiceImpl extends HotelInfoServiceImpl{
 		return hotelVO;
 	}
 	
+	
 }

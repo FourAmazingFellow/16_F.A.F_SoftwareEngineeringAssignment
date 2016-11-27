@@ -29,9 +29,4 @@ public class StrategyInfoService_Stub implements StrategyInfoService{
         return 0;
     }
 
-    @Override
-    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
-        return false;
-    }
-
 }

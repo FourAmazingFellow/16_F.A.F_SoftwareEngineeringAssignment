@@ -43,9 +43,5 @@ public class StrategyInfoServiceImplTest {
     public void testGetBestDiscount(){
         assertEquals(70, strategyInfoServiceImpl.getBestDiscount(orderVO));
     }
-    
-    @Test
-    public void testVerifyEnterpriseMember(){
-        assertTrue(strategyInfoServiceImpl.verifyEnterpriseMember(enterpriseName, securityCode));
-    }
+
 }

@@ -2,6 +2,10 @@ package bl_Driver.strategyblservice_Driver;
 
 import java.util.ArrayList;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import po.StrategyType;
 import vo.StrategyVO;
@@ -23,25 +27,45 @@ public class UpdateStrategyService_Driver {
         StrategyVO strategyVO=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣", 80);
         System.out.println("The strategy "+strategyVO.strategyName+" has discount "+strategyVO.discount+"/n");
         
-        boolean addStrategy=updateStrategyService.add("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        boolean addStrategy = false;
+        try {
+            addStrategy = updateStrategyService.add("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        } catch (UnableAddStrategyException e1) {
+            System.out.println(e1.getMessage());
+        }
         if(addStrategy)
             System.out.println("add Strategy Succeed!\n");
         else
             System.out.println("add Strategy Failed!\n");
         
-        boolean modifyStrategy=updateStrategyService.modify("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        boolean modifyStrategy = false;
+        try {
+            modifyStrategy = updateStrategyService.modify("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        } catch (UnableToModifyStrategyException e1) {
+            System.out.println(e1.getMessage());
+        }
         if(modifyStrategy)
             System.out.println("modify Strategy Succeed!\n");
         else
             System.out.println("modify Strategy Failed!\n");
         
-        boolean delStrategy=updateStrategyService.delete("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        boolean delStrategy = false;
+        try {
+            delStrategy = updateStrategyService.delete("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        } catch (UnableToDeleteStrategyException e1) {
+            System.out.println(e1.getMessage());
+        }
         if(delStrategy)
             System.out.println("delete Strategy Succeed!\n");
         else
             System.out.println("delete Strategy Failed!\n");
         
-        boolean validStrategy=updateStrategyService.valid("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        boolean validStrategy=false;
+        try {
+            validStrategy = updateStrategyService.valid("江苏省南京市栖霞区仙林大道163号", strategyVO);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        }
         if(validStrategy)
             System.out.println("Strategy valid!\n");
         else

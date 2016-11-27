@@ -8,6 +8,10 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.UpdateStrategyServiceImpl;
 import po.StrategyType;
 import vo.StrategyVO;
@@ -56,25 +60,45 @@ public class UpdateStrategyServiceImplTest {
     
     @Test
     public void testAdd(){
-        boolean added=updateStrategyServiceImpl.add(address, strategyVO);
+        boolean added = false;
+        try {
+            added = updateStrategyServiceImpl.add(address, strategyVO);
+        } catch (UnableAddStrategyException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(added);
     }
     
     @Test
     public void testModify(){
-        boolean modifyed=updateStrategyServiceImpl.modify(address, strategyVO);
+        boolean modifyed = false;
+        try {
+            modifyed = updateStrategyServiceImpl.modify(address, strategyVO);
+        } catch (UnableToModifyStrategyException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(modifyed);
     }
     
     @Test
     public void testDelete(){
-        boolean deleted=updateStrategyServiceImpl.delete(address, strategyVO);
+        boolean deleted = false;
+        try {
+            deleted = updateStrategyServiceImpl.delete(address, strategyVO);
+        } catch (UnableToDeleteStrategyException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(deleted);
     }
     
     @Test
     public void testValid(){
-        boolean valied=updateStrategyServiceImpl.valid(address, strategyVO);
+        boolean valied = false;
+        try {
+            valied = updateStrategyServiceImpl.valid(address, strategyVO);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(valied);
     }
 }
