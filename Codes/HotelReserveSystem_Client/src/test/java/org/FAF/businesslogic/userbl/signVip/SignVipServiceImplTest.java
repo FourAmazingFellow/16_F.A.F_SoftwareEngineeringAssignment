@@ -10,7 +10,8 @@ import org.junit.Test;
 import businesslogic.userbl.signVip.MockSignVipServiceImpl;
 import businesslogic.userbl.signVip.SignVipServiceImpl;
 import po.UserType;
-import vo.VipInfoVO;
+import vo.EnterpriseVipVO;
+import vo.RegularVipVO;
 
 /**
  * 
@@ -35,7 +36,7 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignRegularVip() {
         signVip = new MockSignVipServiceImpl();
-        VipInfoVO regularVip = new VipInfoVO(userID, password, telNum, userType, 0, null, birth, 0);
+        RegularVipVO regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 0);
         boolean result = signVip.signRegularVip(regularVip);
         assertEquals(true,result);
     }
@@ -43,7 +44,7 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignEnterpriseVip() {
         signVip = new MockSignVipServiceImpl();
-        VipInfoVO enterpriseVip = new VipInfoVO(userID, password, telNum, userType, 0, null, enterpriseID, enterprisePassword);
+        EnterpriseVipVO enterpriseVip = new EnterpriseVipVO(userID, password, telNum, userType, 0, null, enterpriseID, enterprisePassword);
         boolean result = signVip.signEnterpriseVip(enterpriseVip);
         assertEquals(true,result);
     }

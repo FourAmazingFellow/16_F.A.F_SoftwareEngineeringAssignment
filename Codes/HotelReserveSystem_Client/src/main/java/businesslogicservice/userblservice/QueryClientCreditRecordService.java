@@ -1,6 +1,6 @@
 package businesslogicservice.userblservice;
 
-import vo.ClientCreditRecordVO;
+import vo.CreditRecordVO;
 
 /**
  * 
@@ -16,6 +16,6 @@ public interface QueryClientCreditRecordService {
      * @return 返回用户的信用记录
      * @see
      */
-    public ClientCreditRecordVO queryCreditRecord(String userID);
+    public CreditRecordVO queryCreditRecord(String userID);
     
 }

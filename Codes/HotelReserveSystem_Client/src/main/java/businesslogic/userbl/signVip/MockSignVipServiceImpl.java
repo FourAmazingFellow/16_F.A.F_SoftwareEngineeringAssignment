@@ -5,13 +5,13 @@ import java.rmi.RemoteException;
 import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
-import vo.VipInfoVO;
+import vo.RegularVipVO;
 
 public class MockSignVipServiceImpl extends SignVipServiceImpl{
    private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900");
     
     @Override
-    public boolean signRegularVip(VipInfoVO regularVip) {
+    public boolean signRegularVip(RegularVipVO regularVip) {
         try {
             userDAO.updateUser(new UserPO(regularVip));;
             return true;

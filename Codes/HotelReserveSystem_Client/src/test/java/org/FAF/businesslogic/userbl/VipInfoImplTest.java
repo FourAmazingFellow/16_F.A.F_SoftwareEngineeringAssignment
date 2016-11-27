@@ -9,7 +9,8 @@ import org.junit.Test;
 
 import businesslogic.userbl.MockVipInfoImpl;
 import businesslogic.userbl.VipInfoImpl;
-import vo.VipInfoVO;
+import vo.EnterpriseVipVO;
+import vo.RegularVipVO;
 
 public class VipInfoImplTest {
 private VipInfoImpl vipInfo;
@@ -33,7 +34,7 @@ private VipInfoImpl vipInfo;
     @Test
     public void testGetRegularVipInfo() {
       vipInfo = new MockVipInfoImpl();
-      VipInfoVO regularVip = vipInfo.getRegularVipInfo(this.userID);
+      RegularVipVO regularVip = vipInfo.getRegularVipInfo(this.userID);
       assertEquals("VipInfo.getRegularVipInfo(userID) has an error in userID!", userID, regularVip.userID);        
       assertEquals("VipInfo.getRegularVipInfo(userID) has an error in password!", password, regularVip.password);        
       assertEquals("VipInfo.getRegularVipInfo(userID) has an error in telNum!", telNum, regularVip.telNum);        
@@ -43,7 +44,7 @@ private VipInfoImpl vipInfo;
     @Test
     public void testGetEnterpriseVipInfo() {
       vipInfo = new MockVipInfoImpl();
-      VipInfoVO enterpriseVip = vipInfo.getEnterpriseVipInfo(this.userID);
+      EnterpriseVipVO enterpriseVip = vipInfo.getEnterpriseVipInfo(this.userID);
       assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in userID!", userID, enterpriseVip.userID);        
       assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in password!", password, enterpriseVip.password);        
       assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in telNum!", telNum, enterpriseVip.telNum);        
