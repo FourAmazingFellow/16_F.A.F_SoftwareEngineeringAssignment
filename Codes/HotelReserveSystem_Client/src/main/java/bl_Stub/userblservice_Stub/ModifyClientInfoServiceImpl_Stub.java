@@ -15,7 +15,7 @@ public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService
 	 public long userID;
 	 public String password;
 	 public String telNum;
-	 public Enum<UserType> UserType;
+	 public UserType UserType;
 	 public int creditValue;
 	 public String enterpriseName;
 	

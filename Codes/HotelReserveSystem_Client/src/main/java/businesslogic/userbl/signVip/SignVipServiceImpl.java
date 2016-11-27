@@ -5,7 +5,8 @@ import java.rmi.RemoteException;
 import businesslogicservice.userblservice.SignVipService;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
-import vo.VipInfoVO;
+import vo.EnterpriseVipVO;
+import vo.RegularVipVO;
 
 
 /**
@@ -19,7 +20,7 @@ public class SignVipServiceImpl implements SignVipService {
     private UserDAO userDAO;
     
     @Override
-    public boolean signRegularVip(VipInfoVO regularVip) {
+    public boolean signRegularVip(RegularVipVO regularVip) {
         try {
             userDAO.updateUser(new UserPO(regularVip), "原");;
             return true;
@@ -30,7 +31,7 @@ public class SignVipServiceImpl implements SignVipService {
     }
 
     @Override
-    public boolean signEnterpriseVip(VipInfoVO enterpriseVip) {
+    public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) {
         try {
             userDAO.updateUser(new UserPO(enterpriseVip), "原");;
             return true;

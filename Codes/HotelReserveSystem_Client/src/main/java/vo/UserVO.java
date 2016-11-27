@@ -12,9 +12,9 @@ public class UserVO {
     public String userID;
     public String password;
     public String telNum;
-    public Enum<UserType> userType;
+    public UserType userType;
  
-    public UserVO(String userID, String password, String telNum, Enum<UserType> userType) {
+    public UserVO(String userID, String password, String telNum, UserType userType) {
         this.userID = userID;
         this.password = password;
         this.telNum = telNum;

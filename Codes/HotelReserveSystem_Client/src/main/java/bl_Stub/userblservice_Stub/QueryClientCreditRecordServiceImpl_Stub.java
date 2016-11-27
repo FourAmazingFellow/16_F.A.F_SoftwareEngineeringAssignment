@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import po.CreditRecordPO;
-import vo.ClientCreditRecordVO;
+import vo.CreditRecordVO;
 
 /**
  * 
@@ -30,8 +30,8 @@ public class QueryClientCreditRecordServiceImpl_Stub implements QueryClientCredi
 	}
     
 	@Override
-	public ClientCreditRecordVO queryCreditRecord(String userID) {
-		return new ClientCreditRecordVO(userID, creditRecord);
+	public CreditRecordVO queryCreditRecord(String userID) {
+		return new CreditRecordVO(userID, creditRecord);
 	}
 
 }

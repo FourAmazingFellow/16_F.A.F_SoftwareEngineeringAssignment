@@ -1,7 +1,7 @@
 package businesslogic.userbl;
 
 /**
- * 
+ * 供同层间调用的关于信用值的接口
  * @author sparkler
  * @version 
  * @see

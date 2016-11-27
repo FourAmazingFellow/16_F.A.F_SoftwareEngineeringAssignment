@@ -19,13 +19,13 @@ public class UserPO implements Serializable {
     private String userID;
     private String password;
     private String telNum;
-    public Enum<UserType> userType;
+    public UserType userType;
     
     public UserPO() {
-    	
+
     }
-    
-    public UserPO(String userID, String password, String telNum, Enum<UserType> userType) {
+
+    public UserPO(String userID, String password, String telNum, UserType userType) {
         this.userID = userID;
         this.password = password;
         this.telNum = telNum;
@@ -55,10 +55,10 @@ public class UserPO implements Serializable {
     public String getTelNum() {
         return telNum;
     }
-    public Enum<UserType> getUserType() {
+    public UserType getUserType() {
         return userType;
     }
-    public void setUserType(Enum<UserType> userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 

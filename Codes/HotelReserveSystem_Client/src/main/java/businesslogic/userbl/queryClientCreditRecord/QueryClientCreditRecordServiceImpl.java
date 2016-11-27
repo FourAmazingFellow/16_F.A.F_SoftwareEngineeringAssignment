@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import dataservice.userDAO.UserDAO;
-import vo.ClientCreditRecordVO;
+import vo.CreditRecordVO;
 
 /**
  * 
@@ -17,9 +17,9 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
     private UserDAO userDAO;
     
     @Override
-    public ClientCreditRecordVO queryCreditRecord(String userID) {
+    public CreditRecordVO queryCreditRecord(String userID) {
         try {
-            return new ClientCreditRecordVO(userID, userDAO.queryCreditRecord(userID));
+            return new CreditRecordVO(userID, userDAO.queryCreditRecord(userID));
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

@@ -3,7 +3,7 @@ package businesslogic.userbl;
 import vo.UserVO;
 
 /**
- * 
+ * 供同层间调用的关于用户的接口
  * @author sparkler
  * @version 
  * @see

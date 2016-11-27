@@ -4,7 +4,8 @@ import java.sql.Date;
 
 import businesslogic.userbl.VipInfo;
 import po.UserType;
-import vo.VipInfoVO;
+import vo.EnterpriseVipVO;
+import vo.RegularVipVO;
 
 /**
  * 
@@ -53,13 +54,13 @@ public class VipInfoImpl_Stub implements VipInfo{
 
 
     @Override
-    public VipInfoVO getRegularVipInfo(String userID) {
-        return new VipInfoVO(userID, password, telNum, UserType, creditValue, null, birth, creditValue);
+    public RegularVipVO getRegularVipInfo(String userID) {
+        return new RegularVipVO(userID, password, telNum, UserType, creditValue, null, birth, creditValue);
     }
 
     @Override
-    public VipInfoVO getEnterpriseVipInfo(String userID) {
-        return new VipInfoVO(userID, password, telNum,UserType, creditValue, null, enterpriseID, enterprisepassword);
+    public EnterpriseVipVO getEnterpriseVipInfo(String userID) {
+        return new EnterpriseVipVO(userID, password, telNum,UserType, creditValue, null, enterpriseID, enterprisepassword);
                 
     }
     

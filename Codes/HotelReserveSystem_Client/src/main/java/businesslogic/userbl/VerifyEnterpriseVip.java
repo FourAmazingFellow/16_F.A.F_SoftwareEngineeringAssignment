@@ -1,12 +1,12 @@
 package businesslogic.userbl;
 
 /**
- * 
+ * 由strategy实现，解决双向依赖的借口
  * @author 原
  * @version 1.1
  * @see
  */
-public interface StrategyInfo {
+public interface VerifyEnterpriseVip {
 
 	/**
 	 * 验证企业会员注册信息
