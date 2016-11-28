@@ -35,6 +35,6 @@ public interface HotelInfoService {
 	 * @return 返回商圈列表
 	 * @see
 	 */
-	public ArrayList<BusinessDistrictPO> getBusinessDistrctList();
+	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city);
 
 }

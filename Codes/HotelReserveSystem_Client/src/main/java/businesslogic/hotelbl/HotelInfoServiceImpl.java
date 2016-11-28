@@ -52,8 +52,7 @@ public class HotelInfoServiceImpl implements HotelInfoService {
 	}
 
     @Override
-    public ArrayList<BusinessDistrictPO> getBusinessDistrctList() {
-        // TODO Auto-generated method stub
+    public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) {
         return null;
     }
 

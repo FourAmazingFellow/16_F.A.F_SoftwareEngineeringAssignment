@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.BusinessDistrictPO;
 import po.HotelPO;
 
 /**
@@ -68,4 +69,11 @@ public interface HotelDAO extends Remote {
 	 */
 	public void insertHotel(HotelPO po) throws RemoteException;
 
+	/**
+	 * 获取所有的商圈的列表
+	 * @return所有的商圈的列表
+	 * @throws RemoteException
+	 * @see
+	 */
+	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException;
 }

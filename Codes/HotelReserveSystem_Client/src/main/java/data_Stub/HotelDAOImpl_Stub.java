@@ -7,6 +7,7 @@ import java.util.HashMap;
 import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.BusinessDistrictPO;
 import po.HotelPO;
 import po.RoomType;
 
@@ -82,6 +83,11 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	@Override
 	public void insertHotel(HotelPO po) throws RemoteException {
 		System.out.println("Insert Succeed!\n");
+	}
+
+	@Override
+	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
+		return null;
 	}
 
 }

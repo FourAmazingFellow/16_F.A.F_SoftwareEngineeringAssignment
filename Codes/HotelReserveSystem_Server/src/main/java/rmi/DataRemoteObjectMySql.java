@@ -17,6 +17,7 @@ import dataservice.strategyDAO.StrategyDAO;
 import dataservice.userDAO.UserDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.BusinessDistrictPO;
 import po.CheckInPO;
 import po.CheckOutPO;
 import po.ClientInfoPO;
@@ -313,5 +314,10 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     public EnterpriseVipPO getEnterpriseVipInfo(String userID) throws RemoteException {
         return userDAO.getEnterpriseVipInfo(userID);
     }
+
+	@Override
+	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
+		return hotelDAO.getBusinessDistrctList(city);
+	}
 
 }

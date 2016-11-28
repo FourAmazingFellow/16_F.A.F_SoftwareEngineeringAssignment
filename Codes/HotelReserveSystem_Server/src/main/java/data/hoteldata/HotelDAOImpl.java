@@ -13,6 +13,7 @@ import data.databaseutility.JDBC_Connection;
 import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.BusinessDistrictPO;
 import po.HotelPO;
 import po.RoomType;
 
@@ -334,6 +335,11 @@ public class HotelDAOImpl implements HotelDAO {
 			JDBC_Connection.free(rs, conn, pstm_Hotel);
 			JDBC_Connection.free(rs, conn, pstm_Room);
 		}
+	}
+
+	@Override
+	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
+		return null;
 	}
 
 }

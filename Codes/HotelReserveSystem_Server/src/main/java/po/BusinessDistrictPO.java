@@ -3,9 +3,13 @@ package po;
 public class BusinessDistrictPO {
 
     private String businessDistrictName;
+    private String city;
     
-    public BusinessDistrictPO(String businessDistrictName){
+   
+
+	public BusinessDistrictPO(String businessDistrictName, String city){
         this.businessDistrictName=businessDistrictName;
+        this.city = city;
     }
 
     public String getBusinessDistrictName() {
@@ -16,5 +20,11 @@ public class BusinessDistrictPO {
         this.businessDistrictName = businessDistrictName;
     }
     
-    
+    public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 }
