@@ -7,8 +7,8 @@ import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import dataservice.hotelDAO.HotelDAO;
 import po.HotelPO;
 import rmi.RemoteHelper;
+import vo.HotelStaffInfoVO;
 import vo.HotelVO;
-import vo.UserVO;
 
 public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 
@@ -39,7 +39,7 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	}
 	
 	@Override
-	public boolean addHotelStaff(UserVO staff) {
+	public boolean addHotelStaff(HotelStaffInfoVO staff) {
 		return userService.insert(staff);
 	}
 	

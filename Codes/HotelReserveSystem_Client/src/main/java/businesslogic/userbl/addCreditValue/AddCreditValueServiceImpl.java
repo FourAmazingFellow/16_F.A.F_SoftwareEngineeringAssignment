@@ -26,7 +26,12 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
         this.userID = userID;
-        ClientInfoPO clientInfoPO = new ClientInfoPO(this.userID, null, null, null, creditValue, null);
+        ClientInfoPO clientInfoPO = null;
+        try {
+            clientInfoPO = userDAO.getClientInfo(this.userID);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        }
         creditValue = clientInfoPO.getCreditValue();
         try {
             userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue+creditAdded, null), "原");;

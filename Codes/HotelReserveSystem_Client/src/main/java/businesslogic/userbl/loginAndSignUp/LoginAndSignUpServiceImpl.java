@@ -17,6 +17,7 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
     private String password;
     private String telNum;
     
+
     @Override
     public boolean login(String userID, String password) {
         check = new CheckLoginInfo();

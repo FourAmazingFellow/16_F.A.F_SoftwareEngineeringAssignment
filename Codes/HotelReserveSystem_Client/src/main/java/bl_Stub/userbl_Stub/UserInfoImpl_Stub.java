@@ -2,7 +2,7 @@ package bl_Stub.userbl_Stub;
 
 import businesslogic.userbl.UserInfo;
 import po.UserType;
-import vo.UserVO;
+import vo.HotelStaffInfoVO;
 
 /**
  * 
@@ -25,7 +25,7 @@ public class UserInfoImpl_Stub implements UserInfo {
     }
 
     @Override
-    public boolean insert(UserVO staff) {
+    public boolean insert(HotelStaffInfoVO staff) {
         return false;
     }
 

@@ -1,7 +1,7 @@
 package businesslogicservice.hotelblservice;
 
+import vo.HotelStaffInfoVO;
 import vo.HotelVO;
-import vo.UserVO;
 
 /**
  * 为界面提供管理酒店信息的方法
@@ -25,6 +25,6 @@ public interface ManageHotelInfoService {
 	 * @return 添加酒店工作人员成功返回true，添加酒店工作人员失败返回false
 	 * @see
 	 */
-	public boolean addHotelStaff(UserVO staff);
+	public boolean addHotelStaff(HotelStaffInfoVO staff);
 
 }

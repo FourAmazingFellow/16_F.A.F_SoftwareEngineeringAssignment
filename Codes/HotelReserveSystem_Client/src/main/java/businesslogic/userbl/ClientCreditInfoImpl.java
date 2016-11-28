@@ -5,17 +5,20 @@ import java.rmi.RemoteException;
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
 import po.UserType;
+import rmi.RemoteHelper;
 
 public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     private UserDAO userDAO;
-    private UserType userType;
-    private int creditValue;
     private String userID;
+    private int creditValue;
+    private int creditResult;
     @Override
     public int getCreditValue(String userID) {
+        userDAO = RemoteHelper.getInstance().getUserDAO();
+        this.userID = userID;
         try {
-            this.creditValue = userDAO.getCreditValue(userID);
+            this.creditValue = userDAO.getCreditValue(this.userID);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -24,11 +27,19 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     @Override
     public boolean changeCreditValue(String userID, int num) {
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        ClientInfoPO clientInfoPO = new ClientInfoPO(this.userID, null, null, null, creditValue, null);
-        creditValue = clientInfoPO.getCreditValue();
+        ClientInfoPO clientInfoPO = null;
         try {
-            userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue, null), "原");;
+            clientInfoPO = userDAO.getClientInfo(this.userID);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        }
+        this.creditValue = clientInfoPO.getCreditValue();
+        this.creditResult = creditValue + num;
+        clientInfoPO = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(), UserType.Client, creditResult, clientInfoPO.getCreditRecord());
+        try {
+            userDAO.updateClient(clientInfoPO, this.userID);
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

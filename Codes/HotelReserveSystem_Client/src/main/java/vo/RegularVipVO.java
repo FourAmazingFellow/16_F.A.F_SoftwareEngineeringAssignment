@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.ArrayList;
 
 import po.CreditRecordPO;
+import po.RegularVipPO;
 import po.UserType;
 
 public class RegularVipVO extends ClientInfoVO{
@@ -16,6 +17,15 @@ public class RegularVipVO extends ClientInfoVO{
         super(userID, password, telNum, userType, creditValue, creditRecord);
         this.birth = birth;
         this.vipRank = vipRank;
+    }
+
+    /**
+     * @param regularVipInfo
+     */
+    public RegularVipVO(RegularVipPO regularVipPO) {
+        super(regularVipPO);
+        this.birth = regularVipPO.getBirth();
+        this.vipRank = regularVipPO.getVipRank();
     }
   
 }

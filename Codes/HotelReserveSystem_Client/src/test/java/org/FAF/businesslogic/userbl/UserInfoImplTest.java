@@ -8,7 +8,7 @@ import org.junit.Test;
 import businesslogic.userbl.MockUserInfoImpl;
 import businesslogic.userbl.UserInfoImpl;
 import po.UserType;
-import vo.UserVO;
+import vo.HotelStaffInfoVO;
 
 public class UserInfoImplTest {
     private UserInfoImpl userInfoImpl;
@@ -16,6 +16,7 @@ public class UserInfoImplTest {
     private String password;
     private String telNum;
     private UserType userType;
+    private String hotelAddress;
     @Before
     public void setUp() throws Exception {
     }
@@ -23,7 +24,7 @@ public class UserInfoImplTest {
     @Test
     public void testInsert() {
         userInfoImpl = new MockUserInfoImpl();
-        UserVO staff = new UserVO(userID, password, telNum, userType);
+        HotelStaffInfoVO staff = new HotelStaffInfoVO(userID, password, telNum, userType, hotelAddress);
        boolean result = userInfoImpl.insert(staff);
        assertEquals(true,result);
     }

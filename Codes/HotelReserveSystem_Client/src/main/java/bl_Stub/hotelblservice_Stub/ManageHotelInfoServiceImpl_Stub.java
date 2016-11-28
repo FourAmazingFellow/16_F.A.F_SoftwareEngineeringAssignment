@@ -5,8 +5,8 @@ import java.util.HashMap;
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import po.RoomType;
 import po.UserType;
+import vo.HotelStaffInfoVO;
 import vo.HotelVO;
-import vo.UserVO;
 
 public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 
@@ -44,7 +44,7 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 	}
 
 	@Override
-	public boolean addHotelStaff(UserVO staff) {
+	public boolean addHotelStaff(HotelStaffInfoVO staff) {
 		return true;
 	}
 

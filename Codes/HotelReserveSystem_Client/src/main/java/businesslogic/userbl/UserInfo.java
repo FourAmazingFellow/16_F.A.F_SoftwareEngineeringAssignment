@@ -1,6 +1,6 @@
 package businesslogic.userbl;
 
-import vo.UserVO;
+import vo.HotelStaffInfoVO;
 
 /**
  * 供同层间调用的关于用户的接口
@@ -16,7 +16,7 @@ public interface UserInfo {
      * @return 添加成功则返回true，添加失败则返回false
      * @see
      */
-    public boolean insert(UserVO staff);
+    public boolean insert(HotelStaffInfoVO hotelStaffInfoVO);
  
 
 

@@ -3,6 +3,7 @@ package vo;
 import java.util.ArrayList;
 
 import po.CreditRecordPO;
+import po.EnterpriseVipPO;
 import po.UserType;
 
 /**
@@ -10,7 +11,7 @@ import po.UserType;
  * @author sparkler
  * @version 1.0
  */
-public class EnterpriseVipVO extends ClientInfoVO { 
+public class EnterpriseVipVO extends ClientInfoVO {
     public String enterpriseID;
     public String enterprisePassword;
 
@@ -20,5 +21,14 @@ public class EnterpriseVipVO extends ClientInfoVO {
         this.enterpriseID = enterpriseID;
         this.enterprisePassword = enterprisePassword;
     }
-   
+
+    /**
+     * @param enterpriseVipInfo
+     */
+    public EnterpriseVipVO(EnterpriseVipPO enterpriseVipPO) {
+        super(enterpriseVipPO);
+        this.enterpriseID = enterpriseVipPO.getEnterpriseID();
+        this.enterprisePassword = enterpriseVipPO.getEnterprisepassword();
+    }
+
 }
