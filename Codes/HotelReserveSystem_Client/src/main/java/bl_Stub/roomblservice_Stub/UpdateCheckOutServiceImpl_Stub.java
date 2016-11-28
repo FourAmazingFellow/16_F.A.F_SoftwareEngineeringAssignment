@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckOutService;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckOutVO;
 import vo.RoomVO;
 
 /**
@@ -33,7 +33,7 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
 
     @Override
     public ArrayList<RoomVO> getCheckOutList(String address) {
-        RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, actDepartTime);
+        RoomVO checkOutVO=new CheckOutVO(roomType, roomNum, address, actDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkOutVO);
         return arrayList;
@@ -41,7 +41,7 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
 
     @Override
     public ArrayList<RoomVO> searchCheckOutInfo(String address, Date startTime, Date endTime) {
-        RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, startTime);
+        RoomVO checkOutVO=new CheckOutVO(roomType, roomNum, address, startTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkOutVO);
         return arrayList;
@@ -49,7 +49,7 @@ public class UpdateCheckOutServiceImpl_Stub implements UpdateCheckOutService{
 
     @Override
     public ArrayList<RoomVO> searchCheckOutInfo(String address, Enum<RoomType> roomType) {
-        RoomVO checkOutVO=new CheckInOutVO(roomType, roomNum, address, actDepartTime);
+        RoomVO checkOutVO=new CheckOutVO(roomType, roomNum, address, actDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkOutVO);
         return arrayList;

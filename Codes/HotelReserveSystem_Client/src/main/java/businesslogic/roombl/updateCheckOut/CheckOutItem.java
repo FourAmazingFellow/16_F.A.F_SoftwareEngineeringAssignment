@@ -4,10 +4,10 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 import dataservice.roomDAO.RoomDAO;
-import po.CheckInOutPO;
+import po.CheckOutPO;
 import po.RoomPO;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckOutVO;
 import vo.RoomVO;
 
 /**
@@ -35,7 +35,7 @@ public class CheckOutItem {
      */
     public CheckOutItem(RoomPO roomPO) {
         super();
-        CheckInOutPO CheckOutPO=(CheckInOutPO)roomPO;
+        CheckOutPO CheckOutPO=(CheckOutPO)roomPO;
         this.roomType = CheckOutPO.getRoomType();
         this.roomNum = CheckOutPO.getRoomNum();
         this.address = CheckOutPO.getAddress();
@@ -48,7 +48,7 @@ public class CheckOutItem {
      */
     public CheckOutItem(RoomVO roomVO){
         super();
-        CheckInOutVO CheckOutVO=(CheckInOutVO)roomVO;
+        CheckOutVO CheckOutVO=(CheckOutVO)roomVO;
         this.roomType = CheckOutVO.roomType;
         this.roomNum = CheckOutVO.roomNum;
         this.address = CheckOutVO.address;
@@ -62,7 +62,7 @@ public class CheckOutItem {
      * @see
      */
     public boolean addCheckOut(String address){
-        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        RoomPO checkOutPO=new CheckOutPO(roomType, roomNum, address, actDepartTime);
         try {
             checkOutDAO.insertRoom(checkOutPO);
         } catch (RemoteException e) {
@@ -92,7 +92,7 @@ public class CheckOutItem {
      * @see
      */
     public RoomVO toVO(){
-        return new CheckInOutVO(roomType, roomNum, address, actDepartTime);
+        return new CheckOutVO(roomType, roomNum, address, actDepartTime);
     }
 }
 

@@ -13,13 +13,13 @@ import po.RoomType;
 public class RoomDAOImpl implements RoomDAO {
 
     @Override
-    public ArrayList<RoomPO> getSpareRoomInfoList(String address) throws RemoteException {
+    public ArrayList<RoomPO> getSpareRoomInfoList(String address, Date day) throws RemoteException {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public RoomPO getSpareRoomInfo(String address, Enum<RoomType> roomType) throws RemoteException {
+    public RoomPO getSpareRoomInfo(String address, Enum<RoomType> roomType, Date day) throws RemoteException {
         // TODO Auto-generated method stub
         return null;
     }
@@ -61,7 +61,7 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
-    public void updateRoom(RoomPO po) throws RemoteException {
+    public void updateRoom(RoomPO po, Date day) throws RemoteException {
         // TODO Auto-generated method stub
         
     }

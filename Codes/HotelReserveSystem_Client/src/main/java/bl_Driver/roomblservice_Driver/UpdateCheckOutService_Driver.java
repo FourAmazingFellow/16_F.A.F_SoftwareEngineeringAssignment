@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckOutService;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckOutVO;
 import vo.RoomVO;
 
 /**
@@ -24,17 +24,17 @@ public class UpdateCheckOutService_Driver {
         
         Date checkOutTime=new Date(System.currentTimeMillis());
         ArrayList<RoomVO> checkOutVOList1=updateCheckOutService.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", checkOutTime, checkOutTime);
-        CheckInOutVO checkOutVO1=(CheckInOutVO) checkOutVOList1.get(0);
+        CheckOutVO checkOutVO1=(CheckOutVO) checkOutVOList1.get(0);
         System.out.println("the checkOutInfo includes "+checkOutVO1.roomNum + " 间"+ checkOutVO1.roomType);
         System.out.println("Actual depart time is "+checkOutVO1.actDepartTime+"/n");
         
         ArrayList<RoomVO> checkOutVOList2=updateCheckOutService.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
-        CheckInOutVO checkOutVO2=(CheckInOutVO) checkOutVOList2.get(0);
+        CheckOutVO checkOutVO2=(CheckOutVO) checkOutVOList2.get(0);
         System.out.println("the checkOutInfo includes "+checkOutVO2.roomNum + " 间"+ checkOutVO2.roomType);
         System.out.println("Actual depart time is "+checkOutVO2.actDepartTime+"/n");
         
         Date actDepartTime=new Date(System.currentTimeMillis());
-        CheckInOutVO checkOut=new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", actDepartTime);
+        CheckOutVO checkOut=new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", actDepartTime);
         boolean addCheckOut=updateCheckOutService.addCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
         if(addCheckOut)
             System.out.println("add checkOut Succeed!\n");

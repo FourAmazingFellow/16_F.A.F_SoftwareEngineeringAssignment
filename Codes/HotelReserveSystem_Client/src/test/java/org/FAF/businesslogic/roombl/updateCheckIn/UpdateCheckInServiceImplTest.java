@@ -9,8 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.roombl.updateCheckIn.UpdateCheckInServiceImpl;
+import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckInVO;
 import vo.RoomVO;
 
 public class UpdateCheckInServiceImplTest {
@@ -19,7 +20,7 @@ public class UpdateCheckInServiceImplTest {
     private String address;
     private Date checkInTime;
     private Enum<RoomType> roomType;
-    private CheckInOutVO checkInVO;
+    private CheckInVO checkInVO;
     private Date startTime;
     private Date endTime;
     private boolean updateSpareRoom;
@@ -33,7 +34,7 @@ public class UpdateCheckInServiceImplTest {
         startTime=new Date(2016, 11, 11, 00, 00, 00);
         startTime=new Date(2016, 11, 12, 00, 00, 00);
         roomType = RoomType.SINGLE_ROOM;
-        checkInVO = new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime,
+        checkInVO = new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime,
                 new Date(2016, 11, 12, 12, 0));
         updateSpareRoom=true;
     }
@@ -42,7 +43,7 @@ public class UpdateCheckInServiceImplTest {
     public void testGetCheckInList() {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.getCheckInList(address);
         assertEquals(1,checkInVOs.size());
-        CheckInOutVO checkInfromArray=(CheckInOutVO)checkInVOs.get(0);
+        CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
         assertEquals(checkInVO.address, checkInfromArray.address);
         assertEquals(checkInVO.roomType, checkInfromArray.roomType);
         assertEquals(checkInVO.roomNum, checkInfromArray.roomNum);
@@ -54,7 +55,7 @@ public class UpdateCheckInServiceImplTest {
     public void testSearchCheckInInfo1() {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo(address,startTime,endTime);
         assertEquals(1,checkInVOs.size());
-        CheckInOutVO checkInfromArray=(CheckInOutVO)checkInVOs.get(0);
+        CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
         assertEquals(checkInVO.address, checkInfromArray.address);
         assertEquals(checkInVO.roomType, checkInfromArray.roomType);
         assertEquals(checkInVO.roomNum, checkInfromArray.roomNum);
@@ -66,7 +67,7 @@ public class UpdateCheckInServiceImplTest {
     public void testSearchCheckInInfo2() {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo(address, roomType);
         assertEquals(1,checkInVOs.size());
-        CheckInOutVO checkInfromArray=(CheckInOutVO)checkInVOs.get(0);
+        CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
         assertEquals(checkInVO.address, checkInfromArray.address);
         assertEquals(checkInVO.roomType, checkInfromArray.roomType);
         assertEquals(checkInVO.roomNum, checkInfromArray.roomNum);
@@ -82,7 +83,12 @@ public class UpdateCheckInServiceImplTest {
 
     @Test
     public void testValidCheckIn() {
-        boolean valid=updateCheckInServiceImpl.validCheckIn(address, checkInVO);
+        boolean valid = false;
+        try {
+            valid = updateCheckInServiceImpl.validCheckIn(address, checkInVO);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        }
         assertTrue(valid);
     }
 }

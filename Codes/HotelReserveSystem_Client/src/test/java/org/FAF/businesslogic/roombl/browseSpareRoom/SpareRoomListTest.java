@@ -21,9 +21,9 @@ public class SpareRoomListTest {
     
     @Before
     public void setUp() throws Exception{
-        spareRoomList=new MockSpareRoomList();
-        roomVO=new RoomVO(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号");
         address= "江苏省南京市栖霞区仙林大道163号";
+        spareRoomList=new MockSpareRoomList(address);
+        roomVO=new RoomVO(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号");
     }
     
     @Test

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.ArrayList;
 
 import dataservice.roomDAO.RoomDAO;
-import po.CheckInOutPO;
 import po.CheckInPO;
 import po.CheckOutPO;
 import po.RoomPO;
@@ -42,7 +41,7 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public ArrayList<RoomPO> getSpareRoomInfoList(String address) throws RemoteException {
+    public ArrayList<RoomPO> getSpareRoomInfoList(String address,Date day) throws RemoteException {
         RoomPO roomPO=new RoomPO(roomType, roomNum, roomPrice, address);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
@@ -50,14 +49,14 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     }
 
     @Override
-    public RoomPO getSpareRoomInfo(String address, Enum<RoomType> roomType) throws RemoteException {
+    public RoomPO getSpareRoomInfo(String address, Enum<RoomType> roomType,Date day) throws RemoteException {
         RoomPO roomPO=new RoomPO(roomType, roomNum, roomPrice, address);
         return roomPO;
     }
 
     @Override
     public ArrayList<RoomPO> getCheckInInfoList(String address) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
+        RoomPO roomPO=new CheckInPO(roomType, roomNum, address, checkInTime, expDepartTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -65,7 +64,7 @@ public class RoomDAOImpl_Stub implements RoomDAO{
 
     @Override
     public ArrayList<RoomPO> getCheckInInfo(String address, Date startTime, Date endTime) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, startTime, expDepartTime);
+        RoomPO roomPO=new CheckInPO(roomType, roomNum, address, startTime, expDepartTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -73,7 +72,7 @@ public class RoomDAOImpl_Stub implements RoomDAO{
 
     @Override
     public ArrayList<RoomPO> getCheckInInfo(String address, Enum<RoomType> roomType) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, checkInTime, expDepartTime);
+        RoomPO roomPO=new CheckInPO(roomType, roomNum, address, checkInTime, expDepartTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -81,7 +80,7 @@ public class RoomDAOImpl_Stub implements RoomDAO{
 
     @Override
     public ArrayList<RoomPO> getCheckOutInfoList(String address) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        RoomPO roomPO=new CheckOutPO(roomType, roomNum, address, actDepartTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -89,7 +88,7 @@ public class RoomDAOImpl_Stub implements RoomDAO{
 
     @Override
     public ArrayList<RoomPO> getCheckOutInfo(String address, Date startTime, Date endTime) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, startTime);
+        RoomPO roomPO=new CheckOutPO(roomType, roomNum, address, startTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
@@ -97,14 +96,14 @@ public class RoomDAOImpl_Stub implements RoomDAO{
 
     @Override
     public ArrayList<RoomPO> getCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException {
-        RoomPO roomPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        RoomPO roomPO=new CheckOutPO(roomType, roomNum, address, actDepartTime);
         ArrayList<RoomPO> arrayList=new ArrayList<RoomPO>();
         arrayList.add(roomPO);
         return arrayList;
     }
 
     @Override
-    public void updateRoom(RoomPO po) throws RemoteException {
+    public void updateRoom(RoomPO po,Date day) throws RemoteException {
         System.out.println("更新该房间信息成功");
         
     }

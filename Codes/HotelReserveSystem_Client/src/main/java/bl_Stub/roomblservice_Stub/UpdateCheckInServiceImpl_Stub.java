@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckInVO;
 import vo.RoomVO;
 
 /**
@@ -35,7 +35,7 @@ public class UpdateCheckInServiceImpl_Stub implements UpdateCheckInService{
 
     @Override
     public ArrayList<RoomVO> getCheckInList(String address) {
-        RoomVO checkInVO=new CheckInOutVO(roomType, roomNum, address, checkInTime, expDepartTime);
+        RoomVO checkInVO=new CheckInVO(roomType, roomNum, address, checkInTime, expDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkInVO);
         return arrayList;
@@ -43,7 +43,7 @@ public class UpdateCheckInServiceImpl_Stub implements UpdateCheckInService{
 
     @Override
     public ArrayList<RoomVO> searchCheckInInfo(String address, Date startTime, Date endTime) {
-        RoomVO checkInVO=new CheckInOutVO(roomType, roomNum, address, startTime, expDepartTime);
+        RoomVO checkInVO=new CheckInVO(roomType, roomNum, address, startTime, expDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkInVO);
         return arrayList;
@@ -51,7 +51,7 @@ public class UpdateCheckInServiceImpl_Stub implements UpdateCheckInService{
 
     @Override
     public ArrayList<RoomVO> searchCheckInInfo(String address, Enum<RoomType> roomType) {
-        RoomVO checkInVO=new CheckInOutVO(roomType, roomNum, address, checkInTime, expDepartTime);
+        RoomVO checkInVO=new CheckInVO(roomType, roomNum, address, checkInTime, expDepartTime);
         ArrayList<RoomVO> arrayList=new ArrayList<RoomVO>();
         arrayList.add(checkInVO);
         return arrayList;

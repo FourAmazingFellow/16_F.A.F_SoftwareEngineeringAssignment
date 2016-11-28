@@ -5,10 +5,10 @@ import java.util.Date;
 
 import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
-import po.CheckInOutPO;
+import po.CheckOutPO;
 import po.RoomPO;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckOutVO;
 import vo.RoomVO;
 
 public class MockCheckOutItem extends CheckOutItem{
@@ -28,7 +28,7 @@ public class MockCheckOutItem extends CheckOutItem{
     
     public MockCheckOutItem(RoomPO roomPO) {
         this();
-        CheckInOutPO CheckOutPO=(CheckInOutPO)roomPO;
+        CheckOutPO CheckOutPO=(CheckOutPO)roomPO;
         this.roomType = CheckOutPO.getRoomType();
         this.roomNum = CheckOutPO.getRoomNum();
         this.address = CheckOutPO.getAddress();
@@ -37,7 +37,7 @@ public class MockCheckOutItem extends CheckOutItem{
     
     public MockCheckOutItem(RoomVO roomVO){
         this();
-        CheckInOutVO CheckOutVO=(CheckInOutVO)roomVO;
+        CheckOutVO CheckOutVO=(CheckOutVO)roomVO;
         this.roomType = CheckOutVO.roomType;
         this.roomNum = CheckOutVO.roomNum;
         this.address = CheckOutVO.address;
@@ -46,7 +46,7 @@ public class MockCheckOutItem extends CheckOutItem{
     
     @Override
     public boolean addCheckOut(String address){
-        RoomPO checkOutPO=new CheckInOutPO(roomType, roomNum, address, actDepartTime);
+        RoomPO checkOutPO=new CheckOutPO(roomType, roomNum, address, actDepartTime);
         try {
             checkOutDAO.insertRoom(checkOutPO);
         } catch (RemoteException e) {
@@ -64,6 +64,6 @@ public class MockCheckOutItem extends CheckOutItem{
     
     @Override
     public RoomVO toVO(){
-        return new CheckInOutVO(roomType, roomNum, address, actDepartTime);
+        return new CheckOutVO(roomType, roomNum, address, actDepartTime);
     }
 }

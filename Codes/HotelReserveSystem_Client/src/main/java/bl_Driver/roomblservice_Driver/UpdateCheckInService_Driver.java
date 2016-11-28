@@ -1,11 +1,14 @@
 package bl_Driver.roomblservice_Driver;
 
 import java.util.Date;
+
+import businesslogic.strategybl.exception.WrongInputException;
+
 import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckInVO;
 import vo.RoomVO;
 
 /**
@@ -26,26 +29,31 @@ public class UpdateCheckInService_Driver {
         
         Date checkInTime= new Date(2016, 11, 11, 12, 0);
         ArrayList<RoomVO> checkInVOList1= updateCheckInService.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", checkInTime, checkInTime);
-        CheckInOutVO checkInVO1=(CheckInOutVO) checkInVOList1.get(0);
+        CheckInVO checkInVO1=(CheckInVO) checkInVOList1.get(0);
         System.out.println("the checkInInfo includes "+checkInVO1.roomNum + " 间"+ checkInVO1.roomType);
         System.out.println("checkin time is "+checkInVO1.checkInTime);
         System.out.println("expected time is "+checkInVO1.expDepartTime+"/n");
         
         ArrayList<RoomVO> checkInVOList2=updateCheckInService.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
-        CheckInOutVO checkInVO2=(CheckInOutVO) checkInVOList2.get(0);
+        CheckInVO checkInVO2=(CheckInVO) checkInVOList2.get(0);
         System.out.println("the checkInInfo includes "+checkInVO2.roomNum + " 间"+ checkInVO2.roomType);
         System.out.println("checkin time is "+checkInVO2.checkInTime);
         System.out.println("expected time is "+checkInVO2.expDepartTime+"/n");
         
         Date expDepartTime=new Date(2016, 11, 11, 12, 0);
-        CheckInOutVO checkIn=new CheckInOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
+        CheckInVO checkIn=new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
         boolean addCheckIn=updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn,true);
         if(addCheckIn)
             System.out.println("add checkIn Succeed!\n");
         else
             System.out.println("add checkIn Failed!\n");
        
-        boolean validCheckIn=updateCheckInService.validCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
+        boolean validCheckIn = false;
+        try {
+            validCheckIn = updateCheckInService.validCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        }
         if(validCheckIn)
             System.out.println("This checkIn valid!\n");
         else

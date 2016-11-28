@@ -1,6 +1,9 @@
 package businesslogicservice.roomblservice;
 
 import java.util.Date;
+
+import businesslogic.strategybl.exception.WrongInputException;
+
 import java.util.ArrayList;
 
 import po.RoomType;
@@ -55,8 +58,9 @@ public interface UpdateCheckInService {
      * @param address String型， 酒店地址
      * @param checkIn RoomVO型，入住信息
      * @return boolean型，返回入住信息是否符合规范
+     * @throws WrongInputException 
      * @see
      */
-    public boolean validCheckIn(String address, RoomVO checkIn);
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException;
     
 }

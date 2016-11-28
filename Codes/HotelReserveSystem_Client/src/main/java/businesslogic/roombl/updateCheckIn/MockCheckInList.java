@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
@@ -76,7 +77,7 @@ public class MockCheckInList extends CheckInList{
     }
    
     @Override
-    public boolean validCheckIn(String address, RoomVO checkIn){
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException{
         CheckInItem checkInItem=new MockCheckInItem(checkIn);
         return checkInItem.validCheckIn();
     }

@@ -215,6 +215,9 @@ public class StrategyItem {
         if (address.length() > 50 || address.length() < 1) {
             throw new WrongInputException("the address can't be longer than 50 characters");
         }
+        if(!isRightName(address)){
+            throw new WrongInputException("the address only includes number,letter, Chinese characters and underline");
+        }
         // 验证折扣名称是否含非法字符
         if (!isRightName(strategyName)) {
             throw new WrongInputException(
@@ -305,7 +308,7 @@ public class StrategyItem {
      * @return 如果包含非法字符，返回false
      * @see
      */
-    private boolean isRightName(String name) {
+    public boolean isRightName(String name) {
         // 最短长度为：1个字符,最长长度为：20个字符
         if (name.length() < 1 || name.length() > 20) {
             return false;

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -107,9 +108,10 @@ public class CheckInList {
      * @param address string型，酒店地址
      * @param checkIn Room VO型，入住信息
      * @return 返回是否入住信息有效
+     * @throws WrongInputException 
      * @see
      */
-    public boolean validCheckIn(String address, RoomVO checkIn){
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException{
         CheckInItem checkInItem=new CheckInItem(checkIn);
         return checkInItem.validCheckIn();
     }

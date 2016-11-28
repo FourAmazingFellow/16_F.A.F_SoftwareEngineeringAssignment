@@ -25,7 +25,7 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public ArrayList<RoomPO> getSpareRoomInfoList(String address) throws RemoteException;
+    public ArrayList<RoomPO> getSpareRoomInfoList(String address, Date day) throws RemoteException;
     
     /**
      * 获取对应房间类型的空房信息
@@ -35,7 +35,7 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public RoomPO getSpareRoomInfo(String address , Enum<RoomType> roomType) throws RemoteException;
+    public RoomPO getSpareRoomInfo(String address , Enum<RoomType> roomType, Date day) throws RemoteException;
     
     
     /**
@@ -103,7 +103,7 @@ public interface RoomDAO extends Remote{
      * @throws RemoteException
      * @see
      */
-    public void updateRoom(RoomPO po) throws RemoteException;
+    public void updateRoom(RoomPO po, Date day) throws RemoteException;
     
 //    /**
 //     * 更新某个入住或退房信息
@@ -114,7 +114,7 @@ public interface RoomDAO extends Remote{
 //    public void updateCheckInOut(CheckInOutPO po) throws RemoteException;
     
     /**
-     * 插入一个房间信息
+     * 插入一个新的房间类型的空房信息
      * @param po RoomPO型，业务逻辑层传递来的房间信息
      * @throws RemoteException
      * @see

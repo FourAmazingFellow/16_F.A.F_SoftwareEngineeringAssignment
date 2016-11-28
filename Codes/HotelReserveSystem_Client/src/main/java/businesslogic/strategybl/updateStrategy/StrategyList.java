@@ -92,6 +92,7 @@ public class StrategyList {
         if(this.address!=address){
             return null;
         }
+      //如果该类已初始化，则可以直接调用逻辑层的策略列表
         if(allStrategyList!=null){
             return allStrategyList.get(strategyType);
         }

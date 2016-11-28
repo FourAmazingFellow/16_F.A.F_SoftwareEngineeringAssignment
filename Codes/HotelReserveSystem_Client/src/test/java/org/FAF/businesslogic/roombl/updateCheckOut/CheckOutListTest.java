@@ -13,7 +13,7 @@ import businesslogic.roombl.updateCheckOut.CheckOutItem;
 import businesslogic.roombl.updateCheckOut.CheckOutList;
 import businesslogic.roombl.updateCheckOut.MockCheckOutList;
 import po.RoomType;
-import vo.CheckInOutVO;
+import vo.CheckOutVO;
 
 public class CheckOutListTest {
 
@@ -21,7 +21,7 @@ public class CheckOutListTest {
     private String address;
     private Date actDepartTime;
     private Enum<RoomType> roomType;
-    private CheckInOutVO checkOutVO;
+    private CheckOutVO checkOutVO;
     private Date startTime;
     private Date endTime;
     
@@ -34,14 +34,14 @@ public class CheckOutListTest {
         startTime=new Date(2016, 11, 12, 00, 00, 00);
         startTime=new Date(2016, 11, 13, 00, 00, 00);
         roomType = RoomType.SINGLE_ROOM;
-        checkOutVO=new CheckInOutVO(roomType, 3, address, actDepartTime);
+        checkOutVO=new CheckOutVO(roomType, 3, address, actDepartTime);
     }
     
     @Test
     public void testGetCheckOutList(){
         ArrayList<CheckOutItem> checkOutItems=checkOutList.getCheckOutList(address);
         assertEquals(1,checkOutItems.size());
-        CheckInOutVO checkOutVOFromArray=(CheckInOutVO) checkOutItems.get(0).toVO();
+        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
         assertEquals(checkOutVO.address, checkOutVOFromArray.address);
         assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
         assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
@@ -52,7 +52,7 @@ public class CheckOutListTest {
     public void testSearchCheckOutInfo1(){
         ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, startTime, endTime);
         assertEquals(1,checkOutItems.size());
-        CheckInOutVO checkOutVOFromArray=(CheckInOutVO) checkOutItems.get(0).toVO();
+        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
         assertEquals(checkOutVO.address, checkOutVOFromArray.address);
         assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
         assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
@@ -63,7 +63,7 @@ public class CheckOutListTest {
     public void testSearchCheckOutInfo2(){
         ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, roomType);
         assertEquals(1,checkOutItems.size());
-        CheckInOutVO checkOutVOFromArray=(CheckInOutVO) checkOutItems.get(0).toVO();
+        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
         assertEquals(checkOutVO.address, checkOutVOFromArray.address);
         assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
         assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);

@@ -16,14 +16,15 @@ import po.RoomType;
  * @see
  */
 public class RoomDAO_Driver {
+    @SuppressWarnings("deprecation")
     public void drive(RoomDAO roomDAO) throws RemoteException{
-        ArrayList<RoomPO> spareRoomList=roomDAO.getSpareRoomInfoList("江苏省南京市栖霞区仙林大道163号");
+        ArrayList<RoomPO> spareRoomList=roomDAO.getSpareRoomInfoList("江苏省南京市栖霞区仙林大道163号",new Date(116,10,27));
         if(spareRoomList.isEmpty())
             System.out.println("No spareRoom!\n");
         else
             System.out.println("There are " + spareRoomList.size() + " kinds of spareRoom!\n");
         
-        RoomPO roomPO=roomDAO.getSpareRoomInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM);
+        RoomPO roomPO=roomDAO.getSpareRoomInfo("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM,new Date(116,10,27));
         System.out.println("There are "+roomPO.getRoomNum()+" "+roomPO.getRoomType()+" room!/n");
         
         ArrayList<RoomPO> checkInInfoList=roomDAO.getCheckInInfoList("江苏省南京市栖霞区仙林大道163号");
@@ -64,7 +65,7 @@ public class RoomDAO_Driver {
         
         
         RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
-        roomDAO.updateRoom(roomPo);
+        roomDAO.updateRoom(roomPo,new Date(116,10,27));
         roomDAO.insertRoom(roomPo);
 
     }
