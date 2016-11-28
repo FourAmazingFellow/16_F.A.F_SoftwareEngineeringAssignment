@@ -13,6 +13,7 @@ import org.junit.Test;
 import data.hoteldata.HotelDAOImpl;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.BusinessDistrictPO;
 import po.HotelPO;
 import po.RoomType;
 
@@ -104,15 +105,15 @@ public class HotelDAOImplTest {
 		}
 	}
 	
-	@Test
-	public void testInsert() {
-		try {
-			hotelDAO.insertHotel(po);
-		} catch(RemoteException e) {
-			e.printStackTrace();
-			fail("RemoteException has happened!");
-		}
-	}
+//	@Test
+//	public void testInsert() {
+//		try {
+//			hotelDAO.insertHotel(po);
+//		} catch(RemoteException e) {
+//			e.printStackTrace();
+//			fail("RemoteException has happened!");
+//		}
+//	}
 //	
 //	@Test
 //	public void testUpdate() {
@@ -139,5 +140,18 @@ public class HotelDAOImplTest {
 //			fail("RemoteException has happened!");
 //		}
 //	}
+	
+	@Test
+	public void testGetBusinessDistrctList() {
+		ArrayList<BusinessDistrictPO> businessDistrictPOs;
+		try {
+			businessDistrictPOs = hotelDAO.getBusinessDistrctList("南京市");
+			assertEquals(11, businessDistrictPOs.size());
+			assertEquals("栖霞区", businessDistrictPOs.get(0).getBusinessDistrictName());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail("RemoteException has happened!");
+		}
+	}
 
 }

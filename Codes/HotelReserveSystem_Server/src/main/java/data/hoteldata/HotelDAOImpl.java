@@ -339,7 +339,32 @@ public class HotelDAOImpl implements HotelDAO {
 
 	@Override
 	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
-		return null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<BusinessDistrictPO> businessDistrictPOs = new ArrayList<>();
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			//根据酒店地址获得数据库数据
+			pstmt = conn.prepareStatement("select * from businessDistrict where city = ?");
+			pstmt.setString(1, city);
+			rs = pstmt.executeQuery();
+			
+			//遍历结果，构造briefHotelInfoPO，并为其赋值
+			while(rs.next()) {
+				BusinessDistrictPO businessDistrictPO = new BusinessDistrictPO(rs.getString("businessDistrictName"), city);
+				businessDistrictPOs.add(businessDistrictPO);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(rs, conn, pstmt);
+		}
+		
+		return businessDistrictPOs;
 	}
 
 }
