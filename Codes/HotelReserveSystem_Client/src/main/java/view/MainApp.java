@@ -2,8 +2,6 @@ package view;
 
 import java.io.IOException;
 
-import javax.security.auth.login.AppConfigurationEntry.LoginModuleControlFlag;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
