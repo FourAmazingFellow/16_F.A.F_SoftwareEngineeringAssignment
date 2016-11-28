@@ -13,10 +13,10 @@ import vo.WebMarketStaffInfoVO;
  */
 public class ManageUserInfoServiceImpl_Driver {
     public void drive(ManageUserInfoService manageUserInfoService){
-        UserVO userVO = manageUserInfoService.getUserInfo("原", UserType.Client);
+        UserVO userVO = manageUserInfoService.getUserInfo("原");
         
         System.out.println("The client's info are :"+userVO);
-        boolean result1 = manageUserInfoService.modifyUserInfo(userVO);
+        boolean result1 = manageUserInfoService.modifyUserInfo(userVO, "原");
         if(result1)
            System.out.println("Modify Succeed!\n");
        else

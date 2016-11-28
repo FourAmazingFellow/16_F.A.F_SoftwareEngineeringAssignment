@@ -6,41 +6,39 @@ import businesslogicservice.userblservice.AddCreditValueService;
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
 import po.UserType;
-import vo.UserVO;
+import rmi.RemoteHelper;
 
 public class AddCreditValueServiceImpl implements AddCreditValueService {
-    UserDAO userDAO;
-    UserVO clientInfoVO;
-    String userID;
-    UserType userType;
-    int creditValue;
-    
+    private UserDAO userDAO;
+    private String userID;
+    private int creditValue;
+    private int creditResult;
+
     public AddCreditValueServiceImpl() {
-        try {
-            this.clientInfoVO = new UserVO(userDAO.getUserInfo(userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }    
     }
 
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
+        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        ClientInfoPO clientInfoPO = null;
+        ClientInfoPO clientInfoPO = new ClientInfoPO();
         try {
             clientInfoPO = userDAO.getClientInfo(this.userID);
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
-        creditValue = clientInfoPO.getCreditValue();
+        this.creditValue = clientInfoPO.getCreditValue();
+        this.creditResult = creditValue + creditAdded;
+        clientInfoPO = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(),
+                UserType.Client, creditResult, clientInfoPO.getCreditRecord());
         try {
-            userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue+creditAdded, null), "原");;
+            userDAO.updateClient(clientInfoPO, userID);
+            ;
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
         }
     }
-	
 
 }

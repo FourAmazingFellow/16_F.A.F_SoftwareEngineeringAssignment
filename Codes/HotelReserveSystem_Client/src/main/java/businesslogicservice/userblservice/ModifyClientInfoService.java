@@ -1,6 +1,6 @@
 package businesslogicservice.userblservice;
 
-import po.UserType;
+import vo.ClientInfoVO;
 import vo.UserVO;
 
 /**
@@ -19,7 +19,7 @@ public interface ModifyClientInfoService {
      * @return 返回用户信息
      * @see
      */
-    public UserVO getUserInfo(String userID,UserType client);
+    public ClientInfoVO getClientInfo(String userID);
     
     /**
      * 修改用户信息
@@ -27,5 +27,5 @@ public interface ModifyClientInfoService {
      * @return 修改成功则返回true，修改失败则返回false
      * @see
      */
-    public boolean modifyUserInfo(UserVO user);
+    public boolean modifyClientInfo(UserVO user, String oldUserID);
 }

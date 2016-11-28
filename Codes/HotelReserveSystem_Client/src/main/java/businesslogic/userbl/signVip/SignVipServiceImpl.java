@@ -4,7 +4,9 @@ import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.SignVipService;
 import dataservice.userDAO.UserDAO;
-import po.UserPO;
+import po.EnterpriseVipPO;
+import po.RegularVipPO;
+import rmi.RemoteHelper;
 import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
@@ -21,8 +23,9 @@ public class SignVipServiceImpl implements SignVipService {
     
     @Override
     public boolean signRegularVip(RegularVipVO regularVip) {
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
-            userDAO.updateUser(new UserPO(regularVip), "原");;
+            userDAO.signRegularVip(new RegularVipPO(regularVip));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -33,7 +36,7 @@ public class SignVipServiceImpl implements SignVipService {
     @Override
     public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) {
         try {
-            userDAO.updateUser(new UserPO(enterpriseVip), "原");;
+            userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

@@ -1,7 +1,9 @@
 package po;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
+
+import vo.RegularVipVO;
 
 public class RegularVipPO extends ClientInfoPO{
 
@@ -24,6 +26,15 @@ public class RegularVipPO extends ClientInfoPO{
         this.birth = birth;
         this.vipRank = vipRank;
     }
+    /**
+     * @param regularVip
+     */
+    public RegularVipPO(RegularVipVO regularVipVO) {
+        super(regularVipVO);
+        this.birth = regularVipVO.birth;
+        this.vipRank = regularVipVO.vipRank;
+    }
+
     public Date getBirth() {
         return birth;
     }

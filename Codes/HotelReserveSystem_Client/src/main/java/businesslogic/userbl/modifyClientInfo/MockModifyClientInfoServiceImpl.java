@@ -6,26 +6,27 @@ import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
 import po.UserType;
+import vo.ClientInfoVO;
 import vo.UserVO;
 
 public class MockModifyClientInfoServiceImpl extends ModifyClientInfoServiceImpl{
 
     private UserDAO userDAO;
-    private UserVO userVO;
+    private ClientInfoVO clientInfoVO;
     
     public MockModifyClientInfoServiceImpl(String userID) {
         super(userID);
         userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900");
-        userVO = new UserVO("原", "qwe123", "12345678900", null);
+        clientInfoVO = new ClientInfoVO("原", "qwe123", "12345678900", UserType.Client, 500, null);
     }
 
     @Override
-    public UserVO getUserInfo(String userID, UserType user) {
-        return userVO;
+    public ClientInfoVO getClientInfo(String userID) {
+        return clientInfoVO;
     }
 
     @Override
-    public boolean modifyUserInfo(UserVO user) {
+    public boolean modifyClientInfo(UserVO user,String oldUserID) {
         try {
             userDAO.updateUser(new UserPO(user), "原");
             return true;

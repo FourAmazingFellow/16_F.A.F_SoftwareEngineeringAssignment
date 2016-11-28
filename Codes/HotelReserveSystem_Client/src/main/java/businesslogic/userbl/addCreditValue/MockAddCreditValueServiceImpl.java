@@ -9,19 +9,32 @@ import po.UserType;
 
 public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
 
-    public MockAddCreditValueServiceImpl(String userID, UserType userType) {
+    public MockAddCreditValueServiceImpl() {
         super();
     }
 
-    UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "12345678901", 300, null);
+    private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900", 500, null);
+    private String userID;
+    private int creditValue;
+    private int creditResult;
+    private ClientInfoPO clientInfoPO;
 
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
         this.userID = userID;
-        ClientInfoPO clientInfoPO = new ClientInfoPO(this.userID, null, null, null, creditValue, null);
-        creditValue = clientInfoPO.getCreditValue();
+        this.clientInfoPO = new ClientInfoPO();
+        this.creditValue = 0;
         try {
-            userDAO.updateUser(new ClientInfoPO(userID, null, null, userType, creditValue+creditAdded, null), "原");;
+            this.clientInfoPO = userDAO.getClientInfo(this.userID);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        }
+   //     creditValue = clientInfoPO.getCreditValue();
+        this.creditResult = creditValue + creditAdded;
+//        clientInfoPO = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(),
+//                UserType.Client, creditResult, clientInfoPO.getCreditRecord());
+        try {
+            userDAO.updateClient(clientInfoPO, userID);
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

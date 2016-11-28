@@ -17,6 +17,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     public int getCreditValue(String userID) {
         userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
+        this.creditValue = 0;
         try {
             this.creditValue = userDAO.getCreditValue(this.userID);
         } catch (RemoteException e) {

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.userbl.loginAndSignUp.LoginAndSignUpServiceImpl;
+import businesslogic.userbl.loginAndSignUp.MockLoginAndSignUpServiceImpl;
 import po.UserType;
 import vo.UserVO;
 
@@ -27,14 +28,14 @@ public class LoginAndSignUpServiceImplTest {
     
     @Test
     public void testLogin() {
-        loginAndSignUp = new LoginAndSignUpServiceImpl();
+        loginAndSignUp = new MockLoginAndSignUpServiceImpl();
         boolean result = loginAndSignUp.login(userID, password);
         assertEquals(true,result);
     }
 
     @Test
     public void testAdd() {
-        loginAndSignUp = new LoginAndSignUpServiceImpl();
+        loginAndSignUp = new MockLoginAndSignUpServiceImpl();
         UserVO user = new UserVO(userID, password, telNum,userType);
        boolean result = loginAndSignUp.add(user);
        assertEquals(true, result);

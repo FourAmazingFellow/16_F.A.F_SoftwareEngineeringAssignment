@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import businesslogic.userbl.modifyClientInfo.MockModifyClientInfoServiceImpl;
 import businesslogic.userbl.modifyClientInfo.ModifyClientInfoServiceImpl;
-import po.UserType;
+import vo.ClientInfoVO;
 import vo.UserVO;
 
 public class ModifyClientInfoServiceImplTest {
@@ -15,30 +15,32 @@ public class ModifyClientInfoServiceImplTest {
     private String userID;
     private String password;
     private String telNum;
-    private UserType userType;
-    private UserVO userVO;
+    private int creditValue;
+    private ClientInfoVO clientInfoVO;
     
     @Before
     public void setUp() throws Exception {
         this.userID = "原";
         this.password = "qwe123";
         this.telNum = "12345678900";
+        this.creditValue = 500;
     }
     
     @Test
-    public void testGetUserInfo() {
+    public void testGetClientInfo() {
         modifyClientInfo = new MockModifyClientInfoServiceImpl(userID);
-        userVO = modifyClientInfo.getUserInfo(userID, userType);
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in userID!", userID, userVO.userID);        
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in password!", password, userVO.password);        
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in telNum!", telNum, userVO.telNum);        
+        clientInfoVO = modifyClientInfo.getClientInfo(userID);
+        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in userID!", userID, clientInfoVO.userID);        
+        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in password!", password, clientInfoVO.password);        
+        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in telNum!", telNum, clientInfoVO.telNum);        
+        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in creditValue!", creditValue, clientInfoVO.creditValue);   
     }
 
     @Test
-    public void modifyUserInfo() {
+    public void testModifyClientInfo() {
         modifyClientInfo = new MockModifyClientInfoServiceImpl(userID);
-        UserVO client = modifyClientInfo.getUserInfo(userID, userType);
-        boolean result = modifyClientInfo.modifyUserInfo(client);
+        UserVO client = modifyClientInfo.getClientInfo(userID);
+        boolean result = modifyClientInfo.modifyClientInfo(client, userID);
         assertEquals(true, result);
     }
     

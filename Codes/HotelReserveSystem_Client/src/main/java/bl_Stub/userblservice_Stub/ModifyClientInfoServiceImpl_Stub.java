@@ -2,6 +2,7 @@ package bl_Stub.userblservice_Stub;
 
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import po.UserType;
+import vo.ClientInfoVO;
 import vo.UserVO;
 
 /**
@@ -29,14 +30,27 @@ public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService
 		this.enterpriseName = enterpriseName;
 	}
 	 
-	@Override
-	public UserVO getUserInfo(String userID, UserType userType) {
-		return new UserVO(userID, password, telNum, UserType);
-	}
+	
 
-	@Override
-	public boolean modifyUserInfo(UserVO user) {
-		return true;
-	}
+    /* (non-Javadoc)
+     * @param userID
+     * @return
+     * @see businesslogicservice.userblservice.ModifyClientInfoService#getClientInfo(java.lang.String)
+     */
+    @Override
+    public ClientInfoVO getClientInfo(String userID) {
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @param user
+     * @param oldUserID
+     * @return
+     * @see businesslogicservice.userblservice.ModifyClientInfoService#modifyClientInfo(vo.UserVO, java.lang.String)
+     */
+    @Override
+    public boolean modifyClientInfo(UserVO user, String oldUserID) {
+        return false;
+    }
 
 }

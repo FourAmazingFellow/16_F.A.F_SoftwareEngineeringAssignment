@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.userbl.loginAndSignUp.CheckLoginInfo;
+import businesslogic.userbl.loginAndSignUp.MockCheckLoginInfo;
 import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
@@ -29,7 +30,7 @@ public class CheckLoginInfoTest {
 
     @Test
     public void testCheckUser() {
-        checkLoginInfo = new CheckLoginInfo();
+        checkLoginInfo = new MockCheckLoginInfo();
         String userID = userPO.getUserID();
         String password = userPO.getPassword();
         boolean result = checkLoginInfo.checkUser(userID, password);

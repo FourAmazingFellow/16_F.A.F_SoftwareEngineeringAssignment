@@ -2,8 +2,10 @@ package po;
 
 import java.util.ArrayList;
 
+import vo.EnterpriseVipVO;
+
 /**
- * 会员信息PO（继承于用户信息PO），负责持久化数据传输
+ * 会员信息PO（继承于客户信息PO），负责持久化数据传输
  * @author sparkler
  * @version 1.0
  */
@@ -27,6 +29,16 @@ public class EnterpriseVipPO extends ClientInfoPO {
         this.enterpriseID = enterpriseID;
         this.enterprisePassword = enterprisePassword;
     }
+    /**
+     * @param enterpriseVip
+     */
+    public EnterpriseVipPO(EnterpriseVipVO enterpriseVipVO) {
+        super(enterpriseVipVO);
+        this.enterpriseID = enterpriseVipVO.enterpriseID;
+        this.enterprisePassword = enterpriseVipVO.enterprisePassword;
+    }
+    
+
     public void setEnterpriseID(String enterpriseID){
         this.enterpriseID = enterpriseID;
     }

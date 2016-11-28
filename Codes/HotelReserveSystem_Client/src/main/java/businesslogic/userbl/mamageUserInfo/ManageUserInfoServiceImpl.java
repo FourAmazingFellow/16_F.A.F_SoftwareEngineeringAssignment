@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import businesslogicservice.userblservice.ManageUserInfoService;
 import dataservice.userDAO.UserDAO;
 import po.UserPO;
-import po.UserType;
+import vo.HotelStaffInfoVO;
 import vo.UserVO;
 
 /**
@@ -17,29 +17,14 @@ import vo.UserVO;
 public class ManageUserInfoServiceImpl implements ManageUserInfoService{
 
     private UserDAO userDAO;
-    private String userID;
-    private UserVO userVO;
-    
     public ManageUserInfoServiceImpl(String userID) {
-        this.userID = userID;
-        try {
-            this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    @Override
-    public boolean modifyUserInfo(UserVO user) {
-        try {
-            userDAO.updateUser(new UserPO(user), "原");
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
+    /* (non-Javadoc)
+     * @param user
+     * @return
+     * @see businesslogicservice.userblservice.ManageUserInfoService#add(vo.UserVO)
+     */
     @Override
     public boolean add(UserVO user) {
         try {
@@ -51,9 +36,38 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
         }
     }
 
+    /* (non-Javadoc)
+     * @param userID
+     * @return
+     * @see businesslogicservice.userblservice.ManageUserInfoService#getHotelStaffInfo(java.lang.String)
+     */
     @Override
-    public UserVO getUserInfo(String userID, UserType user) {
-        return userVO;
+    public HotelStaffInfoVO getHotelStaffInfo(String userID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @param userID
+     * @return
+     * @see businesslogicservice.userblservice.ManageUserInfoService#getUserInfo(java.lang.String)
+     */
+    @Override
+    public UserVO getUserInfo(String userID) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @param userVO
+     * @param userID
+     * @return
+     * @see businesslogicservice.userblservice.ManageUserInfoService#modifyUserInfo(vo.UserVO, java.lang.String)
+     */
+    @Override
+    public boolean modifyUserInfo(UserVO userVO, String userID) {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }
