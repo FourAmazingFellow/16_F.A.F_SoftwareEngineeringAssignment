@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -48,6 +49,7 @@ public class CheckOutList {
      * @see
      */
     public ArrayList<CheckOutItem> searchCheckOutInfo(String address , Date startTime, Date endTime){
+      //改变接口，只传一个Date,startTime ,endTime 自己计算出
         ArrayList<RoomPO> checkOutPOs;
         ArrayList<CheckOutItem> checkOutItems=new ArrayList<CheckOutItem>();
         try {
@@ -89,9 +91,10 @@ public class CheckOutList {
      * @param address string型，酒店地址
      * @param CheckOut Room VO型，退房信息
      * @return 返回是否增加成功
+     * @throws RemoteException 
      * @see
      */
-    public boolean addCheckOut(String address, RoomVO checkOut){
+    public boolean addCheckOut(String address, RoomVO checkOut) throws RemoteException{
         CheckOutItem checkOutItem=new CheckOutItem(checkOut);
         return checkOutItem.addCheckOut(address);
     }
@@ -101,9 +104,11 @@ public class CheckOutList {
      * @param address string型，酒店地址
      * @param CheckOut Room VO型，退房信息
      * @return 返回是否退房信息有效
+     * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean validCheckOut(String address, RoomVO checkOut){
+    public boolean validCheckOut(String address, RoomVO checkOut) throws WrongInputException, RemoteException{
         CheckOutItem checkOutItem=new CheckOutItem(checkOut);
         return checkOutItem.validCheckOut();
     }

@@ -29,6 +29,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     String address;
     StrategyVO bestPromotion;
     StrategyVO bestMarketStrategy;
+    StrategyItem strategyItem;
 
     VipInfo vipInfo;
     
@@ -166,6 +167,12 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
             bestDiscount = bestPromotion.discount;
         }
         return bestDiscount;
+    }
+
+    @Override
+    public boolean isRightName(String name) {
+        strategyItem=new StrategyItem();
+        return strategyItem.isRightName(name);
     }
 
 }

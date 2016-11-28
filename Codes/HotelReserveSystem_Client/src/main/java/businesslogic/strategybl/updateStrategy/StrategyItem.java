@@ -268,10 +268,23 @@ public class StrategyItem {
                 throw new WrongInputException("the minRoomNum is larger than the number of all rooms");
             }
         }
-        // 如果是商圈折扣，商圈是否存在
+        return false;
+
+    }
+    
+    /**
+     * 验证特定商圈会员专属折扣的商圈名称在某城市是否存在
+     * @param city String型，城市名称
+     * @param strategyVO 策略信息
+     * @return 返回商圈是否存在
+     * @throws WrongInputException 
+     * @see
+     */
+    public boolean verifyTradeArea(String city) throws WrongInputException {
+        //调用hotelbl方法得到该城市的商圈列表，然后判断该商圈是否存在
         if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
             boolean tradeAreaExist=false;
-            ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrctList();
+            ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrctList(city);
             for (BusinessDistrictPO po : tradeAreaList) {
                 if(this.tradeArea==po.getBusinessDistrictName()){
                     tradeAreaExist=true;
@@ -281,9 +294,9 @@ public class StrategyItem {
             if(!tradeAreaExist){
                 throw new WrongInputException("the tradeArea doesn't exist");
             }
+            return tradeAreaExist;
         }
         return false;
-
     }
 
     private boolean isRightSecurityCode(String securityCode) throws WrongInputException {

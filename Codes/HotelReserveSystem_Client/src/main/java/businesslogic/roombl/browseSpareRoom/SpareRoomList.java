@@ -1,8 +1,12 @@
 package businesslogic.roombl.browseSpareRoom;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import businesslogic.roombl.exception.NoThisRoomTypeSpareRoomException;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -58,8 +62,15 @@ public class SpareRoomList {
         }
         ArrayList<RoomPO> roomPOs;
         ArrayList<SpareRoomItem> spareRoomItems=new ArrayList<SpareRoomItem>();
+        Date today=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-DD");
         try {
-            roomPOs=roomDAO.getCheckInInfoList(address);
+            today=sdf.parse(sdf.format(today));
+        } catch (ParseException e1) {
+            e1.printStackTrace();
+        }
+        try {
+            roomPOs=roomDAO.getSpareRoomInfoList(address, today);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;

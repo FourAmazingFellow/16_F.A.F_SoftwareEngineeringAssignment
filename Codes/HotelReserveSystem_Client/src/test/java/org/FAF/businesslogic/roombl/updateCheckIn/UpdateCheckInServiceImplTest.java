@@ -2,6 +2,7 @@ package org.FAF.businesslogic.roombl.updateCheckIn;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -77,7 +78,12 @@ public class UpdateCheckInServiceImplTest {
 
     @Test
     public void testAddCheckIn() {
-        boolean added=updateCheckInServiceImpl.addCheckIn(address, checkInVO, updateSpareRoom);
+        boolean added = false;
+        try {
+            added = updateCheckInServiceImpl.addCheckIn(address, checkInVO, updateSpareRoom);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         assertTrue(added);
     }
 
@@ -88,6 +94,8 @@ public class UpdateCheckInServiceImplTest {
             valid = updateCheckInServiceImpl.validCheckIn(address, checkInVO);
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
         assertTrue(valid);
     }

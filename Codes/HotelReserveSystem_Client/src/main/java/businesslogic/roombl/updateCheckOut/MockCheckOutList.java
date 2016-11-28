@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
@@ -69,13 +70,13 @@ public class MockCheckOutList extends CheckOutList{
     }
     
     @Override
-    public boolean addCheckOut(String address, RoomVO checkOut){
+    public boolean addCheckOut(String address, RoomVO checkOut) throws RemoteException{
         CheckOutItem checkOutItem=new MockCheckOutItem(checkOut);
         return checkOutItem.addCheckOut(address);
     }
     
     @Override
-    public boolean validCheckOut(String address, RoomVO checkOut){
+    public boolean validCheckOut(String address, RoomVO checkOut) throws WrongInputException, RemoteException{
         CheckOutItem checkOutItem=new MockCheckOutItem(checkOut);
         return checkOutItem.validCheckOut();
     }

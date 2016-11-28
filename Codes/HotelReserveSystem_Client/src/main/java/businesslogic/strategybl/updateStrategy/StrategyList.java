@@ -227,20 +227,8 @@ public class StrategyList {
                 }
             }
         }
-        //如果添加特定商圈会员专属折扣，判断该商圈和会员等级是否已存在
+        //如果添加特定商圈会员专属折扣，判断该商圈的会员等级是否已存在
         if(strategyType==StrategyType.VipTradeAreaMarket){
-            ArrayList<BusinessDistrictPO> businessDistrictPOs=hotelInfoService.getBusinessDistrctList();
-            //判断商圈是否存在
-            boolean validBusinessDistrictName=false;
-            for(BusinessDistrictPO businessDistrictPO:businessDistrictPOs){
-                if(businessDistrictPO.getBusinessDistrictName()==strategyVO.tradeArea){
-                    validBusinessDistrictName=true;
-                    break;
-                }
-            }
-            if(!validBusinessDistrictName){
-                throw new UnableAddStrategyException("the tradeArea doesn't exit");
-            }
             //判断该商圈的会员等级是否存在
             for(StrategyItem strategyItem: allStrategyList.get(strategyType)){
                 StrategyVO vo=strategyItem.toVO();
@@ -369,5 +357,18 @@ public class StrategyList {
     public boolean valid(String address, StrategyVO strategyVO) throws WrongInputException {
         StrategyItem strategyItem = new StrategyItem(strategyVO);
         return strategyItem.valid();
+    }
+    
+    /**
+     * 验证特定商圈会员专属折扣的商圈名称在某城市是否存在
+     * @param city String型，城市名称
+     * @param strategyVO 策略信息
+     * @return 返回商圈是否存在
+     * @throws WrongInputException 
+     * @see
+     */
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
+        StrategyItem strategyItem = new StrategyItem(strategyVO);
+        return strategyItem.verifyTradeArea(city);
     }
 }

@@ -1,5 +1,6 @@
 package businesslogic.roombl.updateCheckIn;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -73,10 +74,11 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      * @param address string型，酒店地址
      * @param checkIn Room VO型，入住信息
      * @return 返回是否增加成功
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom){
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException{
         return checkInList.addCheckIn(address, checkIn, updateSpareRoom);
     }
    
@@ -86,10 +88,11 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      * @param checkIn Room VO型，入住信息
      * @return 返回是否入住信息有效
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException{
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException, RemoteException{
         return checkInList.validCheckIn(address, checkIn);
         
     }

@@ -29,4 +29,9 @@ public class StrategyInfoService_Stub implements StrategyInfoService{
         return 0;
     }
 
+    @Override
+    public boolean isRightName(String name) {
+        return false;
+    }
+
 }

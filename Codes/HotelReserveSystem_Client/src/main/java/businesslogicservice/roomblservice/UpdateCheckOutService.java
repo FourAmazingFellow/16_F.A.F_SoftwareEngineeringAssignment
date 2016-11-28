@@ -1,6 +1,10 @@
 package businesslogicservice.roomblservice;
 
 import java.util.Date;
+
+import businesslogic.strategybl.exception.WrongInputException;
+
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.RoomType;
@@ -45,16 +49,19 @@ public interface UpdateCheckOutService {
      * @param address String型， 酒店地址
      * @param checkIn RoomVO型，退房信息
      * @return boolean型，返回是否增加退房信息成功
+     * @throws RemoteException 
      * @see
      */
-    public boolean addCheckOut(String address, RoomVO roomvo);
+    public boolean addCheckOut(String address, RoomVO roomvo) throws RemoteException;
     
     /**
      *  检查退房信息是否符合规范
      * @param address String型， 酒店地址
      * @param checkIn RoomVO型，退房信息
      * @return boolean型，返回退房信息是否符合规范
+     * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean validCheckOut(String address, RoomVO checkOut);
+    public boolean validCheckOut(String address, RoomVO checkOut) throws WrongInputException, RemoteException;
 }

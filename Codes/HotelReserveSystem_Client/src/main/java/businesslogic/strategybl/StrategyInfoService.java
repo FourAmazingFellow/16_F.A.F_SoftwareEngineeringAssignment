@@ -35,12 +35,10 @@ public interface StrategyInfoService {
     public float getBestDiscount(OrderVO order);
     
     /**
-     * 验证企业会员
-     * @param hotelName string型，酒店名称
-     * @param enterpriseName string型，合作企业名称
-     * @param securityCode string型，该企业对应的验证码
+     * 判断该名称是否正确
+     * @param name String型，要验证的名称
      * @return
      * @see
      */
-//    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode);
+    public boolean isRightName(String name);
 }

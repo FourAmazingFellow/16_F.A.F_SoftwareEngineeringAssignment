@@ -4,6 +4,7 @@ import java.util.Date;
 
 import businesslogic.strategybl.exception.WrongInputException;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
@@ -42,7 +43,12 @@ public class UpdateCheckInService_Driver {
         
         Date expDepartTime=new Date(2016, 11, 11, 12, 0);
         CheckInVO checkIn=new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
-        boolean addCheckIn=updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn,true);
+        boolean addCheckIn = false;
+        try {
+            addCheckIn = updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn,true);
+        } catch (RemoteException e1) {
+            System.out.println(e1.getMessage());
+        }
         if(addCheckIn)
             System.out.println("add checkIn Succeed!\n");
         else
@@ -52,6 +58,8 @@ public class UpdateCheckInService_Driver {
         try {
             validCheckIn = updateCheckInService.validCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn);
         } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        }catch (RemoteException e) {
             System.out.println(e.getMessage());
         }
         if(validCheckIn)

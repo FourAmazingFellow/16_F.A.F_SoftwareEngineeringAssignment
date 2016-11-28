@@ -118,13 +118,13 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public ArrayList<RoomPO> getSpareRoomInfoList(String address) throws RemoteException {
-		return roomDAO.getSpareRoomInfoList(address);
+	public ArrayList<RoomPO> getSpareRoomInfoList(String address, Date day) throws RemoteException {
+		return roomDAO.getSpareRoomInfoList(address,day);
 	}
 
 	@Override
-	public RoomPO getSpareRoomInfo(String address, Enum<RoomType> roomType) throws RemoteException {
-		return roomDAO.getSpareRoomInfo(address, roomType);
+	public RoomPO getSpareRoomInfo(String address, Enum<RoomType> roomType, Date day) throws RemoteException {
+		return roomDAO.getSpareRoomInfo(address, roomType,day);
 	}
 
 	@Override
@@ -158,8 +158,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void updateRoom(RoomPO po) throws RemoteException {
-		roomDAO.updateRoom(po);
+	public void updateRoom(RoomPO po, Date day) throws RemoteException {
+		roomDAO.updateRoom(po,day);
 	}
 
 	@Override

@@ -1,8 +1,10 @@
 package businesslogic.roombl.updateCheckOut;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.roomblservice.UpdateCheckOutService;
 import po.RoomType;
 import vo.RoomVO;
@@ -72,10 +74,11 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * @param address String型，酒店地址
      * @param checkOut Room VO型，退房信息
      * @return 返回是否增加成功
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean addCheckOut(String address, RoomVO checkOut){
+    public boolean addCheckOut(String address, RoomVO checkOut) throws RemoteException{
         return checkOutList.addCheckOut(address, checkOut);
     }
   
@@ -84,10 +87,12 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * @param address String型，酒店地址
      * @param checkOut Room VO型，退房信息
      * @return 返回是否退房信息有效
+     * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean validCheckOut(String address, RoomVO checkOut){
+    public boolean validCheckOut(String address, RoomVO checkOut) throws WrongInputException, RemoteException{
         return checkOutList.validCheckOut(address, checkOut);
     }
 

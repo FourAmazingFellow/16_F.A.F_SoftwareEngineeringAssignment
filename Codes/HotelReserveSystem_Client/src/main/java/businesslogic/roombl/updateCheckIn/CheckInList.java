@@ -96,9 +96,10 @@ public class CheckInList {
      * @param address string型，酒店地址
      * @param checkIn Room VO型，入住信息
      * @return 返回是否增加成功
+     * @throws RemoteException 
      * @see
      */
-    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom){
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException{
         CheckInItem checkInItem=new CheckInItem(checkIn);
         return checkInItem.addCheckIn(address, updateSpareRoom);
     }
@@ -109,9 +110,10 @@ public class CheckInList {
      * @param checkIn Room VO型，入住信息
      * @return 返回是否入住信息有效
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException{
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException, RemoteException{
         CheckInItem checkInItem=new CheckInItem(checkIn);
         return checkInItem.validCheckIn();
     }

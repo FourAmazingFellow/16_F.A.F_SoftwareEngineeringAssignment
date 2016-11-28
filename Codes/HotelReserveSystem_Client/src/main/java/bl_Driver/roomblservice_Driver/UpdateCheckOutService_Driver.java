@@ -1,8 +1,10 @@
 package bl_Driver.roomblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.roomblservice.UpdateCheckOutService;
 import po.RoomType;
 import vo.CheckOutVO;
@@ -35,13 +37,25 @@ public class UpdateCheckOutService_Driver {
         
         Date actDepartTime=new Date(System.currentTimeMillis());
         CheckOutVO checkOut=new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", actDepartTime);
-        boolean addCheckOut=updateCheckOutService.addCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
+        boolean addCheckOut = false;
+        try {
+            addCheckOut = updateCheckOutService.addCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
+        } catch (RemoteException e1) {
+            System.out.println(e1.getMessage());
+        }
         if(addCheckOut)
             System.out.println("add checkOut Succeed!\n");
         else
             System.out.println("add checkOut Failed!\n");
        
-        boolean validCheckOut=updateCheckOutService.validCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
+        boolean validCheckOut = false;
+        try {
+            validCheckOut = updateCheckOutService.validCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            System.out.println(e.getMessage());
+        }
         if(validCheckOut)
             System.out.println("This checkOut valid!\n");
         else

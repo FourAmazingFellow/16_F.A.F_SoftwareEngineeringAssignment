@@ -1,4 +1,4 @@
-package businesslogic.roombl.browseSpareRoom;
+package businesslogic.roombl.exception;
 
 public class NoThisRoomTypeSpareRoomException extends Exception{
 

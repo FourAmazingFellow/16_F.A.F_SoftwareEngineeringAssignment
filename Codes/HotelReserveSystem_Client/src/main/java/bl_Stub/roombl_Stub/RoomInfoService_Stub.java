@@ -1,5 +1,6 @@
 package bl_Stub.roombl_Stub;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.roombl.RoomInfoService;
@@ -16,7 +17,7 @@ import vo.RoomVO;
  */
 public class RoomInfoService_Stub implements RoomInfoService{
     @Override
-    public int getAvailableRoomNum(String address, Enum<RoomType> roomType) {
+    public int getAvailableRoomNum(String address, Enum<RoomType> roomType,Date day) {
         System.out.println("获取该房间类型的空房数量成功");
         return 0;
     }
@@ -32,12 +33,12 @@ public class RoomInfoService_Stub implements RoomInfoService{
     }
 
     @Override
-    public boolean reduceRoom(String address, int change, Enum<RoomType> roomType) {
+    public boolean reduceRoom(String address, int change, Enum<RoomType> roomType,Date day) {
         return true;
     }
 
     @Override
-    public boolean addRoom(String address, int change, Enum<RoomType> roomType) {
+    public boolean addRoom(String address, int change, Enum<RoomType> roomType,Date day) {
         return true;
     }
 
@@ -46,5 +47,11 @@ public class RoomInfoService_Stub implements RoomInfoService{
 		// TODO Auto-generated method stub
 		return ResultMessage.SUCCEED;
 	}
+
+    @Override
+    public ArrayList<RoomVO> getSpareRoomList(String address) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

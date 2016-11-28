@@ -75,4 +75,14 @@ public interface UpdateStrategyService {
      */
     public boolean valid(String address, StrategyVO strategy) throws WrongInputException;
     
+    /**
+     * 验证特定商圈会员专属折扣的商圈名称在某城市是否存在
+     * @param city String型，城市名称
+     * @param strategyVO 策略信息
+     * @return 返回商圈是否存在
+     * @throws WrongInputException 
+     * @see
+     */
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException;
+    
 }

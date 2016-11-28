@@ -2,6 +2,7 @@ package org.FAF.businesslogic.roombl.updateCheckOut;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -9,6 +10,7 @@ import org.junit.Test;
 
 import businesslogic.roombl.updateCheckOut.CheckOutItem;
 import businesslogic.roombl.updateCheckOut.MockCheckOutItem;
+import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
 import vo.CheckOutVO;
 
@@ -28,13 +30,25 @@ public class CheckOutItemTest {
     
     @Test
     public void testAddCheckOut(){
-        boolean added=checkOutItem.addCheckOut(address);
+        boolean added = false;
+        try {
+            added = checkOutItem.addCheckOut(address);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         assertTrue(added);
     }
 
     @Test
     public void testValidCheckOut(){
-        boolean valied=checkOutItem.validCheckOut();
+        boolean valied = false;
+        try {
+            valied = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         assertTrue(valied);
     }
 }

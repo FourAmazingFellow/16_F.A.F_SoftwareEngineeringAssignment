@@ -71,13 +71,13 @@ public class MockCheckInList extends CheckInList{
     }
     
     @Override
-    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom){
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException{
         CheckInItem checkInItem=new MockCheckInItem(checkIn);
         return checkInItem.addCheckIn(address,updateSpareRoom);
     }
    
     @Override
-    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException{
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException, RemoteException{
         CheckInItem checkInItem=new MockCheckInItem(checkIn);
         return checkInItem.validCheckIn();
     }

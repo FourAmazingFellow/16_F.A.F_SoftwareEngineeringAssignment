@@ -107,4 +107,17 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
         strategyList=StrategyList.getInstance(address);
         return strategyList.valid(address,strategy);
     }
+
+    /**
+     * 验证特定商圈会员专属折扣的商圈名称在某城市是否存在
+     * @param city String型，城市名称
+     * @param strategyVO 策略信息
+     * @return 返回商圈是否存在
+     * @throws WrongInputException 
+     * @see
+     */
+    @Override
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
+        return strategyList.verifyTradeArea(city, strategyVO);
+    }
 }

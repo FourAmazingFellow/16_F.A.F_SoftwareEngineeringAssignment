@@ -2,6 +2,7 @@ package org.FAF.businesslogic.roombl;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -41,7 +42,11 @@ public class RoomInfoServiceImplTest {
     
     @Test
     public void testGetAvailableRoomNum(){
-        assertEquals(2,roomInfoServiceImpl.getAvailableRoomNum(address, roomType));
+        try {
+            assertEquals(2,roomInfoServiceImpl.getAvailableRoomNum(address, roomType,new Date()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test
@@ -51,21 +56,38 @@ public class RoomInfoServiceImplTest {
     
     @Test
     public void testCheckOrder(){
-        assertEquals(ResultMessage.SUCCEED, roomInfoServiceImpl.checkOrder(orderVO));
+        try {
+            assertEquals(ResultMessage.SUCCEED, roomInfoServiceImpl.checkOrder(orderVO));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test
     public void testUpdateSpareRoom(){
-        assertTrue(roomInfoServiceImpl.updateSpareRoom(address, roomVO));
+        try {
+            assertTrue(roomInfoServiceImpl.updateSpareRoom(address, roomVO));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test
     public void testReduceRoom(){
-        assertTrue(roomInfoServiceImpl.reduceRoom(address, change, roomType));
+        try {
+            assertTrue(roomInfoServiceImpl.reduceRoom(address, change, roomType,new Date()));
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
     @Test
     public void testAddRoom(){
-        assertTrue(roomInfoServiceImpl.addRoom(address, change, roomType));
+        try {
+            assertTrue(roomInfoServiceImpl.addRoom(address, change, roomType,new Date()));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

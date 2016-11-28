@@ -30,12 +30,12 @@ public class MockRoomInfoServiceImpl extends RoomInfoServiceImpl{
 	}
 
 	@Override
-	public boolean reduceRoom(String address, int change, Enum<RoomType> roomType) {
+	public boolean reduceRoom(String address, int change, Enum<RoomType> roomType,Date day) {
 		return true;
 	}
 
 	@Override
-	public boolean addRoom(String address, int change, Enum<RoomType> roomType) {
+	public boolean addRoom(String address, int change, Enum<RoomType> roomType, Date day) {
 		return true;
 	}
 	

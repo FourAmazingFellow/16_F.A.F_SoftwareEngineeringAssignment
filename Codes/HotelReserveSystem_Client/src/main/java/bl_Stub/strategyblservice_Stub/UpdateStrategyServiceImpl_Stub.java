@@ -3,6 +3,7 @@ package bl_Stub.strategyblservice_Stub;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import po.StrategyType;
 import vo.StrategyVO;
@@ -87,6 +88,11 @@ public class UpdateStrategyServiceImpl_Stub implements UpdateStrategyService{
 
     @Override
     public boolean valid(String address, StrategyVO strategy) {
+        return true;
+    }
+
+    @Override
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
         return true;
     }
 
