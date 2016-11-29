@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -10,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.HotelInfoServiceImpl;
+import po.BusinessDistrictPO;
 import po.RoomType;
 import rmi.LinkToServer;
 import vo.BriefHotelInfoVO;
@@ -125,6 +127,13 @@ public class HotelInfoServiceImplTest {
 //		hotelInfo.setHotelDAO(hotelDAO);
 		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道168号");
 		assertNull(hotelDetails);
+	}
+	
+	@Test
+	public void testGetBusinessDistrctList() {
+		hotelInfo = new HotelInfoServiceImpl();
+		ArrayList<BusinessDistrictPO> businessDistrictPOs = hotelInfo.getBusinessDistrctList("上海市");
+		assertEquals(18, businessDistrictPOs);
 	}
 	
 
