@@ -77,7 +77,7 @@ public class QueryHotelServiceImplTest {
 	
 	@Test
 	public void testGetHotelDetails() {
-		queryHotel = new MockQueryHotelServiceImpl("19970206");
+		queryHotel = new QueryHotelServiceImpl("19970206");
 		HotelVO hotelDetails = queryHotel.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "Jingling Hotel", hotelDetails.hotelName);
 	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "新街口", hotelDetails.tradeArea);
