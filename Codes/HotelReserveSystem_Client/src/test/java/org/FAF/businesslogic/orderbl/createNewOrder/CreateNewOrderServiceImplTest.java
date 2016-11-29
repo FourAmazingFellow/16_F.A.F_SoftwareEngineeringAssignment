@@ -2,6 +2,7 @@ package org.FAF.businesslogic.orderbl.createNewOrder;
 
 import static org.junit.Assert.assertEquals;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -197,7 +198,13 @@ public class CreateNewOrderServiceImplTest {
 
 	@Test
 	public void getAvailableRoomNumTest_1() {
-		int num = mockRoomInfoService.getAvailableRoomNum("19970206", RoomType.STANDARD_ROOM);
+		int num = 0;
+		try {
+			num = mockRoomInfoService.getAvailableRoomNum("19970206", RoomType.STANDARD_ROOM,new Date(2016, 11, 28));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals("CreateNewOrderServiceImpl.getAvailableRoomNum has an Error!", roomNum, num);
 	}
 

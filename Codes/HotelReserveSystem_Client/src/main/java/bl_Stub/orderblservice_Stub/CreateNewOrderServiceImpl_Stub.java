@@ -62,7 +62,7 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	}
 
 	@Override
-	public int getAvailableRoomNum(String address, Enum<RoomType> roomType) {
+	public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) {
 		// TODO Auto-generated method stub
 		return 3;
 	}

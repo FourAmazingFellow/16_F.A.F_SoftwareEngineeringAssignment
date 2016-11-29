@@ -1,5 +1,8 @@
 package businesslogic.orderbl.createNewOrder;
 
+import java.rmi.RemoteException;
+import java.util.Date;
+
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.roombl.RoomInfoService;
 import businesslogicservice.orderblservice.CreateNewOrderService;
@@ -37,8 +40,14 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	}
 
 	@Override
-	public int getAvailableRoomNum(String address, Enum<RoomType> roomType) {
-		int num = roomInfoService.getAvailableRoomNum(address, roomType);
+	public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) {
+		int num = 0;
+		try {
+			num = roomInfoService.getAvailableRoomNum(address, roomType, day);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return num;
 	}
 	

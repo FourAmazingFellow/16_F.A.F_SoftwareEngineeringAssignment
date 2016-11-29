@@ -1,6 +1,8 @@
 package businesslogicservice.orderblservice;
 
 
+import java.util.Date;
+
 import po.RoomType;
 import vo.BriefHotelInfoVO;
 import vo.OrderVO;
@@ -37,7 +39,7 @@ public interface CreateNewOrderService {
 	 * @return 所有房型的RoomVO的ArrayList
 	 * @see
 	 */
-	 public int getAvailableRoomNum(String address, Enum<RoomType> roomType);
+	 public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day);
 	
 	/**
 	 * 获取订单总价

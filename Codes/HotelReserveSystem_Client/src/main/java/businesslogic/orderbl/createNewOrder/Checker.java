@@ -1,5 +1,7 @@
 package businesslogic.orderbl.createNewOrder;
 
+import java.rmi.RemoteException;
+
 import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogicservice.orderblservice.ResultMessage;
@@ -37,7 +39,13 @@ public class Checker {
 	 */
 	public ResultMessage checkNewOrder(OrderVO vo) {
 
-		ResultMessage message = orderChecker.checkOrder(vo);
+		ResultMessage message = null;
+		try {
+			message = orderChecker.checkOrder(vo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return message;
 	}
 }
