@@ -13,9 +13,11 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 
 	private HotelDAO hotelDAO;
 	private ArrayList<BriefHotelInfoPO> hotelList;
+	private String userID;
 	
-	public SearchHotelServiceImpl() {
+	public SearchHotelServiceImpl(String userID) {
 		this.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市");
+		this.userID = userID;
 	}
 	
 	@Override

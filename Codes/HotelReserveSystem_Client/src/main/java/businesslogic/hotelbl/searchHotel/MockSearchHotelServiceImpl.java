@@ -13,7 +13,8 @@ public class MockSearchHotelServiceImpl extends SearchHotelServiceImpl {
 	private HotelDAO hotelDAO;
 	private ArrayList<BriefHotelInfoPO> hotelList;
 	
-	public MockSearchHotelServiceImpl() {
+	public MockSearchHotelServiceImpl(String userID) {
+		super(userID);
 		this.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市");
 		
 	}
