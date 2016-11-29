@@ -284,7 +284,7 @@ public class StrategyItem {
         //调用hotelbl方法得到该城市的商圈列表，然后判断该商圈是否存在
         if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
             boolean tradeAreaExist=false;
-            ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrctList(city);
+            ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrictList(city);
             for (BusinessDistrictPO po : tradeAreaList) {
                 if(this.tradeArea==po.getBusinessDistrictName()){
                     tradeAreaExist=true;

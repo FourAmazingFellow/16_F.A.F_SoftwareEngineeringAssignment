@@ -60,7 +60,7 @@ public class CreateNewOrderServiceImplTest {
 
 	// HotelBriefInfo
 	private String hotelName_;
-	private String businessDistrict;
+	private String tradeArea;
 	private String hotelAddress_;
 	private int starLevel;
 	private float mark;
@@ -99,7 +99,7 @@ public class CreateNewOrderServiceImplTest {
 		resultMessage = ResultMessage.SUCCEED;
 
 		this.hotelName_ = "汉庭酒店";
-		this.businessDistrict = "栖霞区";
+		this.tradeArea = "栖霞区";
 		this.hotelAddress_ = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
@@ -122,9 +122,9 @@ public class CreateNewOrderServiceImplTest {
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
 
-		BriefHotelInfoVO briefHotelInfoVO = new BriefHotelInfoVO(hotelName_, businessDistrict, hotelAddress_, starLevel,
+		BriefHotelInfoVO briefHotelInfoVO = new BriefHotelInfoVO(hotelName_, tradeArea, hotelAddress_, starLevel,
 				mark,city);
-		HotelVO hotelvo = new HotelVO(hotelName_, businessDistrict, hotelAddress_, starLevel, mark, city, briefIntroduction,
+		HotelVO hotelvo = new HotelVO(hotelName_, tradeArea, hotelAddress_, starLevel, mark, city, briefIntroduction,
 				facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 
 		createNewOrderServiceImpl = new CreateNewOrderServiceImpl();
@@ -141,8 +141,8 @@ public class CreateNewOrderServiceImplTest {
 		BriefHotelInfoVO briefHotelInfo = createNewOrderServiceImpl.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
 		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in hotelName!", hotelName_,
 				briefHotelInfo.hotelName);
-		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in businessDistrict!", businessDistrict,
-				briefHotelInfo.businessDistrict);
+		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in tradeArea!", tradeArea,
+				briefHotelInfo.tradeArea);
 		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in hotelAddress!", hotelAddress_,
 				briefHotelInfo.hotelAddress);
 		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in starLevel!", starLevel,

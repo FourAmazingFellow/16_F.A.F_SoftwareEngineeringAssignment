@@ -25,7 +25,7 @@ public class CheckOrderedHotelServiceImplTest {
 		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOs = checkOrderedHotel.enrollHotelBreifInfoList("原");
 		assertEquals(1, orderedHotelInfoVOs.size());
 		assertEquals("Jingling Hotel", orderedHotelInfoVOs.get(0).hotelName);
-		assertEquals("新街口", orderedHotelInfoVOs.get(0).businessDistrict);
+		assertEquals("新街口", orderedHotelInfoVOs.get(0).tradeArea);
 		assertEquals("江苏省南京市栖霞区仙林大道163号", orderedHotelInfoVOs.get(0).hotelAddress);
 		assertEquals(5, orderedHotelInfoVOs.get(0).starLevel);
 		assertEquals(5.0f, orderedHotelInfoVOs.get(0).mark, 0);

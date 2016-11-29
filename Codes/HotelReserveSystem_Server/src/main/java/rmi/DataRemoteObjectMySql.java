@@ -316,8 +316,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     }
 
 	@Override
-	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
-		return hotelDAO.getBusinessDistrctList(city);
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException {
+		return hotelDAO.getBusinessDistrictList(city);
 	}
 
 }

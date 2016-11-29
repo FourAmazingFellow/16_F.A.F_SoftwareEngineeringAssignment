@@ -77,7 +77,7 @@ public class HotelDAOImpl implements HotelDAO {
 			while(rs.next()) {
 				briefHotelInfoPO = new BriefHotelInfoPO();
 				briefHotelInfoPO.setHotelName(rs.getString("hotelName"));
-				briefHotelInfoPO.setBusinessDistrict(rs.getString("businessDistrict"));
+				briefHotelInfoPO.setBusinessDistrict(rs.getString("tradeArea"));
 				briefHotelInfoPO.setHotelAddress(rs.getString("hotelAddress"));
 				briefHotelInfoPO.setStarLevel(rs.getInt("starLevel"));
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
@@ -111,7 +111,7 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
-			pstmt = conn.prepareStatement("select * from hotel where city = ? and businessDistrict = ? order by " + condition[2]);
+			pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? order by " + condition[2]);
 			pstmt.setString(1, condition[0]);
 			pstmt.setString(2, condition[1]);
 			rs = pstmt.executeQuery();
@@ -120,7 +120,7 @@ public class HotelDAOImpl implements HotelDAO {
 			while(rs.next()) {
 				BriefHotelInfoPO briefHotelInfoPO = new BriefHotelInfoPO();
 				briefHotelInfoPO.setHotelName(rs.getString("hotelName"));
-				briefHotelInfoPO.setBusinessDistrict(rs.getString("businessDistrict"));
+				briefHotelInfoPO.setBusinessDistrict(rs.getString("tradeArea"));
 				briefHotelInfoPO.setHotelAddress(rs.getString("hotelAddress"));
 				briefHotelInfoPO.setStarLevel(rs.getInt("starLevel"));
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
@@ -180,7 +180,7 @@ public class HotelDAOImpl implements HotelDAO {
 			while(rs_Hotel.next()) {
 				hotelPO = new HotelPO();
 				hotelPO.setHotelName(rs_Hotel.getString("hotelName"));
-				hotelPO.setBusinessDistrict(rs_Hotel.getString("businessDistrict"));
+				hotelPO.setBusinessDistrict(rs_Hotel.getString("tradeArea"));
 				hotelPO.setHotelAddress(rs_Hotel.getString("hotelAddress"));
 				hotelPO.setStarLevel(rs_Hotel.getInt("starLevel"));
 				hotelPO.setMark(rs_Hotel.getFloat("mark"));
@@ -303,10 +303,10 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//插入酒店信息
-			String sql_Hotel = "insert into hotel(hotelName, businessDistrict, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city, min_Price) values(?,?,?,?,?,?,?,?,?)";
+			String sql_Hotel = "insert into hotel(hotelName, tradeArea, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city, min_Price) values(?,?,?,?,?,?,?,?,?)";
 			pstm_Hotel = conn.prepareStatement(sql_Hotel);
 			pstm_Hotel.setString(1, po.getHotelName());
-			pstm_Hotel.setString(2, po.getBusinessDistrict());
+			pstm_Hotel.setString(2, po.getTradeArea());
 			pstm_Hotel.setString(3, po.getHotelAddress());
 			pstm_Hotel.setInt(4, po.getStarLevel());
 			pstm_Hotel.setFloat(5, po.getMark());
@@ -338,7 +338,7 @@ public class HotelDAOImpl implements HotelDAO {
 	}
 
 	@Override
-	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -348,7 +348,7 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
-			pstmt = conn.prepareStatement("select * from businessDistrict where city = ?");
+			pstmt = conn.prepareStatement("select * from tradeArea where city = ?");
 			pstmt.setString(1, city);
 			rs = pstmt.executeQuery();
 			

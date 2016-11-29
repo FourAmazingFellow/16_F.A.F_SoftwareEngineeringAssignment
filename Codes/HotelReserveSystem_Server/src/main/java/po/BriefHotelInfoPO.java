@@ -15,7 +15,7 @@ public class BriefHotelInfoPO implements Serializable{
 	private static final long serialVersionUID = 7803949077367829494L;
 	
 	private String hotelName;
-	private String businessDistrict;
+	private String tradeArea;
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
@@ -26,9 +26,9 @@ public class BriefHotelInfoPO implements Serializable{
 		
 	}
 	
-	public BriefHotelInfoPO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, String city) {
+	public BriefHotelInfoPO(String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city) {
 		this.hotelName = hotelName;
-		this.businessDistrict = businessDistrict;
+		this.tradeArea = tradeArea;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
@@ -40,11 +40,11 @@ public class BriefHotelInfoPO implements Serializable{
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-	public String getBusinessDistrict() {
-		return businessDistrict;
+	public String getTradeArea() {
+		return tradeArea;
 	}
-	public void setBusinessDistrict(String businessDistrict) {
-		this.businessDistrict = businessDistrict;
+	public void setBusinessDistrict(String tradeArea) {
+		this.tradeArea = tradeArea;
 	}
 	public String getHotelAddress() {
 		return hotelAddress;

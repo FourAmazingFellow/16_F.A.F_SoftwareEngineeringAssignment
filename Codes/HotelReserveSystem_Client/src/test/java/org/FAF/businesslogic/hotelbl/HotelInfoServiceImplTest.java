@@ -22,7 +22,7 @@ public class HotelInfoServiceImplTest {
 	private static LinkToServer linkToServer;
 	
 	private String hotelName;
-	private String businessDistrict;
+	private String tradeArea;
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
@@ -52,7 +52,7 @@ public class HotelInfoServiceImplTest {
 	@Before
 	public void setUp() throws Exception {
 		this.hotelName = "Jingling Hotel";
-		this.businessDistrict = "新街口";
+		this.tradeArea = "栖霞区";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
 		this.mark = 5.0f;
@@ -86,7 +86,7 @@ public class HotelInfoServiceImplTest {
 //		hotelInfo.setHotelDAO(hotelDAO);
 		BriefHotelInfoVO briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, briefHotelInfo.hotelName);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in businessDistrict!", businessDistrict, briefHotelInfo.businessDistrict);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, briefHotelInfo.tradeArea);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, briefHotelInfo.hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, briefHotelInfo.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfo.mark, 0);	
@@ -108,7 +108,7 @@ public class HotelInfoServiceImplTest {
 //		hotelInfo.setHotelDAO(hotelDAO);
 		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotelDetails.hotelName);
-	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in businessDistrict!", businessDistrict, hotelDetails.businessDistrict);
+	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, hotelDetails.tradeArea);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotelDetails.hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotelDetails.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotelDetails.mark, 0);
@@ -132,8 +132,8 @@ public class HotelInfoServiceImplTest {
 	@Test
 	public void testGetBusinessDistrctList() {
 		hotelInfo = new HotelInfoServiceImpl();
-		ArrayList<BusinessDistrictPO> businessDistrictPOs = hotelInfo.getBusinessDistrctList("上海市");
-		assertEquals(18, businessDistrictPOs);
+		ArrayList<BusinessDistrictPO> businessDistrictPOs = hotelInfo.getBusinessDistrictList("上海市");
+		assertEquals(18, businessDistrictPOs.size());
 	}
 	
 

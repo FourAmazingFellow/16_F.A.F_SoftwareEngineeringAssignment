@@ -24,7 +24,7 @@ public class ManageHotelInfoServiceImplTest {
 	
 	private ManageHotelInfoServiceImpl manageHotelInfoService;
 	private String hotelName;
-	private String businessDistrict;
+	private String tradeArea;
 	private String hotelAddress;
 	private int starLevel;
 	private float mark;
@@ -49,7 +49,7 @@ public class ManageHotelInfoServiceImplTest {
 	@Before
 	public void setUp() throws Exception {
 		this.hotelName = "南京中公汇悦酒店";
-		this.businessDistrict = "栖霞区";
+		this.tradeArea = "栖霞区";
 		this.hotelAddress = "仙林大学城元化路8号(南大科学园东门)";
 		this.starLevel = 4;
 		this.mark = 4.6f;
@@ -72,7 +72,7 @@ public class ManageHotelInfoServiceImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		hotelVO = new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		hotelVO = new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		hotelVO.min_Price = min_Price;
 		this.hotelStaff = new HotelStaffInfoVO("Accident", "123456789", "13655255834", UserType.HotelStaff, "江苏省南京市栖霞区仙林大道163号");
 	}

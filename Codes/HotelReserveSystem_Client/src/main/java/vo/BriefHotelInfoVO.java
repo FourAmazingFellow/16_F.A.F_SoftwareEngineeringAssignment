@@ -10,7 +10,7 @@ import po.BriefHotelInfoPO;
  */
 public class BriefHotelInfoVO{
     public String hotelName;
-    public String businessDistrict;
+    public String tradeArea;
     public String hotelAddress;
     public int starLevel;
     public float mark;
@@ -19,7 +19,7 @@ public class BriefHotelInfoVO{
 
     public BriefHotelInfoVO(BriefHotelInfoPO briefHotelInfoPO) {
     	this.hotelName = briefHotelInfoPO.getHotelName();
-        this.businessDistrict = briefHotelInfoPO.getBusinessDistrict();
+        this.tradeArea = briefHotelInfoPO.getTradeArea();
         this.hotelAddress = briefHotelInfoPO.getHotelAddress();
         this.starLevel = briefHotelInfoPO.getStarLevel();
         this.mark = briefHotelInfoPO.getMark();
@@ -27,9 +27,9 @@ public class BriefHotelInfoVO{
         this.min_Price = briefHotelInfoPO.getMin_Price();
     }
     
-    public BriefHotelInfoVO(String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, String city) {
+    public BriefHotelInfoVO(String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city) {
         this.hotelName = hotelName;
-        this.businessDistrict = businessDistrict;
+        this.tradeArea = tradeArea;
         this.hotelAddress = hotelAddress;
         this.starLevel = starLevel;
         this.mark = mark;

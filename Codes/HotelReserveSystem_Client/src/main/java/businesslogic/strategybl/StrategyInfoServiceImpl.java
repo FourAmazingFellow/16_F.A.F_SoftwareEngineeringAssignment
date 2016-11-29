@@ -133,7 +133,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         if (regularVipVO != null) {
             int vipRank = regularVipVO.vipRank;
             HotelInfoService hotelInfoService = new HotelInfoServiceImpl();
-            String tradeArea = hotelInfoService.getHotelBriefInfo(order.hotelAddress).businessDistrict;
+            String tradeArea = hotelInfoService.getHotelBriefInfo(order.hotelAddress).tradeArea;
             for (StrategyItem strategyItem : strategyList.getStrategyList(address, StrategyType.VipTradeAreaMarket)) {
                 if (tradeArea == strategyItem.toVO().tradeArea && vipRank >= strategyItem.toVO().vipRank) {
                     availableMarketStrategy.add(strategyItem);

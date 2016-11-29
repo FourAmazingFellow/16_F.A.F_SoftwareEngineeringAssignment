@@ -1,8 +1,14 @@
 package po;
 
-public class BusinessDistrictPO {
+import java.io.Serializable;
 
-    private String businessDistrictName;
+public class BusinessDistrictPO implements Serializable {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -3240302967894727923L;
+	private String businessDistrictName;
     private String city;
     
    
