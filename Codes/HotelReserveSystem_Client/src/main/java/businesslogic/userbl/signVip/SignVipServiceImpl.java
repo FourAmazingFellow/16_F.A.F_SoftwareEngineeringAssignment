@@ -21,9 +21,13 @@ public class SignVipServiceImpl implements SignVipService {
 
     private UserDAO userDAO;
     
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     @Override
     public boolean signRegularVip(RegularVipVO regularVip) {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
+   //     userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userDAO.signRegularVip(new RegularVipPO(regularVip));
             return true;

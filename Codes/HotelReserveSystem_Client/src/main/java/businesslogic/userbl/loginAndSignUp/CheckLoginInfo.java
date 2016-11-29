@@ -12,6 +12,11 @@ public class CheckLoginInfo {
     private String userID;
     private UserPO userPO;
     private String password;
+    
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     /**
      * 验证登录信息
      * @param userID String型，用户帐号

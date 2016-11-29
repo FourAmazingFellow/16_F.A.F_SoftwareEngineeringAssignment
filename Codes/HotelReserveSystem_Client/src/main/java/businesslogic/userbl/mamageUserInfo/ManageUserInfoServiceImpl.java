@@ -17,6 +17,11 @@ import vo.UserVO;
 public class ManageUserInfoServiceImpl implements ManageUserInfoService{
 
     private UserDAO userDAO;
+    
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     public ManageUserInfoServiceImpl(String userID) {
     }
 

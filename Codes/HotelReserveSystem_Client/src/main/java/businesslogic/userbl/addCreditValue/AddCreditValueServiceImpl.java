@@ -14,6 +14,10 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     private int creditValue;
     private int creditResult;
 
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     public AddCreditValueServiceImpl() {
     }
 

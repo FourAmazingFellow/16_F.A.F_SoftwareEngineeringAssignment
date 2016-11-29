@@ -13,6 +13,11 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
 
     private UserDAO userDAO;
     private CheckLoginInfo check;
+    
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     @Override
     public boolean login(String userID, String password) {
         check = new CheckLoginInfo();
