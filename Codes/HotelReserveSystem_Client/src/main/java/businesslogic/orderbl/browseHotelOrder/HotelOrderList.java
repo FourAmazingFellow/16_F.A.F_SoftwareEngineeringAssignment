@@ -28,7 +28,6 @@ public class HotelOrderList {
 
 	/**
 	 * 得到简要酒店订单列表
-	 * 
 	 * @param address
 	 * @param orderType
 	 * @return
@@ -40,6 +39,7 @@ public class HotelOrderList {
 		} catch (RemoteException e) {
 			// 异常捕捉代码
 			e.printStackTrace();
+			return null;
 		}
 		return briefOrderlist;
 	}
@@ -50,6 +50,7 @@ public class HotelOrderList {
 		} catch (RemoteException e) {
 			// 异常捕捉代码
 			e.printStackTrace();
+			return null;
 		}
 		return detailedOrderVO;
 	}

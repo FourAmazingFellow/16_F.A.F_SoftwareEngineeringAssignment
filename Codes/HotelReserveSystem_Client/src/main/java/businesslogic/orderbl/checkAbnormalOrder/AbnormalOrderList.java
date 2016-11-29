@@ -6,6 +6,7 @@ import java.util.Date;
 
 import businesslogic.utilitybl.POList2VOList;
 import dataservice.orderDAO.OrderDAO;
+import po.OrderState;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -29,6 +30,7 @@ public class AbnormalOrderList {
 		} catch (RemoteException e) {
 			// 异常捕捉代码
 			e.printStackTrace();
+			return null;
 		}
 		return abnormalOrderList;
 	}
@@ -39,10 +41,15 @@ public class AbnormalOrderList {
 		} catch (RemoteException e) {
 			// 异常捕捉代码
 			e.printStackTrace();
+			return null;
 		}
 
 		// 检查该订单号对应的订单是不是异常订单 - Codes
-
-		return detailedAbnormalOrder;
+		if(detailedAbnormalOrder.orderState == OrderState.ABNORMAL_ORDER)
+			return detailedAbnormalOrder;
+		else{
+			System.out.println("所求订单号不是异常订单");
+			return null;
+		}
 	}
 }

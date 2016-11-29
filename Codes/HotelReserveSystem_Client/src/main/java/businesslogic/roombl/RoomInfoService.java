@@ -31,12 +31,12 @@ public interface RoomInfoService {
      * 获取用户预定时间段有无用户要求的房型剩余
      * @param addresss String型， 同层调用传来的酒店地址
      * @param roomType 枚举类，酒店房间类型
-     * @param beginDate 用户预订的入住时间
-     * @param finishDate 用户预计的离开时间
-     * @return boolean型， 返回该房型在该时间段是否剩余
+     * @param date 要查询的日期
+     * @param num int型 所要预定的房间数
+     * @return boolean型， 返回该房型在该天是否有剩余
      * @see
      */
-    public boolean isTimeAvailable (String addresss, Enum<RoomType> roomType, Date beginDate, Date finishDate);
+    public boolean isTimeAvailable (String addresss, Enum<RoomType> roomType, Date date, int num);
   
     /**
      * 检查订单信息能否得到满足

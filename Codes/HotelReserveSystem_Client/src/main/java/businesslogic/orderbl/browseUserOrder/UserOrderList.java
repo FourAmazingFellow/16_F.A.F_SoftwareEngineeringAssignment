@@ -35,6 +35,7 @@ public class UserOrderList {
 		} catch (RemoteException e) {
 			//异常捕捉代码
 			e.printStackTrace();
+			return null;
 		}
 		return briefUserOrderlist;
 	}
@@ -45,6 +46,7 @@ public class UserOrderList {
 		} catch (RemoteException e) {
 			//异常捕捉代码
 			e.printStackTrace();
+			return null;
 		}
 		return detailedOrder;
 	}

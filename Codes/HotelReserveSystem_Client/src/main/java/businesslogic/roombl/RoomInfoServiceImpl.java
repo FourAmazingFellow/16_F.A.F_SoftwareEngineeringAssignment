@@ -45,7 +45,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
     }
 
     @Override
-    public boolean isTimeAvailable(String address, Enum<RoomType> roomType, Date beginDate, Date finishDate) {
+    public boolean isTimeAvailable(String address, Enum<RoomType> roomType, Date date, int num) {
         Date today=new Date();
         SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-DD");
         try {

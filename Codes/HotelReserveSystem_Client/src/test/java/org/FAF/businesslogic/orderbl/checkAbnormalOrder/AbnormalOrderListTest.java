@@ -65,6 +65,7 @@ public class AbnormalOrderListTest {
 		abnormalOrderList.setOrderDAO(orderDAO);
 	}
 	
+	//正常情况下的Test
 	@Test
 	public void getAbnormalOrderListTest_1(){
 		@SuppressWarnings("deprecation")
@@ -82,6 +83,7 @@ public class AbnormalOrderListTest {
 		assertEquals("AbnormalOrderList.getAbnormalOrderList(Date date) has an error in orderState!", orderState, fisrtOrder.orderState);
 	}
 	
+	//正常情况下的Test
 	@Test
 	public void getDetailedOrderTest_1(){
 		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0001000100010001");
@@ -102,4 +104,6 @@ public class AbnormalOrderListTest {
 		assertEquals("AbnormalOrderList.getDetailedOrder(String orderID) has an error in isOnSale!", isOnSale, detailedOrder.isOnSale);
 		assertEquals("AbnormalOrderList.getDetailedOrder(String orderID) has an error in isCommented!", isCommented, detailedOrder.isCommented);
 	}
+	
+	//异常情况下的Test(所得订单号对应订单不是异常订单)
 }
