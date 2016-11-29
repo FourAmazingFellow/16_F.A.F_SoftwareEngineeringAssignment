@@ -22,7 +22,7 @@ public class SearchHotelServiceImplTest {
 	@Test
 	public void testGetHotelBriefInfoListBySearching() {
 		String[] condition = {"不限", "不限", "不限", "不限", "不限", "不限", "不限", "不限", "否"};
-		searchHotel = new MockSearchHotelServiceImpl(condition);
+		searchHotel = new MockSearchHotelServiceImpl();
 		ArrayList<BriefHotelInfoVO> briefHotelInfoVOs = searchHotel.getHotelBriefInfoListBySearching(condition);
 		assertEquals(1, briefHotelInfoVOs.size());
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "Jingling Hotel", briefHotelInfoVOs.get(0).hotelName);
