@@ -51,7 +51,11 @@ public class RoomInfoServiceImplTest {
     
     @Test
     public void testIsTimeAvailable(){
-        assertTrue(roomInfoServiceImpl.isTimeAvailable(address, roomType, beginDate, finishDate));
+        try {
+            assertTrue(roomInfoServiceImpl.isTimeAvailable(address, roomType, beginDate, change));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
     
     @Test

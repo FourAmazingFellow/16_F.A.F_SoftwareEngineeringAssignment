@@ -34,9 +34,10 @@ public interface RoomInfoService {
      * @param date 要查询的日期
      * @param num int型 所要预定的房间数
      * @return boolean型， 返回该房型在该天是否有剩余
+     * @throws RemoteException 
      * @see
      */
-    public boolean isTimeAvailable (String addresss, Enum<RoomType> roomType, Date date, int num);
+    public boolean isTimeAvailable (String addresss, Enum<RoomType> roomType, Date date, int num) throws RemoteException;
   
     /**
      * 检查订单信息能否得到满足

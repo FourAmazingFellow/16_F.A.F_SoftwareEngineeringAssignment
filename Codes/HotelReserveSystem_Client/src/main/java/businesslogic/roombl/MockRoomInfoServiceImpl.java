@@ -15,7 +15,7 @@ public class MockRoomInfoServiceImpl extends RoomInfoServiceImpl{
 	}
 
 	@Override
-	public boolean isTimeAvailable(String addresss, Enum<RoomType> roomType, Date beginDate, Date finishDate) {
+	public boolean isTimeAvailable(String addresss, Enum<RoomType> roomType, Date date, int num) {
 		return true;
 	}
 

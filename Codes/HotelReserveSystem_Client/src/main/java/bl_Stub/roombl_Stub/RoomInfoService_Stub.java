@@ -23,7 +23,7 @@ public class RoomInfoService_Stub implements RoomInfoService{
     }
 
     @Override
-    public boolean isTimeAvailable(String addresss, Enum<RoomType> roomType, Date beginDate, Date finishDate) {
+    public boolean isTimeAvailable(String addresss, Enum<RoomType> roomType, Date date, int num) {
         return true;
     }
 

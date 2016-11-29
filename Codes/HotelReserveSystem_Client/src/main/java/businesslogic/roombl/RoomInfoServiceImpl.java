@@ -45,23 +45,12 @@ public class RoomInfoServiceImpl implements RoomInfoService{
     }
 
     @Override
-    public boolean isTimeAvailable(String address, Enum<RoomType> roomType, Date date, int num) {
-        Date today=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-DD");
-        try {
-            today=sdf.parse(sdf.format(today));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar calendar=Calendar.getInstance();
-        calendar.setTime(today);
-        calendar.add(Calendar.DAY_OF_MONTH, 6);
-        Date availbleEndTime=calendar.getTime();
-        if(beginDate.compareTo(today)>=0&&beginDate.compareTo(finishDate)<=0&&finishDate.compareTo(availbleEndTime)<=0){
-            return true;
-        }else{
+    public boolean isTimeAvailable(String address, Enum<RoomType> roomType, Date date, int num) throws RemoteException {
+        int spareRoomNum=getAvailableRoomNum(address, roomType, date);
+        if(spareRoomNum<num){
             return false;
         }
+        return true;
     }
 
     @Override
@@ -76,7 +65,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         }
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(today);
-        calendar.add(Calendar.DAY_OF_MONTH, 6);
+        calendar.add(Calendar.DATE, 6);
         Date availbleEndTime=calendar.getTime();
         //如果预订时间不在未来一周内，返回null
         if(!(vo.beginDate.compareTo(today)>=0&&vo.beginDate.compareTo(vo.finishDate)<=0&&vo.finishDate.compareTo(availbleEndTime)<=0)){
@@ -93,7 +82,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         }
         //遍历未来6天的空房列表，看看每天的空房数是否能满足订单需求,如果不满足，返回时间不能满足
         while(day.compareTo(vo.finishDate)!=0){
-            calendar.add(Calendar.DAY_OF_MONTH, 1);//+1今天的时间加一天
+            calendar.add(Calendar.DATE, 1);//+1今天的时间加一天
             day= calendar.getTime();
             spareRoomNum=getAvailableRoomNum(vo.hotelAddress, vo.roomType, vo.beginDate);
             if(spareRoomNum<vo.num){
@@ -126,7 +115,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
             Calendar calendar = Calendar.getInstance();
             for(int i=0;i<7;i++){
                 calendar.setTime(today);
-                calendar.add(Calendar.DAY_OF_MONTH, i);//+1今天的时间加一天
+                calendar.add(Calendar.DATE, i);//+1今天的时间加一天
                 day= calendar.getTime();
                 roomDAO.updateRoom(toPO(roomvo), day);
             }
