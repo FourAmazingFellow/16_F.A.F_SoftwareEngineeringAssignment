@@ -11,6 +11,11 @@ public class VipInfoImpl implements VipInfo {
     private EnterpriseVipVO enterpriseVipVO;
     private UserDAO userDAO;
     private String userID;
+    
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     @Override
     public RegularVipVO getRegularVipInfo(String userID) {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
