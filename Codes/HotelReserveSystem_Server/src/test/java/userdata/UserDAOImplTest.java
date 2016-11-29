@@ -108,7 +108,7 @@ public class UserDAOImplTest {
 			assertEquals(hotelStaffPassword, hotelStaffInfoPO.getpassword());
 			assertEquals(hotelStaffTelNum, hotelStaffInfoPO.getTelNum());
 			assertEquals(UserType.HotelStaff, hotelStaffInfoPO.getUserType());
-			assertEquals(hotelAddress, hotelStaffInfoPO.getEnterpriseName());
+			assertEquals(hotelAddress, hotelStaffInfoPO.getHotelAddress());
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();

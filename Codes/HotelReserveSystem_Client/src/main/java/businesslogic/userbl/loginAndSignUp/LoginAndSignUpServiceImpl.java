@@ -26,7 +26,7 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
 
     @Override
     public boolean add(UserVO user) {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
+ //       userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userDAO.insertUser(new UserPO(user));
             return true;

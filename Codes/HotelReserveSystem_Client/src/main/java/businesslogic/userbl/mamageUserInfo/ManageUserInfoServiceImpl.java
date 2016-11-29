@@ -17,6 +17,9 @@ import vo.UserVO;
 public class ManageUserInfoServiceImpl implements ManageUserInfoService{
 
     private UserDAO userDAO;
+    private String userID;
+    private UserVO userVO;
+    private HotelStaffInfoVO hotelStaffInfoVO;
     
     public void setUserDAO(UserDAO userDAO){
         this.userDAO = userDAO;
@@ -48,8 +51,14 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
      */
     @Override
     public HotelStaffInfoVO getHotelStaffInfo(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+//      this.userDAO =RemoteHelper.getInstance().getUserDAO();
+        this.userID = userID;
+        try {
+            this.hotelStaffInfoVO = new HotelStaffInfoVO(userDAO.getHotelStaffInfo(this.userID));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return hotelStaffInfoVO;
     }
 
     /* (non-Javadoc)
@@ -59,8 +68,14 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
      */
     @Override
     public UserVO getUserInfo(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+       //     this.userDAO =RemoteHelper.getInstance().getUserDAO();
+        this.userID = userID;
+        try {
+            this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return userVO;
     }
 
     /* (non-Javadoc)
@@ -71,8 +86,13 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
      */
     @Override
     public boolean modifyUserInfo(UserVO userVO, String userID) {
-        // TODO Auto-generated method stub
-        return false;
+        try {
+            userDAO.updateUser(new UserPO(userVO), userID);
+            return true;
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

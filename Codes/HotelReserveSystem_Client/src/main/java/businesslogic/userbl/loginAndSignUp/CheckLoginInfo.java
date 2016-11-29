@@ -26,9 +26,9 @@ public class CheckLoginInfo {
      */
     public boolean checkUser(String userID,String password) {
         this.userID = userID;
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
+ //       this.userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
-            userPO = userDAO.getUserInfo(this.userID);
+            this.userPO = userDAO.getUserInfo(this.userID);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
