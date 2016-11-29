@@ -66,26 +66,39 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 
     @Override
     public ResultMessage checkOrder(OrderVO vo) throws RemoteException {
-        //先判断预订入住时间段是否满足在未来一周内
-        boolean availble=isTimeAvailable(vo.hotelAddress, vo.roomType, vo.beginDate, vo.finishDate);
-        if(!availble){
-            return ResultMessage.TIME_CANNOT_SATISFIED;
+        //先判断预订入住时间段是否满足在未来一周内，防御式编程
+        Date today=new Date();
+        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-DD");
+        try {
+            today=sdf.parse(sdf.format(today));
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.DAY_OF_MONTH, 6);
+        Date availbleEndTime=calendar.getTime();
+        //如果预订时间不在未来一周内，返回null
+        if(!(vo.beginDate.compareTo(today)>=0&&vo.beginDate.compareTo(vo.finishDate)<=0&&vo.finishDate.compareTo(availbleEndTime)<=0)){
+            return null;
+        }
+        
         int spareRoomNum;
-        Calendar calendar = Calendar.getInstance();
         calendar.setTime(vo.beginDate);
         Date day= calendar.getTime();
-        //遍历未来7天的空房列表，看看每天的空房数是否能满足订单需求
+        //判断房间是否满足，即订单预订当天的空房数量是否足够
+        int todaySpareRoomNum=getAvailableRoomNum(vo.hotelAddress, vo.roomType, vo.beginDate);
+        if(todaySpareRoomNum<vo.num){
+            return ResultMessage.NUM_CANNOT_SATISFIED;
+        }
+        //遍历未来6天的空房列表，看看每天的空房数是否能满足订单需求,如果不满足，返回时间不能满足
         while(day.compareTo(vo.finishDate)!=0){
-            spareRoomNum=getAvailableRoomNum(vo.hotelAddress, vo.roomType, vo.beginDate);
-            if(spareRoomNum==0){
-                return ResultMessage.TYPE_CANNOT_SATISFIED;
-            }
-            if(spareRoomNum<vo.num){
-                return ResultMessage.NUM_CANNOT_SATISFIED;
-            }
             calendar.add(Calendar.DAY_OF_MONTH, 1);//+1今天的时间加一天
             day= calendar.getTime();
+            spareRoomNum=getAvailableRoomNum(vo.hotelAddress, vo.roomType, vo.beginDate);
+            if(spareRoomNum<vo.num){
+                return ResultMessage.TYPE_CANNOT_SATISFIED;
+            }
         }
         return ResultMessage.SUCCEED;
     }
