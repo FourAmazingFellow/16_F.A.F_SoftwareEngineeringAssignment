@@ -7,6 +7,7 @@ import java.util.Date;
 
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
 import businesslogic.userbl.VipInfo;
@@ -170,7 +171,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     }
 
     @Override
-    public boolean isRightName(String name) {
+    public boolean isRightName(String name) throws WrongInputException {
         strategyItem=new StrategyItem();
         return strategyItem.isRightName(name);
     }

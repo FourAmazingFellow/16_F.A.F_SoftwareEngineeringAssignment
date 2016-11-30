@@ -1,5 +1,6 @@
 package businesslogic.strategybl;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import vo.OrderVO;
 
 /**给同层其他模块调用的Strategybl接口
@@ -38,7 +39,8 @@ public interface StrategyInfoService {
      * 判断该名称是否正确
      * @param name String型，要验证的名称
      * @return
+     * @throws WrongInputException 
      * @see
      */
-    public boolean isRightName(String name);
+    public boolean isRightName(String name) throws WrongInputException;
 }
