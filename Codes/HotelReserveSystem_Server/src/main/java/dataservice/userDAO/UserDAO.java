@@ -138,4 +138,13 @@ public interface UserDAO extends Remote {
      * @see
      */
     public EnterpriseVipPO getEnterpriseVipInfo(String userID) throws RemoteException;
+    
+    /**
+     * 更新普通会员信息
+     * @param regularVipPO RegularVipPO型，业务逻辑层传递过来的普通会员信息
+     * @param userID String型，业务逻辑层传递过来的普通会员账号
+     * @see
+     */
+    public void updateRegularVipInfo(RegularVipPO regularVipPO, String userID) throws RemoteException;
+
 }
