@@ -12,6 +12,7 @@ import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
 import businesslogic.userbl.VipInfo;
 import businesslogic.userbl.VipInfoImpl;
+import data_Stub.UserDAOImpl_Stub;
 import po.StrategyType;
 import vo.EnterpriseVipVO;
 import vo.OrderVO;
@@ -32,7 +33,11 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     StrategyVO bestMarketStrategy;
     StrategyItem strategyItem;
 
-    VipInfo vipInfo;
+    VipInfoImpl vipInfo = new VipInfoImpl();
+    
+    public StrategyInfoServiceImpl() {
+        vipInfo.setUserDAO(new UserDAOImpl_Stub("zhs", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 3));
+    }
     
     @Override
     public String getAvailblePromotionName(OrderVO order) {
@@ -42,18 +47,10 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         // 把所有策略类型的列表遍历一遍，判断是否满足条件
 
         // 判断是否满足生日折扣
-        vipInfo = new VipInfoImpl();
         RegularVipVO regularVipVO = vipInfo.getRegularVipInfo(order.userID);
         if (regularVipVO != null) {
             Date birth = regularVipVO.birth;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date today = null;
-            try {
-                today = sdf.parse(sdf.format(new Date()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            if (birth.compareTo(today) == 0) {
+            if (birth.compareTo(order.beginDate) >= 0&&birth.compareTo(order.finishDate)<=0) {
                 availblePromotion.add(strategyList.getStrategyList(address, StrategyType.BirthdayPromotion).get(0));
             }
         }

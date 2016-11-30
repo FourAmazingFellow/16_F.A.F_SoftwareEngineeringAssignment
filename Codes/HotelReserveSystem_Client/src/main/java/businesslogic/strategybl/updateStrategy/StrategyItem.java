@@ -51,7 +51,7 @@ public class StrategyItem {
         strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
                 "双十一折扣", 80, 0, null, null, new Date(116, 10, 10, 00, 00, 00), new Date(116, 10, 12, 00, 00, 00), null,
                 0);
-        roomTypeAndNums.replace(RoomType.KING_SIZE_ROOM, 20);
+        roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 20);
         hotelInfoService = new HotelInfoServiceImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", "", null,
                 roomTypeAndNums, null);
     }
@@ -247,6 +247,12 @@ public class StrategyItem {
         if (!(discount > 0 && discount < 100)) {
             throw new WrongInputException("the discount must satisfy the formula 0<discount<100");
         }
+        //若是房间数折扣，则房间数为正整数
+        if(StrategyType.MultiRoomPromotion.equals(strategyType)){
+            if(minRoomNum<=0){
+                throw new WrongInputException("the minimum room number should be larger than 0");
+            }
+        }
         // 若是企业折扣，验证企业名称是否合理，验证码是否是8位
         if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
             if (!isRightName(enterpriseName))
@@ -283,7 +289,8 @@ public class StrategyItem {
             HotelVO hotelVO = hotelInfoService.getHotelDetails(address);
             HashMap<RoomType, Integer> roomTypeAndNums = hotelVO.roomTypeAndNums;
             for (RoomType roomType : RoomType.class.getEnumConstants()) {
-                totalRoomNum += roomTypeAndNums.get(roomType);
+                if(roomTypeAndNums.get(roomType)!=null)
+                    totalRoomNum += roomTypeAndNums.get(roomType);
             }
             if (totalRoomNum < minRoomNum) {
                 throw new WrongInputException("the minRoomNum is larger than the number of all rooms");
