@@ -14,12 +14,16 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     private int creditValue;
     private int creditResult;
 
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     public AddCreditValueServiceImpl() {
     }
 
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
+  //      this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         ClientInfoPO clientInfoPO = new ClientInfoPO();
         try {

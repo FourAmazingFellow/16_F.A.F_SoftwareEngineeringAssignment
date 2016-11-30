@@ -75,6 +75,6 @@ public interface HotelDAO extends Remote {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException;
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException;
 
 }

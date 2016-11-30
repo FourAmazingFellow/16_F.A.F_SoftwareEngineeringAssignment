@@ -18,16 +18,13 @@ public class UserDAOImpl_Stub implements UserDAO{
     public String userID;
     public String password;
     public String telNum;
-    
     public int creditValue;
     public ArrayList<CreditRecordPO> creditRecord;
-    
-    public String enterpriseName;
-
+    public String hotelAddress;
     public Date birth;
+    public int vipRank;
     public String enterpriseID;
     public String enterprisePassword;
-    
     public UserType userType;
     
     public UserDAOImpl_Stub(String userID, String password, String telNum) {
@@ -36,7 +33,9 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.password = password;
         this.telNum = telNum;
     }
-    public UserDAOImpl_Stub(String userID, String password, String telNum, int creditValue, ArrayList<CreditRecordPO> creditRecord) {
+    
+    public UserDAOImpl_Stub(String userID, String password, String telNum, int creditValue,
+            ArrayList<CreditRecordPO> creditRecord) {
         super();
         this.userID = userID;
         this.password = password;
@@ -44,23 +43,38 @@ public class UserDAOImpl_Stub implements UserDAO{
         this.creditValue = creditValue;
         this.creditRecord = creditRecord;
     }
-    public UserDAOImpl_Stub(String userID, String password, String telNum,
-            Date birth) {
+
+    public UserDAOImpl_Stub(String userID, String password, String telNum, String hotelAddress) {
         super();
         this.userID = userID;
         this.password = password;
         this.telNum = telNum;
-        this.birth = birth;
-    }
-    public UserDAOImpl_Stub(String userID, String password, String telNum, String enterpriseName,String enterprisePassword) {
-        super();
-        this.userID = userID;
-        this.password = password;
-        this.telNum = telNum;
-        this.enterpriseName = enterpriseName;
-        this.enterprisePassword = enterprisePassword;
+        this.hotelAddress = hotelAddress;
     }
 
+    public UserDAOImpl_Stub(String userID, String password, String telNum, int creditValue,
+            ArrayList<CreditRecordPO> creditRecord, Date birth, int vipRank) {
+        super();
+        this.userID = userID;
+        this.password = password;
+        this.telNum = telNum;
+        this.creditValue = creditValue;
+        this.creditRecord = creditRecord;
+        this.birth = birth;
+        this.vipRank = vipRank;
+    }
+
+    public UserDAOImpl_Stub(String userID, String password, String telNum, int creditValue,
+            ArrayList<CreditRecordPO> creditRecord, String enterpriseID, String enterprisePassword) {
+        super();
+        this.userID = userID;
+        this.password = password;
+        this.telNum = telNum;
+        this.creditValue = creditValue;
+        this.creditRecord = creditRecord;
+        this.enterpriseID = enterpriseID;
+        this.enterprisePassword = enterprisePassword;
+    }
     
     @Override
     public UserPO getUserInfo(String userID) throws RemoteException {
@@ -68,7 +82,7 @@ public class UserDAOImpl_Stub implements UserDAO{
     }
     @Override
     public ArrayList<CreditRecordPO> queryCreditRecord(String userID) throws RemoteException {
-        return null;
+        return new ArrayList<>(creditRecord);
     }
     @Override
     public int getCreditValue(String userID) throws RemoteException {
@@ -80,54 +94,45 @@ public class UserDAOImpl_Stub implements UserDAO{
     }
     @Override
     public void updateUser(UserPO po, String oldUserID) throws RemoteException {
-        System.out.println("Update Succeed!\n");
-        
-    }
-	
+        System.out.println("Update Succeed!\n");      
+    }	
     @Override
     public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
-        // TODO Auto-generated method stub
-        
+        System.out.println("Insert Succeed!\n");     
     }
     @Override
     public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
-        // TODO Auto-generated method stub
-        
+        System.out.println("Insert Succeed!\n");      
     }
     @Override
     public ClientInfoPO getClientInfo(String userID) throws RemoteException {
-        // TODO Auto-generated method stub
-        return null;
+        return new ClientInfoPO(userID, password, telNum, userType, creditValue, creditRecord);
     }
     @Override
     public HotelStaffInfoPO getHotelStaffInfo(String userID) throws RemoteException {
-        // TODO Auto-generated method stub
-        return null;
+        return new HotelStaffInfoPO(userID, password, telNum, userType, hotelAddress);
     }
     @Override
     public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
-        // TODO Auto-generated method stub
-        
+        System.out.println("Update Succeed!\n");
     }
     @Override
     public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
-        // TODO Auto-generated method stub
+        System.out.println("Sign Succeed!\n");
         
     }
     @Override
     public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
-        // TODO Auto-generated method stub
+        System.out.println("Sign Succeed!\n");
         
     }
     @Override
     public RegularVipPO getRegularVipInfo(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+        return new RegularVipPO(userID, password, telNum, userType, creditValue, creditRecord, birth, vipRank);
     }
     @Override
     public EnterpriseVipPO getEnterpriseVipInfo(String userID) {
-        // TODO Auto-generated method stub
-        return null;
+        return new EnterpriseVipPO(userID, password, telNum, userType, creditValue, creditRecord, enterpriseID, enterprisePassword);
     }
     
 }

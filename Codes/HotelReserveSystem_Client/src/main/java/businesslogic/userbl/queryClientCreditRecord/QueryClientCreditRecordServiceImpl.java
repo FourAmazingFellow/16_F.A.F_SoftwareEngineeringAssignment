@@ -1,11 +1,12 @@
 package businesslogic.userbl.queryClientCreditRecord;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import dataservice.userDAO.UserDAO;
+import po.CreditRecordPO;
 import rmi.RemoteHelper;
-import vo.CreditRecordVO;
 
 /**
  * 
@@ -17,17 +18,22 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
 
     private UserDAO userDAO;
     private String userID;
+    private ArrayList<CreditRecordPO> creditRecord;
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
     
     @Override
-    public CreditRecordVO queryCreditRecord(String userID) {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
+    public ArrayList<CreditRecordPO> queryCreditRecord(String userID) {
+   //     userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
+        this.creditRecord = new ArrayList<>();
         try {
-            return new CreditRecordVO(userID, userDAO.queryCreditRecord(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return null;
+            creditRecord = userDAO.queryCreditRecord(this.userID);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
         }
+        return creditRecord;
     }
 
 

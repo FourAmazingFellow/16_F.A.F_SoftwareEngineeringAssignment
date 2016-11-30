@@ -13,9 +13,15 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     private String userID;
     private int creditValue;
     private int creditResult;
+    private ClientInfoPO clientInfoPO;
+    
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     @Override
     public int getCreditValue(String userID) {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
+     //   userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         try {
@@ -28,19 +34,19 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     @Override
     public boolean changeCreditValue(String userID, int num) {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
+   //     userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        ClientInfoPO clientInfoPO = null;
+        this.creditValue = 0;
         try {
-            clientInfoPO = userDAO.getClientInfo(this.userID);
+            this.clientInfoPO = userDAO.getClientInfo(this.userID);
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
-        this.creditValue = clientInfoPO.getCreditValue();
+        creditValue = clientInfoPO.getCreditValue();
         this.creditResult = creditValue + num;
-        clientInfoPO = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(), UserType.Client, creditResult, clientInfoPO.getCreditRecord());
+        ClientInfoPO modified = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(), UserType.Client, creditResult, clientInfoPO.getCreditRecord());
         try {
-            userDAO.updateClient(clientInfoPO, this.userID);
+            userDAO.updateClient(modified, this.userID);
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();

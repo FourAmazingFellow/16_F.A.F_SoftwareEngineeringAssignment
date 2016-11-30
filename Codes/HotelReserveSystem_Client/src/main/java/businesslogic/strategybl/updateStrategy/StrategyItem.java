@@ -310,7 +310,7 @@ public class StrategyItem {
             throw new WrongInputException("the type of strategy is not vip discount in special trade area");
         }
         boolean tradeAreaExist = false;
-        ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrctList(city);
+        ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrictList(city);
         if (tradeAreaList == null) {
             throw new WrongInputException("the city doesn't exist");
         }

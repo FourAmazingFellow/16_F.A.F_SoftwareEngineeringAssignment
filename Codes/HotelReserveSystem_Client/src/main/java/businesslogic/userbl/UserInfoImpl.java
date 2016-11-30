@@ -11,9 +11,13 @@ public class UserInfoImpl implements UserInfo{
     
     private UserDAO userDAO;
     
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     @Override
     public boolean insert(HotelStaffInfoVO hotelStaffInfoVO) {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
+       // userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userDAO.insertUser(new HotelStaffInfoPO(hotelStaffInfoVO));
             return true;

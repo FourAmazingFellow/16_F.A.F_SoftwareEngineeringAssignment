@@ -16,7 +16,7 @@ import vo.OrderedHotelInfoVO;
 public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 
 	public String hotelName;
-	public String businessDistrict;
+	public String tradeArea;
 	public String hotelAddress;
 	public int starLevel;
 	public float mark;
@@ -43,11 +43,11 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 	public OrderState orderState;
 	public boolean isCommented;
 	
-	public QueryHotelServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
+	public QueryHotelServiceImpl_Stub(String hotelName, String tradeArea, String hotelAddress, int starLevel,
 			float mark, String city, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;
-		this.businessDistrict = businessDistrict;
+		this.tradeArea = tradeArea;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
@@ -59,10 +59,10 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 		this.comments = comments;
 	}
 	
-	public QueryHotelServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
+	public QueryHotelServiceImpl_Stub(String hotelName, String tradeArea, String hotelAddress, int starLevel,
 			float mark, String city) {
 		this.hotelName = hotelName;
-		this.businessDistrict = businessDistrict;
+		this.tradeArea = tradeArea;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
@@ -105,13 +105,13 @@ public class QueryHotelServiceImpl_Stub implements QueryHotelService {
 		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOList = new ArrayList<>();
 		Set<Enum<OrderState>> orderStates = new HashSet<>();
 		orderStates.add(OrderState.DONE_ORDER);
-		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, orderStates));
+		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, orderStates));
 		return orderedHotelInfoVOList;
 	}
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Override

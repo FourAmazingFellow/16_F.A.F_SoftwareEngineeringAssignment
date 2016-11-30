@@ -19,10 +19,11 @@ public class HotelStaffInfoPO extends UserPO {
         super(userID, password, telNum, userType);
         this.hotelAddress = hotelAddress;
     }
-    public void setEnterpriseName(String enterpriseName) {
-        this.hotelAddress = enterpriseName;
+    public void setHotelAddress(String hotelAddress) {
+        this.hotelAddress = hotelAddress;
     }
-    public String getEnterpriseName() {
+
+    public String getHotelAddress() {
         return hotelAddress;
     }
 }

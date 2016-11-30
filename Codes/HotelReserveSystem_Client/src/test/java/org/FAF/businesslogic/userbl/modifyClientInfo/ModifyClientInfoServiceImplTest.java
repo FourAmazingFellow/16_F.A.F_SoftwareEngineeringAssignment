@@ -5,8 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import businesslogic.userbl.modifyClientInfo.MockModifyClientInfoServiceImpl;
 import businesslogic.userbl.modifyClientInfo.ModifyClientInfoServiceImpl;
+import data_Stub.UserDAOImpl_Stub;
+import dataservice.userDAO.UserDAO;
 import vo.ClientInfoVO;
 import vo.UserVO;
 
@@ -17,6 +18,7 @@ public class ModifyClientInfoServiceImplTest {
     private String telNum;
     private int creditValue;
     private ClientInfoVO clientInfoVO;
+    private UserDAO userDAO;
     
     @Before
     public void setUp() throws Exception {
@@ -24,11 +26,13 @@ public class ModifyClientInfoServiceImplTest {
         this.password = "qwe123";
         this.telNum = "12345678900";
         this.creditValue = 500;
+        this.userDAO = new UserDAOImpl_Stub(userID, password, telNum, creditValue, null);
     }
     
     @Test
     public void testGetClientInfo() {
-        modifyClientInfo = new MockModifyClientInfoServiceImpl(userID);
+        modifyClientInfo = new ModifyClientInfoServiceImpl(userID);
+        modifyClientInfo.setUserDAO(userDAO);
         clientInfoVO = modifyClientInfo.getClientInfo(userID);
         assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in userID!", userID, clientInfoVO.userID);        
         assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in password!", password, clientInfoVO.password);        
@@ -38,7 +42,8 @@ public class ModifyClientInfoServiceImplTest {
 
     @Test
     public void testModifyClientInfo() {
-        modifyClientInfo = new MockModifyClientInfoServiceImpl(userID);
+        modifyClientInfo = new ModifyClientInfoServiceImpl(userID);
+        modifyClientInfo.setUserDAO(userDAO);
         UserVO client = modifyClientInfo.getClientInfo(userID);
         boolean result = modifyClientInfo.modifyClientInfo(client, userID);
         assertEquals(true, result);

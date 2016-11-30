@@ -13,20 +13,18 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 
 	private HotelDAO hotelDAO;
 	private ArrayList<BriefHotelInfoPO> hotelList;
-	private String[] conditions;
 	
-	public SearchHotelServiceImpl(String[] condition) {
-		this.conditions = condition;
+	public SearchHotelServiceImpl() {
 		this.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市");
-		try {
-			this.hotelList = hotelDAO.getHotelBriefInfoListBySearching(this.conditions);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
 	public ArrayList<BriefHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition) {
+		try {
+			this.hotelList = hotelDAO.getHotelBriefInfoListBySearching(condition);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		ArrayList<BriefHotelInfoVO> hotelInfoVOs = new ArrayList<>();
 		for(BriefHotelInfoPO hotelInfoPO : hotelList) {
 			hotelInfoVOs.add(new BriefHotelInfoVO(hotelInfoPO));

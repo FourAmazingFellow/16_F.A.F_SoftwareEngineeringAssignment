@@ -15,12 +15,16 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
     private String userID;
     private ClientInfoVO ClientInfoVO;
     
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     public ModifyClientInfoServiceImpl(String userID) {
     }
     
     @Override
     public ClientInfoVO getClientInfo(String userID) {
-        this.userDAO =RemoteHelper.getInstance().getUserDAO();
+   //     this.userDAO =RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         try {
             this.ClientInfoVO = new ClientInfoVO(userDAO.getClientInfo(this.userID));

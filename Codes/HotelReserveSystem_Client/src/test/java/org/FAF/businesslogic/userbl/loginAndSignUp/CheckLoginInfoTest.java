@@ -24,13 +24,14 @@ public class CheckLoginInfoTest {
         this.userID = "原";
         this.password = "qwe123";
         this.telNum = "12345678900";
-        userDAO = new UserDAOImpl_Stub(userID, password, telNum);
+        this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
         userPO = userDAO.getUserInfo(userID);
     }
 
     @Test
     public void testCheckUser() {
-        checkLoginInfo = new MockCheckLoginInfo();
+        checkLoginInfo = new CheckLoginInfo();
+        checkLoginInfo.setUserDAO(userDAO);
         String userID = userPO.getUserID();
         String password = userPO.getPassword();
         boolean result = checkLoginInfo.checkUser(userID, password);

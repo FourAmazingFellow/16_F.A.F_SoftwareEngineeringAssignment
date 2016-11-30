@@ -12,6 +12,11 @@ public class CheckLoginInfo {
     private String userID;
     private UserPO userPO;
     private String password;
+    
+    public void setUserDAO(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+    
     /**
      * 验证登录信息
      * @param userID String型，用户帐号
@@ -21,7 +26,8 @@ public class CheckLoginInfo {
      */
     public boolean checkUser(String userID,String password) {
         this.userID = userID;
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
+        this.userPO = new UserPO();
+ //       this.userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userPO = userDAO.getUserInfo(this.userID);
         } catch (RemoteException e) {

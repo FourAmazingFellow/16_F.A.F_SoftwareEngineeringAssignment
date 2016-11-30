@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.queryHotel.MockQueryHotelList;
@@ -14,11 +15,21 @@ import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 
 public class QueryHotelListTest {
 
+	private static LinkToServer linkToServer;
+	
 	private QueryHotelList queryHotelList;
 	private ArrayList<BriefOrderInfoPO> orderedHotelList;
+	
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
 	
 	@Before
 	public void setUp() throws Exception {
@@ -32,15 +43,15 @@ public class QueryHotelListTest {
 
 	@Test
 	public void testGetHotelBriefInfoListByQuerying() {
-		queryHotelList = new MockQueryHotelList();
-		String[] conditions  = {"从低到高", "从高到低", "从高到低", "是"};
+		queryHotelList = new QueryHotelList();
+		String[] conditions  = {"南京市", "栖霞区", "starLevel", "0"};
 		ArrayList<BriefHotelInfoPO> hotelInfoPOs = queryHotelList.getHotelBriefInfoListByQuerying(conditions, orderedHotelList);
-		assertEquals(1, hotelInfoPOs.size());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "汉庭酒店", hotelInfoPOs.get(0).getHotelName());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in businessDistrict!", "新街口", hotelInfoPOs.get(0).getBusinessDistrict());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道163号", hotelInfoPOs.get(0).getHotelAddress());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 5, hotelInfoPOs.get(0).getStarLevel());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 5.0f, hotelInfoPOs.get(0).getMark(), 0);
+		assertEquals(5, hotelInfoPOs.size());
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "如家酒店", hotelInfoPOs.get(0).getHotelName());
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "栖霞区", hotelInfoPOs.get(0).getTradeArea());
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道165号", hotelInfoPOs.get(0).getHotelAddress());
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 3, hotelInfoPOs.get(0).getStarLevel());
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 3.8f, hotelInfoPOs.get(0).getMark(), 0);
 	}
 
 }

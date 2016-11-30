@@ -10,15 +10,15 @@ import vo.OrderedHotelInfoVO;
 
 public class CheckOrderedHotelServiceImpl_Stub implements CheckOrderedHotelService{
 	public String hotelName;
-	public String businessDistrict;
+	public String tradeArea;
 	public String hotelAddress;
 	public int starLevel;
 	public float mark;
 	
-	public CheckOrderedHotelServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
+	public CheckOrderedHotelServiceImpl_Stub(String hotelName, String tradeArea, String hotelAddress, int starLevel,
 			float mark) {
 		this.hotelName = hotelName;
-		this.businessDistrict = businessDistrict;
+		this.tradeArea = tradeArea;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
@@ -29,7 +29,7 @@ public class CheckOrderedHotelServiceImpl_Stub implements CheckOrderedHotelServi
 		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOList = new ArrayList<>();
 		Set<Enum<OrderState>> orderStates = new HashSet<>();
 		orderStates.add(OrderState.DONE_ORDER);
-		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, orderStates));
+		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, orderStates));
 		return orderedHotelInfoVOList;
 	}
 

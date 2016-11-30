@@ -22,12 +22,12 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	public CreateNewOrderServiceImpl_Stub(String userID, String orID, String hN, String hA, Date bD, Date fD, RoomType rT, int n, int tP,
 			Date oPT, Date lODT, int nOP, boolean isChild, boolean isOnSale, OrderState orderS,
 			boolean isCom, ResultMessage reM, ResultMessage resultMessage, 
-			String hotelName, String businessDistrict, String hotelAddress, int starLevel, float mark, String city,
+			String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city,
 			Enum<RoomType> roomType, int roomNum, int roomPrice, String address) {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,orderS, oPT, lODT, nOP, isChild, isOnSale, isCom);
 		this.resultMessage = resultMessage;
-		testBriefHotelInfoVO = new BriefHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city);
+		testBriefHotelInfoVO = new BriefHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city);
 		testRoomVO = new RoomVO(roomType, roomNum, roomPrice, address);
 	}
 	

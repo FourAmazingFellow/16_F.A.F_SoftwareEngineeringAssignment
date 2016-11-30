@@ -1,6 +1,6 @@
 package bl_Driver.userblservice_Driver;
 
-import java.util.Date;
+import java.sql.Date;
 
 import businesslogicservice.userblservice.SignVipService;
 import po.UserType;

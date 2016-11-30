@@ -16,7 +16,6 @@ import po.HotelPO;
  * @see
  */
 public interface HotelDAO extends Remote {
-	
 	/**
 	 * 获取酒店的基本信息
 	 * @param address String型，业务逻辑层传递来的酒店地址
@@ -68,7 +67,7 @@ public interface HotelDAO extends Remote {
 	 * @see
 	 */
 	public void insertHotel(HotelPO po) throws RemoteException;
-
+	
 	/**
 	 * 获取所有的商圈的列表
 	 * @return所有的商圈的列表
@@ -76,4 +75,5 @@ public interface HotelDAO extends Remote {
 	 * @see
 	 */
 	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException;
+
 }

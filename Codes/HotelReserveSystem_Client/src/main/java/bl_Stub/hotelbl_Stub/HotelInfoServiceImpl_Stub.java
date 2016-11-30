@@ -12,7 +12,7 @@ import vo.HotelVO;
 public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 
 	public String hotelName;
-	public String businessDistrict;
+	public String tradeArea;
 	public String hotelAddress;
 	public int starLevel;
 	public float mark;
@@ -24,11 +24,11 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	public HashMap<RoomType, Integer> roomTypeAndNums;
 	public HashMap<String, String> comments;
 	
-	public HotelInfoServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
+	public HotelInfoServiceImpl_Stub(String hotelName, String tradeArea, String hotelAddress, int starLevel,
 			float mark, String city, String briefIntroduction, String facilityAndService, HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums,
 			HashMap<String, String> comments) {
 		this.hotelName = hotelName;
-		this.businessDistrict = businessDistrict;
+		this.tradeArea = tradeArea;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
@@ -40,10 +40,10 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 		this.comments = comments;
 	}
 	
-	public HotelInfoServiceImpl_Stub(String hotelName, String businessDistrict, String hotelAddress, int starLevel,
+	public HotelInfoServiceImpl_Stub(String hotelName, String tradeArea, String hotelAddress, int starLevel,
 			float mark, String city) {
 		this.hotelName = hotelName;
-		this.businessDistrict = businessDistrict;
+		this.tradeArea = tradeArea;
 		this.hotelAddress = hotelAddress;
 		this.starLevel = starLevel;
 		this.mark = mark;
@@ -52,16 +52,16 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	
 	@Override
 	public BriefHotelInfoVO getHotelBriefInfo(String address) {
-		return new BriefHotelInfoVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city);
+		return new BriefHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city);
 	}
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(hotelName, businessDistrict, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
     @Override
-    public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) {
+    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
         // TODO Auto-generated method stub
         return null;
     }

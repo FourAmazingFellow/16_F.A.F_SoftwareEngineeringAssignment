@@ -77,10 +77,10 @@ public class QueryHotelServiceImplTest {
 	
 	@Test
 	public void testGetHotelDetails() {
-		queryHotel = new MockQueryHotelServiceImpl("19970206");
+		queryHotel = new QueryHotelServiceImpl("19970206");
 		HotelVO hotelDetails = queryHotel.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "Jingling Hotel", hotelDetails.hotelName);
-	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in businessDistrict!", "新街口", hotelDetails.businessDistrict);
+	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "新街口", hotelDetails.tradeArea);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道163号", hotelDetails.hotelAddress);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 5, hotelDetails.starLevel);
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 5.0f, hotelDetails.mark, 0);

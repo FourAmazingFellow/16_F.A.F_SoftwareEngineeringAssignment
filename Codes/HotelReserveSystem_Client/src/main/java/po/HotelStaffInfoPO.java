@@ -31,11 +31,11 @@ public class HotelStaffInfoPO extends UserPO {
         this.hotelAddress = hotelStaffInfoVO.hotelAddress;
     }
 
-    public void setEnterpriseName(String enterpriseName) {
-        this.hotelAddress = enterpriseName;
+    public void setHotelAddress(String hotelAddress) {
+        this.hotelAddress = hotelAddress;
     }
 
-    public String getEnterpriseName() {
+    public String getHotelAddress() {
         return hotelAddress;
     }
 }
