@@ -21,6 +21,7 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
     @Override
     public boolean login(String userID, String password) {
         check = new CheckLoginInfo();
+        check.setUserDAO(userDAO);
         return check.checkUser(userID, password);
     }
 

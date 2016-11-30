@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import businesslogic.userbl.loginAndSignUp.CheckLoginInfo;
 import businesslogic.userbl.loginAndSignUp.LoginAndSignUpServiceImpl;
-import businesslogic.userbl.loginAndSignUp.MockLoginAndSignUpServiceImpl;
 import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserType;
@@ -27,7 +26,7 @@ public class LoginAndSignUpServiceImplTest {
     public void setUp() throws Exception {
         this.userID = "原";
         this.password = "qwe123";
-        this.telNum = "12345676543";
+        this.telNum = "12345678900";
         this.userType = UserType.Client;
         this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
     }
@@ -35,9 +34,9 @@ public class LoginAndSignUpServiceImplTest {
     @Test
     public void testLogin() {
         loginAndSignUp = new LoginAndSignUpServiceImpl();
-        check = new CheckLoginInfo();
+//        check = new CheckLoginInfo();
         loginAndSignUp.setUserDAO(userDAO);
-        check.setUserDAO(userDAO);
+//        check.setUserDAO(userDAO);
         boolean result = loginAndSignUp.login(userID, password);
         assertEquals(true,result);
     }

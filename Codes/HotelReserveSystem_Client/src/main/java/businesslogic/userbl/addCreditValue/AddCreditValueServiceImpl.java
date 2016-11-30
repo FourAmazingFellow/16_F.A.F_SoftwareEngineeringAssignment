@@ -23,7 +23,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
 
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
+  //      this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         ClientInfoPO clientInfoPO = new ClientInfoPO();
         try {
