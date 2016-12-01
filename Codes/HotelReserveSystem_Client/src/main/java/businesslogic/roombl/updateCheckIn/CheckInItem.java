@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import businesslogic.roombl.RoomInfoService;
@@ -11,6 +12,7 @@ import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
+import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.CheckInPO;
 import po.RoomPO;
@@ -38,7 +40,16 @@ public class CheckInItem {
     private StrategyInfoService strategyInfoService;
 
     public CheckInItem() {
-        checkInDAO = RemoteHelper.getInstance().getRoomDAO();
+        // checkInDAO = RemoteHelper.getInstance().getRoomDAO();
+        checkInTime=new Date();
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(checkInTime);
+        calendar.add(Calendar.DATE, 1);
+        expDepartTime=calendar.getTime();
+        
+        checkInDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",
+                checkInTime, expDepartTime, null);
+        
         roomInfoService = new RoomInfoServiceImpl();
     }
 
@@ -78,7 +89,7 @@ public class CheckInItem {
      * @param address
      *            string型，酒店地址
      * @return
-     * @throws RemoteException 
+     * @throws RemoteException
      * @see
      */
     public boolean addCheckIn(String address, boolean updateSpareRoom) throws RemoteException {
@@ -91,10 +102,10 @@ public class CheckInItem {
         }
         // 根据布尔值决定是否更新空房
         if (updateSpareRoom) {
-            Date today=new Date();
-            SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-DD");
+            Date today = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
             try {
-                today=sdf.parse(sdf.format(today));
+                today = sdf.parse(sdf.format(today));
             } catch (ParseException e1) {
                 e1.printStackTrace();
             }
@@ -108,7 +119,7 @@ public class CheckInItem {
      * 
      * @return 返回是否入住信息有效
      * @throws WrongInputException
-     * @throws RemoteException 
+     * @throws RemoteException
      * @see
      */
     public boolean validCheckIn() throws WrongInputException, RemoteException {
@@ -131,7 +142,7 @@ public class CheckInItem {
 
         // 验证时间是否合法，如果入住时间必须在当天内，预计离开时间大于入住时间，则错误
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        if (sdf.format(checkInTime) != sdf.format(new Date())) {
+        if (!sdf.format(checkInTime).equals( sdf.format(new Date()))) {
             throw new WrongInputException("check-in time must be today");
         }
         if (expDepartTime.compareTo(checkInTime) <= 0) {
@@ -153,13 +164,13 @@ public class CheckInItem {
             throw new WrongInputException("spare room of this roomType doesn't exist");
 
         // roomNum小于空房数量
-        Date today=new Date();
+        Date today = new Date();
         try {
-            today=sdf.parse(sdf.format(today));
+            today = sdf.parse(sdf.format(today));
         } catch (ParseException e1) {
             e1.printStackTrace();
         }
-        int spareRoomNum = roomInfoService.getAvailableRoomNum(address, roomType,today);
+        int spareRoomNum = roomInfoService.getAvailableRoomNum(address, roomType, today);
         if (roomNum > spareRoomNum) {
             throw new WrongInputException("the room number of check-in is larger than the spare Room number");
         }

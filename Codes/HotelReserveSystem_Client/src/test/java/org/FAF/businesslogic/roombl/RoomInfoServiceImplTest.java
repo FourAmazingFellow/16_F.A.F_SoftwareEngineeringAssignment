@@ -3,12 +3,13 @@ package org.FAF.businesslogic.roombl;
 import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import businesslogic.roombl.MockRoomInfoServiceImpl;
 import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogicservice.orderblservice.ResultMessage;
 import po.OrderState;
@@ -30,20 +31,27 @@ public class RoomInfoServiceImplTest {
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception{
-        roomInfoServiceImpl=new MockRoomInfoServiceImpl();
+        roomInfoServiceImpl=new RoomInfoServiceImpl();
         address="江苏省南京市栖霞区仙林大道163号";
         roomType=RoomType.SINGLE_ROOM;
-        beginDate=new Date(2016, 11, 11, 12, 0);
-        finishDate=new Date(2016, 11, 12, 12, 0);
+        beginDate=new Date(116, 11, 1, 12, 0);
+        finishDate=new Date(116, 11, 2, 12, 0);
         change=2;
-        orderVO=new OrderVO("原","0001000100010001","仙林大酒店","",new Date(2016,10,16),new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(2016,10,16,18,0),new java.util.Date(2016, 10, 16, 20, 0),2,false,true,false);
+        orderVO=new OrderVO("原","0001000100010001","仙林大酒店","",new Date(116,11,1),new Date(116,11,2),RoomType.SINGLE_ROOM,3,100,OrderState.NOT_DONE_ORDER,new Date(116,11,1,18,0),new java.util.Date(116, 11, 1, 20, 0),2,false,true,false);
         roomVO=new RoomVO(roomType, 3, 200, address);
     }
     
     @Test
     public void testGetAvailableRoomNum(){
         try {
-            assertEquals(2,roomInfoServiceImpl.getAvailableRoomNum(address, roomType,new Date()));
+            Date today=new Date();
+            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                today=sdf.parse(sdf.format(today));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            assertEquals(16,roomInfoServiceImpl.getAvailableRoomNum(address, roomType,today));
         } catch (RemoteException e) {
             e.printStackTrace();
         }

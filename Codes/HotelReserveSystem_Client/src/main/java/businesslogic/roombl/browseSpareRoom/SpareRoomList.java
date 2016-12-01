@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.roombl.exception.NoThisRoomTypeSpareRoomException;
+import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -29,11 +30,12 @@ public class SpareRoomList {
     private static SpareRoomList spareRoomList;
     private String address;
     
+    @SuppressWarnings("deprecation")
     protected SpareRoomList(String address){
         this.address=address;
+//        roomDAO=RemoteHelper.getInstance().getRoomDAO();
+        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号",new Date(116,10,30),new Date(116,11,3),new Date(116,11,3));
         blSpareRoomList=getRoomInfoList(address);
-        
-        roomDAO=RemoteHelper.getInstance().getRoomDAO();
     }
     
     public static SpareRoomList getInstance(String address){

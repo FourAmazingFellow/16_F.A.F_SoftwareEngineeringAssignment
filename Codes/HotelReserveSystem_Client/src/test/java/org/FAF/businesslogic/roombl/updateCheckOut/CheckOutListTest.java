@@ -12,9 +12,9 @@ import org.junit.Test;
 
 import businesslogic.roombl.updateCheckOut.CheckOutItem;
 import businesslogic.roombl.updateCheckOut.CheckOutList;
-import businesslogic.roombl.updateCheckOut.MockCheckOutList;
 import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
+import vo.CheckInVO;
 import vo.CheckOutVO;
 
 public class CheckOutListTest {
@@ -30,11 +30,11 @@ public class CheckOutListTest {
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception{
-        checkOutList=new MockCheckOutList();
+        checkOutList=new CheckOutList();
         address = "江苏省南京市栖霞区仙林大道163号";
-        actDepartTime = new Date(2016, 11, 12, 12, 0);
-        startTime=new Date(2016, 11, 12, 00, 00, 00);
-        startTime=new Date(2016, 11, 13, 00, 00, 00);
+        actDepartTime = new Date(116, 11, 1, 17, 13);
+        startTime=new Date(116, 11, 1, 17, 13, 00);
+        endTime=new Date(116, 11, 2, 17, 13, 00);
         roomType = RoomType.SINGLE_ROOM;
         checkOutVO=new CheckOutVO(roomType, 3, address, actDepartTime);
     }
@@ -44,10 +44,7 @@ public class CheckOutListTest {
         ArrayList<CheckOutItem> checkOutItems=checkOutList.getCheckOutList(address);
         assertEquals(1,checkOutItems.size());
         CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
-        assertEquals(checkOutVO.address, checkOutVOFromArray.address);
-        assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
-        assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
-        assertEquals(0,checkOutVO.actDepartTime.compareTo(checkOutVOFromArray.actDepartTime));
+        assertTrue(equalCheckIn(checkOutVO, checkOutVOFromArray));
     }
     
     @Test
@@ -55,10 +52,7 @@ public class CheckOutListTest {
         ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, startTime, endTime);
         assertEquals(1,checkOutItems.size());
         CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
-        assertEquals(checkOutVO.address, checkOutVOFromArray.address);
-        assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
-        assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
-        assertEquals(0,checkOutVO.actDepartTime.compareTo(checkOutVOFromArray.actDepartTime));
+        assertTrue(equalCheckIn(checkOutVO, checkOutVOFromArray));
     }
     
     @Test
@@ -66,10 +60,7 @@ public class CheckOutListTest {
         ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, roomType);
         assertEquals(1,checkOutItems.size());
         CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
-        assertEquals(checkOutVO.address, checkOutVOFromArray.address);
-        assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
-        assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
-        assertEquals(0,checkOutVO.actDepartTime.compareTo(checkOutVOFromArray.actDepartTime));
+        assertTrue(equalCheckIn(checkOutVO, checkOutVOFromArray));
     }
     
     @Test
@@ -94,5 +85,14 @@ public class CheckOutListTest {
             e.printStackTrace();
         }
         assertTrue(valid);
+    }
+    
+    public boolean equalCheckIn(CheckOutVO checkOutVO1, CheckOutVO checkOutVO2) {
+        if (checkOutVO1.roomType != checkOutVO2.roomType || checkOutVO1.roomNum != checkOutVO2.roomNum
+                || checkOutVO1.roomPrice != checkOutVO2.roomPrice || checkOutVO1.address != checkOutVO2.address
+                || checkOutVO1.actDepartTime.compareTo(checkOutVO2.actDepartTime) != 0) {
+            return false;
+        }
+        return true;
     }
 }

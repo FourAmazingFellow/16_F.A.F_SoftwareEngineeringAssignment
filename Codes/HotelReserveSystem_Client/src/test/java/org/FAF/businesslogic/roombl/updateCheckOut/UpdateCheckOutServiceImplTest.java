@@ -29,10 +29,11 @@ public class UpdateCheckOutServiceImplTest {
     @Before
     public void setUp() throws Exception{
         updateCheckOutServiceImpl=new UpdateCheckOutServiceImpl();
+        
         address = "江苏省南京市栖霞区仙林大道163号";
-        actDepartTime = new Date(2016, 11, 12, 12, 0);
-        startTime=new Date(2016, 11, 12, 00, 00, 00);
-        startTime=new Date(2016, 11, 13, 00, 00, 00);
+        actDepartTime = new Date(116, 11, 1, 17, 13);
+        startTime=new Date(116, 11, 1, 17, 13, 00);
+        endTime=new Date(116, 11, 2, 17, 13, 00);
         roomType = RoomType.SINGLE_ROOM;
         checkOutVO=new CheckOutVO(roomType, 3, address, actDepartTime);
     }

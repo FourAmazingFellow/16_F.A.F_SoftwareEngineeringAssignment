@@ -48,7 +48,7 @@ public class StrategyList {
         this.address = address;
         // strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
         strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
-                "双十一折扣", 85, 4, "国美电器", "guomei12", new Date(116, 10, 30, 00, 00, 00), new Date(116, 11, 10, 00, 00, 00), "栖霞区",
+                "双十一折扣", 90, 4, "国美电器", "guomei12", new Date(116, 10, 30, 00, 00, 00), new Date(116, 11, 10, 00, 00, 00), "栖霞区",
                 4);
         hotelInfoService = new HotelInfoServiceImpl();
 

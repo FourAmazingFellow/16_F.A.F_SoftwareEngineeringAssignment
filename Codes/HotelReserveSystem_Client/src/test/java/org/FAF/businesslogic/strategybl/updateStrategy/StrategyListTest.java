@@ -33,7 +33,7 @@ public class StrategyListTest {
         strategyList=StrategyList.getInstance(address);
         strategyType=StrategyType.SpecificTimePromotion;
         name="双十一折扣";
-        strategyVO=new StrategyVO(address, strategyType, name, 80, new Date(116,10,10,00,00,00), new Date(116,10,12,00,00,00));
+        strategyVO=new StrategyVO(address, strategyType, name, 90, new Date(116,10,30,00,00,00), new Date(116,11,10,00,00,00));
         strategyVO2=new StrategyVO(address, strategyType, "国庆折扣", 80, new Date(116,9,1), new Date(116,9,7));
     }
     
@@ -52,7 +52,6 @@ public class StrategyListTest {
         assertTrue(equalStrategy(strategyVO, strategyInfo));
     }
     
-    @SuppressWarnings("deprecation")
     @Test
     public void testAdd(){
         boolean added = false;

@@ -2,9 +2,11 @@ package businesslogic.roombl.updateCheckIn;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import businesslogic.strategybl.exception.WrongInputException;
+import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -14,107 +16,128 @@ import vo.RoomVO;
 /**
  * 
  * @author 双
- * @version 
+ * @version
  * @see
  */
 public class CheckInList {
 
     private RoomDAO roomDAO;
-    
-    public CheckInList(){
-        roomDAO=RemoteHelper.getInstance().getRoomDAO();
+
+    @SuppressWarnings("deprecation")
+    public CheckInList() {
+        // roomDAO=RemoteHelper.getInstance().getRoomDAO();
+        Date checkInTime = new Date(116,11,1,17,13);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(checkInTime);
+        calendar.add(Calendar.DATE, 1);
+        Date expDepartTime = calendar.getTime();
+        roomDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 300, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime,
+                null);
     }
-    
+
     /**
      * 得到入住信息列表
-     * @param address String型，酒店地址
+     * 
+     * @param address
+     *            String型，酒店地址
      * @return ArrayList<CheckInItem>型，入住信息列表
      * @see
      */
-    public ArrayList<CheckInItem> getCheckInList(String address){
+    public ArrayList<CheckInItem> getCheckInList(String address) {
         ArrayList<RoomPO> roomPOs;
-        ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
+        ArrayList<CheckInItem> checkInItems = new ArrayList<CheckInItem>();
         try {
-            roomPOs=roomDAO.getCheckInInfoList(address);
+            roomPOs = roomDAO.getCheckInInfoList(address);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
         }
-        for(RoomPO roomPO:roomPOs){
+        for (RoomPO roomPO : roomPOs) {
             checkInItems.add(new CheckInItem(roomPO));
         }
         return checkInItems;
     }
-    
+
     /**
      * 根据入住时间搜索入住信息
-     * @param address string型，酒店地址
-     * @param time Date型，入住时间
+     * 
+     * @param address
+     *            string型，酒店地址
+     * @param time
+     *            Date型，入住时间
      * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
      * @see
      */
-    public ArrayList<CheckInItem> searchCheckInInfo(String address , Date startTime, Date endTime){
-        //改变接口，只传一个Date,startTime ,endTime 自己计算出
+    public ArrayList<CheckInItem> searchCheckInInfo(String address, Date startTime, Date endTime) {
         ArrayList<RoomPO> roomPOs;
-        ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
+        ArrayList<CheckInItem> checkInItems = new ArrayList<CheckInItem>();
         try {
-            roomPOs=roomDAO.getCheckInInfo(address, startTime, endTime);
+            roomPOs = roomDAO.getCheckInInfo(address, startTime, endTime);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
         }
-        for(RoomPO roomPO:roomPOs){
+        for (RoomPO roomPO : roomPOs) {
             checkInItems.add(new CheckInItem(roomPO));
         }
         return checkInItems;
     }
-    
+
     /**
      * 根据房间类型搜索入住信息
-     * @param address string型，酒店地址
-     * @param time Date型，入住时间
+     * 
+     * @param address
+     *            string型，酒店地址
+     * @param time
+     *            Date型，入住时间
      * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
      * @see
      */
-    public ArrayList<CheckInItem> searchCheckInInfo(String address ,Enum<RoomType> roomType){
+    public ArrayList<CheckInItem> searchCheckInInfo(String address, Enum<RoomType> roomType) {
         ArrayList<RoomPO> roomPOs;
-        ArrayList<CheckInItem> checkInItems=new ArrayList<CheckInItem>();
+        ArrayList<CheckInItem> checkInItems = new ArrayList<CheckInItem>();
         try {
-            roomPOs=roomDAO.getCheckInInfo(address, roomType);
+            roomPOs = roomDAO.getCheckInInfo(address, roomType);
         } catch (RemoteException e) {
             e.printStackTrace();
             return null;
         }
-        for(RoomPO roomPO:roomPOs){
+        for (RoomPO roomPO : roomPOs) {
             checkInItems.add(new CheckInItem(roomPO));
         }
         return checkInItems;
     }
-    
+
     /**
      * 增加入住信息
-     * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
+     * 
+     * @param address
+     *            string型，酒店地址
+     * @param checkIn
+     *            Room VO型，入住信息
      * @return 返回是否增加成功
-     * @throws RemoteException 
+     * @throws RemoteException
      * @see
      */
-    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException{
-        CheckInItem checkInItem=new CheckInItem(checkIn);
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException {
+        CheckInItem checkInItem = new CheckInItem(checkIn);
         return checkInItem.addCheckIn(address, updateSpareRoom);
     }
 
     /**
      * 判断该入住信息是否有效
-     * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
+     * 
+     * @param address
+     *            string型，酒店地址
+     * @param checkIn
+     *            Room VO型，入住信息
      * @return 返回是否入住信息有效
-     * @throws WrongInputException 
-     * @throws RemoteException 
+     * @throws WrongInputException
+     * @throws RemoteException
      * @see
      */
-    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException, RemoteException{
-        CheckInItem checkInItem=new CheckInItem(checkIn);
+    public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException, RemoteException {
+        CheckInItem checkInItem = new CheckInItem(checkIn);
         return checkInItem.validCheckIn();
     }
 }

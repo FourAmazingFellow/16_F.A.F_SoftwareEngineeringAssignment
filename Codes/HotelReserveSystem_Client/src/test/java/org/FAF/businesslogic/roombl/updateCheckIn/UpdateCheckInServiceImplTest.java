@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Before;
@@ -20,6 +21,7 @@ public class UpdateCheckInServiceImplTest {
     private UpdateCheckInServiceImpl updateCheckInServiceImpl;
     private String address;
     private Date checkInTime;
+    private Date expDepartTime;
     private Enum<RoomType> roomType;
     private CheckInVO checkInVO;
     private Date startTime;
@@ -31,12 +33,16 @@ public class UpdateCheckInServiceImplTest {
     public void setUp() throws Exception {
         updateCheckInServiceImpl = new UpdateCheckInServiceImpl();
         address = "江苏省南京市栖霞区仙林大道163号";
-        checkInTime = new Date(2016, 11, 11, 12, 0);
-        startTime=new Date(2016, 11, 11, 00, 00, 00);
-        startTime=new Date(2016, 11, 12, 00, 00, 00);
+        checkInTime = new Date(116,11,1,17,13);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(checkInTime);
+        calendar.add(Calendar.DATE, 1);
+        expDepartTime = calendar.getTime();
+        startTime=checkInTime;
+        endTime=expDepartTime;
         roomType = RoomType.SINGLE_ROOM;
         checkInVO = new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime,
-                new Date(2016, 11, 12, 12, 0));
+                expDepartTime);
         updateSpareRoom=true;
     }
 
@@ -45,11 +51,7 @@ public class UpdateCheckInServiceImplTest {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.getCheckInList(address);
         assertEquals(1,checkInVOs.size());
         CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
-        assertEquals(checkInVO.address, checkInfromArray.address);
-        assertEquals(checkInVO.roomType, checkInfromArray.roomType);
-        assertEquals(checkInVO.roomNum, checkInfromArray.roomNum);
-        assertEquals(0,checkInVO.checkInTime.compareTo(checkInfromArray.checkInTime));
-        assertEquals(0,checkInVO.expDepartTime.compareTo(checkInfromArray.expDepartTime));
+        assertTrue(equalCheckIn(checkInVO, checkInfromArray));
     }
 
     @Test
@@ -57,11 +59,7 @@ public class UpdateCheckInServiceImplTest {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo(address,startTime,endTime);
         assertEquals(1,checkInVOs.size());
         CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
-        assertEquals(checkInVO.address, checkInfromArray.address);
-        assertEquals(checkInVO.roomType, checkInfromArray.roomType);
-        assertEquals(checkInVO.roomNum, checkInfromArray.roomNum);
-        assertEquals(0,checkInVO.checkInTime.compareTo(checkInfromArray.checkInTime));
-        assertEquals(0,checkInVO.expDepartTime.compareTo(checkInfromArray.expDepartTime));
+        assertTrue(equalCheckIn(checkInVO, checkInfromArray));
     }
 
     @Test
@@ -69,11 +67,7 @@ public class UpdateCheckInServiceImplTest {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo(address, roomType);
         assertEquals(1,checkInVOs.size());
         CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
-        assertEquals(checkInVO.address, checkInfromArray.address);
-        assertEquals(checkInVO.roomType, checkInfromArray.roomType);
-        assertEquals(checkInVO.roomNum, checkInfromArray.roomNum);
-        assertEquals(0,checkInVO.checkInTime.compareTo(checkInfromArray.checkInTime));
-        assertEquals(0,checkInVO.expDepartTime.compareTo(checkInfromArray.expDepartTime));
+        assertTrue(equalCheckIn(checkInVO, checkInfromArray));
     }
 
     @Test
@@ -98,5 +92,15 @@ public class UpdateCheckInServiceImplTest {
             e.printStackTrace();
         }
         assertTrue(valid);
+    }
+    
+    public boolean equalCheckIn(CheckInVO checkInVO1, CheckInVO checkInVO2) {
+        if (checkInVO1.roomType != checkInVO2.roomType || checkInVO1.roomNum != checkInVO2.roomNum
+                || checkInVO1.roomPrice != checkInVO2.roomPrice || checkInVO1.address != checkInVO2.address
+                || checkInVO1.checkInTime.compareTo(checkInVO2.checkInTime) != 0
+                || checkInVO1.expDepartTime.compareTo(checkInVO2.expDepartTime) != 0) {
+            return false;
+        }
+        return true;
     }
 }

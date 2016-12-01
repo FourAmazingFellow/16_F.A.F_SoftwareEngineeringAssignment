@@ -57,7 +57,7 @@ public class StrategyInfoServiceImplTest {
         } catch (UnableToDeleteStrategyException e) {
             e.printStackTrace();
         }
-        assertEquals("双十一促销", strategyInfoServiceImpl.getAvailblePromotionName(orderVO));
+        assertEquals("3房间以上折扣", strategyInfoServiceImpl.getAvailblePromotionName(orderVO));
     }
 
     @Test
@@ -68,12 +68,12 @@ public class StrategyInfoServiceImplTest {
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        assertEquals("WhatEver", strategyInfoServiceImpl.getAvailbleMarketStrategyName(orderVO));
+        assertEquals("VIP3会员等级折扣", strategyInfoServiceImpl.getAvailbleMarketStrategyName(orderVO));
     }
 
     @Test
     public void testGetBestDiscount() {
-        assertEquals(70f, strategyInfoServiceImpl.getBestDiscount(orderVO), 0.01);
+        assertEquals(81f, strategyInfoServiceImpl.getBestDiscount(orderVO), 0.01);
     }
 
 }
