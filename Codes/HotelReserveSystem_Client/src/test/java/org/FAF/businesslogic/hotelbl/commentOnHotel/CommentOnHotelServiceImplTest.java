@@ -7,15 +7,19 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.commentOnHotel.CommentOnHotelServiceImpl;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.OrderVO;
 
 public class CommentOnHotelServiceImplTest {
 
+	private static LinkToServer linkToServer;
+	
 	private CommentOnHotelServiceImpl commentOnHotel;
 	private String userID;
 	private String orderID;
@@ -36,6 +40,12 @@ public class CommentOnHotelServiceImplTest {
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
 	private HashMap<String, String> comments;
 	private HashMap<RoomType, Integer> roomTypeAndNums;
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
 	
 	@SuppressWarnings("deprecation")
 	@Before

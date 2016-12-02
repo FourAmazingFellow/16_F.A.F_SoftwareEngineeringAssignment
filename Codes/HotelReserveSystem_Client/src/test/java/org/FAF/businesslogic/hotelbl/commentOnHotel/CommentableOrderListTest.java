@@ -8,17 +8,21 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.hotelbl.commentOnHotel.CommentableOrderList;
-import businesslogic.orderbl.MockOrderInfoImpl;
+import businesslogic.orderbl.OrderInfoImpl;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.OrderVO;
 
 public class CommentableOrderListTest {
 
+	private static LinkToServer linkToServer;
+	
 	private CommentableOrderList commentableOrderList;
 	private OrderInfo orderInfo;
 	private String userID;
@@ -41,23 +45,29 @@ public class CommentableOrderListTest {
 	private HashMap<String, String> comments;
 	private HashMap<RoomType, Integer> roomTypeAndNums;
 	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
-		orderInfo = new MockOrderInfoImpl();
-		this.orderID = "0001000100010001";
-		this.userID = "19970206";
-		this.hotelName = "汉庭酒店";
+		orderInfo = new OrderInfoImpl();
+		this.orderID = "0000000000000001";
+		this.userID = "原";
+		this.hotelName = "Jingling Hotel";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(2016, 12, 20);
-		this.finishDate = new Date(2016, 12, 21);
+		this.beginDate = new Date(116, 9, 19);
+		this.finishDate = new Date(116, 9, 20);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
-		this.totalPrice = 200;
-		this.orderState = OrderState.NOT_DONE_ORDER;
-		this.orderProducedTime = new Date(2016, 12, 15);
-		this.lastedOrderDoneTime = new Date(2016, 12, 20);
-		this.numOfPerson = 2;
+		this.totalPrice = 495;
+		this.orderState = OrderState.DONE_ORDER;
+		this.orderProducedTime = new Date(116, 9, 19, 16, 20, 0);
+		this.lastedOrderDoneTime = new Date(116, 9, 20, 16, 0, 0);
+		this.numOfPerson = 1;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
@@ -72,9 +82,9 @@ public class CommentableOrderListTest {
 	@Test
 	public void testGetCommentableOrderList() {
 		commentableOrderList = new CommentableOrderList("原");
-		commentableOrderList.setOrderInfo(orderInfo);
+//		commentableOrderList.setOrderInfo(orderInfo);
 		ArrayList<OrderVO> orderVOs = commentableOrderList.getCommentableOrderList();
-		assertEquals(1, orderVOs.size());
+		assertEquals(2, orderVOs.size());
 		assertEquals(orderID, orderVOs.get(0).orderID);
 		assertEquals(userID, orderVOs.get(0).userID);
 		assertEquals(hotelName, orderVOs.get(0).hotelName);
