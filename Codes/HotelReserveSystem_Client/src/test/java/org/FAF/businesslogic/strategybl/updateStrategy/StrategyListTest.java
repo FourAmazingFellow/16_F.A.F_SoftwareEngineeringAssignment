@@ -21,42 +21,45 @@ public class StrategyListTest {
 
     private StrategyList strategyList;
     private String address;
-    private Enum<StrategyType> strategyType;
-    private String name;
-    private StrategyVO strategyVO;
-    private StrategyVO strategyVO2;
     
-    @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception{
         address="江苏省南京市栖霞区仙林大道163号";
         strategyList=StrategyList.getInstance(address);
-        strategyType=StrategyType.SpecificTimePromotion;
-        name="双十一折扣";
-        strategyVO=new StrategyVO(address, strategyType, name, 90, new Date(116,10,30,00,00,00), new Date(116,11,10,00,00,00));
-        strategyVO2=new StrategyVO(address, strategyType, "国庆折扣", 80, new Date(116,9,1), new Date(116,9,7));
+//        strategyType=StrategyType.SpecificTimePromotion;
+//        name="双十一折扣";
+//        strategyVO=new StrategyVO(address, strategyType, name, 90, new Date(116,10,30,00,00,00), new Date(116,11,10,00,00,00));
+//        strategyVO2=new StrategyVO(address, strategyType, "国庆折扣", 80, new Date(116,9,1), new Date(116,9,7));
     }
     
+    @SuppressWarnings("deprecation")
     @Test 
     public void testGetStrategyList(){
-        ArrayList<StrategyItem> strategyItems=strategyList.getStrategyList(address, strategyType);
-        assertEquals(1,strategyItems.size());
-        StrategyVO strategyVOFromArray=strategyItems.get(0).toVO();
-        assertTrue(equalStrategy(strategyVO, strategyVOFromArray));
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣", 90, new Date(116,10,10), new Date(116,10,12));
+        StrategyVO strategyVO2=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "国庆狂欢", 90, new Date(116,9,1), new Date(116,9,8));
+        StrategyVO strategyVO3=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "春节折扣", 90, new Date(117,1,10), new Date(117,1,21));
+
+        ArrayList<StrategyItem> strategyItems=strategyList.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
+        assertEquals(3,strategyItems.size());
+        assertTrue(equalStrategy(strategyItems.get(0).toVO(), strategyVO1));
+        assertTrue(equalStrategy(strategyItems.get(1).toVO(), strategyVO2));
+        assertTrue(equalStrategy(strategyItems.get(2).toVO(), strategyVO3));
     }
     
     @Test
     public void testGetStrategyInfo(){
-        StrategyItem strategyItem=strategyList.getStrategyInfo(address, strategyType, name);
+        StrategyItem strategyItem=strategyList.getStrategyInfo("江苏省南京市栖霞区仙林大道163号", StrategyType.CooperationEnterprisePromotion, "腾讯公司优惠");
         StrategyVO strategyInfo=strategyItem.toVO();
-        assertTrue(equalStrategy(strategyVO, strategyInfo));
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.CooperationEnterprisePromotion, "腾讯公司优惠", 87, "腾讯", "tengxun6");
+        assertTrue(equalStrategy(strategyVO1, strategyInfo));
     }
     
     @Test
     public void testAdd(){
         boolean added = false;
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 80, 2);
         try {
-            added = strategyList.add(address, strategyVO2);
+            added = strategyList.add("江苏省南京市栖霞区仙林大道163号", strategyVO1);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
@@ -66,123 +69,90 @@ public class StrategyListTest {
     //不能在同策略类型列表有重复名称的策略
     @Test
     public void testAdd1(){
-        boolean added1 = false,added2=false;
-        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.SpecificTimePromotion, "双十一折扣", 85, new Date(), new Date());
-        StrategyVO strategyVO4=new StrategyVO(address, StrategyType.SpecificTimePromotion, "双十一折扣", 85, new Date(), new Date());
-
+        boolean added = false;
+        StrategyVO strategyVO1=new StrategyVO(address, StrategyType.SpecificTimePromotion, "双十一折扣", 85, new Date(), new Date());
         try {
-            added1 = strategyList.add(address, strategyVO3);
-            added2 = strategyList.add(address, strategyVO4);
+            added = strategyList.add(address, strategyVO1);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(added1);
-        assertFalse(added2);
+        assertFalse(added);
     }
     
     //不允许出现第二个生日折扣
     @Test
     public void testAdd2(){
-        boolean added1 = false,deleted=false,added2=false;
+        boolean added = false;
         StrategyVO strategyVO3=new StrategyVO(address, StrategyType.BirthdayPromotion, "生日特惠折扣", 85);
         try {
-            added1 = strategyList.add(address, strategyVO3);
+            added = strategyList.add(address, strategyVO3);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        try {
-            deleted=strategyList.delete(address, new StrategyVO(address, StrategyType.BirthdayPromotion, "双十一折扣", 80));
-            added2=strategyList.add(address, strategyVO3);
-        } catch (UnableToDeleteStrategyException e) {
-            e.printStackTrace();
-        } catch (UnableAddStrategyException e) {
-            e.printStackTrace();
-        }
-        assertFalse(added1);
-        assertTrue(deleted);
-        assertTrue(added2);
+        assertFalse(added);
     }
     
     //多房间折扣房间数不相同
     @Test
     public void testAdd3(){
-        boolean added1 = false,added2=false;
-        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.MultiRoomPromotion, "3房间折扣", 85,3);
-        StrategyVO strategyVO4=new StrategyVO(address, StrategyType.MultiRoomPromotion, "多房间折扣", 85,3);
+        boolean added1 = false;
+        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.MultiRoomPromotion, "3房间以上折扣", 85,3);
         try {
             added1 = strategyList.add(address, strategyVO3);
-            added2 = strategyList.add(address, strategyVO4);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(added1);
-        assertFalse(added2);
+        assertFalse(added1);
     }
     
     //合作企业折扣合作公司不能重复
     @Test
     public void testAdd4(){
-        boolean added1 = false,added2=false;
-        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司折扣", 85,"万达公司","wanda123");
-        StrategyVO strategyVO4=new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司特惠折扣", 85,"万达公司","wanda123");
+        boolean added = false;
+        StrategyVO strategyVO1=new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司折扣", 85,"万达","wanda666");
         try {
-            added1 = strategyList.add(address, strategyVO3);
-            added2 = strategyList.add(address, strategyVO4);
+            added = strategyList.add(address, strategyVO1);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(added1);
-        assertFalse(added2);
+        assertFalse(added);
     }
     
     //会员等级折扣会员等级不相同
     //酒店工作人员不能制定网站营销策略
     @Test
     public void testAdd5(){
-        boolean added1 = false,added2=false,added3=false;
+        boolean added1 = false,added2=false;
         String address1="Web";
         StrategyList strategyList1=StrategyList.getInstance(address1);
-        StrategyVO strategyVO3=new StrategyVO(address1, StrategyType.MemberRankMarket, "vip2会员等级折扣", 85,2);
-        StrategyVO strategyVO4=new StrategyVO(address1, StrategyType.MemberRankMarket, "vip2特惠折扣", 85,2);
+        StrategyVO strategyVO3=new StrategyVO(address1, StrategyType.MemberRankMarket, "vip1会员等级折扣", 85,1);
         try {
             added1 = strategyList1.add(address1, strategyVO3);
-            added2 = strategyList1.add(address1, strategyVO4);
-            
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
         try {
-            added3=strategyList.add(address, strategyVO3);
+            added2=strategyList.add(address, strategyVO3);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(added1);
+        assertFalse(added1);
         assertFalse(added2);
-        assertFalse(added3);
     }
     
     //特定商圈折扣在同一个商圈不能有相同会员等级
     @Test
     public void testAdd6(){
-        boolean added1 = false,added2=false,added3=false;
+        boolean added1 = false;
         String address1="Web";
         StrategyList strategyList1=StrategyList.getInstance(address1);
-        StrategyVO strategyVO3=new StrategyVO(address1, StrategyType.VipTradeAreaMarket, "vip2栖霞区折扣", 85,2,"栖霞区");
-        StrategyVO strategyVO4=new StrategyVO(address1, StrategyType.VipTradeAreaMarket, "vip2栖霞区特惠折扣", 85,2,"栖霞区");
+        StrategyVO strategyVO3=new StrategyVO(address1, StrategyType.VipTradeAreaMarket, "vip1栖霞区折扣", 85,1,"栖霞区");
         try {
             added1 = strategyList1.add(address1, strategyVO3);
-            added2 = strategyList1.add(address1, strategyVO4);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         }
-        try {
-            added3=strategyList.add(address, strategyVO3);
-        } catch (UnableAddStrategyException e) {
-            System.out.println(e.getMessage());
-        }
-        assertTrue(added1);
-        assertFalse(added2);
-        assertFalse(added3);
+        assertFalse(added1);
     }
     
     //不能修改策略名称不存在的策略
@@ -190,15 +160,20 @@ public class StrategyListTest {
     @Test
     public void testModify(){
         boolean modifyed1 = false,modifyed2=false,modifyed3=false;
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 80, 2);
         StrategyVO strategyVO3=new StrategyVO(address, StrategyType.VipTradeAreaMarket, "XX折扣", 85,2,"栖霞区");
         StrategyVO strategyVO4=new StrategyVO(address, StrategyType.BirthdayPromotion, "生日折扣", 85);
         try {
-            strategyList.add(address, strategyVO);
-            modifyed1 =strategyList.modify(address, strategyVO);
+            strategyList.add(address, strategyVO1);
+            strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 85, 2);
+            modifyed1 =strategyList.modify(address, strategyVO1);
+            strategyList.delete(address, strategyVO1);
             modifyed2 =strategyList.modify(address, strategyVO3);
         } catch (UnableToModifyStrategyException e) {
             System.out.println(e.getMessage());
         } catch (UnableAddStrategyException e) {
+            e.printStackTrace();
+        } catch (UnableToDeleteStrategyException e) {
             e.printStackTrace();
         }
         try {
@@ -216,9 +191,11 @@ public class StrategyListTest {
     @Test
     public void testDelete(){
         boolean deleted1 = false,deleted2 = false;
-        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.VipTradeAreaMarket, "XX折扣", 85,2,"栖霞区");
+        strategyList=StrategyList.getInstance("Web");
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 85, 2);
+        StrategyVO strategyVO3=new StrategyVO("Web", StrategyType.VipTradeAreaMarket, "XX折扣", 85,2,"栖霞区");
         try {
-            deleted1 = strategyList.delete(address, new StrategyVO(address, StrategyType.SpecificTimePromotion, "双十一折扣", 80, new Date(116,10,10), new Date(116,10,12)));
+            deleted1 = strategyList.delete(address, strategyVO1);
             deleted2 = strategyList.delete(address, strategyVO3);
         } catch (UnableToDeleteStrategyException e) {
             System.out.println(e.getMessage());
@@ -227,11 +204,13 @@ public class StrategyListTest {
         assertFalse(deleted2);
     }
     
+    @SuppressWarnings("deprecation")
     @Test
     public void testValid(){
         boolean valied = false;
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣", 90, new Date(116,10,30,00,00,00), new Date(116,11,10,00,00,00));
         try {
-            valied =strategyList.valid(address, strategyVO);
+            valied =strategyList.valid(address, strategyVO1);
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }

@@ -9,6 +9,7 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import businesslogic.roombl.updateCheckOut.CheckOutItem;
 import businesslogic.roombl.updateCheckOut.UpdateCheckOutServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
@@ -20,10 +21,11 @@ public class UpdateCheckOutServiceImplTest {
     private UpdateCheckOutServiceImpl updateCheckOutServiceImpl;
     private String address;
     private Date actDepartTime;
-    private Enum<RoomType> roomType;
     private CheckOutVO checkOutVO;
     private Date startTime;
     private Date endTime;
+    
+    private CheckOutVO checkOutVO1,checkOutVO2,checkOutVO3,checkOutVO4;
     
     @SuppressWarnings("deprecation")
     @Before
@@ -31,44 +33,56 @@ public class UpdateCheckOutServiceImplTest {
         updateCheckOutServiceImpl=new UpdateCheckOutServiceImpl();
         
         address = "江苏省南京市栖霞区仙林大道163号";
-        actDepartTime = new Date(116, 11, 1, 17, 13);
-        startTime=new Date(116, 11, 1, 17, 13, 00);
-        endTime=new Date(116, 11, 2, 17, 13, 00);
-        roomType = RoomType.SINGLE_ROOM;
-        checkOutVO=new CheckOutVO(roomType, 3, address, actDepartTime);
+        actDepartTime = new Date();
+        startTime=new Date(116,9,7,12,00,00);
+        endTime=new Date(116,10,12,12,00,00);
+        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 3, address, actDepartTime);
+        
+        checkOutVO1=new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,12,12,00,00));
+        checkOutVO2=new CheckOutVO(RoomType.STANDARD_ROOM, 4, "江苏省南京市栖霞区仙林大道163号", new Date(116,9,7,12,00,00));
+        checkOutVO3=new CheckOutVO(RoomType.TRIBLE_ROOM, 1, "江苏省南京市栖霞区仙林大道163号", new Date(116,9,1,10,10,00));
+        checkOutVO4=new CheckOutVO(RoomType.KING_SIZE_ROOM, 1, "江苏省南京市栖霞区仙林大道164号", new Date(116,10,16,11,00,00));
     }
     
     @Test
     public void testGetCheckOutList(){
-        ArrayList<RoomVO> checkOutVOs=updateCheckOutServiceImpl.getCheckOutList(address);
-        assertEquals(1,checkOutVOs.size());
-        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutVOs.get(0);
-        assertEquals(checkOutVO.address, checkOutVOFromArray.address);
-        assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
-        assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
-        assertEquals(0,checkOutVO.actDepartTime.compareTo(checkOutVOFromArray.actDepartTime));
+        ArrayList<RoomVO> checkOutVOs=updateCheckOutServiceImpl.getCheckOutList("江苏省南京市栖霞区仙林大道163号");
+        assertEquals(3,checkOutVOs.size());
+        for(RoomVO RoomVO:checkOutVOs){
+            CheckOutVO checkOutVO=(CheckOutVO)RoomVO;
+            if(checkOutVO.roomType==RoomType.SINGLE_ROOM)
+                assertTrue(equalCheckOut(checkOutVO, checkOutVO1));
+            if(checkOutVO.roomType==RoomType.STANDARD_ROOM)
+                assertTrue(equalCheckOut(checkOutVO, checkOutVO2));
+            if(checkOutVO.roomType==RoomType.TRIBLE_ROOM)
+                assertTrue(equalCheckOut(checkOutVO, checkOutVO3));
+        }
+        checkOutVOs = updateCheckOutServiceImpl.getCheckOutList("江苏省南京市栖霞区仙林大道164号");
+        assertEquals(1, checkOutVOs.size());
+        assertTrue(equalCheckOut(checkOutVO4, (CheckOutVO)checkOutVOs.get(0)));
     }
     
     @Test
     public void testSearchCheckOutInfo1(){
-        ArrayList<RoomVO> checkOutVOs=updateCheckOutServiceImpl.searchCheckOutInfo(address, startTime, endTime);
-        assertEquals(1,checkOutVOs.size());
-        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutVOs.get(0);
-        assertEquals(checkOutVO.address, checkOutVOFromArray.address);
-        assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
-        assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
-        assertEquals(0,checkOutVO.actDepartTime.compareTo(checkOutVOFromArray.actDepartTime));
+        ArrayList<RoomVO> checkOutVOs=updateCheckOutServiceImpl.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", startTime, endTime);
+        assertEquals(2,checkOutVOs.size());
+        for(RoomVO roomVO:checkOutVOs){
+            CheckOutVO checkOutVO=(CheckOutVO)roomVO;
+            if(checkOutVO.roomType==RoomType.SINGLE_ROOM){
+                assertTrue(equalCheckOut(checkOutVO, checkOutVO1));
+            }
+            if(checkOutVO.roomType==RoomType.STANDARD_ROOM){
+                assertTrue(equalCheckOut(checkOutVO, checkOutVO2));
+            }
+        }
     }
     
     @Test
     public void testSearchCheckOutInfo2(){
-        ArrayList<RoomVO> checkOutVOs=updateCheckOutServiceImpl.searchCheckOutInfo(address, roomType);
+        ArrayList<RoomVO> checkOutVOs=updateCheckOutServiceImpl.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", RoomType.TRIBLE_ROOM);
         assertEquals(1,checkOutVOs.size());
         CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutVOs.get(0);
-        assertEquals(checkOutVO.address, checkOutVOFromArray.address);
-        assertEquals(checkOutVO.roomNum, checkOutVOFromArray.roomNum);
-        assertEquals(checkOutVO.roomType,checkOutVOFromArray.roomType);
-        assertEquals(0,checkOutVO.actDepartTime.compareTo(checkOutVOFromArray.actDepartTime));
+        assertTrue(equalCheckOut(checkOutVO3, checkOutVOFromArray));
     }
     
     @Test
@@ -95,5 +109,14 @@ public class UpdateCheckOutServiceImplTest {
             e.printStackTrace();
         }
         assertTrue(valid);
+    }
+    
+    public boolean equalCheckOut(CheckOutVO checkOutVO1, CheckOutVO checkOutVO2) {
+        if (checkOutVO1.roomType != checkOutVO2.roomType || checkOutVO1.roomNum != checkOutVO2.roomNum
+                || checkOutVO1.roomPrice != checkOutVO2.roomPrice || checkOutVO1.address != checkOutVO2.address
+                || checkOutVO1.actDepartTime.compareTo(checkOutVO2.actDepartTime) != 0) {
+            return false;
+        }
+        return true;
     }
 }

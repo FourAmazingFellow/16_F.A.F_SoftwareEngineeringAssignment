@@ -26,7 +26,7 @@ public class CheckOutItemTest {
     @Before
     public void setUp() throws Exception{
         address="江苏省南京市栖霞区仙林大道163号";
-        actDepartTime=new Date(116, 11, 1, 17, 35);
+        actDepartTime=new Date();
         checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 3, address, actDepartTime);
         
         checkOutItem=new CheckOutItem(checkOutVO);

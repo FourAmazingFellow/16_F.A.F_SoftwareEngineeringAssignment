@@ -8,6 +8,7 @@ import java.util.HashMap;
 import bl_Stub.hotelbl_Stub.HotelInfoServiceImpl_Stub;
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
+import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
@@ -121,9 +122,25 @@ public class StrategyItem {
      * @param address
      *            string型，酒店地址
      * @return 返回是否增加成功
+     * @throws UnableAddStrategyException 
      * @see
      */
-    public boolean add(String address) {
+    public boolean add(String address) throws UnableAddStrategyException {
+        if (address != "Web") {
+            if (strategyType == StrategyType.MemberRankMarket
+                    || strategyType == StrategyType.SpecificTimeMarket
+                    || strategyType == StrategyType.VipTradeAreaMarket) {
+                throw new UnableAddStrategyException("hotel staff cannot make website market strategy");
+            }
+        }
+        if (address == "Web") {
+            if (strategyType == StrategyType.BirthdayPromotion
+                    || strategyType == StrategyType.CooperationEnterprisePromotion
+                    ||strategyType == StrategyType.MultiRoomPromotion
+                    || strategyType == StrategyType.SpecificTimePromotion) {
+                throw new UnableAddStrategyException("website staff cannot make hotel's strategy");
+            }
+        }
         StrategyPO strategyPO;
         if (strategyType.equals(StrategyType.BirthdayPromotion)) {
             strategyPO = new StrategyPO(address, strategyType, address, discount);
@@ -222,6 +239,22 @@ public class StrategyItem {
      */
     public boolean valid() throws WrongInputException {
         // 格式验证
+        //验证折扣类型是否与地址相对应
+        if (address != "Web") {
+            if (strategyType == StrategyType.MemberRankMarket
+                    || strategyType == StrategyType.SpecificTimeMarket
+                    || strategyType == StrategyType.VipTradeAreaMarket) {
+                throw new WrongInputException("hotel staff cannot make website market strategy");
+            }
+        }
+        if (address == "Web") {
+            if (strategyType == StrategyType.BirthdayPromotion
+                    || strategyType == StrategyType.CooperationEnterprisePromotion
+                    ||strategyType == StrategyType.MultiRoomPromotion
+                    || strategyType == StrategyType.SpecificTimePromotion) {
+                throw new WrongInputException("website staff cannot make hotel's strategy");
+            }
+        }
         // 验证地址是否正确,地址长度小于50
         if (address.length() > 50 || address.length() < 1) {
             throw new WrongInputException("the address can't be longer than 50 characters");

@@ -163,21 +163,7 @@ public class StrategyList {
      * @see
      */
     public boolean add(String address, StrategyVO strategyVO) throws UnableAddStrategyException {
-        if (address != "Web") {
-            if (strategyVO.strategyType == StrategyType.MemberRankMarket
-                    || strategyVO.strategyType == StrategyType.SpecificTimeMarket
-                    || strategyVO.strategyType == StrategyType.VipTradeAreaMarket) {
-                throw new UnableAddStrategyException("hotel staff cannot make website market strategy");
-            }
-        }
-        if (address == "Web") {
-            if (strategyVO.strategyType == StrategyType.BirthdayPromotion
-                    || strategyVO.strategyType == StrategyType.CooperationEnterprisePromotion
-                    ||strategyVO.strategyType == StrategyType.MultiRoomPromotion
-                    || strategyVO.strategyType == StrategyType.SpecificTimePromotion) {
-                throw new UnableAddStrategyException("website staff cannot make hotel's strategy");
-            }
-        }
+        
         if (address != this.address) {
             throw new UnableAddStrategyException(
                     "the address is not this hotel's address, you cann't add other hotel's strategy");
@@ -236,7 +222,7 @@ public class StrategyList {
         if (strategyType == StrategyType.MultiRoomPromotion) {
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
                 if (strategyItem.toVO().minRoomNum == strategyVO.minRoomNum) {
-                    throw new UnableAddStrategyException("this minimum Room Number has already exited");
+                    throw new UnableAddStrategyException("this minimum Room Number has already existed");
                 }
             }
         }
@@ -251,7 +237,7 @@ public class StrategyList {
         if (strategyType == StrategyType.MemberRankMarket) {
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
                 if (strategyItem.toVO().vipRank == strategyVO.vipRank) {
-                    throw new UnableAddStrategyException("this vipRank has already exited");
+                    throw new UnableAddStrategyException("this vipRank has already existed");
                 }
             }
         }
@@ -262,7 +248,7 @@ public class StrategyList {
                 StrategyVO vo = strategyItem.toVO();
                 if (vo.tradeArea == strategyVO.tradeArea && vo.vipRank == strategyVO.vipRank) {
                     throw new UnableAddStrategyException(
-                            "the same tradeArea with the same vipRank number has already exited");
+                            "the same tradeArea with the same vipRank number has already existed");
                 }
             }
         }
@@ -325,7 +311,7 @@ public class StrategyList {
             }
         }
         if (!exited)
-            throw new UnableToModifyStrategyException("the strategyName doesn't exit");
+            throw new UnableToModifyStrategyException("the strategyName doesn't exist");
         // 如果是生日折扣，名称不能改变
         if (modigyStrategyType == StrategyType.BirthdayPromotion) {
             if (strategyVO.strategyName != birthdatyPromotionList.get(0).toVO().strategyName) {
@@ -368,7 +354,7 @@ public class StrategyList {
             }
         }
         if (!exited)
-            throw new UnableToDeleteStrategyException("the strategyName doesn't exit");
+            throw new UnableToDeleteStrategyException("the strategyName doesn't exist");
         StrategyItem strategyItem = new StrategyItem(strategyVO);
         boolean deleted = strategyItem.delete(address);
         // 在删除策略之后及时更新该类中的策略列表

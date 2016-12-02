@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
@@ -51,7 +52,7 @@ public class MockStrategyList extends StrategyList{
     }
     
     @Override
-    public boolean add(String address, StrategyVO strategyVO){
+    public boolean add(String address, StrategyVO strategyVO) throws UnableAddStrategyException{
         StrategyItem strategyItem=new MockStrategyItem(strategyVO);
         return strategyItem.add(address);
     }
