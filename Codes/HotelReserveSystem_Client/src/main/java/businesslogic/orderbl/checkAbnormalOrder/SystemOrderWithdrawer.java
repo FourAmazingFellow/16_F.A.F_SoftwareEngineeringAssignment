@@ -46,7 +46,7 @@ public class SystemOrderWithdrawer {
 		try {
 			if(orderDaoService.updateOrder(po)){
 				if(addSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType) &&
-						recoverCreditValue(vo.userID, vo.hotelAddress, isRecoverHalfCredit, vo.totalPrice))
+						recoverCreditValue(vo.userID, vo.hotelAddress, isRecoverHalfCredit, vo.totalPrice, ActionType.ORDER_RECOVER))
 					return true;
 				else
 					return false;
