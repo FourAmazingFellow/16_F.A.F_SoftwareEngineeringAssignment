@@ -5,20 +5,24 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.checkAbnormalOrder.SystemOrderWithdrawer;
-import businesslogic.roombl.MockRoomInfoServiceImpl;
 import businesslogic.roombl.RoomInfoService;
+import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.userbl.ClientCreditInfo;
-import businesslogic.userbl.MockClientCreditInfoImpl;
-import data_Stub.OrderDAOImpl_Stub;
+import businesslogic.userbl.ClientCreditInfoImpl;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
+import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class SystemOrderWithdrawerTest {
+	private static LinkToServer linkToServer;
+	
 	private SystemOrderWithdrawer systemOrderWithdrawer;
 	private boolean result;
 	private OrderDAO orderDAO;
@@ -41,6 +45,12 @@ public class SystemOrderWithdrawerTest {
 	private boolean isChildren;
 	private boolean isOnSale;
 	private boolean isCommented;
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
 	
 	@SuppressWarnings("deprecation")
 	@Before
@@ -65,9 +75,9 @@ public class SystemOrderWithdrawerTest {
 		this.isOnSale = false;
 		this.isCommented = false;
 		
-		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented, false);
-		userCreditService = new MockClientCreditInfoImpl();
-		addSpareRoomService = new MockRoomInfoServiceImpl();
+		orderDAO = RemoteHelper.getInstance().getOrderDAO();
+		userCreditService = new ClientCreditInfoImpl();
+		addSpareRoomService = new RoomInfoServiceImpl();
 		
 		systemOrderWithdrawer.set(orderDAO, userCreditService, addSpareRoomService);
 	}

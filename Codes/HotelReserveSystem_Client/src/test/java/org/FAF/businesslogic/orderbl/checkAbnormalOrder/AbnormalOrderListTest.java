@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.checkAbnormalOrder.AbnormalOrderList;
@@ -13,10 +14,14 @@ import data_Stub.OrderDAOImpl_Stub;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
+import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class AbnormalOrderListTest {
+	private static LinkToServer linkToServer;
+	
 	private AbnormalOrderList abnormalOrderList;
 	private OrderDAO orderDAO;
 	
@@ -39,6 +44,12 @@ public class AbnormalOrderListTest {
 	
 	private boolean isReserved;
 	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup(){
@@ -60,7 +71,9 @@ public class AbnormalOrderListTest {
 		this.isCommented = false;
 		
 		this.isReserved = true;
-		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented,isReserved);
+
+		orderDAO = RemoteHelper.getInstance().getOrderDAO();
+		
 		abnormalOrderList= new AbnormalOrderList();
 		abnormalOrderList.setOrderDAO(orderDAO);
 	}

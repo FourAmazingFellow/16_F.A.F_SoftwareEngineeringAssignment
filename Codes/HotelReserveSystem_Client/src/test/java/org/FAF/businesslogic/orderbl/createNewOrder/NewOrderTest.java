@@ -48,6 +48,7 @@ public class NewOrderTest {
 	private boolean isOnSale;
 	private boolean isCommented;
 
+	@SuppressWarnings("unused")
 	private boolean isReserved;
 	
 	@BeforeClass
@@ -81,10 +82,7 @@ public class NewOrderTest {
 		this.addResult = true;
 		
 		newOrder = new NewOrder();
-//		mockOrderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType,
-//				num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
-//				isCommented, isReserved);
-//		mockStrategyInfoService = new mockStrategyInfoServiceImpl();
+
 		orderDAO = RemoteHelper.getInstance().getOrderDAO();
 		strategyInfoService = new StrategyInfoServiceImpl();
 		newOrder.setOrderDAO(orderDAO, strategyInfoService);

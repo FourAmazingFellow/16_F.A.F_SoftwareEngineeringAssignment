@@ -5,27 +5,37 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.orderbl.withdrawOrder.MockOrderWithdrawer;
 import businesslogic.orderbl.withdrawOrder.OrderWithdrawer;
 import businesslogic.orderbl.withdrawOrder.WithdrawOrderServiceImpl;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.OrderVO;
 
 public class WithdrawOrderServiceImplTest {
+	private static LinkToServer linkToServer;
+	
 	private WithdrawOrderServiceImpl withdrawOrderServiceImpl;
-	private OrderWithdrawer mockOrderWithdrawer;
+	private OrderWithdrawer orderWithdrawer;
 	
 	private boolean withDrawResult;
 	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@Before
 	public void setup(){
-		mockOrderWithdrawer = new MockOrderWithdrawer(true);
-		withdrawOrderServiceImpl = new WithdrawOrderServiceImpl();
-		withdrawOrderServiceImpl.set(mockOrderWithdrawer);
 		withDrawResult = true;
+		
+		orderWithdrawer = new OrderWithdrawer();
+		withdrawOrderServiceImpl = new WithdrawOrderServiceImpl();
+		withdrawOrderServiceImpl.set(orderWithdrawer);
 	}
 	
 	@Test

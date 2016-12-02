@@ -5,31 +5,32 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.HotelInfoService;
-import businesslogic.hotelbl.MockHotelInfoServiceImpl;
+import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.orderbl.createNewOrder.Checker;
 import businesslogic.orderbl.createNewOrder.CreateNewOrderServiceImpl;
-import businesslogic.orderbl.createNewOrder.MockChecker;
-import businesslogic.orderbl.createNewOrder.MockNewOrder;
 import businesslogic.orderbl.createNewOrder.NewOrder;
-import businesslogic.roombl.MockRoomInfoServiceImpl;
 import businesslogic.roombl.RoomInfoService;
+import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogicservice.orderblservice.ResultMessage;
 
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.BriefHotelInfoVO;
-import vo.HotelVO;
 import vo.OrderVO;
 
 public class CreateNewOrderServiceImplTest {
+	private static LinkToServer linkToServer;
+	
 	private CreateNewOrderServiceImpl createNewOrderServiceImpl;
-	private HotelInfoService mockHotelInfoGetter;
-	private RoomInfoService mockRoomInfoService;
-	private Checker mockChecker;
-	private NewOrder mockNewOrder;
+	private HotelInfoService hotelInfoGetter;
+	private RoomInfoService roomInfoService;
+	private Checker checker;
+	private NewOrder newOrder;
 
 	private int price;
 	private boolean addResult;
@@ -62,15 +63,27 @@ public class CreateNewOrderServiceImplTest {
 	private String hotelAddress_;
 	private int starLevel;
 	private float mark;
+	@SuppressWarnings("unused")
 	private String city;
 
 	// DetailedHotel
+	@SuppressWarnings("unused")
 	private String briefIntroduction;
+	@SuppressWarnings("unused")
 	private String facilityAndService;
+	@SuppressWarnings("unused")
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
+	@SuppressWarnings("unused")
 	private HashMap<RoomType, Integer> roomTypeAndNums;
+	@SuppressWarnings("unused")
 	private HashMap<String, String> comments;
-
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
@@ -120,19 +133,14 @@ public class CreateNewOrderServiceImplTest {
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
 
-		BriefHotelInfoVO briefHotelInfoVO = new BriefHotelInfoVO(hotelName_, tradeArea, hotelAddress_, starLevel,
-				mark,city);
-		HotelVO hotelvo = new HotelVO(hotelName_, tradeArea, hotelAddress_, starLevel, mark, city, briefIntroduction,
-				facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
-
 		createNewOrderServiceImpl = new CreateNewOrderServiceImpl();
 		
-		mockHotelInfoGetter = new MockHotelInfoServiceImpl(hotelvo, briefHotelInfoVO);
-		mockRoomInfoService = new MockRoomInfoServiceImpl();
-		mockChecker = new MockChecker(true, ResultMessage.SUCCEED);
-		mockNewOrder = new MockNewOrder(200, true, "19970206", "江苏省南京市栖霞区仙林大道163号");
+		hotelInfoGetter = new HotelInfoServiceImpl();
+		roomInfoService = new RoomInfoServiceImpl();
+		checker = new Checker();
+		newOrder = new NewOrder();
 
-		createNewOrderServiceImpl.set(mockHotelInfoGetter, mockRoomInfoService, mockChecker, mockNewOrder);
+		createNewOrderServiceImpl.set(hotelInfoGetter, roomInfoService, checker, newOrder);
 	}
 
 	@Test

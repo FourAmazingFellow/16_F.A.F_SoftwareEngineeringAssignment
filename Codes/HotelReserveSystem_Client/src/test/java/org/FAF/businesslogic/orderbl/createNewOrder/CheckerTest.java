@@ -1,36 +1,49 @@
 package org.FAF.businesslogic.orderbl.createNewOrder;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
 import businesslogic.orderbl.createNewOrder.Checker;
-import businesslogic.roombl.MockRoomInfoServiceImpl;
 import businesslogic.roombl.RoomInfoService;
+import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.userbl.ClientCreditInfo;
-import businesslogic.userbl.MockClientCreditInfoImpl;
+import businesslogic.userbl.ClientCreditInfoImpl;
 import businesslogicservice.orderblservice.ResultMessage;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.OrderVO;
 
 public class CheckerTest {
+	private static LinkToServer linkToServer;
+	
 	private Checker checker;
-	private ClientCreditInfo mockClientCreditGetter;
-	private RoomInfoService mockOrderChecker;
+	private ClientCreditInfo clientCreditGetter;
+	private RoomInfoService orderChecker;
 	private OrderVO orderToBeChecked;
 	private boolean canUserCreateNewOrder;
 	private ResultMessage resultMessage;
-
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
 		checker = new Checker();
-		mockClientCreditGetter = new MockClientCreditInfoImpl();
-		mockOrderChecker = new MockRoomInfoServiceImpl();
-		checker.setCreditHelper(mockClientCreditGetter);
-		checker.setRoomHelper(mockOrderChecker);
+		
+		clientCreditGetter = new ClientCreditInfoImpl();
+		orderChecker = new RoomInfoServiceImpl();
+		
+		checker.setCreditHelper(clientCreditGetter);
+		checker.setRoomHelper(orderChecker);
+		
 		canUserCreateNewOrder = true;
 		resultMessage = ResultMessage.SUCCEED;
 		orderToBeChecked = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 

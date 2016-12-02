@@ -6,19 +6,23 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseUserOrder.BrowseUserOrderServiceImpl;
 import businesslogic.orderbl.browseUserOrder.UserOrderList;
-import data_Stub.OrderDAOImpl_Stub;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
+import rmi.LinkToServer;
+import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class BrowseUserOrderServiceImplTest {
+	private static LinkToServer linkToServer;
+	
 	private BrowseUserOrderServiceImpl browseUserOrderServiceImpl;
 	private OrderDAO orderDAO;
 	private UserOrderList list;
@@ -39,7 +43,15 @@ public class BrowseUserOrderServiceImplTest {
 	private boolean isOnSale;
 	private boolean isCommented;
 	
-	private boolean isReserved;
+	@SuppressWarnings("unused")
+	private boolean isReserved;	
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
@@ -59,16 +71,16 @@ public class BrowseUserOrderServiceImplTest {
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
-		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, 
-				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, 
-				isChildren, isOnSale, isCommented, isReserved);
+
+		orderDAO = RemoteHelper.getInstance().getOrderDAO();
+		
+		list.setOrderDAO(orderDAO);
 		list = new UserOrderList(userID);
 	}
 	
 	@Test
 	public void testHotelOrderArrayList_1(){
 		browseUserOrderServiceImpl = new BrowseUserOrderServiceImpl();
-		list.setOrderDAO(orderDAO);
 		browseUserOrderServiceImpl.setListHelper(list);
 		ArrayList<BriefOrderInfoVO> briefOrderInfoList = browseUserOrderServiceImpl.getUserOrderList("19970206", OrderType.ALL);
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
@@ -87,7 +99,6 @@ public class BrowseUserOrderServiceImplTest {
 	@Test
 	public void testHotelOrderDetails_1() {
 		browseUserOrderServiceImpl = new BrowseUserOrderServiceImpl();
-		list.setOrderDAO(orderDAO);
 		browseUserOrderServiceImpl.setListHelper(list);
 		OrderVO detailedOrder = browseUserOrderServiceImpl.getDetailedOrder("0001000100010001");
 		assertEquals("BrowseUserOrderServiceImpl.getUserOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, detailedOrder.orderID);

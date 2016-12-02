@@ -6,19 +6,22 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
-import data_Stub.OrderDAOImpl_Stub;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
+import rmi.LinkToServer;
+import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class HotelOrderListTest {
-
+	private static LinkToServer linkToServer;
+	
 	private HotelOrderList list;
 	private OrderDAO orderDAO;
 	private String userID;
@@ -38,7 +41,14 @@ public class HotelOrderListTest {
 	private boolean isOnSale;
 	private boolean isCommented;
 	
+	@SuppressWarnings("unused")
 	private boolean isReserved;
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
 	
 	@SuppressWarnings("deprecation")
 	@Before
@@ -61,7 +71,9 @@ public class HotelOrderListTest {
 		this.isCommented = false;
 		
 		this.isReserved = true;
-		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented,isReserved);
+		
+//		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented,isReserved);
+		orderDAO = RemoteHelper.getInstance().getOrderDAO();
 		list = new HotelOrderList(hotelAddress);
 		list.setOrderDAO(orderDAO);
 	}

@@ -6,22 +6,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
-import businesslogic.orderbl.browseHotelOrder.MockHotelOrderList;
 import businesslogic.orderbl.getOrderDone.GetOrderDoneServiceImpl;
-import businesslogic.orderbl.getOrderDone.MockOrderTerminator;
 import businesslogic.orderbl.getOrderDone.OrderTerminator;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class GetOrderDoneServiceImplTest {
+	private static LinkToServer linkToServer;
+	
 	private GetOrderDoneServiceImpl getOrderDoneServiceImpl;
-	private HotelOrderList mockHotelOrderBrowser;
-	private OrderTerminator mockOrderTerminator;
+	private HotelOrderList hotelOrderBrowser;
+	private OrderTerminator orderTerminator;
 
 	private ArrayList<BriefOrderInfoVO> notDoneOrderList;
 	private OrderVO detailedOrder;
@@ -44,15 +46,16 @@ public class GetOrderDoneServiceImplTest {
 	private boolean isChildren;
 	private boolean isOnSale;
 	private boolean isCommented;
-
+	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
-		mockHotelOrderBrowser = new MockHotelOrderList("");
-		mockOrderTerminator = new MockOrderTerminator(true, true);
-		getOrderDoneServiceImpl = new GetOrderDoneServiceImpl();
-		getOrderDoneServiceImpl.set(mockHotelOrderBrowser, mockOrderTerminator);
-
 		this.orderID = "0001000100010001";
 		this.userID = "19970206";
 		this.hotelName = "汉庭酒店";
@@ -80,6 +83,11 @@ public class GetOrderDoneServiceImplTest {
 		
 		canGetOrderDone = true;
 		canDelayCheckIn = true;
+		
+		hotelOrderBrowser = new HotelOrderList(hotelAddress);
+		orderTerminator = new OrderTerminator();
+		getOrderDoneServiceImpl = new GetOrderDoneServiceImpl();
+		getOrderDoneServiceImpl.set(hotelOrderBrowser, orderTerminator);
 	}
 	
 	@Test
