@@ -19,6 +19,8 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     private int creditValue;
     private int creditResult;
     private int vipRank;
+    private String orderID;
+    private ActionType actionType;
     private ArrayList<CreditRecordPO> creditRecord;
     private ClientInfoPO clientInfoPO;
     
@@ -75,16 +77,16 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
                     regularVipPO.getPassword(), regularVipPO.getTelNum(), UserType.Client, creditResult, creditRecord,
                     regularVipPO.getBirth(), vipRank);
             try {
-                userDAO.updateRegularVipInfo(modifiedVipRank, userID);
+                userDAO.updateRegularVipInfo(modifiedVipRank);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
         }
-        //update信用记录和信用值,new出来的creditRecordPO需要调用order，暂未完成
+        //update信用记录和信用值
         this.creditRecord = new ArrayList<>();
         creditRecord = clientInfoPO.getCreditRecord();
-        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), null,
-                ActionType.RECHARGE, num, creditResult);
+        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), orderID,
+                actionType, num, creditResult);
         creditRecord.add(creditRecordPO);
         
         ClientInfoPO modified = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(), UserType.Client, creditResult, creditRecord);

@@ -64,7 +64,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
                     regularVipPO.getPassword(), regularVipPO.getTelNum(), UserType.Client, creditResult, creditRecord,
                     regularVipPO.getBirth(), vipRank);
             try {
-                userDAO.updateRegularVipInfo(modifiedVipRank, userID);
+                userDAO.updateRegularVipInfo(modifiedVipRank);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

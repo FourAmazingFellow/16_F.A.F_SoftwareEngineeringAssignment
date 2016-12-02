@@ -142,7 +142,7 @@ public class UserDAOImpl_Stub implements UserDAO{
      * @see dataservice.userDAO.UserDAO#updateRegularVipInfo(po.RegularVipPO, java.lang.String)
      */
     @Override
-    public void updateRegularVipInfo(RegularVipPO regularVipPO, String userID) throws RemoteException {
+    public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
         System.out.println("Update Succeed!\n");        
     }
     
