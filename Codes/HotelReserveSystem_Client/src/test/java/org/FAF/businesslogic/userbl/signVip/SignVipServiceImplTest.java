@@ -31,6 +31,9 @@ public class SignVipServiceImplTest {
     private String enterpriseID;
     private String enterprisePassword;
     private UserDAO userDAO;
+    private RegularVipVO regularVip;
+    private EnterpriseVipVO enterpriseVip;
+    
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception {
@@ -42,13 +45,15 @@ public class SignVipServiceImplTest {
         this.enterpriseID = "如家";
         this.enterprisePassword = "rujia";
         this.userDAO = new UserDAOImpl_Stub(userID, enterprisePassword, telNum);
+        this.regularVip = null;
+        this.enterpriseVip = null;
     }
 
     @Test
     public void testSignRegularVip() {
         signVip = new SignVipServiceImpl();
         signVip.setUserDAO(userDAO);
-        RegularVipVO regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 0);
+        regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 0);
         boolean result = signVip.signRegularVip(regularVip);
         assertEquals(true,result);
     }
@@ -57,7 +62,7 @@ public class SignVipServiceImplTest {
     public void testSignEnterpriseVip() {
         signVip = new SignVipServiceImpl();
         signVip.setUserDAO(userDAO);
-        EnterpriseVipVO enterpriseVip = new EnterpriseVipVO(userID, password, telNum, userType, 0, null, enterpriseID, enterprisePassword);
+        enterpriseVip = new EnterpriseVipVO(userID, password, telNum, userType, 0, null, enterpriseID, enterprisePassword);
         boolean result = signVip.signEnterpriseVip(enterpriseVip);
         assertEquals(true,result);
     }

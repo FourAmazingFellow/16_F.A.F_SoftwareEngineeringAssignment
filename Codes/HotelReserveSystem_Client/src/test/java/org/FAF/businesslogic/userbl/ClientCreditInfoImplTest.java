@@ -49,7 +49,7 @@ public class ClientCreditInfoImplTest {
     public void testChangeCreditValue() {
       clientCreditInfo = new ClientCreditInfoImpl();
       clientCreditInfo.setUserDAO(userDAO);
-      boolean result = clientCreditInfo.changeCreditValue(userID, num);
+      boolean result = clientCreditInfo.changeCreditValue(userID, num,null, null);
       assertEquals(true,result);
     }
 

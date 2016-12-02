@@ -2,6 +2,7 @@ package businesslogic.userbl.signVip;
 
 import java.rmi.RemoteException;
 
+import businesslogic.strategybl.VerifyEnterpriseVipImpl;
 import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogicservice.userblservice.SignVipService;
 import dataservice.userDAO.UserDAO;
@@ -26,8 +27,8 @@ public class SignVipServiceImpl implements SignVipService {
         this.userDAO = userDAO;
     }
 
-    public void setVerifyEnterpriseVip(VerifyEnterpriseVip verify) {
-        this.verifyEnterpriseVip = verify;
+    public void setVerifyEnterpriseVip() {
+        this.verifyEnterpriseVip = new VerifyEnterpriseVipImpl();
     }
 
     @Override
@@ -44,7 +45,7 @@ public class SignVipServiceImpl implements SignVipService {
 
     @Override
     public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) {
-        if (verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword)) {
+        if (verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword) == true) {
             try {
                 userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
                 return true;

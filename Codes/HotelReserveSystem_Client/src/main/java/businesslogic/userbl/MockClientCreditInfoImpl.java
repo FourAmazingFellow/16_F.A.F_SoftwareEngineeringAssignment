@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
+import po.ActionType;
 import po.ClientInfoPO;
 import po.UserType;
 
@@ -24,7 +25,7 @@ public class MockClientCreditInfoImpl extends ClientCreditInfoImpl{
     }
 
     @Override
-    public boolean changeCreditValue(String userID, int num) {
+    public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) {
         this.userID = userID;
         ClientInfoPO clientInfoPO = new ClientInfoPO(this.userID, null, null, null, creditValue, null);
         creditValue = clientInfoPO.getCreditValue();

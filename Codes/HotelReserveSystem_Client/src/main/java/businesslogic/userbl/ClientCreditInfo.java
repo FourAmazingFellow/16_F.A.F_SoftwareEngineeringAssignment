@@ -1,5 +1,9 @@
 package businesslogic.userbl;
 
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+
+import po.ActionType;
+
 /**
  * 供同层间调用的关于信用值的接口
  * @author sparkler
@@ -23,7 +27,7 @@ public interface ClientCreditInfo {
      * @return 改变成功则返回true，改变失败则返回false
      * @see
      */
-    public boolean changeCreditValue(String userID,int num);
+    public boolean changeCreditValue(String userID,int num,String orderID, ActionType actionType);
     
 
 }

@@ -15,7 +15,6 @@ import vo.UserVO;
 
 public class LoginAndSignUpServiceImplTest {
     private LoginAndSignUpServiceImpl loginAndSignUp;
-    private CheckLoginInfo check;
     private String userID;
     private String password;
     private String telNum;
