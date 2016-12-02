@@ -5,25 +5,28 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.createNewOrder.NewOrder;
 import businesslogic.strategybl.StrategyInfoService;
-import businesslogic.strategybl.mockStrategyInfoServiceImpl;
-import data_Stub.OrderDAOImpl_Stub;
+import businesslogic.strategybl.StrategyInfoServiceImpl;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
+import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class NewOrderTest {
+	private static LinkToServer linkToServer;
+	
 	private NewOrder newOrder;
-	private OrderDAO mockOrderDAO;
-	private StrategyInfoService mockStrategyInfoService;
+	private OrderDAO orderDAO;
+	private StrategyInfoService strategyInfoService;
 
 	private int price;
 	private boolean addResult;
-	private OrderVO mockOrder;
 
 	//OrderBriefInfo
 	private String userID;
@@ -36,7 +39,7 @@ public class NewOrderTest {
 	private int num;
 	private int totalPrice;
 	private Enum<OrderState> orderState;
-	
+
 	//DetailedOrder
 	private Date orderProducedTime;
 	private Date lastedOrderDoneTime;
@@ -47,7 +50,12 @@ public class NewOrderTest {
 
 	private boolean isReserved;
 	
-	
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		linkToServer.linkToServer();
+	}
+
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
@@ -55,31 +63,31 @@ public class NewOrderTest {
 		this.userID = "19970206";
 		this.hotelName = "汉庭酒店";
 		this.hotelAddress = "南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(2016, 12, 20);
-		this.finishDate = new Date(2016, 12, 21);
+		this.beginDate = new Date(116, 11, 20);
+		this.finishDate = new Date(116, 11, 21);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
 		this.totalPrice = 200;
 		this.orderState = OrderState.NOT_DONE_ORDER;
-		this.orderProducedTime = new Date(2016, 12, 15, 18, 0);
-		this.lastedOrderDoneTime = new Date(2016, 12, 20, 22, 0);
+		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
+		this.lastedOrderDoneTime = new Date(116, 11, 20, 22, 0);
 		this.numOfPerson = 2;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
 
 		this.isReserved = true;
-
-		newOrder = new NewOrder();
-		mockOrderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType,
-				num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
-				isCommented, isReserved);
-		mockStrategyInfoService = new mockStrategyInfoServiceImpl();
-		newOrder.setOrderDAO(mockOrderDAO, mockStrategyInfoService);
-
 		this.price = 200;
 		this.addResult = true;
 		
+		newOrder = new NewOrder();
+//		mockOrderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType,
+//				num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
+//				isCommented, isReserved);
+//		mockStrategyInfoService = new mockStrategyInfoServiceImpl();
+		orderDAO = RemoteHelper.getInstance().getOrderDAO();
+		strategyInfoService = new StrategyInfoServiceImpl();
+		newOrder.setOrderDAO(orderDAO, strategyInfoService);
 	}
 
 	@Test
@@ -106,14 +114,16 @@ public class NewOrderTest {
 
 	@Test
 	public void getPriceTest_1() {
-		mockOrder = newOrder.initNewOrder(userID, hotelName, hotelAddress);
-		int result = newOrder.getPrice(mockOrder);
+		OrderVO tempOrder = newOrder.initNewOrder(userID, hotelName, hotelAddress);
+		int result = newOrder.getPrice(tempOrder);
 		assertEquals("NewOrder.getPrice has an error!", price, result);
 	}
 
 	@Test
 	public void addNewOrderTest_1() {
-		boolean result = newOrder.addNewOrder(mockOrder);
+		OrderVO testOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, 
+				orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
+		boolean result = newOrder.addNewOrder(testOrder);
 		assertEquals("NewOrder.addNewOrder has an error!", addResult, result);
 	}
 }

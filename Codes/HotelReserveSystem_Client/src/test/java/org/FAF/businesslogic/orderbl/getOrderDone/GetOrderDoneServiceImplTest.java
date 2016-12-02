@@ -57,14 +57,14 @@ public class GetOrderDoneServiceImplTest {
 		this.userID = "19970206";
 		this.hotelName = "汉庭酒店";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(2016, 12, 20);
-		this.finishDate = new Date(2016, 12, 21);
+		this.beginDate = new Date(116, 11, 20);
+		this.finishDate = new Date(116, 11, 21);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
 		this.totalPrice = 200;
 		this.orderState = OrderState.NOT_DONE_ORDER;
-		this.orderProducedTime = new Date(2016, 12, 15, 18, 0);
-		this.lastedOrderDoneTime = new Date(2016, 12, 20, 22, 0);
+		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
+		this.lastedOrderDoneTime = new Date(116, 11, 20, 22, 0);
 		this.numOfPerson = 2;
 		this.isChildren = false;
 		this.isOnSale = false;
@@ -123,8 +123,8 @@ public class GetOrderDoneServiceImplTest {
 	public void getOrderDoneTest_1() {
 		@SuppressWarnings("deprecation")
 		OrderVO vo = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 
-				new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
-				1, 200, null, new Date(2016, 12, 15, 18, 0), new Date(2016, 12, 20, 22, 0), 2, 
+				new Date(116, 11, 20), new Date(116, 11, 21), RoomType.STANDARD_ROOM,
+				1, 200, null, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
 		boolean result = getOrderDoneServiceImpl.getOrderDone(vo);
 		assertEquals(canGetOrderDone, result);
@@ -134,8 +134,8 @@ public class GetOrderDoneServiceImplTest {
 	public void delayCheckInTest_1(){
 		@SuppressWarnings("deprecation")
 		OrderVO vo = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 
-				new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
-				1, 200, null, new Date(2016, 12, 15, 18, 0), new Date(2016, 12, 20, 22, 0), 2, 
+				new Date(116, 11, 20), new Date(116, 11, 21), RoomType.STANDARD_ROOM,
+				1, 200, null, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
 		boolean result = getOrderDoneServiceImpl.delayCheckIn(vo);
 		assertEquals(canDelayCheckIn, result);

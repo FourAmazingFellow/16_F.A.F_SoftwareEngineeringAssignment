@@ -1,6 +1,7 @@
 package businesslogic.orderbl.createNewOrder;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.utilitybl.VO2PO;
@@ -30,12 +31,15 @@ public class NewOrder {
 	
 	public int getPrice(OrderVO vo) {
 		// Codes 用到strategyInfoService,orderDao 并将VO中是否被打过折属性重置
-		double discount = strategyInfoService.getBestDiscount(vo);
+		double discount = -1;
+		discount = strategyInfoService.getBestDiscount(vo)/100;
+		
 		return (int)(vo.totalPrice * discount);
 	}
 
 	public boolean addNewOrder(OrderVO vo) {
 		OrderPO newOrderPO = voTransformer.orderVO2PO(vo);
+		newOrderPO.setOrderProducedTime(new Date());
 		try {
 			 if(orderDao.insertOrder(newOrderPO))
 				 return true;
