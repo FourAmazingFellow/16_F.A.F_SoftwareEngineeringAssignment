@@ -86,7 +86,7 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	}
 
 	@Override
-	public ArrayList<BusinessDistrictPO> getBusinessDistrctList(String city) throws RemoteException {
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException {
 		return null;
 	}
 

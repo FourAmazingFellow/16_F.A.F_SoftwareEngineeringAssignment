@@ -54,7 +54,7 @@ public class HotelInfoServiceImpl implements HotelInfoService {
     @Override
     public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
     	try {
-			return hotelDAO.getBusinessDistrctList(city);
+			return hotelDAO.getBusinessDistrictList(city);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;

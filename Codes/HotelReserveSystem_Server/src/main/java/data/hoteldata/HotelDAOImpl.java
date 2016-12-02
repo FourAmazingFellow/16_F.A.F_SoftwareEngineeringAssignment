@@ -348,7 +348,7 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
-			pstmt = conn.prepareStatement("select * from tradeArea where city = ?");
+			pstmt = conn.prepareStatement("select * from businessdistrict where city = ?");
 			pstmt.setString(1, city);
 			rs = pstmt.executeQuery();
 			
