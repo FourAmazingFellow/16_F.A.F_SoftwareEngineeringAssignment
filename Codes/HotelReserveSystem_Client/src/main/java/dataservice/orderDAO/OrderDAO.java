@@ -121,7 +121,7 @@ public interface OrderDAO extends Remote {
 	
 	/**
 	 * 在数据库中删除一个po
-	 * @param po OrderPO类型 要插入的PO
+	 * @param po OrderPO类型 要删除的PO
 	 * @throws RemoteException
 	 * @see
 	 */
@@ -129,7 +129,7 @@ public interface OrderDAO extends Remote {
 	
 	/**
 	 * 在数据库中更新一个po
-	 * @param po OrderPO类型 要插入的PO
+	 * @param po OrderPO类型 要更新的PO
 	 * @throws RemoteException
 	 * @see
 	 */

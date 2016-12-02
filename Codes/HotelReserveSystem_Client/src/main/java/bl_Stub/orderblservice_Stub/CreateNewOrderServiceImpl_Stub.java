@@ -32,7 +32,7 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 	}
 	
 	@Override
-	public OrderVO initNewOrder(String userID, String address) {
+	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress) {
 		System.out.println("初始化订单");
 		return testOrderVO;
 	}

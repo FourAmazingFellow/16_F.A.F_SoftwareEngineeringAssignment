@@ -9,8 +9,8 @@ import vo.RoomVO;
 
 public class MockRoomInfoServiceImpl extends RoomInfoServiceImpl{
 	
-	
-	public int getAvailableRoomNum(String address, Enum<RoomType> roomType) {
+	@Override
+	public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) {
 		return 2;
 	}
 

@@ -16,7 +16,6 @@ public class OrderPO extends BriefOrderInfoPO {
 	 */
 	private static final long serialVersionUID = -4607107470458436118L;
 	
-	
 	private Date orderProducedTime;
 	private Date lastedOrderDoneTime;
 	private int numOfPerson;

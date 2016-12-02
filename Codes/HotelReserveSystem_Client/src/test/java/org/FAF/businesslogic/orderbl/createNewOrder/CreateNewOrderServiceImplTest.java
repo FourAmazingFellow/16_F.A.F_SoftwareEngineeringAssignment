@@ -1,8 +1,6 @@
 package org.FAF.businesslogic.orderbl.createNewOrder;
 
 import static org.junit.Assert.assertEquals;
-
-import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -128,6 +126,7 @@ public class CreateNewOrderServiceImplTest {
 				facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 
 		createNewOrderServiceImpl = new CreateNewOrderServiceImpl();
+		
 		mockHotelInfoGetter = new MockHotelInfoServiceImpl(hotelvo, briefHotelInfoVO);
 		mockRoomInfoService = new MockRoomInfoServiceImpl();
 		mockChecker = new MockChecker(true, ResultMessage.SUCCEED);
@@ -152,59 +151,31 @@ public class CreateNewOrderServiceImplTest {
 
 	@Test
 	public void initNewOrderTest_1() {
-		OrderVO result = createNewOrderServiceImpl.initNewOrder("19970206", "江苏省南京市栖霞区仙林大道163号");
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in orderID!",
-				orderID, result.orderID);
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in userID!",
-				userID, result.userID);
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in hotelName!",
-				hotelName, result.hotelName);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in hotelAddress!",
-				hotelAddress, result.hotelAddress);
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in beginDate!",
-				beginDate, result.beginDate);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in finishDate!",
-				finishDate, result.finishDate);
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in roomType!",
-				roomType, result.roomType);
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in num!", num,
-				result.num);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in totalPrice!",
-				totalPrice, result.totalPrice);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in orderState!",
-				orderState, result.orderState);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in orderProducedTime!",
-				orderProducedTime, result.orderProducedTime);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in lastedOrderDoneTime!",
-				lastedOrderDoneTime, result.lastedOrderDoneTime);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in numOfPerson!",
-				numOfPerson, result.numOfPerson);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in isChildren!",
-				isChildren, result.isChildren);
-		assertEquals("CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in isOnSale!",
-				isOnSale, result.isOnSale);
-		assertEquals(
-				"CreateNewOrderServiceImpl.initNewOrder(String userID, String address) has an error in isCommented!",
-				isCommented, result.isCommented);
+		OrderVO result = createNewOrderServiceImpl.initNewOrder(userID, hotelName, hotelAddress);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderID!", null, result.orderID);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in userID!", userID, result.userID);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in hotelName!", hotelName, result.hotelName);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in hotelAddress!", hotelAddress, result.hotelAddress);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in beginDate!", null, result.beginDate);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in finishDate!", null, result.finishDate);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in roomType!", null, result.roomType);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in num!", -1, result.num);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in totalPrice!", -1, result.totalPrice);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderState!", OrderState.NOT_DONE_ORDER, result.orderState);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderProducedTime!", null, result.orderProducedTime);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in lastedOrderDoneTime!", null, result.lastedOrderDoneTime);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in numOfPerson!", -1, result.numOfPerson);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isChildren!", false, result.isChildren);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isOnSale!", false, result.isOnSale);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isCommented!", false, result.isCommented);
 	}
 
+
+	@SuppressWarnings("deprecation")
 	@Test
 	public void getAvailableRoomNumTest_1() {
 		int num = 0;
-		try {
-			num = mockRoomInfoService.getAvailableRoomNum("19970206", RoomType.STANDARD_ROOM,new Date(2016, 11, 28));
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		num = createNewOrderServiceImpl.getAvailableRoomNum("19970206", RoomType.STANDARD_ROOM,new Date(2016, 11, 28));
 		assertEquals("CreateNewOrderServiceImpl.getAvailableRoomNum has an Error!", roomNum, num);
 	}
 

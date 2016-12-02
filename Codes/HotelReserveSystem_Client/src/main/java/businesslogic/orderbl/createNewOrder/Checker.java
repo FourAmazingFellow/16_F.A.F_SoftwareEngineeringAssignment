@@ -38,7 +38,6 @@ public class Checker {
 	 * @see
 	 */
 	public ResultMessage checkNewOrder(OrderVO vo) {
-
 		ResultMessage message = null;
 		try {
 			message = orderChecker.checkOrder(vo);

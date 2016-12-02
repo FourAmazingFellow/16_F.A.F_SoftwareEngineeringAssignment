@@ -30,7 +30,7 @@ public interface CreateNewOrderService {
 	 * @return 被初始化的OrderVO 若用户信用值<0,则返回null
 	 * @see
 	 */
-	public OrderVO initNewOrder(String userID, String address);
+	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress);
 	
 	/**
 	 * 得到所有房型的RoomVO (调用RoomInfoService)

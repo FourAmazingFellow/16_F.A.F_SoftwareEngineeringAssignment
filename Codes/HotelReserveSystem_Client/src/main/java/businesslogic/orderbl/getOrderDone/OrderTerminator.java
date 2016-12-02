@@ -1,30 +1,73 @@
 package businesslogic.orderbl.getOrderDone;
 
-import businesslogic.roombl.RoomInfoService;
+import java.rmi.RemoteException; 
+
 import businesslogic.userbl.ClientCreditInfo;
+import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import po.OrderPO;
+import po.OrderState;
 import vo.OrderVO;
 
 public class OrderTerminator {
 	private OrderDAO orderDaoService;
 	private ClientCreditInfo userCreditService;
-	private RoomInfoService addSpareRoomService;
 	
-	public void set(OrderDAO orderDAO, ClientCreditInfo c, RoomInfoService r){
+	public void set(OrderDAO orderDAO, ClientCreditInfo c){
 		orderDaoService = orderDAO;
 		userCreditService = c;
-		addSpareRoomService = r;
 	}
 	
 	public boolean getOrderDone(OrderVO vo) {
-		// TODO Codes 将该订单改为已执行状态，记录入住时间，然后为该客户增加与订单价值等额的信用值, 并增加可用客房
-		return true;
+		// TODO Codes 将该订单改为已执行状态，然后为该客户增加与订单价值等额的信用值
+		if(vo == null)
+			return false;
+		VO2PO transformer = new VO2PO();
+		OrderPO po = transformer.orderVO2PO(vo);
+		po.setOrderState(OrderState.DONE_ORDER);
+		
+		try {
+			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.totalPrice))
+				return true;
+			else
+				return false;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public boolean delayCheckIn(OrderVO vo){
-		// TODO Codes 将该订单置为已执行订单，记录入住时间，恢复扣除的信用值, 并增加可用客房
-		return true;
+		// TODO Codes 将该订单置为已执行订单，恢复扣除的信用值
+		if(vo == null)
+			return false;
+		VO2PO transformer = new VO2PO();
+		OrderPO po = transformer.orderVO2PO(vo);
+		po.setOrderState(OrderState.DONE_ORDER);
+		try {
+			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.totalPrice))
+				return true;
+			else
+				return false;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
-	//下面是该类的各种私有方法, 要用到orderDaoService, userCreditService, addSpareRoomService
+	/**
+	 * 
+	 * @param userID 用户ID
+	 * @param price 订单价值（等价于信用值）
+	 * @return 恢复结果
+	 * @see
+	 */
+	private boolean recoverCreditValue(String userID, int price) {
+		if (userCreditService.changeCreditValue(userID, price))
+			return true;
+		else
+			return false;
+	}
 }

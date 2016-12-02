@@ -8,8 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.orderbl.getOrderDone.OrderTerminator;
-import businesslogic.roombl.MockRoomInfoServiceImpl;
-import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.userbl.MockClientCreditInfoImpl;
 import data_Stub.OrderDAOImpl_Stub;
@@ -22,7 +20,6 @@ public class OrderTerminatorTest {
 	private OrderTerminator orderTerminator;
 	private OrderDAO mockOrderDaoService;
 	private ClientCreditInfo mockUserCreditService;
-	private RoomInfoService mockAddSpareRoomService;
 
 	private boolean canGetOrderDone;
 	private boolean canDelayCheckIn;
@@ -35,9 +32,8 @@ public class OrderTerminatorTest {
 				1, 200, OrderState.NOT_DONE_ORDER, new Date(2016, 12, 15, 18, 0), new Date(2016, 12, 20, 22, 0), 2, 
 				false, false, false, false);
 		mockUserCreditService = new MockClientCreditInfoImpl();
-		mockAddSpareRoomService = new MockRoomInfoServiceImpl();
 		orderTerminator = new OrderTerminator();
-		orderTerminator.set(mockOrderDaoService, mockUserCreditService, mockAddSpareRoomService);
+		orderTerminator.set(mockOrderDaoService, mockUserCreditService);
 		
 		canGetOrderDone = true;
 		canDelayCheckIn = true;
@@ -54,6 +50,13 @@ public class OrderTerminatorTest {
 		assertEquals(canGetOrderDone, result);
 	}
 	
+	//空指针测试
+	@Test
+	public void getOrderDoneTest_2() {
+		OrderVO vo = null;
+		boolean result = orderTerminator.getOrderDone(vo);
+		assertEquals(false, result);
+	}
 	@Test
 	public void delayCheckInTest_1(){
 		@SuppressWarnings("deprecation")

@@ -84,29 +84,29 @@ public class NewOrderTest {
 
 	@Test
 	public void initNewOrderTest_1() {
-		OrderVO result = newOrder.initNewOrder(userID, hotelAddress);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderID!", orderID, result.orderID);
+		OrderVO result = newOrder.initNewOrder(userID, hotelName, hotelAddress);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderID!", null, result.orderID);
 		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in userID!", userID, result.userID);
 		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in hotelName!", hotelName, result.hotelName);
 		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in hotelAddress!", hotelAddress, result.hotelAddress);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in beginDate!", beginDate, result.beginDate);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in finishDate!", finishDate, result.finishDate);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in roomType!", roomType, result.roomType);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in num!", num, result.num);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in totalPrice!", totalPrice, result.totalPrice);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderState!", orderState, result.orderState);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderProducedTime!", orderProducedTime, result.orderProducedTime);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in lastedOrderDoneTime!", lastedOrderDoneTime, result.lastedOrderDoneTime);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in numOfPerson!", numOfPerson, result.numOfPerson);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isChildren!", isChildren, result.isChildren);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isOnSale!", isOnSale, result.isOnSale);
-		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isCommented!", isCommented, result.isCommented);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in beginDate!", null, result.beginDate);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in finishDate!", null, result.finishDate);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in roomType!", null, result.roomType);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in num!", -1, result.num);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in totalPrice!", -1, result.totalPrice);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderState!", OrderState.NOT_DONE_ORDER, result.orderState);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in orderProducedTime!", null, result.orderProducedTime);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in lastedOrderDoneTime!", null, result.lastedOrderDoneTime);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in numOfPerson!", -1, result.numOfPerson);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isChildren!", false, result.isChildren);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isOnSale!", false, result.isOnSale);
+		assertEquals("NewOrder.initNewOrder(String userID, String address) has an error in isCommented!", false, result.isCommented);
 		
 	}
 
 	@Test
 	public void getPriceTest_1() {
-		mockOrder = newOrder.initNewOrder(userID, hotelAddress);
+		mockOrder = newOrder.initNewOrder(userID, hotelName, hotelAddress);
 		int result = newOrder.getPrice(mockOrder);
 		assertEquals("NewOrder.getPrice has an error!", price, result);
 	}

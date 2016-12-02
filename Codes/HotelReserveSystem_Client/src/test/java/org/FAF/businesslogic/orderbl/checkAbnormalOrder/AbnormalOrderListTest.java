@@ -106,4 +106,12 @@ public class AbnormalOrderListTest {
 	}
 	
 	//异常情况下的Test(所得订单号对应订单不是异常订单)
+	@Test
+	public void getDetailedOrderTest_2() {
+		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, OrderState.NOT_DONE_ORDER, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented,isReserved);
+		abnormalOrderList.setOrderDAO(orderDAO);
+		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0001000100010001");
+		System.out.println(detailedOrder);
+		assertEquals(null, detailedOrder);
+	}
 }

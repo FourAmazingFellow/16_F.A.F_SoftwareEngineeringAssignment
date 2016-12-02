@@ -10,7 +10,7 @@ public class CreateNewOrderServiceImpl_Driver {
 		BriefHotelInfoVO hotelInfoVO = createNewOrderService.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
 		System.out.println("确定预定位于" + hotelInfoVO.hotelAddress + "的" + hotelInfoVO.hotelName + "?");
 		
-		OrderVO newOrder = createNewOrderService.initNewOrder("原", "江苏省南京市栖霞区仙林大道163号");
+		OrderVO newOrder = createNewOrderService.initNewOrder("原", "汉庭","江苏省南京市栖霞区仙林大道163号");
 		
 		System.out.println("该用户选择订一间大床房");
 		newOrder.num = 1;

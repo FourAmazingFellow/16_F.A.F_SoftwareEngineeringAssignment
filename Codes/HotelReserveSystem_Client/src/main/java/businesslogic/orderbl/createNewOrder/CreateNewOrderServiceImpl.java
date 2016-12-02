@@ -32,16 +32,16 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	}
 
 	@Override
-	public OrderVO initNewOrder(String userID, String address) {
+	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress) {
 		if (checker.canUserCreateNewOrder(userID)) {
-			return newOrder.initNewOrder(userID, address);
+			return newOrder.initNewOrder(userID, hotelName , hotelAddress);
 		} else
 			return null;
 	}
 
 	@Override
 	public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) {
-		int num = 0;
+		int num = -1;
 		try {
 			num = roomInfoService.getAvailableRoomNum(address, roomType, day);
 		} catch (RemoteException e) {
@@ -53,7 +53,6 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	
 	@Override
 	public ResultMessage checkNewOrder(OrderVO vo) {
-		
 		return checker.checkNewOrder(vo);
 	}
 
@@ -65,7 +64,6 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 
 	@Override
 	public boolean addNewOrder(OrderVO vo) {
-		// TODO Auto-generated method stub
 		return newOrder.addNewOrder(vo);
 	}
 }
