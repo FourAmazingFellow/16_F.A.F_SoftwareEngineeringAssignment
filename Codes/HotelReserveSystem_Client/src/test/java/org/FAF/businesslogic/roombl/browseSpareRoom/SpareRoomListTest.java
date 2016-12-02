@@ -21,7 +21,7 @@ public class SpareRoomListTest {
     @Before
     public void setUp() throws Exception {
         address = "江苏省南京市栖霞区仙林大道163号";
-        spareRoomList = SpareRoomList.getInstance(address);
+        spareRoomList = new SpareRoomList();
         roomVO = new RoomVO(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号");
     }
 

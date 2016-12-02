@@ -19,8 +19,7 @@ public class MockSpareRoomList extends SpareRoomList{
     
     private RoomDAO roomDAO;
     
-    public MockSpareRoomList(String address){
-        super(address);
+    public MockSpareRoomList(){
     }
     
     @SuppressWarnings("deprecation")
