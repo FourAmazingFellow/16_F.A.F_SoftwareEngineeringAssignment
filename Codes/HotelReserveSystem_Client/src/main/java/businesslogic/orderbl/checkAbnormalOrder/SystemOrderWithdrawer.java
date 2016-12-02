@@ -9,6 +9,7 @@ import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
 import po.RoomType;
@@ -44,7 +45,8 @@ public class SystemOrderWithdrawer {
 		
 		try {
 			if(orderDaoService.updateOrder(po)){
-				if(addSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType) && recoverCreditValue(vo.userID, isRecoverHalfCredit, vo.totalPrice))
+				if(addSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType) &&
+						recoverCreditValue(vo.userID, vo.hotelAddress, isRecoverHalfCredit, vo.totalPrice))
 					return true;
 				else
 					return false;
@@ -86,19 +88,21 @@ public class SystemOrderWithdrawer {
 	/**
 	 * 
 	 * @param userID 用户ID
+	 * @param orderID 订单号
 	 * @param isRecoverHalfCredit 要恢复的Record是否是一半
 	 * @param price 订单价值（等价于信用值）
+	 * @param actionType 操作类型
 	 * @return 恢复结果
 	 * @see
 	 */
-	private boolean recoverCreditValue(String userID, boolean isRecoverHalfCredit, int price) {
+	private boolean recoverCreditValue(String userID, String orderID, boolean isRecoverHalfCredit, int price, ActionType actionType) {
 		if (isRecoverHalfCredit) {
-			if (userCreditService.changeCreditValue(userID, price / 2))
+			if (userCreditService.changeCreditValue(userID, price / 2, orderID, actionType))
 				return true;
 			else
 				return false;
 		} else {
-			if (userCreditService.changeCreditValue(userID, price))
+			if (userCreditService.changeCreditValue(userID, price, orderID, actionType))
 				return true;
 			else
 				return false;

@@ -9,6 +9,7 @@ import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
 import po.RoomType;
@@ -34,7 +35,7 @@ public class OrderWithdrawer {
 		po.setOrderState(OrderState.WITHDREW_ORDER);
 		po.setLastedOrderDoneTime(new Date());
 		if(isTooLate){
-			userCreditService.changeCreditValue(vo.userID, -vo.totalPrice/2);
+			userCreditService.changeCreditValue(vo.userID, -vo.totalPrice/2, vo.orderID, ActionType.ORDER_UNDO);
 		}
 		po.setLastedOrderDoneTime(new Date());
 		
@@ -73,21 +74,6 @@ public class OrderWithdrawer {
 		}
 		
 		return true;
-	}
-
-	/**
-	 * 
-	 * @param userID 用户ID
-	 * @param price 订单价值（等价于信用值）
-	 * @return 恢复结果
-	 * @see
-	 */
-	private boolean recoverCreditValue(String userID, int price) {
-		if (userCreditService.changeCreditValue(userID, price / 2))	
-			return true;
-		else
-			return false;
-
 	}
 
 	private Date addOneDay(Date currentDate) {

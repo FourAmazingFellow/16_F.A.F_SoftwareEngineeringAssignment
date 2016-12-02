@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
 import vo.OrderVO;
@@ -27,7 +28,7 @@ public class OrderTerminator {
 		po.setOrderState(OrderState.DONE_ORDER);
 		
 		try {
-			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.totalPrice))
+			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.orderID, vo.totalPrice, ActionType.ORDER_DONE))
 				return true;
 			else
 				return false;
@@ -46,7 +47,7 @@ public class OrderTerminator {
 		OrderPO po = transformer.orderVO2PO(vo);
 		po.setOrderState(OrderState.DONE_ORDER);
 		try {
-			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.totalPrice))
+			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.orderID, vo.totalPrice, ActionType.ORDER_DONE))
 				return true;
 			else
 				return false;
@@ -60,12 +61,14 @@ public class OrderTerminator {
 	/**
 	 * 
 	 * @param userID 用户ID
+	 * @param orderID 订单号
 	 * @param price 订单价值（等价于信用值）
+	 * @param actionType 操作类型
 	 * @return 恢复结果
 	 * @see
 	 */
-	private boolean recoverCreditValue(String userID, int price) {
-		if (userCreditService.changeCreditValue(userID, price))
+	private boolean recoverCreditValue(String userID, String orderID, int price, ActionType actionType) {
+		if (userCreditService.changeCreditValue(userID, price, orderID, actionType))
 			return true;
 		else
 			return false;
