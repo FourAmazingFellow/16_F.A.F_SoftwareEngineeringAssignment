@@ -8,10 +8,11 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
+import businesslogic.roombl.updateCheckIn.CheckInItem;
 import businesslogic.roombl.updateCheckOut.CheckOutItem;
-import businesslogic.roombl.updateCheckOut.MockCheckOutItem;
 import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
+import vo.CheckInVO;
 import vo.CheckOutVO;
 
 public class CheckOutItemTest {
@@ -19,13 +20,16 @@ public class CheckOutItemTest {
     private CheckOutItem checkOutItem;
     private String address;
     private CheckOutVO checkOutVO;
+    private Date actDepartTime;
     
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception{
         address="江苏省南京市栖霞区仙林大道163号";
-        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 3, address, new Date(2016, 11, 12, 18, 0));
-        checkOutItem=new MockCheckOutItem(checkOutVO);
+        actDepartTime=new Date(116, 11, 1, 17, 35);
+        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 3, address, actDepartTime);
+        
+        checkOutItem=new CheckOutItem(checkOutVO);
     }
     
     @Test
@@ -51,4 +55,88 @@ public class CheckOutItemTest {
         }
         assertTrue(valied);
     }
+    
+  //验证地址长度必须小于50，地址名称必须正确
+    @Test
+    public void testValidCheckIn1() {
+        boolean valid1 = false,valid2=false;
+        checkOutItem = new CheckOutItem(
+                new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号"+"11111111111111111111111111111111111111111111", actDepartTime));
+        try {
+            valid1 = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        checkOutItem = new CheckOutItem(
+                new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区-,.仙林大道163号", actDepartTime));
+        try {
+            valid2 = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        assertFalse(valid1);
+        assertFalse(valid2);
+    }
+    
+  //验证房间数必须为正整数
+    @Test
+    public void testValidCheckIn2() {
+        boolean valid = false;
+        checkOutItem = new CheckOutItem(
+                new CheckOutVO(RoomType.SINGLE_ROOM, -2, "江苏省南京市栖霞区仙林大道163号", actDepartTime));
+        try {
+            valid = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        assertFalse(valid);
+    }
+    
+    // 实际离开时间必须在当天内
+    @SuppressWarnings("deprecation")
+    @Test
+    public void testValidCheckIn3() {
+        boolean valid = false;
+        checkOutItem = new CheckOutItem(
+                new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,30,17,35)));
+        try {
+            valid = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        assertFalse(valid);
+    }
+    
+    // 空房必须存在该房型
+    @Test
+    public void testValidCheckIn4() {
+        boolean valid1 = false,valid2=false;
+        checkOutItem=new CheckOutItem(new CheckOutVO(RoomType.KING_SIZE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", actDepartTime));
+        try {
+            valid1 = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        checkOutItem=new CheckOutItem(new CheckOutVO(RoomType.SINGLE_ROOM, 5, "江苏省南京市栖霞区仙林大道163号", actDepartTime));
+        try {
+            valid2 = checkOutItem.validCheckOut();
+        } catch (WrongInputException e) {
+            System.out.println(e.getMessage());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        assertFalse(valid1);
+        assertFalse(valid2);
+    }
+    
 }

@@ -2,6 +2,7 @@ package businesslogic.userbl.signVip;
 
 import java.rmi.RemoteException;
 
+import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogicservice.userblservice.SignVipService;
 import dataservice.userDAO.UserDAO;
 import po.EnterpriseVipPO;
@@ -10,24 +11,28 @@ import rmi.RemoteHelper;
 import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
-
 /**
  * 
  * @author sparkler
- * @version 
+ * @version
  * @see
  */
 public class SignVipServiceImpl implements SignVipService {
 
     private UserDAO userDAO;
-    
-    public void setUserDAO(UserDAO userDAO){
+    private VerifyEnterpriseVip verifyEnterpriseVip;
+
+    public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
-    
+
+    public void setVerifyEnterpriseVip(VerifyEnterpriseVip verify) {
+        this.verifyEnterpriseVip = verify;
+    }
+
     @Override
     public boolean signRegularVip(RegularVipVO regularVip) {
-   //     userDAO = RemoteHelper.getInstance().getUserDAO();
+        // userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userDAO.signRegularVip(new RegularVipPO(regularVip));
             return true;
@@ -39,14 +44,15 @@ public class SignVipServiceImpl implements SignVipService {
 
     @Override
     public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) {
-        try {
-            userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        if (verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword)) {
+            try {
+                userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
+                return true;
+            } catch (RemoteException e) {
+                e.printStackTrace();
+                return false;
+            }
+        } else
             return false;
-        }
     }
-
-
 }

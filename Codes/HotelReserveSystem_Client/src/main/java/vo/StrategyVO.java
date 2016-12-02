@@ -48,7 +48,8 @@ public class StrategyVO {
     public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, float discount, String enterpriseName, String securityCode){
         this.address=address;
         this.strategyType=strategyType;
-        
+        this.strategyName=strategyName;
+        this.discount=discount;
         this.enterpriseName=enterpriseName;
         this.securityCode=securityCode;
     }
@@ -56,6 +57,8 @@ public class StrategyVO {
     public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, float discount, Date startTime, Date endTime){
         this.address=address;
         this.strategyType=strategyType;
+        this.strategyName=strategyName;
+        this.discount=discount;
         this.startTime=startTime;
         this.endTime=endTime;
     }
@@ -63,6 +66,8 @@ public class StrategyVO {
     public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, float discount, int vipRank, String tradeArea){
         this.address=address;
         this.strategyType=strategyType;
+        this.strategyName=strategyName;
+        this.discount=discount;
         this.vipRank=vipRank;
         this.tradeArea=tradeArea;
     }

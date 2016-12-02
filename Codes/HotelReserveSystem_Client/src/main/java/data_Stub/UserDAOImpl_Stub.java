@@ -134,5 +134,16 @@ public class UserDAOImpl_Stub implements UserDAO{
     public EnterpriseVipPO getEnterpriseVipInfo(String userID) {
         return new EnterpriseVipPO(userID, password, telNum, userType, creditValue, creditRecord, enterpriseID, enterprisePassword);
     }
+
+    /* (non-Javadoc)
+     * @param regularVipPO
+     * @param userID
+     * @throws RemoteException
+     * @see dataservice.userDAO.UserDAO#updateRegularVipInfo(po.RegularVipPO, java.lang.String)
+     */
+    @Override
+    public void updateRegularVipInfo(RegularVipPO regularVipPO, String userID) throws RemoteException {
+        System.out.println("Update Succeed!\n");        
+    }
     
 }

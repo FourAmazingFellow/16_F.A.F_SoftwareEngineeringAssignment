@@ -1,16 +1,15 @@
 package businesslogic.strategybl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
-import businesslogic.userbl.VipInfo;
 import businesslogic.userbl.VipInfoImpl;
+import data_Stub.HotelDAOImpl_Stub;
+import data_Stub.UserDAOImpl_Stub;
 import po.StrategyType;
 import vo.EnterpriseVipVO;
 import vo.OrderVO;
@@ -25,13 +24,21 @@ import vo.StrategyVO;
  */
 public class StrategyInfoServiceImpl implements StrategyInfoService {
 
-    StrategyList strategyList;
-    String address;
-    StrategyVO bestPromotion;
-    StrategyVO bestMarketStrategy;
-    StrategyItem strategyItem;
+    private StrategyList strategyList;
+    private String address;
+    private StrategyVO bestPromotion;
+    private StrategyVO bestMarketStrategy;
+    private StrategyItem strategyItem;
 
-    VipInfo vipInfo;
+    private VipInfoImpl vipInfo;
+    private HotelInfoServiceImpl hotelInfoService = new HotelInfoServiceImpl();
+    
+    @SuppressWarnings("deprecation")
+    public StrategyInfoServiceImpl() {
+        vipInfo = new VipInfoImpl();
+        vipInfo.setUserDAO(new UserDAOImpl_Stub("原", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 3));
+        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市"));
+    }
     
     @Override
     public String getAvailblePromotionName(OrderVO order) {
@@ -41,18 +48,10 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         // 把所有策略类型的列表遍历一遍，判断是否满足条件
 
         // 判断是否满足生日折扣
-        vipInfo = new VipInfoImpl();
         RegularVipVO regularVipVO = vipInfo.getRegularVipInfo(order.userID);
         if (regularVipVO != null) {
             Date birth = regularVipVO.birth;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date today = null;
-            try {
-                today = sdf.parse(sdf.format(new Date()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            if (birth.compareTo(today) == 0) {
+            if (birth.compareTo(order.beginDate) >= 0&&birth.compareTo(order.finishDate)<=0) {
                 availblePromotion.add(strategyList.getStrategyList(address, StrategyType.BirthdayPromotion).get(0));
             }
         }
@@ -88,11 +87,14 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
             }
         }
         // 把满足条件的折扣比较折扣百分比，取最优的促销策略
+        if(availblePromotion.size()==0){
+            return null;
+        }
         bestPromotion = availblePromotion.get(0).toVO();
         for (StrategyItem strategyItem : availblePromotion) {
             StrategyVO vo = strategyItem.toVO();
-            if (bestMarketStrategy.discount > vo.discount) {
-                bestMarketStrategy = vo;
+            if (bestPromotion.discount > vo.discount) {
+                bestPromotion = vo;
             }
         }
         return bestPromotion.strategyName;
@@ -118,7 +120,6 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         }
 
         // 判断是否满足会员等级折扣
-        vipInfo = new VipInfoImpl();
         RegularVipVO regularVipVO = vipInfo.getRegularVipInfo(order.userID);
         if (regularVipVO != null) {
             int vipRank = regularVipVO.vipRank;
@@ -132,7 +133,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         // 判断是否满足特定商圈专属折扣
         if (regularVipVO != null) {
             int vipRank = regularVipVO.vipRank;
-            HotelInfoService hotelInfoService = new HotelInfoServiceImpl();
+            
             String tradeArea = hotelInfoService.getHotelBriefInfo(order.hotelAddress).tradeArea;
             for (StrategyItem strategyItem : strategyList.getStrategyList(address, StrategyType.VipTradeAreaMarket)) {
                 if (tradeArea == strategyItem.toVO().tradeArea && vipRank >= strategyItem.toVO().vipRank) {
@@ -142,6 +143,9 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         }
 
         // 把满足条件的折扣比较折扣百分比，取最小的促销策略
+        if(availableMarketStrategy.size()==0){
+            return null;
+        }
         bestMarketStrategy = availableMarketStrategy.get(0).toVO();
         for (StrategyItem strategyItem : availableMarketStrategy) {
             StrategyVO vo = strategyItem.toVO();
@@ -170,7 +174,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     }
 
     @Override
-    public boolean isRightName(String name) {
+    public boolean isRightName(String name) throws WrongInputException {
         strategyItem=new StrategyItem();
         return strategyItem.isRightName(name);
     }

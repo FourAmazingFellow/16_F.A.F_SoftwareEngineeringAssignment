@@ -231,7 +231,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(1, hotelStaffInfoPO.getUserID());
 			pstmt.setString(2, hotelStaffInfoPO.getTelNum());
 			pstmt.setString(3, hotelStaffInfoPO.getpassword());
-			pstmt.setString(4, hotelStaffInfoPO.getEnterpriseName());
+			pstmt.setString(4, hotelStaffInfoPO.getHotelAddress());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

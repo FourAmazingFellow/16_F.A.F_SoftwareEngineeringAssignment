@@ -62,8 +62,13 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 
     @Override
     public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<BusinessDistrictPO> businessDistrictPOs = null;
+        if(city=="南京市"){
+            businessDistrictPOs=new ArrayList<>();
+            BusinessDistrictPO bdPO=new BusinessDistrictPO("栖霞区", "南京市");
+            businessDistrictPOs.add(bdPO);
+        }
+        return businessDistrictPOs;
     }
 
 }

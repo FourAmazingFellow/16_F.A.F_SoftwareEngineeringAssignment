@@ -21,12 +21,12 @@ public class MockSpareRoomList extends SpareRoomList{
     
     public MockSpareRoomList(String address){
         super(address);
-        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号",null,null,null);
     }
     
     @SuppressWarnings("deprecation")
     @Override
     public ArrayList<SpareRoomItem> getRoomInfoList (String address){
+        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号",null,null,null);
         ArrayList<RoomPO> roomPOs;
         ArrayList<SpareRoomItem> spareRoomItems=new ArrayList<SpareRoomItem>();
         try {

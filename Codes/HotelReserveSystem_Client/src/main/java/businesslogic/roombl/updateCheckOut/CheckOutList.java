@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.strategybl.exception.WrongInputException;
+import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -19,6 +20,12 @@ import vo.RoomVO;
 public class CheckOutList {
 
     private RoomDAO roomDAO;
+    
+    @SuppressWarnings("deprecation")
+    public CheckOutList(){
+        roomDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 300, "江苏省南京市栖霞区仙林大道163号", null, null,
+                new Date(116,11,1,17,13));
+    }
     
     /**
      * 得到退房信息列表

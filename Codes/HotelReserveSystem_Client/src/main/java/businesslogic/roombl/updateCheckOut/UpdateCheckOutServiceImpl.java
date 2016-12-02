@@ -17,7 +17,7 @@ import vo.RoomVO;
  */
 public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
 
-    private CheckOutList checkOutList=new MockCheckOutList();
+    private CheckOutList checkOutList=new CheckOutList();
     
     /**
      * 得到退房信息列表

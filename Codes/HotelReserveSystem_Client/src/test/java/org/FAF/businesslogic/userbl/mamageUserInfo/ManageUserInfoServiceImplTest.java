@@ -42,6 +42,7 @@ public class ManageUserInfoServiceImplTest{
     @Test
     public void testAdd() {
         manageUserInfo = new MockManageUserInfoServiceImpl(userID);
+        manageUserInfo.setUserDAO(userDAO);
         UserVO user = new UserVO(userID, password, telNum, userType);
         boolean result = manageUserInfo.add(user);
         assertEquals(true, result);
@@ -50,6 +51,7 @@ public class ManageUserInfoServiceImplTest{
     @Test
     public void testGetHotelStaffInfo(){
         manageUserInfo = new MockManageUserInfoServiceImpl(userID);
+        manageUserInfo.setUserDAO(userDAO);
         hotelStaffInfoVO = manageUserInfo.getHotelStaffInfo(userID);
         assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userID, hotelStaffInfoVO.userID);        
         assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in password!", password, hotelStaffInfoVO.password);        
@@ -72,7 +74,7 @@ public class ManageUserInfoServiceImplTest{
     public void testModifyUserInfo() {
         manageUserInfo = new ManageUserInfoServiceImpl(userID);
         manageUserInfo.setUserDAO(userDAO);
-        UserVO user = new UserVO(null);
+        UserVO user = manageUserInfo.getUserInfo(userID);
        boolean result = manageUserInfo.modifyUserInfo(user, userID);
        assertEquals(true, result);
     }

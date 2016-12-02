@@ -27,9 +27,14 @@ public class BrowseSpareRoomServiceImplTest {
     public void testGetRoomInfoList(){
         ArrayList<RoomVO> roomVOs=browseSpareRoomServiceImpl.getRoomInfoList(address);
         assertEquals(1,roomVOs.size());
-        assertEquals(roomVO.roomType, roomVOs.get(0).roomType);
-        assertEquals(roomVO.roomNum, roomVOs.get(0).roomNum);
-        assertEquals(roomVO.roomPrice, roomVOs.get(0).roomPrice);
-        assertEquals(roomVO.address, roomVOs.get(0).address);
+        assertTrue(equalSpareRoom(roomVO, roomVOs.get(0)));
+    }
+    
+    public boolean equalSpareRoom(RoomVO roomVO1, RoomVO roomVO2) {
+        if (roomVO1.roomType != roomVO2.roomType || roomVO1.roomNum != roomVO2.roomNum
+                || roomVO1.roomPrice != roomVO2.roomPrice || roomVO1.address != roomVO2.address) {
+            return false;
+        }
+        return true;
     }
 }

@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import bl_Stub.hotelbl_Stub.HotelInfoServiceImpl_Stub;
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
+import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
 import po.BusinessDistrictPO;
 import po.RoomType;
@@ -37,13 +39,21 @@ public class StrategyItem {
     private String tradeArea;
     private int vipRank;
 
-    private int maxVipRank = 0, minVipRank = 4;
+    private int maxVipRank = 4, minVipRank = 0;
 
     private StrategyDAO strategyDAO;
-    private HotelInfoService hotelInfoService = new HotelInfoServiceImpl();
+
+    private HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
+    private HotelInfoService hotelInfoService;
 
     public StrategyItem() {
-        strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
+        // strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
+        strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
+                "双十一折扣", 80, 0, null, null, new Date(116, 10, 10, 00, 00, 00), new Date(116, 10, 12, 00, 00, 00), null,
+                0);
+        roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 20);
+        hotelInfoService = new HotelInfoServiceImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", "", null,
+                roomTypeAndNums, null);
     }
 
     /**
@@ -215,9 +225,19 @@ public class StrategyItem {
         if (address.length() > 50 || address.length() < 1) {
             throw new WrongInputException("the address can't be longer than 50 characters");
         }
-        if(!isRightName(address)){
-            throw new WrongInputException("the address only includes number,letter, Chinese characters and underline");
-        }
+        for (char c : address.toCharArray())
+            if (c >= '0' && c <= '9') {// 判断是否是数字
+                continue;
+            } else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {// 判断是否是字母
+                continue;
+            } else if (c == '_') {// 判断是否是下划线
+                continue;
+            } else if (c >= 0x4e00 && c <= 0x9fbb) {// 判断是否是中文
+                continue;
+            } else {
+                throw new WrongInputException(
+                        "the address only includes number,letter, Chinese characters and underline");
+            }
         // 验证折扣名称是否含非法字符
         if (!isRightName(strategyName)) {
             throw new WrongInputException(
@@ -226,6 +246,12 @@ public class StrategyItem {
         // 验证折扣百分比是否0<x<100
         if (!(discount > 0 && discount < 100)) {
             throw new WrongInputException("the discount must satisfy the formula 0<discount<100");
+        }
+        //若是房间数折扣，则房间数为正整数
+        if(StrategyType.MultiRoomPromotion.equals(strategyType)){
+            if(minRoomNum<=0){
+                throw new WrongInputException("the minimum room number should be larger than 0");
+            }
         }
         // 若是企业折扣，验证企业名称是否合理，验证码是否是8位
         if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
@@ -249,11 +275,12 @@ public class StrategyItem {
                         "the vipRank must larger than " + minVipRank + " and less than " + maxVipRank);
         }
         // 如果是特殊期间折扣，验证时间是否合法，验证起始时间是否小于结束时间
-        if (strategyType.equals(StrategyType.SpecificTimeMarket)) {
+        if (strategyType.equals(StrategyType.SpecificTimeMarket)
+                || strategyType.equals(StrategyType.SpecificTimePromotion)) {
             if (startTime.compareTo(endTime) > 0)
                 throw new WrongInputException("the startTime must before endTime");
         }
-        
+
         // 非格式验证
 
         // 如果是房间数折扣，最少房间数是否小于可用客房数量大于0
@@ -262,41 +289,51 @@ public class StrategyItem {
             HotelVO hotelVO = hotelInfoService.getHotelDetails(address);
             HashMap<RoomType, Integer> roomTypeAndNums = hotelVO.roomTypeAndNums;
             for (RoomType roomType : RoomType.class.getEnumConstants()) {
-                totalRoomNum += roomTypeAndNums.get(roomType);
+                if(roomTypeAndNums.get(roomType)!=null)
+                    totalRoomNum += roomTypeAndNums.get(roomType);
             }
             if (totalRoomNum < minRoomNum) {
                 throw new WrongInputException("the minRoomNum is larger than the number of all rooms");
             }
         }
-        return false;
+        return true;
 
     }
-    
+
     /**
      * 验证特定商圈会员专属折扣的商圈名称在某城市是否存在
-     * @param city String型，城市名称
-     * @param strategyVO 策略信息
+     * 
+     * @param city
+     *            String型，城市名称
+     * @param strategyVO
+     *            策略信息
      * @return 返回商圈是否存在
-     * @throws WrongInputException 
+     * @throws WrongInputException
      * @see
      */
     public boolean verifyTradeArea(String city) throws WrongInputException {
-        //调用hotelbl方法得到该城市的商圈列表，然后判断该商圈是否存在
-        if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
-            boolean tradeAreaExist=false;
-            ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrictList(city);
-            for (BusinessDistrictPO po : tradeAreaList) {
-                if(this.tradeArea==po.getBusinessDistrictName()){
-                    tradeAreaExist=true;
-                    break;
-                }
-            }
-            if(!tradeAreaExist){
-                throw new WrongInputException("the tradeArea doesn't exist");
-            }
-            return tradeAreaExist;
+        // 调用hotelbl方法得到该城市的商圈列表，然后判断该商圈是否存在
+        if (!strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            throw new WrongInputException("the type of strategy is not vip discount in special trade area");
         }
-        return false;
+        boolean tradeAreaExist = false;
+        ArrayList<BusinessDistrictPO> tradeAreaList = hotelInfoService.getBusinessDistrictList(city);
+        if (tradeAreaList == null) {
+            throw new WrongInputException("the city doesn't exist");
+        }
+        if (tradeAreaList.size() == 0) {
+            throw new WrongInputException("there is no trade area in this city");
+        }
+        for (BusinessDistrictPO po : tradeAreaList) {
+            if (this.tradeArea == po.getBusinessDistrictName()) {
+                tradeAreaExist = true;
+                break;
+            }
+        }
+        if (!tradeAreaExist) {
+            throw new WrongInputException("the tradeArea doesn't exist");
+        }
+        return tradeAreaExist;
     }
 
     private boolean isRightSecurityCode(String securityCode) throws WrongInputException {
@@ -319,12 +356,13 @@ public class StrategyItem {
      * @param name
      *            传入的名称
      * @return 如果包含非法字符，返回false
+     * @throws WrongInputException
      * @see
      */
-    public boolean isRightName(String name) {
+    public boolean isRightName(String name) throws WrongInputException {
         // 最短长度为：1个字符,最长长度为：20个字符
         if (name.length() < 1 || name.length() > 20) {
-            return false;
+            throw new WrongInputException("the length of name can't be longer than 20 or smaller than 1");
         }
         for (char c : name.toCharArray())
             if (c >= '0' && c <= '9') {// 判断是否是数字
@@ -336,7 +374,7 @@ public class StrategyItem {
             } else if (c >= 0x4e00 && c <= 0x9fbb) {// 判断是否是中文
                 continue;
             } else {
-                return false;
+                throw new WrongInputException("the name only includes number,letter, Chinese characters and underline");
             }
         return true;
     }
@@ -364,5 +402,5 @@ public class StrategyItem {
         }
         return null;
     }
-    
+
 }
