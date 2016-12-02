@@ -55,6 +55,8 @@ public class UpdateStrategyServiceImplTest {
             added = updateStrategyServiceImpl.add(address, strategyVO);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertTrue(added);
     }
@@ -67,6 +69,8 @@ public class UpdateStrategyServiceImplTest {
             modifyed = updateStrategyServiceImpl.modify(address, strategyVO);
         } catch (UnableToModifyStrategyException e) {
             System.out.println(e.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertTrue(modifyed);
     }
@@ -78,11 +82,15 @@ public class UpdateStrategyServiceImplTest {
             deleted = updateStrategyServiceImpl.delete(address, strategyVO);
         } catch (UnableToDeleteStrategyException e) {
             System.out.println(e.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         try {
             added=updateStrategyServiceImpl.add(address, strategyVO);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertTrue(deleted);
         assertTrue(added);

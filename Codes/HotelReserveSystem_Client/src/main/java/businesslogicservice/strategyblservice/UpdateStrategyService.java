@@ -41,9 +41,10 @@ public interface UpdateStrategyService {
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回是否制定折扣策略成功
      * @throws UnableAddStrategyException 
+     * @throws WrongInputException 
      * @see
      */
-    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException;
+    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException, WrongInputException;
     
     /**
      * 修改某条折扣策略
@@ -51,9 +52,10 @@ public interface UpdateStrategyService {
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回是否修改折扣策略成功
      * @throws UnableToModifyStrategyException 
+     * @throws WrongInputException 
      * @see
      */
-    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException;
+    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException, WrongInputException;
     
     /**
      * 删除某条折扣策略
@@ -61,9 +63,10 @@ public interface UpdateStrategyService {
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回是否删除折扣策略成功
      * @throws UnableToDeleteStrategyException 
+     * @throws WrongInputException 
      * @see
      */
-    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException;
+    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException, WrongInputException;
     
     /**
      * 检查该策略信息是否符合规范

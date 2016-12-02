@@ -77,6 +77,8 @@ public class UpdateCheckInServiceImplTest {
             added = updateCheckInServiceImpl.addCheckIn(address, checkInVO, updateSpareRoom);
         } catch (RemoteException e) {
             e.printStackTrace();
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertTrue(added);
     }

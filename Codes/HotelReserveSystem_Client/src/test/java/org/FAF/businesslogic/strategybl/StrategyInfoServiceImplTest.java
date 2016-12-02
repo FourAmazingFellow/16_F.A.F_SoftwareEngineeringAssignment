@@ -10,6 +10,7 @@ import org.junit.Test;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.UpdateStrategyServiceImpl;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import po.OrderState;
@@ -56,6 +57,8 @@ public class StrategyInfoServiceImplTest {
             System.out.println(e.getMessage());
         } catch (UnableToDeleteStrategyException e) {
             e.printStackTrace();
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertEquals("3房间以上折扣", strategyInfoServiceImpl.getAvailblePromotionName(orderVO));
     }
@@ -67,6 +70,8 @@ public class StrategyInfoServiceImplTest {
             updateStrategyService.add("Web", strategyVO5);
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertEquals("VIP3会员等级折扣", strategyInfoServiceImpl.getAvailbleMarketStrategyName(orderVO));
     }

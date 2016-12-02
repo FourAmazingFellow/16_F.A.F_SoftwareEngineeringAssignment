@@ -32,6 +32,8 @@ public class UpdateStrategyService_Driver {
             addStrategy = updateStrategyService.add("江苏省南京市栖霞区仙林大道163号", strategyVO);
         } catch (UnableAddStrategyException e1) {
             System.out.println(e1.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         if(addStrategy)
             System.out.println("add Strategy Succeed!\n");
@@ -43,6 +45,8 @@ public class UpdateStrategyService_Driver {
             modifyStrategy = updateStrategyService.modify("江苏省南京市栖霞区仙林大道163号", strategyVO);
         } catch (UnableToModifyStrategyException e1) {
             System.out.println(e1.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         if(modifyStrategy)
             System.out.println("modify Strategy Succeed!\n");
@@ -54,6 +58,8 @@ public class UpdateStrategyService_Driver {
             delStrategy = updateStrategyService.delete("江苏省南京市栖霞区仙林大道163号", strategyVO);
         } catch (UnableToDeleteStrategyException e1) {
             System.out.println(e1.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         if(delStrategy)
             System.out.println("delete Strategy Succeed!\n");

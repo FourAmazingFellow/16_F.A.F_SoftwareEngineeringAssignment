@@ -78,6 +78,8 @@ public class UpdateCheckOutServiceImplTest {
             added = updateCheckOutServiceImpl.addCheckOut(address, checkOutVO);
         } catch (RemoteException e) {
             e.printStackTrace();
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         assertTrue(added);
     }

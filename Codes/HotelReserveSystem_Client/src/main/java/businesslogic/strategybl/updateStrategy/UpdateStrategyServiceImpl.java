@@ -58,10 +58,14 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @param strategy StrategyVO型，包含策略信息
      * @return 返回是否增加成功
      * @throws UnableAddStrategyException 
+     * @throws WrongInputException 
      * @see
      */
     @Override
-    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException{
+    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException, WrongInputException{
+        if(!valid(address, strategy)){
+            return false;
+        }
         strategyList=StrategyList.getInstance(address);
         return strategyList.add(address,strategy);
     }
@@ -72,10 +76,14 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @param strategy StrategyVO型，包含策略信息
      * @return 返回是否修改成功
      * @throws UnableToModifyStrategyException 
+     * @throws WrongInputException 
      * @see
      */
     @Override
-    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException{
+    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException, WrongInputException{
+        if(!valid(address, strategy)){
+            return false;
+        }
         strategyList=StrategyList.getInstance(address);
         return strategyList.modify(address,strategy);
     }
@@ -86,10 +94,14 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @param strategy StrategyVO型，包含策略信息
      * @return 返回是否删除成功
      * @throws UnableToDeleteStrategyException 
+     * @throws WrongInputException 
      * @see
      */
     @Override
-    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException{
+    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException, WrongInputException{
+        if(!valid(address, strategy)){
+            return false;
+        }
         strategyList=StrategyList.getInstance(address);
         return strategyList.delete(address,strategy);
     }

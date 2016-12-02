@@ -51,9 +51,10 @@ public interface UpdateCheckInService {
      * @param updateSpareRoom boolean型，是否更新空房
      * @return boolean型，返回是否增加入住信息成功
      * @throws RemoteException 
+     * @throws WrongInputException 
      * @see
      */
-    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException;
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException, WrongInputException;
 
     /**
      * 检查入住信息是否符合规范

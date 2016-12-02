@@ -42,6 +42,8 @@ public class UpdateCheckOutService_Driver {
             addCheckOut = updateCheckOutService.addCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);
         } catch (RemoteException e1) {
             System.out.println(e1.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         if(addCheckOut)
             System.out.println("add checkOut Succeed!\n");

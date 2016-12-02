@@ -48,6 +48,8 @@ public class UpdateCheckInService_Driver {
             addCheckIn = updateCheckInService.addCheckIn("江苏省南京市栖霞区仙林大道163号", checkIn,true);
         } catch (RemoteException e1) {
             System.out.println(e1.getMessage());
+        } catch (WrongInputException e) {
+            e.printStackTrace();
         }
         if(addCheckIn)
             System.out.println("add checkIn Succeed!\n");

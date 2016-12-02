@@ -46,6 +46,7 @@ public class StrategyItem {
     private HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
     private HotelInfoService hotelInfoService;
 
+    @SuppressWarnings("deprecation")
     public StrategyItem() {
         // strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
         strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
@@ -239,6 +240,10 @@ public class StrategyItem {
                         "the address only includes number,letter, Chinese characters and underline");
             }
         // 验证折扣名称是否含非法字符
+        // 最短长度为：1个字符,最长长度为：20个字符
+        if (strategyName.length() < 1 || strategyName.length() > 20) {
+            throw new WrongInputException("the length of strategyName can't be longer than 20 or smaller than 1");
+        }
         if (!isRightName(strategyName)) {
             throw new WrongInputException(
                     "the strategyName only includes number,letter, Chinese characters and underline");
@@ -255,6 +260,10 @@ public class StrategyItem {
         }
         // 若是企业折扣，验证企业名称是否合理，验证码是否是8位
         if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
+            // 最短长度为：1个字符,最长长度为：20个字符
+            if (enterpriseName.length() < 1 || enterpriseName.length() > 20) {
+                throw new WrongInputException("the length of enterpriseName can't be longer than 20 or smaller than 1");
+            }
             if (!isRightName(enterpriseName))
                 throw new WrongInputException(
                         "the enterpriseName only includes numbers,letters, Chinese characters and underlines");
@@ -263,6 +272,10 @@ public class StrategyItem {
         }
         // 如果是商圈折扣，验证商圈名称正确
         if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
+            // 最短长度为：1个字符,最长长度为：20个字符
+            if (tradeArea.length() < 1 || tradeArea.length() > 20) {
+                throw new WrongInputException("the length of tradeArea can't be longer than 20 or smaller than 1");
+            }
             if (!isRightName(tradeArea))
                 throw new WrongInputException(
                         "the tradeAreaName only includes number,letter, Chinese characters and underline");
@@ -360,10 +373,6 @@ public class StrategyItem {
      * @see
      */
     public boolean isRightName(String name) throws WrongInputException {
-        // 最短长度为：1个字符,最长长度为：20个字符
-        if (name.length() < 1 || name.length() > 20) {
-            throw new WrongInputException("the length of name can't be longer than 20 or smaller than 1");
-        }
         for (char c : name.toCharArray())
             if (c >= '0' && c <= '9') {// 判断是否是数字
                 continue;

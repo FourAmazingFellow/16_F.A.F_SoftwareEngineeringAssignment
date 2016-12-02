@@ -75,10 +75,14 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
      * @param checkIn Room VO型，入住信息
      * @return 返回是否增加成功
      * @throws RemoteException 
+     * @throws WrongInputException 
      * @see
      */
     @Override
-    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException{
+    public boolean addCheckIn(String address, RoomVO checkIn, boolean updateSpareRoom) throws RemoteException, WrongInputException{
+        if(!validCheckIn(address, checkIn)){
+            return false;
+        }
         return checkInList.addCheckIn(address, checkIn, updateSpareRoom);
     }
    
@@ -94,7 +98,6 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
     @Override
     public boolean validCheckIn(String address, RoomVO checkIn) throws WrongInputException, RemoteException{
         return checkInList.validCheckIn(address, checkIn);
-        
     }
 
 }

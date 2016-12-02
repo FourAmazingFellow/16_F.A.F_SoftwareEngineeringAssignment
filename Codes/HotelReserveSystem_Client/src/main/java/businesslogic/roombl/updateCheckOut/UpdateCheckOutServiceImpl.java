@@ -75,10 +75,14 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * @param checkOut Room VO型，退房信息
      * @return 返回是否增加成功
      * @throws RemoteException 
+     * @throws WrongInputException 
      * @see
      */
     @Override
-    public boolean addCheckOut(String address, RoomVO checkOut) throws RemoteException{
+    public boolean addCheckOut(String address, RoomVO checkOut) throws RemoteException, WrongInputException{
+        if(!validCheckOut(address, checkOut)){
+            return false;
+        }
         return checkOutList.addCheckOut(address, checkOut);
     }
   

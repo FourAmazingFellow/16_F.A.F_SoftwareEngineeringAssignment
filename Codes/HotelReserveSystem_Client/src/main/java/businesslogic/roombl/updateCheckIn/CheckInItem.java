@@ -51,6 +51,7 @@ public class CheckInItem {
                 checkInTime, expDepartTime, null);
         
         roomInfoService = new RoomInfoServiceImpl();
+        strategyInfoService = new StrategyInfoServiceImpl();
     }
 
     /**
@@ -129,8 +130,8 @@ public class CheckInItem {
         if (address.length() > 50 || address.length() < 1) {
             throw new WrongInputException("the address can't be longer than 50 characters");
         }
+        
         // 调用strategyItem的isRightName方法验证地址名称是否正确
-        strategyInfoService = new StrategyInfoServiceImpl();
         if (!strategyInfoService.isRightName(address)) {
             throw new WrongInputException("the address only includes number,letter, Chinese characters and underline");
         }

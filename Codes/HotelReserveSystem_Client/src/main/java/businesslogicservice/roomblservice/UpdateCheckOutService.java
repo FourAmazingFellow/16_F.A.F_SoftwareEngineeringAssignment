@@ -50,9 +50,10 @@ public interface UpdateCheckOutService {
      * @param checkIn RoomVO型，退房信息
      * @return boolean型，返回是否增加退房信息成功
      * @throws RemoteException 
+     * @throws WrongInputException 
      * @see
      */
-    public boolean addCheckOut(String address, RoomVO roomvo) throws RemoteException;
+    public boolean addCheckOut(String address, RoomVO roomvo) throws RemoteException, WrongInputException;
     
     /**
      *  检查退房信息是否符合规范
