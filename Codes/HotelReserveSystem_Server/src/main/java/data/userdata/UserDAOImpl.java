@@ -476,5 +476,25 @@ public class UserDAOImpl implements UserDAO {
         return enterpriseVipPO;
     }
 
+	@Override
+	public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			pstmt = conn.prepareStatement("update commonmember set vipRank = ? where userID = ?");
+			pstmt.setInt(1, regularVipPO.getVipRank());
+			pstmt.setString(2, regularVipPO.getUserID());
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(null, conn, pstmt);
+		}
+	}
+
    
 }

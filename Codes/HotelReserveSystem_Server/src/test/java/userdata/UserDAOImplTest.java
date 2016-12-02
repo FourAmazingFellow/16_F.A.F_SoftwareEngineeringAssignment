@@ -244,5 +244,16 @@ public class UserDAOImplTest {
 		}
 		
 	}
+	
+	@Test
+	public void testUpdateRegularVipInfo() {
+		regularVipPO.setVipRank(3);
+		try {
+			userDAO.updateRegularVipInfo(regularVipPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
+	}
 
 }

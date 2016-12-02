@@ -16,7 +16,7 @@ public class RemoteHelper {
 		try {
 			dataRemoteObjectMySql = new DataRemoteObjectMySql();
 			LocateRegistry.createRegistry(8888);
-			Naming.bind("rmi://localhost:8888/DataRemoteObjectMySql", dataRemoteObjectMySql);
+			Naming.bind("rmi://192.168.56.1:8888/DataRemoteObjectMySql", dataRemoteObjectMySql);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {

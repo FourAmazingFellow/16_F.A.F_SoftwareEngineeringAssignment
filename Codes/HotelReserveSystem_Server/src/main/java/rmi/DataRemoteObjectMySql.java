@@ -320,4 +320,9 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 		return hotelDAO.getBusinessDistrictList(city);
 	}
 
+	@Override
+	public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
+		userDAO.updateRegularVipInfo(regularVipPO);
+	}
+
 }
