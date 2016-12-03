@@ -2,11 +2,9 @@ package businesslogic.roombl.updateCheckIn;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import businesslogic.strategybl.exception.WrongInputException;
-import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.RoomPO;
 import po.RoomType;
@@ -23,16 +21,15 @@ public class CheckInList {
 
     private RoomDAO roomDAO;
 
-    @SuppressWarnings("deprecation")
     public CheckInList() {
-        // roomDAO=RemoteHelper.getInstance().getRoomDAO();
-        Date checkInTime = new Date(116,11,1,17,13);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(checkInTime);
-        calendar.add(Calendar.DATE, 1);
-        Date expDepartTime = calendar.getTime();
-        roomDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 300, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime,
-                null);
+         roomDAO=RemoteHelper.getInstance().getRoomDAO();
+//        Date checkInTime = new Date(116,11,1,17,13);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(checkInTime);
+//        calendar.add(Calendar.DATE, 1);
+//        Date expDepartTime = calendar.getTime();
+//        roomDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 300, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime,
+//                null);
     }
 
     /**

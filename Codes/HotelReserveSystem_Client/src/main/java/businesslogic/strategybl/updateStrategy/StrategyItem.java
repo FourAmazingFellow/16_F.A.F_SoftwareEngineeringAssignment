@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import bl_Stub.hotelbl_Stub.HotelInfoServiceImpl_Stub;
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
-import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
 import po.BusinessDistrictPO;
 import po.RoomType;
@@ -44,18 +42,17 @@ public class StrategyItem {
 
     private StrategyDAO strategyDAO;
 
-    private HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
     private HotelInfoService hotelInfoService;
 
-    @SuppressWarnings("deprecation")
     public StrategyItem() {
-        // strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
-        strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
-                "双十一折扣", 80, 0, null, null, new Date(116, 10, 10, 00, 00, 00), new Date(116, 10, 12, 00, 00, 00), null,
-                0);
-        roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 20);
-        hotelInfoService = new HotelInfoServiceImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", "", null,
-                roomTypeAndNums, null);
+         strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
+//        strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
+//                "双十一折扣", 80, 0, null, null, new Date(116, 10, 10, 00, 00, 00), new Date(116, 10, 12, 00, 00, 00), null,
+//                0);
+//        roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 20);
+//        hotelInfoService = new HotelInfoServiceImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", "", null,
+//                roomTypeAndNums, null);
+         hotelInfoService=new HotelInfoServiceImpl();
     }
 
     /**

@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.roombl.RoomInfoService;
 import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
-import data_Stub.HotelDAOImpl_Stub;
-import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.CheckOutPO;
 import po.RoomPO;
 import po.RoomType;
+import rmi.RemoteHelper;
 import vo.CheckOutVO;
 import vo.HotelVO;
 import vo.RoomVO;
@@ -39,20 +39,20 @@ public class CheckOutItem {
     private RoomDAO checkOutDAO;
     private RoomInfoService roomInfoService;
     private StrategyInfoService strategyInfoService;
-    private HotelInfoServiceImpl hotelInfoService;
+    private HotelInfoService hotelInfoService;
 
-    @SuppressWarnings("deprecation")
     public CheckOutItem() {
-        actDepartTime = new Date(116, 11, 1, 17, 35);
-        checkOutDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 300, "江苏省南京市栖霞区仙林大道163号", null, null,
-                actDepartTime);
+//        actDepartTime = new Date(116, 11, 1, 17, 35);
+//        checkOutDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 300, "江苏省南京市栖霞区仙林大道163号", null, null,
+//                actDepartTime);
+        checkOutDAO=RemoteHelper.getInstance().getRoomDAO();
         strategyInfoService = new StrategyInfoServiceImpl();
         roomInfoService = new RoomInfoServiceImpl();
         hotelInfoService = new HotelInfoServiceImpl();
-        HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
-        roomTypeAndNums.put(RoomType.SINGLE_ROOM, 20);
-        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", null,
-                null, roomTypeAndNums, null));
+//        HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
+//        roomTypeAndNums.put(RoomType.SINGLE_ROOM, 20);
+//        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", null,
+//                null, roomTypeAndNums, null));
     }
 
     /**

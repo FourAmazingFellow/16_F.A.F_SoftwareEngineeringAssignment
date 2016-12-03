@@ -2,18 +2,13 @@ package businesslogic.strategybl.updateStrategy;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
-import businesslogic.hotelbl.HotelInfoService;
-import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
-import data_Stub.StrategyDAOImpl_Stub;
 import dataservice.strategyDAO.StrategyDAO;
-import po.BusinessDistrictPO;
 import po.StrategyPO;
 import po.StrategyType;
 import rmi.RemoteHelper;
@@ -28,7 +23,6 @@ import vo.StrategyVO;
 public class StrategyList {
 
     private StrategyDAO strategyDAO;
-    private HotelInfoService hotelInfoService;
 
     // 在bl层储存策略列表
     private ArrayList<StrategyItem> birthdatyPromotionList;
@@ -43,14 +37,12 @@ public class StrategyList {
     private static StrategyList strategyList;
     private String address;
 
-    @SuppressWarnings("deprecation")
     protected StrategyList(String address) {
         this.address = address;
-        // strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
-        strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
-                "双十一折扣", 90, 4, "国美电器", "guomei12", new Date(116, 10, 30, 00, 00, 00), new Date(116, 11, 10, 00, 00, 00), "栖霞区",
-                4);
-        hotelInfoService = new HotelInfoServiceImpl();
+         strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
+//        strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
+//                "双十一折扣", 90, 4, "国美电器", "guomei12", new Date(116, 10, 30, 00, 00, 00), new Date(116, 11, 10, 00, 00, 00), "栖霞区",
+//                4);
 
         birthdatyPromotionList = getStrategyList(address, StrategyType.BirthdayPromotion);
         multiRoomPromotionList = getStrategyList(address, StrategyType.MultiRoomPromotion);

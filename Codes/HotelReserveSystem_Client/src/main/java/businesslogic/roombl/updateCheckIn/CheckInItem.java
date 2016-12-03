@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import businesslogic.roombl.RoomInfoService;
@@ -12,7 +11,6 @@ import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
-import data_Stub.RoomDAOImpl_Stub;
 import dataservice.roomDAO.RoomDAO;
 import po.CheckInPO;
 import po.RoomPO;
@@ -40,15 +38,15 @@ public class CheckInItem {
     private StrategyInfoService strategyInfoService;
 
     public CheckInItem() {
-        // checkInDAO = RemoteHelper.getInstance().getRoomDAO();
-        checkInTime=new Date();
-        Calendar calendar=Calendar.getInstance();
-        calendar.setTime(checkInTime);
-        calendar.add(Calendar.DATE, 1);
-        expDepartTime=calendar.getTime();
-        
-        checkInDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",
-                checkInTime, expDepartTime, null);
+         checkInDAO = RemoteHelper.getInstance().getRoomDAO();
+//        checkInTime=new Date();
+//        Calendar calendar=Calendar.getInstance();
+//        calendar.setTime(checkInTime);
+//        calendar.add(Calendar.DATE, 1);
+//        expDepartTime=calendar.getTime();
+//        
+//        checkInDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 3, 400, "江苏省南京市栖霞区仙林大道163号",
+//                checkInTime, expDepartTime, null);
         
         roomInfoService = new RoomInfoServiceImpl();
         strategyInfoService = new StrategyInfoServiceImpl();

@@ -8,8 +8,6 @@ import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
 import businesslogic.userbl.VipInfoImpl;
-import data_Stub.HotelDAOImpl_Stub;
-import data_Stub.UserDAOImpl_Stub;
 import po.StrategyType;
 import vo.EnterpriseVipVO;
 import vo.OrderVO;
@@ -33,12 +31,11 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     private VipInfoImpl vipInfo;
     private HotelInfoServiceImpl hotelInfoService;
     
-    @SuppressWarnings("deprecation")
     public StrategyInfoServiceImpl() {
         vipInfo = new VipInfoImpl();
-        vipInfo.setUserDAO(new UserDAOImpl_Stub("原", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 3));
+//        vipInfo.setUserDAO(new UserDAOImpl_Stub("原", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 3));
         hotelInfoService = new HotelInfoServiceImpl();
-        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市"));
+//        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市"));
     }
     
     @Override

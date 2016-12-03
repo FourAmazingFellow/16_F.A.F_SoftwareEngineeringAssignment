@@ -12,7 +12,6 @@ import vo.StrategyVO;
 public class MockStrategyItem extends StrategyItem{
 
     private String address;
-    private String hotelName;
     private Enum<StrategyType> strategyType;
     private String strategyName;
     private float discount;
@@ -26,6 +25,7 @@ public class MockStrategyItem extends StrategyItem{
     
     private StrategyDAO strategyDAO;
     
+    @SuppressWarnings("deprecation")
     public MockStrategyItem(){
         strategyDAO=new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion, "双十一折扣", 80, 0, null, null, new Date(2016,11,10,00,00,00), new Date(2016,11,12,00,00,00), null, 0);
     }
