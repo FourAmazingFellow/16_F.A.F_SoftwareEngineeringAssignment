@@ -455,7 +455,7 @@ public class OrderDAOImpl implements OrderDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据订单日期获得数据库数据
-			pstmt = conn.prepareStatement("select * from orderinfo where beginDate = ?");
+			pstmt = conn.prepareStatement("select * from orderinfo where beginDate = ? and orderState = 0");
 			pstmt.setDate(1, new java.sql.Date(date.getTime()));
 			rs = pstmt.executeQuery();
 			

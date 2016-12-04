@@ -58,7 +58,7 @@ public class RoomDAOImpl implements RoomDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
-			pstmt = conn.prepareStatement("select * from room" + (day.getMonth() + 1) + (day.getDate())+ " where hotelAddress = ?");
+			pstmt = conn.prepareStatement("select * from room" + String.format("%02d", day.getMonth() + 1) + String.format("%02d", day.getDate())+ " where hotelAddress = ?");
 			pstmt.setString(1, address);
 			rs = pstmt.executeQuery();
 			
@@ -88,7 +88,7 @@ public class RoomDAOImpl implements RoomDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
-			pstmt = conn.prepareStatement("select * from room" + (day.getMonth() + 1) + (day.getDate())+ " where hotelAddress = ? and roomType = ?");
+			pstmt = conn.prepareStatement("select * from room" + String.format("%02d", day.getMonth() + 1) + String.format("%02d", day.getDate())+ " where hotelAddress = ? and roomType = ?");
 			pstmt.setString(1, address);
 			pstmt.setInt(2, convertFromRoomTypeToInt(roomType));
 			rs = pstmt.executeQuery();
@@ -296,7 +296,7 @@ public class RoomDAOImpl implements RoomDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
-			pstmt = conn.prepareStatement("update room" + (day.getMonth() + 1) + (day.getDate())+ " set roomNum = ?, roomPrice = ? where hotelAddress = ? and roomType = ?");
+			pstmt = conn.prepareStatement("update room" + String.format("%02d", day.getMonth() + 1) + String.format("%02d", day.getDate())+ " set roomNum = ?, roomPrice = ? where hotelAddress = ? and roomType = ?");
 			pstmt.setInt(1, po.getRoomNum());
 			pstmt.setInt(2, po.getRoomPrice());
 			pstmt.setString(3, po.getAddress());
@@ -322,7 +322,7 @@ public class RoomDAOImpl implements RoomDAO {
 			for(int i = 0; i < 7; i++){
 				Calendar calendar = Calendar.getInstance();
 				calendar.add(Calendar.DATE, i);
-				String day = "" + (calendar.get(Calendar.MONTH) + 1) + String.format("%02d", calendar.get(Calendar.DATE));
+				String day = "" + String.format("%02d", calendar.get(Calendar.MONTH) + 1) + String.format("%02d", calendar.get(Calendar.DATE));
 				pstmt = conn.prepareStatement("insert into room" + day + "(hotelAddress, roomType, roomNum, roomPrice) values(?,?,?,?)");
 				pstmt.setString(1, po.getAddress());
 				pstmt.setInt(2, convertFromRoomTypeToInt(po.getRoomType()));

@@ -197,63 +197,63 @@ public class UserDAOImplTest {
 //		}
 //	}
 	
-	@Test
-	public void testQueryCreditRecord() {
-		try {
-			ArrayList<CreditRecordPO> creditRecordPOs = userDAO.queryCreditRecord("Accident");
-			assertEquals(2, creditRecordPOs.size());
-			assertEquals("0000000000000001", creditRecordPOs.get(0).getOrderID());
-			assertEquals(ActionType.ORDER_DONE, creditRecordPOs.get(0).getAction());
-			assertEquals(-100, creditRecordPOs.get(1).getProcess());
-			assertEquals(1100, creditRecordPOs.get(0).getCreditResult());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
-	
-	@Test
-	public void testGetRegularVipInfo() {
-		try {
-			RegularVipPO regularVipPO = userDAO.getRegularVipInfo("原");
-			assertEquals("原", regularVipPO.getUserID());
-			assertEquals(clientPassword, regularVipPO.getpassword());
-			assertEquals(clientTelNum, regularVipPO.getTelNum());
-			assertEquals(UserType.Client, regularVipPO.getUserType());
-			assertEquals(creditValue, regularVipPO.getCreditValue());
-			assertNull(regularVipPO.getCreditRecord());
-			assertEquals(1, regularVipPO.getVipRank());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
-	
-	@Test
-	public void testGetEnterpriseVipInfo() {
-		try {
-			EnterpriseVipPO enterpriseVipPO = userDAO.getEnterpriseVipInfo("mike");
-			assertEquals("mike", enterpriseVipPO.getUserID());
-			assertEquals(UserType.Client, enterpriseVipPO.getUserType());
-			assertEquals(1000, enterpriseVipPO.getCreditValue());
-			assertNull(enterpriseVipPO.getCreditRecord());
-			assertEquals("阿里巴巴", enterpriseVipPO.getEnterpriseID());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-		
-	}
-	
-	@Test
-	public void testUpdateRegularVipInfo() {
-		regularVipPO.setVipRank(3);
-		try {
-			userDAO.updateRegularVipInfo(regularVipPO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
+//	@Test
+//	public void testQueryCreditRecord() {
+//		try {
+//			ArrayList<CreditRecordPO> creditRecordPOs = userDAO.queryCreditRecord("Accident");
+//			assertEquals(2, creditRecordPOs.size());
+//			assertEquals("0000000000000001", creditRecordPOs.get(0).getOrderID());
+//			assertEquals(ActionType.ORDER_DONE, creditRecordPOs.get(0).getAction());
+//			assertEquals(-100, creditRecordPOs.get(1).getProcess());
+//			assertEquals(1100, creditRecordPOs.get(0).getCreditResult());
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
+//	
+//	@Test
+//	public void testGetRegularVipInfo() {
+//		try {
+//			RegularVipPO regularVipPO = userDAO.getRegularVipInfo("原");
+//			assertEquals("原", regularVipPO.getUserID());
+//			assertEquals(clientPassword, regularVipPO.getpassword());
+//			assertEquals(clientTelNum, regularVipPO.getTelNum());
+//			assertEquals(UserType.Client, regularVipPO.getUserType());
+//			assertEquals(creditValue, regularVipPO.getCreditValue());
+//			assertNull(regularVipPO.getCreditRecord());
+//			assertEquals(1, regularVipPO.getVipRank());
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
+//	
+//	@Test
+//	public void testGetEnterpriseVipInfo() {
+//		try {
+//			EnterpriseVipPO enterpriseVipPO = userDAO.getEnterpriseVipInfo("mike");
+//			assertEquals("mike", enterpriseVipPO.getUserID());
+//			assertEquals(UserType.Client, enterpriseVipPO.getUserType());
+//			assertEquals(1000, enterpriseVipPO.getCreditValue());
+//			assertNull(enterpriseVipPO.getCreditRecord());
+//			assertEquals("阿里巴巴", enterpriseVipPO.getEnterpriseID());
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//		
+//	}
+//	
+//	@Test
+//	public void testUpdateRegularVipInfo() {
+//		regularVipPO.setVipRank(3);
+//		try {
+//			userDAO.updateRegularVipInfo(regularVipPO);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
 
 }
