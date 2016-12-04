@@ -10,13 +10,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseUserOrder.BrowseUserOrderServiceImpl;
-import businesslogic.orderbl.browseUserOrder.UserOrderList;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -24,8 +21,6 @@ public class BrowseUserOrderServiceImplTest {
 	private static LinkToServer linkToServer;
 	
 	private BrowseUserOrderServiceImpl browseUserOrderServiceImpl;
-	private OrderDAO orderDAO;
-	private UserOrderList list;
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -72,16 +67,11 @@ public class BrowseUserOrderServiceImplTest {
 		this.isOnSale = false;
 		this.isCommented = false;
 
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
-		
-		list.setOrderDAO(orderDAO);
-		list = new UserOrderList(userID);
+		browseUserOrderServiceImpl = new BrowseUserOrderServiceImpl();
 	}
 	
 	@Test
 	public void testHotelOrderArrayList_1(){
-		browseUserOrderServiceImpl = new BrowseUserOrderServiceImpl();
-		browseUserOrderServiceImpl.setListHelper(list);
 		ArrayList<BriefOrderInfoVO> briefOrderInfoList = browseUserOrderServiceImpl.getUserOrderList("19970206", OrderType.ALL);
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
 		assertEquals("BrowseUserOrderServiceImpl.getUserOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
@@ -98,8 +88,6 @@ public class BrowseUserOrderServiceImplTest {
 	
 	@Test
 	public void testHotelOrderDetails_1() {
-		browseUserOrderServiceImpl = new BrowseUserOrderServiceImpl();
-		browseUserOrderServiceImpl.setListHelper(list);
 		OrderVO detailedOrder = browseUserOrderServiceImpl.getDetailedOrder("0001000100010001");
 		assertEquals("BrowseUserOrderServiceImpl.getUserOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, detailedOrder.orderID);
 		assertEquals("BrowseUserOrderServiceImpl.getUserOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, detailedOrder.userID);

@@ -9,15 +9,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.checkAbnormalOrder.SystemOrderWithdrawer;
-import businesslogic.roombl.RoomInfoService;
-import businesslogic.roombl.RoomInfoServiceImpl;
-import businesslogic.userbl.ClientCreditInfo;
-import businesslogic.userbl.ClientCreditInfoImpl;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class SystemOrderWithdrawerTest {
@@ -25,9 +19,6 @@ public class SystemOrderWithdrawerTest {
 	
 	private SystemOrderWithdrawer systemOrderWithdrawer;
 	private boolean result;
-	private OrderDAO orderDAO;
-	private ClientCreditInfo userCreditService;
-	private RoomInfoService addSpareRoomService;
 	
 	private String userID;
 	private String orderID;
@@ -75,11 +66,7 @@ public class SystemOrderWithdrawerTest {
 		this.isOnSale = false;
 		this.isCommented = false;
 		
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
-		userCreditService = new ClientCreditInfoImpl();
-		addSpareRoomService = new RoomInfoServiceImpl();
-		
-		systemOrderWithdrawer.set(orderDAO, userCreditService, addSpareRoomService);
+		systemOrderWithdrawer = new SystemOrderWithdrawer();
 	}
 	
 	//空指针测试

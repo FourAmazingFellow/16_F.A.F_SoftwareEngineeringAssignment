@@ -11,13 +11,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseHotelOrder.BrowseHotelOrderServiceImpl;
-import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -25,9 +22,7 @@ public class BrowseHotelOrderServiceImplTest {
 	private static LinkToServer linkToServer;
 	
 	private BrowseHotelOrderServiceImpl browseHotelOrderServiceImpl;
-	private OrderDAO orderDAO;
 	
-	private HotelOrderList list;
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -77,16 +72,11 @@ public class BrowseHotelOrderServiceImplTest {
 		
 		this.isReserved = true;
 		
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
-		
-		list = new HotelOrderList(hotelAddress);
-		list.setOrderDAO(orderDAO);
+		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
 	}
 	
 	@Test
 	public void testHotelOrderArrayList_1(){
-		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
-		browseHotelOrderServiceImpl.setListHelper(list);
 		ArrayList<BriefOrderInfoVO> briefOrderInfoList = browseHotelOrderServiceImpl.getHotelOrderList("南京市栖霞区仙林大道163号", OrderType.ALL);
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
 		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
@@ -103,8 +93,6 @@ public class BrowseHotelOrderServiceImplTest {
 	
 	@Test
 	public void testHotelOrderDetails_1() {
-		browseHotelOrderServiceImpl = new BrowseHotelOrderServiceImpl();
-		browseHotelOrderServiceImpl.setListHelper(list);
 		OrderVO detailedOrder = null;
 		try {
 			detailedOrder = browseHotelOrderServiceImpl.getSingleOrder("南京市栖霞区仙林大道163号", "0001000100010001");

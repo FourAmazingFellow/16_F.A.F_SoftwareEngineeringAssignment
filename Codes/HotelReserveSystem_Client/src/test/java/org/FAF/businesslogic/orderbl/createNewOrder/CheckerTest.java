@@ -8,10 +8,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 
 import businesslogic.orderbl.createNewOrder.Checker;
-import businesslogic.roombl.RoomInfoService;
-import businesslogic.roombl.RoomInfoServiceImpl;
-import businesslogic.userbl.ClientCreditInfo;
-import businesslogic.userbl.ClientCreditInfoImpl;
 import businesslogicservice.orderblservice.ResultMessage;
 import po.RoomType;
 import rmi.LinkToServer;
@@ -21,8 +17,6 @@ public class CheckerTest {
 	private static LinkToServer linkToServer;
 	
 	private Checker checker;
-	private ClientCreditInfo clientCreditGetter;
-	private RoomInfoService orderChecker;
 	private OrderVO orderToBeChecked;
 	private boolean canUserCreateNewOrder;
 	private ResultMessage resultMessage;
@@ -37,13 +31,7 @@ public class CheckerTest {
 	@Before
 	public void setup() {
 		checker = new Checker();
-		
-		clientCreditGetter = new ClientCreditInfoImpl();
-		orderChecker = new RoomInfoServiceImpl();
-		
-		checker.setCreditHelper(clientCreditGetter);
-		checker.setRoomHelper(orderChecker);
-		
+			
 		canUserCreateNewOrder = true;
 		resultMessage = ResultMessage.SUCCEED;
 		orderToBeChecked = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 

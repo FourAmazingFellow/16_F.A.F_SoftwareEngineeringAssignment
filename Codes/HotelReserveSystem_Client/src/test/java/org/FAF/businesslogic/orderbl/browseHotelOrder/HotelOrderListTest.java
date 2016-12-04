@@ -10,12 +10,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -23,7 +21,7 @@ public class HotelOrderListTest {
 	private static LinkToServer linkToServer;
 	
 	private HotelOrderList list;
-	private OrderDAO orderDAO;
+
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -73,9 +71,7 @@ public class HotelOrderListTest {
 		this.isReserved = true;
 		
 //		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented,isReserved);
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
-		list = new HotelOrderList(hotelAddress);
-		list.setOrderDAO(orderDAO);
+		list = new HotelOrderList();
 	}
 	
 	@Test

@@ -19,9 +19,6 @@ public class OrderInfoImpl implements OrderInfo {
 		orderDAO = RemoteHelper.getInstance().getOrderDAO();
 	}
 	
-	public void setOrderDAO(OrderDAO orderDAO) {
-		this.orderDAO = orderDAO;
-	}
 	
 	@Override
 	public ArrayList<OrderVO> getAllOrders(String userID) {

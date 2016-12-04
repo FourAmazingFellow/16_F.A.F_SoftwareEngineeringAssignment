@@ -9,24 +9,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.withdrawOrder.OrderWithdrawer;
-import businesslogic.roombl.RoomInfoService;
-import businesslogic.roombl.RoomInfoServiceImpl;
-import businesslogic.userbl.ClientCreditInfo;
-import businesslogic.userbl.ClientCreditInfoImpl;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class OrderWithdrawerTest {
 	private static LinkToServer linkToServer;
 	
 	private OrderWithdrawer orderWithdrawer;
-	private OrderDAO orderDaoService;
-	private ClientCreditInfo userCreditService;
-	private RoomInfoService addSpareRoomService;
 	
 	private boolean withdrawResult;
 	
@@ -38,11 +29,7 @@ public class OrderWithdrawerTest {
 	
 	@Before
 	public void setup() {
-		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
-		userCreditService = new ClientCreditInfoImpl();
-		addSpareRoomService = new RoomInfoServiceImpl();
 		orderWithdrawer = new OrderWithdrawer();
-		orderWithdrawer.set(orderDaoService, userCreditService, addSpareRoomService);
 		
 		withdrawResult = true;
 	}

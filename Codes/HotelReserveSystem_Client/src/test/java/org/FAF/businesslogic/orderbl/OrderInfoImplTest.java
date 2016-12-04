@@ -10,11 +10,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.OrderInfoImpl;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -22,7 +20,6 @@ public class OrderInfoImplTest {
 	private static LinkToServer linkToServer;
 	
 	private OrderInfoImpl orderInfoImpl;
-	private OrderDAO orderDAO;
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -69,9 +66,7 @@ public class OrderInfoImplTest {
 		this.isCommented = false;
 
 		this.isReserved = true;
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
 		orderInfoImpl = new OrderInfoImpl();
-		orderInfoImpl.setOrderDAO(orderDAO);
 	}
 
 	@Test

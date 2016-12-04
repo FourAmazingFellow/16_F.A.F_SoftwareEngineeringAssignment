@@ -9,9 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
 import businesslogic.orderbl.getOrderDone.GetOrderDoneServiceImpl;
-import businesslogic.orderbl.getOrderDone.OrderTerminator;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
@@ -22,8 +20,6 @@ public class GetOrderDoneServiceImplTest {
 	private static LinkToServer linkToServer;
 	
 	private GetOrderDoneServiceImpl getOrderDoneServiceImpl;
-	private HotelOrderList hotelOrderBrowser;
-	private OrderTerminator orderTerminator;
 
 	private ArrayList<BriefOrderInfoVO> notDoneOrderList;
 	private OrderVO detailedOrder;
@@ -84,10 +80,7 @@ public class GetOrderDoneServiceImplTest {
 		canGetOrderDone = true;
 		canDelayCheckIn = true;
 		
-		hotelOrderBrowser = new HotelOrderList(hotelAddress);
-		orderTerminator = new OrderTerminator();
 		getOrderDoneServiceImpl = new GetOrderDoneServiceImpl();
-		getOrderDoneServiceImpl.set(hotelOrderBrowser, orderTerminator);
 	}
 	
 	@Test

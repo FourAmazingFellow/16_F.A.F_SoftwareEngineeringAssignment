@@ -10,12 +10,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.checkAbnormalOrder.AbnormalOrderList;
-import data_Stub.OrderDAOImpl_Stub;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -23,7 +20,6 @@ public class AbnormalOrderListTest {
 	private static LinkToServer linkToServer;
 	
 	private AbnormalOrderList abnormalOrderList;
-	private OrderDAO orderDAO;
 	
 	private String userID;
 	private String orderID;
@@ -42,6 +38,7 @@ public class AbnormalOrderListTest {
 	private boolean isOnSale;
 	private boolean isCommented;
 	
+	@SuppressWarnings("unused")
 	private boolean isReserved;
 	
 	@BeforeClass
@@ -72,10 +69,7 @@ public class AbnormalOrderListTest {
 		
 		this.isReserved = true;
 
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
-		
 		abnormalOrderList= new AbnormalOrderList();
-		abnormalOrderList.setOrderDAO(orderDAO);
 	}
 	
 	//正常情况下的Test
@@ -121,8 +115,6 @@ public class AbnormalOrderListTest {
 	//异常情况下的Test(所得订单号对应订单不是异常订单)
 	@Test
 	public void getDetailedOrderTest_2() {
-		orderDAO = new OrderDAOImpl_Stub(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, OrderState.NOT_DONE_ORDER, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented,isReserved);
-		abnormalOrderList.setOrderDAO(orderDAO);
 		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0001000100010001");
 		System.out.println(detailedOrder);
 		assertEquals(null, detailedOrder);

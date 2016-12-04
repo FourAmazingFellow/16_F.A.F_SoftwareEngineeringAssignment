@@ -9,21 +9,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.createNewOrder.NewOrder;
-import businesslogic.strategybl.StrategyInfoService;
-import businesslogic.strategybl.StrategyInfoServiceImpl;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class NewOrderTest {
 	private static LinkToServer linkToServer;
 	
 	private NewOrder newOrder;
-	private OrderDAO orderDAO;
-	private StrategyInfoService strategyInfoService;
 
 	private int price;
 	private boolean addResult;
@@ -82,10 +76,6 @@ public class NewOrderTest {
 		this.addResult = true;
 		
 		newOrder = new NewOrder();
-
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
-		strategyInfoService = new StrategyInfoServiceImpl();
-		newOrder.setOrderDAO(orderDAO, strategyInfoService);
 	}
 
 	@Test

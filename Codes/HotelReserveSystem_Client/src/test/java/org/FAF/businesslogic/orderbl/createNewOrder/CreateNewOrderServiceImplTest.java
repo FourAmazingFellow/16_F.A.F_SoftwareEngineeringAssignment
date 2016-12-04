@@ -7,14 +7,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import businesslogic.hotelbl.HotelInfoService;
-import businesslogic.hotelbl.HotelInfoServiceImpl;
-import businesslogic.orderbl.createNewOrder.Checker;
 import businesslogic.orderbl.createNewOrder.CreateNewOrderServiceImpl;
-import businesslogic.orderbl.createNewOrder.NewOrder;
-import businesslogic.roombl.RoomInfoService;
-import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogicservice.orderblservice.ResultMessage;
 
 import po.OrderState;
@@ -27,10 +20,6 @@ public class CreateNewOrderServiceImplTest {
 	private static LinkToServer linkToServer;
 	
 	private CreateNewOrderServiceImpl createNewOrderServiceImpl;
-	private HotelInfoService hotelInfoGetter;
-	private RoomInfoService roomInfoService;
-	private Checker checker;
-	private NewOrder newOrder;
 
 	private int price;
 	private boolean addResult;
@@ -134,13 +123,6 @@ public class CreateNewOrderServiceImplTest {
 		this.comments = comments;
 
 		createNewOrderServiceImpl = new CreateNewOrderServiceImpl();
-		
-		hotelInfoGetter = new HotelInfoServiceImpl();
-		roomInfoService = new RoomInfoServiceImpl();
-		checker = new Checker();
-		newOrder = new NewOrder();
-
-		createNewOrderServiceImpl.set(hotelInfoGetter, roomInfoService, checker, newOrder);
 	}
 
 	@Test

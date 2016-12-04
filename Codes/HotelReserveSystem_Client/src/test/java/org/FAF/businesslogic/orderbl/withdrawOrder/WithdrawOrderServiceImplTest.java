@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.orderbl.withdrawOrder.OrderWithdrawer;
 import businesslogic.orderbl.withdrawOrder.WithdrawOrderServiceImpl;
 import po.OrderState;
 import po.RoomType;
@@ -19,7 +18,6 @@ public class WithdrawOrderServiceImplTest {
 	private static LinkToServer linkToServer;
 	
 	private WithdrawOrderServiceImpl withdrawOrderServiceImpl;
-	private OrderWithdrawer orderWithdrawer;
 	
 	private boolean withDrawResult;
 	
@@ -33,9 +31,7 @@ public class WithdrawOrderServiceImplTest {
 	public void setup(){
 		withDrawResult = true;
 		
-		orderWithdrawer = new OrderWithdrawer();
 		withdrawOrderServiceImpl = new WithdrawOrderServiceImpl();
-		withdrawOrderServiceImpl.set(orderWithdrawer);
 	}
 	
 	@Test

@@ -9,21 +9,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.orderbl.getOrderDone.OrderTerminator;
-import businesslogic.userbl.ClientCreditInfo;
-import businesslogic.userbl.ClientCreditInfoImpl;
-import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class OrderTerminatorTest {
 	private static LinkToServer linkToServer;
 	
 	private OrderTerminator orderTerminator;
-	private OrderDAO orderDaoService;
-	private ClientCreditInfo userCreditService;
 
 	private boolean canGetOrderDone;
 	private boolean canDelayCheckIn;
@@ -36,10 +30,7 @@ public class OrderTerminatorTest {
 	
 	@Before
 	public void setup() {
-		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
-		userCreditService = new ClientCreditInfoImpl();
 		orderTerminator = new OrderTerminator();
-		orderTerminator.set(orderDaoService, userCreditService);
 		
 		canGetOrderDone = true;
 		canDelayCheckIn = true;
