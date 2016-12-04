@@ -162,9 +162,9 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
         if (bestMarketStrategy == null)
             getAvailbleMarketStrategyName(order);
         // 用策略名称得到折扣百分比
-        float bestDiscount=100;
-        float bestDiscountOfPromotion=100;
-        float bestDiscountOfMarket=100;
+        float bestDiscount=1;
+        float bestDiscountOfPromotion=1;
+        float bestDiscountOfMarket=1;
         if(bestPromotion!=null){
             bestDiscountOfPromotion=bestPromotion.discount;
         }
