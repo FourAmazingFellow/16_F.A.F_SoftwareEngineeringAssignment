@@ -5,19 +5,14 @@ import static org.junit.Assert.*;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.strategybl.StrategyInfoServiceImpl;
-import businesslogic.strategybl.exception.UnableAddStrategyException;
-import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
-import businesslogic.strategybl.exception.WrongInputException;
-import businesslogic.strategybl.updateStrategy.UpdateStrategyServiceImpl;
-import businesslogicservice.strategyblservice.UpdateStrategyService;
 import po.OrderState;
 import po.RoomType;
-import po.StrategyType;
+import rmi.LinkToServer;
 import vo.OrderVO;
-import vo.StrategyVO;
 
 public class StrategyInfoServiceImplTest {
 
@@ -25,6 +20,14 @@ public class StrategyInfoServiceImplTest {
     private OrderVO orderVO;
     
     private String address;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
 
     @SuppressWarnings("deprecation")
     @Before

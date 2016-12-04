@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.roombl.updateCheckOut.CheckOutItem;
 import businesslogic.roombl.updateCheckOut.UpdateCheckOutServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.CheckOutVO;
 import vo.RoomVO;
 
@@ -26,6 +27,14 @@ public class UpdateCheckOutServiceImplTest {
     private Date endTime;
     
     private CheckOutVO checkOutVO1,checkOutVO2,checkOutVO3,checkOutVO4;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
     
     @SuppressWarnings("deprecation")
     @Before
@@ -85,18 +94,18 @@ public class UpdateCheckOutServiceImplTest {
         assertTrue(equalCheckOut(checkOutVO3, checkOutVOFromArray));
     }
     
-    @Test
-    public void testAddCheckOut(){
-        boolean added = false;
-        try {
-            added = updateCheckOutServiceImpl.addCheckOut(address, checkOutVO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        } catch (WrongInputException e) {
-            e.printStackTrace();
-        }
-        assertTrue(added);
-    }
+//    @Test
+//    public void testAddCheckOut(){
+//        boolean added = false;
+//        try {
+//            added = updateCheckOutServiceImpl.addCheckOut(address, checkOutVO);
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        } catch (WrongInputException e) {
+//            e.printStackTrace();
+//        }
+//        assertTrue(added);
+//    }
 
     @Test
     public void testValidCheckOut(){
@@ -108,12 +117,12 @@ public class UpdateCheckOutServiceImplTest {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        assertTrue(valid);
+        assertFalse(valid);
     }
     
     public boolean equalCheckOut(CheckOutVO checkOutVO1, CheckOutVO checkOutVO2) {
         if (checkOutVO1.roomType != checkOutVO2.roomType || checkOutVO1.roomNum != checkOutVO2.roomNum
-                || checkOutVO1.roomPrice != checkOutVO2.roomPrice || checkOutVO1.address != checkOutVO2.address
+                || checkOutVO1.roomPrice != checkOutVO2.roomPrice || !checkOutVO1.address.equals(checkOutVO2.address)
                 || checkOutVO1.actDepartTime.compareTo(checkOutVO2.actDepartTime) != 0) {
             return false;
         }

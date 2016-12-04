@@ -68,7 +68,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
             for (StrategyItem strategyItem : strategyList.getStrategyList(address,
                     StrategyType.CooperationEnterprisePromotion)) {
                 StrategyVO vo = strategyItem.toVO();
-                if (vo.enterpriseName == enterpriseName && vo.securityCode == securityCode) {
+                if (vo.enterpriseName.equals(enterpriseName) && vo.securityCode.equals(securityCode)) {
                     availblePromotion.add(strategyItem);
                 }
             }
@@ -134,7 +134,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
             
             String tradeArea = hotelInfoService.getHotelBriefInfo(order.hotelAddress).tradeArea;
             for (StrategyItem strategyItem : strategyList.getStrategyList(address, StrategyType.VipTradeAreaMarket)) {
-                if (tradeArea == strategyItem.toVO().tradeArea && vipRank >= strategyItem.toVO().vipRank) {
+                if (tradeArea.equals(strategyItem.toVO().tradeArea) && vipRank >= strategyItem.toVO().vipRank) {
                     availableMarketStrategy.add(strategyItem);
                 }
             }

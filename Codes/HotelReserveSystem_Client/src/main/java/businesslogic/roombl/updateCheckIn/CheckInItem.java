@@ -102,7 +102,7 @@ public class CheckInItem {
         // 根据布尔值决定是否更新空房
         if (updateSpareRoom) {
             Date today = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 today = sdf.parse(sdf.format(today));
             } catch (ParseException e1) {

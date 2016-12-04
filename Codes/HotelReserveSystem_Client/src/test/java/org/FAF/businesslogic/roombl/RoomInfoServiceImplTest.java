@@ -8,12 +8,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogicservice.orderblservice.ResultMessage;
 import po.OrderState;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.OrderVO;
 import vo.RoomVO;
 
@@ -21,15 +23,23 @@ public class RoomInfoServiceImplTest {
 
     private RoomInfoServiceImpl roomInfoServiceImpl;
     private OrderVO orderVO;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
 
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception {
         roomInfoServiceImpl = new RoomInfoServiceImpl();
 
-        orderVO = new OrderVO("原", "0001000100010001", "仙林大酒店", "江苏省南京市栖霞区仙林大道163号", new Date(116, 11, 3),
-                new Date(116, 11, 4), RoomType.SINGLE_ROOM, 3, 400, OrderState.NOT_DONE_ORDER,
-                new Date(116, 11, 3, 18, 0), new java.util.Date(116, 11, 3, 20, 0), 2, false, true, false);
+        orderVO = new OrderVO("原", "0001000100010001", "仙林大酒店", "江苏省南京市栖霞区仙林大道163号", new Date(116, 11, 4),
+                new Date(116, 11, 5), RoomType.SINGLE_ROOM, 3, 400, OrderState.NOT_DONE_ORDER,
+                new Date(116, 11, 4, 18, 0), new java.util.Date(116, 11, 4, 20, 0), 2, false, true, false);
     }
 
     @Test
@@ -53,9 +63,9 @@ public class RoomInfoServiceImplTest {
     public void testIsTimeAvailable() {
         try {
             assertTrue(roomInfoServiceImpl.isTimeAvailable("江苏省南京市栖霞区仙林大道163号", RoomType.SINGLE_ROOM,
-                    new Date(116, 11, 3), 4));
+                    new Date(116, 11, 4), 4));
             assertFalse(roomInfoServiceImpl.isTimeAvailable("江苏省南京市栖霞区仙林大道163号", RoomType.STANDARD_ROOM,
-                    new Date(116, 11, 3), 51));
+                    new Date(116, 11, 4), 51));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -84,8 +94,8 @@ public class RoomInfoServiceImplTest {
     @Test
     public void testReduceRoom() {
         try {
-            assertTrue(roomInfoServiceImpl.reduceRoom("江苏省南京市栖霞区仙林大道163号", 3, RoomType.KING_SIZE_ROOM,
-                    new Date(116, 12, 3)));
+            assertTrue(roomInfoServiceImpl.reduceRoom("江苏省南京市栖霞区仙林大道163号", 3, RoomType.SINGLE_ROOM,
+                    new Date(116, 11, 4)));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -95,8 +105,7 @@ public class RoomInfoServiceImplTest {
     @Test
     public void testAddRoom() {
         try {
-            assertTrue(
-                    roomInfoServiceImpl.addRoom("江苏省南京市栖霞区仙林大道163号", 3, RoomType.KING_SIZE_ROOM, new Date(116, 12, 3)));
+            assertTrue(roomInfoServiceImpl.addRoom("江苏省南京市栖霞区仙林大道163号", 3, RoomType.SINGLE_ROOM, new Date(116, 11, 4)));
         } catch (RemoteException e) {
             e.printStackTrace();
         }
