@@ -38,7 +38,7 @@ public class NewOrder {
 	public int getPrice(OrderVO vo) {
 		// Codes 用到strategyInfoService,orderDao 并将VO中是否被打过折属性重置
 		double discount = -1;
-		discount = strategyInfoService.getBestDiscount(vo)/100;
+		discount = strategyInfoService.getBestDiscount(vo);
 		
 //		if(Math.abs(discount - 1) > 0.01) 界面层可能用到的代码
 		

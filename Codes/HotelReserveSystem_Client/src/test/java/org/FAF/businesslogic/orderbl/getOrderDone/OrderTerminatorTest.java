@@ -58,7 +58,7 @@ public class OrderTerminatorTest {
 	
 	
 	
-//	@Test
+	@Test
 	public void delayCheckInTest_1(){
 		@SuppressWarnings("deprecation")
 		OrderVO vo = new OrderVO("原", "0000000000000006", "Jingling Hotel", "江苏省南京市栖霞区仙林大道163号", 
