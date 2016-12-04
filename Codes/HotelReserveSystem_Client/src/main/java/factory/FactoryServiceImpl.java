@@ -1,14 +1,22 @@
 package factory;
 
+import businesslogic.hotelbl.HotelInfoService;
+import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.orderbl.OrderInfoImpl;
 import businesslogic.roombl.RoomInfoService;
 import businesslogic.roombl.RoomInfoServiceImpl;
+import businesslogic.strategybl.StrategyInfoService;
+import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.userbl.UserInfo;
 import businesslogic.userbl.UserInfoImpl;
 
 public class FactoryServiceImpl implements FactoryService {
-
+	@Override
+	public HotelInfoService createHotelInfoService() {
+		return new HotelInfoServiceImpl();
+	}
+	
 	@Override
 	public OrderInfo createOrderInfo() {
 		return new OrderInfoImpl();
@@ -24,4 +32,8 @@ public class FactoryServiceImpl implements FactoryService {
 		return new UserInfoImpl();
 	}
 
+	@Override
+	public StrategyInfoService createStrategyInfoService() {
+		return new StrategyInfoServiceImpl();
+	}
 }
