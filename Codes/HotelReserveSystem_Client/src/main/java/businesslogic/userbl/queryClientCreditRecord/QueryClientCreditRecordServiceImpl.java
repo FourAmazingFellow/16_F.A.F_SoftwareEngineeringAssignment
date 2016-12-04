@@ -25,7 +25,7 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
     
     @Override
     public ArrayList<CreditRecordPO> queryCreditRecord(String userID) {
-   //     userDAO = RemoteHelper.getInstance().getUserDAO();
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditRecord = new ArrayList<>();
         try {

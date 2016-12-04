@@ -14,10 +14,10 @@ public class MockAbnormalOrderList extends AbnormalOrderList {
 	
 	@SuppressWarnings("deprecation")
 	public MockAbnormalOrderList() {
-		mockAbnormalBriefOrderInfoVO = new BriefOrderInfoVO("Wan", "0001000100010001","仙林大酒店", "仙林大道163号",new Date(2016,10,16),
+		mockAbnormalBriefOrderInfoVO = new BriefOrderInfoVO("Wan", "0000000000000003","仙林大酒店", "仙林大道163号",new Date(2016,10,16),
 				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100, OrderState.ABNORMAL_ORDER);
 		
-		mockAbnormalOrderVO = new OrderVO("Wan","0001000100010001","仙林大酒店", "仙林大道163号" ,new Date(2016,10,16),
+		mockAbnormalOrderVO = new OrderVO("Wan","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(2016,10,16),
 				new Date(2016,10,17), RoomType.KING_SIZE_ROOM, 1, 100, OrderState.ABNORMAL_ORDER, new Date(2016,10,16,18,0),
 				new java.util.Date(2016, 10, 16, 20, 0),2,false,true,false);
 	}

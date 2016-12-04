@@ -34,7 +34,7 @@ public class AvailableRoomListTest {
 	public void testGetAvailableRoomList() {
 		availableRooms = new AvailableRoomList("江苏省南京市栖霞区仙林大道163号");
 		ArrayList<RoomVO> roomVOs = availableRooms.getAvailableRoomList();
-		assertEquals(3, roomVOs.size());
+		assertEquals(0000000000000003, roomVOs.size());
 		assertEquals(roomVO1.address, roomVOs.get(0).address);
 		assertEquals(roomVO1.roomNum, roomVOs.get(0).roomNum);
 		assertEquals(roomVO1.roomType, roomVOs.get(0).roomType);

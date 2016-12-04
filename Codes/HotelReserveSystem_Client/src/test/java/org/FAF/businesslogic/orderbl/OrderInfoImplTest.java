@@ -48,19 +48,19 @@ public class OrderInfoImplTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
-		this.orderID = "0001000100010001";
-		this.userID = "19970206";
-		this.hotelName = "汉庭酒店";
-		this.hotelAddress = "南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(116, 11, 20);
-		this.finishDate = new Date(116, 11, 21);
+		this.orderID = "0000000000000001";
+		this.userID = "原";
+		this.hotelName = "Jingling Hotel";
+		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
+		this.beginDate = new Date(116, 9, 19);
+		this.finishDate = new Date(116, 9, 20);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
 		this.totalPrice = 200;
 		this.orderState = OrderState.NOT_DONE_ORDER;
 		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
 		this.lastedOrderDoneTime = new Date(116, 11, 20, 21, 0);
-		this.numOfPerson = 2;
+		this.numOfPerson = 1;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
@@ -71,7 +71,7 @@ public class OrderInfoImplTest {
 
 	@Test
 	public void getAllOrdersTest_1() {
-		ArrayList<OrderVO> allOrders = orderInfoImpl.getAllOrders("19970206");
+		ArrayList<OrderVO> allOrders = orderInfoImpl.getAllOrders("原");
 		OrderVO firstOrder = allOrders.get(0);
 		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
 				firstOrder.orderID);
@@ -108,7 +108,7 @@ public class OrderInfoImplTest {
 
 	@Test
 	public void isReservedTest_1() {
-		boolean result = orderInfoImpl.isReserved("19970206", "南京市栖霞区仙林大道163号");
+		boolean result = orderInfoImpl.isReserved("原", "江苏省南京市栖霞区仙林大道163号");
 		assertEquals(isReserved, result);
 	}
 
@@ -151,7 +151,7 @@ public class OrderInfoImplTest {
 	
 	@Test
 	public void getOrderListTest_1(){
-		ArrayList<OrderVO> result = orderInfoImpl.getOrderList("19970206", "南京市栖霞区仙林大道163号");
+		ArrayList<OrderVO> result = orderInfoImpl.getOrderList("原", "江苏省南京市栖霞区仙林大道163号");
 		OrderVO firstOrder = result.get(0);
 		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
 				firstOrder.orderID);
@@ -188,7 +188,7 @@ public class OrderInfoImplTest {
 	
 	@Test
 	public void getReservedOrderListTest_1(){
-		ArrayList<BriefOrderInfoVO> result = orderInfoImpl.getReservedOrderList("19970206");
+		ArrayList<BriefOrderInfoVO> result = orderInfoImpl.getReservedOrderList("原");
 		BriefOrderInfoVO firstOrder = result.get(0);
 		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
 				firstOrder.orderID);

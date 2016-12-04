@@ -54,15 +54,15 @@ public class NewOrderTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
-		this.orderID = "0001000100010001";
-		this.userID = "19970206";
-		this.hotelName = "汉庭酒店";
-		this.hotelAddress = "南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(116, 11, 20);
-		this.finishDate = new Date(116, 11, 21);
+		this.orderID = "0000000000000007";
+		this.userID = "原";
+		this.hotelName = "Jingling Hotel";
+		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
+		this.beginDate = new Date(116, 11, 6);
+		this.finishDate = new Date(116, 11, 7);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
-		this.totalPrice = 200;
+		this.totalPrice = 400;
 		this.orderState = OrderState.NOT_DONE_ORDER;
 		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
 		this.lastedOrderDoneTime = new Date(116, 11, 20, 22, 0);
@@ -72,7 +72,7 @@ public class NewOrderTest {
 		this.isCommented = false;
 
 		this.isReserved = true;
-		this.price = 200;
+		this.price = 400;
 		this.addResult = true;
 		
 		newOrder = new NewOrder();
@@ -102,7 +102,7 @@ public class NewOrderTest {
 
 	@Test
 	public void getPriceTest_1() {
-		OrderVO tempOrder = newOrder.initNewOrder(userID, hotelName, hotelAddress);
+		OrderVO tempOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
 		int result = newOrder.getPrice(tempOrder);
 		assertEquals("NewOrder.getPrice has an error!", price, result);
 	}

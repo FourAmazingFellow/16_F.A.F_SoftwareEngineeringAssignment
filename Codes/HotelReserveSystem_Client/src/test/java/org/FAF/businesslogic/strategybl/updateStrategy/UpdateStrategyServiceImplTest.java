@@ -39,7 +39,7 @@ public class UpdateStrategyServiceImplTest {
         StrategyVO strategyVO3=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "春节折扣", 90, new Date(117,1,10), new Date(117,1,21));
 
         ArrayList<StrategyVO> strategyVOs=updateStrategyServiceImpl.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
-        assertEquals(3,strategyVOs.size());
+        assertEquals(0000000000000003,strategyVOs.size());
         assertTrue(equalStrategy(strategyVOs.get(0), strategyVO1));
         assertTrue(equalStrategy(strategyVOs.get(1), strategyVO2));
         assertTrue(equalStrategy(strategyVOs.get(2), strategyVO3));

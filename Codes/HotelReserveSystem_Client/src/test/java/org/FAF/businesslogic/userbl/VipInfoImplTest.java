@@ -28,7 +28,6 @@ public class VipInfoImplTest {
     private Date birth;
     private int vipRank;
     private String enterpriseID;
-    private String enterprisePassword;
     private UserDAO userDAO;
 
     private static LinkToServer linkToServer;
@@ -44,7 +43,7 @@ public class VipInfoImplTest {
     public void setUp() throws Exception {
         this.userIDr = "原";
         this.passwordr = "qwe123";
-        this.telNumr = "12345678900";
+        this.telNumr = "12345678901";
         this.creditValuer = 500;
 //        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(2016, 11, 11), "2016111100001111",
 //                ActionType.ORDER_DONE, 500, creditValuer + 500);
@@ -58,7 +57,6 @@ public class VipInfoImplTest {
         this.telNume = "12345678903";
         this.creditValuee = 1000;
         this.enterpriseID = "阿里巴巴";
-        this.enterprisePassword = "alibaba6";
 //        this.userDAO1 = new UserDAOImpl_Stub(userIDr, passwordr, telNumr, creditValuer, creditRecord, birth, vipRank);
 //        this.userDAO2 = new UserDAOImpl_Stub(userIDe, passworde, telNume, creditValuee, creditRecord, enterpriseID,
 //                enterprisePassword);
@@ -96,9 +94,6 @@ public class VipInfoImplTest {
 //                enterpriseVip.creditRecord);
         assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in enterpriseID!", enterpriseID,
                 enterpriseVip.enterpriseID);
-        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in enterprisePassword!", enterprisePassword,
-                enterpriseVip.enterprisePassword);
-
     }
 
 }

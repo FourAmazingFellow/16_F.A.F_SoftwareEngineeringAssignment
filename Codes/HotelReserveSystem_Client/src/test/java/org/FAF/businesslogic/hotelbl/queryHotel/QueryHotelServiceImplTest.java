@@ -42,8 +42,8 @@ public class QueryHotelServiceImplTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
-		this.orderID = "0001000100010001";
-		this.userID = "19970206";
+		this.orderID = "0000000000000003";
+		this.userID = "原";
 		this.hotelName = "汉庭酒店";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.beginDate = new Date(2016, 12, 20);
@@ -68,7 +68,7 @@ public class QueryHotelServiceImplTest {
 
 //	@Test
 //	public void testGetHotelBriefInfoListByQuerying() {
-//		queryHotel = new MockQueryHotelServiceImpl("19970206");
+//		queryHotel = new MockQueryHotelServiceImpl("原");
 //		String[] conditions  = {"从低到高", "从高到低", "从高到低", "是"};
 //		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOs = queryHotel.getHotelBriefInfoListByQuerying(conditions);
 //		
@@ -77,7 +77,7 @@ public class QueryHotelServiceImplTest {
 	
 	@Test
 	public void testGetHotelDetails() {
-		queryHotel = new QueryHotelServiceImpl("19970206");
+		queryHotel = new QueryHotelServiceImpl("原");
 		HotelVO hotelDetails = queryHotel.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "Jingling Hotel", hotelDetails.hotelName);
 	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "新街口", hotelDetails.tradeArea);
@@ -93,8 +93,8 @@ public class QueryHotelServiceImplTest {
 	
 	@Test
 	public void testGetOrders() {
-		queryHotel = new MockQueryHotelServiceImpl("19970206");
-		ArrayList<OrderVO> orderVOs = queryHotel.getOrders("江苏省南京市栖霞区仙林大道163号", "19970206");
+		queryHotel = new MockQueryHotelServiceImpl("原");
+		ArrayList<OrderVO> orderVOs = queryHotel.getOrders("江苏省南京市栖霞区仙林大道163号", "原");
 		assertEquals(1, orderVOs.size());
 		assertEquals(orderID, orderVOs.get(0).orderID);
 		assertEquals(userID, orderVOs.get(0).userID);

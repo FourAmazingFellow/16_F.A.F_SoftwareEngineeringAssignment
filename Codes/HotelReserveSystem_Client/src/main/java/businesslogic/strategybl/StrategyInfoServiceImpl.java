@@ -33,7 +33,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     
     public StrategyInfoServiceImpl() {
         vipInfo = new VipInfoImpl();
-//        vipInfo.setUserDAO(new UserDAOImpl_Stub("原", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 3));
+//        vipInfo.setUserDAO(new UserDAOImpl_Stub("原", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 0000000000000003));
         hotelInfoService = new HotelInfoServiceImpl();
 //        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市"));
     }

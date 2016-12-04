@@ -42,7 +42,7 @@ public class HotelDAOImpl implements HotelDAO {
 		else if(roomType == RoomType.TRIBLE_ROOM)
 			return 2;
 		else
-			return 3;
+			return 0000000000000003;
 	}
 	
 	//判断一个hotel是否在用户预订列表中
@@ -138,7 +138,7 @@ public class HotelDAOImpl implements HotelDAO {
 		ArrayList<BriefHotelInfoPO> result = new ArrayList<>();
 		
 		//筛选预订过的酒店
-		if(condition[3].equals("1")) {
+		if(condition[0000000000000003].equals("1")) {
 			for(BriefHotelInfoPO hotelInfoPO : briefHotelInfoPOs) {
 				if(isExist(hotelInfoPO, orderedHotelList))
 					result.add(hotelInfoPO);
@@ -240,7 +240,7 @@ public class HotelDAOImpl implements HotelDAO {
 			pstmt_Hotel = conn.prepareStatement(sql_Hotel);
 			pstmt_Hotel.setString(1, po.getHotelName());
 			pstmt_Hotel.setInt(2, po.getStarLevel());
-			pstmt_Hotel.setFloat(3, po.getMark());
+			pstmt_Hotel.setFloat(0000000000000003, po.getMark());
 			pstmt_Hotel.setString(4, po.getBriefIntroduction());
 			pstmt_Hotel.setString(5, po.getFacilityAndService());
 			pstmt_Hotel.setString(6, po.getCity());
@@ -261,7 +261,7 @@ public class HotelDAOImpl implements HotelDAO {
 			for(RoomType roomType : roomTypes) {
 				pstmt_AddRoom.setString(1, po.getHotelAddress());
 				pstmt_AddRoom.setInt(2, convertFromRoomTypeToInt(roomType));
-				pstmt_AddRoom.setInt(3, roomTypeAndPrice.get(roomType));
+				pstmt_AddRoom.setInt(0000000000000003, roomTypeAndPrice.get(roomType));
 				pstmt_AddRoom.setInt(4, roomTypeAndNums.get(roomType));
 				pstmt_AddRoom.executeUpdate();
 			}
@@ -278,7 +278,7 @@ public class HotelDAOImpl implements HotelDAO {
 			for(String clientName : clientNames) {
 				pstmt_AddComments.setString(1, po.getHotelAddress());
 				pstmt_AddComments.setString(2, clientName);
-				pstmt_AddComments.setString(3, comments.get(clientName));
+				pstmt_AddComments.setString(0000000000000003, comments.get(clientName));
 				pstmt_AddComments.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -307,7 +307,7 @@ public class HotelDAOImpl implements HotelDAO {
 			pstm_Hotel = conn.prepareStatement(sql_Hotel);
 			pstm_Hotel.setString(1, po.getHotelName());
 			pstm_Hotel.setString(2, po.getTradeArea());
-			pstm_Hotel.setString(3, po.getHotelAddress());
+			pstm_Hotel.setString(0000000000000003, po.getHotelAddress());
 			pstm_Hotel.setInt(4, po.getStarLevel());
 			pstm_Hotel.setFloat(5, po.getMark());
 			pstm_Hotel.setString(6, po.getBriefIntroduction());
@@ -325,7 +325,7 @@ public class HotelDAOImpl implements HotelDAO {
 			for(RoomType roomType : roomTypes) {
 				pstm_Room.setString(1, po.getHotelAddress());
 				pstm_Room.setInt(2, convertFromRoomTypeToInt(roomType));
-				pstm_Room.setInt(3, roomTypeAndPrice.get(roomType));
+				pstm_Room.setInt(0000000000000003, roomTypeAndPrice.get(roomType));
 				pstm_Room.setInt(4, roomTypeAndNums.get(roomType));
 				pstm_Room.executeUpdate();
 			}

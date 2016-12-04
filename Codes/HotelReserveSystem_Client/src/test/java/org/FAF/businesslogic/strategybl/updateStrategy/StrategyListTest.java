@@ -40,7 +40,7 @@ public class StrategyListTest {
         StrategyVO strategyVO3=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "春节折扣", 90, new Date(117,1,10), new Date(117,1,21));
 
         ArrayList<StrategyItem> strategyItems=strategyList.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
-        assertEquals(3,strategyItems.size());
+        assertEquals(0000000000000003,strategyItems.size());
         assertTrue(equalStrategy(strategyItems.get(0).toVO(), strategyVO1));
         assertTrue(equalStrategy(strategyItems.get(1).toVO(), strategyVO2));
         assertTrue(equalStrategy(strategyItems.get(2).toVO(), strategyVO3));
@@ -96,7 +96,7 @@ public class StrategyListTest {
     @Test
     public void testAdd3(){
         boolean added1 = false;
-        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.MultiRoomPromotion, "3房间以上折扣", 85,3);
+        StrategyVO strategyVO3=new StrategyVO(address, StrategyType.MultiRoomPromotion, "3房间以上折扣", 85,0000000000000003);
         try {
             added1 = strategyList.add(address, strategyVO3);
         } catch (UnableAddStrategyException e) {

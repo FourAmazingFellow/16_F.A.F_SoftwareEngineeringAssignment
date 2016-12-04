@@ -34,8 +34,14 @@ public class OrderWithdrawer {
 	
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
 		// TODO Codes 更改订单信息，置为已撤销状态，记录撤销时间, 根据isTooLate更改客户信用值
-		if(vo == null)
+		if(vo == null){
+			System.out.println("客户所要撤销的订单为空指针");
 			return false;
+		}
+		if(vo.orderState != OrderState.NOT_DONE_ORDER){
+			System.out.println("客户所要撤销的订单不是未执行订单");
+			return false;
+		}
 		VO2PO transformer = new VO2PO();
 		OrderPO po = transformer.orderVO2PO(vo);
 		po.setOrderState(OrderState.WITHDREW_ORDER);

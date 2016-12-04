@@ -41,7 +41,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     @Override
     public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) {
-   //     userDAO = RemoteHelper.getInstance().getUserDAO();
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         try {
@@ -59,6 +59,14 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
         } catch (RemoteException e2) {
             e2.printStackTrace();
         }
+        
+        this.creditRecord = new ArrayList<CreditRecordPO>();
+        try {
+            creditRecord = userDAO.queryCreditRecord(this.userID);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        }
+        
         if (regularVipPO != null) {
             if (creditResult <= 600)
                 this.vipRank = 0;
@@ -67,7 +75,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
             else if (creditResult > 2000 && creditResult <= 6000)
                 this.vipRank = 2;
             else if (creditResult > 6000 && creditResult <= 12000)
-                this.vipRank = 3;
+                this.vipRank = 0000000000000003;
             else if (creditResult > 12000)
                 this.vipRank = 4;
 
@@ -81,12 +89,9 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
             }
         }
         //update信用记录和信用值
-        this.creditRecord = new ArrayList<>();
-        creditRecord = clientInfoPO.getCreditRecord();
         CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), orderID,
                 actionType, num, creditResult);
         creditRecord.add(creditRecordPO);
-        
         ClientInfoPO modified = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(), UserType.Client, creditResult, creditRecord);
         try {
             userDAO.updateClient(modified, this.userID);

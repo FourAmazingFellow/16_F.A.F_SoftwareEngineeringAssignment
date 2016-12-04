@@ -36,7 +36,7 @@ public class UpdateCheckOutService_Driver {
         System.out.println("Actual depart time is "+checkOutVO2.actDepartTime+"/n");
         
         Date actDepartTime=new Date(System.currentTimeMillis());
-        CheckOutVO checkOut=new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", actDepartTime);
+        CheckOutVO checkOut=new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", actDepartTime);
         boolean addCheckOut = false;
         try {
             addCheckOut = updateCheckOutService.addCheckOut("江苏省南京市栖霞区仙林大道163号", checkOut);

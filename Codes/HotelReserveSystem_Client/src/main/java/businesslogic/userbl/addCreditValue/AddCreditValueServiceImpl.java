@@ -30,7 +30,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
 
     @Override
     public boolean addCreditValue(String userID, int creditAdded) {
-        // this.userDAO = RemoteHelper.getInstance().getUserDAO();
+        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         ClientInfoPO clientInfoPO = new ClientInfoPO();
         try {
@@ -56,7 +56,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
             else if (creditResult > 2000 && creditResult <= 6000)
                 this.vipRank = 2;
             else if (creditResult > 6000 && creditResult <= 12000)
-                this.vipRank = 3;
+                this.vipRank = 0000000000000003;
             else if (creditResult > 12000)
                 this.vipRank = 4;
 

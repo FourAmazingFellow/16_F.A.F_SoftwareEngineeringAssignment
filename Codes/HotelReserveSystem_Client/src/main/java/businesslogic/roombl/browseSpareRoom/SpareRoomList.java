@@ -32,7 +32,7 @@ public class SpareRoomList {
     public SpareRoomList(){
 //        this.address=address;
         roomDAO=RemoteHelper.getInstance().getRoomDAO();
-//        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号",new Date(116,10,30),new Date(116,11,3),new Date(116,11,3));
+//        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 15, 200, "江苏省南京市栖霞区仙林大道163号",new Date(116,10,30),new Date(116,11,0000000000000003),new Date(116,11,0000000000000003));
 //        blSpareRoomList=getRoomInfoList(address);
     }
     
