@@ -35,6 +35,7 @@ public class SignVipServiceImpl implements SignVipService {
     public boolean signRegularVip(RegularVipVO regularVip) {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
+            System.out.println(regularVip.userID);
             userDAO.signRegularVip(new RegularVipPO(regularVip));
             return true;
         } catch (RemoteException e) {

@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import dataservice.userDAO.UserDAO;
+import po.ClientInfoPO;
 import po.UserPO;
 import rmi.RemoteHelper;
 import vo.ClientInfoVO;
@@ -38,7 +39,7 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
     public boolean modifyClientInfo(UserVO user, String oldUserID) {
         this.userDAO =RemoteHelper.getInstance().getUserDAO();
         try {
-            userDAO.updateUser(new UserPO(user), oldUserID);
+            userDAO.updateClient(new ClientInfoPO((ClientInfoVO)user), oldUserID);
             return true;
         } catch (RemoteException e) {
             e.printStackTrace();
