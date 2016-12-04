@@ -40,7 +40,7 @@ public class ClientCreditInfoImplTest {
         this.userID = "Accident";
 //        this.password = "123456789";
 //        this.telNum = "12345678906";
-        this.creditValue = 1000;
+        this.creditValue = 1400;
 //        int creditPre = creditValue;
 //        @SuppressWarnings("deprecation")
 //        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(2016, 11, 11), "2016111100001111", ActionType.ORDER_DONE, 500, creditPre+500);

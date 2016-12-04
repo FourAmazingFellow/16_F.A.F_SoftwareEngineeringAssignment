@@ -6,13 +6,13 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.roombl.updateCheckIn.CheckInItem;
 import businesslogic.roombl.updateCheckOut.CheckOutItem;
 import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
-import vo.CheckInVO;
+import rmi.LinkToServer;
 import vo.CheckOutVO;
 
 public class CheckOutItemTest {
@@ -22,7 +22,14 @@ public class CheckOutItemTest {
     private CheckOutVO checkOutVO;
     private Date actDepartTime;
     
-    @SuppressWarnings("deprecation")
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
+    
     @Before
     public void setUp() throws Exception{
         address="江苏省南京市栖霞区仙林大道163号";
@@ -32,16 +39,16 @@ public class CheckOutItemTest {
         checkOutItem=new CheckOutItem(checkOutVO);
     }
     
-    @Test
-    public void testAddCheckOut(){
-        boolean added = false;
-        try {
-            added = checkOutItem.addCheckOut(address);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        assertTrue(added);
-    }
+//    @Test
+//    public void testAddCheckOut(){
+//        boolean added = false;
+//        try {
+//            added = checkOutItem.addCheckOut(address);
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+//        assertTrue(added);
+//    }
 
     @Test
     public void testValidCheckOut(){
@@ -115,7 +122,7 @@ public class CheckOutItemTest {
         assertFalse(valid);
     }
     
-    // 空房必须存在该房型
+    // 可用客房数量-空房数量>减少的空房数
     @Test
     public void testValidCheckIn4() {
         boolean valid1 = false,valid2=false;

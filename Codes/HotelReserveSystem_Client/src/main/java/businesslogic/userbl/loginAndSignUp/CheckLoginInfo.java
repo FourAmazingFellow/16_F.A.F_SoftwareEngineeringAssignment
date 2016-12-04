@@ -2,41 +2,62 @@ package businesslogic.userbl.loginAndSignUp;
 
 import java.rmi.RemoteException;
 
-import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
+import po.ClientInfoPO;
+import po.HotelStaffInfoPO;
 import po.UserPO;
+import po.UserType;
 import rmi.RemoteHelper;
 
 public class CheckLoginInfo {
     private UserDAO userDAO;
     private String userID;
     private UserPO userPO;
+    private ClientInfoPO client;
+    private HotelStaffInfoPO hotelStaff;
     private String password;
-    
-    public void setUserDAO(UserDAO userDAO){
+    private UserType userType;
+
+    public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
-    
+
     /**
-     * 验证登录信息
-     * @param userID String型，用户帐号
-     * @param password String型，用户密码
-     * @return 验证成功则返回true，否则返回false
+     * 验证登录信息并返回用户类型
+     * 
+     * @param userID
+     *            String型，用户帐号
+     * @param password
+     *            String型，用户密码
+     * @return
      * @see
      */
-    public boolean checkUser(String userID,String password) {
+    public UserType checkUser(String userID, String password) {
         this.userID = userID;
-        this.userPO = new UserPO();
+        this.userType = null;
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userPO = userDAO.getUserInfo(this.userID);
+            client = userDAO.getClientInfo(this.userID);
+            hotelStaff = userDAO.getHotelStaffInfo(this.userID);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        this.password = userPO.getPassword();
-        if (this.password == password) {
-            return true;
-        } else
-            return false;
+        if (userPO != null) {
+            this.password = userPO.getPassword();
+            if (this.password.equals(password))
+                userType = userPO.getUserType();
+        } else if (client != null) {
+            this.password = client.getPassword();
+            if (this.password.equals(password))
+                userType = client.getUserType();
+        } else if (hotelStaff != null) {
+            this.password = hotelStaff.getPassword();
+            if (this.password.equals(password))
+                userType = hotelStaff.getUserType();
+        }
+
+        return userType;
+
     }
 }

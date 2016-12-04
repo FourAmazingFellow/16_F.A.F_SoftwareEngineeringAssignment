@@ -38,7 +38,7 @@ public class LoginAndSignUpServiceImplTest {
         this.telNum = "12345678901";
         this.userType = UserType.Client;
         
-        this.userIDNew = "clarism";
+        this.userIDNew = "clarisClient";
         this.passwordNew = "clarism123";
         this.telNumNew = "12345678908";
         this.userTypeNew = UserType.Client;

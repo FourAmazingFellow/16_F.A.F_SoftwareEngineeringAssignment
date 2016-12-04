@@ -95,10 +95,10 @@ public class CreateNewOrderServiceImplTest {
 
 		price = 200;
 		addResult = true;
-		roomNum = 2;
+		roomNum = 10;
 		resultMessage = ResultMessage.SUCCEED;
 
-		this.hotelName_ = "Jingling  Hotel";
+		this.hotelName_ = "Jingling Hotel";
 		this.tradeArea = "栖霞区";
 		this.hotelAddress_ = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
@@ -165,13 +165,23 @@ public class CreateNewOrderServiceImplTest {
 	@Test
 	public void getAvailableRoomNumTest_1() {
 		int num = -1;
-		num = createNewOrderServiceImpl.getAvailableRoomNum(hotelAddress, RoomType.STANDARD_ROOM, new Date(2016, 11, 28));
+		num = createNewOrderServiceImpl.getAvailableRoomNum(hotelAddress, RoomType.STANDARD_ROOM, new Date(116, 11, 5));
 		assertEquals("CreateNewOrderServiceImpl.getAvailableRoomNum has an Error!", roomNum, num);
 	}
 
 	@Test
 	public void checkNewOrderTest_1() {
 		OrderVO orderVO = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num,
+				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
+				isCommented);
+		ResultMessage result = createNewOrderServiceImpl.checkNewOrder(orderVO);
+		assertEquals(null, result);
+	}
+	
+	@Test
+	public void checkNewOrderTest_2() {
+		@SuppressWarnings("deprecation")
+		OrderVO orderVO = new OrderVO("Accident", "8", hotelName, hotelAddress, new Date(116,11,5), new Date(116,11,6), roomType, num,
 				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
 				isCommented);
 		ResultMessage result = createNewOrderServiceImpl.checkNewOrder(orderVO);
@@ -187,7 +197,7 @@ public class CreateNewOrderServiceImplTest {
 		assertEquals("CreateNewOrderServiceImpl.getPrice has an error!", price, result);
 	}
 
-//	@Test
+	@Test
 	public void addNewOrderTest_1() {
 		OrderVO orderVO = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num,
 				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,

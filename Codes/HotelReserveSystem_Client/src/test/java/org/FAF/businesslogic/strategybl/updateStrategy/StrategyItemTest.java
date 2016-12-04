@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import po.StrategyType;
+import rmi.LinkToServer;
 import vo.StrategyVO;
 
 public class StrategyItemTest {
@@ -18,6 +20,14 @@ public class StrategyItemTest {
     private StrategyItem strategyItem;
     private StrategyVO strategyVO;
     private String address;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
 
     @Before
     public void setUp() throws Exception {

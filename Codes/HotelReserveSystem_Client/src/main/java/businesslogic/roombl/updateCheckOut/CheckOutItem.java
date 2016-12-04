@@ -42,17 +42,10 @@ public class CheckOutItem {
     private HotelInfoService hotelInfoService;
 
     public CheckOutItem() {
-//        actDepartTime = new Date(116, 11, 1, 17, 35);
-//        checkOutDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 0000000000000003, 300, "江苏省南京市栖霞区仙林大道163号", null, null,
-//                actDepartTime);
         checkOutDAO=RemoteHelper.getInstance().getRoomDAO();
         strategyInfoService = new StrategyInfoServiceImpl();
         roomInfoService = new RoomInfoServiceImpl();
         hotelInfoService = new HotelInfoServiceImpl();
-//        HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
-//        roomTypeAndNums.put(RoomType.SINGLE_ROOM, 20);
-//        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", null,
-//                null, roomTypeAndNums, null));
     }
 
     /**
@@ -93,16 +86,16 @@ public class CheckOutItem {
      * @see
      */
     public boolean addCheckOut(String address) throws RemoteException {
-        RoomPO checkOutPO = new CheckOutPO(roomType, roomNum, address, actDepartTime);
+        CheckOutPO checkOutPO = new CheckOutPO(roomType, roomNum, address, actDepartTime);
         try {
-            checkOutDAO.insertRoom(checkOutPO);
+            checkOutDAO.insertCheckOut(checkOutPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
         }
         // 更新空房信息
         Date today = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             today = sdf.parse(sdf.format(today));
         } catch (ParseException e1) {

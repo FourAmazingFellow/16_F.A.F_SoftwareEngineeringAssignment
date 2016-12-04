@@ -7,21 +7,30 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.roombl.updateCheckIn.CheckInItem;
 import businesslogic.strategybl.exception.WrongInputException;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.CheckInVO;
 
 public class CheckInItemTest {
 
     private CheckInItem checkInItem;
-    private String address;
     private CheckInVO checkInVO;
     private boolean updateSpareRoom;
     private Date checkInTime;
     private Date expDepartTime;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -39,7 +48,7 @@ public class CheckInItemTest {
     public void testAddCheckIn() {
         boolean added = false;
         try {
-            added = checkInItem.addCheckIn(address, updateSpareRoom);
+            added = checkInItem.addCheckIn("江苏省南京市栖霞区仙林大道163号", updateSpareRoom);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -154,7 +163,7 @@ public class CheckInItemTest {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        assertFalse(valid1);
+        assertTrue(valid1);
         assertFalse(valid2);
     }
 }

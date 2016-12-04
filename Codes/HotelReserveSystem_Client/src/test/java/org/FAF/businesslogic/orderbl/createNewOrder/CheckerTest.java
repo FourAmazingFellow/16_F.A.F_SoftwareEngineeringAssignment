@@ -50,6 +50,6 @@ public class CheckerTest {
 	@Test
 	public void checkNewOrderTest_1() {
 		ResultMessage result = checker.checkNewOrder(orderToBeChecked);
-		assertEquals(null, result);
+		assertEquals(resultMessage, result);
 	}
 }

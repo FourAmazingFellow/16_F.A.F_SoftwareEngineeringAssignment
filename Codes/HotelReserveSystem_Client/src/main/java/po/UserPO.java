@@ -34,6 +34,10 @@ public class UserPO implements Serializable {
     
 
     public UserPO(UserVO user) {
+        this.userID = user.userID;
+        this.password = user.password;
+        this.telNum = user.telNum;
+        this.userType = user.userType;
     }
 
 

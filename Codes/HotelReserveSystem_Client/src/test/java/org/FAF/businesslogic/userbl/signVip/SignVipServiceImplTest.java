@@ -47,11 +47,11 @@ public class SignVipServiceImplTest {
     @SuppressWarnings("deprecation")
     @Before
     public void setUp() throws Exception {
-        this.userID = "原";
+        this.userID = "newVip";
         this.password = "qwe123";
         this.telNum = "12345678900";
         this.userType = UserType.Client;
-        this.birth = new Date(1997, 10, 10);
+        this.birth = new Date(1994-1900, 10-1, 10);
         this.enterpriseID = "如家";
         this.enterprisePassword = "rujia";
 //        this.userDAO = new UserDAOImpl_Stub(userID, enterprisePassword, telNum);
@@ -63,7 +63,7 @@ public class SignVipServiceImplTest {
     public void testSignRegularVip() {
         signVip = new SignVipServiceImpl();
         signVip.setUserDAO(userDAO);
-        regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 0);
+        regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 3);
         boolean result = signVip.signRegularVip(regularVip);
         assertEquals(true, result);
     }

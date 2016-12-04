@@ -368,7 +368,7 @@ public class StrategyItem {
             throw new WrongInputException("there is no trade area in this city");
         }
         for (BusinessDistrictPO po : tradeAreaList) {
-            if (this.tradeArea == po.getBusinessDistrictName()) {
+            if (this.tradeArea.equals(po.getBusinessDistrictName())) {
                 tradeAreaExist = true;
                 break;
             }
