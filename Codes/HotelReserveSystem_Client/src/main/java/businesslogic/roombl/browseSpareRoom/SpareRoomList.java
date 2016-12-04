@@ -63,7 +63,7 @@ public class SpareRoomList {
         ArrayList<RoomPO> roomPOs;
         ArrayList<SpareRoomItem> spareRoomItems=new ArrayList<SpareRoomItem>();
         Date today=new Date();
-        SimpleDateFormat sdf=new SimpleDateFormat("YYYY-MM-DD");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         try {
             today=sdf.parse(sdf.format(today));
         } catch (ParseException e1) {

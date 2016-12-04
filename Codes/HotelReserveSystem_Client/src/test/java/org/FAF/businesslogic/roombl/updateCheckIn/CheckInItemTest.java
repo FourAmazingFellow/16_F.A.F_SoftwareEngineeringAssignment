@@ -146,7 +146,7 @@ public class CheckInItemTest {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        checkInItem=new CheckInItem(new CheckInVO(RoomType.SINGLE_ROOM, 21, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime));
+        checkInItem=new CheckInItem(new CheckInVO(RoomType.SINGLE_ROOM, 51, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime));
         try {
             valid2 = checkInItem.validCheckIn();
         } catch (WrongInputException e) {

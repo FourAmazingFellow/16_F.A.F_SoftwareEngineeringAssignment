@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.roombl.browseSpareRoom.SpareRoomItem;
 import businesslogic.roombl.browseSpareRoom.SpareRoomList;
 import po.RoomType;
 import po.StrategyType;
+import rmi.LinkToServer;
 import vo.RoomVO;
 
 public class SpareRoomListTest {
@@ -19,6 +21,14 @@ public class SpareRoomListTest {
 //    private RoomVO roomVO;
     private String address;
     private RoomVO roomVO1,roomVO2,roomVO3,roomVO4;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -55,7 +65,7 @@ public class SpareRoomListTest {
 
     public boolean equalSpareRoom(RoomVO roomVO1, RoomVO roomVO2) {
         if (roomVO1.roomType != roomVO2.roomType || roomVO1.roomNum != roomVO2.roomNum
-                || roomVO1.roomPrice != roomVO2.roomPrice || roomVO1.address != roomVO2.address) {
+                || roomVO1.roomPrice != roomVO2.roomPrice || !roomVO1.address.equals( roomVO2.address)) {
             return false;
         }
         return true;
