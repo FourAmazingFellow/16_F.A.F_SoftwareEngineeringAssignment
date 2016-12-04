@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import businesslogic.hotelbl.importNewRoom.AvailableRoomList;
-import businesslogic.hotelbl.importNewRoom.MockAvailableRoomList;
 import po.RoomType;
 import vo.RoomVO;
 
@@ -33,7 +32,7 @@ public class AvailableRoomListTest {
 
 	@Test
 	public void testGetAvailableRoomList() {
-		availableRooms = new MockAvailableRoomList("江苏省南京市栖霞区仙林大道163号");
+		availableRooms = new AvailableRoomList("江苏省南京市栖霞区仙林大道163号");
 		ArrayList<RoomVO> roomVOs = availableRooms.getAvailableRoomList();
 		assertEquals(3, roomVOs.size());
 		assertEquals(roomVO1.address, roomVOs.get(0).address);
