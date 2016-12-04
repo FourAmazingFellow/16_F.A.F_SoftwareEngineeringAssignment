@@ -41,7 +41,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     @Override
     public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) {
-   //     userDAO = RemoteHelper.getInstance().getUserDAO();
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         try {
