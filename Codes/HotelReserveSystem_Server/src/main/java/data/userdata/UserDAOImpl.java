@@ -291,7 +291,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, clientInfoPO.getUserID());
 			pstmt.setString(2, clientInfoPO.getpassword());
-			pstmt.setString(0000000000000003, clientInfoPO.getTelNum());
+			pstmt.setString(3, clientInfoPO.getTelNum());
 			pstmt.setInt(4, clientInfoPO.getCreditValue());
 			pstmt.setString(5, oldUserID);
 			pstmt.executeUpdate();
@@ -307,7 +307,7 @@ public class UserDAOImpl implements UserDAO {
 			for(CreditRecordPO creditRecordPO : creditRecordPOs) {
 				pstmt_UpdateCreditRecord.setString(1, clientInfoPO.getUserID());
 				pstmt_UpdateCreditRecord.setDate(2, creditRecordPO.getChangeTime());
-				pstmt_UpdateCreditRecord.setInt(0000000000000003, Integer.parseInt(creditRecordPO.getOrderID()));
+				pstmt_UpdateCreditRecord.setInt(3, Integer.parseInt(creditRecordPO.getOrderID()));
 				pstmt_UpdateCreditRecord.setInt(4, convertFromActionTypeToInt(creditRecordPO.getAction()));
 				pstmt_UpdateCreditRecord.setInt(5, creditRecordPO.getProcess());
 				pstmt_UpdateCreditRecord.setInt(6, creditRecordPO.getCreditResult());

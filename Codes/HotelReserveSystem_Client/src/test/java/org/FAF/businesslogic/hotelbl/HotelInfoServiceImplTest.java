@@ -55,7 +55,7 @@ public class HotelInfoServiceImplTest {
 		this.tradeArea = "栖霞区";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
-		this.mark = 4.8f;
+		this.mark = 5.0f;
 		this.city = "南京市";
 		this.min_Price = 100;
 		this.briefIntroduction = "南京最好的酒店";
@@ -64,13 +64,13 @@ public class HotelInfoServiceImplTest {
 		roomTypeAndPrice.put(RoomType.SINGLE_ROOM, 100);
 		roomTypeAndPrice.put(RoomType.STANDARD_ROOM, 200);
 		roomTypeAndPrice.put(RoomType.TRIBLE_ROOM, 300);
-		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 400);
+		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 500);
 		this.roomTypeAndPrice = roomTypeAndPrice;
 		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
 		roomTypeAndNums.put(RoomType.SINGLE_ROOM, 50);
 		roomTypeAndNums.put(RoomType.STANDARD_ROOM, 50);
 		roomTypeAndNums.put(RoomType.TRIBLE_ROOM, 50);
-		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 50);
+		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 52);
 		this.roomTypeAndNums = roomTypeAndNums;
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");

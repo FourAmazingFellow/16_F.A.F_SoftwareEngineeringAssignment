@@ -26,7 +26,7 @@ public class AvailableRoomItemTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.room = new RoomVO(RoomType.KING_SIZE_ROOM, 20, 500, "江苏省南京市栖霞区仙林大道163号");
+		this.room = new RoomVO(RoomType.KING_SIZE_ROOM, 52, 500, "江苏省南京市栖霞区仙林大道163号");
 	}
 
 	@Test

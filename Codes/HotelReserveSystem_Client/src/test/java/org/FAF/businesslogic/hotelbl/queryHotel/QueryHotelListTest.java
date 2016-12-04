@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.hotelbl.queryHotel.MockQueryHotelList;
 import businesslogic.hotelbl.queryHotel.QueryHotelList;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
