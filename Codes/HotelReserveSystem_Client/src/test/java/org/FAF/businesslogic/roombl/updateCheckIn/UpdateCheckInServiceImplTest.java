@@ -42,11 +42,11 @@ public class UpdateCheckInServiceImplTest {
         expDepartTime = calendar.getTime();
         startTime=new Date(116,9,5,12,00,00);
         endTime=new Date(116,10,11,12,00,00);
-        checkInVO = new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime,
+        checkInVO = new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", checkInTime,
                 expDepartTime);
         updateSpareRoom=true;
         
-        checkInVO1=new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,11,12,00,00), new Date(116,10,12,12,00,00));
+        checkInVO1=new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,11,12,00,00), new Date(116,10,12,12,00,00));
         checkInVO2=new CheckInVO(RoomType.STANDARD_ROOM, 4, "江苏省南京市栖霞区仙林大道163号", new Date(116,9,5,12,00,00), new Date(116,9,6,12,00,00));
         checkInVO3=new CheckInVO(RoomType.TRIBLE_ROOM, 1, "江苏省南京市栖霞区仙林大道163号", new Date(116,8,20,12,00,00), new Date(116,9,1,12,00,00));
         checkInVO4=new CheckInVO(RoomType.KING_SIZE_ROOM, 1, "江苏省南京市栖霞区仙林大道164号", new Date(116,10,15,13,00,00), new Date(116,10,16,13,00,00));
@@ -56,7 +56,7 @@ public class UpdateCheckInServiceImplTest {
     @Test
     public void testGetCheckInList() {
         ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.getCheckInList("江苏省南京市栖霞区仙林大道163号");
-        assertEquals(3,checkInVOs.size());
+        assertEquals(0000000000000003,checkInVOs.size());
 //        CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
 //        assertTrue(equalCheckIn(checkInVO, checkInfromArray));
         for(RoomVO roomVO:checkInVOs){

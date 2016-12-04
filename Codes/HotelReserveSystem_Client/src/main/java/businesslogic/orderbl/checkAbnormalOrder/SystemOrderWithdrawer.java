@@ -43,6 +43,8 @@ public class SystemOrderWithdrawer {
 		// 撤销此异常订单并将其状态置为已撤销、记录撤销时间，恢复此客户信用值的全部或一半
 		if(vo == null)
 			return false;
+		if(vo.orderState != OrderState.ABNORMAL_ORDER)
+			return false;
 		VO2PO transformer = new VO2PO();
 		OrderPO po = transformer.orderVO2PO(vo);
 		

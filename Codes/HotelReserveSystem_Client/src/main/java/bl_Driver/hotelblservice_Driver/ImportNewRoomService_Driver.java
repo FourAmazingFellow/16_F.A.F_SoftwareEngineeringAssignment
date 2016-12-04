@@ -14,7 +14,7 @@ public class ImportNewRoomService_Driver {
 		else
 			System.out.println("There are " + roomVOList.size() + " such room types");
 		
-		RoomVO room = new RoomVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
+		RoomVO room = new RoomVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号");
 		boolean result = importNewRoomService.addRoom(room);
 		if(result)
 			System.out.println("Add Succeed!\n");

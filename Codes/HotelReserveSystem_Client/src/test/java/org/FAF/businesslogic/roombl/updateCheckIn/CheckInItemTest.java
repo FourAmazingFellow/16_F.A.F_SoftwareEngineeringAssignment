@@ -30,7 +30,7 @@ public class CheckInItemTest {
         calendar.setTime(checkInTime);
         calendar.add(Calendar.DATE, 1);
         expDepartTime = calendar.getTime();
-        checkInVO = new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
+        checkInVO = new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime);
         checkInItem = new CheckInItem(checkInVO);
         updateSpareRoom = true;
     }
@@ -64,7 +64,7 @@ public class CheckInItemTest {
     public void testValidCheckIn1() {
         boolean valid1 = false,valid2=false;
         checkInItem = new CheckInItem(
-                new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号"+"11111111111111111111111111111111111111111111", checkInTime, expDepartTime));
+                new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号"+"11111111111111111111111111111111111111111111", checkInTime, expDepartTime));
         try {
             valid1 = checkInItem.validCheckIn();
         } catch (WrongInputException e) {
@@ -73,7 +73,7 @@ public class CheckInItemTest {
             e.printStackTrace();
         }
         checkInItem = new CheckInItem(
-                new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区-,.仙林大道163号", checkInTime, expDepartTime));
+                new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区-,.仙林大道163号", checkInTime, expDepartTime));
         try {
             valid2 = checkInItem.validCheckIn();
         } catch (WrongInputException e) {
@@ -109,7 +109,7 @@ public class CheckInItemTest {
         boolean valid1 = false,valid2=false;
         
         checkInItem = new CheckInItem(
-                new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,30), expDepartTime));
+                new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,30), expDepartTime));
         try {
             valid1 = checkInItem.validCheckIn();
         } catch (WrongInputException e) {
@@ -122,7 +122,7 @@ public class CheckInItemTest {
         calendar.add(Calendar.DATE, -1);;
         expDepartTime=calendar.getTime();
         checkInItem = new CheckInItem(
-                new CheckInVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime));
+                new CheckInVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime));
         try {
             valid2 = checkInItem.validCheckIn();
         } catch (WrongInputException e) {
@@ -138,7 +138,7 @@ public class CheckInItemTest {
     @Test
     public void testValidCheckIn4() {
         boolean valid1 = false,valid2=false;
-        checkInItem=new CheckInItem(new CheckInVO(RoomType.KING_SIZE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime));
+        checkInItem=new CheckInItem(new CheckInVO(RoomType.KING_SIZE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime));
         try {
             valid1 = checkInItem.validCheckIn();
         } catch (WrongInputException e) {

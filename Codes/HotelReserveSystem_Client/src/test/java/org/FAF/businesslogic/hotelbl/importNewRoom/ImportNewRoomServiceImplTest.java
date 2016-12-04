@@ -34,7 +34,7 @@ public class ImportNewRoomServiceImplTest {
 	public void testGetAvailableRoomList() {
 		importNewRoom = new ImportNewRoomServiceImpl();
 		ArrayList<RoomVO> roomVOs = importNewRoom.getAvailableRoomList("江苏省南京市栖霞区仙林大道163号");
-		assertEquals(3, roomVOs.size());
+		assertEquals(0000000000000003, roomVOs.size());
 		assertEquals(roomVO1.address, roomVOs.get(0).address);
 		assertEquals(roomVO1.roomNum, roomVOs.get(0).roomNum);
 		assertEquals(roomVO1.roomType, roomVOs.get(0).roomType);

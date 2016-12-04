@@ -27,7 +27,7 @@ public class CheckOutItemTest {
     public void setUp() throws Exception{
         address="江苏省南京市栖霞区仙林大道163号";
         actDepartTime=new Date();
-        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 3, address, actDepartTime);
+        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, address, actDepartTime);
         
         checkOutItem=new CheckOutItem(checkOutVO);
     }
@@ -61,7 +61,7 @@ public class CheckOutItemTest {
     public void testValidCheckIn1() {
         boolean valid1 = false,valid2=false;
         checkOutItem = new CheckOutItem(
-                new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号"+"11111111111111111111111111111111111111111111", actDepartTime));
+                new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号"+"11111111111111111111111111111111111111111111", actDepartTime));
         try {
             valid1 = checkOutItem.validCheckOut();
         } catch (WrongInputException e) {
@@ -70,7 +70,7 @@ public class CheckOutItemTest {
             e.printStackTrace();
         }
         checkOutItem = new CheckOutItem(
-                new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区-,.仙林大道163号", actDepartTime));
+                new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区-,.仙林大道163号", actDepartTime));
         try {
             valid2 = checkOutItem.validCheckOut();
         } catch (WrongInputException e) {
@@ -104,7 +104,7 @@ public class CheckOutItemTest {
     public void testValidCheckIn3() {
         boolean valid = false;
         checkOutItem = new CheckOutItem(
-                new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,30,17,35)));
+                new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,30,17,35)));
         try {
             valid = checkOutItem.validCheckOut();
         } catch (WrongInputException e) {
@@ -119,7 +119,7 @@ public class CheckOutItemTest {
     @Test
     public void testValidCheckIn4() {
         boolean valid1 = false,valid2=false;
-        checkOutItem=new CheckOutItem(new CheckOutVO(RoomType.KING_SIZE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", actDepartTime));
+        checkOutItem=new CheckOutItem(new CheckOutVO(RoomType.KING_SIZE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", actDepartTime));
         try {
             valid1 = checkOutItem.validCheckOut();
         } catch (WrongInputException e) {

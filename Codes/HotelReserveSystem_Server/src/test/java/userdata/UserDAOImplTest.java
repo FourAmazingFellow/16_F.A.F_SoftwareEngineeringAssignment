@@ -65,7 +65,7 @@ public class UserDAOImplTest {
 		this.clientInfoPO = new ClientInfoPO("Accident", "123456789", "12345678906", UserType.Client, 1000, creditRecordPOs);
 		this.hotelStaff = new HotelStaffInfoPO("hstaff0006", "hstaff0006123", "12312312306", UserType.HotelStaff, "上海长宁区仙霞西路585号");
 		Date birth = new Date(97, 0, 1);
-		this.regularVipPO = new RegularVipPO("Accident", "123456789", "12345678906", UserType.Client, 1000, creditRecordPOs, birth, 3);
+		this.regularVipPO = new RegularVipPO("Accident", "123456789", "12345678906", UserType.Client, 1000, creditRecordPOs, birth, 0000000000000003);
 		this.enterpriseVipPO = new EnterpriseVipPO("lucy", "lucy123", "12345678904", UserType.Client, 700, null, "万达", "wanda666");
 	}
 
@@ -247,7 +247,7 @@ public class UserDAOImplTest {
 	
 	@Test
 	public void testUpdateRegularVipInfo() {
-		regularVipPO.setVipRank(3);
+		regularVipPO.setVipRank(0000000000000003);
 		try {
 			userDAO.updateRegularVipInfo(regularVipPO);
 		} catch (RemoteException e) {

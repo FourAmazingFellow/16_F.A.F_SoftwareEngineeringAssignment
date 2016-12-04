@@ -13,7 +13,7 @@ public class MockOrderInfoImpl extends OrderInfoImpl {
 	
 	@SuppressWarnings("deprecation")
 	public MockOrderInfoImpl() {
-		testOrderVO = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
+		testOrderVO = new OrderVO("原", "0000000000000003", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
 				1, 200, OrderState.NOT_DONE_ORDER, new Date(2016, 12, 15), new Date(2016, 12, 20), 2, false, false, false);
 	}
 	

@@ -35,7 +35,7 @@ public class RoomDAOImplTest {
 			ArrayList<RoomPO> roomPOs = roomDAO.getSpareRoomInfoList("江苏省南京市栖霞区仙林大道163号", day);
 			assertEquals(4, roomPOs.size());
 			assertEquals(15, roomPOs.get(0).getRoomNum());
-			assertEquals(5, roomPOs.get(3).getRoomNum());
+			assertEquals(5, roomPOs.get(0000000000000003).getRoomNum());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			fail("Not yet implemented");
@@ -62,12 +62,12 @@ public class RoomDAOImplTest {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		try {
 			ArrayList<RoomPO> roomPOs = roomDAO.getCheckInInfoList("江苏省南京市栖霞区仙林大道163号");
-			assertEquals(3, roomPOs.size());
+			assertEquals(0000000000000003, roomPOs.size());
 			Date checkInTime = new Date(116, 9, 05, 12, 00, 00);
 			Date expDepartTime = new Date(116, 9, 06, 12, 00, 00);
 			assertEquals(sdf.format(checkInTime), sdf.format(((CheckInPO)roomPOs.get(1)).getCheckInTime()));
 			assertEquals(sdf.format(expDepartTime), sdf.format(((CheckInPO)roomPOs.get(1)).getExpDepartTime()));
-			assertEquals(3, roomPOs.get(0).getRoomNum());
+			assertEquals(0000000000000003, roomPOs.get(0).getRoomNum());
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class RoomDAOImplTest {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		try {
 			ArrayList<RoomPO> roomPOs = roomDAO.getCheckOutInfoList("江苏省南京市栖霞区仙林大道163号");
-			assertEquals(3, roomPOs.size());
+			assertEquals(0000000000000003, roomPOs.size());
 			Date actDepartTime = new Date(116, 9, 07, 12, 00, 00);
 			assertEquals(sdf.format(actDepartTime), sdf.format(((CheckOutPO)roomPOs.get(0)).getActDepartTime()));
 			assertEquals(4, roomPOs.get(0).getRoomNum());
@@ -160,7 +160,7 @@ public class RoomDAOImplTest {
 			assertEquals(1, roomPOs.size());
 			Date actDepartTime = new Date(116, 10, 12, 12, 00, 00);
 			assertEquals(sdf.format(actDepartTime), sdf.format(((CheckOutPO)roomPOs.get(0)).getActDepartTime()));
-			assertEquals(3, roomPOs.get(0).getRoomNum());
+			assertEquals(0000000000000003, roomPOs.get(0).getRoomNum());
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
