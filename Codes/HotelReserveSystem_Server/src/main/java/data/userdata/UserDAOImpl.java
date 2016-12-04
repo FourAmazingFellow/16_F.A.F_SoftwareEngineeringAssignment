@@ -304,14 +304,16 @@ public class UserDAOImpl implements UserDAO {
 			//增加现有的信用记录
 			pstmt_UpdateCreditRecord = conn.prepareStatement("insert into creditrecord(userID, changeTime, orderID, action, process, creditResult) values(?,?,?,?,?,?)");
 			ArrayList<CreditRecordPO> creditRecordPOs = clientInfoPO.getCreditRecord();
-			for(CreditRecordPO creditRecordPO : creditRecordPOs) {
-				pstmt_UpdateCreditRecord.setString(1, clientInfoPO.getUserID());
-				pstmt_UpdateCreditRecord.setDate(2, creditRecordPO.getChangeTime());
-				pstmt_UpdateCreditRecord.setInt(3, Integer.parseInt(creditRecordPO.getOrderID()));
-				pstmt_UpdateCreditRecord.setInt(4, convertFromActionTypeToInt(creditRecordPO.getAction()));
-				pstmt_UpdateCreditRecord.setInt(5, creditRecordPO.getProcess());
-				pstmt_UpdateCreditRecord.setInt(6, creditRecordPO.getCreditResult());
-				pstmt_UpdateCreditRecord.executeUpdate();
+			if(creditRecordPOs != null){
+				for(CreditRecordPO creditRecordPO : creditRecordPOs) {
+					pstmt_UpdateCreditRecord.setString(1, clientInfoPO.getUserID());
+					pstmt_UpdateCreditRecord.setDate(2, creditRecordPO.getChangeTime());
+					pstmt_UpdateCreditRecord.setInt(3, Integer.parseInt(creditRecordPO.getOrderID()));
+					pstmt_UpdateCreditRecord.setInt(4, convertFromActionTypeToInt(creditRecordPO.getAction()));
+					pstmt_UpdateCreditRecord.setInt(5, creditRecordPO.getProcess());
+					pstmt_UpdateCreditRecord.setInt(6, creditRecordPO.getCreditResult());
+					pstmt_UpdateCreditRecord.executeUpdate();
+				}
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

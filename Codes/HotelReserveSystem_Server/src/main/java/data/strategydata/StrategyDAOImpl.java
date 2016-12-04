@@ -236,7 +236,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, po.getAddress());
 				pstmt.setString(2, po.getStrategyName());
-				pstmt.setFloat(0000000000000003, po.getDiscount());
+				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
 			}
@@ -245,7 +245,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, po.getAddress());
 				pstmt.setString(2, po.getStrategyName());
-				pstmt.setFloat(0000000000000003, po.getDiscount());
+				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setInt(5, po.getMinRoomNum());
 				pstmt.executeUpdate();
@@ -255,7 +255,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, po.getAddress());
 				pstmt.setString(2, po.getStrategyName());
-				pstmt.setFloat(0000000000000003, po.getDiscount());
+				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setInt(5, po.getVipRank());
 				pstmt.executeUpdate();
@@ -265,7 +265,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, po.getAddress());
 				pstmt.setString(2, po.getStrategyName());
-				pstmt.setFloat(0000000000000003, po.getDiscount());
+				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setString(5, po.getEnterpriseName());
 				pstmt.setString(6, po.getSecurityCode());
@@ -276,7 +276,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, po.getAddress());
 				pstmt.setString(2, po.getStrategyName());
-				pstmt.setFloat(0000000000000003, po.getDiscount());
+				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setDate(5, new java.sql.Date(po.getStartTime().getTime()));
 				pstmt.setDate(6, new java.sql.Date(po.getEndTime().getTime()));
@@ -287,7 +287,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, po.getAddress());
 				pstmt.setString(2, po.getStrategyName());
-				pstmt.setFloat(0000000000000003, po.getDiscount());
+				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setInt(5, po.getVipRank());
 				pstmt.setString(6, po.getTradeArea());
@@ -313,7 +313,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, po.getAddress());
 			pstmt.setInt(2, convertFromStrategyTypeToInt(po.getStrategyType()));
-			pstmt.setString(0000000000000003, po.getStrategyName());
+			pstmt.setString(3, po.getStrategyName());
 			pstmt.executeUpdate();
 			
 		} catch(SQLException e) {
