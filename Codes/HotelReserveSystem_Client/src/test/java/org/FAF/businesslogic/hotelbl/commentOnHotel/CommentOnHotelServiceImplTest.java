@@ -50,19 +50,19 @@ public class CommentOnHotelServiceImplTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
-		this.orderID = "0001000100010001";
-		this.userID = "19970206";
-		this.hotelName = "汉庭酒店";
+		this.orderID = "0000000000000001";
+		this.userID = "原";
+		this.hotelName = "Jingling Hotel";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(2016, 12, 20);
-		this.finishDate = new Date(2016, 12, 21);
+		this.beginDate = new Date(116, 9, 19);
+		this.finishDate = new Date(116, 9, 20);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
-		this.totalPrice = 200;
-		this.orderState = OrderState.NOT_DONE_ORDER;
-		this.orderProducedTime = new Date(2016, 12, 15);
-		this.lastedOrderDoneTime = new Date(2016, 12, 20);
-		this.numOfPerson = 2;
+		this.totalPrice = 495;
+		this.orderState = OrderState.DONE_ORDER;
+		this.orderProducedTime = new Date(116, 9, 19, 16, 20, 0);
+		this.lastedOrderDoneTime = new Date(116, 9, 20, 16, 0, 0);
+		this.numOfPerson = 1;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
@@ -78,7 +78,7 @@ public class CommentOnHotelServiceImplTest {
 	public void testGetCommentableOrderList() {
 		commentOnHotel = new CommentOnHotelServiceImpl();
 		ArrayList<OrderVO> orderVOs = commentOnHotel.getCommentableOrderList("原");
-		assertEquals(1, orderVOs.size());
+		assertEquals(2, orderVOs.size());
 		assertEquals(orderID, orderVOs.get(0).orderID);
 		assertEquals(userID, orderVOs.get(0).userID);
 		assertEquals(hotelName, orderVOs.get(0).hotelName);
@@ -100,7 +100,7 @@ public class CommentOnHotelServiceImplTest {
 	@Test
 	public void testConfirmComment() {
 		commentOnHotel = new CommentOnHotelServiceImpl();
-		boolean result = commentOnHotel.confirmComment("原", 5.0f, "该酒店服务到位，应有尽有！", "江苏省南京市栖霞区仙林大道163号");
+		boolean result = commentOnHotel.confirmComment("原", 4.0f, "该酒店服务到位，应有尽有！", "江苏省南京市栖霞区仙林大道163号");
 		assertEquals(true, result);
 	}
 

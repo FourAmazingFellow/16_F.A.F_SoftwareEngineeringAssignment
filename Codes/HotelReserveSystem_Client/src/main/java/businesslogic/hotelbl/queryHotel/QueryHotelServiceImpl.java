@@ -6,9 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import businesslogic.hotelbl.OrderInfo;
-import businesslogic.orderbl.MockOrderInfoImpl;
 import businesslogicservice.hotelblservice.QueryHotelService;
 import dataservice.hotelDAO.HotelDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.OrderState;
@@ -26,6 +27,8 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	private ArrayList<BriefOrderInfoVO> orderList;
 	protected HotelDAO hotelDAO;
 	
+	private FactoryService factory;
+	
 	/**
 	 * 获得地址不重复的订单列表
 	 * @param orderInfoList
@@ -41,6 +44,7 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 			for(int j = i + 1; j < hotelList.size(); j++) {
 				if(hotelList.get(i).getHotelAddress().equals(hotelList.get(j).getHotelAddress())) {
 					hotelList.remove(j);
+					j--;
 				}
 			}
 		}
@@ -65,7 +69,8 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	
 	public QueryHotelServiceImpl(String userID) {
 		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
-		this.orderInfo = new MockOrderInfoImpl();
+		this.factory = new FactoryServiceImpl();
+		this.orderInfo = factory.createOrderInfo();
 		this.hotelList = new QueryHotelList();
 		orderList = orderInfo.getReservedOrderList(userID);
 	}

@@ -19,7 +19,7 @@ public class ImportNewRoomServiceImpl implements ImportNewRoomService {
 
 	@Override
 	public boolean addRoom(RoomVO room) {
-		availableRoomItem = new MockAvailableRoomItem(hotelAddress);
+		availableRoomItem = new AvailableRoomItem(hotelAddress);
 		return availableRoomItem.addRoom(room);
 	}
 

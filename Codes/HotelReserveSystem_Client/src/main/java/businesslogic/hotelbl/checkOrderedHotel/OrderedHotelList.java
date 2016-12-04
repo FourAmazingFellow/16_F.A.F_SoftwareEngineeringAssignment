@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import businesslogic.hotelbl.OrderInfo;
-import businesslogic.orderbl.MockOrderInfoImpl;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.OrderState;
 import vo.BriefOrderInfoVO;
 import vo.OrderedHotelInfoVO;
@@ -16,13 +17,12 @@ public class OrderedHotelList {
 	private OrderedHotelItem hotelItem;
 	private String userID;
 	
-	public void setOrderInfo(OrderInfo orderInfo) {
-		this.orderInfo = orderInfo;
-	}
+	private FactoryService factory;
 	
 	public OrderedHotelList(String userID) {
 		this.userID = userID;
-		this.setOrderInfo(new MockOrderInfoImpl());
+		this.factory = new FactoryServiceImpl();
+		this.orderInfo = factory.createOrderInfo();
 		this.orderInfoList = orderInfo.getReservedOrderList(this.userID);
 	}
 	
@@ -38,6 +38,7 @@ public class OrderedHotelList {
 			for(int j = i + 1; j < hotelList.size(); j++) {
 				if(hotelList.get(i).hotelAddress.equals(hotelList.get(j).hotelAddress)) {
 					hotelList.remove(j);
+					j--;
 				}
 			}
 		}

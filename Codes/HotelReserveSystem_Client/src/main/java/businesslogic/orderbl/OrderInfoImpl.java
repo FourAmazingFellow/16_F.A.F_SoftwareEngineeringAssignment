@@ -71,7 +71,9 @@ public class OrderInfoImpl implements OrderInfo {
 	public ArrayList<BriefOrderInfoVO> getReservedOrderList(String userID) {
 		ArrayList<BriefOrderInfoVO> result = null;
 		try {
-			result = transformer.briefPo2voList(orderDAO.getReservedOrderList(userID));
+			if(orderDAO.getReservedOrderList(userID) != null) {
+				result = transformer.briefPo2voList(orderDAO.getReservedOrderList(userID));
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

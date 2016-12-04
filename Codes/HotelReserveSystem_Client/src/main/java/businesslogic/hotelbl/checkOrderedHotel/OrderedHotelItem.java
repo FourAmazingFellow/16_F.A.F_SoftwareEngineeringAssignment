@@ -21,7 +21,11 @@ public class OrderedHotelItem {
 	
 	public BriefHotelInfoVO getBriefHotelInfo() {
 		try {
-			return new BriefHotelInfoVO(hotelDAO.getHotelBriefInfo(hotelAddress));
+			if(hotelDAO.getHotelBriefInfo(hotelAddress) != null) {
+				return new BriefHotelInfoVO(hotelDAO.getHotelBriefInfo(hotelAddress));
+			}
+			else
+				return null;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;

@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import businesslogic.userbl.UserInfo;
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import dataservice.hotelDAO.HotelDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.HotelPO;
 import rmi.RemoteHelper;
 import vo.HotelStaffInfoVO;
@@ -15,16 +17,17 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	private HotelDAO hotelDAO;
 	private UserInfo userService;
 	
+	private FactoryService factory;
+	
 	public void setHotelDAO(HotelDAO hotelDAO) {
 		this.hotelDAO = hotelDAO;
 	}
 	
-	public void setUserService(UserInfo userService) {
-		this.userService = userService;
-	}
 	
 	public ManageHotelInfoServiceImpl() {
 		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
+		this.factory = new FactoryServiceImpl();
+		this.userService = factory.createUserInfo();
 	}
 	
 	@Override

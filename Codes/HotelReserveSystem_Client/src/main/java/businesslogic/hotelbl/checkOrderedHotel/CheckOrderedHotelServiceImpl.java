@@ -11,7 +11,7 @@ public class CheckOrderedHotelServiceImpl implements CheckOrderedHotelService {
 	
 	@Override
 	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList(String userID) {
-		orderedHotelList = new MockOrderedHotelList(userID);
+		orderedHotelList = new OrderedHotelList(userID);
 		return orderedHotelList.enrollHotelBreifInfoList();
 	}
 

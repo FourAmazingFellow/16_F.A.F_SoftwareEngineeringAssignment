@@ -412,47 +412,47 @@ public class OrderDAOImplTest {
 //		}
 //	}
 	
-//	@Test
-//	public void testGetReservedOrderList() {
-//		ArrayList<BriefOrderInfoPO> briefOrderInfoPOs = new ArrayList<>();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		try {
-//			briefOrderInfoPOs = orderDAO.getReservedOrderList(userID);
-//			assertEquals(1, briefOrderInfoPOs.size());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
-//					briefOrderInfoPOs.get(0).getOrderID());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
-//					briefOrderInfoPOs.get(0).getUserID());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
-//					briefOrderInfoPOs.get(0).getHotelName());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
-//					briefOrderInfoPOs.get(0).getHotelAddress());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", sdf.format(beginDate),
-//					sdf.format(briefOrderInfoPOs.get(0).getBeginDate()));
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", sdf.format(finishDate),
-//					sdf.format(briefOrderInfoPOs.get(0).getFinishDate()));
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
-//					briefOrderInfoPOs.get(0).getRoomType());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, briefOrderInfoPOs.get(0).getNum());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
-//					briefOrderInfoPOs.get(0).getTotalPrice());
-//			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
-//					briefOrderInfoPOs.get(0).getOrderState());
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//			fail("RemoteException has happened!");
-//		}
-//	}
-	
 	@Test
-	public void testUpdateOrder() {
+	public void testGetReservedOrderList() {
+		ArrayList<BriefOrderInfoPO> briefOrderInfoPOs = new ArrayList<>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			boolean result = orderDAO.updateOrder(po);
-			assertEquals(true, result);
+			briefOrderInfoPOs = orderDAO.getReservedOrderList(userID);
+			assertEquals(1, briefOrderInfoPOs.size());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
+					briefOrderInfoPOs.get(0).getOrderID());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
+					briefOrderInfoPOs.get(0).getUserID());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
+					briefOrderInfoPOs.get(0).getHotelName());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
+					briefOrderInfoPOs.get(0).getHotelAddress());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", sdf.format(beginDate),
+					sdf.format(briefOrderInfoPOs.get(0).getBeginDate()));
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", sdf.format(finishDate),
+					sdf.format(briefOrderInfoPOs.get(0).getFinishDate()));
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
+					briefOrderInfoPOs.get(0).getRoomType());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, briefOrderInfoPOs.get(0).getNum());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
+					briefOrderInfoPOs.get(0).getTotalPrice());
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
+					briefOrderInfoPOs.get(0).getOrderState());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			fail("RemoteException has happened!");
-		}		
+		}
 	}
+	
+//	@Test
+//	public void testUpdateOrder() {
+//		try {
+//			boolean result = orderDAO.updateOrder(po);
+//			assertEquals(true, result);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("RemoteException has happened!");
+//		}		
+//	}
 	
 }
