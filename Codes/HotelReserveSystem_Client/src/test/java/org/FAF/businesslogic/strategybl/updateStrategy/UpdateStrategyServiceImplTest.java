@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.strategybl.exception.UnableAddStrategyException;
@@ -15,12 +16,21 @@ import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.UpdateStrategyServiceImpl;
 import po.StrategyType;
+import rmi.LinkToServer;
 import vo.StrategyVO;
 
 public class UpdateStrategyServiceImplTest {
 
     private UpdateStrategyServiceImpl updateStrategyServiceImpl;
     private String address;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
     
     @Before
     public void setUp() throws Exception{

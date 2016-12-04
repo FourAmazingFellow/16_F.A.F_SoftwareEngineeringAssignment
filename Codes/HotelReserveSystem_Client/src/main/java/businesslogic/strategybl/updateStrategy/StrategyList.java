@@ -40,10 +40,6 @@ public class StrategyList {
     protected StrategyList(String address) {
         this.address = address;
          strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
-//        strategyDAO = new StrategyDAOImpl_Stub("江苏省南京市栖霞区仙林大道163号", "仙林大酒店", StrategyType.SpecificTimePromotion,
-//                "双十一折扣", 90, 4, "国美电器", "guomei12", new Date(116, 10, 30, 00, 00, 00), new Date(116, 11, 10, 00, 00, 00), "栖霞区",
-//                4);
-
         birthdatyPromotionList = getStrategyList(address, StrategyType.BirthdayPromotion);
         multiRoomPromotionList = getStrategyList(address, StrategyType.MultiRoomPromotion);
         memberRankMarketList = getStrategyList(address, StrategyType.MemberRankMarket);
@@ -66,7 +62,7 @@ public class StrategyList {
         if (strategyList == null) {
             strategyList = new StrategyList(address);
         }
-        if (strategyList.address != address) {
+        if (!strategyList.address.equals(address)) {
             strategyList = new StrategyList(address);
         }
         return strategyList;
@@ -88,7 +84,7 @@ public class StrategyList {
      */
     public ArrayList<StrategyItem> getStrategyList(String address, Enum<StrategyType> strategyType) {
         // 如果传入address不是该类的address,即查看非本酒店的策略，则返回null
-        if (this.address != address) {
+        if (!this.address.equals(address)) {
             return null;
         }
         // 如果该类已初始化，则可以直接调用逻辑层的策略列表
@@ -156,7 +152,7 @@ public class StrategyList {
      */
     public boolean add(String address, StrategyVO strategyVO) throws UnableAddStrategyException {
         
-        if (address != this.address) {
+        if (!address.equals(this.address)||!address.equals(strategyVO.address)) {
             throw new UnableAddStrategyException(
                     "the address is not this hotel's address, you cann't add other hotel's strategy");
         }
@@ -185,7 +181,7 @@ public class StrategyList {
         // 该折扣名称是否已存在，存在则无法添加
         Enum<StrategyType> addStrategyType = strategyVO.strategyType;
         for (StrategyItem strategyItem : allStrategyList.get(addStrategyType)) {
-            if (strategyItem.toVO().strategyName == strategyVO.strategyName) {
+            if (strategyItem.toVO().strategyName.equals(strategyVO.strategyName)) {
                 throw new UnableAddStrategyException("the strategyName has already existed");
             }
         }
@@ -221,7 +217,7 @@ public class StrategyList {
         // 如果添加合作企业折扣，判断该合作企业是否已存在
         if (strategyType == StrategyType.CooperationEnterprisePromotion) {
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
-                if (strategyItem.toVO().enterpriseName == strategyVO.enterpriseName)
+                if (strategyItem.toVO().enterpriseName.equals(strategyVO.enterpriseName))
                     throw new UnableAddStrategyException("the enterprise has already existed");
             }
         }
@@ -238,7 +234,7 @@ public class StrategyList {
             // 判断该商圈的会员等级是否存在
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
                 StrategyVO vo = strategyItem.toVO();
-                if (vo.tradeArea == strategyVO.tradeArea && vo.vipRank == strategyVO.vipRank) {
+                if (vo.tradeArea.equals(strategyVO.tradeArea) && vo.vipRank == strategyVO.vipRank) {
                     throw new UnableAddStrategyException(
                             "the same tradeArea with the same vipRank number has already existed");
                 }
@@ -259,7 +255,7 @@ public class StrategyList {
      * @see
      */
     public boolean modify(String address, StrategyVO strategyVO) throws UnableToModifyStrategyException {
-        if (address != this.address) {
+        if (!address.equals(this.address)||!address.equals(strategyVO.address)) {
             throw new UnableToModifyStrategyException(
                     "the address is not this hotel's address, you cann't modify other hotel's strategy");
         }
@@ -274,7 +270,7 @@ public class StrategyList {
             // 在修改策略之后及时更新该类中的策略列表
             ArrayList<StrategyItem> strategyItems = allStrategyList.get(strategyType);
             for (int i = 0; i < strategyItems.size(); i++) {
-                if (strategyItems.get(i).toVO().strategyName == strategyVO.strategyName) {
+                if (strategyItems.get(i).toVO().strategyName.equals(strategyVO.strategyName)) {
                     allStrategyList.get(strategyType).remove(i);
                     allStrategyList.get(strategyType).add(i, strategyItem);
                     break;
@@ -297,7 +293,7 @@ public class StrategyList {
         // 该折扣名称是否已存在，不存在则无法修改
         boolean exited = false;
         for (StrategyItem strategyItem : allStrategyList.get(modigyStrategyType)) {
-            if (strategyItem.toVO().strategyName == strategyVO.strategyName) {
+            if (strategyItem.toVO().strategyName.equals(strategyVO.strategyName)) {
                 exited = true;
                 break;
             }
@@ -306,7 +302,7 @@ public class StrategyList {
             throw new UnableToModifyStrategyException("the strategyName doesn't exist");
         // 如果是生日折扣，名称不能改变
         if (modigyStrategyType == StrategyType.BirthdayPromotion) {
-            if (strategyVO.strategyName != birthdatyPromotionList.get(0).toVO().strategyName) {
+            if (!strategyVO.strategyName.equals(birthdatyPromotionList.get(0).toVO().strategyName)) {
                 throw new UnableToModifyStrategyException("the name of birthdayPromotion cannot be changed");
             }
         }
@@ -332,7 +328,7 @@ public class StrategyList {
      * @see
      */
     public boolean delete(String address, StrategyVO strategyVO) throws UnableToDeleteStrategyException {
-        if (address != this.address) {
+        if (!address.equals(this.address)||!address.equals(strategyVO.address)) {
             throw new UnableToDeleteStrategyException(
                     "the address is not this hotel's address, you cann't delete other hotel's strategy");
         }
@@ -340,7 +336,7 @@ public class StrategyList {
         boolean exited = false;
         Enum<StrategyType> strategyType = strategyVO.strategyType;
         for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
-            if (strategyItem.toVO().strategyName == strategyVO.strategyName) {
+            if (strategyItem.toVO().strategyName.equals(strategyVO.strategyName)) {
                 exited = true;
                 break;
             }
@@ -353,7 +349,7 @@ public class StrategyList {
         if (deleted) {
             ArrayList<StrategyItem> strategyItems = allStrategyList.get(strategyType);
             for (int i = 0; i < strategyItems.size(); i++) {
-                if (strategyItems.get(i).toVO().strategyName == strategyVO.strategyName) {
+                if (strategyItems.get(i).toVO().strategyName.equals(strategyVO.strategyName)) {
                     allStrategyList.get(strategyType).remove(i);
                     break;
                 }

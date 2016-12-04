@@ -32,7 +32,7 @@ public class StrategyItemTest {
     @Before
     public void setUp() throws Exception {
         address = "江苏省南京市栖霞区仙林大道163号";
-        strategyVO = new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣", 80,2);
+        strategyVO = new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.8f,2);
         strategyItem = new StrategyItem(strategyVO);
     }
 
@@ -50,7 +50,7 @@ public class StrategyItemTest {
     @Test
     public void testModify() {
         boolean modifyed = false;
-        strategyItem=new StrategyItem(new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣", 85,2));
+        strategyItem=new StrategyItem(new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣",0.85f,2));
         modifyed = strategyItem.modify(address);
         assertTrue(modifyed);
     }
@@ -58,14 +58,14 @@ public class StrategyItemTest {
     @Test
     public void testDelete() {
         boolean deleted = false;
-        strategyItem=new StrategyItem(new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣", 85,2));
+        strategyItem=new StrategyItem(new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f,2));
         deleted = strategyItem.delete(address);
         assertTrue(deleted);
     }
 
     @Test
     public void testValid() {
-        strategyVO = new StrategyVO(address, StrategyType.BirthdayPromotion, "双十一折扣", 80);
+        strategyVO = new StrategyVO(address, StrategyType.BirthdayPromotion, "双十一折扣", 0.8f);
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -79,7 +79,7 @@ public class StrategyItemTest {
     //地址长度《50
     @Test
     public void testValid1() {
-        strategyVO = new StrategyVO(address+"111111111111111111111111111111111111111111111", StrategyType.BirthdayPromotion, "生日特惠折扣", 80);
+        strategyVO = new StrategyVO(address+"111111111111111111111111111111111111111111111", StrategyType.BirthdayPromotion, "生日特惠折扣", 0.8f);
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -93,7 +93,7 @@ public class StrategyItemTest {
     //折扣名称
     @Test
     public void testValid2() {
-        strategyVO = new StrategyVO(address, StrategyType.BirthdayPromotion, "生日-,.特惠折扣", 80);
+        strategyVO = new StrategyVO(address, StrategyType.BirthdayPromotion, "生日-,.特惠折扣", 0.8f);
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -107,7 +107,7 @@ public class StrategyItemTest {
     //房间数量小于可用客房数
     @Test
     public void testValid3() {
-        strategyVO = new StrategyVO(address, StrategyType.MultiRoomPromotion, "多房间折扣", 80, 251);
+        strategyVO = new StrategyVO(address, StrategyType.MultiRoomPromotion, "多房间折扣", 0.8f, 251);
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -121,7 +121,7 @@ public class StrategyItemTest {
     //验证码为8位
     @Test
     public void testValid4() {
-        strategyVO = new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司折扣", 80, "万达公司","wanda");
+        strategyVO = new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司折扣", 0.8f, "万达公司","wanda");
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -135,7 +135,7 @@ public class StrategyItemTest {
     //验证码只能有字母和数字
     @Test
     public void testValid5() {
-        strategyVO = new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司折扣", 80, "万达公司","万达wanda1");
+        strategyVO = new StrategyVO(address, StrategyType.CooperationEnterprisePromotion, "万达公司折扣", 0.8f, "万达公司","万达wanda1");
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -149,7 +149,7 @@ public class StrategyItemTest {
     //会员等级要0《X《4
     @Test
     public void testValid6() {
-        strategyVO = new StrategyVO(address, StrategyType.MemberRankMarket, "会员等级折扣", 80, 5);
+        strategyVO = new StrategyVO(address, StrategyType.MemberRankMarket, "会员等级折扣", 0.8f, 5);
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -164,7 +164,7 @@ public class StrategyItemTest {
     @SuppressWarnings("deprecation")
     @Test
     public void testValid7() {
-        strategyVO = new StrategyVO(address, StrategyType.SpecificTimeMarket, "万达公司折扣", 80, new Date(116,10,10),new Date(116,10,9));
+        strategyVO = new StrategyVO(address, StrategyType.SpecificTimeMarket, "万达公司折扣",0.8f, new Date(116,10,10),new Date(116,10,9));
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
@@ -178,7 +178,7 @@ public class StrategyItemTest {
     @Test
     public void testVerifyTradeArea(){
         boolean verified=false;
-        strategyItem=new StrategyItem(new StrategyVO("Web", StrategyType.VipTradeAreaMarket, "南京市栖霞区VIP2会员优惠", 86, 2, "栖霞区"));
+        strategyItem=new StrategyItem(new StrategyVO("Web", StrategyType.VipTradeAreaMarket, "南京市栖霞区VIP2会员优惠",0.86f, 2, "栖霞区"));
         try {
             verified=strategyItem.verifyTradeArea("南京市");
         } catch (WrongInputException e) {

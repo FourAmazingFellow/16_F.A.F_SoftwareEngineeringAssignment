@@ -123,14 +123,14 @@ public class StrategyItem {
      * @see
      */
     public boolean add(String address) throws UnableAddStrategyException {
-        if (address != "Web") {
+        if (address.equals("Web")) {
             if (strategyType == StrategyType.MemberRankMarket
                     || strategyType == StrategyType.SpecificTimeMarket
                     || strategyType == StrategyType.VipTradeAreaMarket) {
                 throw new UnableAddStrategyException("hotel staff cannot make website market strategy");
             }
         }
-        if (address == "Web") {
+        if (address.equals("Web")) {
             if (strategyType == StrategyType.BirthdayPromotion
                     || strategyType == StrategyType.CooperationEnterprisePromotion
                     ||strategyType == StrategyType.MultiRoomPromotion
@@ -140,18 +140,18 @@ public class StrategyItem {
         }
         StrategyPO strategyPO;
         if (strategyType.equals(StrategyType.BirthdayPromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount);
         } else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, minRoomNum);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, minRoomNum);
         } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, enterpriseName, securityCode);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, enterpriseName, securityCode);
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, startTime, endTime);
         } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, vipRank, tradeArea);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank, tradeArea);
         } else {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, vipRank);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
         try {
             strategyDAO.insertStrategy(strategyPO);
@@ -173,18 +173,18 @@ public class StrategyItem {
     public boolean modify(String address) {
         StrategyPO strategyPO;
         if (strategyType.equals(StrategyType.BirthdayPromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount);
         } else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, minRoomNum);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, minRoomNum);
         } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, enterpriseName, securityCode);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, enterpriseName, securityCode);
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, startTime, endTime);
         } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, vipRank, address);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank, address);
         } else {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, vipRank);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
         try {
             strategyDAO.updateStrategy(strategyPO);
@@ -206,18 +206,18 @@ public class StrategyItem {
     public boolean delete(String address) {
         StrategyPO strategyPO;
         if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount);
         } else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, minRoomNum);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, minRoomNum);
         } else if (strategyType.equals(StrategyType.CooperationEnterprisePromotion)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, address, address);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, address, address);
         } else if (strategyType.equals(StrategyType.SpecificTimePromotion)
                 || strategyType.equals(StrategyType.SpecificTimeMarket)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, startTime, endTime);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, startTime, endTime);
         } else if (strategyType.equals(StrategyType.VipTradeAreaMarket)) {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, vipRank, address);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank, address);
         } else {
-            strategyPO = new StrategyPO(address, strategyType, address, discount, vipRank);
+            strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
         try {
             strategyDAO.deleteStrategy(strategyPO);
@@ -237,14 +237,14 @@ public class StrategyItem {
     public boolean valid() throws WrongInputException {
         // 格式验证
         //验证折扣类型是否与地址相对应
-        if (address != "Web") {
+        if (address.equals("Web")) {
             if (strategyType == StrategyType.MemberRankMarket
                     || strategyType == StrategyType.SpecificTimeMarket
                     || strategyType == StrategyType.VipTradeAreaMarket) {
                 throw new WrongInputException("hotel staff cannot make website market strategy");
             }
         }
-        if (address == "Web") {
+        if (address.equals("Web")) {
             if (strategyType == StrategyType.BirthdayPromotion
                     || strategyType == StrategyType.CooperationEnterprisePromotion
                     ||strategyType == StrategyType.MultiRoomPromotion
