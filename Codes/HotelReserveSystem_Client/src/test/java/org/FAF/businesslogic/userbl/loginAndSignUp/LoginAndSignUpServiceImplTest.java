@@ -38,9 +38,9 @@ public class LoginAndSignUpServiceImplTest {
         this.telNum = "12345678901";
         this.userType = UserType.Client;
         
-        this.userIDNew = "clarisClient";
-        this.passwordNew = "clarism123";
-        this.telNumNew = "12345678908";
+        this.userIDNew = "zxc";
+        this.passwordNew = "zxc123";
+        this.telNumNew = "12345678911";
         this.userTypeNew = UserType.Client;
  //       this.userDAO = new UserDAOImpl_Stub(userID, password, telNum);
     }

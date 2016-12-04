@@ -50,11 +50,11 @@ public class CheckLoginInfo {
         } else if (client != null) {
             this.password = client.getPassword();
             if (this.password.equals(password))
-                userType = client.getUserType();
+                userType = UserType.Client;
         } else if (hotelStaff != null) {
             this.password = hotelStaff.getPassword();
             if (this.password.equals(password))
-                userType = hotelStaff.getUserType();
+                userType = UserType.HotelStaff;
         }
 
         return userType;

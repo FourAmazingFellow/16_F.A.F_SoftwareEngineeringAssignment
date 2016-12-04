@@ -11,10 +11,10 @@ public class MockLoginAndSignUpServiceImpl extends LoginAndSignUpServiceImpl{
     
     UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "12345678901");
     MockCheckLoginInfo check = new MockCheckLoginInfo();
-    @Override
-    public boolean login(String userID, String password) {
-        return check.checkUser(userID, password);
-    }
+//    @Override
+//    public boolean login(String userID, String password) {
+//        return check.checkUser(userID, password);
+//    }
 
     @Override
     public boolean add(UserVO user) {

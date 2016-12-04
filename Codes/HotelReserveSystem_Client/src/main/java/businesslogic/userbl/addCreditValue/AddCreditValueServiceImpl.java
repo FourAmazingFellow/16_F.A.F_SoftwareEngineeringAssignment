@@ -39,6 +39,7 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
             e1.printStackTrace();
         }
         this.creditValue = clientInfoPO.getCreditValue();
+//        System.out.println(creditValue);
         this.creditResult = creditValue + creditAdded;
         
         //update普通会员vipRank
@@ -71,8 +72,12 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
         }
         //update信用记录和信用值
         this.creditRecord = new ArrayList<>();
-        creditRecord = clientInfoPO.getCreditRecord();
-        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), null,
+        try {
+            creditRecord = userDAO.queryCreditRecord(userID);
+        } catch (RemoteException e1) {
+            e1.printStackTrace();
+        }
+        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), "-1",
                 ActionType.RECHARGE, creditAdded, creditResult);
         creditRecord.add(creditRecordPO);
 

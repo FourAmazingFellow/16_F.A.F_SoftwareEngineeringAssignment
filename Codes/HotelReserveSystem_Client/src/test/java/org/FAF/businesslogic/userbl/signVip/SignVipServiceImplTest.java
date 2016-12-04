@@ -25,7 +25,7 @@ import vo.RegularVipVO;
  */
 public class SignVipServiceImplTest {
     private SignVipServiceImpl signVip;
-    private String userID;
+    private String userID, userIDe;
     private String password;
     private String telNum;
     private UserType userType;
@@ -52,8 +52,9 @@ public class SignVipServiceImplTest {
         this.telNum = "12345678900";
         this.userType = UserType.Client;
         this.birth = new Date(1994-1900, 10-1, 10);
-        this.enterpriseID = "如家";
-        this.enterprisePassword = "rujia";
+        this.userIDe = "zxc";
+        this.enterpriseID = "阿里巴巴";
+        this.enterprisePassword = "alibaba6";
 //        this.userDAO = new UserDAOImpl_Stub(userID, enterprisePassword, telNum);
 //        this.regularVip = null;
 //        this.enterpriseVip = null;
@@ -72,7 +73,8 @@ public class SignVipServiceImplTest {
     public void testSignEnterpriseVip() {
         signVip = new SignVipServiceImpl();
         signVip.setUserDAO(userDAO);
-        enterpriseVip = new EnterpriseVipVO(userID, password, telNum, userType, 0, null, enterpriseID,
+        signVip.setVerifyEnterpriseVip();
+        enterpriseVip = new EnterpriseVipVO(userIDe, password, telNum, userType, 0, null, enterpriseID,
                 enterprisePassword);
         boolean result = signVip.signEnterpriseVip(enterpriseVip);
         assertEquals(true, result);
