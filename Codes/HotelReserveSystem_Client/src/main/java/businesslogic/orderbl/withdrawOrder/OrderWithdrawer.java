@@ -9,10 +9,13 @@ import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
 import po.RoomType;
+import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class OrderWithdrawer {
@@ -20,10 +23,13 @@ public class OrderWithdrawer {
 	private ClientCreditInfo userCreditService;
 	private RoomInfoService addSpareRoomService;
 	
-	public void set(OrderDAO orderDAO, ClientCreditInfo c, RoomInfoService r){
-		orderDaoService = orderDAO;
-		userCreditService = c;
-		addSpareRoomService = r;
+	private FactoryService factory;
+	
+	public OrderWithdrawer() {
+		factory = new FactoryServiceImpl();
+		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		userCreditService = factory.createClientCreditInfoService();
+		addSpareRoomService = factory.createRoomInfoService();
 	}
 	
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {

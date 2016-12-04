@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import businesslogic.utilitybl.POList2VOList;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderType;
+import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -15,13 +16,12 @@ public class UserOrderList {
 	private ArrayList<BriefOrderInfoVO> briefUserOrderlist;
 	private OrderVO detailedOrder;
 	
-	public UserOrderList(String userID){
+	public UserOrderList(){
+		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
 		poTransformer = new POList2VOList();
+		briefUserOrderlist = new ArrayList<BriefOrderInfoVO>();
 	}
 	
-	public void setOrderDAO(OrderDAO orderDAO) {
-		orderDaoService = orderDAO;
-	}
 	/**
 	 * 得到客户简要订单列表
 	 * @param userID

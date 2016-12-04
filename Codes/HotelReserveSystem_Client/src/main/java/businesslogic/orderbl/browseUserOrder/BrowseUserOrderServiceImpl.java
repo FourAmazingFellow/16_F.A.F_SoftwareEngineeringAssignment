@@ -10,8 +10,8 @@ import vo.OrderVO;
 public class BrowseUserOrderServiceImpl implements BrowseUserOrderService {
 	private UserOrderList userListHelper;
 	
-	public void setListHelper(UserOrderList userListHelper){
-		this.userListHelper = userListHelper;
+	public BrowseUserOrderServiceImpl() {
+		userListHelper = new UserOrderList();
 	}
 	
 	@Override

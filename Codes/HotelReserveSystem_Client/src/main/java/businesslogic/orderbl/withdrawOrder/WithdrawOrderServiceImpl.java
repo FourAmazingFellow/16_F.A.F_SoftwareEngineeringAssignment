@@ -6,9 +6,10 @@ import vo.OrderVO;
 public class WithdrawOrderServiceImpl implements WithdrawOrderService {
 	private OrderWithdrawer orderWithdrawer;
 	
-	public void set(OrderWithdrawer orderWithdrawer){
-		this.orderWithdrawer = orderWithdrawer;
+	public WithdrawOrderServiceImpl() {
+		orderWithdrawer = new OrderWithdrawer();
 	}
+	
 	@Override
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
 		

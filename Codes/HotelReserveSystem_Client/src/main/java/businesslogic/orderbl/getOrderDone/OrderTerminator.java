@@ -5,18 +5,24 @@ import java.rmi.RemoteException;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
+import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class OrderTerminator {
 	private OrderDAO orderDaoService;
 	private ClientCreditInfo userCreditService;
 	
-	public void set(OrderDAO orderDAO, ClientCreditInfo c){
-		orderDaoService = orderDAO;
-		userCreditService = c;
+	private FactoryService factory;
+	
+	public OrderTerminator(){
+		factory = new FactoryServiceImpl();
+		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		userCreditService = factory.createClientCreditInfoService();
 	}
 	
 	public boolean getOrderDone(OrderVO vo) {

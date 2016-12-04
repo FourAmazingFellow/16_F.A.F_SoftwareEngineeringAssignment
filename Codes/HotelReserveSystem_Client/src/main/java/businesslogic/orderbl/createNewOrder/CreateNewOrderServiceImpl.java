@@ -7,6 +7,8 @@ import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.roombl.RoomInfoService;
 import businesslogicservice.orderblservice.CreateNewOrderService;
 import businesslogicservice.orderblservice.ResultMessage;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.RoomType;
 import vo.BriefHotelInfoVO;
 import vo.OrderVO;
@@ -17,11 +19,14 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	private Checker checker;
 	private NewOrder newOrder;
 
-	public void set(HotelInfoService h, RoomInfoService r, Checker c, NewOrder n){
-		hotelInfoGetter = h;
-		roomInfoService = r;
-		checker = c;
-		newOrder = n;
+	private FactoryService factory;
+	
+	public CreateNewOrderServiceImpl() {
+		factory = new FactoryServiceImpl();
+		hotelInfoGetter = factory.createHotelInfoService();
+		roomInfoService = factory.createRoomInfoService();
+		checker = new Checker();
+		newOrder = new NewOrder();
 	}
 	
 	@Override

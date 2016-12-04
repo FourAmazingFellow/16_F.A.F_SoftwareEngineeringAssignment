@@ -9,21 +9,27 @@ import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
 import po.RoomType;
+import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class SystemOrderWithdrawer {
 	private OrderDAO orderDaoService;
 	private ClientCreditInfo userCreditService;
 	private RoomInfoService addSpareRoomService;
+	
+	private FactoryService factory;
 
-	public void set(OrderDAO o, ClientCreditInfo c, RoomInfoService r) {
-		orderDaoService = o;
-		userCreditService = c;
-		addSpareRoomService = r;
+	public SystemOrderWithdrawer() {
+		factory = new FactoryServiceImpl();
+		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		userCreditService = factory.createClientCreditInfoService();
+		addSpareRoomService = factory.createRoomInfoService();
 	}
 	
 	/**

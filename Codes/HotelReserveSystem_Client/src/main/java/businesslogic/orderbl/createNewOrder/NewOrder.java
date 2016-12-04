@@ -6,8 +6,11 @@ import java.util.Date;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.utilitybl.VO2PO;
 import dataservice.orderDAO.OrderDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.OrderPO;
 import po.OrderState;
+import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class NewOrder {
@@ -15,10 +18,13 @@ public class NewOrder {
 	private StrategyInfoService strategyInfoService;
 	private VO2PO voTransformer;
 
-	public void setOrderDAO(OrderDAO orderDAO, StrategyInfoService s){
-		this.orderDao = orderDAO;
-		this.strategyInfoService = s;
-		this.voTransformer = new VO2PO();
+	private FactoryService factory;
+	
+	public NewOrder() {
+		factory = new FactoryServiceImpl();
+		orderDao = RemoteHelper.getInstance().getOrderDAO();
+		strategyInfoService = factory.createStrategyInfoService();
+		voTransformer = new VO2PO();	
 	}
 	
 	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import businesslogic.utilitybl.POList2VOList;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderType;
+import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -17,13 +18,10 @@ public class HotelOrderList {
 	private POList2VOList poTransformer;
 	private OrderVO detailedOrderVO;
 
-
-	public HotelOrderList(String addresss) {
+	public HotelOrderList() {
 		poTransformer = new POList2VOList();
-	}
-
-	public void setOrderDAO(OrderDAO orderDAO) {
-		orderDaoService = orderDAO;
+		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		briefOrderlist = new ArrayList<BriefOrderInfoVO>();
 	}
 
 	/**

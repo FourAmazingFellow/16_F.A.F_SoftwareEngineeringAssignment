@@ -15,7 +15,6 @@ public class MockUserOrderList extends UserOrderList {
 	
 	@SuppressWarnings("deprecation")
 	public MockUserOrderList(String userID) {
-		super(userID);
 		mockBriefOrderInfoVO = new BriefOrderInfoVO(userID, "0001000100010001","仙林大酒店", "仙林大道163号",new Date(2016,10,16),
 				new Date(2016,10,17),RoomType.KING_SIZE_ROOM,1,100, OrderState.NOT_DONE_ORDER);
 		

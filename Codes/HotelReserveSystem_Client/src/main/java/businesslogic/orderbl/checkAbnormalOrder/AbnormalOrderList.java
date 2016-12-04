@@ -7,6 +7,7 @@ import java.util.Date;
 import businesslogic.utilitybl.POList2VOList;
 import dataservice.orderDAO.OrderDAO;
 import po.OrderState;
+import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -17,11 +18,9 @@ public class AbnormalOrderList {
 	private OrderVO detailedAbnormalOrder;
 
 	public AbnormalOrderList() {
+		abnormalOrderList = new ArrayList<BriefOrderInfoVO>();
+		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
 		poTransformer = new POList2VOList();
-	}
-
-	public void setOrderDAO(OrderDAO order) {
-		orderDaoService = order;
 	}
 
 	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) {

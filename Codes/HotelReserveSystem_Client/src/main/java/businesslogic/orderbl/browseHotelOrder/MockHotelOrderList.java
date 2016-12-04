@@ -15,7 +15,6 @@ public class MockHotelOrderList extends HotelOrderList{
 	
 	@SuppressWarnings("deprecation")
 	public MockHotelOrderList(String addresss) {
-		super(addresss);
 		// TODO Auto-generated constructor stub
 		mockBriefOrderInfoVO = new BriefOrderInfoVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 
 				new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,

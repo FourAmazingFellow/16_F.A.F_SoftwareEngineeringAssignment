@@ -5,18 +5,22 @@ import java.rmi.RemoteException;
 import businesslogic.roombl.RoomInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogicservice.orderblservice.ResultMessage;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import vo.OrderVO;
 
 public class Checker {
 	private ClientCreditInfo clientCreditGetter;
 	private RoomInfoService orderChecker;
 
-	public void setCreditHelper(ClientCreditInfo c){
-		clientCreditGetter = c;
+	private FactoryService factory;
+	
+	public Checker() {
+		factory = new FactoryServiceImpl();
+		clientCreditGetter = factory.createClientCreditInfoService();
+		orderChecker = factory.createRoomInfoService();
 	}
-	public void setRoomHelper(RoomInfoService r){
-		orderChecker = r;
-	}
+	
 	/**
 	 * 判断该客户能否生成订单
 	 * @param UserID

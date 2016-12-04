@@ -11,8 +11,8 @@ import vo.OrderVO;
 public class BrowseHotelOrderServiceImpl implements BrowseHotelOrderService {
 	private HotelOrderList hotelListHelper;
 	
-	public void setListHelper(HotelOrderList hotelListHelper){
-		this.hotelListHelper = hotelListHelper;
+	public BrowseHotelOrderServiceImpl() {
+		hotelListHelper = new HotelOrderList();
 	}
 	
 	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) {

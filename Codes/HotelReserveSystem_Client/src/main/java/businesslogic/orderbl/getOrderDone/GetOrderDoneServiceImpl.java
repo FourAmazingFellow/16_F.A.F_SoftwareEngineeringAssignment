@@ -12,11 +12,11 @@ public class GetOrderDoneServiceImpl implements GetOrderDoneService {
 	private HotelOrderList hotelOrderBrowser;
 	private OrderTerminator orderTerminator;
 
-	public void set(HotelOrderList h, OrderTerminator o) {
-		hotelOrderBrowser = h;
-		orderTerminator = o;
+	public GetOrderDoneServiceImpl() {
+		hotelOrderBrowser = new HotelOrderList();
+		orderTerminator = new OrderTerminator();
 	}
-
+	
 	@Override
 	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address) {
 		ArrayList<BriefOrderInfoVO> notDoneOrderList = hotelOrderBrowser.getHotelOrderList(address,
