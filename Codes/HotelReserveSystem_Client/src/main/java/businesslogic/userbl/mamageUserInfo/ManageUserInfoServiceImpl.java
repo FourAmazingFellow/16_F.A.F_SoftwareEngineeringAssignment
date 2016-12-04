@@ -25,7 +25,7 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService{
         this.userDAO = userDAO;
     }
     
-    public ManageUserInfoServiceImpl(String userID) {
+    public ManageUserInfoServiceImpl() {
     }
 
     /* (non-Javadoc)

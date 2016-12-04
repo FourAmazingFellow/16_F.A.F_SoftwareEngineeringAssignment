@@ -16,7 +16,7 @@ public class MockManageUserInfoServiceImpl extends ManageUserInfoServiceImpl {
     private HotelStaffInfoVO hotelStaffInfoVO;
 
     public MockManageUserInfoServiceImpl(String userID) {
-        super(userID);
+        super();
         userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900");
         webManageStaff = new UserVO("原", "qwe123", "12345678900", UserType.WebManageStaff);
       //  new UserVO("wmarket123", "qwe123", "12345678901", UserType.WebMarketStaff);

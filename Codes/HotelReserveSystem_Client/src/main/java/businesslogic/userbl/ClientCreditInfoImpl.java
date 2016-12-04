@@ -19,8 +19,6 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     private int creditValue;
     private int creditResult;
     private int vipRank;
-    private String orderID;
-    private ActionType actionType;
     private ArrayList<CreditRecordPO> creditRecord;
     private ClientInfoPO clientInfoPO;
     
@@ -30,7 +28,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     
     @Override
     public int getCreditValue(String userID) {
-     //   userDAO = RemoteHelper.getInstance().getUserDAO();
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         try {
