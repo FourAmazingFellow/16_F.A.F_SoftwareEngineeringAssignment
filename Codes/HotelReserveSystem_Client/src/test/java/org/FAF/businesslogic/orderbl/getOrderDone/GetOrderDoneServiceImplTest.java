@@ -52,21 +52,21 @@ public class GetOrderDoneServiceImplTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
-		this.orderID = "0000000000000001";
+		this.orderID = "0000000000000002";
 		this.userID = "原";
 		this.hotelName = "Jingling Hotel";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(116, 9, 19);
-		this.finishDate = new Date(116, 9, 20);
-		this.roomType = RoomType.STANDARD_ROOM;
+		this.beginDate = new Date(116, 9, 23);
+		this.finishDate = new Date(116, 9, 24);
+		this.roomType = RoomType.SINGLE_ROOM;
 		this.num = 1;
 		this.totalPrice = 200;
 		this.orderState = OrderState.NOT_DONE_ORDER;
-		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
-		this.lastedOrderDoneTime = new Date(116, 11, 20, 22, 0);
+		this.orderProducedTime = new Date(116, 9, 19, 16, 26);
+		this.lastedOrderDoneTime = new Date(116, 9, 24, 16, 0);
 		this.numOfPerson = 1;
 		this.isChildren = false;
-		this.isOnSale = false;
+		this.isOnSale = true;
 		this.isCommented = false;
 		
 		notDoneOrderList = new ArrayList<BriefOrderInfoVO>();
@@ -101,7 +101,7 @@ public class GetOrderDoneServiceImplTest {
 	
 	@Test
 	public void getSingleOrderTest_1() {
-		OrderVO result = getOrderDoneServiceImpl.getSingleOrder("江苏省南京市栖霞区仙林大道163号", "0000000000000001");
+		OrderVO result = getOrderDoneServiceImpl.getSingleOrder("江苏省南京市栖霞区仙林大道163号", "0000000000000002");
 		assertEquals("GetOrderDoneServiceImpl.getSingleOrder has an error in orderID!", detailedOrder.orderID, result.orderID);
 		assertEquals("GetOrderDoneServiceImpl.getSingleOrder has an error in userID!", detailedOrder.userID, result.userID);
 		assertEquals("GetOrderDoneServiceImpl.getSingleOrder has an error in hotelName!", detailedOrder.hotelName, result.hotelName);
@@ -123,7 +123,7 @@ public class GetOrderDoneServiceImplTest {
 	@Test
 	public void getOrderDoneTest_1() {
 		@SuppressWarnings("deprecation")
-		OrderVO vo = new OrderVO("原", "0000000000000001", "Jingling  Hotel", "江苏省南京市栖霞区仙林大道163号", 
+		OrderVO vo = new OrderVO("原", "0000000000000002", "Jingling Hotel", "江苏省南京市栖霞区仙林大道163号", 
 				new Date(116, 11, 20), new Date(116, 11, 21), RoomType.STANDARD_ROOM,
 				1, 200, null, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
@@ -134,7 +134,7 @@ public class GetOrderDoneServiceImplTest {
 	@Test
 	public void delayCheckInTest_1(){
 		@SuppressWarnings("deprecation")
-		OrderVO vo = new OrderVO("原", "0000000000000001", "Jingling  Hotel", "江苏省南京市栖霞区仙林大道163号", 
+		OrderVO vo = new OrderVO("原", "0000000000000006", "Jingling Hotel", "江苏省南京市栖霞区仙林大道163号", 
 				new Date(116, 11, 20), new Date(116, 11, 21), RoomType.STANDARD_ROOM,
 				1, 200, null, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);

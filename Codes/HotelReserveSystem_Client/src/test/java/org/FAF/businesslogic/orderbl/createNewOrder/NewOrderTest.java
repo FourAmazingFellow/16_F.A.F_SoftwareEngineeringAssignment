@@ -54,25 +54,25 @@ public class NewOrderTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup() {
-		this.orderID = "0000000000000001";
+		this.orderID = "0000000000000007";
 		this.userID = "原";
 		this.hotelName = "Jingling Hotel";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(116, 9, 19);
-		this.finishDate = new Date(116, 9, 20);
+		this.beginDate = new Date(116, 11, 6);
+		this.finishDate = new Date(116, 11, 7);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
-		this.totalPrice = 200;
+		this.totalPrice = 400;
 		this.orderState = OrderState.NOT_DONE_ORDER;
 		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
 		this.lastedOrderDoneTime = new Date(116, 11, 20, 22, 0);
-		this.numOfPerson = 1;
+		this.numOfPerson = 2;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
 
 		this.isReserved = true;
-		this.price = 200;
+		this.price = 400;
 		this.addResult = true;
 		
 		newOrder = new NewOrder();
@@ -100,7 +100,6 @@ public class NewOrderTest {
 		
 	}
 
-	//无折扣
 	@Test
 	public void getPriceTest_1() {
 		OrderVO tempOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
@@ -108,7 +107,7 @@ public class NewOrderTest {
 		assertEquals("NewOrder.getPrice has an error!", price, result);
 	}
 
-//	@Test
+	@Test
 	public void addNewOrderTest_1() {
 		OrderVO testOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, 
 				orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
