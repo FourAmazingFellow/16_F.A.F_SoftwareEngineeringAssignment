@@ -55,7 +55,7 @@ public class HotelInfoServiceImplTest {
 		this.tradeArea = "栖霞区";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.starLevel = 5;
-		this.mark = 5.0f;
+		this.mark = 4.8f;
 		this.city = "南京市";
 		this.min_Price = 100;
 		this.briefIntroduction = "南京最好的酒店";

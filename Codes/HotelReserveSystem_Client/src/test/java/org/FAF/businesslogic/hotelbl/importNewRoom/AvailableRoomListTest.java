@@ -22,8 +22,8 @@ public class AvailableRoomListTest {
 	@Before
 	public void setUp() throws Exception {
 		this.roomVO1 = new RoomVO(RoomType.KING_SIZE_ROOM, 20, "江苏省南京市栖霞区仙林大道163号");
-		this.roomVO2 = new RoomVO(RoomType.SINGLE_ROOM, 40, "江苏省南京市栖霞区仙林大道163号");
-		this.roomVO3 = new RoomVO(RoomType.STANDARD_ROOM, 30, "江苏省南京市栖霞区仙林大道163号");
+		this.roomVO2 = new RoomVO(RoomType.SINGLE_ROOM, 50, "江苏省南京市栖霞区仙林大道163号");
+		this.roomVO3 = new RoomVO(RoomType.STANDARD_ROOM, 50, "江苏省南京市栖霞区仙林大道163号");
 		this.availableRoomList = new ArrayList<>();
 		availableRoomList.add(roomVO1);
 		availableRoomList.add(roomVO2);

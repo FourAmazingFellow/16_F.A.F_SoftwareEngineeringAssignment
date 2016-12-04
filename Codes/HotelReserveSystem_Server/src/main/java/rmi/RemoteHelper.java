@@ -14,6 +14,7 @@ public class RemoteHelper {
 	public void initServer(){
 		DataRemoteObjectMySql dataRemoteObjectMySql;
 		try {
+			System.setProperty("java.rmi.server.hostname","172.28.159.100");
 			dataRemoteObjectMySql = new DataRemoteObjectMySql();
 			LocateRegistry.createRegistry(8888);
 			Naming.bind("rmi://172.28.159.100:8888/DataRemoteObjectMySql", dataRemoteObjectMySql);
