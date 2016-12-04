@@ -36,7 +36,7 @@ public class QueryHotelListTest {
 		orderedHotelList = new ArrayList<>();
 		
 		@SuppressWarnings("deprecation")
-		BriefOrderInfoPO briefOrderInfoPO = new BriefOrderInfoPO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
+		BriefOrderInfoPO briefOrderInfoPO = new BriefOrderInfoPO("原", "0000000000000003", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", new Date(2016, 12, 20), new Date(2016, 12, 21), RoomType.STANDARD_ROOM,
 				1, 200, OrderState.NOT_DONE_ORDER);
 		orderedHotelList.add(briefOrderInfoPO);
 	}
@@ -50,8 +50,8 @@ public class QueryHotelListTest {
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "如家酒店", hotelInfoPOs.get(0).getHotelName());
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "栖霞区", hotelInfoPOs.get(0).getTradeArea());
 		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道165号", hotelInfoPOs.get(0).getHotelAddress());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 3, hotelInfoPOs.get(0).getStarLevel());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 3.8f, hotelInfoPOs.get(0).getMark(), 0);
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 0000000000000003, hotelInfoPOs.get(0).getStarLevel());
+		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 0000000000000003.8f, hotelInfoPOs.get(0).getMark(), 0);
 	}
 
 }

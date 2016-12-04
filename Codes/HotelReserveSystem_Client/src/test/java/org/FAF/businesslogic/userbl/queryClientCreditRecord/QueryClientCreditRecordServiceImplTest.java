@@ -56,12 +56,16 @@ public class QueryClientCreditRecordServiceImplTest {
      //   this.userDAO = new UserDAOImpl_Stub(userID, password, telNum, creditValue, creditRecord);
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void queryCreditRecord() {
         queryClientCreditRecord = new QueryClientCreditRecordServiceImpl();
         queryClientCreditRecord.setUserDAO(userDAO);
-        assertEquals("QueryClientCreditRecordService.queryCreditRecord(userID) has an error in creditRecord!",
-                creditRecord, queryClientCreditRecord.queryCreditRecord(userID));
+        assertEquals(creditRecord.get(0).getChangeTime(), new Date(2016-1900, 11-1, 26));
+        assertEquals(creditRecord.get(0).getOrderID(), "0000000000000001");
+        assertEquals(creditRecord.get(1).getAction(), ActionType.ORDER_UNDO);
+        assertEquals(creditRecord.get(1).getProcess(), -100);
+        assertEquals(creditRecord.get(1).getCreditResult(), 1000);
     }
 
 }

@@ -41,7 +41,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     @Override
     public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) {
-   //     userDAO = RemoteHelper.getInstance().getUserDAO();
+        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         try {
@@ -67,7 +67,7 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
             else if (creditResult > 2000 && creditResult <= 6000)
                 this.vipRank = 2;
             else if (creditResult > 6000 && creditResult <= 12000)
-                this.vipRank = 3;
+                this.vipRank = 0000000000000003;
             else if (creditResult > 12000)
                 this.vipRank = 4;
 

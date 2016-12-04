@@ -29,7 +29,7 @@ public class RoomInfoService_Driver {
         Date finishDate=new Date(System.currentTimeMillis()+1);
         boolean isTimeAvailble = false;
         try {
-            isTimeAvailble = roomInfoService.isTimeAvailable("江苏省南京市栖霞区仙林大道163号", roomType, beginDate, 3);
+            isTimeAvailble = roomInfoService.isTimeAvailable("江苏省南京市栖霞区仙林大道163号", roomType, beginDate, 0000000000000003);
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class RoomInfoService_Driver {
         else
             System.out.println("This roomType doesn't have spare room now!\n");
         
-        RoomVO roomvo=new RoomVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
+        RoomVO roomvo=new RoomVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号");
         boolean updateSpareRoom = false;
         try {
             updateSpareRoom = roomInfoService.updateSpareRoom("江苏省南京市栖霞区仙林大道163号", roomvo);
@@ -52,7 +52,7 @@ public class RoomInfoService_Driver {
         
         boolean reduceSpareRoom = false;
         try {
-            reduceSpareRoom = roomInfoService.reduceRoom("江苏省南京市栖霞区仙林大道163号", 3, RoomType.SINGLE_ROOM,new Date(116,10,27));
+            reduceSpareRoom = roomInfoService.reduceRoom("江苏省南京市栖霞区仙林大道163号", 0000000000000003, RoomType.SINGLE_ROOM,new Date(116,10,27));
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
         }
@@ -63,7 +63,7 @@ public class RoomInfoService_Driver {
         
         boolean addSpareRoom = false;
         try {
-            addSpareRoom = roomInfoService.addRoom("江苏省南京市栖霞区仙林大道163号", 3, RoomType.SINGLE_ROOM,new Date(116,10,27));
+            addSpareRoom = roomInfoService.addRoom("江苏省南京市栖霞区仙林大道163号", 0000000000000003, RoomType.SINGLE_ROOM,new Date(116,10,27));
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
         }

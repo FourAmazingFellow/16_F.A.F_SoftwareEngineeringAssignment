@@ -34,7 +34,7 @@ public class CheckerTest {
 			
 		canUserCreateNewOrder = true;
 		resultMessage = ResultMessage.SUCCEED;
-		orderToBeChecked = new OrderVO("19970206", "0001000100010001", "汉庭酒店", "江苏省南京市栖霞区仙林大道163号", 
+		orderToBeChecked = new OrderVO("原", "0000000000000001", "Jingling Hotel", "江苏省南京市栖霞区仙林大道163号", 
 				new Date(116, 11, 20), new Date(116, 11, 21), RoomType.STANDARD_ROOM,
 				1, 200, null, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
@@ -42,13 +42,14 @@ public class CheckerTest {
 
 	@Test
 	public void canUserCreateNewOrderTest_1() {
-		boolean result = checker.canUserCreateNewOrder("19970206");
+		boolean result = checker.canUserCreateNewOrder("原");
 		assertEquals(canUserCreateNewOrder, result);
 	}
 
+	//异常情况下的Test
 	@Test
 	public void checkNewOrderTest_1() {
 		ResultMessage result = checker.checkNewOrder(orderToBeChecked);
-		assertEquals(resultMessage, result);
+		assertEquals(null, result);
 	}
 }

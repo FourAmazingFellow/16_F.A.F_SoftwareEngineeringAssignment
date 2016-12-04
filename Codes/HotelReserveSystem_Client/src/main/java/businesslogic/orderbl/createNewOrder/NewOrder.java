@@ -40,6 +40,8 @@ public class NewOrder {
 		double discount = -1;
 		discount = strategyInfoService.getBestDiscount(vo)/100;
 		
+//		if(Math.abs(discount - 1) > 0.01) 界面层可能用到的代码
+		
 		return (int)(vo.totalPrice * discount);
 	}
 

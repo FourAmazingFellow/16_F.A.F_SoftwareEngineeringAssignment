@@ -68,7 +68,7 @@ public class OrderDAO_Driver {
 		System.out.println("--------------------------------------------------------------------------");
 		try {
 			System.out.println("正在获取该订单号对应的订单详情");
-			OrderPO orderPO_4 = orderDAO.getSingleOrder("江苏省南京市栖霞区仙林大道163号","0001000100010001");
+			OrderPO orderPO_4 = orderDAO.getSingleOrder("江苏省南京市栖霞区仙林大道163号","0000000000000003");
 			System.out.println("更改其状态为已执行");
 			orderPO_4.setOrderState(OrderState.DONE_ORDER);
 			orderDAO.updateOrder(orderPO_4);

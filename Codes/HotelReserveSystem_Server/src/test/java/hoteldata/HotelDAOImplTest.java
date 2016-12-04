@@ -60,7 +60,7 @@ public class HotelDAOImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		po = new HotelPO("锦江之星", "松江区", "上海松江区九亭涞坊路1000号", 3, 3.5f, "上海市", "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		po = new HotelPO("锦江之星", "松江区", "上海松江区九亭涞坊路1000号", 0000000000000003, 0000000000000003.5f, "上海市", "中规中矩", facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		po.setMin_Price(100);
 		comments.put("Accident", "不愧是南京市最好的酒店");
 		comments.put("Superman", "舒服的我都不想飞走了");
@@ -131,7 +131,7 @@ public class HotelDAOImplTest {
 //		ArrayList<BriefOrderInfoPO> orderedHotelList = new ArrayList<>();
 //		try {
 //			ArrayList<BriefHotelInfoPO> briefHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
-//			assertEquals(3, briefHotelInfoPOs.size());
+//			assertEquals(0000000000000003, briefHotelInfoPOs.size());
 //			assertEquals("格林豪泰", briefHotelInfoPOs.get(0).getHotelName());
 //			assertEquals("汉庭酒店", briefHotelInfoPOs.get(1).getHotelName());
 //			assertEquals("如家酒店", briefHotelInfoPOs.get(2).getHotelName());

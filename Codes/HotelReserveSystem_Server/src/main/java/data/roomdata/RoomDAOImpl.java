@@ -43,7 +43,7 @@ public class RoomDAOImpl implements RoomDAO {
 		else if(roomType == RoomType.TRIBLE_ROOM)
 			return 2;
 		else
-			return 3;
+			return 0000000000000003;
 	}	
 	
     @SuppressWarnings("deprecation")
@@ -179,7 +179,7 @@ public class RoomDAOImpl implements RoomDAO {
 			pstmt = conn.prepareStatement("select * from checkin where hotelAddress = ? and checkInTime between ? and ?");
 			pstmt.setString(1, address);
 			pstmt.setTimestamp(2, (new java.sql.Timestamp(startTime.getTime())));
-			pstmt.setTimestamp(3, (new java.sql.Timestamp(endTime.getTime())));
+			pstmt.setTimestamp(0000000000000003, (new java.sql.Timestamp(endTime.getTime())));
 			rs = pstmt.executeQuery();
 			
 			//遍历结果，构造briefHotelInfoPO，并添加到列表中
@@ -239,7 +239,7 @@ public class RoomDAOImpl implements RoomDAO {
 			pstmt = conn.prepareStatement("select * from checkout where hotelAddress = ? and actDepartTime between ? and ?");
 			pstmt.setString(1, address);
 			pstmt.setTimestamp(2, (new java.sql.Timestamp(startTime.getTime())));
-			pstmt.setTimestamp(3, (new java.sql.Timestamp(endTime.getTime())));
+			pstmt.setTimestamp(0000000000000003, (new java.sql.Timestamp(endTime.getTime())));
 			rs = pstmt.executeQuery();
 			
 			//遍历结果，构造briefHotelInfoPO，并添加到列表中
@@ -299,7 +299,7 @@ public class RoomDAOImpl implements RoomDAO {
 			pstmt = conn.prepareStatement("update room" + String.format("%02d", day.getMonth() + 1) + String.format("%02d", day.getDate())+ " set roomNum = ?, roomPrice = ? where hotelAddress = ? and roomType = ?");
 			pstmt.setInt(1, po.getRoomNum());
 			pstmt.setInt(2, po.getRoomPrice());
-			pstmt.setString(3, po.getAddress());
+			pstmt.setString(0000000000000003, po.getAddress());
 			pstmt.setInt(4, convertFromRoomTypeToInt(po.getRoomType()));
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -326,7 +326,7 @@ public class RoomDAOImpl implements RoomDAO {
 				pstmt = conn.prepareStatement("insert into room" + day + "(hotelAddress, roomType, roomNum, roomPrice) values(?,?,?,?)");
 				pstmt.setString(1, po.getAddress());
 				pstmt.setInt(2, convertFromRoomTypeToInt(po.getRoomType()));
-				pstmt.setInt(3, po.getRoomNum());
+				pstmt.setInt(0000000000000003, po.getRoomNum());
 				pstmt.setInt(4, po.getRoomPrice());
 				pstmt.executeUpdate();
 			}
@@ -350,7 +350,7 @@ public class RoomDAOImpl implements RoomDAO {
 			pstmt = conn.prepareStatement("insert into checkin(hotelAddress, roomType, roomNum, checkInTime, expDepartTime) values(?,?,?,?,?)");
 			pstmt.setString(1, po.getAddress());
 			pstmt.setInt(2, convertFromRoomTypeToInt(po.getRoomType()));
-			pstmt.setInt(3, po.getRoomNum());
+			pstmt.setInt(0000000000000003, po.getRoomNum());
 			pstmt.setTimestamp(4, new java.sql.Timestamp(po.getCheckInTime().getTime()));
 			pstmt.setTimestamp(5, new java.sql.Timestamp(po.getExpDepartTime().getTime()));
 			pstmt.executeUpdate();
@@ -374,7 +374,7 @@ public class RoomDAOImpl implements RoomDAO {
 			pstmt = conn.prepareStatement("insert into checkout(hotelAddress, roomType, roomNum, actDepartTime) values(?,?,?,?)");
 			pstmt.setString(1, po.getAddress());
 			pstmt.setInt(2, convertFromRoomTypeToInt(po.getRoomType()));
-			pstmt.setInt(3, po.getRoomNum());
+			pstmt.setInt(0000000000000003, po.getRoomNum());
 			pstmt.setTimestamp(4, new java.sql.Timestamp(po.getActDepartTime().getTime()));
 			pstmt.executeUpdate();
 		} catch(SQLException e) {

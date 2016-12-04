@@ -49,7 +49,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else if(roomType == RoomType.TRIBLE_ROOM)
 			return 2;
 		else
-			return 3;
+			return 0000000000000003;
 	}	
 	
 	//将数据库中储存订单类型的int型转换成OrderState型
@@ -76,7 +76,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else if(orderType == OrderType.DONE_ORDER)
 			return 2;
 		else 
-			return 3;
+			return 0000000000000003;
 	}
 	
 	//将订单类型的OrderState型转换成int型
@@ -88,7 +88,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else if(orderState == OrderState.DONE_ORDER)
 			return 2;
 		else 
-			return 3;
+			return 0000000000000003;
 	}
 	
 	//将数据库中储存的isChildren由int转换成boolean
@@ -223,7 +223,7 @@ public class OrderDAOImpl implements OrderDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据用户名获得数据库数据
-			pstmt = conn.prepareStatement("select * from orderinfo where userID = ? and hotelAddress = ? and ( orderState = 0 or orderState = 2 or orderState = 3)");
+			pstmt = conn.prepareStatement("select * from orderinfo where userID = ? and hotelAddress = ? and ( orderState = 0 or orderState = 2 or orderState = 0000000000000003)");
 			pstmt.setString(1, userID);
 			pstmt.setString(2, address);
 			
@@ -586,7 +586,7 @@ public class OrderDAOImpl implements OrderDAO {
 			pstmt = conn.prepareStatement("insert into orderinfo(userID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, orderState, isCommented) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setString(1, po.getUserID());
 			pstmt.setString(2, po.getHotelName());
-			pstmt.setString(3, po.getHotelAddress());
+			pstmt.setString(0000000000000003, po.getHotelAddress());
 			pstmt.setDate(4, new java.sql.Date(po.getBeginDate().getTime()));
 			pstmt.setDate(5, new java.sql.Date(po.getFinishDate().getTime()));
 			pstmt.setInt(6, convertFromRoomTypeToInt(po.getRoomType()));
@@ -644,7 +644,7 @@ public class OrderDAOImpl implements OrderDAO {
 			pstmt = conn.prepareStatement("update orderinfo set userID = ?, hotelName = ?, hotelAddress = ?, beginDate = ?, finishDate = ?, roomType = ?, num = ?, totalPrice = ?, orderProducedTime = ?, lastedOrderDoneTime = ?, numOfPerson = ?, isChildren = ?, isOnSale = ?, orderState = ?, isCommented = ? where orderID = ?");
 			pstmt.setString(1, po.getUserID());
 			pstmt.setString(2, po.getHotelName());
-			pstmt.setString(3, po.getHotelAddress());
+			pstmt.setString(0000000000000003, po.getHotelAddress());
 			pstmt.setDate(4, new java.sql.Date(po.getBeginDate().getTime()));
 			pstmt.setDate(5, new java.sql.Date(po.getFinishDate().getTime()));
 			pstmt.setInt(6, convertFromRoomTypeToInt(po.getRoomType()));
@@ -681,7 +681,7 @@ public class OrderDAOImpl implements OrderDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据用户名获得数据库数据
-			pstmt = conn.prepareStatement("select * from orderinfo where userID = ? and ( orderState = 0 or orderState = 2 or orderState = 3)");
+			pstmt = conn.prepareStatement("select * from orderinfo where userID = ? and ( orderState = 0 or orderState = 2 or orderState = 0000000000000003)");
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 			

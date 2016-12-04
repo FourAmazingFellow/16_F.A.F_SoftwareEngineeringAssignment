@@ -38,9 +38,9 @@ public class CheckOutListTest {
         actDepartTime = new Date();
         startTime=new Date(116,9,7,12,00,00);
         endTime=new Date(116,10,12,12,00,00);
-        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 3, address, actDepartTime);
+        checkOutVO=new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, address, actDepartTime);
         
-        checkOutVO1=new CheckOutVO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,12,12,00,00));
+        checkOutVO1=new CheckOutVO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号", new Date(116,10,12,12,00,00));
         checkOutVO2=new CheckOutVO(RoomType.STANDARD_ROOM, 4, "江苏省南京市栖霞区仙林大道163号", new Date(116,9,7,12,00,00));
         checkOutVO3=new CheckOutVO(RoomType.TRIBLE_ROOM, 1, "江苏省南京市栖霞区仙林大道163号", new Date(116,9,1,10,10,00));
         checkOutVO4=new CheckOutVO(RoomType.KING_SIZE_ROOM, 1, "江苏省南京市栖霞区仙林大道164号", new Date(116,10,16,11,00,00));
@@ -49,7 +49,7 @@ public class CheckOutListTest {
     @Test
     public void testGetCheckOutList(){
         ArrayList<CheckOutItem> checkOutItems=checkOutList.getCheckOutList("江苏省南京市栖霞区仙林大道163号");
-        assertEquals(3,checkOutItems.size());
+        assertEquals(0000000000000003,checkOutItems.size());
 //        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
 //        assertTrue(equalCheckIn(checkOutVO, checkOutVOFromArray));
         for(CheckOutItem checkOutItem:checkOutItems){

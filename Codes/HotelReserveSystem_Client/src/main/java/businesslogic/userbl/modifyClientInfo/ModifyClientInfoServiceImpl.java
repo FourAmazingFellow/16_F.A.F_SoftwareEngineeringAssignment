@@ -24,7 +24,7 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
     
     @Override
     public ClientInfoVO getClientInfo(String userID) {
-   //     this.userDAO =RemoteHelper.getInstance().getUserDAO();
+        this.userDAO =RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         try {
             this.ClientInfoVO = new ClientInfoVO(userDAO.getClientInfo(this.userID));
@@ -36,6 +36,7 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
 
     @Override
     public boolean modifyClientInfo(UserVO user, String oldUserID) {
+        this.userDAO =RemoteHelper.getInstance().getUserDAO();
         try {
             userDAO.updateUser(new UserPO(user), oldUserID);
             return true;

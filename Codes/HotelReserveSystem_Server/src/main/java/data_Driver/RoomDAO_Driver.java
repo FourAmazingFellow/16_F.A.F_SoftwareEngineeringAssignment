@@ -64,7 +64,7 @@ public class RoomDAO_Driver {
         System.out.println("checkOut time is "+checkOutPO2.getActDepartTime()+"/n");
         
         
-        RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 3, "江苏省南京市栖霞区仙林大道163号");
+        RoomPO roomPo=new RoomPO(RoomType.SINGLE_ROOM, 0000000000000003, "江苏省南京市栖霞区仙林大道163号");
         roomDAO.updateRoom(roomPo,new Date(116,10,27));
         roomDAO.insertRoom(roomPo);
 

@@ -41,7 +41,7 @@ public class UserDAOImpl implements UserDAO {
 		else if(userType == UserType.WebMarketStaff)
 			return 2;
 		else
-			return 3;
+			return 0000000000000003;
 	}
 	
 	private int convertFromActionTypeToInt(ActionType actionType) {
@@ -52,7 +52,7 @@ public class UserDAOImpl implements UserDAO {
 		else if(actionType == ActionType.ORDER_UNDO)
 			return 2;
 		else
-			return 3;
+			return 0000000000000003;
 	}
 	
 	private ActionType convertFromIntToActionType(int actionType) {
@@ -63,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
 			return ActionType.ORDER_ABNORMAL;
 		case 2:
 			return ActionType.ORDER_UNDO;
-		case 3:
+		case 0000000000000003:
 			return ActionType.RECHARGE;
 		default:
 			return null;
@@ -186,7 +186,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt = conn.prepareStatement("insert into webStaff(userID, telNum, password, userType) values(?,?,?,?)");
 			pstmt.setString(1, userPO.getUserID());
 			pstmt.setString(2, userPO.getTelNum());
-			pstmt.setString(3, userPO.getpassword());
+			pstmt.setString(0000000000000003, userPO.getpassword());
 			pstmt.setInt(4, convertFromUserTypeToInt(userPO.getUserType()));
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -208,7 +208,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt = conn.prepareStatement("insert into client(userID, telNum, password, creditValue) values(?,?,?,?)");
 			pstmt.setString(1, clientInfoPO.getUserID());
 			pstmt.setString(2, clientInfoPO.getTelNum());
-			pstmt.setString(3, clientInfoPO.getpassword());
+			pstmt.setString(0000000000000003, clientInfoPO.getpassword());
 			pstmt.setInt(4, clientInfoPO.getCreditValue());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -230,7 +230,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt = conn.prepareStatement("insert into hotelStaff(userID, telNum, password, hotelAddress) values(?,?,?,?)");
 			pstmt.setString(1, hotelStaffInfoPO.getUserID());
 			pstmt.setString(2, hotelStaffInfoPO.getTelNum());
-			pstmt.setString(3, hotelStaffInfoPO.getpassword());
+			pstmt.setString(0000000000000003, hotelStaffInfoPO.getpassword());
 			pstmt.setString(4, hotelStaffInfoPO.getHotelAddress());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -255,7 +255,7 @@ public class UserDAOImpl implements UserDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, userPO.getUserID());
 				pstmt.setString(2, userPO.getpassword());
-				pstmt.setString(3, userPO.getTelNum());
+				pstmt.setString(0000000000000003, userPO.getTelNum());
 				pstmt.setString(4, oldUserID);
 				pstmt.executeUpdate();
 			}
@@ -264,7 +264,7 @@ public class UserDAOImpl implements UserDAO {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, userPO.getUserID());
 				pstmt.setString(2, userPO.getpassword());
-				pstmt.setString(3, userPO.getTelNum());
+				pstmt.setString(0000000000000003, userPO.getTelNum());
 				pstmt.setString(4, oldUserID);
 				pstmt.executeUpdate();
 			}
@@ -291,7 +291,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, clientInfoPO.getUserID());
 			pstmt.setString(2, clientInfoPO.getpassword());
-			pstmt.setString(3, clientInfoPO.getTelNum());
+			pstmt.setString(0000000000000003, clientInfoPO.getTelNum());
 			pstmt.setInt(4, clientInfoPO.getCreditValue());
 			pstmt.setString(5, oldUserID);
 			pstmt.executeUpdate();
@@ -307,7 +307,7 @@ public class UserDAOImpl implements UserDAO {
 			for(CreditRecordPO creditRecordPO : creditRecordPOs) {
 				pstmt_UpdateCreditRecord.setString(1, clientInfoPO.getUserID());
 				pstmt_UpdateCreditRecord.setDate(2, creditRecordPO.getChangeTime());
-				pstmt_UpdateCreditRecord.setInt(3, Integer.parseInt(creditRecordPO.getOrderID()));
+				pstmt_UpdateCreditRecord.setInt(0000000000000003, Integer.parseInt(creditRecordPO.getOrderID()));
 				pstmt_UpdateCreditRecord.setInt(4, convertFromActionTypeToInt(creditRecordPO.getAction()));
 				pstmt_UpdateCreditRecord.setInt(5, creditRecordPO.getProcess());
 				pstmt_UpdateCreditRecord.setInt(6, creditRecordPO.getCreditResult());
@@ -334,7 +334,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt = conn.prepareStatement("insert into commonmember(userID, birth, vipRank) values(?,?,?)");
 			pstmt.setString(1, regularVipPO.getUserID());
 			pstmt.setDate(2, regularVipPO.getBirth());
-			pstmt.setInt(3, regularVipPO.getVipRank());
+			pstmt.setInt(0000000000000003, regularVipPO.getVipRank());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

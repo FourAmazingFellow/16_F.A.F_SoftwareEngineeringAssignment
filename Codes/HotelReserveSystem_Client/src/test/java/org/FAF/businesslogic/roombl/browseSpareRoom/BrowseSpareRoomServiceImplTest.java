@@ -3,11 +3,13 @@ package org.FAF.businesslogic.roombl.browseSpareRoom;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import businesslogic.roombl.browseSpareRoom.BrowseSpareRoomServiceImpl;
 import po.RoomType;
+import rmi.LinkToServer;
 import vo.RoomVO;
 
 public class BrowseSpareRoomServiceImplTest {
@@ -15,6 +17,14 @@ public class BrowseSpareRoomServiceImplTest {
     private BrowseSpareRoomServiceImpl browseSpareRoomServiceImpl;
     private String address;
     private RoomVO roomVO1,roomVO2,roomVO3,roomVO4;
+    
+    private static LinkToServer linkToServer;
+    
+    @BeforeClass
+    public static void set() {
+        linkToServer = new LinkToServer();
+        linkToServer.linkToServer();
+    }
     
     @Before
     public void setUp() throws Exception{
@@ -50,7 +60,7 @@ public class BrowseSpareRoomServiceImplTest {
     
     public boolean equalSpareRoom(RoomVO roomVO1, RoomVO roomVO2) {
         if (roomVO1.roomType != roomVO2.roomType || roomVO1.roomNum != roomVO2.roomNum
-                || roomVO1.roomPrice != roomVO2.roomPrice || roomVO1.address != roomVO2.address) {
+                || roomVO1.roomPrice != roomVO2.roomPrice || !roomVO1.address.equals( roomVO2.address)) {
             return false;
         }
         return true;

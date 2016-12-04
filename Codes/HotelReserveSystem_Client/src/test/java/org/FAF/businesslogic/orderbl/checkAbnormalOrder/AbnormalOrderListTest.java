@@ -50,19 +50,19 @@ public class AbnormalOrderListTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setup(){
-		this.orderID = "0001000100010001";
-		this.userID = "19970206";
-		this.hotelName = "汉庭酒店";
-		this.hotelAddress = "南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(116, 11, 20);
-		this.finishDate = new Date(116, 11, 21);
+		this.orderID = "0000000000000006";
+		this.userID = "原";
+		this.hotelName = "Jingling Hotel";
+		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
+		this.beginDate = new Date(116, 9, 19);
+		this.finishDate = new Date(116, 9, 20);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
 		this.totalPrice = 200;
 		this.orderState = OrderState.ABNORMAL_ORDER;
-		this.orderProducedTime = new Date(116, 11, 15, 18, 0);
+		this.orderProducedTime = new Date(116, 11, 4, 17, 11, 20);
 		this.lastedOrderDoneTime = new Date(116, 11, 20, 22, 0);
-		this.numOfPerson = 2;
+		this.numOfPerson = 1;
 		this.isChildren = false;
 		this.isOnSale = false;
 		this.isCommented = false;
@@ -76,7 +76,7 @@ public class AbnormalOrderListTest {
 	@Test
 	public void getAbnormalOrderListTest_1(){
 		@SuppressWarnings("deprecation")
-		ArrayList<BriefOrderInfoVO> briefOrderInfoList = abnormalOrderList.getAbnormalOrderList(new Date(116, 11, 21));
+		ArrayList<BriefOrderInfoVO> briefOrderInfoList = abnormalOrderList.getAbnormalOrderList(new Date(116, 9, 19));
 		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
 		assertEquals("AbnormalOrderList.getAbnormalOrderList(Date date) has an error in orderID!", orderID, fisrtOrder.orderID);
 		assertEquals("AbnormalOrderList.getAbnormalOrderList(Date date) has an error in userID!", userID, fisrtOrder.userID);
@@ -93,7 +93,7 @@ public class AbnormalOrderListTest {
 	//正常情况下的Test
 	@Test
 	public void getDetailedOrderTest_1(){
-		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0001000100010001");
+		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0000000000000006");
 		assertEquals("AbnormalOrderList.getDetailedOrder(String orderID) has an error in orderID!", orderID, detailedOrder.orderID);
 		assertEquals("AbnormalOrderList.getDetailedOrder(String orderID) has an error in userID!", userID, detailedOrder.userID);
 		assertEquals("AbnormalOrderList.getDetailedOrder(String orderID) has an error in hotelName!", hotelName, detailedOrder.hotelName);
@@ -115,7 +115,7 @@ public class AbnormalOrderListTest {
 	//异常情况下的Test(所得订单号对应订单不是异常订单)
 	@Test
 	public void getDetailedOrderTest_2() {
-		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0001000100010001");
+		OrderVO detailedOrder = abnormalOrderList.getDetailedOrder("0000000000000001");
 		System.out.println(detailedOrder);
 		assertEquals(null, detailedOrder);
 	}

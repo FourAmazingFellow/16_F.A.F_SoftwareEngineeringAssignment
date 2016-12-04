@@ -20,6 +20,7 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
     
     @Override
     public boolean login(String userID, String password) {
+        this.userDAO =RemoteHelper.getInstance().getUserDAO();
         check = new CheckLoginInfo();
         check.setUserDAO(userDAO);
         return check.checkUser(userID, password);
@@ -27,7 +28,7 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
 
     @Override
     public boolean add(UserVO user) {
- //       userDAO = RemoteHelper.getInstance().getUserDAO();
+        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         try {
             userDAO.insertUser(new UserPO(user));
             return true;
