@@ -107,7 +107,7 @@ public class NewOrderTest {
 		assertEquals("NewOrder.getPrice has an error!", price, result);
 	}
 
-	@Test
+//	@Test
 	public void addNewOrderTest_1() {
 		OrderVO testOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, 
 				orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
