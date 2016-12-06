@@ -6,6 +6,7 @@ import businesslogic.hotelbl.OrderInfo;
 import businesslogic.orderbl.OrderInfoImpl;
 import businesslogic.roombl.RoomInfoService;
 import businesslogic.roombl.RoomInfoServiceImpl;
+import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.userbl.ClientCreditInfo;
@@ -42,5 +43,10 @@ public class FactoryServiceImpl implements FactoryService {
 	@Override
 	public ClientCreditInfo createClientCreditInfoService() {
 		return new ClientCreditInfoImpl();
+	}
+
+	@Override
+	public AvailableRoomService createAvailableRoomService() {
+		return new HotelInfoServiceImpl();
 	}
 }

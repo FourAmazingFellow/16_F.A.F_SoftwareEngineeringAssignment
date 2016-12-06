@@ -3,6 +3,7 @@ package factory;
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.roombl.RoomInfoService;
+import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.userbl.UserInfo;
@@ -20,4 +21,6 @@ public interface FactoryService {
 	public ClientCreditInfo createClientCreditInfoService();
 	
 	public StrategyInfoService createStrategyInfoService();
+	
+	public AvailableRoomService createAvailableRoomService();
 }
