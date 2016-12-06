@@ -1,9 +1,9 @@
-package view.login;
+package presentation.userui.login;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import view.MainApp;
+import presentation.MainApp;
 
 public class LoginController {
 	private MainApp mainApp;
@@ -27,5 +27,9 @@ public class LoginController {
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
+	}
+	
+	public void showRegisterPanel(){
+		mainApp.showRegisterPanel();
 	}
 }

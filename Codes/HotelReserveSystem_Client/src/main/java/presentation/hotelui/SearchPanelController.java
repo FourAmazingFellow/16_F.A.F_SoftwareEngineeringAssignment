@@ -1,4 +1,4 @@
-package view.client;
+package presentation.hotelui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import view.MainApp;
+import presentation.MainApp;
 
 public class SearchPanelController {
 	// Reference to the main application

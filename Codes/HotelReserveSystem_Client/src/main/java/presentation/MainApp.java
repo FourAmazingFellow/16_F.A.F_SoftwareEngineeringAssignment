@@ -1,4 +1,4 @@
-package view;
+package presentation;
 
 import java.io.IOException;
 
@@ -7,13 +7,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import view.client.SearchPanelController;
-import view.login.LoginController;
+import presentation.hotelui.SearchPanelController;
+import presentation.userui.login.LoginController;
+import presentation.userui.login.RegisterController;
 
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private AnchorPane loginPanel;
+	private AnchorPane registerPanel;
 	private AnchorPane searchPanel;
+	
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -24,11 +27,12 @@ public class MainApp extends Application {
 		showLoginView();
 	}
 
+	//显示初始界面 --- 登陆界面
 	public void showLoginView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 
-			loader.setLocation(MainApp.class.getResource("login/Login.fxml"));
+			loader.setLocation(MainApp.class.getResource("userui/login/Login.fxml"));
 			loginPanel = (AnchorPane) loader.load();
 
 			Scene scene = new Scene(loginPanel);
@@ -42,12 +46,34 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-
-	public void showClientView() {
-
+	
+	//显示新用户注册界面
+	public void showRegisterPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("client/SearchPanel.fxml"));
+			loader.setLocation(MainApp.class.getResource("userui/login/Register.fxml"));
+			registerPanel = (AnchorPane) loader.load();
+
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(registerPanel);
+			primaryStage.setScene(scene);
+
+			// Give the controller access to the main app.
+			RegisterController controller = loader.getController();
+			controller.setMainApp(this);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	//显示用户主界面 --- 搜索界面
+	public void showClientView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("hotelui/SearchPanel.fxml"));
 			searchPanel = (AnchorPane) loader.load();
 
 			// Show the scene containing the root layout.
@@ -64,6 +90,8 @@ public class MainApp extends Application {
 		}
 	}
 
+
+	
 	/**
 	 * Returns the main stage.
 	 * 
