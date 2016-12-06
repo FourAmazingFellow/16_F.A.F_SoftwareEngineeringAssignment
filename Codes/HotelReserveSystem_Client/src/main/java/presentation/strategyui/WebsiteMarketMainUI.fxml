@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../view/DarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar prefHeight="35.0" prefWidth="850.0">
+      <MenuBar prefHeight="35.0" prefWidth="870.0">
          <menus>
             <Menu mnemonicParsing="false" text="返回" />
             <Menu mnemonicParsing="false" text="主页" />
@@ -26,7 +25,7 @@
             <Button layoutX="690.0" layoutY="270.0" mnemonicParsing="false" prefHeight="160.0" prefWidth="250.0" text="制定营销策略" />
          </children>
       </HBox>
-      <MenuBar layoutX="850.0" prefHeight="35.0" prefWidth="150.0">
+      <MenuBar layoutX="871.0" prefHeight="35.0" prefWidth="130.0">
         <menus>
           <Menu mnemonicParsing="false" text="用户名" />
         </menus>

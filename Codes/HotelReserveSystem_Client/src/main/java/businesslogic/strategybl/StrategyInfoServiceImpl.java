@@ -174,7 +174,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
             bestDiscountOfMarket=bestMarketStrategy.discount;
         }
         if (bestDiscountOfPromotion >= bestDiscountOfMarket) {
-            bestDiscount = bestDiscountOfPromotion;
+            bestDiscount = bestDiscountOfMarket;
         } else {
             bestDiscount = bestDiscountOfMarket;
         }
