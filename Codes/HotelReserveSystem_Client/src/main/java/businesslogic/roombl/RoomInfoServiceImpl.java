@@ -117,6 +117,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         for(RoomPO roomPO:todaySpareRoomList){
             if(roomPO.getRoomType()==roomvo.roomType){
                 roomTypeExist=true;
+                break;
             }
         }
         //有则调用更新空房的方法
