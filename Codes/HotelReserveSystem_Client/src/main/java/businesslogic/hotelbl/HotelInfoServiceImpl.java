@@ -3,13 +3,14 @@ package businesslogic.hotelbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import dataservice.hotelDAO.HotelDAO;
 import po.BusinessDistrictPO;
 import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
-public class HotelInfoServiceImpl implements HotelInfoService {
+public class HotelInfoServiceImpl implements HotelInfoService, AvailableRoomService {
 
 	private HotelDAO hotelDAO;
 	

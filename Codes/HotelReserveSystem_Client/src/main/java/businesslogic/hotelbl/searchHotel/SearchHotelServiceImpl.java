@@ -4,9 +4,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.hotelblservice.SearchHotelService;
-import data_Stub.HotelDAOImpl_Stub;
 import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
+import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 
 public class SearchHotelServiceImpl implements SearchHotelService {
@@ -16,7 +16,7 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 	protected String userID;
 	
 	public SearchHotelServiceImpl(String userID) {
-		this.hotelDAO = new HotelDAOImpl_Stub("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, "南京市");
+		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.userID = userID;
 	}
 	
