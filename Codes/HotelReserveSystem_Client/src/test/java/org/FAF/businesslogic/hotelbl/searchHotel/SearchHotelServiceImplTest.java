@@ -20,7 +20,7 @@ public class SearchHotelServiceImplTest {
 
 	@Test
 	public void testGetHotelBriefInfoListBySearching() {
-		String[] condition = {"不限", "不限", "不限", "不限", "不限", "不限", "不限", "不限", "否"};
+		String[] condition = {"南京市", "栖霞区", "", "0", "394", "3", "6", "4.0", "5.0", "0", "1", "1", "2016"};
 		searchHotel = new SearchHotelServiceImpl("原");
 		ArrayList<OrderedHotelInfoVO> briefHotelInfoVOs = searchHotel.getHotelBriefInfoListBySearching(condition);
 		assertEquals(1, briefHotelInfoVOs.size());

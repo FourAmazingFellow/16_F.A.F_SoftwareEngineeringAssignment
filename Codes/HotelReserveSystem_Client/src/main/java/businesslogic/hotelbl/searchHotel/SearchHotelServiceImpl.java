@@ -1,6 +1,8 @@
 package businesslogic.hotelbl.searchHotel;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -98,15 +100,22 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 		this.roomInfoService = factory.createRoomInfoService();
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition) {
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
 		try {
 			ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress();
 			ArrayList<BriefHotelInfoPO> list = hotelDAO.getHotelBriefInfoListBySearching(condition, orderedHotelList);
-			Date beginDate = new Date(condition[12]);
-			Date finishDate = new Date(condition[13]);
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date beginDate = null;
+			Date finishDate = null;
+			try {
+				beginDate = formatter.parse(condition[12]);
+				finishDate = formatter.parse(condition[13]);
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return null;
+			}
 			RoomType roomType = convertFromIntToRoomType(Integer.parseInt(condition[10]));
 			int roomNum = Integer.parseInt(condition[11]);
 			for(BriefHotelInfoPO hotelInfoPO : list) {
