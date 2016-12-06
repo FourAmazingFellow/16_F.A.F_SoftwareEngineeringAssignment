@@ -32,7 +32,8 @@ public interface HotelDAO extends Remote {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching (String[] condition) throws RemoteException;
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching (String[] condition,
+			ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException;
 	
 	/**
 	 * 通过查看获取酒店基本信息列表

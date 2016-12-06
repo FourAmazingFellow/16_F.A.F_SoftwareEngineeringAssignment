@@ -57,7 +57,8 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	}
 
 	@Override
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException {
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching(String[] condition,
+			ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {
 		ArrayList<BriefHotelInfoPO> briefHotelInfoPOList = new ArrayList<>();
 		briefHotelInfoPOList.add(new BriefHotelInfoPO(hotelName, tradeArea, hotelAddress, starLevel, mark, city));
 		return briefHotelInfoPOList;

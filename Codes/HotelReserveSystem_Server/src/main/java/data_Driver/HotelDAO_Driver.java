@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import dataservice.hotelDAO.HotelDAO;
 import po.BriefHotelInfoPO;
+import po.BriefOrderInfoPO;
 import po.HotelPO;
 import po.RoomType;
 
@@ -21,7 +22,8 @@ public class HotelDAO_Driver {
 		
 		String[] condition = {"不限", "不限", "不限", "不限", "不限", "不限", "不限", "不限", "否"};
 		try {
-			ArrayList<BriefHotelInfoPO> briefHotelInfoPOList = hotelDAO.getHotelBriefInfoListBySearching(condition);
+			ArrayList<BriefOrderInfoPO> orderedHotelList = null;
+			ArrayList<BriefHotelInfoPO> briefHotelInfoPOList = hotelDAO.getHotelBriefInfoListBySearching(condition, orderedHotelList);
 			if(briefHotelInfoPOList.isEmpty())
 				System.out.println("没有满足条件的酒店\n");
 			else

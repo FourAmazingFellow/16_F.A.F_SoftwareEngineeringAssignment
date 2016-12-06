@@ -16,10 +16,10 @@ public class QueryHotelList {
 	}
 	
 	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition, ArrayList<BriefOrderInfoPO> orderedHotelList) {
-		ArrayList<BriefHotelInfoPO> orderedHotelInfoVOs;
+		ArrayList<BriefHotelInfoPO> orderedHotelInfoPOs;
 		try {
-			orderedHotelInfoVOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
-			return orderedHotelInfoVOs;
+			orderedHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
+			return orderedHotelInfoPOs;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return null;

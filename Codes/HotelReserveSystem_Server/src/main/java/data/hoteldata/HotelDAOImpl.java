@@ -95,8 +95,76 @@ public class HotelDAOImpl implements HotelDAO {
 	}
 
 	@Override
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException {
-		return null;
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching(String[] condition,
+			ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<BriefHotelInfoPO> briefHotelInfoPOs = new ArrayList<>();
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			//根据酒店地址获得数据库数据
+			if(condition[2].length() == 0) {
+				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and  min_Price between ? and ? and starLevel between ? and ? and mark between ? and ?");
+				pstmt.setString(1, condition[0]);
+				pstmt.setString(2, condition[1]);
+				pstmt.setInt(3, Integer.parseInt(condition[3]));
+				pstmt.setInt(4, Integer.parseInt(condition[4]));
+				pstmt.setInt(5, Integer.parseInt(condition[5]));
+				pstmt.setInt(6, Integer.parseInt(condition[6]));
+				pstmt.setFloat(7, Float.parseFloat(condition[7]));
+				pstmt.setFloat(8, Float.parseFloat(condition[8]));
+			}
+			else {
+				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and hotelName = ? and  min_Price between ? and ? and starLevel between ? and ? and mark between ? and ?");
+				pstmt.setString(1, condition[0]);
+				pstmt.setString(2, condition[1]);
+				pstmt.setString(3, condition[2]);
+				pstmt.setInt(4, Integer.parseInt(condition[3]));
+				pstmt.setInt(5, Integer.parseInt(condition[4]));
+				pstmt.setInt(6, Integer.parseInt(condition[5]));
+				pstmt.setInt(7, Integer.parseInt(condition[6]));
+				pstmt.setFloat(8, Float.parseFloat(condition[7]));
+				pstmt.setFloat(9, Float.parseFloat(condition[8]));
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			//遍历结果，构造briefHotelInfoPO，并添加到列表中
+			while(rs.next()) {
+				BriefHotelInfoPO briefHotelInfoPO = new BriefHotelInfoPO();
+				briefHotelInfoPO.setHotelName(rs.getString("hotelName"));
+				briefHotelInfoPO.setBusinessDistrict(rs.getString("tradeArea"));
+				briefHotelInfoPO.setHotelAddress(rs.getString("hotelAddress"));
+				briefHotelInfoPO.setStarLevel(rs.getInt("starLevel"));
+				briefHotelInfoPO.setMark(rs.getFloat("mark"));
+				briefHotelInfoPO.setCity(rs.getString("city"));
+				briefHotelInfoPO.setMin_Price(rs.getInt("min_Price"));
+				briefHotelInfoPOs.add(briefHotelInfoPO);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(rs, conn, pstmt);
+		}
+		
+		ArrayList<BriefHotelInfoPO> result = new ArrayList<>();
+		
+		//筛选预订过的酒店
+		if(condition[9].equals("1")) {
+			for(BriefHotelInfoPO hotelInfoPO : briefHotelInfoPOs) {
+				if(isExist(hotelInfoPO, orderedHotelList))
+					result.add(hotelInfoPO);
+			}
+		}
+		else {
+			result = briefHotelInfoPOs;
+		}
+		
+		return result;
 	}
 
 	@Override
@@ -138,7 +206,7 @@ public class HotelDAOImpl implements HotelDAO {
 		ArrayList<BriefHotelInfoPO> result = new ArrayList<>();
 		
 		//筛选预订过的酒店
-		if(condition[0000000000000003].equals("1")) {
+		if(condition[3].equals("1")) {
 			for(BriefHotelInfoPO hotelInfoPO : briefHotelInfoPOs) {
 				if(isExist(hotelInfoPO, orderedHotelList))
 					result.add(hotelInfoPO);

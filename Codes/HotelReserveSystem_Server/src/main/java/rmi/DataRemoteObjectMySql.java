@@ -250,8 +250,9 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException {
-		return hotelDAO.getHotelBriefInfoListBySearching(condition);
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListBySearching(String[] condition,
+			ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {
+		return hotelDAO.getHotelBriefInfoListBySearching(condition, orderedHotelList);
 	}
 
 	@Override
