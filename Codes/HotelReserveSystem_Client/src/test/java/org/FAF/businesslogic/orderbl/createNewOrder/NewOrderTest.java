@@ -104,7 +104,7 @@ public class NewOrderTest {
 	public void getPriceTest_1() {
 		OrderVO tempOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
 		int result = newOrder.getPrice(tempOrder);
-		assertEquals("NewOrder.getPrice has an error!", price, result);
+		assertEquals("NewOrder.getPrice has an error!", 320, result);
 	}
 
 //	@Test

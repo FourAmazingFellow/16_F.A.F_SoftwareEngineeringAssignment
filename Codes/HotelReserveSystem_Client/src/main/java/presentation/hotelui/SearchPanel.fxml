@@ -29,7 +29,7 @@
                   <Insets />
                </GridPane.margin>
             </TextField>
-            <ChoiceBox fx:id="districtChooser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="143.0" stylesheets="@../DarkTheme.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <ChoiceBox fx:id="districtChooser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="143.0" styleClass="choice-box-big" stylesheets="@../DarkTheme.css" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
