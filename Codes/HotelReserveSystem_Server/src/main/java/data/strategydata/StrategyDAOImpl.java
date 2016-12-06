@@ -146,7 +146,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 	}
 
 	@Override
-	public void updateStrategy(StrategyPO po) throws RemoteException {
+	public boolean updateStrategy(StrategyPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -162,6 +162,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(0000000000000003, po.getStrategyName());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.MultiRoomPromotion) {
 				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, minRoomNumOrVipRank = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
@@ -172,6 +173,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(4, po.getStrategyName());
 				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.MemberRankMarket) {
 				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, minRoomNumOrVipRank = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
@@ -182,6 +184,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(4, po.getStrategyName());
 				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
 				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, securityCode = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
@@ -192,6 +195,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(4, po.getStrategyName());
 				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.SpecificTimePromotion || po.getStrategyType() == StrategyType.SpecificTimeMarket) {
 				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, startTime = ?, endTime = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
@@ -203,6 +207,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(5, po.getStrategyName());
 				pstmt.setInt(6, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else {
 				sql = "update " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + " set discount = ?, vipRank = ? where hotelAddress = ? and strategyName = ? and strategyType = ?";
@@ -213,9 +218,11 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(4, po.getStrategyName());
 				pstmt.setInt(5, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -223,7 +230,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 	}
 
 	@Override
-	public void insertStrategy(StrategyPO po) throws RemoteException {
+	public boolean insertStrategy(StrategyPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -239,6 +246,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setFloat(3, po.getDiscount());
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.MultiRoomPromotion) {
 				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, minRoomNumOrVipRank) values(?,?,?,?,?)";
@@ -249,6 +257,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setInt(5, po.getMinRoomNum());
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.MemberRankMarket) {
 				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, minRoomNumOrVipRank) values(?,?,?,?,?)";
@@ -259,6 +268,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setInt(4, convertFromStrategyTypeToInt(po.getStrategyType()));
 				pstmt.setInt(5, po.getVipRank());
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
 				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, enterpriseName, securityCode) values(?,?,?,?,?,?)";
@@ -270,6 +280,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setString(5, po.getEnterpriseName());
 				pstmt.setString(6, po.getSecurityCode());
 				pstmt.executeUpdate();
+				return true;
 			}
 			else if(po.getStrategyType() == StrategyType.SpecificTimePromotion || po.getStrategyType() == StrategyType.SpecificTimeMarket) {
 				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, startTime, endTime) values(?,?,?,?,?,?)";
@@ -281,6 +292,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setDate(5, new java.sql.Date(po.getStartTime().getTime()));
 				pstmt.setDate(6, new java.sql.Date(po.getEndTime().getTime()));
 				pstmt.executeUpdate();
+				return true;
 			}
 			else {
 				sql = "insert into " + tableNames[convertFromStrategyTypeToInt(po.getStrategyType())] + "(hotelAddress, strategyName, discount, strategyType, vipRank, tradeArea) values(?,?,?,?,?,?)";
@@ -292,9 +304,11 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 				pstmt.setInt(5, po.getVipRank());
 				pstmt.setString(6, po.getTradeArea());
 				pstmt.executeUpdate();
+				return true;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -302,7 +316,7 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 	}
 
 	@Override
-	public void deleteStrategy(StrategyPO po) throws RemoteException {
+	public boolean deleteStrategy(StrategyPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -315,9 +329,11 @@ public class StrategyDAOImpl implements dataservice.strategyDAO.StrategyDAO {
 			pstmt.setInt(2, convertFromStrategyTypeToInt(po.getStrategyType()));
 			pstmt.setString(3, po.getStrategyName());
 			pstmt.executeUpdate();
+			return true;
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
