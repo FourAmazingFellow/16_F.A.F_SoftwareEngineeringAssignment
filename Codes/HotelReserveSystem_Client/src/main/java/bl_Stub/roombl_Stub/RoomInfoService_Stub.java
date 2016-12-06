@@ -1,5 +1,6 @@
 package bl_Stub.roombl_Stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -51,6 +52,12 @@ public class RoomInfoService_Stub implements RoomInfoService{
     @Override
     public ArrayList<RoomVO> getSpareRoomList(String address) {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ResultMessage checkOrder(String hotelAddress, RoomType roomType, int num, Date beginDate, Date finishDate)
+            throws RemoteException {
         return null;
     }
 

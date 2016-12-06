@@ -13,6 +13,8 @@ import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.userbl.ClientCreditInfoImpl;
 import businesslogic.userbl.UserInfo;
 import businesslogic.userbl.UserInfoImpl;
+import businesslogic.userbl.VipInfo;
+import businesslogic.userbl.VipInfoImpl;
 
 public class FactoryServiceImpl implements FactoryService {
 	@Override
@@ -49,4 +51,9 @@ public class FactoryServiceImpl implements FactoryService {
 	public AvailableRoomService createAvailableRoomService() {
 		return new HotelInfoServiceImpl();
 	}
+
+    @Override
+    public VipInfo createVipInfo() {
+        return new VipInfoImpl();
+    }
 }

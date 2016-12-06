@@ -3,11 +3,13 @@ package businesslogic.strategybl;
 import java.util.ArrayList;
 import java.util.Date;
 
-import businesslogic.hotelbl.HotelInfoServiceImpl;
+import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
-import businesslogic.userbl.VipInfoImpl;
+import businesslogic.userbl.VipInfo;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.StrategyType;
 import vo.EnterpriseVipVO;
 import vo.OrderVO;
@@ -28,14 +30,14 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     private StrategyVO bestMarketStrategy;
     private StrategyItem strategyItem;
 
-    private VipInfoImpl vipInfo;
-    private HotelInfoServiceImpl hotelInfoService;
+    private VipInfo vipInfo;
+    private HotelInfoService hotelInfoService;
+    private FactoryService factoryService;
     
     public StrategyInfoServiceImpl() {
-        vipInfo = new VipInfoImpl();
-//        vipInfo.setUserDAO(new UserDAOImpl_Stub("原", "123456", "15050582771", 1200, null, new java.sql.Date(116,11,1), 0000000000000003));
-        hotelInfoService = new HotelInfoServiceImpl();
-//        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市"));
+        factoryService=new FactoryServiceImpl();
+        hotelInfoService = factoryService.createHotelInfoService();
+        vipInfo = factoryService.createVipInfo();
     }
     
     @Override

@@ -8,12 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import businesslogicservice.orderblservice.ResultMessage;
 import dataservice.roomDAO.RoomDAO;
 import factory.FactoryService;
 import factory.FactoryServiceImpl;
+import po.OrderState;
 import po.RoomPO;
 import po.RoomType;
 import rmi.RemoteHelper;
@@ -31,7 +31,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 
     private RoomDAO roomDAO;
     
-    private AvailableRoomService hotelInfoService;
+    private AvailableRoomService availableRoomService;
     
     private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");   
     
@@ -39,13 +39,8 @@ public class RoomInfoServiceImpl implements RoomInfoService{
     
     public RoomInfoServiceImpl() {
         roomDAO=RemoteHelper.getInstance().getRoomDAO();
-//        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 16, 100, "江苏省南京市栖霞区仙林大道163号", null, null,null);
         factoryService=new FactoryServiceImpl();
-        hotelInfoService=factoryService.createAvailableRoomService();
-//        HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
-//        roomTypeAndNums.put(RoomType.SINGLE_ROOM, 20);
-//        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", null,
-//                null, roomTypeAndNums, null));
+        availableRoomService=factoryService.createAvailableRoomService();
     }
     
     @Override
@@ -160,7 +155,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         RoomPO spareRoomPO=roomDAO.getSpareRoomInfo(address, roomType, day);
         int finalRoomNum=spareRoomPO.getRoomNum()+change;
         //检查添加房间后的空房数是否大于可用客房数
-        HotelVO hotelVO = hotelInfoService.getHotelDetails(address);
+        HotelVO hotelVO = availableRoomService.getHotelDetails(address);
         HashMap<RoomType, Integer> roomTypeAndNums = hotelVO.roomTypeAndNums;
         int availableRoomNum=roomTypeAndNums.get(roomType);
         if(finalRoomNum>availableRoomNum){
@@ -193,5 +188,12 @@ public class RoomInfoServiceImpl implements RoomInfoService{
     
     private RoomPO toPO(RoomVO roomVO){
         return new RoomPO(roomVO.roomType, roomVO.roomNum, roomVO.roomPrice, roomVO.address);
+    }
+
+    @Override
+    public ResultMessage checkOrder(String hotelAddress, RoomType roomType, int num, Date beginDate, Date finishDate)
+            throws RemoteException {
+        OrderVO orderVO=new OrderVO("", "", "", hotelAddress, beginDate, finishDate, roomType, num, 0, OrderState.ABNORMAL_ORDER, new Date(), new Date(), 0, false, true, false);
+        return checkOrder(orderVO);
     }
 }

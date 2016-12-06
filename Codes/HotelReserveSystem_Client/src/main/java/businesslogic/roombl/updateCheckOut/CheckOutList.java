@@ -22,8 +22,6 @@ public class CheckOutList {
     private RoomDAO roomDAO;
     
     public CheckOutList(){
-//        roomDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 0000000000000003, 300, "江苏省南京市栖霞区仙林大道163号", null, null,
-//                new Date(116,11,1,17,13));
         roomDAO=RemoteHelper.getInstance().getRoomDAO();
     }
     

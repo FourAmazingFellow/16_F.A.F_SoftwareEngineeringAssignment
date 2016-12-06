@@ -49,6 +49,19 @@ public interface RoomInfoService {
     public ResultMessage checkOrder(OrderVO vo) throws RemoteException;
     
     /**
+     * 检查搜索信息能否得到满足
+     * @param hotelAddress String型，酒店地址
+     * @param roomType RoomType型，房间类型
+     * @param num int 型，房间数量
+     * @param beginDate Date型，订单开始时间
+     * @param finishDate Date型，订单结束时间
+     * @return 返回搜索信息是否满足
+     * @throws RemoteException
+     * @see
+     */
+    public ResultMessage checkOrder(String hotelAddress, RoomType roomType, int num, Date beginDate, Date finishDate) throws RemoteException;
+    
+    /**
      * 在更新可用客房后更新空房信息
      * @param address String型， 同层调用传来的酒店地址
      * @param roomvo RoomVO类型，同层调用传来的可用客房信息

@@ -23,13 +23,6 @@ public class CheckInList {
 
     public CheckInList() {
          roomDAO=RemoteHelper.getInstance().getRoomDAO();
-//        Date checkInTime = new Date(116,11,1,17,13);
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(checkInTime);
-//        calendar.add(Calendar.DATE, 1);
-//        Date expDepartTime = calendar.getTime();
-//        roomDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 0000000000000003, 300, "江苏省南京市栖霞区仙林大道163号", checkInTime, expDepartTime,
-//                null);
     }
 
     /**

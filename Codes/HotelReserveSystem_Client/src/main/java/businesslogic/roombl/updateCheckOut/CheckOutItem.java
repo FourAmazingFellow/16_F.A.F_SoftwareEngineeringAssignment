@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import businesslogic.hotelbl.HotelInfoService;
-import businesslogic.hotelbl.HotelInfoServiceImpl;
 import businesslogic.roombl.RoomInfoService;
-import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.strategybl.StrategyInfoService;
-import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.roomDAO.RoomDAO;
 import factory.FactoryService;

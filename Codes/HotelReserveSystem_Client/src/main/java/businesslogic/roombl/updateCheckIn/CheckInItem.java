@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.roombl.RoomInfoService;
-import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.strategybl.StrategyInfoService;
-import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.roomDAO.RoomDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.CheckInPO;
 import po.RoomPO;
 import po.RoomType;
@@ -36,20 +36,14 @@ public class CheckInItem {
     private RoomDAO checkInDAO;
     private RoomInfoService roomInfoService;
     private StrategyInfoService strategyInfoService;
+    
+    private FactoryService factoryService;
 
     public CheckInItem() {
          checkInDAO = RemoteHelper.getInstance().getRoomDAO();
-//        checkInTime=new Date();
-//        Calendar calendar=Calendar.getInstance();
-//        calendar.setTime(checkInTime);
-//        calendar.add(Calendar.DATE, 1);
-//        expDepartTime=calendar.getTime();
-//        
-//        checkInDAO = new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 0000000000000003, 400, "江苏省南京市栖霞区仙林大道163号",
-//                checkInTime, expDepartTime, null);
-        
-        roomInfoService = new RoomInfoServiceImpl();
-        strategyInfoService = new StrategyInfoServiceImpl();
+        factoryService=new FactoryServiceImpl();
+        roomInfoService = factoryService.createRoomInfoService();
+        strategyInfoService = factoryService.createStrategyInfoService();
     }
 
     /**
