@@ -307,11 +307,46 @@ public class StrategyList {
             }
         }
         // 判断该折扣能否被添加或修改
-        try {
-            if (!availbleToAddOrModify(strategyVO))
-                return false;
-        } catch (UnableAddStrategyException e) {
-            throw new UnableToModifyStrategyException(e.getMessage());
+//        try {
+//            if (!availbleToAddOrModify(strategyVO))
+//                return false;
+//        } catch (UnableAddStrategyException e) {
+//            throw new UnableToModifyStrategyException(e.getMessage());
+//        }
+        Enum<Enum<E>>StrategyType strategyType=strategyVO.strategyType;
+        // 如果添加多房间折扣，判断该房间数是否已存在
+        if (strategyType == StrategyType.MultiRoomPromotion) {
+            for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
+                if (strategyItem.toVO().minRoomNum == strategyVO.minRoomNum) {
+                    throw new UnableAddStrategyException("this minimum Room Number has already existed");
+                }
+            }
+        }
+        // 如果添加合作企业折扣，判断该合作企业是否已存在
+        if (strategyType == StrategyType.CooperationEnterprisePromotion) {
+            for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
+                if (strategyItem.toVO().enterpriseName.equals(strategyVO.enterpriseName))
+                    throw new UnableAddStrategyException("the enterprise has already existed");
+            }
+        }
+        // 如果添加会员等级折扣，判断该会员等级是否已存在
+        if (strategyType == StrategyType.MemberRankMarket) {
+            for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
+                if (strategyItem.toVO().vipRank == strategyVO.vipRank) {
+                    throw new UnableAddStrategyException("this vipRank has already existed");
+                }
+            }
+        }
+        // 如果添加特定商圈会员专属折扣，判断该商圈的会员等级是否已存在
+        if (strategyType == StrategyType.VipTradeAreaMarket) {
+            // 判断该商圈的会员等级是否存在
+            for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
+                StrategyVO vo = strategyItem.toVO();
+                if (vo.tradeArea.equals(strategyVO.tradeArea) && vo.vipRank == strategyVO.vipRank) {
+                    throw new UnableAddStrategyException(
+                            "the same tradeArea with the same vipRank number has already existed");
+                }
+            }
         }
         return true;
     }

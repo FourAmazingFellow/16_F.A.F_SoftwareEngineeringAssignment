@@ -84,6 +84,9 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         Date day= calendar.getTime();
         //判断房间是否满足，即订单预订当天的空房数量是否足够
         int todaySpareRoomNum=getAvailableRoomNum(vo.hotelAddress, vo.roomType, vo.beginDate);
+        if(todaySpareRoomNum==0){
+            return ResultMessage.TYPE_CANNOT_SATISFIED;
+        }
         if(todaySpareRoomNum<vo.num){
             return ResultMessage.NUM_CANNOT_SATISFIED;
         }
@@ -93,7 +96,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
             day= calendar.getTime();
             spareRoomNum=getAvailableRoomNum(vo.hotelAddress, vo.roomType, vo.beginDate);
             if(spareRoomNum<vo.num){
-                return ResultMessage.TYPE_CANNOT_SATISFIED;
+                return ResultMessage.TIME_CANNOT_SATISFIED;
             }
         }
         return ResultMessage.SUCCEED;
