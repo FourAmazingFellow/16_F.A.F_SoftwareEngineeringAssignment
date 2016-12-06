@@ -52,7 +52,7 @@ public class StrategyInfoServiceImplTest {
 
     @Test
     public void testGetBestDiscount() {
-        assertEquals(80f, strategyInfoServiceImpl.getBestDiscount(orderVO), 0.01);
+        assertEquals(0.85f, strategyInfoServiceImpl.getBestDiscount(orderVO), 0.01);
     }
 
 }

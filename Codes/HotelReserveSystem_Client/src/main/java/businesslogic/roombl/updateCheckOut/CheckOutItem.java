@@ -15,6 +15,8 @@ import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
 import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.roomDAO.RoomDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.CheckOutPO;
 import po.RoomPO;
 import po.RoomType;
@@ -39,13 +41,16 @@ public class CheckOutItem {
     private RoomDAO checkOutDAO;
     private RoomInfoService roomInfoService;
     private StrategyInfoService strategyInfoService;
-    private HotelInfoService hotelInfoService;
+    private AvailableRoomService hotelInfoService;
 
+    private FactoryService factory;
+    
     public CheckOutItem() {
         checkOutDAO=RemoteHelper.getInstance().getRoomDAO();
-        strategyInfoService = new StrategyInfoServiceImpl();
-        roomInfoService = new RoomInfoServiceImpl();
-        hotelInfoService = new HotelInfoServiceImpl();
+        this.factory = new FactoryServiceImpl();
+        strategyInfoService = factory.createStrategyInfoService();
+        roomInfoService = factory.createRoomInfoService();
+        hotelInfoService =factory.createAvailableRoomService();
     }
 
     /**

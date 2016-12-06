@@ -45,7 +45,7 @@ public class UpdateStrategyServiceImplTest {
         StrategyVO strategyVO3=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "春节折扣", 0.8f, new Date(117,1,10), new Date(117,1,21));
 
         ArrayList<StrategyVO> strategyVOs=updateStrategyServiceImpl.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
-        assertEquals(0000000000000003,strategyVOs.size());
+        assertEquals(3,strategyVOs.size());
         assertTrue(equalStrategy(strategyVOs.get(0), strategyVO1));
         assertTrue(equalStrategy(strategyVOs.get(1), strategyVO2));
         assertTrue(equalStrategy(strategyVOs.get(2), strategyVO3));
@@ -80,16 +80,19 @@ public class UpdateStrategyServiceImplTest {
             updateStrategyServiceImpl.add(address, strategyVO1);
             strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
             modifyed =updateStrategyServiceImpl.modify(address, strategyVO1);
+            updateStrategyServiceImpl.delete(address, strategyVO1);
         } catch (UnableToModifyStrategyException e) {
             System.out.println(e.getMessage());
         } catch (WrongInputException e) {
             e.printStackTrace();
         } catch (UnableAddStrategyException e) {
             e.printStackTrace();
+        } catch (UnableToDeleteStrategyException e) {
+            e.printStackTrace();
         }
         assertTrue(modifyed);
     }
-    
+
     @Test
     public void testDelete(){
         boolean deleted = false;
@@ -117,13 +120,13 @@ public class UpdateStrategyServiceImplTest {
     }
     
     public boolean equalStrategy(StrategyVO strategyVO1, StrategyVO strategyVO2){
-        if(strategyVO1.address!=strategyVO2.address){
+        if(!strategyVO1.address.equals(strategyVO2.address)){
             return false;
         }
         if(strategyVO1.strategyType!=strategyVO2.strategyType){
             return false;
         }
-        if(strategyVO1.strategyName!=strategyVO2.strategyName){
+        if(!strategyVO1.strategyName.equals(strategyVO2.strategyName)){
             return false;
         }
         if(strategyVO1.discount!=strategyVO2.discount){
@@ -138,7 +141,7 @@ public class UpdateStrategyServiceImplTest {
                 return false;
             }
         }else if(strategyVO1.strategyType==StrategyType.CooperationEnterprisePromotion){
-            if(strategyVO1.enterpriseName!=strategyVO2.enterpriseName||strategyVO1.securityCode!=strategyVO2.securityCode){
+            if(!strategyVO1.enterpriseName.equals(strategyVO2.enterpriseName)||!strategyVO1.securityCode.equals(strategyVO2.securityCode)){
                 return false;
             }
         }else if(strategyVO1.strategyType==StrategyType.SpecificTimeMarket||strategyVO1.strategyType==StrategyType.SpecificTimePromotion){
@@ -146,7 +149,7 @@ public class UpdateStrategyServiceImplTest {
                 return false;
             }
         }else if(strategyVO1.strategyType==StrategyType.VipTradeAreaMarket){
-            if(strategyVO1.vipRank!=strategyVO2.vipRank||strategyVO2.tradeArea!=strategyVO2.tradeArea){
+            if(strategyVO1.vipRank!=strategyVO2.vipRank||!strategyVO2.tradeArea.equals(strategyVO2.tradeArea)){
                 return false;
             }
         }

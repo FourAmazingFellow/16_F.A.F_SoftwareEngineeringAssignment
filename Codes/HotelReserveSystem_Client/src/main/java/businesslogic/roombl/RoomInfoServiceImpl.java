@@ -8,10 +8,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.hotelbl.HotelInfoServiceImpl;
+import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import businesslogicservice.orderblservice.ResultMessage;
 import dataservice.roomDAO.RoomDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.RoomPO;
 import po.RoomType;
 import rmi.RemoteHelper;
@@ -29,14 +31,17 @@ public class RoomInfoServiceImpl implements RoomInfoService{
 
     private RoomDAO roomDAO;
     
-    private HotelInfoService hotelInfoService;
+    private AvailableRoomService hotelInfoService;
     
-    private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");    
+    private SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");   
+    
+    private FactoryService factoryService;
     
     public RoomInfoServiceImpl() {
         roomDAO=RemoteHelper.getInstance().getRoomDAO();
 //        roomDAO=new RoomDAOImpl_Stub(RoomType.SINGLE_ROOM, 16, 100, "江苏省南京市栖霞区仙林大道163号", null, null,null);
-        hotelInfoService=new HotelInfoServiceImpl();
+        factoryService=new FactoryServiceImpl();
+        hotelInfoService=factoryService.createAvailableRoomService();
 //        HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
 //        roomTypeAndNums.put(RoomType.SINGLE_ROOM, 20);
 //        hotelInfoService.setHotelDAO(new HotelDAOImpl_Stub("仙林大酒店", "栖霞区", "江苏省南京市栖霞区仙林大道163号", 4, 4, "南京市", "", null,

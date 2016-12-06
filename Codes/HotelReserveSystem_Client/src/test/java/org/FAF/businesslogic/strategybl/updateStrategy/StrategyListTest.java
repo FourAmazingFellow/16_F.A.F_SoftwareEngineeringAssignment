@@ -59,7 +59,7 @@ public class StrategyListTest {
 //        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.CooperationEnterprisePromotion, "腾讯公司优惠", 0.87f, "腾讯", "tengxun6");
 //        assertTrue(equalStrategy(strategyVO1, strategyInfo));
 //    }
-    
+    /**
     @Test
     public void testAdd(){
         boolean added = false;
@@ -160,7 +160,8 @@ public class StrategyListTest {
         }
         assertFalse(added1);
     }
-    
+    */
+    /**
     //不能修改策略名称不存在的策略
     //不能修改生日折扣的名称
     @Test
@@ -191,7 +192,8 @@ public class StrategyListTest {
         assertFalse(modifyed2);
         assertFalse(modifyed3);
     }
-    
+    */
+    /**
   //不能删除策略名称不存在的策略
     @Test
     public void testDelete(){
@@ -214,6 +216,7 @@ public class StrategyListTest {
         assertFalse(deleted2);
     }
     
+    */
     @SuppressWarnings("deprecation")
     @Test
     public void testValid(){

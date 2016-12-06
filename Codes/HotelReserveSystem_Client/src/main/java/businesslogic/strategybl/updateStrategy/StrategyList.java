@@ -39,7 +39,7 @@ public class StrategyList {
 
     protected StrategyList(String address) {
         this.address = address;
-         strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
+        strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
         birthdatyPromotionList = getStrategyList(address, StrategyType.BirthdayPromotion);
         multiRoomPromotionList = getStrategyList(address, StrategyType.MultiRoomPromotion);
         memberRankMarketList = getStrategyList(address, StrategyType.MemberRankMarket);
@@ -151,8 +151,8 @@ public class StrategyList {
      * @see
      */
     public boolean add(String address, StrategyVO strategyVO) throws UnableAddStrategyException {
-        
-        if (!address.equals(this.address)||!address.equals(strategyVO.address)) {
+
+        if (!address.equals(this.address) || !address.equals(strategyVO.address)) {
             throw new UnableAddStrategyException(
                     "the address is not this hotel's address, you cann't add other hotel's strategy");
         }
@@ -189,22 +189,6 @@ public class StrategyList {
         if (addStrategyType == StrategyType.BirthdayPromotion && birthdatyPromotionList.size() == 1)
             throw new UnableAddStrategyException(
                     "the birthdayPromotion has already exited, there should be only one birthdayPromotion");
-        // 判断该折扣能否被添加或修改
-        if (!availbleToAddOrModify(strategyVO))
-            return false;
-        return true;
-    }
-
-    /**
-     * 判断该策略能否被修改或添加
-     * 
-     * @param strategyVO
-     *            策略信息
-     * @return 返回策略是否可以被修改或添加
-     * @throws UnableAddStrategyException
-     * @see
-     */
-    private boolean availbleToAddOrModify(StrategyVO strategyVO) throws UnableAddStrategyException {
         Enum<StrategyType> strategyType = strategyVO.strategyType;
         // 如果添加多房间折扣，判断该房间数是否已存在
         if (strategyType == StrategyType.MultiRoomPromotion) {
@@ -243,6 +227,7 @@ public class StrategyList {
         return true;
     }
 
+
     /**
      * 修改一个策略
      * 
@@ -255,7 +240,7 @@ public class StrategyList {
      * @see
      */
     public boolean modify(String address, StrategyVO strategyVO) throws UnableToModifyStrategyException {
-        if (!address.equals(this.address)||!address.equals(strategyVO.address)) {
+        if (!address.equals(this.address) || !address.equals(strategyVO.address)) {
             throw new UnableToModifyStrategyException(
                     "the address is not this hotel's address, you cann't modify other hotel's strategy");
         }
@@ -307,33 +292,39 @@ public class StrategyList {
             }
         }
         // 判断该折扣能否被添加或修改
-//        try {
-//            if (!availbleToAddOrModify(strategyVO))
-//                return false;
-//        } catch (UnableAddStrategyException e) {
-//            throw new UnableToModifyStrategyException(e.getMessage());
-//        }
-        Enum<Enum<E>>StrategyType strategyType=strategyVO.strategyType;
+        // try {
+        // if (!availbleToAddOrModify(strategyVO))
+        // return false;
+        // } catch (UnableAddStrategyException e) {
+        // throw new UnableToModifyStrategyException(e.getMessage());
+        // }
+        Enum<StrategyType> strategyType = strategyVO.strategyType;
         // 如果添加多房间折扣，判断该房间数是否已存在
         if (strategyType == StrategyType.MultiRoomPromotion) {
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
-                if (strategyItem.toVO().minRoomNum == strategyVO.minRoomNum) {
-                    throw new UnableAddStrategyException("this minimum Room Number has already existed");
+                if (!strategyVO.strategyName.equals(strategyItem.toVO().strategyName)) {
+                    if (strategyItem.toVO().minRoomNum == strategyVO.minRoomNum) {
+                        throw new UnableToModifyStrategyException("this minimum Room Number has already existed");
+                    }
                 }
             }
         }
         // 如果添加合作企业折扣，判断该合作企业是否已存在
         if (strategyType == StrategyType.CooperationEnterprisePromotion) {
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
-                if (strategyItem.toVO().enterpriseName.equals(strategyVO.enterpriseName))
-                    throw new UnableAddStrategyException("the enterprise has already existed");
+                if (!strategyVO.strategyName.equals(strategyItem.toVO().strategyName)) {
+                    if (strategyItem.toVO().enterpriseName.equals(strategyVO.enterpriseName))
+                        throw new UnableToModifyStrategyException("the enterprise has already existed");
+                }
             }
         }
         // 如果添加会员等级折扣，判断该会员等级是否已存在
         if (strategyType == StrategyType.MemberRankMarket) {
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
-                if (strategyItem.toVO().vipRank == strategyVO.vipRank) {
-                    throw new UnableAddStrategyException("this vipRank has already existed");
+                if (!strategyVO.strategyName.equals(strategyItem.toVO().strategyName)) {
+                    if (strategyItem.toVO().vipRank == strategyVO.vipRank) {
+                        throw new UnableToModifyStrategyException("this vipRank has already existed");
+                    }
                 }
             }
         }
@@ -342,9 +333,11 @@ public class StrategyList {
             // 判断该商圈的会员等级是否存在
             for (StrategyItem strategyItem : allStrategyList.get(strategyType)) {
                 StrategyVO vo = strategyItem.toVO();
-                if (vo.tradeArea.equals(strategyVO.tradeArea) && vo.vipRank == strategyVO.vipRank) {
-                    throw new UnableAddStrategyException(
-                            "the same tradeArea with the same vipRank number has already existed");
+                if (!strategyVO.strategyName.equals(strategyItem.toVO().strategyName)) {
+                    if (vo.tradeArea.equals(strategyVO.tradeArea) && vo.vipRank == strategyVO.vipRank) {
+                        throw new UnableToModifyStrategyException(
+                                "the same tradeArea with the same vipRank number has already existed");
+                    }
                 }
             }
         }
@@ -363,7 +356,7 @@ public class StrategyList {
      * @see
      */
     public boolean delete(String address, StrategyVO strategyVO) throws UnableToDeleteStrategyException {
-        if (!address.equals(this.address)||!address.equals(strategyVO.address)) {
+        if (!address.equals(this.address) || !address.equals(strategyVO.address)) {
             throw new UnableToDeleteStrategyException(
                     "the address is not this hotel's address, you cann't delete other hotel's strategy");
         }
