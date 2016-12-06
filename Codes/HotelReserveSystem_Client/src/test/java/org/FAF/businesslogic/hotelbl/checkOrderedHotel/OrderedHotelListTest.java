@@ -38,8 +38,8 @@ public class OrderedHotelListTest {
 		assertEquals("栖霞区", orderedHotelInfoVOs.get(0).tradeArea);
 		assertEquals("江苏省南京市栖霞区仙林大道163号", orderedHotelInfoVOs.get(0).hotelAddress);
 		assertEquals(5, orderedHotelInfoVOs.get(0).starLevel);
-		assertEquals(4.8f, orderedHotelInfoVOs.get(0).mark, 0);
-		assertEquals(1, orderedHotelInfoVOs.get(0).hotelState.size());
+		assertEquals(5.0f, orderedHotelInfoVOs.get(0).mark, 0);
+		assertEquals(2, orderedHotelInfoVOs.get(0).hotelState.size());
 		assertEquals(true, orderedHotelInfoVOs.get(0).hotelState.contains(OrderState.DONE_ORDER));
 	}
 
