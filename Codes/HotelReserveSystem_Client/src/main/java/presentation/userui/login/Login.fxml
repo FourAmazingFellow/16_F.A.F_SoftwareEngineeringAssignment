@@ -21,7 +21,7 @@
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="77.0" prefWidth="223.0" styleClass="label-bright" text="用户名 : " />
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="79.0" prefWidth="223.0" styleClass="label-bright" text="    密码 : " GridPane.rowIndex="1" />
             <TextField fx:id="userIDTextArea" prefHeight="60.0" prefWidth="300.0" promptText="请输入用户名..." GridPane.columnIndex="1" />
-            <TextField fx:id="passwordTextArea" prefHeight="60.0" prefWidth="300.0" promptText="请输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordTextArea" prefHeight="60.0" prefWidth="300.0" promptText="请输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="loginButton" layoutX="320.0" layoutY="508.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="登陆" />

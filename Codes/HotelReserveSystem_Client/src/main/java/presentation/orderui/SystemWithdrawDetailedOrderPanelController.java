@@ -4,16 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class DetailedOrderPanelController {
-	
-	@FXML
+public class SystemWithdrawDetailedOrderPanelController {
+
+    @FXML
     private Label orderStateLabel;
 
     @FXML
     private Label isOnSaleLabel;
 
     @FXML
-    private Button commentButton;
+    private Button systemWIthdrawOrderButton;
 
     @FXML
     private Label isCommentedLabel;
@@ -49,9 +49,6 @@ public class DetailedOrderPanelController {
     private Label finishDateLabel;
 
     @FXML
-    private Button withdrawOrderButton;
-    
-    @FXML
     private Button returnButton;
 
     @FXML
@@ -59,4 +56,5 @@ public class DetailedOrderPanelController {
 
     @FXML
     private Label roomTypeLabel;
+
 }

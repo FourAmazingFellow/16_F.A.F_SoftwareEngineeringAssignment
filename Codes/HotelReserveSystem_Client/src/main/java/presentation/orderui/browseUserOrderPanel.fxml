@@ -19,19 +19,9 @@
             <TableColumn fx:id="totalPriceColumn" prefWidth="75.2843017578125" text="总价" />
         </columns>
       </TableView>
-      <Button fx:id="getDetailedOrderButton" layoutX="240.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="查看详情" />
-      <Button fx:id="returnButton" layoutX="624.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="返回" />
-      <Label layoutX="78.0" layoutY="97.0" text="请选择订单类型">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="545.0" layoutY="97.0" text="请选择排序方式">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="rankTypeComboBox" layoutX="719.0" layoutY="97.0" prefWidth="150.0" />
-      <ComboBox fx:id="orderTypeComboBox" layoutX="253.0" layoutY="97.0" prefWidth="150.0" />
+      <Button fx:id="getDetailedOrderButton" layoutX="240.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="returnButton" layoutX="624.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="621.0" layoutY="101.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
+      <ChoiceBox fx:id="orderTypeChoiceBox" layoutX="190.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
    </children>
 </AnchorPane>

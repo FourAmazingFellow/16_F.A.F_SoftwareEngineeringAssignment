@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.BrowseAbnormalOrderPanel">
+   <children>
+      <TableView layoutX="31.0" layoutY="142.0" prefHeight="409.0" prefWidth="936.0" styleClass="table-view-small" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="33.0">
+        <columns>
+            <TableColumn fx:id="userIDColumn" prefWidth="122.00259780883789" text="用户名" />
+          <TableColumn fx:id="hotelNameColumn" prefWidth="133.57437133789062" text="酒店名称" />
+          <TableColumn fx:id="HotelAddressColumn" minWidth="1.1593170166015625" prefWidth="128.28857421875" text="酒店地址" />
+            <TableColumn fx:id="beginDateColumn" prefWidth="123.46826171875" text="开始时间" />
+            <TableColumn fx:id="finishDateColumn" prefWidth="128.468017578125" text="退房时间" />
+            <TableColumn fx:id="roomTypeColumn" prefWidth="129.65533447265625" text="客房类型" />
+            <TableColumn fx:id="numColumn" prefWidth="73.46807861328125" text="数量" />
+            <TableColumn fx:id="totalPriceColumn" prefWidth="80.92315673828125" text="总价" />
+        </columns>
+      </TableView>
+      <Button fx:id="returnButton" layoutX="240.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="detailedOrderButton" layoutX="624.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <DatePicker fx:id="datePicker" layoutX="530.0" layoutY="84.0" prefHeight="44.0" prefWidth="347.0" />
+      <TextField fx:id="searchTextArea" layoutX="111.0" layoutY="85.0" prefHeight="44.0" prefWidth="280.0" promptText="请输入订单号..." />
+      <Button fx:id="searchButton" layoutX="391.0" layoutY="85.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="96.0" text="搜索" />
+      <Button fx:id="withdrawButton" layoutX="436.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="撤销" />
+   </children>
+</AnchorPane>

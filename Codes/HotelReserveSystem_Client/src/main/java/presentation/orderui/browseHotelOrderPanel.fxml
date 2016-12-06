@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.BrowseHotelOrderPanelController">
    <children>
-      <TableView layoutX="100.0" layoutY="144.0" prefHeight="405.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+      <TableView layoutX="100.0" layoutY="194.0" prefHeight="355.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
         <columns>
           <TableColumn fx:id="hotelNameColumn" prefWidth="138.8480987548828" text="酒店名称" />
           <TableColumn fx:id="hotelAddressColumn" minWidth="1.1593170166015625" prefWidth="131.431396484375" text="酒店地址" />
@@ -19,19 +19,12 @@
             <TableColumn fx:id="totalPriceColumn" prefWidth="75.2843017578125" text="总价" />
         </columns>
       </TableView>
-      <Button fx:id="getDetailedOrderButton" layoutX="240.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="查看详情" />
-      <Button fx:id="returnButton" layoutX="624.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="返回" />
-      <Label layoutX="78.0" layoutY="97.0" text="请选择订单类型">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="545.0" layoutY="97.0" text="请选择排序方式">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="rankTypeComboBox" layoutX="719.0" layoutY="97.0" prefWidth="150.0" />
-      <ComboBox fx:id="orderTypeComboBox" layoutX="253.0" layoutY="97.0" prefWidth="150.0" />
+      <Button fx:id="getDetailedOrderButton" layoutX="240.0" layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="returnButton" layoutX="447.0" layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <TextField fx:id="searchTextField" layoutX="124.0" layoutY="93.0" prefHeight="43.0" prefWidth="642.0" promptText="请填入所要搜索的订单......" />
+      <Button fx:id="searchButton" layoutX="765.0" layoutY="93.0" mnemonicParsing="false" text="搜索" />
+      <ChoiceBox fx:id="orderTypeChoiceBox" layoutX="239.0" layoutY="154.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
+      <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="551.0" layoutY="154.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
+      <Button fx:id="getOrderDoneButton" layoutX="673.0" layoutY="580.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="执行订单" />
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package presentation.userui.login;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import presentation.MainApp;
 
@@ -18,7 +19,7 @@ public class LoginController {
 	private Button loginButton;
 
 	@FXML
-	private TextField passwordTextArea;
+	private PasswordField passwordTextArea;
 
 	@FXML
 	private void initialize() {

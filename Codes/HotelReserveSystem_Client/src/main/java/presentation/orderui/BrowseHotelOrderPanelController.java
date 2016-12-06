@@ -2,42 +2,51 @@ package presentation.orderui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 
 public class BrowseHotelOrderPanelController {
 
-    @FXML
-    private TableColumn<?, ?> numColumn;
+	 @FXML
+	    private TableColumn<?, ?> numColumn;
 
-    @FXML
-    private TableColumn<?, ?> roomTypeColumn;
+	    @FXML
+	    private Button searchButton;
 
-    @FXML
-    private ComboBox<?> rankTypeComboBox;
+	    @FXML
+	    private TableColumn<?, ?> roomTypeColumn;
 
-    @FXML
-    private TableColumn<?, ?> totalPriceColumn;
+	    @FXML
+	    private ChoiceBox<?> rankTypeChoiceBox;
 
-    @FXML
-    private TableColumn<?, ?> beginDateColumn;
+	    @FXML
+	    private TableColumn<?, ?> hotelAddressColumn;
 
-    @FXML
-    private TableColumn<?, ?> finishDateColumn;
+	    @FXML
+	    private TableColumn<?, ?> totalPriceColumn;
 
-    @FXML
-    private TableColumn<?, ?> orderIDColumn;
+	    @FXML
+	    private TableColumn<?, ?> beginDateColumn;
 
-    @FXML
-    private Button getDetailedOrderButton;
+	    @FXML
+	    private TextField searchTextField;
 
-    @FXML
-    private Button returnButton;
+	    @FXML
+	    private ChoiceBox<?> orderTypeChoiceBox;
 
-    @FXML
-    private TableColumn<?, ?> userIDColumn;
+	    @FXML
+	    private TableColumn<?, ?> hotelNameColumn;
 
-    @FXML
-    private ComboBox<?> orderTypeComboBox;
+	    @FXML
+	    private TableColumn<?, ?> finishDateColumn;
 
+	    @FXML
+	    private Button returnButton;
+	    
+	    @FXML
+	    private Button getDetailedOrderButton;
+	    
+	    @FXML
+	    private Button getOrderDoneButton;
 }

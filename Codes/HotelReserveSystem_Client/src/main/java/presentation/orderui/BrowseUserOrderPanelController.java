@@ -4,26 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import vo.BriefOrderInfoVO;
 
 public class BrowseUserOrderPanelController {
 
-    @FXML
-    private TableColumn<?, ?> hotelNameColumn;
-
-    @FXML
+	@FXML
     private TableColumn<?, ?> numColumn;
 
     @FXML
     private TableColumn<?, ?> roomTypeColumn;
 
     @FXML
-    private ComboBox<?> rankTypeComboBox;
-
-    @FXML
-    private TableColumn<?, ?> hotelAddressColumn;
+    private ChoiceBox<?> rankTypeChoiceBox;
 
     @FXML
     private TableColumn<?, ?> totalPriceColumn;
@@ -35,13 +29,19 @@ public class BrowseUserOrderPanelController {
     private TableColumn<?, ?> finishDateColumn;
 
     @FXML
+    private TableColumn<?, ?> orderIDColumn;
+
+    @FXML
+    private ChoiceBox<?> orderTypeChoiceBox;
+
+    @FXML
     private Button getDetailedOrderButton;
 
     @FXML
     private Button returnButton;
 
     @FXML
-    private ComboBox<?> orderTypeComboBox;
+    private TableColumn<?, ?> userIDColumn;
 
     private ObservableList<BriefOrderInfoVO> briefOrderList = FXCollections.observableArrayList();
 }
