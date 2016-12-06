@@ -153,13 +153,14 @@ public class StrategyItem {
         } else {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
+        boolean added=false;
         try {
-            strategyDAO.insertStrategy(strategyPO);
+            added=strategyDAO.insertStrategy(strategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return added;
     }
 
     /**
@@ -186,13 +187,14 @@ public class StrategyItem {
         } else {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
+        boolean updated;
         try {
-            strategyDAO.updateStrategy(strategyPO);
+            updated=strategyDAO.updateStrategy(strategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return updated;
     }
 
     /**
@@ -205,7 +207,7 @@ public class StrategyItem {
      */
     public boolean delete(String address) {
         StrategyPO strategyPO;
-        if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
+        if (strategyType.equals(StrategyType.BirthdayPromotion)) {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount);
         } else if (strategyType.equals(StrategyType.MultiRoomPromotion)) {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount, minRoomNum);
@@ -219,13 +221,14 @@ public class StrategyItem {
         } else {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
+        boolean deleted;
         try {
-            strategyDAO.deleteStrategy(strategyPO);
+            deleted=strategyDAO.deleteStrategy(strategyPO);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return deleted;
     }
 
     /**

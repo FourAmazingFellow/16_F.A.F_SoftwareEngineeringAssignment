@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
@@ -190,16 +191,21 @@ public class StrategyListTest {
 //        assertFalse(modifyed2);
 //        assertFalse(modifyed3);
 //    }
-//    
+    
   //不能删除策略名称不存在的策略
     @Test
     public void testDelete(){
         boolean deleted1 = false,deleted2 = false;
-        strategyList=StrategyList.getInstance("Web");
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
-        StrategyVO strategyVO3=new StrategyVO("Web", StrategyType.VipTradeAreaMarket, "XX折扣", 0.85f,2,"栖霞区");
+        strategyList=StrategyList.getInstance("江苏省南京市栖霞区仙林大道163号");
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.8f, 2);
         try {
             deleted1 = strategyList.delete(address, strategyVO1);
+        } catch (UnableToDeleteStrategyException e) {
+            System.out.println(e.getMessage());
+        }
+        strategyList=StrategyList.getInstance("Web");
+        StrategyVO strategyVO3=new StrategyVO("Web", StrategyType.VipTradeAreaMarket, "XX折扣", 0.85f,2,"栖霞区");
+        try {
             deleted2 = strategyList.delete(address, strategyVO3);
         } catch (UnableToDeleteStrategyException e) {
             System.out.println(e.getMessage());

@@ -13,7 +13,6 @@ import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
-import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.UpdateStrategyServiceImpl;
 import po.StrategyType;
 import rmi.LinkToServer;
@@ -36,17 +35,14 @@ public class UpdateStrategyServiceImplTest {
     public void setUp() throws Exception{
         updateStrategyServiceImpl=new UpdateStrategyServiceImpl();
         address="江苏省南京市栖霞区仙林大道163号";
-//        strategyType=StrategyType.SpecificTimePromotion;
-//        name="双十一特惠折扣";
-//        strategyVO=new StrategyVO(address, strategyType, name, 80, new Date(2016,11,10,00,00,00), new Date(2016,11,12,00,00,00));
-    }
+        }
     
     @SuppressWarnings("deprecation")
     @Test 
     public void testGetStrategyList(){
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣", 90, new Date(116,10,10), new Date(116,10,12));
-        StrategyVO strategyVO2=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "国庆狂欢", 90, new Date(116,9,1), new Date(116,9,8));
-        StrategyVO strategyVO3=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "春节折扣", 90, new Date(117,1,10), new Date(117,1,21));
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣", 0.9f, new Date(116,10,10), new Date(116,10,12));
+        StrategyVO strategyVO2=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "国庆狂欢", 0.85f, new Date(116,9,1), new Date(116,9,8));
+        StrategyVO strategyVO3=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "春节折扣", 0.8f, new Date(117,1,10), new Date(117,1,21));
 
         ArrayList<StrategyVO> strategyVOs=updateStrategyServiceImpl.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
         assertEquals(0000000000000003,strategyVOs.size());
@@ -58,14 +54,14 @@ public class UpdateStrategyServiceImplTest {
     @Test
     public void testGetStrategyInfo(){
         StrategyVO strategyVO=updateStrategyServiceImpl.getStrategyInfo("江苏省南京市栖霞区仙林大道163号", StrategyType.CooperationEnterprisePromotion, "腾讯公司优惠");
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.CooperationEnterprisePromotion, "腾讯公司优惠", 87, "腾讯", "tengxun6");
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.CooperationEnterprisePromotion, "腾讯公司优惠", 0.87f, "腾讯", "tengxun6");
         assertTrue(equalStrategy(strategyVO1, strategyVO));
     }
     
     @Test
     public void testAdd(){
         boolean added = false;
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 80, 2);
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.8f, 2);
         try {
             added = updateStrategyServiceImpl.add(address, strategyVO1);
         } catch (UnableAddStrategyException e) {
@@ -79,10 +75,10 @@ public class UpdateStrategyServiceImplTest {
     @Test
     public void testModify(){
         boolean modifyed = false;
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 80, 2);
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣",0.8f, 2);
         try {
             updateStrategyServiceImpl.add(address, strategyVO1);
-            strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 85, 2);
+            strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
             modifyed =updateStrategyServiceImpl.modify(address, strategyVO1);
         } catch (UnableToModifyStrategyException e) {
             System.out.println(e.getMessage());
@@ -97,7 +93,7 @@ public class UpdateStrategyServiceImplTest {
     @Test
     public void testDelete(){
         boolean deleted = false;
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 85, 2);
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.8f, 2);
         try {
             deleted = updateStrategyServiceImpl.delete(address, strategyVO1);
         } catch (UnableToDeleteStrategyException e) {
@@ -111,7 +107,7 @@ public class UpdateStrategyServiceImplTest {
     @Test
     public void testValid(){
         boolean valied = false;
-        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 85, 2);
+        StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
         try {
             valied = updateStrategyServiceImpl.valid(address, strategyVO1);
         } catch (WrongInputException e) {

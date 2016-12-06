@@ -41,7 +41,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void updateStrategy(StrategyPO po) throws RemoteException;
+    public boolean updateStrategy(StrategyPO po) throws RemoteException;
     
     /**
      * 
@@ -49,7 +49,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insertStrategy(StrategyPO po) throws RemoteException;
+    public boolean insertStrategy(StrategyPO po) throws RemoteException;
     
     /**
      * 
@@ -57,7 +57,7 @@ public interface StrategyDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void deleteStrategy(StrategyPO po) throws RemoteException;
+    public boolean deleteStrategy(StrategyPO po) throws RemoteException;
     
     /**
      * 验证企业会员

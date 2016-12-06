@@ -103,18 +103,18 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void updateStrategy(StrategyPO po) throws RemoteException {
-		strategyDAO.updateStrategy(po);
+	public boolean updateStrategy(StrategyPO po) throws RemoteException {
+		return strategyDAO.updateStrategy(po);
 	}
 
 	@Override
-	public void insertStrategy(StrategyPO po) throws RemoteException {
-		strategyDAO.insertStrategy(po);
+	public boolean insertStrategy(StrategyPO po) throws RemoteException {
+	    return strategyDAO.insertStrategy(po);
 	}
 
 	@Override
-	public void deleteStrategy(StrategyPO po) throws RemoteException {
-		strategyDAO.deleteStrategy(po);
+	public boolean deleteStrategy(StrategyPO po) throws RemoteException {
+	    return strategyDAO.deleteStrategy(po);
 	}
 
 	@Override

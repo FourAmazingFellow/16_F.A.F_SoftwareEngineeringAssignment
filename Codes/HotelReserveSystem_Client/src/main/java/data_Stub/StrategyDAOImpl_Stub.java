@@ -75,21 +75,18 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
     }
 
     @Override
-    public void updateStrategy(StrategyPO po) throws RemoteException {
-        System.out.println("更新该策略信息成功");
-        
+    public boolean updateStrategy(StrategyPO po) throws RemoteException {
+        return true;
     }
 
     @Override
-    public void insertStrategy(StrategyPO po) throws RemoteException {
-        System.out.println("插入该策略信息成功");
-        
+    public boolean insertStrategy(StrategyPO po) throws RemoteException {
+        return true;
     }
 
     @Override
-    public void deleteStrategy(StrategyPO po) throws RemoteException {
-        System.out.println("删除该策略信息成功");
-        
+    public boolean deleteStrategy(StrategyPO po) throws RemoteException {
+        return true;
     }
 
     @Override
