@@ -80,10 +80,10 @@
             <Button layoutX="757.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleModifyPromotion" prefHeight="50.0" prefWidth="150.0" text="修改折扣" />
          </children>
       </HBox>
-      <HBox layoutX="534.0" layoutY="87.0" spacing="10.0">
+      <HBox layoutX="539.0" layoutY="100.0" spacing="10.0">
          <children>
-            <Button layoutX="548.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSearchWithStrategyName" prefHeight="35.0" prefWidth="100.0" text="搜索" />
-            <TextField fx:id="strategyNameTextField" layoutX="650.0" layoutY="90.0" prefHeight="46.0" prefWidth="250.0" text="用折扣名称搜索..." />
+            <Button layoutX="548.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSearchWithStrategyName" prefHeight="35.0" prefWidth="100.0" styleClass="text-field-small" text="搜索" />
+            <TextField fx:id="strategyNameTextField" layoutX="650.0" layoutY="90.0" prefHeight="25.0" prefWidth="251.0" styleClass="text-field-small" text="用折扣名称搜索..." />
          </children>
       </HBox>
    </children>

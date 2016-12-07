@@ -9,8 +9,8 @@
    <children>
       <Label layoutX="80.0" layoutY="44.0" styleClass="label-title" text="入住信息列表" />
       <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="92.0" layoutY="133.0" prefHeight="35.0" prefWidth="216.0" styleClass="choice-box-small" />
-      <Button layoutX="362.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleSearchWithDate" prefHeight="41.0" text="搜索" />
-      <HBox layoutX="466.0" layoutY="129.0" spacing="10.0">
+      <Button layoutX="377.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleSearchWithDate" prefHeight="41.0" text="搜索" />
+      <HBox layoutX="481.0" layoutY="129.0">
          <children>
             <DatePicker fx:id="startDatePicker" layoutX="470.0" layoutY="122.0" prefHeight="35.0" prefWidth="221.0" />
             <Label layoutX="701.0" layoutY="122.0" text="—" />
