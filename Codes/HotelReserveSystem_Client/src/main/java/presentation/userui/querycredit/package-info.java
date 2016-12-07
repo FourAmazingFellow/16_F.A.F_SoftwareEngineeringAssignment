@@ -7,4 +7,4 @@
  * @version 1.0
  * @see
  */
-package presentation.userui.webmarkewstaff;
+package presentation.userui.querycredit;

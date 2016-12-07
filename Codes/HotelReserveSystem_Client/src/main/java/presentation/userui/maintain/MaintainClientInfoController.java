@@ -1,4 +1,4 @@
-package presentation.userui.client.maintain;
+package presentation.userui.maintain;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
