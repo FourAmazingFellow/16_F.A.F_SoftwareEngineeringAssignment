@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="100.0" layoutY="80.0" styleClass="label-title" text="填写退房信息" />
+      <GridPane layoutX="220.0" layoutY="142.0" prefHeight="378.0" prefWidth="590.0">
+         <children>
+            <Label text="房间类型" />
+            <Label text="房间数量" GridPane.rowIndex="1" />
+            <Label text="实际离开时间" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="roomTypeChoiceBox" prefHeight="44.0" prefWidth="440.0" styleClass="choice-box-small" GridPane.columnIndex="1" />
+            <TextField fx:id="roomNumTextField" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <AnchorPane prefHeight="200.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <DatePicker fx:id="actDepartTimeDatepicker" layoutY="43.0" prefHeight="31.0" prefWidth="235.0" />
+                  <HBox layoutX="241.0" layoutY="42.0">
+                     <children>
+                        <TextField fx:id="hourTextField" layoutX="194.0" layoutY="42.0" prefHeight="42.0" prefWidth="79.0" text="24" />
+                        <Label layoutX="251.0" layoutY="45.0" text="时" />
+                        <TextField fx:id="minuteTxtField" prefHeight="42.0" prefWidth="79.0" text="60" />
+                        <Label layoutX="335.0" layoutY="44.0" text="分" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.33331298828125" minWidth="10.0" prefWidth="173.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="483.66668701171875" minWidth="10.0" prefWidth="460.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <HBox layoutX="504.0" layoutY="579.0" spacing="60.0">
+         <children>
+            <Button layoutX="526.0" layoutY="593.0" mnemonicParsing="false" onAction="#handleCanclel" prefHeight="50.0" prefWidth="150.0" text="取消" />
+            <Button layoutX="723.0" layoutY="593.0" mnemonicParsing="false" onAction="#handleConfirm" prefHeight="50.0" prefWidth="150.0" text="确认" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

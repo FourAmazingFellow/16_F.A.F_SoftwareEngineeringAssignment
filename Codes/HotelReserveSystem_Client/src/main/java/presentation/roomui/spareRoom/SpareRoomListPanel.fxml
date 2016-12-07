@@ -5,17 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="80.0" layoutY="40.0" styleClass="label-title" text="空房列表" />
-      <TableView layoutX="100.0" layoutY="140.0" prefHeight="400.0" prefWidth="800.0">
+      <TableView fx:id="spareRoomTable" layoutX="100.0" layoutY="140.0" prefHeight="400.0" prefWidth="800.0">
         <columns>
-          <TableColumn prefWidth="266.0" text="房间类型" />
-          <TableColumn prefWidth="266.0" text="剩余房间数" />
-            <TableColumn prefWidth="266.0" text="房间价格" />
+          <TableColumn fx:id="roomTypeColumn" prefWidth="266.0" text="房间类型" />
+          <TableColumn fx:id="roomNumColumn" prefWidth="266.0" text="剩余房间数" />
+            <TableColumn fx:id="roomPriceColumn" prefWidth="266.0" text="房间价格" />
         </columns>
       </TableView>
-      <Button layoutX="690.0" layoutY="580.0" mnemonicParsing="false" text="办理入住" />
+      <Button layoutX="690.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleNewCheckIn" text="办理入住" />
    </children>
 </AnchorPane>

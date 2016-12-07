@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="80.0" layoutY="44.0" styleClass="label-title" text="入住信息列表" />
+      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="92.0" layoutY="133.0" prefHeight="35.0" prefWidth="216.0" styleClass="choice-box-small" />
+      <Button layoutX="362.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleSearchWithDate" prefHeight="41.0" text="搜索" />
+      <HBox layoutX="466.0" layoutY="129.0" spacing="10.0">
+         <children>
+            <DatePicker fx:id="startDatePicker" layoutX="470.0" layoutY="122.0" prefHeight="35.0" prefWidth="221.0" />
+            <Label layoutX="701.0" layoutY="122.0" text="—" />
+            <DatePicker fx:id="endDatePicker" layoutX="735.0" layoutY="122.0" prefHeight="20.0" prefWidth="225.0" />
+         </children>
+      </HBox>
+      <TableView fx:id="checkInTable" layoutX="100.0" layoutY="180.0" prefHeight="400.0" prefWidth="800.0">
+        <columns>
+          <TableColumn fx:id="checkInTimeColumn" prefWidth="200.0" text="入住时间" />
+            <TableColumn fx:id="roomTypeColumn" prefWidth="200.0" text="房间类型" />
+            <TableColumn fx:id="roomNumColumn" prefWidth="200.0" text="入住房间数" />
+          <TableColumn fx:id="expDepartTimeColumn" prefWidth="200.0" text="预计离开时间" />
+        </columns>
+      </TableView>
+      <Button layoutX="690.0" layoutY="612.0" mnemonicParsing="false" onAction="#handleNewCheckIn" text="办理入住" />
+   </children>
+</AnchorPane>

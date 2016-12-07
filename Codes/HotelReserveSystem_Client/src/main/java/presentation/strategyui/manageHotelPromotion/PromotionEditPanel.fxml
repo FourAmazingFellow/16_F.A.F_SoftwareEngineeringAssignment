@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="100.0" layoutY="60.0" styleClass="label-title" text="填写促销策略" />
+      <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="105.0" prefHeight="470.0" prefWidth="814.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="birthdayPromotionTab" text="生日折扣">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="145.0" prefHeight="210.0" prefWidth="490.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.3333435058594" minWidth="10.0" prefWidth="209.33334350585938" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.6666564941406" minWidth="10.0" prefWidth="382.6666564941406" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="折扣名称" />
+                              <Label text="折扣百分比" GridPane.rowIndex="1" />
+                              <TextField fx:id="strategyNameTextField1" GridPane.columnIndex="1" />
+                              <TextField fx:id="discountTextField1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="multiRoomPromotionTab" text="多房间折扣">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="145.0" prefHeight="330.0" prefWidth="491.0">
+                           <children>
+                              <Label text="折扣名称" />
+                              <Label text="折扣百分比" GridPane.rowIndex="1" />
+                              <TextField fx:id="strategyNameTextField2" GridPane.columnIndex="1" />
+                              <TextField fx:id="discountTextField2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="最少房间数" GridPane.rowIndex="2" />
+                              <TextField fx:id="minRoomTextField2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.3333435058594" minWidth="10.0" prefWidth="209.33334350585938" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.6666564941406" minWidth="10.0" prefWidth="382.6666564941406" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="cooperationEnterPrisePromotionTab" text="合作企业客户折扣">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="145.0" prefHeight="400.0" prefWidth="490.0">
+                           <children>
+                              <Label text="折扣名称" />
+                              <Label text="合作企业名称" GridPane.rowIndex="2" />
+                              <TextField fx:id="strategyNameTextField3" GridPane.columnIndex="1" />
+                              <TextField fx:id="cooperationEnterpriseTextField3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="折扣百分比" GridPane.rowIndex="1" />
+                              <Label text="验证码" GridPane.rowIndex="3" />
+                              <TextField fx:id="discountTextField3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="securityCodeTextField3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.3333435058594" minWidth="10.0" prefWidth="209.33334350585938" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.6666564941406" minWidth="10.0" prefWidth="382.6666564941406" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="specialTimePromotionTab" text="特定期间折扣">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="145.0" prefHeight="400.0" prefWidth="490.0">
+                           <children>
+                              <Label text="折扣名称" />
+                              <Label text="开始时间" GridPane.rowIndex="2" />
+                              <TextField fx:id="strategyNameTextField4" GridPane.columnIndex="1" />
+                              <Label text="折扣百分比" GridPane.rowIndex="1" />
+                              <Label text="结束时间" GridPane.rowIndex="3" />
+                              <TextField fx:id="discountTextField4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <DatePicker fx:id="startTimeDatePicker4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <DatePicker fx:id="endTimeDatePicker4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.3333435058594" minWidth="10.0" prefWidth="209.33334350585938" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.6666564941406" minWidth="10.0" prefWidth="382.6666564941406" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <HBox layoutX="548.0" layoutY="603.0" spacing="60.0">
+         <children>
+            <Button layoutX="612.0" layoutY="590.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="50.0" prefWidth="125.0" text="取消" />
+            <Button layoutX="787.0" layoutY="592.0" mnemonicParsing="false" onAction="#handleConfirm" prefHeight="50.0" prefWidth="125.0" text="确认" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
