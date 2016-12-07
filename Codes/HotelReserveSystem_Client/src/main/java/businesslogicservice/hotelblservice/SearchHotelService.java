@@ -14,9 +14,9 @@ public interface SearchHotelService {
 	
 	/**
 	 * 搜索符合输入条件的酒店
-	 * @param condition String[]型，界面传递来的搜索条件，是一个长度为13的String数组，且必须保证传过来的数组长度为13；
-	 * condition[0]代表的是酒店所在的城市，不可为空；
-	 * condition[1]代表的是酒店所在的商圈，不可为空；
+	 * @param condition String[]型，界面传递来的搜索条件，是一个长度为13的String数组，且必须保证传过来的数组长度为14；
+	 * condition[0]代表的是酒店所在的城市，不可为空，如"南京市"；
+	 * condition[1]代表的是酒店所在的商圈，不可为空，如"栖霞区"；
 	 * condition[2]代表的是酒店名称，可以为空，若为空，则用""的空字符串来填补；
 	 * condition[3]代表的是酒店的价格区间的左端点，必须为一个大于等于0的整数的字符串形式，如"0"；
 	 * condition[4]代表的是酒店的价格区间的右端点，必须为一个大于等于condition[3]的整数的字符串形式；
