@@ -19,8 +19,8 @@
             <TableColumn fx:id="totalPriceColumn" prefWidth="75.2843017578125" text="总价" />
         </columns>
       </TableView>
-      <Button fx:id="getDetailedOrderButton" layoutX="240.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="returnButton" layoutX="624.0" layoutY="579.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <Button fx:id="getDetailedOrderButton" layoutX="240.0" layoutY="579.0" mnemonicParsing="false" onAction="#returnButtonAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="returnButton" layoutX="624.0" layoutY="579.0" mnemonicParsing="false" onAction="#showDetailedOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
       <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="621.0" layoutY="101.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
       <ChoiceBox fx:id="orderTypeChoiceBox" layoutX="190.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
    </children>
