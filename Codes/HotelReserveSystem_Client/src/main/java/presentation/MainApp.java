@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import po.OrderType;
 import presentation.hotelui.SearchPanelController;
 import presentation.orderui.BrowseUserOrderPanelController;
+import presentation.orderui.DetailedOrderPanelController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
 
@@ -115,14 +116,26 @@ public class MainApp extends Application {
 	}
 
 	public void showDetailedOrderPanel(String orderID) {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(MainApp.class.getResource("orderui/detailedORderPanel.fxml"));
 		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("orderui/detailedORderPanel.fxml"));
 			AnchorPane detailedOrderPanel = (AnchorPane) loader.load();
+		
+			Scene scene = new Scene(detailedOrderPanel);
+			primaryStage.setScene(scene);
+			
+			DetailedOrderPanelController controller = loader.getController();
+			
+			controller.setMainApp(this);
+			controller.showDetailedOrderPanel(orderID);
+			
+			primaryStage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	/**

@@ -93,7 +93,6 @@ public class BrowseUserOrderPanelController {
 	}
 
 	public void returnButtonAction() {
-		//TO-DO
 		mainApp.showSearchView();
 	}
 	
@@ -106,9 +105,9 @@ public class BrowseUserOrderPanelController {
 		} else {
 			// Nothing selected.
 			Dialogs.create()
-		        .title("No Selection")
-		        .masthead("No Person Selected")
-		        .message("Please select a person in the table.")
+		        .title("未选择订单")
+		        .masthead("没有选择订单")
+		        .message("请在列表中选择一个订单。")
 		        .showWarning();
 		}
 	}
