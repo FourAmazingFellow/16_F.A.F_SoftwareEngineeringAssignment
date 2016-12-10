@@ -8,10 +8,10 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.BrowseUserOrderPanelController">
    <children>
-      <TableView layoutX="100.0" layoutY="144.0" prefHeight="405.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+      <TableView fx:id="userOrders" layoutX="100.0" layoutY="144.0" prefHeight="405.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
         <columns>
           <TableColumn fx:id="userIDColumn" prefWidth="138.8480987548828" text="用户名" />
-          <TableColumn fx:id="orderIDColumn" minWidth="1.1593170166015625" prefWidth="131.431396484375" text="订单号" />
+          <TableColumn fx:id="hotelNameColumn" minWidth="1.1593170166015625" prefWidth="131.431396484375" text="酒店名称" />
             <TableColumn fx:id="beginDateColumn" prefWidth="130.43148803710938" text="开始时间" />
             <TableColumn fx:id="finishDateColumn" prefWidth="123.00234985351562" text="退房时间" />
             <TableColumn fx:id="roomTypeColumn" prefWidth="124.5687255859375" text="客房类型" />

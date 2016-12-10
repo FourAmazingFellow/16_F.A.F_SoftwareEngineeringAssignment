@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import po.OrderType;
 import presentation.hotelui.SearchPanelController;
+import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
 
@@ -70,7 +72,7 @@ public class MainApp extends Application {
 	
 	
 	//显示用户主界面 --- 搜索界面
-	public void showClientView() {
+	public void showSearchView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("hotelui/SearchPanel.fxml"));
@@ -89,8 +91,39 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	public void showUserOrderPanel(String userID) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("orderui/browseUserOrderPanel.fxml"));
+			AnchorPane allUserOrderPanel = (AnchorPane) loader.load();
 
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(allUserOrderPanel);
+			primaryStage.setScene(scene);
 
+			// Give the controller access to the main app.
+			BrowseUserOrderPanelController controller = loader.getController();
+			controller.setMainApp(this);
+			//默认显示所有订单
+			controller.showBriefOrderList(userID, OrderType.ALL);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void showDetailedOrderPanel(String orderID) {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(MainApp.class.getResource("orderui/detailedORderPanel.fxml"));
+		try {
+			AnchorPane detailedOrderPanel = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Returns the main stage.
