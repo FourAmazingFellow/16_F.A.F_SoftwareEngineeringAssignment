@@ -1,8 +1,12 @@
 package presentation.orderui;
 
+import java.util.Date;
+
+import bl_Stub.orderblservice_Stub.BrowseUserOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseUserOrderService;
 import factory.OrderUIFactoryService;
 import factory.OrderUIFactoryServiceImpl;
+import impl.org.controlsfx.tools.rectangle.change.ToSoutheastChangeStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -53,10 +57,14 @@ public class DetailedOrderPanelController {
 	private OrderUIFactoryService factory;
 	private BrowseUserOrderService browseHelper;
 
+	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
-		browseHelper = factory.createBrowseUserOrderService();
+//		browseHelper = factory.createBrowseUserOrderService();
+		browseHelper = new BrowseUserOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
+				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
+				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
 	public void setMainApp(MainApp mainApp) {
@@ -64,26 +72,27 @@ public class DetailedOrderPanelController {
 	}
 	
 	public void showDetailedOrderPanel(String orderID) {
+		System.out.println(orderID);
 		OrderVO vo = browseHelper.getDetailedOrder(orderID);
 		orderStateLabel.setText(getOrderState((OrderState) vo.orderState));
 		isOnSaleLabel.setText(getTorF(vo.isOnSale));
 		isCommentedLabel.setText(getTorF(vo.isCommented));
-		beginTimeLabel.setText(vo.beginDate.toString());
-		orderProducedTimeLabel.setText(vo.orderProducedTime.toString());
+		beginTimeLabel.setText(FxBriefOrder.toDate(vo.beginDate));
+		orderProducedTimeLabel.setText(FxBriefOrder.toSec(vo.orderProducedTime));
 		orderIDLabel.setText(vo.orderID);
 		isChildrenLabel.setText(getTorF(vo.isChildren));
 		numOfPersonLabel.setText(String.valueOf(vo.numOfPerson));
 		hotelNameLabel.setText(vo.hotelName);
 		hotelAddressLabel.setText(vo.hotelAddress);
 		numLabel.setText(String.valueOf(vo.num));
-		latestOrderDoneTimeLabel.setText(vo.lastedOrderDoneTime.toString());
-		finishDateLabel.setText(vo.finishDate.toString());
-		totalPrcieLabel.setText(String.valueOf(totalPrcieLabel));
+		latestOrderDoneTimeLabel.setText(FxBriefOrder.toSec(vo.lastedOrderDoneTime));
+		finishDateLabel.setText(FxBriefOrder.toDate(vo.finishDate));
+		totalPrcieLabel.setText(String.valueOf(vo.totalPrice));
 		roomTypeLabel.setText(getRoomType((RoomType) vo.roomType));
 	}
 	
-	public void returnAction(String userID) {
-		mainApp.showUserOrderPanel(userID);
+	public void returnAction() {
+		mainApp.showUserOrderPanel(MainApp.userID);
 	}
 
 	private String getOrderState(OrderState orderState) {

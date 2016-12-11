@@ -6,19 +6,21 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import po.OrderType;
 import presentation.hotelui.SearchPanelController;
+import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.orderui.DetailedOrderPanelController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
 
 public class MainApp extends Application {
+	public static String userID = "";
+	
 	private Stage primaryStage;
-	private AnchorPane loginPanel;
-	private AnchorPane registerPanel;
-	private AnchorPane searchPanel;
+	private BorderPane clientRootLayout;
 	
 
 	@Override
@@ -27,16 +29,41 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 
-		showLoginView();
+		showClientRootPanel();
+		showUserOrderPanel("19970206");
+		
 	}
 
+	//显示客户导航栏
+	public void showClientRootPanel() {
+		try {
+			// Load root layout from fxml file.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("mainui/clientRootBoard.fxml"));
+			clientRootLayout = (BorderPane) loader.load();
+
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(clientRootLayout);
+			primaryStage.setScene(scene);
+
+			// Give the controller access to the main app.
+			ClientRootBoardController controller = loader.getController();
+			controller.setMainApp(this);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	//显示初始界面 --- 登陆界面
 	public void showLoginView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 
 			loader.setLocation(MainApp.class.getResource("userui/login/Login.fxml"));
-			loginPanel = (AnchorPane) loader.load();
+			AnchorPane loginPanel = (AnchorPane) loader.load();
 
 			Scene scene = new Scene(loginPanel);
 			primaryStage.setScene(scene);
@@ -55,7 +82,7 @@ public class MainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("userui/login/Register.fxml"));
-			registerPanel = (AnchorPane) loader.load();
+			AnchorPane registerPanel = (AnchorPane) loader.load();
 
 			// Show the scene containing the root layout.
 			Scene scene = new Scene(registerPanel);
@@ -77,12 +104,10 @@ public class MainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("hotelui/SearchPanel.fxml"));
-			searchPanel = (AnchorPane) loader.load();
+			AnchorPane searchPanel = (AnchorPane) loader.load();
 
-			// Show the scene containing the root layout.
-			Scene scene = new Scene(searchPanel);
-			primaryStage.setScene(scene);
-
+			clientRootLayout.setCenter(searchPanel);
+			
 			// Give the controller access to the main app.
 			SearchPanelController controller = loader.getController();
 			controller.setMainApp(this);
@@ -99,10 +124,8 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("orderui/browseUserOrderPanel.fxml"));
 			AnchorPane allUserOrderPanel = (AnchorPane) loader.load();
 
-			// Show the scene containing the root layout.
-			Scene scene = new Scene(allUserOrderPanel);
-			primaryStage.setScene(scene);
-
+			clientRootLayout.setCenter(allUserOrderPanel);
+			
 			// Give the controller access to the main app.
 			BrowseUserOrderPanelController controller = loader.getController();
 			controller.setMainApp(this);
@@ -121,8 +144,7 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("orderui/detailedORderPanel.fxml"));
 			AnchorPane detailedOrderPanel = (AnchorPane) loader.load();
 		
-			Scene scene = new Scene(detailedOrderPanel);
-			primaryStage.setScene(scene);
+			clientRootLayout.setCenter(detailedOrderPanel);
 			
 			DetailedOrderPanelController controller = loader.getController();
 			

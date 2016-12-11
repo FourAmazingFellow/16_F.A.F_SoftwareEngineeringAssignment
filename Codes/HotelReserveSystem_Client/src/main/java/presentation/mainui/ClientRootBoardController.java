@@ -3,6 +3,7 @@ package presentation.mainui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import presentation.MainApp;
 
 public class ClientRootBoardController {
 
@@ -24,4 +25,9 @@ public class ClientRootBoardController {
     @FXML
     private Button homeButton;
 
+    private MainApp mainApp;
+    
+    public void setMainApp(MainApp mainApp) {
+    	this.mainApp = mainApp;
+    }
 }
