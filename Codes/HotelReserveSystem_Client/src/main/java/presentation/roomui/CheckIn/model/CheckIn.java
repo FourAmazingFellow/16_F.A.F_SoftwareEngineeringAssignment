@@ -1,5 +1,6 @@
 package presentation.roomui.CheckIn.model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,4 +39,51 @@ public class CheckIn {
     public StringProperty expDepartTimeProperty(){
         return expDepartTime;
     }
+    
+    public void setRoomType(String roomTypeShowed){
+        String roomType="";
+        if(roomTypeShowed.equals("单人间")){
+            roomType=RoomType.SINGLE_ROOM.name();
+        }else if(roomTypeShowed.endsWith("标准间")){
+            roomType=RoomType.STANDARD_ROOM.name();
+        }else if(roomTypeShowed.endsWith("三人间")){
+            roomType=RoomType.TRIBLE_ROOM.name();
+        }else{
+            roomType=RoomType.KING_SIZE_ROOM.name();
+        }
+        this.roomType.set(roomType);
+    }
+    
+    public void setRoomNum(int roomNum){
+        this.roomNum.set(String.valueOf(roomNum));
+    }
+    
+    public void setCheckInTime(Date date, int hour, int minute){
+        String dateStr=dateFormat.format(date);
+        dateStr=dateStr+" "+hour+":"+minute+":00";
+        this.checkInTime.set(dateStr);
+    }
+    
+    public void setExpDepartTime(Date date, int hour, int minute){
+        String dateStr=dateFormat.format(date);
+        dateStr=dateStr+" "+hour+":"+minute+":00";
+        this.expDepartTime.set(dateStr);
+    }
+    
+    public Enum<RoomType> getRoomType(){
+        return RoomType.valueOf(roomType.get());
+    }
+    
+    public int getRoomNum(){
+        return Integer.parseInt(roomNum.get());
+    }
+    
+    public Date getCheckInTime() throws ParseException{
+        return dateFormat.parse(checkInTime.get());
+    }
+    
+    public Date getExpDepartTime() throws ParseException{
+        return dateFormat.parse(expDepartTime.get());
+    }
+       
 }

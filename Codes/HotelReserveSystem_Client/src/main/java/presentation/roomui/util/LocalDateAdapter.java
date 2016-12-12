@@ -30,6 +30,9 @@ public class LocalDateAdapter {
     
     static public Date toDate(LocalDate date){
         String str=toString(date);
+        if(str==""){
+            return null;
+        }
         Date result = null;
         try {
             result=simpleDateFormat.parse(str);

@@ -2,6 +2,7 @@ package presentation.roomui.CheckIn;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import factory.RoomUIFactoryService;
@@ -9,11 +10,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import po.RoomType;
 import presentation.MainApp;
 import presentation.roomui.CheckIn.model.CheckIn;
@@ -48,9 +51,8 @@ public class ManageCheckInPanelController {
     private TableColumn<CheckIn, String> expDepartTimeColumn;
 
     private MainApp mainApp;
-    private ObservableList<String> roomTypeList = FXCollections.observableArrayList("allRoomType",
-            RoomType.SINGLE_ROOM.name(), RoomType.STANDARD_ROOM.name(), RoomType.TRIBLE_ROOM.name(),
-            RoomType.KING_SIZE_ROOM.name());
+    private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型",
+            "单人间", "标准间", "三人间","大床房");
     private ObservableList<CheckIn> checkIndata = FXCollections.observableArrayList();
     private CheckInListWrapper checkInList;
     private String address;
@@ -75,7 +77,7 @@ public class ManageCheckInPanelController {
         roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchByRoomType(newValue.toString());
         });
-        roomTypeChoiceBox.setTooltip(new Tooltip("select the RoomType"));
+        roomTypeChoiceBox.setTooltip(new Tooltip("show check in list of selected roomType"));
     }
 
     public void setMainApp(MainApp mainApp) {
@@ -96,21 +98,40 @@ public class ManageCheckInPanelController {
 
     // roomTypeChoiceBox的事件行为
     void handleSearchByRoomType(String roomTypeStr) {
-        if (roomTypeStr == "allRoomType") {
+        if (roomTypeStr.equals( "全部房型")) {
             showAllCheckInList(address);
         }
+        RoomType roomType;
+        if(roomTypeStr.equals("单人间")){
+            roomType=RoomType.SINGLE_ROOM;
+        }else if(roomTypeStr.equals("标准间")){
+            roomType=RoomType.STANDARD_ROOM;
+        }else if(roomTypeStr.equals("三人间")){
+            roomType=RoomType.TRIBLE_ROOM;
+        }else{
+            roomType=RoomType.KING_SIZE_ROOM;
+        }
         ArrayList<RoomVO> searchedCheckInVOs = updateCheckInService.searchCheckInInfo(address,
-                RoomType.valueOf(roomTypeStr));
+                roomType);
         showCheckInList(searchedCheckInVOs);
     }
 
     @FXML
     void handleSearchWithDate(ActionEvent event) {
-        LocalDate startTime = startDatePicker.getValue();
-        LocalDate endTime = endDatePicker.getValue();
+        Date startDate=null,endDate=null;
         //判断时间是否为空，是否合适
+        boolean isValid=false;
+        while(!isValid){
+            LocalDate startTime = startDatePicker.getValue();
+            LocalDate endTime = endDatePicker.getValue();
+            startDate=LocalDateAdapter.toDate(startTime);
+            endDate=LocalDateAdapter.toDate(endTime);
+            if(validStartAndEndDate(startDate, endDate)){
+                isValid=true;
+            }
+        }
         ArrayList<RoomVO> searchedCheckInVOsbyTime = updateCheckInService.searchCheckInInfo(address,
-                LocalDateAdapter.toDate(startTime), LocalDateAdapter.toDate(endTime));
+                startDate,endDate);
         showCheckInList(searchedCheckInVOsbyTime);
     }
 
@@ -119,4 +140,54 @@ public class ManageCheckInPanelController {
 
     }
 
+    private boolean validStartAndEndDate(Date startDate,Date endDate){
+        if(startDate==null||endDate==null){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("搜索信息错误");
+            alert.setHeaderText("搜索的时间为空");
+            alert.setContentText("请输入搜索的开始时间和结束时间");
+
+            alert.showAndWait();
+            return false;
+        }else if(endDate.compareTo(new Date())>0){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("搜索信息错误");
+            alert.setHeaderText("搜索的结束时间不合理");
+            alert.setContentText("搜索的结束时间应该不大于当前时间");
+
+            alert.showAndWait();
+            return false;
+        }else if(endDate.compareTo(startDate)<0){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("搜索信息错误");
+            alert.setHeaderText("搜索的开始时间和结束时间不合理");
+            alert.setContentText("搜索的结束时间应该大于或等于开始时间");
+
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
+    /*
+    //mainApp要添加的方法
+    public void showManageCheckInPanel(String userID,String address) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("roomui/CheckIn/browseUserOrderPanel.fxml"));
+            AnchorPane manageCheckInPanel = (AnchorPane) loader.load();
+
+            HotelStaffRootLayout.setCenter(manageCheckInPanel);
+            
+            // Give the controller access to the main app.
+            ManageCheckInPanelController controller = loader.getController();
+            controller.setMainApp(this);
+            //默认显示所有订单
+            controller.showAllCheckInList(address);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    */
 }
