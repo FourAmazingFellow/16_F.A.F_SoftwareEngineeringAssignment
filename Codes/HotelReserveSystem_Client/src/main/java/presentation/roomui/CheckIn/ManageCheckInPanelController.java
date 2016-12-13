@@ -1,9 +1,12 @@
 package presentation.roomui.CheckIn;
 
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import factory.RoomUIFactoryService;
 import javafx.collections.FXCollections;
@@ -101,23 +104,15 @@ public class ManageCheckInPanelController {
         if (roomTypeStr.equals( "全部房型")) {
             showAllCheckInList(address);
         }
-        RoomType roomType;
-        if(roomTypeStr.equals("单人间")){
-            roomType=RoomType.SINGLE_ROOM;
-        }else if(roomTypeStr.equals("标准间")){
-            roomType=RoomType.STANDARD_ROOM;
-        }else if(roomTypeStr.equals("三人间")){
-            roomType=RoomType.TRIBLE_ROOM;
-        }else{
-            roomType=RoomType.KING_SIZE_ROOM;
-        }
+        Enum<RoomType> roomType=RoomType.chineseToEnum(roomTypeStr);
+        
         ArrayList<RoomVO> searchedCheckInVOs = updateCheckInService.searchCheckInInfo(address,
                 roomType);
         showCheckInList(searchedCheckInVOs);
     }
 
     @FXML
-    void handleSearchWithDate(ActionEvent event) {
+    void handleSearchWithDate() {
         Date startDate=null,endDate=null;
         //判断时间是否为空，是否合适
         boolean isValid=false;
@@ -136,11 +131,21 @@ public class ManageCheckInPanelController {
     }
 
     @FXML
-    void handleNewCheckIn(ActionEvent event) {
-
+    void handleNewCheckIn() {
+        int selectedIndex = checkInTable.getSelectionModel().getSelectedIndex();
+        CheckIn tmpCheckIn;
+        if(selectedIndex>=0){
+            tmpCheckIn=new CheckIn(checkInTable.getItems().get(selectedIndex).getRoomType(),0,null,null);
+        }else{
+            tmpCheckIn=new CheckIn();
+        }
+        boolean isConfirmed=mainApp.showCheckInEditDialog(tmpCheckIn, address);
+        if(isConfirmed){
+            checkIndata.add(tmpCheckIn);
+        }
     }
 
-    private boolean validStartAndEndDate(Date startDate,Date endDate){
+    public static boolean validStartAndEndDate(Date startDate,Date endDate){
         if(startDate==null||endDate==null){
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("搜索信息错误");
@@ -170,10 +175,10 @@ public class ManageCheckInPanelController {
     }
     /*
     //mainApp要添加的方法
-    public void showManageCheckInPanel(String userID,String address) {
+    public void showManageCheckInPanel(String address) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("roomui/CheckIn/browseUserOrderPanel.fxml"));
+            loader.setLocation(MainApp.class.getResource("roomui/CheckIn/ManageCheckInPanel.fxml"));
             AnchorPane manageCheckInPanel = (AnchorPane) loader.load();
 
             HotelStaffRootLayout.setCenter(manageCheckInPanel);

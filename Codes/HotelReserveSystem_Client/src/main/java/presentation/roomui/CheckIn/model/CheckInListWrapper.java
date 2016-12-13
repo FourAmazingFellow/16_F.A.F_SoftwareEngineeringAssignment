@@ -3,9 +3,6 @@ package presentation.roomui.CheckIn.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import businesslogicservice.roomblservice.UpdateCheckInService;
-import factory.RoomUIFactoryService;
-import factory.RoomUIFactoryServiceImpl;
 import vo.CheckInVO;
 import vo.RoomVO;
 

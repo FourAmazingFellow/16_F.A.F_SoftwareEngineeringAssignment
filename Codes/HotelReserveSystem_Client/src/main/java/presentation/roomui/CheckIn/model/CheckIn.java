@@ -7,6 +7,7 @@ import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import po.RoomType;
+import vo.CheckInVO;
 
 public class CheckIn {
 
@@ -17,8 +18,12 @@ public class CheckIn {
     
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
+    public CheckIn(){
+        this(null, 0, null, null);
+    }
+    
     public CheckIn(Enum<RoomType> roomType, int roomNum, Date checkInTime, Date expDepartTime){
-        this.roomType=new SimpleStringProperty(roomType.name());
+        this.roomType=new SimpleStringProperty(RoomType.enumToChinese(roomType));
         this.roomNum=new SimpleStringProperty(String.valueOf(roomNum));
         this.checkInTime=new SimpleStringProperty(dateFormat.format(checkInTime));
         this.expDepartTime=new SimpleStringProperty(dateFormat.format(expDepartTime));
@@ -40,18 +45,9 @@ public class CheckIn {
         return expDepartTime;
     }
     
-    public void setRoomType(String roomTypeShowed){
-        String roomType="";
-        if(roomTypeShowed.equals("单人间")){
-            roomType=RoomType.SINGLE_ROOM.name();
-        }else if(roomTypeShowed.endsWith("标准间")){
-            roomType=RoomType.STANDARD_ROOM.name();
-        }else if(roomTypeShowed.endsWith("三人间")){
-            roomType=RoomType.TRIBLE_ROOM.name();
-        }else{
-            roomType=RoomType.KING_SIZE_ROOM.name();
-        }
-        this.roomType.set(roomType);
+    public void setRoomType(Enum<RoomType> roomType){
+        String roomTypeStr=roomType.name();
+        this.roomType.set(roomTypeStr);
     }
     
     public void setRoomNum(int roomNum){
@@ -71,7 +67,7 @@ public class CheckIn {
     }
     
     public Enum<RoomType> getRoomType(){
-        return RoomType.valueOf(roomType.get());
+        return RoomType.chineseToEnum(roomType.get());
     }
     
     public int getRoomNum(){
@@ -84,6 +80,11 @@ public class CheckIn {
     
     public Date getExpDepartTime() throws ParseException{
         return dateFormat.parse(expDepartTime.get());
+    }
+    
+    public CheckInVO toVO(String address) throws ParseException{
+        return new CheckInVO(getRoomType(), getRoomNum(),address, 
+                getCheckInTime(), getExpDepartTime());
     }
        
 }
