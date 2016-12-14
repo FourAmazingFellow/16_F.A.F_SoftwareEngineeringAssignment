@@ -1,13 +1,10 @@
 package presentation.orderui;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import bl_Stub.orderblservice_Stub.BrowseHotelOrderServiceImpl_Stub;
-import businesslogicservice.orderblservice.BrowseHotelOrderService;
-import factory.HotelUIFactoryService;
-import factory.HotelUIFactoryServiceImpl;
+import bl_Stub.orderblservice_Stub.CheckAbnormalOrderServiceImpl_Stub;
+import businesslogicservice.orderblservice.CheckAbnormalOrderService;
 import factory.OrderUIFactoryServiceImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,15 +19,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import po.OrderState;
-import po.OrderType;
 import po.RoomType;
-import presentation.HotelMainApp;
+import presentation.WebsitePromotionMainApp;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
-public class BrowseHotelOrderPanelController {
+public class BrowseAbnormalOrderPanelController {
 	@FXML
-	private TableView<FxBriefOrder> hotelOrderTableView;
+	private TableView<FxBriefOrder> abnormalOrderTableView;
 
 	@FXML
 	private TableColumn<FxBriefOrder, String> numColumn;
@@ -57,11 +53,11 @@ public class BrowseHotelOrderPanelController {
 	private TextField searchTextField;
 
 	@FXML
-	private ChoiceBox<String> orderTypeChoiceBox;
-
-	@FXML
 	private TableColumn<FxBriefOrder, String> hotelNameColumn;
 
+	@FXML
+	private TableColumn<FxBriefOrder, String> userIDColumn;
+	
 	@FXML
 	private TableColumn<FxBriefOrder, String> finishDateColumn;
 
@@ -71,59 +67,50 @@ public class BrowseHotelOrderPanelController {
 	@FXML
 	private Button getDetailedOrderButton;
 
-	private HotelMainApp mainApp;
+	private WebsitePromotionMainApp mainApp;
 
 	private OrderUIFactoryServiceImpl factory;
 	
 	ArrayList<BriefOrderInfoVO> list;
 
-	private BrowseHotelOrderService hotelOrderBrowser;
+	private CheckAbnormalOrderService abnormalOrderBrowser;
 
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
-		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单", "未执行订单", "已执行订单", "已撤销订单", "异常订单"));
-		orderTypeChoiceBox.setValue("全部订单");
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("订单生成时间", "订单开始时间", "价格"));
 		rankTypeChoiceBox.setValue("订单生成时间");
-
-		orderTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				getBriefOrderList(HotelMainApp.hotelAddress, OrderType.values()[(int) newValue]);
-			}
-		});
 
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				if(newValue.intValue() == 0)
-					hotelOrderTableView.getSortOrder().add(totalPriceColumn);
+					abnormalOrderTableView.getSortOrder().add(totalPriceColumn);
 				else if(newValue.intValue() == 1)
-					hotelOrderTableView.getSortOrder().add(beginDateColumn);
+					abnormalOrderTableView.getSortOrder().add(beginDateColumn);
 				else {
-					hotelOrderTableView.getSortOrder().add(totalPriceColumn);
+					abnormalOrderTableView.getSortOrder().add(totalPriceColumn);
 				}
 			}
 		});
 
 		factory = new OrderUIFactoryServiceImpl();
-
-		hotelOrderBrowser = new BrowseHotelOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
+		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
+		
+		abnormalOrderBrowser = new CheckAbnormalOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
 				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
 				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
 				false, true, false);
 	}
 
-	public void setMainApp(HotelMainApp mainApp) {
-		this.mainApp = mainApp;
+	public void setMainApp(WebsitePromotionMainApp websitePromotionMainApp) {
+		this.mainApp = websitePromotionMainApp;
 	}
 
-	public void getBriefOrderList(String address, OrderType orderType) {
-		list = hotelOrderBrowser.getHotelOrderList(address, orderType);
+	public void getBriefAbnormalOrderList(Date date) {
+		list = abnormalOrderBrowser.getAbnormalOrderList(date);
 		showBriefOrderList();
 	}
-
 	private void showBriefOrderList() {
 
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
@@ -133,8 +120,9 @@ public class BrowseHotelOrderPanelController {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}
 
-		hotelOrderTableView.setItems(briefFxOrderList);
+		abnormalOrderTableView.setItems(briefFxOrderList);
 
+		userIDColumn.setCellValueFactory(cellData -> cellData.getValue().getUserID());
 		hotelNameColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelName());
 		hotelAddressColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelAddress());
 		beginDateColumn.setCellValueFactory(cellData -> cellData.getValue().getBeginDate());
@@ -147,11 +135,7 @@ public class BrowseHotelOrderPanelController {
 	public void searchOrderByID() {
 		String orderID = searchTextField.getText();
 		OrderVO vo = null;
-		try {
-			vo = hotelOrderBrowser.getSingleOrder(HotelMainApp.hotelAddress, orderID);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		vo = abnormalOrderBrowser.getDetailedOrder(orderID);
 		if (vo == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("订单号错误");
@@ -160,19 +144,19 @@ public class BrowseHotelOrderPanelController {
 
 			alert.showAndWait();
 		} else {
-			mainApp.showHotelDetailedOrderPanel(orderID);
+			mainApp.showDetailedAbnormalOrderPanel(orderID);
 		}
 	}
 
 	public void returnButtonAction() {
-		mainApp.showHotelMainPanel();
+		mainApp.showWebsitePromotionRootPanel();
 	}
 
 	public void showDetailedOrder() {
-		int selectedIndex = hotelOrderTableView.getSelectionModel().getSelectedIndex();
+		int selectedIndex = abnormalOrderTableView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
-			String orderID = hotelOrderTableView.getItems().get(selectedIndex).getOrderID().getValue();
-			mainApp.showHotelDetailedOrderPanel(orderID);
+			String orderID = abnormalOrderTableView.getItems().get(selectedIndex).getOrderID().getValue();
+			mainApp.showDetailedAbnormalOrderPanel(orderID);
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("未选择订单");
@@ -182,4 +166,5 @@ public class BrowseHotelOrderPanelController {
 			alert.showAndWait();
 		}
 	}
+
 }

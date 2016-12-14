@@ -93,4 +93,13 @@ public class HotelMainApp extends Application {
 			e.printStackTrace();
 		}		
 	}
+	
+	/**
+	 * 酒店工作人员的主界面
+	 * 
+	 * @see
+	 */
+	public void showHotelMainPanel() {
+		
+	}
 }

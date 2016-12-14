@@ -94,10 +94,6 @@ public class GetDetailedOrderDonePanelController {
 				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
 				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
-
-	public void setMainApp(HotelMainApp mainApp) {
-		this.mainApp = mainApp;
-	}
 	
 	public void showDetailedOrderPanel(String orderID) {
 		System.out.println(orderID);
@@ -205,5 +201,9 @@ public class GetDetailedOrderDonePanelController {
 			return "是";
 		else
 			return "否";
+	}
+
+	public void setMainApp(HotelMainApp hotelMainApp) {
+		this.mainApp = hotelMainApp;
 	}
 }
