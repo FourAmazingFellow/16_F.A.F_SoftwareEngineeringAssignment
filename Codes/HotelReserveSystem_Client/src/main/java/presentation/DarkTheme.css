@@ -13,6 +13,13 @@
     -fx-opacity: 0.6;
 }
 
+.label-dark {
+    -fx-font-size: 18.0pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.6;
+}
+
 .label-bright {
     -fx-font-size: 18.0pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -46,7 +53,7 @@
 }
 
 .table-view .column-header, .table-view .filler {
-    -fx-size: 35.0;
+    -fx-size: 20.0;
     -fx-border-width: 0.0 0.0 1.0 0.0;
     -fx-background-color: transparent;
     -fx-border-color: 

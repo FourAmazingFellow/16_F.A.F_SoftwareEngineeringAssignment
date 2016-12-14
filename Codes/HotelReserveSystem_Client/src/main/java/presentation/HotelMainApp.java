@@ -29,7 +29,6 @@ public class HotelMainApp extends Application {
 		showHotelRootPanel();
 		showHotelOrderPanel();
 	}
-
 	public static void main(String[] args) {
 		launch(args);
 	}

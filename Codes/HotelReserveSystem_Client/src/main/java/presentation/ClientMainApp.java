@@ -12,6 +12,7 @@ import po.OrderType;
 import presentation.hotelui.SearchPanelController;
 import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
+import presentation.orderui.CreateOrderPanelController;
 import presentation.orderui.DetailedOrderPanelController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
@@ -30,8 +31,7 @@ public class ClientMainApp extends Application {
 		this.primaryStage.setResizable(false);
 
 		showClientRootPanel();
-		showUserOrderPanel("19970206");
-		
+		showCreateOrderPanel("万年杰", "FAF", "WHAT EVER");
 	}
 
 	//显示客户导航栏
@@ -98,6 +98,26 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	//显示生成订单页面
+	public void showCreateOrderPanel(String userID, String hotelName, String hotelAddress) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("orderui/createNewOrderPanel.fxml"));
+			AnchorPane searchPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(searchPanel);
+			
+			// Give the controller access to the main app.
+			CreateOrderPanelController controller = loader.getController();
+			
+			controller.setMainApp(this);
+			controller.initOrder(userID, hotelName, hotelAddress);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//显示用户主界面 --- 搜索界面
 	public void showSearchView() {
@@ -118,6 +138,7 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	//显示所有订单列表
 	public void showUserOrderPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -138,6 +159,7 @@ public class ClientMainApp extends Application {
 		}
 	}
 
+	//显示订单详情页面
 	public void showDetailedOrderPanel(String orderID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();

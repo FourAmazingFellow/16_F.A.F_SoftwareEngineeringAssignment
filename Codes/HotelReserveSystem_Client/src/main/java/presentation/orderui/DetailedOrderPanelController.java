@@ -1,15 +1,20 @@
 package presentation.orderui;
 
 import java.util.Date;
+import java.util.Optional;
+
+import org.controlsfx.control.ButtonBar.ButtonType;
 
 import bl_Stub.orderblservice_Stub.BrowseUserOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseUserOrderService;
+import businesslogicservice.orderblservice.WithdrawOrderService;
 import factory.OrderUIFactoryService;
 import factory.OrderUIFactoryServiceImpl;
-import impl.org.controlsfx.tools.rectangle.change.ToSoutheastChangeStrategy;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import po.OrderState;
 import po.RoomType;
 import presentation.ClientMainApp;
@@ -54,14 +59,18 @@ public class DetailedOrderPanelController {
 	private Label roomTypeLabel;
 
 	private ClientMainApp mainApp;
+	private OrderVO vo;
 	private OrderUIFactoryService factory;
 	private BrowseUserOrderService browseHelper;
+	private WithdrawOrderService orderWithdrawer;
 
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
 //		browseHelper = factory.createBrowseUserOrderService();
+		browseHelper = factory.createBrowseUserOrderService();
+		orderWithdrawer = factory.createWithdrawOrderService();
 		browseHelper = new BrowseUserOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
 				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
 				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
@@ -71,9 +80,17 @@ public class DetailedOrderPanelController {
 		this.mainApp = mainApp;
 	}
 	
+	public void commentOrder() {
+		
+	}
+	
 	public void showDetailedOrderPanel(String orderID) {
-		System.out.println(orderID);
-		OrderVO vo = browseHelper.getDetailedOrder(orderID);
+		this.vo = browseHelper.getDetailedOrder(orderID);
+		
+		//若订单已过时，则不可撤销订单
+		if(vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0)
+			withdrawOrderButton.setDisable(true);
+		
 		orderStateLabel.setText(getOrderState((OrderState) vo.orderState));
 		isOnSaleLabel.setText(getTorF(vo.isOnSale));
 		isCommentedLabel.setText(getTorF(vo.isCommented));
@@ -93,6 +110,63 @@ public class DetailedOrderPanelController {
 	
 	public void returnAction() {
 		mainApp.showUserOrderPanel(ClientMainApp.userID);
+	}
+	
+	public void withDrawOrderAction() {
+		Date now = new Date();
+		if(vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("操作失败");
+			alert.setContentText("订单异常，不能执行撤销操作");
+
+			alert.showAndWait();
+			mainApp.showDetailedOrderPanel(vo.orderID);
+		}
+			
+		if(vo.lastedOrderDoneTime.getTime() - now.getTime() < 1000*60*60*6){
+			Alert conf = new Alert(AlertType.CONFIRMATION);
+			conf.setTitle("确认撤销订单");
+			conf.setContentText("距离最晚订单执行时间不足6小时，撤销订单会扣除信用值，确认撤销订单吗？");
+
+			Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
+			if(result.get() == javafx.scene.control.ButtonType.OK) {
+				if(orderWithdrawer.withdrawOrder(vo, true)){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("操作成功");
+					alert.setContentText("撤销订单成功");
+
+					alert.showAndWait();
+				}else{
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("操作失败");
+					alert.setContentText("请检查您的网络连接！");
+
+					alert.showAndWait();
+				}
+			}
+		}else {
+			Alert conf = new Alert(AlertType.CONFIRMATION);
+			conf.setTitle("确认撤销订单");
+			conf.setContentText("确认撤销订单？");
+
+			Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
+			if(result.get() == javafx.scene.control.ButtonType.OK) {
+				if(orderWithdrawer.withdrawOrder(vo, false)){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("操作成功");
+					alert.setContentText("撤销订单成功");
+
+					alert.showAndWait();
+				}else{
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("操作失败");
+					alert.setContentText("请检查您的网络连接！");
+
+					alert.showAndWait();
+				}
+			}
+		}
+		mainApp.showDetailedOrderPanel(vo.orderID);
 	}
 
 	private String getOrderState(OrderState orderState) {

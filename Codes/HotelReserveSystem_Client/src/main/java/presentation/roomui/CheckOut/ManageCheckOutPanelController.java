@@ -17,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import po.RoomType;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 import presentation.roomui.CheckIn.model.CheckInListWrapper;
 import presentation.roomui.CheckOut.model.CheckOut;
 import presentation.roomui.CheckOut.model.CheckOutListWrapper;
@@ -47,7 +47,7 @@ public class ManageCheckOutPanelController {
     @FXML
     private TableColumn<CheckOut,String> roomNumColumn;
     
-    private MainApp mainApp;
+    private ClientMainApp mainApp;
     private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型",
             "单人间", "标准间", "三人间","大床房");
     private ObservableList<CheckOut> checkOutdata = FXCollections.observableArrayList();
@@ -77,7 +77,7 @@ public class ManageCheckOutPanelController {
 
     }
     
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(ClientMainApp mainApp) {
         this.mainApp = mainApp;
     }
     
@@ -148,7 +148,7 @@ public class ManageCheckOutPanelController {
     public void showManageCheckOutPanel(String address) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("roomui/CheckOut/ManageCheckOutPanel.fxml"));
+            loader.setLocation(ClientMainApp.class.getResource("roomui/CheckOut/ManageCheckOutPanel.fxml"));
             AnchorPane manageCheckOutPanel = (AnchorPane) loader.load();
 
             HotelStaffRootLayout.setCenter(manageCheckOutPanel);

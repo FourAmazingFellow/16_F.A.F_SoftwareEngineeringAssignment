@@ -17,11 +17,6 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="256.0" layoutY="166.0" prefHeight="74.0" prefWidth="493.0" styleClass="label-header" stylesheets="@../DarkTheme.css" text="F.A.F 酒店预定系统" textAlignment="CENTER" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="50.0">
-         <font>
-            <Font name="System Bold Italic" size="36.0" />
-         </font>
-      </Label>
       <TextField fx:id="searchArea" layoutX="93.0" layoutY="248.0" prefHeight="70.0" prefWidth="646.0" promptText="请输入搜索的酒店内容..." stylesheets="@../DarkTheme.css">
          <font>
             <Font size="24.0" />

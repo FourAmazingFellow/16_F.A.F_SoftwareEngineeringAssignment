@@ -90,7 +90,13 @@ public class BrowseUserOrderPanelController {
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-			
+				if(newValue.intValue() == 0)
+					userOrders.getSortOrder().add(totalPriceColumn);
+				else if(newValue.intValue() == 1)
+					userOrders.getSortOrder().add(beginDateColumn);
+				else {
+					userOrders.getSortOrder().add(totalPriceColumn);
+				}
 			}
 		});
 		
