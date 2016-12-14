@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import po.OrderState;
 import po.RoomType;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 import vo.OrderVO;
 
 public class DetailedOrderPanelController {
@@ -53,7 +53,7 @@ public class DetailedOrderPanelController {
 	@FXML
 	private Label roomTypeLabel;
 
-	private MainApp mainApp;
+	private ClientMainApp mainApp;
 	private OrderUIFactoryService factory;
 	private BrowseUserOrderService browseHelper;
 
@@ -67,7 +67,7 @@ public class DetailedOrderPanelController {
 				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 	
@@ -92,7 +92,7 @@ public class DetailedOrderPanelController {
 	}
 	
 	public void returnAction() {
-		mainApp.showUserOrderPanel(MainApp.userID);
+		mainApp.showUserOrderPanel(ClientMainApp.userID);
 	}
 
 	private String getOrderState(OrderState orderState) {

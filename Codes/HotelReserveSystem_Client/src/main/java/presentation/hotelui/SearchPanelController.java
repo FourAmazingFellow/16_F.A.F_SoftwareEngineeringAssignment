@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 
 public class SearchPanelController {
 	// Reference to the main application
-	private MainApp mainApp;
+	private ClientMainApp mainApp;
 	private ObservableList<String> districList = FXCollections.observableArrayList("新街口","栖霞区","鼓楼区");
 
 	@FXML
@@ -27,7 +27,7 @@ public class SearchPanelController {
 	 * 
 	 * @param mainApp
 	 */
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 

@@ -4,8 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import presentation.ClientMainApp;
+import presentation.HotelMainApp;
 
-public class ClientRootBoardController {
+public class HotelRootBoardController {
 
     @FXML
     private MenuButton userActionButton;
@@ -25,27 +26,10 @@ public class ClientRootBoardController {
     @FXML
     private Button homeButton;
 
-    private ClientMainApp mainApp;
+    private HotelMainApp mainApp;
     
-    public void setMainApp(ClientMainApp mainApp) {
+    public void setMainApp(HotelMainApp mainApp) {
     	this.mainApp = mainApp;
-    }
-    
-    public void modifyPersonalInfoAction() {
-    	
-    }
-    
-    public void myOrderAction() {
-    	mainApp.showUserOrderPanel(ClientMainApp.userID);
-    }
-    
-    public void myReservedHotelAction() {
-    	
-    }
-    
-    public void searchHotelAction() {
-    	mainApp.showSearchView();
-    }
-    
+    }    
     
 }

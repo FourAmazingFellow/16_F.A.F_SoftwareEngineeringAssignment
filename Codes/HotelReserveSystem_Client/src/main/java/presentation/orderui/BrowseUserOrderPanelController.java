@@ -3,8 +3,6 @@ package presentation.orderui;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.controlsfx.dialog.Dialogs;
-
 import bl_Stub.orderblservice_Stub.BrowseUserOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseUserOrderService;
 import factory.OrderUIFactoryService;
@@ -18,13 +16,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 import vo.BriefOrderInfoVO;
 
 public class BrowseUserOrderPanelController {
@@ -71,7 +68,7 @@ public class BrowseUserOrderPanelController {
 
 	private BrowseUserOrderService browseHelper;
 
-	private MainApp mainApp;
+	private ClientMainApp mainApp;
 	
 	@SuppressWarnings("deprecation")
 	@FXML
@@ -103,7 +100,7 @@ public class BrowseUserOrderPanelController {
 				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 	

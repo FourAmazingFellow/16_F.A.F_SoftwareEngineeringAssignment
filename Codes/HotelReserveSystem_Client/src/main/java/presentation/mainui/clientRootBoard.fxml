@@ -26,7 +26,7 @@
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="searchHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="234.0" text="搜索酒店" textAlignment="CENTER" GridPane.columnIndex="1">
+				<Button fx:id="searchHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchHotelAction" prefHeight="60.0" prefWidth="234.0" text="搜索酒店" textAlignment="CENTER" GridPane.columnIndex="1">
 					<font>
 						<Font size="18.0" />
 					</font>
@@ -36,7 +36,7 @@
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myOrderSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="我的订单" textAlignment="CENTER" GridPane.columnIndex="3">
+				<Button fx:id="myOrderSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#myOrderAction" prefHeight="60.0" prefWidth="210.0" text="我的订单" textAlignment="CENTER" GridPane.columnIndex="3">
 					<font>
 						<Font size="18.0" />
 					</font>

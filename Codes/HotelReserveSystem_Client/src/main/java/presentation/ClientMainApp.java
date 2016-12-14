@@ -16,7 +16,7 @@ import presentation.orderui.DetailedOrderPanelController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
 
-public class MainApp extends Application {
+public class ClientMainApp extends Application {
 	public static String userID = "";
 	
 	private Stage primaryStage;
@@ -39,7 +39,7 @@ public class MainApp extends Application {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("mainui/clientRootBoard.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("mainui/clientRootBoard.fxml"));
 			clientRootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
@@ -62,7 +62,7 @@ public class MainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 
-			loader.setLocation(MainApp.class.getResource("userui/login/Login.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("userui/login/Login.fxml"));
 			AnchorPane loginPanel = (AnchorPane) loader.load();
 
 			Scene scene = new Scene(loginPanel);
@@ -81,7 +81,7 @@ public class MainApp extends Application {
 	public void showRegisterPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("userui/login/Register.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("userui/login/Register.fxml"));
 			AnchorPane registerPanel = (AnchorPane) loader.load();
 
 			// Show the scene containing the root layout.
@@ -103,7 +103,7 @@ public class MainApp extends Application {
 	public void showSearchView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("hotelui/SearchPanel.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/SearchPanel.fxml"));
 			AnchorPane searchPanel = (AnchorPane) loader.load();
 
 			clientRootLayout.setCenter(searchPanel);
@@ -121,7 +121,7 @@ public class MainApp extends Application {
 	public void showUserOrderPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("orderui/browseUserOrderPanel.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("orderui/browseUserOrderPanel.fxml"));
 			AnchorPane allUserOrderPanel = (AnchorPane) loader.load();
 
 			clientRootLayout.setCenter(allUserOrderPanel);
@@ -141,7 +141,7 @@ public class MainApp extends Application {
 	public void showDetailedOrderPanel(String orderID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("orderui/detailedORderPanel.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("orderui/detailedORderPanel.fxml"));
 			AnchorPane detailedOrderPanel = (AnchorPane) loader.load();
 		
 			clientRootLayout.setCenter(detailedOrderPanel);

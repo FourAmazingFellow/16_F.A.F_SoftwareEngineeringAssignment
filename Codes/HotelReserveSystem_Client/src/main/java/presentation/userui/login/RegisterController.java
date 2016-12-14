@@ -3,10 +3,10 @@ package presentation.userui.login;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 
 public class RegisterController {
-	private MainApp mainApp;
+	private ClientMainApp mainApp;
 
 	@FXML
 	private TextField r_passwordCofirmArea;
@@ -23,7 +23,7 @@ public class RegisterController {
 	@FXML
 	private Button returnButton;
 
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
