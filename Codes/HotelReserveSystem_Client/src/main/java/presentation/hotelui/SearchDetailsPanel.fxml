@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Button layoutX="273.0" layoutY="-462.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="89.0" text="筛选" />
+      <TableView layoutX="-38.0" layoutY="-401.0" prefHeight="307.0" prefWidth="533.0">
+        <columns>
+          <TableColumn prefWidth="532.0" text="C1" />
+        </columns>
+      </TableView>
+      <TextField layoutX="-38.0" layoutY="-462.0" prefHeight="23.0" prefWidth="115.0" text="酒店名称" />
+      <DatePicker layoutX="184.0" layoutY="-533.0" prefHeight="23.0" prefWidth="89.0" />
+      <DatePicker layoutX="184.0" layoutY="-510.0" prefHeight="23.0" prefWidth="89.0" />
+      <ChoiceBox layoutX="-56.0" layoutY="-522.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="348.0" layoutY="-522.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="126.0" layoutY="-462.0" prefHeight="23.0" prefWidth="89.0" />
+      <RadioButton layoutX="405.0" layoutY="-458.0" mnemonicParsing="false" text="是否限定预订" textFill="#eee0e6" />
+   </children>
+</AnchorPane>
