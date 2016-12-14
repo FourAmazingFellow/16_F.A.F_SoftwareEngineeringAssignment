@@ -28,7 +28,7 @@ import presentation.HotelMainApp;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
-public class BrowseHotelOrderPanelController {	
+public class BrowseHotelOrderPanelController {
 	@FXML
 	private TableView<FxBriefOrder> hotelOrderTableView;
 
@@ -72,11 +72,13 @@ public class BrowseHotelOrderPanelController {
 	private Button getDetailedOrderButton;
 
 	private HotelMainApp mainApp;
-	
+
 	private OrderUIFactoryServiceImpl factory;
 	
+	ArrayList<BriefOrderInfoVO> list;
+
 	private BrowseHotelOrderService hotelOrderBrowser;
-	
+
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
@@ -112,12 +114,16 @@ public class BrowseHotelOrderPanelController {
 		this.mainApp = mainApp;
 	}
 
-	public void showBriefOrderList(String address, OrderType orderType) {
-		
+	public void getBriefOrderList(String address, OrderType orderType) {
+		list = hotelOrderBrowser.getHotelOrderList(address, orderType);
+		showBriefOrderList();
+	}
+
+	private void showBriefOrderList() {
+
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
-		ArrayList<BriefOrderInfoVO> list = hotelOrderBrowser.getHotelOrderList(address, orderType);
 		ObservableList<FxBriefOrder> briefFxOrderList = FXCollections.observableArrayList();
-		
+
 		for (BriefOrderInfoVO vo : list) {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}
@@ -141,26 +147,26 @@ public class BrowseHotelOrderPanelController {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		if(vo == null){
+		if (vo == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("订单号错误");
 			alert.setHeaderText("订单号不存在或无访问权限！");
 			alert.setContentText("请查证后重新输入订单号！");
 
 			alert.showAndWait();
-		}else{
+		} else {
 			mainApp.showHotelDetailedOrderPanel(orderID);
 		}
 	}
-	
+
 	public void returnButtonAction() {
 
 	}
 
 	public void getOrderDone() {
-		
+
 	}
-	
+
 	public void showDetailedOrder() {
 		int selectedIndex = hotelOrderTableView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {

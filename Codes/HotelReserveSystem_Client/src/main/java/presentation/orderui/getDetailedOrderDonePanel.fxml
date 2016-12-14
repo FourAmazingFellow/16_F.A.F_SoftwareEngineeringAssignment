@@ -74,7 +74,7 @@
          </children>
       </GridPane>
       <Button fx:id="returnButton" layoutX="228.0" layoutY="584.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="getOrderDoneButton" layoutX="416.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="执行订单" />
-      <Button fx:id="delayCheckInButton" layoutX="599.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="延迟入住" />
+      <Button fx:id="getOrderDoneButton" layoutX="416.0" layoutY="584.0" mnemonicParsing="false" onAction="#getOrderDone" prefHeight="40.0" prefWidth="150.0" text="执行订单" />
+      <Button fx:id="delayCheckInButton" layoutX="599.0" layoutY="584.0" mnemonicParsing="false" onAction="#delayCheckIn" prefHeight="40.0" prefWidth="150.0" text="延迟入住" />
    </children>
 </AnchorPane>

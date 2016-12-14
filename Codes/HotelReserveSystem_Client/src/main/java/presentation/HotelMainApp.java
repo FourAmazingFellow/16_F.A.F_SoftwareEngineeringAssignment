@@ -67,7 +67,7 @@ public class HotelMainApp extends Application {
 			BrowseHotelOrderPanelController controller = loader.getController();
 			controller.setMainApp(this);
 			//默认显示所有订单
-			controller.showBriefOrderList(HotelMainApp.hotelAddress, OrderType.ALL);
+			controller.getBriefOrderList(HotelMainApp.hotelAddress, OrderType.ALL);
 
 			primaryStage.show();
 		} catch (IOException e) {

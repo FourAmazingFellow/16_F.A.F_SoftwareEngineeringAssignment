@@ -130,7 +130,7 @@ public class ClientMainApp extends Application {
 			BrowseUserOrderPanelController controller = loader.getController();
 			controller.setMainApp(this);
 			//默认显示所有订单
-			controller.showBriefOrderList(userID, OrderType.ALL);
+			controller.getBriefOrderList(userID, OrderType.ALL);
 
 			primaryStage.show();
 		} catch (IOException e) {

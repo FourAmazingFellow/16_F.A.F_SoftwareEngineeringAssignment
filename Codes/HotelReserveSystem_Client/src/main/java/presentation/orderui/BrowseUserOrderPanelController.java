@@ -67,13 +67,15 @@ public class BrowseUserOrderPanelController {
 	private OrderUIFactoryService factory;
 
 	private BrowseUserOrderService browseHelper;
-
+	
+	private ArrayList<BriefOrderInfoVO> list;
+	
 	private ClientMainApp mainApp;
 	
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
-		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单","未执行订单","已执行订单","已撤销订单","异常订单"));
+		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单", "异常订单", "未执行订单", "已执行订单","已撤销订单"));
 		orderTypeChoiceBox.setValue("全部订单");
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("订单生成时间","订单开始时间","价格"));
 		rankTypeChoiceBox.setValue("订单生成时间");
@@ -81,15 +83,14 @@ public class BrowseUserOrderPanelController {
 		orderTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				System.out.println(newValue);
-				//TO-DO CODES
+				getBriefOrderList(ClientMainApp.userID, OrderType.values()[(int) newValue]);
 			}
 		});
 		
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				System.out.println(newValue);
+			
 			}
 		});
 		
@@ -104,9 +105,13 @@ public class BrowseUserOrderPanelController {
 		this.mainApp = mainApp;
 	}
 	
-	public void showBriefOrderList(String userID, OrderType orderType) {
+	public void getBriefOrderList(String userID, OrderType orderType) {
+		list = browseHelper.getUserOrderList(userID, orderType);
+		showBriefOrderList();
+	}
+	
+	private void showBriefOrderList() {
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
-		ArrayList<BriefOrderInfoVO> list = browseHelper.getUserOrderList(userID, orderType);
 		for (BriefOrderInfoVO vo : list) {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}
