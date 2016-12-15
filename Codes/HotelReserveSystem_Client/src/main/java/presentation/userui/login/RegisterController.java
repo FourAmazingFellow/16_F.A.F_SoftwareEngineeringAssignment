@@ -51,6 +51,12 @@ public class RegisterController {
 		boolean result = register.add(user);
 		if (password.equals(password_c)) {
 			if (result == true) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("register info");
+				alert.setHeaderText("注册成功！");
+				alert.show();
+				
+				new FillInUserInfoController(userID, password);
 				
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
@@ -72,5 +78,9 @@ public class RegisterController {
 
 	public void returnButton() {
 		mainApp.showLoginView();
+	}
+	
+	public void registerButtonAction(){
+		
 	}
 }

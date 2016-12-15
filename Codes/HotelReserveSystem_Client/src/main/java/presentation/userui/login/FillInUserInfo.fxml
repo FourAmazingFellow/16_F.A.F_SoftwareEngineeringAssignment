@@ -17,14 +17,19 @@
 			<rowConstraints>
 				<RowConstraints />
 				<RowConstraints />
+				<RowConstraints />
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Label text="用户类型" GridPane.rowIndex="2" />
-				<ChoiceBox fx:id="userTypeChoiceBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<Label text="联系方式" GridPane.rowIndex="3" />
-				<TextField fx:id="telNumField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<Label text="用户类型" GridPane.rowIndex="3" />
+				<ChoiceBox fx:id="userTypeChoiceBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<Label text="联系方式" GridPane.rowIndex="4" />
+				<TextField fx:id="telNumField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="用户名" />
+            <Label text="密码" GridPane.rowIndex="2" />
+            <Label fx:id="passwordField" text="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="userIDField" text="userID" GridPane.columnIndex="1" />
 			</children>
 		</GridPane>
 		<HBox layoutX="300.0" layoutY="500.0" spacing="100.0">

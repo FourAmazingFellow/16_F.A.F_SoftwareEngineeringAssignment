@@ -13,7 +13,7 @@ import vo.UserVO;
  */
 public class ManageUserInfoServiceImpl_Stub extends ModifyClientInfoServiceImpl_Stub implements ManageUserInfoService{
 
-	public ManageUserInfoServiceImpl_Stub(long userID, String password, String telNum, UserType userType,
+	public ManageUserInfoServiceImpl_Stub(String userID, String password, String telNum, UserType userType,
 			int creditValue, String enterpriseName) {
 		super(userID, password, telNum, userType, creditValue, null);
 	}

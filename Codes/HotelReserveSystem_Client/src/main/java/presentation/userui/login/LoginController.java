@@ -16,7 +16,6 @@ import presentation.ClientMainApp;
 
 public class LoginController {
 	private ClientMainApp mainApp;
-	private presentation.userui.login.MainApp mainApp2;
 	private LoginAndSignUpService login;
 	private CheckLoginInfo check;
 	private UserUIFactoryService userFactory;
@@ -43,9 +42,7 @@ public class LoginController {
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
-	public void setMainApp2(presentation.userui.login.MainApp mainApp2) {
-		this.mainApp2 = mainApp2;
-	}
+	
 	
 	public void verifyLogin(){
 		String userID = userIDTextArea.getText();
@@ -74,7 +71,7 @@ public class LoginController {
 	
 	
 	public void showRegisterPanel(){
-		mainApp2.showRegisterPanel();
+		mainApp.showRegisterPanel();
 	}
 
 }

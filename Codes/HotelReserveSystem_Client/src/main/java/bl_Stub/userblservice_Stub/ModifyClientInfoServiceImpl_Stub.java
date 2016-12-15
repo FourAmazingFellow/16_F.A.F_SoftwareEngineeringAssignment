@@ -13,14 +13,14 @@ import vo.UserVO;
  */
 public class ModifyClientInfoServiceImpl_Stub implements ModifyClientInfoService {
 
-	 public long userID;
+	 public String userID;
 	 public String password;
 	 public String telNum;
 	 public UserType UserType;
 	 public int creditValue;
 	 public String enterpriseName;
 	
-	 public ModifyClientInfoServiceImpl_Stub(long userID, String password, String telNum, UserType userType,
+	 public ModifyClientInfoServiceImpl_Stub(String userID, String password, String telNum, UserType userType,
 			int creditValue, String enterpriseName) {
 		this.userID = userID;
 		this.password = password;
