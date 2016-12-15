@@ -6,14 +6,14 @@ import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 import vo.UserVO;
 
 public class RegisterController {
-	private MainApp mainApp;
+	private ClientMainApp mainApp;
 	private LoginAndSignUpService register;
 	private UserUIFactoryService userFactory;
 
@@ -39,8 +39,8 @@ public class RegisterController {
 		register = new LoginAndSignUpServiceImpl_Stub();
 	}
 
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
+	public void setMainApp(ClientMainApp clientMainApp) {
+		this.mainApp = clientMainApp;
 	}
 
 	public void register() {

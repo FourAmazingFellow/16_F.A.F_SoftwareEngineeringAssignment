@@ -7,15 +7,15 @@ import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import po.UserType;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 
 public class LoginController {
-	private MainApp mainApp;
+	private ClientMainApp mainApp;
 	private presentation.userui.login.MainApp mainApp2;
 	private LoginAndSignUpService login;
 	private CheckLoginInfo check;
@@ -40,8 +40,8 @@ public class LoginController {
 		login = new LoginAndSignUpServiceImpl_Stub();
 	}
 
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
+	public void setMainApp(ClientMainApp clientMainApp) {
+		this.mainApp = clientMainApp;
 	}
 	public void setMainApp2(presentation.userui.login.MainApp mainApp2) {
 		this.mainApp2 = mainApp2;
