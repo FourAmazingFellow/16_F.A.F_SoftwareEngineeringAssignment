@@ -1,9 +1,7 @@
 package presentation.orderui;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import bl_Stub.orderblservice_Stub.BrowseUserOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseUserOrderService;
 import factory.OrderUIFactoryService;
 import factory.OrderUIFactoryServiceImpl;
@@ -18,9 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import po.OrderState;
 import po.OrderType;
-import po.RoomType;
 import presentation.ClientMainApp;
 import vo.BriefOrderInfoVO;
 
@@ -72,7 +68,6 @@ public class BrowseUserOrderPanelController {
 	
 	private ClientMainApp mainApp;
 	
-	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
 		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单", "异常订单", "未执行订单", "已执行订单","已撤销订单"));
@@ -101,10 +96,10 @@ public class BrowseUserOrderPanelController {
 		});
 		
 		factory = new OrderUIFactoryServiceImpl();
-//		browseHelper = factory.createBrowseUserOrderService();
-		browseHelper = new BrowseUserOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
-				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
-				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
+		browseHelper = factory.createBrowseUserOrderService();
+//		browseHelper = new BrowseUserOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
+//				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
+//				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
 	public void setMainApp(ClientMainApp mainApp) {

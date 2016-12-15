@@ -1,6 +1,7 @@
 package presentation;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,7 @@ import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
 
 public class ClientMainApp extends Application {
-	public static String userID = "";
+	public static String userID = "原";
 	
 	private Stage primaryStage;
 	private BorderPane clientRootLayout;
@@ -30,8 +31,10 @@ public class ClientMainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 
-		showClientRootPanel();
-		showCreateOrderPanel("万年杰", "FAF", "WHAT EVER");
+//		showClientRootPanel();
+//		showCreateOrderPanel("万年杰", "FAF", "WHAT EVER");
+		
+		System.out.println(LocalDate.now().getYear());
 	}
 
 	//显示客户导航栏

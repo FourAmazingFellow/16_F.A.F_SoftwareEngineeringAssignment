@@ -1,9 +1,7 @@
 package presentation.orderui;
 
 import java.rmi.RemoteException;
-import java.util.Date;
 
-import bl_Stub.orderblservice_Stub.CheckAbnormalOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.CheckAbnormalOrderService;
 import factory.OrderUIFactoryService;
 import factory.OrderUIFactoryServiceImpl;
@@ -78,15 +76,14 @@ public class SystemWithdrawDetailedOrderPanelController {
 	private OrderUIFactoryService factory;
 	private CheckAbnormalOrderService abnormalOrderChecker;
 
-	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
 		
-//		abnormalOrderChecker = factory.createBrowseAbnormalOrderService();
-		abnormalOrderChecker = new CheckAbnormalOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
-				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
-				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
+		abnormalOrderChecker = factory.createBrowseAbnormalOrderService();
+//		abnormalOrderChecker = new CheckAbnormalOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
+//				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
+//				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 	
 	public void showDetailedOrderPanel(String orderID) throws RemoteException {

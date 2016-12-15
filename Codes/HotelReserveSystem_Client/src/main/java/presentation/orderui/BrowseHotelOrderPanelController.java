@@ -2,9 +2,7 @@ package presentation.orderui;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Date;
 
-import bl_Stub.orderblservice_Stub.BrowseHotelOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseHotelOrderService;
 import factory.OrderUIFactoryServiceImpl;
 import javafx.beans.value.ChangeListener;
@@ -19,9 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import po.OrderState;
 import po.OrderType;
-import po.RoomType;
 import presentation.HotelMainApp;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
@@ -77,7 +73,6 @@ public class BrowseHotelOrderPanelController {
 
 	private BrowseHotelOrderService hotelOrderBrowser;
 
-	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
 		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单", "未执行订单", "已执行订单", "已撤销订单", "异常订单"));
@@ -106,11 +101,12 @@ public class BrowseHotelOrderPanelController {
 		});
 
 		factory = new OrderUIFactoryServiceImpl();
-
-		hotelOrderBrowser = new BrowseHotelOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
-				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
-				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
-				false, true, false);
+		hotelOrderBrowser = factory.createBrowseHotelOrderService();
+		
+//		hotelOrderBrowser = new BrowseHotelOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
+//				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
+//				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
+//				false, true, false);
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {

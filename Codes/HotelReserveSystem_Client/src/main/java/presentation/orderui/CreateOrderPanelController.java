@@ -149,7 +149,7 @@ public class CreateOrderPanelController {
 	public void initOrder(String userID, String hotelName, String hotelAddress) {
 		hotelNameLabel.setText(hotelName);
 		hotelAddressLabel.setText(hotelAddress);
-//		newOrderVO = newOrderCreater.initNewOrder(userID, hotelName, hotelAddress);
+		newOrderVO = newOrderCreater.initNewOrder(userID, hotelName, hotelAddress);
 	}
 	
 	public void setMainApp(ClientMainApp mainApp) {
@@ -185,10 +185,9 @@ public class CreateOrderPanelController {
 	    finishDatePicker.setValue(beginDatePicker.getValue().plusDays(1));
 	}
 	
-	@SuppressWarnings({ "unused", "deprecation" })
+	@SuppressWarnings("deprecation")
 	private Date getDate(LocalDate l) {
-		System.out.println(l);
-		return new Date(l.getYear(), l.getMonthValue() - 1, l.getDayOfMonth());
+		return new Date(l.getYear() - 1900, l.getMonthValue() - 1, l.getDayOfMonth());
 	}
 	
 	private boolean getTF(String s) {

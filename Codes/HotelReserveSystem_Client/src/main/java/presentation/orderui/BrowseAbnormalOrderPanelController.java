@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-import bl_Stub.orderblservice_Stub.CheckAbnormalOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.CheckAbnormalOrderService;
 import factory.OrderUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
@@ -17,8 +16,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import po.OrderState;
-import po.RoomType;
 import presentation.WebsitePromotionMainApp;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
@@ -74,22 +71,21 @@ public class BrowseAbnormalOrderPanelController {
 
 	private CheckAbnormalOrderService abnormalOrderBrowser;
 
-	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
-//		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
+		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
 		
-		abnormalOrderBrowser = new CheckAbnormalOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
-				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
-				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
-				false, true, false);
+//		abnormalOrderBrowser = new CheckAbnormalOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
+//				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
+//				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
+//				false, true, false);
 	}
 
 	@SuppressWarnings("deprecation")
 	public void pickDateAction() {
 		LocalDate l = datePicker.getValue();
-		Date pickedDate = new Date(l.getYear(), l.getMonthValue() - 1, l.getDayOfMonth());
+		Date pickedDate = new Date(l.getYear() - 1900, l.getMonthValue() - 1, l.getDayOfMonth());
 		getBriefAbnormalOrderList(pickedDate);
 	}
 	
