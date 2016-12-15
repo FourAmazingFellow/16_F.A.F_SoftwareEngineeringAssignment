@@ -41,7 +41,7 @@ public class ModifyClientInfoServiceImplTest {
 
     @Test
     public void testGetClientInfo() {
-        modifyClientInfo = new ModifyClientInfoServiceImpl(userID);
+        modifyClientInfo = new ModifyClientInfoServiceImpl();
         modifyClientInfo.setUserDAO(userDAO);
         this.clientInfoVO = modifyClientInfo.getClientInfo(userID);
         assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in userID!", userID,
@@ -56,7 +56,7 @@ public class ModifyClientInfoServiceImplTest {
 
     @Test
     public void testModifyClientInfo() {
-        modifyClientInfo = new ModifyClientInfoServiceImpl(userID);
+        modifyClientInfo = new ModifyClientInfoServiceImpl();
         modifyClientInfo.setUserDAO(userDAO);
         this.clientInfoVO = modifyClientInfo.getClientInfo(userID);
         ClientInfoVO modified = new ClientInfoVO(clientInfoVO.userID, clientInfoVO.password, "12345678900",

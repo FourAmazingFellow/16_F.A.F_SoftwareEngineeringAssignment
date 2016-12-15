@@ -2,12 +2,9 @@ package businesslogic.userbl.modifyClientInfo;
 
 import java.rmi.RemoteException;
 
-import com.mysql.fabric.xmlrpc.Client;
-
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
-import po.UserPO;
 import po.UserType;
 import rmi.RemoteHelper;
 import vo.ClientInfoVO;
@@ -23,7 +20,7 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
         this.userDAO = userDAO;
     }
     
-    public ModifyClientInfoServiceImpl(String userID) {
+    public ModifyClientInfoServiceImpl() {
     }
     
     @Override

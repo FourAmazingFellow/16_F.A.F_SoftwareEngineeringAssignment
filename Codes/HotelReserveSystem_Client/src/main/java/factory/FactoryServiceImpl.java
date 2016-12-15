@@ -9,10 +9,12 @@ import businesslogic.roombl.RoomInfoServiceImpl;
 import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.StrategyInfoServiceImpl;
+import businesslogic.strategybl.VerifyEnterpriseVipImpl;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.userbl.ClientCreditInfoImpl;
 import businesslogic.userbl.UserInfo;
 import businesslogic.userbl.UserInfoImpl;
+import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogic.userbl.VipInfo;
 import businesslogic.userbl.VipInfoImpl;
 
@@ -56,4 +58,9 @@ public class FactoryServiceImpl implements FactoryService {
     public VipInfo createVipInfo() {
         return new VipInfoImpl();
     }
+
+	@Override
+	public VerifyEnterpriseVip createVerifyEnterpriseVip() {
+		return new VerifyEnterpriseVipImpl();
+	}
 }

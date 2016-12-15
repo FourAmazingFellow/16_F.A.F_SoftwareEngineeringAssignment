@@ -24,7 +24,7 @@
             <PasswordField fx:id="passwordTextArea" prefHeight="60.0" prefWidth="300.0" promptText="请输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="loginButton" layoutX="320.0" layoutY="508.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="登陆" />
+      <Button fx:id="loginButton" layoutX="320.0" layoutY="508.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="50.0" prefWidth="150.0" text="登录" />
       <Button fx:id="registerButton" layoutX="577.0" layoutY="508.0" mnemonicParsing="false" onAction="#showRegisterPanel" opacity="0.71" prefHeight="50.0" prefWidth="150.0" text="注册" />
       <Text fill="WHITE" layoutX="123.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-header" text="F.A.F.酒店预定系统" textAlignment="CENTER" wrappingWidth="763.9618530273438">
          <font>

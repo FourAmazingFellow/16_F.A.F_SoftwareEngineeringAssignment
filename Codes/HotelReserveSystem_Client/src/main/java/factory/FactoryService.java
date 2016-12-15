@@ -7,6 +7,7 @@ import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.userbl.UserInfo;
+import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogic.userbl.VipInfo;
 
 public interface FactoryService {
@@ -26,4 +27,6 @@ public interface FactoryService {
 	public AvailableRoomService createAvailableRoomService();
 	
 	public VipInfo createVipInfo();
+	
+	public VerifyEnterpriseVip createVerifyEnterpriseVip();
 }

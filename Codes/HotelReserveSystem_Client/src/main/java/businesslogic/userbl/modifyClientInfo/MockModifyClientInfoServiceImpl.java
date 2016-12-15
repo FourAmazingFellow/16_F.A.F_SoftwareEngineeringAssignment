@@ -15,7 +15,7 @@ public class MockModifyClientInfoServiceImpl extends ModifyClientInfoServiceImpl
     private ClientInfoVO clientInfoVO;
     
     public MockModifyClientInfoServiceImpl(String userID) {
-        super(userID);
+        super();
         userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900");
         clientInfoVO = new ClientInfoVO("原", "qwe123", "12345678900", UserType.Client, 500, null);
     }
