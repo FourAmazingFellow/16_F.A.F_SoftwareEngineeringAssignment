@@ -1,19 +1,18 @@
 package presentation.orderui;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 import bl_Stub.orderblservice_Stub.CheckAbnormalOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.CheckAbnormalOrderService;
 import factory.OrderUIFactoryServiceImpl;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +25,9 @@ import vo.OrderVO;
 
 public class BrowseAbnormalOrderPanelController {
 	@FXML
+	private DatePicker datePicker;
+	
+	@FXML
 	private TableView<FxBriefOrder> abnormalOrderTableView;
 
 	@FXML
@@ -36,9 +38,6 @@ public class BrowseAbnormalOrderPanelController {
 
 	@FXML
 	private TableColumn<FxBriefOrder, String> roomTypeColumn;
-
-	@FXML
-	private ChoiceBox<String> rankTypeChoiceBox;
 
 	@FXML
 	private TableColumn<FxBriefOrder, String> hotelAddressColumn;
@@ -78,24 +77,8 @@ public class BrowseAbnormalOrderPanelController {
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
-		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("订单生成时间", "订单开始时间", "价格"));
-		rankTypeChoiceBox.setValue("订单生成时间");
-
-		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				if(newValue.intValue() == 0)
-					abnormalOrderTableView.getSortOrder().add(totalPriceColumn);
-				else if(newValue.intValue() == 1)
-					abnormalOrderTableView.getSortOrder().add(beginDateColumn);
-				else {
-					abnormalOrderTableView.getSortOrder().add(totalPriceColumn);
-				}
-			}
-		});
-
 		factory = new OrderUIFactoryServiceImpl();
-		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
+//		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
 		
 		abnormalOrderBrowser = new CheckAbnormalOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
 				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
@@ -103,6 +86,13 @@ public class BrowseAbnormalOrderPanelController {
 				false, true, false);
 	}
 
+	@SuppressWarnings("deprecation")
+	public void pickDateAction() {
+		LocalDate l = datePicker.getValue();
+		Date pickedDate = new Date(l.getYear(), l.getMonthValue() - 1, l.getDayOfMonth());
+		getBriefAbnormalOrderList(pickedDate);
+	}
+	
 	public void setMainApp(WebsitePromotionMainApp websitePromotionMainApp) {
 		this.mainApp = websitePromotionMainApp;
 	}
@@ -111,6 +101,7 @@ public class BrowseAbnormalOrderPanelController {
 		list = abnormalOrderBrowser.getAbnormalOrderList(date);
 		showBriefOrderList();
 	}
+	
 	private void showBriefOrderList() {
 
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
@@ -149,7 +140,7 @@ public class BrowseAbnormalOrderPanelController {
 	}
 
 	public void returnButtonAction() {
-		mainApp.showWebsitePromotionRootPanel();
+		mainApp.showWebsitePromotionMainPanel();
 	}
 
 	public void showDetailedOrder() {

@@ -6,8 +6,6 @@ import java.util.Date;
 
 import bl_Stub.orderblservice_Stub.BrowseHotelOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseHotelOrderService;
-import factory.HotelUIFactoryService;
-import factory.HotelUIFactoryServiceImpl;
 import factory.OrderUIFactoryServiceImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

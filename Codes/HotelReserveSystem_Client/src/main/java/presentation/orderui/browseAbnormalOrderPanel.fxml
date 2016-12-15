@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.BrowseAbnormalOrderPanelControllerController">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.BrowseAbnormalOrderPanelController">
    <children>
       <TableView fx:id="abnormalOrderTableView" layoutX="33.0" layoutY="106.0" prefHeight="420.0" prefWidth="940.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
         <columns>
@@ -21,9 +21,9 @@
         </columns>
       </TableView>
       <Button fx:id="getDetailedOrderButton" layoutX="300.0" layoutY="560.0" mnemonicParsing="false" onAction="#returnButtonAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="returnButton" layoutX="562.0" layoutY="560.0" mnemonicParsing="false" onAction="#showDetailedAbnormalOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <Button fx:id="returnButton" layoutX="562.0" layoutY="560.0" mnemonicParsing="false" onAction="#showDetailedOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
       <TextField fx:id="searchTextField" layoutX="499.0" layoutY="54.0" prefHeight="43.0" prefWidth="276.0" promptText="要搜索的订单号......" />
       <Button fx:id="searchButton" layoutX="774.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchOrderByID" text="搜索" />
-      <DatePicker fx:id="datePicker" editable="false" layoutX="106.0" layoutY="53.0" onAction="#show" />
+      <DatePicker fx:id="datePicker" editable="false" layoutX="106.0" layoutY="53.0" onAction="#pickDateAction" />
    </children>
 </AnchorPane>

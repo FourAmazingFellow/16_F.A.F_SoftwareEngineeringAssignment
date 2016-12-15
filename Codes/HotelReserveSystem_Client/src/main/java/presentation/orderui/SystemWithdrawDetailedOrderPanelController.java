@@ -19,6 +19,9 @@ import vo.OrderVO;
 
 public class SystemWithdrawDetailedOrderPanelController {
 
+	@FXML
+	private Label userIDLabel;
+	
     @FXML
     private Label orderStateLabel;
 
@@ -87,13 +90,12 @@ public class SystemWithdrawDetailedOrderPanelController {
 	}
 	
 	public void showDetailedOrderPanel(String orderID) throws RemoteException {
-		System.out.println(orderID);
 		currentOrderVO = abnormalOrderChecker.getDetailedOrder(orderID);
 
-		
 		if(currentOrderVO.orderState != OrderState.ABNORMAL_ORDER)
 			systemWIthdrawOrderButton.setDisable(true);
 		
+		userIDLabel.setText(currentOrderVO.userID);
 		orderStateLabel.setText(getOrderState((OrderState) currentOrderVO.orderState));
 		isOnSaleLabel.setText(getTorF(currentOrderVO.isOnSale));
 		isCommentedLabel.setText(getTorF(currentOrderVO.isCommented));
@@ -117,6 +119,7 @@ public class SystemWithdrawDetailedOrderPanelController {
 	
 	public void systemWithdraw(){
 		boolean isRecoverHalf = false;
+		//请操作人员选择要恢复信用值的全部或一半 TO-DO
 		if(abnormalOrderChecker.systemWithdrawOrder(currentOrderVO, isRecoverHalf)){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("操作成功");
