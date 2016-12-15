@@ -74,7 +74,7 @@
          </children>
       </GridPane>
       <Button fx:id="returnButton" layoutX="249.0" layoutY="584.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="withdrawOrderButton" layoutX="434.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="撤销订单" />
-      <Button fx:id="commentButton" layoutX="605.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="评价" />
+      <Button fx:id="withdrawOrderButton" layoutX="434.0" layoutY="584.0" mnemonicParsing="false" onAction="#withDrawOrderAction" prefHeight="40.0" prefWidth="150.0" text="撤销订单" />
+      <Button fx:id="commentButton" layoutX="605.0" layoutY="584.0" mnemonicParsing="false" onAction="#commentOrder" prefHeight="40.0" prefWidth="150.0" text="评价" />
    </children>
 </AnchorPane>

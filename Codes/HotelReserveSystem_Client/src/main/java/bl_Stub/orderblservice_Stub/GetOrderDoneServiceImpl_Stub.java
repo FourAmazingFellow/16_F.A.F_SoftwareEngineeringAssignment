@@ -45,14 +45,14 @@ public class GetOrderDoneServiceImpl_Stub implements GetOrderDoneService {
 	public boolean getOrderDone(OrderVO vo) {
 		// TODO Auto-generated method stub
 		System.out.println("执行订单");
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean delayCheckIn(OrderVO vo) {
 		// TODO Auto-generated method stub
 		System.out.println("延迟入住");
-		return false;
+		return true;
 	}
 
 }

@@ -12,12 +12,14 @@ import vo.OrderVO;
 
 public class BrowseHotelOrderServiceImpl_Stub implements BrowseHotelOrderService{
 	BriefOrderInfoVO testBriefOrderInfoVO;
+	BriefOrderInfoVO testBriefOrderInfoVO_2;
 	OrderVO testOrderVO;
 	
 	public BrowseHotelOrderServiceImpl_Stub(String userID, String orderID, String hotelName, String hotelAddress, Date beginDate, 
 			Date finishDate, Enum<RoomType> roomType, int num, int totalPrice, Enum<OrderState> orderState, Date orderProducedTime,
 			Date lastedOrderDoneTime, int numOfPerson, boolean isChild, boolean isOnSale, boolean isCommented) {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, numOfPerson, totalPrice, orderState);
+		testBriefOrderInfoVO_2 = new BriefOrderInfoVO("原", "0000111100001111", hotelName, hotelAddress, beginDate, finishDate, RoomType.KING_SIZE_ROOM, numOfPerson, 400, OrderState.DONE_ORDER);
 		testOrderVO = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChild, isOnSale, isCommented);
 	}
 	
@@ -27,6 +29,7 @@ public class BrowseHotelOrderServiceImpl_Stub implements BrowseHotelOrderService
 		System.out.println("得到酒店所有订单列表");
 		ArrayList<BriefOrderInfoVO> b = new ArrayList<BriefOrderInfoVO>();
 		b.add(testBriefOrderInfoVO);
+		b.add(testBriefOrderInfoVO_2);
 		return b;
 	}
 

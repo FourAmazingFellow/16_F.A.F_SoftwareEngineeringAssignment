@@ -1,12 +1,14 @@
 package presentation.roomui.spareRoom;
 
+import com.mysql.fabric.xmlrpc.Client;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 import presentation.roomui.spareRoom.model.SpareRoom;
 import presentation.roomui.spareRoom.model.SpareRoomListWrapper;
 
@@ -24,7 +26,7 @@ public class SpareRoomTablePanelController {
     @FXML
     private TableColumn<SpareRoom, String> roomPriceColumn;
     
-    private MainApp mainApp;
+    private ClientMainApp mainApp;
     private ObservableList<SpareRoom> spareRoomData=FXCollections.observableArrayList();
     private SpareRoomListWrapper spareRoomList;
     private String address;
@@ -41,7 +43,7 @@ public class SpareRoomTablePanelController {
 
     }
     
-    public void setMainApp(MainApp mainApp) {
+    public void setMainApp(ClientMainApp mainApp) {
         this.mainApp = mainApp;
         
     }
@@ -55,13 +57,13 @@ public class SpareRoomTablePanelController {
     
     @FXML
     void handleNewCheckIn(ActionEvent event) {
-        
+        showManageCheckInPanel(address);
     }
     /*
     public void showSpareRoomTablePanel(String address){
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("roomui/spareRoom/SpareRoomTablePanel.fxml"));
+            loader.setLocation(ClientMainApp.class.getResource("roomui/spareRoom/SpareRoomTablePanel.fxml"));
             AnchorPane browseSpareRoomPanel = (AnchorPane) loader.load();
 
             // Show the scene containing the root layout.

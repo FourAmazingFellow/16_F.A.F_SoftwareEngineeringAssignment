@@ -1,43 +1,168 @@
 package presentation.roomui.CheckOut;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+
+import businesslogicservice.roomblservice.UpdateCheckInService;
+import businesslogicservice.roomblservice.UpdateCheckOutService;
+import factory.RoomUIFactoryService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
+import po.RoomType;
+import presentation.ClientMainApp;
+import presentation.roomui.CheckIn.model.CheckInListWrapper;
+import presentation.roomui.CheckOut.model.CheckOut;
+import presentation.roomui.CheckOut.model.CheckOutListWrapper;
+import presentation.roomui.util.LocalDateAdapter;
+import vo.RoomVO;
 
 public class ManageCheckOutPanelController {
     
     @FXML
-    private ChoiceBox<?> roomTypeChoiceBox;
+    private ChoiceBox<String> roomTypeChoiceBox;
     
     @FXML
-    private DatePicker startDatePicker;
+    private DatePicker startDatePicker = new DatePicker();
 
     @FXML
-    private DatePicker endDatePicker;
+    private DatePicker endDatePicker = new DatePicker(LocalDate.now());
     
     @FXML
-    private TableView<?> checkOutTable;
+    private TableView<CheckOut> checkOutTable;
     
     @FXML
-    private TableColumn<?, ?> actDepartTimeColumn;
+    private TableColumn<CheckOut,String> actDepartTimeColumn;
 
     @FXML
-    private TableColumn<?, ?> roomTypeColumn;
+    private TableColumn<CheckOut,String> roomTypeColumn;
 
     @FXML
-    private TableColumn<?, ?> roomNumColumn;
+    private TableColumn<CheckOut,String> roomNumColumn;
+    
+    private ClientMainApp mainApp;
+    private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型",
+            "单人间", "标准间", "三人间","大床房");
+    private ObservableList<CheckOut> checkOutdata = FXCollections.observableArrayList();
+    private CheckOutListWrapper checkOutList;
+    private String address;
+    private RoomUIFactoryService roomUIFactoryService;
+    private UpdateCheckOutService updateCheckOutService = roomUIFactoryService.createUpdateCheckOutService();
 
     @FXML
-    void handleSearchWithExpDepartime(ActionEvent event) {
+    private void initialize() {
+        checkOutList=new CheckOutListWrapper();
+        
+        // Initialize the checkInTable and its columns.
+        checkOutTable.setItems(checkOutdata);
+        
+        actDepartTimeColumn.setCellValueFactory(cellData -> cellData.getValue().actDepartTimeProperty());
+        roomTypeColumn.setCellValueFactory(cellData -> cellData.getValue().roomTypeProperty());
+        roomNumColumn.setCellValueFactory(cellData -> cellData.getValue().roomNumProperty());
+        
+        // Initialize the choiceBox
+        roomTypeChoiceBox.setItems(roomTypeList);
+        // 为roomTypeChoiceBox增加监听
+        roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchByRoomType(newValue.toString());
+        });
+        roomTypeChoiceBox.setTooltip(new Tooltip("show check out list of selected roomType"));
 
+    }
+    
+    public void setMainApp(ClientMainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+    
+    public void showCheckOutList(ArrayList<RoomVO> checkOutVOs) {
+        checkOutList.setCheckOutList(checkOutVOs);
+        checkOutdata.addAll(checkOutList.getCheckOutList());
+    }
+    
+    public void showAllCheckOutList(String address) {
+        this.address = address;
+        // 从bl层获得数据，并添加到checkOutData中
+        ArrayList<RoomVO> allCheckOutVOs = updateCheckOutService.getCheckOutList(address);
+        showCheckOutList(allCheckOutVOs);
+    }
+    
+    // roomTypeChoiceBox的事件行为
+    void handleSearchByRoomType(String roomTypeStr) {
+        if (roomTypeStr.equals( "全部房型")) {
+            showAllCheckOutList(address);
+        }
+        Enum<RoomType> roomType=RoomType.chineseToEnum(roomTypeStr);
+        
+        ArrayList<RoomVO> searchedCheckOutVOs = updateCheckOutService.searchCheckOutInfo(address,
+                roomType);
+        showCheckOutList(searchedCheckOutVOs);
+    }
+
+    @FXML
+    void handleSearchWithExpDepartime() {
+        Date startDate=null,endDate=null;
+        //判断时间是否为空，是否合适
+        boolean isValid=false;
+        while(!isValid){
+            LocalDate startTime = startDatePicker.getValue();
+            LocalDate endTime = endDatePicker.getValue();
+            startDate=LocalDateAdapter.toDate(startTime);
+            endDate=LocalDateAdapter.toDate(endTime);
+            if(validStartAndEndDate(startDate, endDate)){
+                isValid=true;
+            }
+        }
+        ArrayList<RoomVO> searchedCheckOutVOsbyTime = updateCheckOutService.searchCheckOutInfo(address,
+                startDate,endDate);
+        showCheckOutList(searchedCheckOutVOsbyTime);
     }
 
     @FXML
     void handleNewCheckOut(ActionEvent event) {
-
+        int selectedIndex = checkOutTable.getSelectionModel().getSelectedIndex();
+        CheckOut tmpCheckOut;
+        if(selectedIndex>=0){
+            tmpCheckOut=new CheckOut(checkOutTable.getItems().get(selectedIndex).getRoomType(),0,null);
+        }else{
+            tmpCheckOut=new CheckOut();
+        }
+        boolean isConfirmed=mainApp.showCheckOutEditDialog(tmpCheckOut, address);
+        if(isConfirmed){
+            checkOutdata.add(tmpCheckOut);
+        }
     }
 
+    private static boolean validStartAndEndDate(Date startDate,Date endDate){
+        return ManageCheckOutPanelController.validStartAndEndDate(startDate,endDate);
+    }
+    
+    /*
+    //mainApp要添加的方法
+    public void showManageCheckOutPanel(String address) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(ClientMainApp.class.getResource("roomui/CheckOut/ManageCheckOutPanel.fxml"));
+            AnchorPane manageCheckOutPanel = (AnchorPane) loader.load();
+
+            HotelStaffRootLayout.setCenter(manageCheckOutPanel);
+            
+            // Give the controller access to the main app.
+            ManageCheckOutPanelController controller = loader.getController();
+            controller.setMainApp(this);
+            //默认显示所有订单
+            controller.showAllCheckOutList(address);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    */
 }

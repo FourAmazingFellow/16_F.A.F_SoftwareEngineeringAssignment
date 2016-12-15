@@ -3,8 +3,6 @@ package presentation.orderui;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.controlsfx.dialog.Dialogs;
-
 import bl_Stub.orderblservice_Stub.BrowseUserOrderServiceImpl_Stub;
 import businesslogicservice.orderblservice.BrowseUserOrderService;
 import factory.OrderUIFactoryService;
@@ -18,13 +16,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import po.OrderState;
 import po.OrderType;
 import po.RoomType;
-import presentation.MainApp;
+import presentation.ClientMainApp;
 import vo.BriefOrderInfoVO;
 
 public class BrowseUserOrderPanelController {
@@ -70,13 +67,15 @@ public class BrowseUserOrderPanelController {
 	private OrderUIFactoryService factory;
 
 	private BrowseUserOrderService browseHelper;
-
-	private MainApp mainApp;
+	
+	private ArrayList<BriefOrderInfoVO> list;
+	
+	private ClientMainApp mainApp;
 	
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
-		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单","未执行订单","已执行订单","已撤销订单","异常订单"));
+		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单", "异常订单", "未执行订单", "已执行订单","已撤销订单"));
 		orderTypeChoiceBox.setValue("全部订单");
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("订单生成时间","订单开始时间","价格"));
 		rankTypeChoiceBox.setValue("订单生成时间");
@@ -84,15 +83,20 @@ public class BrowseUserOrderPanelController {
 		orderTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				System.out.println(newValue);
-				//TO-DO CODES
+				getBriefOrderList(ClientMainApp.userID, OrderType.values()[(int) newValue]);
 			}
 		});
 		
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				System.out.println(newValue);
+				if(newValue.intValue() == 0)
+					userOrders.getSortOrder().add(totalPriceColumn);
+				else if(newValue.intValue() == 1)
+					userOrders.getSortOrder().add(beginDateColumn);
+				else {
+					userOrders.getSortOrder().add(totalPriceColumn);
+				}
 			}
 		});
 		
@@ -103,13 +107,17 @@ public class BrowseUserOrderPanelController {
 				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
-	public void setMainApp(MainApp mainApp) {
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 	
-	public void showBriefOrderList(String userID, OrderType orderType) {
+	public void getBriefOrderList(String userID, OrderType orderType) {
+		list = browseHelper.getUserOrderList(userID, orderType);
+		showBriefOrderList();
+	}
+	
+	private void showBriefOrderList() {
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
-		ArrayList<BriefOrderInfoVO> list = browseHelper.getUserOrderList(userID, orderType);
 		for (BriefOrderInfoVO vo : list) {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}

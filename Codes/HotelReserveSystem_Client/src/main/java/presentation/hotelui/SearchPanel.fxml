@@ -12,21 +12,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.SearchPanelController">
    <children>
-      <Button fx:id="searchButton" alignment="CENTER" layoutX="367.0" layoutY="475.0" mnemonicParsing="false" opacity="0.8" prefHeight="67.0" prefWidth="196.0" text="搜索" textAlignment="CENTER" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="367.0">
+      <Button fx:id="searchButton" alignment="CENTER" layoutX="324.0" layoutY="474.0" mnemonicParsing="false" opacity="0.8" prefHeight="67.0" prefWidth="196.0" text="搜索" textAlignment="CENTER" AnchorPane.leftAnchor="324.0" AnchorPane.rightAnchor="410.0">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" layoutX="256.0" layoutY="166.0" prefHeight="74.0" prefWidth="493.0" styleClass="label-header" stylesheets="@../DarkTheme.css" text="F.A.F 酒店预定系统" textAlignment="CENTER" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="256.0" AnchorPane.topAnchor="50.0">
-         <font>
-            <Font name="System Bold Italic" size="36.0" />
-         </font>
-      </Label>
-      <TextField fx:id="searchArea" layoutX="93.0" layoutY="248.0" prefHeight="70.0" prefWidth="646.0" promptText="请输入搜索的酒店内容..." stylesheets="@../DarkTheme.css">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <ChoiceBox fx:id="districtChooser" layoutX="739.0" layoutY="248.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="143.0" styleClass="choice-box-big" stylesheets="@../DarkTheme.css" />
+      <ChoiceBox fx:id="districtChooser" layoutX="324.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="133.0" styleClass="choice-box-big" stylesheets="@../DarkTheme.css" />
+      <DatePicker layoutX="118.0" layoutY="271.0" prefHeight="98.0" prefWidth="175.0" />
+      <ChoiceBox layoutX="474.0" layoutY="285.0" prefHeight="67.0" prefWidth="150.0" />
+      <DatePicker layoutX="638.0" layoutY="271.0" prefHeight="98.0" prefWidth="175.0" />
+      <ChoiceBox layoutX="196.0" layoutY="164.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="528.0" layoutY="164.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
