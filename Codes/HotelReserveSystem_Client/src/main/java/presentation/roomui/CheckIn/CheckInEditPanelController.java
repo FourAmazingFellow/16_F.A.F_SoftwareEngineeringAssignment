@@ -10,6 +10,7 @@ import businesslogicservice.roomblservice.UpdateCheckInService;
 import factory.RoomUIFactoryService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -60,6 +61,20 @@ public class CheckInEditPanelController {
     private RoomUIFactoryService roomUIFactoryService;
     private UpdateCheckInService updateCheckInService = roomUIFactoryService.createUpdateCheckInService();
     private String address;
+    
+    @FXML
+    void handleClickedRoomNum(ActionEvent event) {
+        if(roomNumTextField.getText()=="请输入入住房间数..."){
+            roomNumTextField.setText("");
+        }
+    }
+    
+    @FXML
+    void handleMouseMoveRoomNum(ActionEvent event) {
+        if(roomNumTextField.getText()==""){
+            roomNumTextField.setText("请输入入住房间数...");
+        }
+    }
     
     @FXML
     private void initialize() {
@@ -246,5 +261,6 @@ public class CheckInEditPanelController {
         }
         return true;
     }
+    
     
 }

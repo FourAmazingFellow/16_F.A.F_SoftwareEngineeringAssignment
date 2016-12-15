@@ -76,6 +76,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         Date availbleEndTime=calendar.getTime();
         //如果预订时间不在未来一周内，返回null
         if(!(vo.beginDate.compareTo(today)>=0&&vo.beginDate.compareTo(vo.finishDate)<=0&&vo.finishDate.compareTo(availbleEndTime)<=0)){
+            System.out.println("预订时间不在未来一周内");
             return null;
         }
         
