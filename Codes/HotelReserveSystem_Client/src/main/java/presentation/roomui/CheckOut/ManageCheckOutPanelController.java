@@ -17,7 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import po.RoomType;
-import presentation.ClientMainApp;
+import presentation.HotelMainApp;
 import presentation.roomui.CheckIn.model.CheckInListWrapper;
 import presentation.roomui.CheckOut.model.CheckOut;
 import presentation.roomui.CheckOut.model.CheckOutListWrapper;
@@ -47,7 +47,7 @@ public class ManageCheckOutPanelController {
     @FXML
     private TableColumn<CheckOut,String> roomNumColumn;
     
-    private ClientMainApp mainApp;
+    private HotelMainApp mainApp;
     private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型",
             "单人间", "标准间", "三人间","大床房");
     private ObservableList<CheckOut> checkOutdata = FXCollections.observableArrayList();
@@ -77,7 +77,7 @@ public class ManageCheckOutPanelController {
 
     }
     
-    public void setMainApp(ClientMainApp mainApp) {
+    public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
     }
     
@@ -143,26 +143,5 @@ public class ManageCheckOutPanelController {
         return ManageCheckOutPanelController.validStartAndEndDate(startDate,endDate);
     }
     
-    /*
-    //mainApp要添加的方法
-    public void showManageCheckOutPanel(String address) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ClientMainApp.class.getResource("roomui/CheckOut/ManageCheckOutPanel.fxml"));
-            AnchorPane manageCheckOutPanel = (AnchorPane) loader.load();
-
-            HotelStaffRootLayout.setCenter(manageCheckOutPanel);
-            
-            // Give the controller access to the main app.
-            ManageCheckOutPanelController controller = loader.getController();
-            controller.setMainApp(this);
-            //默认显示所有订单
-            controller.showAllCheckOutList(address);
-
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
+   
 }

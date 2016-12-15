@@ -21,7 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import po.RoomType;
-import presentation.ClientMainApp;
+import presentation.HotelMainApp;
 import presentation.roomui.CheckIn.model.CheckIn;
 import presentation.roomui.CheckIn.model.CheckInListWrapper;
 import presentation.roomui.util.LocalDateAdapter;
@@ -53,7 +53,7 @@ public class ManageCheckInPanelController {
     @FXML
     private TableColumn<CheckIn, String> expDepartTimeColumn;
 
-    private ClientMainApp mainApp;
+    private HotelMainApp mainApp;
     private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型",
             "单人间", "标准间", "三人间","大床房");
     private ObservableList<CheckIn> checkIndata = FXCollections.observableArrayList();
@@ -83,7 +83,7 @@ public class ManageCheckInPanelController {
         roomTypeChoiceBox.setTooltip(new Tooltip("show check in list of selected roomType"));
     }
 
-    public void setMainApp(ClientMainApp mainApp) {
+    public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -173,26 +173,4 @@ public class ManageCheckInPanelController {
         }
         return true;
     }
-    /*
-    //mainApp要添加的方法
-    public void showManageCheckInPanel(String address) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ClientMainApp.class.getResource("roomui/CheckIn/ManageCheckInPanel.fxml"));
-            AnchorPane manageCheckInPanel = (AnchorPane) loader.load();
-
-            HotelStaffRootLayout.setCenter(manageCheckInPanel);
-            
-            // Give the controller access to the main app.
-            ManageCheckInPanelController controller = loader.getController();
-            controller.setMainApp(this);
-            //默认显示所有订单
-            controller.showAllCheckInList(address);
-
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 }

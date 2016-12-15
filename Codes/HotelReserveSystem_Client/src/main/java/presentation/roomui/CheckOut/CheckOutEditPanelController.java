@@ -73,7 +73,7 @@ public class CheckOutEditPanelController {
     }
 
     //把默认的checkOut先放进去
-    public void setCheckIn(CheckOut checkOut,String address) {
+    public void setCheckOut(CheckOut checkOut,String address) {
         //把传进来的checkIn设为成员变量，便于修改
         this.checkOut=checkOut;
         this.address=address;
@@ -197,37 +197,5 @@ public class CheckOutEditPanelController {
         return CheckInEditPanelController.isDigit(str);
     }
 
-    /*
-    //写mainApp中关于这个类的方法
-    public boolean showCheckOutEditDialog(CheckOut checkOut, String address) {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("roomui/CheckOut/CheckOutEditPanel.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit CheckOut");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            CheckOutEditPanelController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            controller.setCheckOut(checkOut, address);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-            return controller.isConfirmed();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-    */
     
 }

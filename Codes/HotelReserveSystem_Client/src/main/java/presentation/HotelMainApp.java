@@ -7,11 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import po.OrderType;
 import presentation.mainui.HotelRootBoardController;
 import presentation.orderui.BrowseHotelOrderPanelController;
 import presentation.orderui.GetDetailedOrderDonePanelController;
+import presentation.roomui.CheckIn.CheckInEditPanelController;
+import presentation.roomui.CheckIn.ManageCheckInPanelController;
+import presentation.roomui.CheckIn.model.CheckIn;
+import presentation.roomui.CheckOut.CheckOutEditPanelController;
+import presentation.roomui.CheckOut.ManageCheckOutPanelController;
+import presentation.roomui.CheckOut.model.CheckOut;
+import presentation.roomui.spareRoom.SpareRoomTablePanelController;
 
 public class HotelMainApp extends Application {
 	
@@ -102,4 +110,154 @@ public class HotelMainApp extends Application {
 	public void showHotelMainPanel() {
 		
 	}
+	
+	/**
+	 * 办理入住界面
+	 */
+	public void showManageCheckInPanel(String address) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HotelMainApp.class.getResource("roomui/CheckIn/ManageCheckInPanel.fxml"));
+            AnchorPane manageCheckInPanel = (AnchorPane) loader.load();
+
+            hotelRootLayout.setCenter(manageCheckInPanel);
+            
+            // Give the controller access to the main app.
+            ManageCheckInPanelController controller = loader.getController();
+            controller.setMainApp(this);
+            //默认显示所有订单
+            controller.showAllCheckInList(address);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	/**
+	 * 编辑入住信息界面
+	 * @param checkIn
+	 * @param address
+	 * @return
+	 * @see
+	 */
+	 public boolean showCheckInEditDialog(CheckIn checkIn, String address) {
+	        try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(HotelMainApp.class.getResource("roomui/CheckIn/CheckInEditPanel.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Edit CheckIn");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(primaryStage);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            CheckInEditPanelController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setCheckIn(checkIn, address);;
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isConfirmed();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	 
+	 /**
+	  * 办理入住界面
+	  * @param address
+	  * @see
+	  */
+	 public void showManageCheckOutPanel(String address) {
+	        try {
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(HotelMainApp.class.getResource("roomui/CheckOut/ManageCheckOutPanel.fxml"));
+	            AnchorPane manageCheckOutPanel = (AnchorPane) loader.load();
+
+	            hotelRootLayout.setCenter(manageCheckOutPanel);
+	            
+	            // Give the controller access to the main app.
+	            ManageCheckOutPanelController controller = loader.getController();
+	            controller.setMainApp(this);
+	            //默认显示所有订单
+	            controller.showAllCheckOutList(address);
+
+	            primaryStage.show();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	 
+	 
+	 /**
+	  * 编辑退房信息界面
+	  * @param checkOut
+	  * @param address
+	  * @return
+	  * @see
+	  */
+	 public boolean showCheckOutEditDialog(CheckOut checkOut, String address) {
+	        try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(HotelMainApp.class.getResource("roomui/CheckOut/CheckOutEditPanel.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Edit CheckOut");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(primaryStage);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            CheckOutEditPanelController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setCheckOut(checkOut, address);
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isConfirmed();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	 
+	 /**
+	  * 浏览空房界面
+	  * @param address
+	  * @see
+	  */
+	 public void showSpareRoomTablePanel(String address){
+	        try {
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(HotelMainApp.class.getResource("roomui/spareRoom/SpareRoomTablePanel.fxml"));
+	            AnchorPane browseSpareRoomPanel = (AnchorPane) loader.load();
+
+	            // Show the scene containing the root layout.
+	            Scene scene = new Scene(browseSpareRoomPanel);
+	            primaryStage.setScene(scene);
+
+	            // Give the controller access to the main app.
+	            SpareRoomTablePanelController spareRoomController = loader.getController();
+	            spareRoomController.setMainApp(this);
+	            //默认显示空房列表
+	            spareRoomController.showSpareRoomList(address);;
+
+	            primaryStage.show();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
 }
