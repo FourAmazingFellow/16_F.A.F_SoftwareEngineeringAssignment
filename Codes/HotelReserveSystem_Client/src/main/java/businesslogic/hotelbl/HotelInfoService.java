@@ -3,6 +3,7 @@ package businesslogic.hotelbl;
 import java.util.ArrayList;
 
 import po.BusinessDistrictPO;
+import po.RoomType;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
@@ -36,5 +37,14 @@ public interface HotelInfoService {
 	 * @see
 	 */
 	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city);
+	
+	/**
+	 * 获得某个酒店的某个房型的原始价格
+	 * @param hotelAddress
+	 * @param roomType
+	 * @return 若不存在该房型，则返回-1，若存在，则返回对应的价格
+	 * @see
+	 */
+	public int getRoomPrice(String hotelAddress, RoomType roomType);
 
 }

@@ -71,4 +71,9 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
         return businessDistrictPOs;
     }
 
+	@Override
+	public int getRoomPrice(String hotelAddress, RoomType roomType) {
+		return 100;
+	}
+
 }

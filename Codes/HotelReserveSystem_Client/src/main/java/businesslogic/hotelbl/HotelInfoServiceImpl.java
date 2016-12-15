@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import dataservice.hotelDAO.HotelDAO;
 import po.BusinessDistrictPO;
+import po.RoomType;
 import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
@@ -61,5 +62,15 @@ public class HotelInfoServiceImpl implements HotelInfoService, AvailableRoomServ
 			return null;
 		}
     }
+
+	@Override
+	public int getRoomPrice(String hotelAddress, RoomType roomType) {
+		try {
+			return hotelDAO.getHotelDetails(hotelAddress).getRoomTypeAndPrice().get(roomType);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 }
