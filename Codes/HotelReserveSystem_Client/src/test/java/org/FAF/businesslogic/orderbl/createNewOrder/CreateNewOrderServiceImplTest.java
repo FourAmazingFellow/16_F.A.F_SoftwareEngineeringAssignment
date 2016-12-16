@@ -80,8 +80,8 @@ public class CreateNewOrderServiceImplTest {
 		this.userID = "原";
 		this.hotelName = "Jingling Hotel";
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
-		this.beginDate = new Date(116, 9, 19);
-		this.finishDate = new Date(116, 9, 20);
+		this.beginDate = new Date(116, 11, 15);
+		this.finishDate = new Date(116, 11, 16);
 		this.roomType = RoomType.STANDARD_ROOM;
 		this.num = 1;
 		this.totalPrice = 200;
@@ -165,7 +165,7 @@ public class CreateNewOrderServiceImplTest {
 	@Test
 	public void getAvailableRoomNumTest_1() {
 		int num = -1;
-		num = createNewOrderServiceImpl.getAvailableRoomNum(hotelAddress, RoomType.STANDARD_ROOM, new Date(116, 11, 5));
+		num = createNewOrderServiceImpl.getAvailableRoomNum(hotelAddress, RoomType.STANDARD_ROOM, new Date(116, 11, 15));
 		assertEquals("CreateNewOrderServiceImpl.getAvailableRoomNum has an Error!", roomNum, num);
 	}
 
@@ -181,7 +181,7 @@ public class CreateNewOrderServiceImplTest {
 	@Test
 	public void checkNewOrderTest_2() {
 		@SuppressWarnings("deprecation")
-		OrderVO orderVO = new OrderVO("Accident", "8", hotelName, hotelAddress, new Date(116,11,5), new Date(116,11,6), roomType, num,
+		OrderVO orderVO = new OrderVO("Accident", "8", hotelName, hotelAddress, new Date(116,11,15), new Date(116,11,16), roomType, num,
 				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
 				isCommented);
 		ResultMessage result = createNewOrderServiceImpl.checkNewOrder(orderVO);

@@ -83,6 +83,7 @@ public class ManageCheckOutPanelController {
     
     public void showCheckOutList(ArrayList<RoomVO> checkOutVOs) {
         checkOutList.setCheckOutList(checkOutVOs);
+        checkOutdata.clear();
         checkOutdata.addAll(checkOutList.getCheckOutList());
     }
     
@@ -126,16 +127,16 @@ public class ManageCheckOutPanelController {
 
     @FXML
     void handleNewCheckOut(ActionEvent event) {
-        int selectedIndex = checkOutTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = roomTypeChoiceBox.getSelectionModel().getSelectedIndex();
         CheckOut tmpCheckOut;
         if(selectedIndex>=0){
-            tmpCheckOut=new CheckOut(checkOutTable.getItems().get(selectedIndex).getRoomType(),0,null);
+            tmpCheckOut=new CheckOut(RoomType.chineseToEnum(roomTypeChoiceBox.getItems().get(selectedIndex)),0,null);
         }else{
             tmpCheckOut=new CheckOut();
         }
         boolean isConfirmed=mainApp.showCheckOutEditDialog(tmpCheckOut, address);
         if(isConfirmed){
-            checkOutdata.add(tmpCheckOut);
+            checkOutTable.getItems().add(tmpCheckOut);
         }
     }
 

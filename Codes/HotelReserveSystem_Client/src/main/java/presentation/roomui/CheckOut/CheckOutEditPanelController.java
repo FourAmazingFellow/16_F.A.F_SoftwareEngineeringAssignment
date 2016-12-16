@@ -55,6 +55,7 @@ public class CheckOutEditPanelController {
     @FXML
     private void initialize() {
         roomNumTextField.setText("请输入退房房间数...");
+        
         // Initialize the choiceBox
         roomTypeChoiceBox.setItems(roomTypeList);
         //增加提示词
@@ -77,6 +78,10 @@ public class CheckOutEditPanelController {
         //把传进来的checkIn设为成员变量，便于修改
         this.checkOut=checkOut;
         this.address=address;
+        
+        if(checkOut.getRoomType()!=null){
+            roomTypeChoiceBox.getSelectionModel().select(RoomType.enumToChinese(checkOut.getRoomType()));
+        }
     }
     
 
@@ -114,7 +119,7 @@ public class CheckOutEditPanelController {
             return;
         }
       //把新建的checkOut传给上一个界面
-        checkOut.setRoomType(RoomType.chineseToEnum(roomTypeChoiceBox.getValue()));
+        checkOut.setRoomType(RoomType.chineseToEnum(roomTypeChoiceBox.getSelectionModel().getSelectedItem()));
         checkOut.setRoomNum(Integer.parseInt(roomNumTextField.getText()));
         checkOut.setActDepartTime(LocalDateAdapter.toDate(actDepartTimeDatepicker.getValue()), 
                 Integer.parseInt(hourTextField.getText()), Integer.parseInt(minuteTxtField.getText()));
@@ -135,7 +140,7 @@ public class CheckOutEditPanelController {
     
     private boolean isInputValid() {
       //判断格式对否
-        if(!isDigit(roomNumTextField.getText())){
+        if(roomNumTextField.getText()==""||!isDigit(roomNumTextField.getText())){
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("退房信息错误");
             alert.setHeaderText("退房房间数量错误");

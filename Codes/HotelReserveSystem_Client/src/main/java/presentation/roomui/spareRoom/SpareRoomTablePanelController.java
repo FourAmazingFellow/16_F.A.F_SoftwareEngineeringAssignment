@@ -50,6 +50,7 @@ public class SpareRoomTablePanelController {
         this.address=address;
         //从bl层获得数据，并添加到spareRoomData中
         spareRoomList.setSpareRoomListFromData(address);
+        spareRoomData.clear();
         spareRoomData.addAll(spareRoomList.getSpareRoomList());
     }
     

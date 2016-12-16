@@ -22,10 +22,10 @@ public class Strategy {
     private StringProperty tradeArea;
     private StringProperty vipRank;
     
-    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
     
-    public Strategy(){
-        this(null);
+    public Strategy(Enum<StrategyType> strategyType){
+        this(new StrategyVO("", strategyType, "", 0));
     }
     
     public Strategy(StrategyVO strategyVO){
@@ -166,5 +166,18 @@ public class Strategy {
     
     public int getVipRank(){
         return Integer.parseInt(vipRank.get());
+    }
+    
+    public StrategyVO toVO(String address) throws ParseException{
+        if(getStrategyType()==StrategyType.BirthdayPromotion){
+            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount());
+        }else if(getStrategyType()==StrategyType.CooperationEnterprisePromotion){
+            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getEnterpriseName(), getSecurityCode());
+        }else if(getStrategyType()==StrategyType.MultiRoomPromotion){
+            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getMinRoomNum());
+        }else if(getStrategyType()==StrategyType.SpecificTimePromotion){
+            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getStartTime(), getEndTime());
+        }
+        return null;
     }
 }

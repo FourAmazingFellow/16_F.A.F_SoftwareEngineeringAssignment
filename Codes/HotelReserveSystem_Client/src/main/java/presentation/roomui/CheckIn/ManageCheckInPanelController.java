@@ -1,17 +1,13 @@
 package presentation.roomui.CheckIn;
 
-import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import factory.RoomUIFactoryService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -89,6 +85,7 @@ public class ManageCheckInPanelController {
 
     public void showCheckInList(ArrayList<RoomVO> checkInVOs) {
         checkInList.setCheckInList(checkInVOs);
+        checkIndata.clear();
         checkIndata.addAll(checkInList.getCheckInList());
     }
 
@@ -132,16 +129,16 @@ public class ManageCheckInPanelController {
 
     @FXML
     void handleNewCheckIn() {
-        int selectedIndex = checkInTable.getSelectionModel().getSelectedIndex();
+        int selectedIndex = roomTypeChoiceBox.getSelectionModel().getSelectedIndex();
         CheckIn tmpCheckIn;
-        if(selectedIndex>=0){
-            tmpCheckIn=new CheckIn(checkInTable.getItems().get(selectedIndex).getRoomType(),0,null,null);
+        if(selectedIndex>=1){
+            tmpCheckIn=new CheckIn(RoomType.chineseToEnum(roomTypeChoiceBox.getItems().get(selectedIndex)),0,null,null);
         }else{
             tmpCheckIn=new CheckIn();
         }
         boolean isConfirmed=mainApp.showCheckInEditDialog(tmpCheckIn, address);
         if(isConfirmed){
-            checkIndata.add(tmpCheckIn);
+            checkInTable.getItems().add(tmpCheckIn);
         }
     }
 

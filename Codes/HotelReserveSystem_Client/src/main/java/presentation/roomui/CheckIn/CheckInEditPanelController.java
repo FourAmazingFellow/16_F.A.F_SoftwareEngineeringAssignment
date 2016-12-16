@@ -63,20 +63,6 @@ public class CheckInEditPanelController {
     private String address;
     
     @FXML
-    void handleClickedRoomNum(ActionEvent event) {
-        if(roomNumTextField.getText()=="请输入入住房间数..."){
-            roomNumTextField.setText("");
-        }
-    }
-    
-    @FXML
-    void handleMouseMoveRoomNum(ActionEvent event) {
-        if(roomNumTextField.getText()==""){
-            roomNumTextField.setText("请输入入住房间数...");
-        }
-    }
-    
-    @FXML
     private void initialize() {
         roomNumTextField.setText("请输入入住房间数...");
         // Initialize the choiceBox
@@ -95,6 +81,20 @@ public class CheckInEditPanelController {
         minuteTxtField2.setText("00");
     }
     
+    @FXML
+    void handleClickedRoomNum(ActionEvent event) {
+        if(roomNumTextField.getText()=="请输入入住房间数..."){
+            roomNumTextField.setText("");
+        }
+    }
+    
+    @FXML
+    void handleMouseMoveRoomNum(ActionEvent event) {
+        if(roomNumTextField.getText()==""){
+            roomNumTextField.setText("请输入入住房间数...");
+        }
+    }
+    
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
@@ -107,7 +107,7 @@ public class CheckInEditPanelController {
         
         //设置默认选择的房间类型
         if(checkIn.getRoomType()!=null)
-            roomTypeChoiceBox.setValue(RoomType.enumToChinese(checkIn.getRoomType()));
+            roomTypeChoiceBox.getSelectionModel().select(RoomType.enumToChinese(checkIn.getRoomType()));
     }
     
     public boolean isConfirmed() {
@@ -151,7 +151,7 @@ public class CheckInEditPanelController {
         } 
         
         //把新建的checkIn传给上一个界面
-        checkIn.setRoomType(RoomType.chineseToEnum(roomTypeChoiceBox.getValue()));
+        checkIn.setRoomType(RoomType.chineseToEnum(roomTypeChoiceBox.getSelectionModel().getSelectedItem()));
         checkIn.setRoomNum(Integer.parseInt(roomNumTextField.getText()));
         checkIn.setCheckInTime(LocalDateAdapter.toDate(checkInTimeDatepicker.getValue()), 
                 Integer.parseInt(hourTextField1.getText()), Integer.parseInt(minuteTxtField1.getText()));
@@ -176,7 +176,7 @@ public class CheckInEditPanelController {
     
     private boolean isInputValid() {
         //判断格式对否
-        if(!isDigit(roomNumTextField.getText())){
+        if(roomNumTextField.getText()==""||!isDigit(roomNumTextField.getText())){
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("入住信息错误");
             alert.setHeaderText("入住房间数量错误");
