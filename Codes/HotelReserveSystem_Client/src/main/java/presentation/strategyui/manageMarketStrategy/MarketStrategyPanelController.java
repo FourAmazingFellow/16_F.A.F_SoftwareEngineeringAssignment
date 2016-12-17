@@ -92,6 +92,7 @@ public class MarketStrategyPanelController {
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
     
+    
     private ObservableList<String> tradeAreaList=FXCollections.observableArrayList();
     
     @FXML
@@ -115,7 +116,7 @@ public class MarketStrategyPanelController {
         endTimeColumn3.setCellValueFactory(cellData -> cellData.getValue().endTimeProperty());
         
         // 为tabPane增加监听,每次切换策略类型，都刷新一下策略列表
-        strategyTypeTabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->{showAllPromotionList(address);});;
+        strategyTypeTabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->{showAllMarketStrategyList(address);});
 
     }
     
@@ -309,26 +310,6 @@ public class MarketStrategyPanelController {
                 specialTimeMarketStrategyTable.getItems().add(strategy);
         }
     }
-    
-    //写mainApp的方法
-    /**
-    try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPabel.fxml"));
-        AnchorPane manageMarketStrategyPanel = (AnchorPane) loader.load();
 
-        hotelRootLayout.setCenter(manageMarketStrategyPanel);
-        
-        // Give the controller access to the main app.
-        MarketStrategyPanelController controller = loader.getController();
-        controller.setMainApp(this);
-        //默认显示所有订单
-        controller.showAllMarketStrategyList(address);;
-
-        primaryStage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    */
 
 }

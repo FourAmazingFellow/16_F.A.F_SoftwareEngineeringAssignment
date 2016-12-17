@@ -20,6 +20,10 @@ import presentation.roomui.CheckOut.CheckOutEditPanelController;
 import presentation.roomui.CheckOut.ManageCheckOutPanelController;
 import presentation.roomui.CheckOut.model.CheckOut;
 import presentation.roomui.spareRoom.SpareRoomTablePanelController;
+import presentation.strategyui.manageHotelPromotion.PromotionEditPanelController;
+import presentation.strategyui.manageMarketStrategy.MarketStrategyEditPanelController;
+import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController;
+import presentation.strategyui.model.Strategy;
 
 public class HotelMainApp extends Application {
 	
@@ -97,7 +101,6 @@ public class HotelMainApp extends Application {
 			
 			primaryStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	}
@@ -258,6 +261,133 @@ public class HotelMainApp extends Application {
 	            primaryStage.show();
 	        } catch (IOException e) {
 	            e.printStackTrace();
+	        }
+	    }
+	 
+	 /**
+	  * 管理促销策略界面
+	  * @param address
+	  * @see
+	  */
+	 public void showManagePromotionPanel(String address){
+	     try {
+	         FXMLLoader loader = new FXMLLoader();
+	         loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPabel.fxml"));
+	         AnchorPane manageMarketStrategyPanel = (AnchorPane) loader.load();
+
+	         hotelRootLayout.setCenter(manageMarketStrategyPanel);
+	         
+	         // Give the controller access to the main app.
+	         MarketStrategyPanelController controller = loader.getController();
+	         controller.setMainApp(this);
+	         //默认显示所有订单
+	         controller.showAllMarketStrategyList(address);;
+
+	         primaryStage.show();
+	     } catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	 }
+	 
+	 
+	 /**
+	  * 促销策略编辑界面
+	  * @param strategy
+	  * @param address
+	  * @param isNewaPromotion
+	  * @return
+	  * @see
+	  */
+	 public boolean showPromotionEditDialog(Strategy strategy, String address, boolean isNewaPromotion) {
+	        try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(HotelMainApp.class.getResource("strategyui/manegeHotelPromotion/PromotionEditPanel.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Edit Promotion");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(primaryStage);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            PromotionEditPanelController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setStrategy(strategy, address, isNewaPromotion);
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isConfirmed();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+	 
+	 /**
+	  * 管理营销策略界面
+	  * @param address
+	  * @see
+	  */
+	 public void showManageMarketStrategyPanel(String address){
+	     try {
+	         FXMLLoader loader = new FXMLLoader();
+	         loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPabel.fxml"));
+	         AnchorPane manageMarketStrategyPanel = (AnchorPane) loader.load();
+
+	         hotelRootLayout.setCenter(manageMarketStrategyPanel);
+	         
+	         // Give the controller access to the main app.
+	         MarketStrategyPanelController controller = loader.getController();
+	         controller.setMainApp(this);
+	         //默认显示所有订单
+	         controller.showAllMarketStrategyList(address);;
+
+	         primaryStage.show();
+	     } catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	 }
+	 
+	 /**
+	  * 营销策略编辑界面
+	  * @param strategy
+	  * @param address
+	  * @param isNewaPromotion
+	  * @return
+	  * @see
+	  */
+	 public boolean showMarketStrategyEditDialog(Strategy strategy, String address, boolean isNewaPromotion) {
+	        try {
+	            // Load the fxml file and create a new stage for the popup dialog.
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(HotelMainApp.class.getResource("strategyui/manegeMarketStrategy/MarketStrategyEditPanel.fxml"));
+	            AnchorPane page = (AnchorPane) loader.load();
+
+	            // Create the dialog Stage.
+	            Stage dialogStage = new Stage();
+	            dialogStage.setTitle("Edit MarketStrategy");
+	            dialogStage.initModality(Modality.WINDOW_MODAL);
+	            dialogStage.initOwner(primaryStage);
+	            Scene scene = new Scene(page);
+	            dialogStage.setScene(scene);
+
+	            // Set the person into the controller.
+	            MarketStrategyEditPanelController controller = loader.getController();
+	            controller.setDialogStage(dialogStage);
+	            controller.setStrategy(strategy, address, isNewaPromotion);
+
+	            // Show the dialog and wait until the user closes it
+	            dialogStage.showAndWait();
+
+	            return controller.isConfirmed();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            return false;
 	        }
 	    }
 }

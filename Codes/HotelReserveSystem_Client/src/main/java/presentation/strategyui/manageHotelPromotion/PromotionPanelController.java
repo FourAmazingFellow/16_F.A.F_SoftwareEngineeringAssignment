@@ -137,7 +137,11 @@ public class PromotionPanelController {
         endTimeColumn4.setCellValueFactory(cellData -> cellData.getValue().endTimeProperty());
 
         // 为tabPane增加监听,每次切换策略类型，都刷新一下策略列表
-        strategyTypeTabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->{showAllPromotionList(address);});;
+        strategyTypeTabPane.getSelectionModel().selectedIndexProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    showAllPromotionList(address);
+                });
+        ;
     }
 
     public void setMainApp(HotelMainApp mainApp) {
@@ -232,26 +236,26 @@ public class PromotionPanelController {
     @FXML
     void handleNewPromotion() {
         int selectedTab = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
-        Strategy strategy=null;
-        if(selectedTab==0){
-            strategy=new Strategy(StrategyType.BirthdayPromotion);
-        }else if(selectedTab==1)
-            strategy=new Strategy(StrategyType.MultiRoomPromotion);
-        else if(selectedTab==2)
-            strategy=new Strategy(StrategyType.CooperationEnterprisePromotion);
-        else if(selectedTab==3)
-            strategy=new Strategy(StrategyType.SpecificTimePromotion);
-        
-        boolean isNewaPromotion=true;
-        boolean isConfirmed=mainApp.showPromotionEditDialog(strategy,address,isNewaPromotion);
-        if(isConfirmed){
-            if(selectedTab==0)
+        Strategy strategy = null;
+        if (selectedTab == 0) {
+            strategy = new Strategy(StrategyType.BirthdayPromotion);
+        } else if (selectedTab == 1)
+            strategy = new Strategy(StrategyType.MultiRoomPromotion);
+        else if (selectedTab == 2)
+            strategy = new Strategy(StrategyType.CooperationEnterprisePromotion);
+        else if (selectedTab == 3)
+            strategy = new Strategy(StrategyType.SpecificTimePromotion);
+
+        boolean isNewaPromotion = true;
+        boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, address, isNewaPromotion);
+        if (isConfirmed) {
+            if (selectedTab == 0)
                 birthdayPromotionTable.getItems().add(strategy);
-            else if(selectedTab==1)
+            else if (selectedTab == 1)
                 multiRoomPromotionTable.getItems().add(strategy);
-            else if(selectedTab==2)
+            else if (selectedTab == 2)
                 cooperationEnterprisePromotionTable.getItems().add(strategy);
-            else if(selectedTab==3)
+            else if (selectedTab == 3)
                 spcialTimePromotionTable.getItems().add(strategy);
         }
     }
@@ -259,18 +263,18 @@ public class PromotionPanelController {
     @FXML
     void handleModifyPromotion() {
         int selectedTab = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
-        int selectedStrategy=-1;
-        Strategy strategy=null;
-        if(selectedTab==0){
-            selectedStrategy=birthdayPromotionTable.getSelectionModel().getSelectedIndex();
-        }else if(selectedTab==1)
-            selectedStrategy=multiRoomPromotionTable.getSelectionModel().getSelectedIndex();
-        else if(selectedTab==2)
-            selectedStrategy=cooperationEnterprisePromotionTable.getSelectionModel().getSelectedIndex();
-        else if(selectedTab==3)
-            selectedStrategy=spcialTimePromotionTable.getSelectionModel().getSelectedIndex();
-        //如果没有选中策略，则警告
-        if(selectedStrategy<0){
+        int selectedStrategy = -1;
+        Strategy strategy = null;
+        if (selectedTab == 0) {
+            selectedStrategy = birthdayPromotionTable.getSelectionModel().getSelectedIndex();
+        } else if (selectedTab == 1)
+            selectedStrategy = multiRoomPromotionTable.getSelectionModel().getSelectedIndex();
+        else if (selectedTab == 2)
+            selectedStrategy = cooperationEnterprisePromotionTable.getSelectionModel().getSelectedIndex();
+        else if (selectedTab == 3)
+            selectedStrategy = spcialTimePromotionTable.getSelectionModel().getSelectedIndex();
+        // 如果没有选中策略，则警告
+        if (selectedStrategy < 0) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("无法修改");
             alert.setHeaderText("无法进行修改");
@@ -278,30 +282,33 @@ public class PromotionPanelController {
             alert.showAndWait();
             return;
         }
-        //得到要修改的strategy
-        if(selectedTab==0){
-            strategy=new Strategy(birthDayPromotionData.get(selectedStrategy).toVO(address));
-        }else if(selectedTab==1)
-            strategy=new Strategy(mutiRoomPromotionData.get(selectedStrategy).toVO(address));
-        else if(selectedTab==2)
-            strategy=new Strategy(enterprisePromotinonData.get(selectedStrategy).toVO(address));
-        else if(selectedTab==3)
-            strategy=new Strategy(specialTimePromotionData.get(selectedStrategy).toVO(address));
-        
-        boolean isNewaPromotion=false;
-        boolean isConfirmed=mainApp.showPromotionEditPanel(strategy,address,isNewaPromotion);
-        if(isConfirmed){
-            if(selectedTab==0)
+        // 得到要修改的strategy
+        try {
+            if (selectedTab == 0) {
+                strategy = new Strategy(birthDayPromotionData.get(selectedStrategy).toVO(address));
+            } else if (selectedTab == 1)
+                strategy = new Strategy(mutiRoomPromotionData.get(selectedStrategy).toVO(address));
+            else if (selectedTab == 2)
+                strategy = new Strategy(enterprisePromotinonData.get(selectedStrategy).toVO(address));
+            else if (selectedTab == 3)
+                strategy = new Strategy(specialTimePromotionData.get(selectedStrategy).toVO(address));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        boolean isNewaPromotion = false;
+        boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, address, isNewaPromotion);
+        if (isConfirmed) {
+            if (selectedTab == 0)
                 birthdayPromotionTable.getItems().add(strategy);
-            else if(selectedTab==1)
+            else if (selectedTab == 1)
                 multiRoomPromotionTable.getItems().add(strategy);
-            else if(selectedTab==2)
+            else if (selectedTab == 2)
                 cooperationEnterprisePromotionTable.getItems().add(strategy);
-            else if(selectedTab==3)
+            else if (selectedTab == 3)
                 spcialTimePromotionTable.getItems().add(strategy);
         }
     }
-    
+
     @FXML
     void handleDeletePromotion() {
         int selectedTab = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
@@ -324,13 +331,13 @@ public class PromotionPanelController {
             return;
         }
         try {
-            if(selectedTab==0)
+            if (selectedTab == 0)
                 updateStrategyService.delete(address, birthDayPromotionData.get(selectStrategy).toVO(address));
-            else if(selectedTab==1)
+            else if (selectedTab == 1)
                 updateStrategyService.delete(address, mutiRoomPromotionData.get(selectStrategy).toVO(address));
-            else if(selectedTab==2)
+            else if (selectedTab == 2)
                 updateStrategyService.delete(address, enterprisePromotinonData.get(selectStrategy).toVO(address));
-            else if(selectedTab==3)
+            else if (selectedTab == 3)
                 updateStrategyService.delete(address, specialTimePromotionData.get(selectStrategy).toVO(address));
         } catch (UnableToDeleteStrategyException e) {
             e.printStackTrace();
@@ -349,36 +356,16 @@ public class PromotionPanelController {
         }
 
         // 在StrategyData中也删掉
-        if(selectedTab==0){
+        if (selectedTab == 0) {
             birthdayPromotionTable.getItems().remove(selectStrategy);
-        }else if(selectedTab==1)
+        } else if (selectedTab == 1)
             multiRoomPromotionTable.getItems().remove(selectStrategy);
-        else if(selectedTab==2)
+        else if (selectedTab == 2)
             cooperationEnterprisePromotionTable.getItems().remove(selectStrategy);
-        else if(selectedTab==3)
+        else if (selectedTab == 3)
             spcialTimePromotionTable.getItems().remove(selectStrategy);
-        
+
     }
 
-    //写mainApp的方法
-    /**
-    try {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(HotelMainApp.class.getResource("strategyui/manageHotelPromotion/PromotionPanel.fxml"));
-        AnchorPane managePromotionPanel = (AnchorPane) loader.load();
-
-        hotelRootLayout.setCenter(managePromotionPanel);
-        
-        // Give the controller access to the main app.
-        PromotionPanelController controller = loader.getController();
-        controller.setMainApp(this);
-        //默认显示所有订单
-        controller.showAllPromotionList(address);
-
-        primaryStage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    */
 
 }
