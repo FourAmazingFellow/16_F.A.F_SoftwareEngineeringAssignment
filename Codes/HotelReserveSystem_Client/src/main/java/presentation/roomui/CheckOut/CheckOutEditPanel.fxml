@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="100.0" layoutY="80.0" styleClass="label-title" text="填写退房信息" />
-      <GridPane layoutX="220.0" layoutY="142.0" prefHeight="378.0" prefWidth="590.0">
+      <Label layoutX="100.0" layoutY="48.0" styleClass="label-title" text="填写退房信息" />
+      <GridPane layoutX="220.0" layoutY="112.0" prefHeight="378.0" prefWidth="590.0">
          <children>
             <Label text="房间类型" />
             <Label text="房间数量" GridPane.rowIndex="1" />
@@ -40,7 +40,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
-      <HBox layoutX="504.0" layoutY="579.0" spacing="60.0">
+      <HBox layoutX="504.0" layoutY="536.0" spacing="60.0">
          <children>
             <Button layoutX="526.0" layoutY="593.0" mnemonicParsing="false" onAction="#handleCanclel" prefHeight="50.0" prefWidth="150.0" text="取消" />
             <Button layoutX="723.0" layoutY="593.0" mnemonicParsing="false" onAction="#handleConfirm" prefHeight="50.0" prefWidth="150.0" text="确认" />

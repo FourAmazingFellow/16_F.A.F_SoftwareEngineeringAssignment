@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="100.0" layoutY="60.0" styleClass="label-title" text="填写促销策略" />
-      <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="105.0" prefHeight="470.0" prefWidth="814.0" tabClosingPolicy="UNAVAILABLE">
+      <Label layoutX="100.0" layoutY="44.0" styleClass="label-title" text="填写促销策略" />
+      <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="100.0" prefHeight="445.0" prefWidth="810.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="birthdayPromotionTab" text="生日折扣">
             <content>
@@ -123,7 +123,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <HBox layoutX="548.0" layoutY="603.0" spacing="60.0">
+      <HBox layoutX="550.0" layoutY="568.0" spacing="60.0">
          <children>
             <Button layoutX="612.0" layoutY="590.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="50.0" prefWidth="125.0" text="取消" />
             <Button layoutX="787.0" layoutY="592.0" mnemonicParsing="false" onAction="#handleConfirm" prefHeight="50.0" prefWidth="125.0" text="确认" />

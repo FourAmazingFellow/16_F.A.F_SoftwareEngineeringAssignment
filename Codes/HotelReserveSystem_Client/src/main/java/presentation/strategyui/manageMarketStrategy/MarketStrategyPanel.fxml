@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="80.0" layoutY="40.0" styleClass="label-title" text="管理网站营销策略" />
-      <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="150.0" prefHeight="440.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <Label layoutX="80.0" layoutY="23.0" styleClass="label-title" text="管理网站营销策略" />
+      <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="111.0" prefHeight="440.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab fx:id="MemberRankMarketStrategyTab" text="会员等级折扣">
                <content>
@@ -59,14 +59,14 @@
             </Tab>
          </tabs>
       </TabPane>
-      <HBox layoutX="388.0" layoutY="616.0" spacing="40.0">
+      <HBox layoutX="388.0" layoutY="563.0" spacing="40.0">
          <children>
             <Button layoutX="363.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleNewMarketStrategy" prefHeight="50.0" prefWidth="150.0" text="制定折扣" />
             <Button layoutX="559.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleDeleteMarketStrategy" prefHeight="50.0" prefWidth="150.0" text="删除折扣" />
             <Button layoutX="757.0" layoutY="610.0" mnemonicParsing="false" onAction="#handleModifyMarketStrategy" prefHeight="50.0" prefWidth="150.0" text="修改折扣" />
          </children>
       </HBox>
-      <HBox layoutX="540.0" layoutY="109.0" spacing="10.0">
+      <HBox layoutX="540.0" layoutY="71.0" spacing="10.0">
          <children>
             <Button layoutX="548.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSearchWithStrategyName" prefHeight="14.0" prefWidth="100.0" styleClass="text-field-small" text="搜索" />
             <TextField fx:id="strategyNameTextField" layoutX="650.0" layoutY="90.0" prefHeight="25.0" prefWidth="250.0" styleClass="text-field-small" text="用折扣名称搜索..." />
