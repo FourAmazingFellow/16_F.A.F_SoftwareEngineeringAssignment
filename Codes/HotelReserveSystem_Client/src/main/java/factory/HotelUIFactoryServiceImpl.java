@@ -1,6 +1,8 @@
 package factory;
 
 
+import java.rmi.RemoteException;
+
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.hotelbl.checkOrderedHotel.CheckOrderedHotelServiceImpl;
 import businesslogic.hotelbl.commentOnHotel.CommentOnHotelServiceImpl;
@@ -36,7 +38,7 @@ public class HotelUIFactoryServiceImpl implements HotelUIFactoryService {
 	}
 
 	@Override
-	public MaintainHotelBasicInfoService createMaintainHotelBasicInfoService(String hotelAddress) {
+	public MaintainHotelBasicInfoService createMaintainHotelBasicInfoService(String hotelAddress) throws RemoteException {
 		return new MaintainHotelBasicInfoServiceImpl(hotelAddress);
 	}
 
@@ -46,12 +48,12 @@ public class HotelUIFactoryServiceImpl implements HotelUIFactoryService {
 	}
 
 	@Override
-	public QueryHotelService createQueryHotelService(String userID) {
+	public QueryHotelService createQueryHotelService(String userID) throws RemoteException {
 		return new QueryHotelServiceImpl(userID);
 	}
 
 
-	public SearchHotelService createSearchHotelService(String userID) {
+	public SearchHotelService createSearchHotelService(String userID) throws RemoteException {
 		return new SearchHotelServiceImpl(userID);
 	}
 

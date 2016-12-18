@@ -25,7 +25,7 @@ public class OrderTerminator {
 		userCreditService = factory.createClientCreditInfoService();
 	}
 	
-	public boolean getOrderDone(OrderVO vo) {
+	public boolean getOrderDone(OrderVO vo) throws RemoteException {
 		// TODO Codes 将该订单改为已执行状态，然后为该客户增加与订单价值等额的信用值
 		if(vo == null)
 			return false;
@@ -33,16 +33,10 @@ public class OrderTerminator {
 		OrderPO po = transformer.orderVO2PO(vo);
 		po.setOrderState(OrderState.DONE_ORDER);
 		
-		try {
-			if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.orderID, vo.totalPrice, ActionType.ORDER_DONE))
-				return true;
-			else
-				return false;
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		if(orderDaoService.updateOrder(po) && recoverCreditValue(vo.userID, vo.orderID, vo.totalPrice, ActionType.ORDER_DONE))
+			return true;
+		else
+			return false;
 	}
 	
 	public boolean delayCheckIn(OrderVO vo){

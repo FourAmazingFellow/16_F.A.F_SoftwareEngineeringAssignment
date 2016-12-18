@@ -1,12 +1,13 @@
 package bl_Driver.hotelblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.hotelblservice.CommentOnHotelService;
 import vo.OrderVO;
 
 public class CommentOnHotelService_Driver {
-	public void drive(CommentOnHotelService commentOnHotelService) {
+	public void drive(CommentOnHotelService commentOnHotelService) throws RemoteException {
 		ArrayList<OrderVO> orderVOList = commentOnHotelService.getCommentableOrderList("原");
 		if(orderVOList.isEmpty())
 			System.out.println("No such orders!\n");

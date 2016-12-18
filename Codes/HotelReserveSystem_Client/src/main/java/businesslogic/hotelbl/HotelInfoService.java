@@ -1,5 +1,6 @@
 package businesslogic.hotelbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.BusinessDistrictPO;
@@ -21,7 +22,7 @@ public interface HotelInfoService {
 	 * @return 返回该酒店简要信息
 	 * @see
 	 */
-	public BriefHotelInfoVO getHotelBriefInfo(String address);
+	public BriefHotelInfoVO getHotelBriefInfo(String address) throws RemoteException;
 	
 	/**
 	 * 获取该酒店详细信息
@@ -29,14 +30,14 @@ public interface HotelInfoService {
 	 * @return 返回该酒店详细信息
 	 * @see
 	 */
-	public HotelVO getHotelDetails(String address);
+	public HotelVO getHotelDetails(String address) throws RemoteException;
 	
 	/**
 	 * 获得商圈列表
 	 * @return 返回商圈列表
 	 * @see
 	 */
-	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city);
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException;
 	
 	/**
 	 * 获得某个酒店的某个房型的原始价格
@@ -45,6 +46,6 @@ public interface HotelInfoService {
 	 * @return 若不存在该房型，则返回-1，若存在，则返回对应的价格
 	 * @see
 	 */
-	public int getRoomPrice(String hotelAddress, RoomType roomType);
+	public int getRoomPrice(String hotelAddress, RoomType roomType) throws RemoteException;
 
 }

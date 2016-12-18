@@ -1,5 +1,6 @@
 package businesslogicservice.hotelblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import po.BusinessDistrictPO;
@@ -35,14 +36,16 @@ public interface SearchHotelService {
 	 * condition[13]代表的是用户选择的离店日期，形式为"xxxx-xx-xx"，如"2016-12-07"，不能为空；
 	 * 以上所有的条件若用户没有限定，则界面传递过来时，必须手动为其赋值为相应的默认值；
 	 * @return 返回所有满足条件的酒店简要信息列表
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition);
+	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException;
 
 	/**
 	 * 获得商圈列表
 	 * @return 返回商圈列表
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city);
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException;
 }

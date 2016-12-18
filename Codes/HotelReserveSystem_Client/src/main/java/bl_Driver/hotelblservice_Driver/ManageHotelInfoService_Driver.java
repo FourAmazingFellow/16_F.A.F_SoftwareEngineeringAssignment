@@ -1,5 +1,6 @@
 package bl_Driver.hotelblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
@@ -9,7 +10,7 @@ import vo.HotelVO;
 import po.UserType;
 
 public class ManageHotelInfoService_Driver {
-	public void drive(ManageHotelInfoService manageHotelInfoService) {
+	public void drive(ManageHotelInfoService manageHotelInfoService) throws RemoteException {
 		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
 		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 1000);
 		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();

@@ -1,5 +1,6 @@
 package bl_Driver.orderblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.orderblservice.BrowseUserOrderService;
@@ -8,7 +9,7 @@ import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class BrowseUserOrderServiceImpl_Driver {
-	public void drive(BrowseUserOrderService browseUserOrderService){
+	public void drive(BrowseUserOrderService browseUserOrderService) throws RemoteException{
 		ArrayList<BriefOrderInfoVO> a = browseUserOrderService.getUserOrderList("原", OrderType.ALL);
 		BriefOrderInfoVO tested = a.get(0);
 		if(a.isEmpty())

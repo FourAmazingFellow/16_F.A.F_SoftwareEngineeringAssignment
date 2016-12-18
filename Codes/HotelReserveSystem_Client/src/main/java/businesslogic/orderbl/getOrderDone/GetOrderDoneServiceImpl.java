@@ -1,5 +1,6 @@
 package businesslogic.orderbl.getOrderDone;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.orderbl.browseHotelOrder.HotelOrderList;
@@ -18,7 +19,7 @@ public class GetOrderDoneServiceImpl implements GetOrderDoneService {
 	}
 	
 	@Override
-	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address) {
+	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address) throws RemoteException {
 		ArrayList<BriefOrderInfoVO> notDoneOrderList = hotelOrderBrowser.getHotelOrderList(address,
 				OrderType.NOT_DONE_ORDER);
 
@@ -33,8 +34,7 @@ public class GetOrderDoneServiceImpl implements GetOrderDoneService {
 	}
 
 	@Override
-	public boolean getOrderDone(OrderVO vo) {
-
+	public boolean getOrderDone(OrderVO vo) throws RemoteException {
 		return orderTerminator.getOrderDone(vo);
 	}
 

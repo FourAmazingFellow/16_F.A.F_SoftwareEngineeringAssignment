@@ -1,12 +1,13 @@
 package bl_Driver.hotelblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.hotelblservice.SearchHotelService;
 import vo.OrderedHotelInfoVO;
 
 public class SearchHotelService_Driver {
-	public void driver(SearchHotelService searchHotelService) {
+	public void driver(SearchHotelService searchHotelService) throws RemoteException {
 		String[] condition = {"不限", "不限", "不限", "不限", "不限", "不限", "不限", "不限", "否"};
 		ArrayList<OrderedHotelInfoVO> briefHotelInfoVOList = searchHotelService.getHotelBriefInfoListBySearching(condition);
 		if(briefHotelInfoVOList.isEmpty())

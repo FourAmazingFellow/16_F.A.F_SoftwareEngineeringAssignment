@@ -1,5 +1,6 @@
 package businesslogicservice.hotelblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.OrderedHotelInfoVO;
@@ -18,6 +19,6 @@ public interface CheckOrderedHotelService {
 	 * @return 返回用户所有预订过的酒店简要信息列表
 	 * @see
 	 */
-	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList(String userID);
+	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList(String userID) throws RemoteException;
 
 }

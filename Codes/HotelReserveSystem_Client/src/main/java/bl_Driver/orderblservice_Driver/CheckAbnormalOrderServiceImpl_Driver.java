@@ -1,5 +1,6 @@
 package bl_Driver.orderblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,7 +9,7 @@ import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class CheckAbnormalOrderServiceImpl_Driver {
-	public void drive(CheckAbnormalOrderService checkAbnormalOrderService){
+	public void drive(CheckAbnormalOrderService checkAbnormalOrderService) throws RemoteException{
 		@SuppressWarnings("deprecation")
 		ArrayList<BriefOrderInfoVO> a = checkAbnormalOrderService.getAbnormalOrderList(new Date(2016, 10, 16));
 		BriefOrderInfoVO tested = a.get(0);

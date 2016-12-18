@@ -1,5 +1,6 @@
 package businesslogicservice.orderblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
@@ -17,9 +18,10 @@ public interface GetOrderDoneService {
 	 * @param address String型 酒店地址
 	 * @param orderType 订单类型(为ResultMessage.NOT_DONE_ORDER)
 	 * @return 该酒店的所有订单OrderVO的ArrayList
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address);
+	public ArrayList<BriefOrderInfoVO> getHotelNotDoneOrderList(String address) throws RemoteException;
 
 	/**
 	 * 得到酒店订单详情
@@ -34,9 +36,10 @@ public interface GetOrderDoneService {
 	 * 执行订单（更新当前订单状态为已执行订单，并为客户增加与订单金额等值的信用值）
 	 * @param vo OrderVO
 	 * @return 是否成功
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public boolean getOrderDone(OrderVO vo);
+	public boolean getOrderDone(OrderVO vo) throws RemoteException;
 
 	/**
 	 * 延迟入住

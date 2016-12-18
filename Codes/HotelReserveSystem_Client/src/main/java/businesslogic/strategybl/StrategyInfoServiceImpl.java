@@ -1,5 +1,6 @@
 package businesslogic.strategybl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -101,7 +102,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     }
 
     @Override
-    public String getAvailbleMarketStrategyName(OrderVO order) {
+    public String getAvailbleMarketStrategyName(OrderVO order) throws RemoteException {
         ArrayList<StrategyItem> availableMarketStrategy = new ArrayList<>();
         address = "Web";
         strategyList = StrategyList.getInstance(address);
@@ -157,7 +158,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     }
 
     @Override
-    public float getBestDiscount(OrderVO order) {
+    public float getBestDiscount(OrderVO order) throws RemoteException {
         // 调用上两个方法，得到最好的酒店促销策略和网站营销策略
         if (bestPromotion == null)
             getAvailblePromotionName(order);

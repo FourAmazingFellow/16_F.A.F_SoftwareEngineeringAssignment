@@ -1,5 +1,6 @@
 package bl_Driver.orderblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.orderblservice.GetOrderDoneService;
@@ -7,7 +8,7 @@ import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
 public class GetOrderDoneServiceImpl_Driver {
-	public void drive(GetOrderDoneService getOrderDoneService){
+	public void drive(GetOrderDoneService getOrderDoneService) throws RemoteException{
 		ArrayList<BriefOrderInfoVO> a = getOrderDoneService.getHotelNotDoneOrderList("江苏省南京市栖霞区仙林大道163号");
 		BriefOrderInfoVO order_1 = a.get(0);
 		BriefOrderInfoVO order_2 = a.get(1);

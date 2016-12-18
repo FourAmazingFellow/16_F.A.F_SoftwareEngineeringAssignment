@@ -20,21 +20,16 @@ public class AvailableRoomList {
 		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 	}
 	
-	public ArrayList<RoomVO> getAvailableRoomList() {
-		try {
-			HotelPO hotel = hotelDAO.getHotelDetails(hotelAddress);
-			HashMap<RoomType, Integer> roomTypeAndPrice = hotel.getRoomTypeAndPrice();
-			HashMap<RoomType, Integer> roomTypeAndNums = hotel.getRoomTypeAndNums();
-			ArrayList<RoomVO> roomVOs = new ArrayList<>();
-			Set<RoomType> roomTypes = roomTypeAndPrice.keySet();
-			for(RoomType roomType : roomTypes) {
-				RoomVO roomVO = new RoomVO(roomType, roomTypeAndNums.get(roomType), roomTypeAndPrice.get(roomType), hotel.getHotelAddress());
-				roomVOs.add(roomVO);
-			}
-			return roomVOs;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
+	public ArrayList<RoomVO> getAvailableRoomList() throws RemoteException {
+		HotelPO hotel = hotelDAO.getHotelDetails(hotelAddress);
+		HashMap<RoomType, Integer> roomTypeAndPrice = hotel.getRoomTypeAndPrice();
+		HashMap<RoomType, Integer> roomTypeAndNums = hotel.getRoomTypeAndNums();
+		ArrayList<RoomVO> roomVOs = new ArrayList<>();
+		Set<RoomType> roomTypes = roomTypeAndPrice.keySet();
+		for(RoomType roomType : roomTypes) {
+			RoomVO roomVO = new RoomVO(roomType, roomTypeAndNums.get(roomType), roomTypeAndPrice.get(roomType), hotel.getHotelAddress());
+			roomVOs.add(roomVO);
 		}
+		return roomVOs;
 	}
 }

@@ -1,5 +1,6 @@
 package bl_Driver.hotelblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.hotelblservice.QueryHotelService;
@@ -8,7 +9,7 @@ import vo.OrderVO;
 import vo.OrderedHotelInfoVO;
 
 public class QueryHotelService_Driver {
-	public void driver(QueryHotelService queryHotelService) {
+	public void driver(QueryHotelService queryHotelService) throws RemoteException {
 		String[] conditions  = {"从低到高", "从高到低", "从高到低", "是"};
 		ArrayList<OrderedHotelInfoVO> briefHotelInfoVOList = queryHotelService.getHotelBriefInfoListByQuerying(conditions);
 		if(briefHotelInfoVOList.isEmpty())

@@ -19,25 +19,20 @@ public class CommentOnHotelServiceImpl implements CommentOnHotelService{
 	}
 	
 	@Override
-	public ArrayList<OrderVO> getCommentableOrderList(String userID) {
+	public ArrayList<OrderVO> getCommentableOrderList(String userID) throws RemoteException {
 		commentableOrderList = new CommentableOrderList(userID);
 		return commentableOrderList.getCommentableOrderList();
 	}
 
 	@Override
-	public boolean confirmComment(String username, float mark, String comment, String hotelAddress) {
-		try {
-			HotelPO hotelPO = hotelDAO.getHotelDetails(hotelAddress);
-			int numsOfBeforeComments = hotelPO.getComments().size();
-			float nowMark = (numsOfBeforeComments * hotelPO.getMark() + mark) / (numsOfBeforeComments + 1);
-			hotelPO.setMark(nowMark);
-			hotelPO.getComments().put(username, comment);
-			hotelDAO.updateHotel(hotelPO);
-			return true;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean confirmComment(String username, float mark, String comment, String hotelAddress) throws RemoteException {
+		HotelPO hotelPO = hotelDAO.getHotelDetails(hotelAddress);
+		int numsOfBeforeComments = hotelPO.getComments().size();
+		float nowMark = (numsOfBeforeComments * hotelPO.getMark() + mark) / (numsOfBeforeComments + 1);
+		hotelPO.setMark(nowMark);
+		hotelPO.getComments().put(username, comment);
+		hotelDAO.updateHotel(hotelPO);
+		return true;
 	}
 	
 }

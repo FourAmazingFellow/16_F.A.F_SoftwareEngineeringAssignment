@@ -92,7 +92,7 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 		return hotelState;
 	}
 	
-	public SearchHotelServiceImpl(String userID) {
+	public SearchHotelServiceImpl(String userID) throws RemoteException {
 		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.userID = userID;
 		this.factory = new FactoryServiceImpl();
@@ -102,42 +102,33 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 	}
 	
 	@Override
-	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition) {
+	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException {
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
+		ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress();
+		ArrayList<BriefHotelInfoPO> list = hotelDAO.getHotelBriefInfoListBySearching(condition, orderedHotelList);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date beginDate = null;
+		Date finishDate = null;
 		try {
-			ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress();
-			ArrayList<BriefHotelInfoPO> list = hotelDAO.getHotelBriefInfoListBySearching(condition, orderedHotelList);
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			Date beginDate = null;
-			Date finishDate = null;
-			try {
-				beginDate = formatter.parse(condition[12]);
-				finishDate = formatter.parse(condition[13]);
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-			RoomType roomType = convertFromIntToRoomType(Integer.parseInt(condition[10]));
-			int roomNum = Integer.parseInt(condition[11]);
-			for(BriefHotelInfoPO hotelInfoPO : list) {
-				if(roomInfoService.checkOrder(hotelInfoPO.getHotelAddress(), roomType, roomNum, beginDate, finishDate) == ResultMessage.SUCCEED) {
-					result.add(new OrderedHotelInfoVO(new BriefHotelInfoVO(hotelInfoPO), this.getStates(hotelInfoPO.getHotelAddress())));
-				}
-			}
-		} catch (RemoteException e) {
+			beginDate = formatter.parse(condition[12]);
+			finishDate = formatter.parse(condition[13]);
+		} catch (ParseException e) {
 			e.printStackTrace();
+			return null;
+		}
+		RoomType roomType = convertFromIntToRoomType(Integer.parseInt(condition[10]));
+		int roomNum = Integer.parseInt(condition[11]);
+		for(BriefHotelInfoPO hotelInfoPO : list) {
+			if(roomInfoService.checkOrder(hotelInfoPO.getHotelAddress(), roomType, roomNum, beginDate, finishDate) == ResultMessage.SUCCEED) {
+				result.add(new OrderedHotelInfoVO(new BriefHotelInfoVO(hotelInfoPO), this.getStates(hotelInfoPO.getHotelAddress())));
+			}
 		}
 		return result;
 	}
 
 	@Override
-	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
-		try {
-			return hotelDAO.getBusinessDistrictList(city);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException {
+		return hotelDAO.getBusinessDistrictList(city);
 	}
 
 }

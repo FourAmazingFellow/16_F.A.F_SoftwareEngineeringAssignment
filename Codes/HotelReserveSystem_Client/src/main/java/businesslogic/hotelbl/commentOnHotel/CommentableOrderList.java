@@ -1,5 +1,6 @@
 package businesslogic.hotelbl.commentOnHotel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.hotelbl.OrderInfo;
@@ -18,7 +19,7 @@ public class CommentableOrderList {
 		this.orderInfo = factory.createOrderInfo();
 	}
 	
-	public ArrayList<OrderVO> getCommentableOrderList() {
+	public ArrayList<OrderVO> getCommentableOrderList() throws RemoteException {
 		return orderInfo.getCommentableOrderList(userID);
 	}
 }

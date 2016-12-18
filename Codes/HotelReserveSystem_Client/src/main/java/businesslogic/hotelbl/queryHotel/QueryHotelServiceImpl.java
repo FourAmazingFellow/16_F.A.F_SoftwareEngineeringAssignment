@@ -67,7 +67,7 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 		return hotelState;
 	}
 	
-	public QueryHotelServiceImpl(String userID) {
+	public QueryHotelServiceImpl(String userID) throws RemoteException {
 		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.factory = new FactoryServiceImpl();
 		this.orderInfo = factory.createOrderInfo();
@@ -76,7 +76,7 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	}
 	
 	@Override
-	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying(String[] condition) {
+	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying(String[] condition) throws RemoteException {
 		ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress();
 		ArrayList<BriefHotelInfoPO> list = hotelList.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
@@ -87,17 +87,12 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	}
 
 	@Override
-	public HotelVO getHotelDetails(String address) {
-		try {
-			return new HotelVO(hotelDAO.getHotelDetails(address));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public HotelVO getHotelDetails(String address) throws RemoteException {
+		return new HotelVO(hotelDAO.getHotelDetails(address));
 	}
 
 	@Override
-	public ArrayList<OrderVO> getOrders(String address, String userID) {
+	public ArrayList<OrderVO> getOrders(String address, String userID) throws RemoteException {
 		return orderInfo.getOrderList(userID, address);
 	}
 

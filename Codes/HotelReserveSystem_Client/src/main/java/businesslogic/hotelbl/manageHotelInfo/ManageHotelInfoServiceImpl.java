@@ -31,14 +31,9 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	}
 	
 	@Override
-	public boolean addHotel(HotelVO hotel) {
-		try {
-			hotelDAO.insertHotel(new HotelPO(hotel));
-			return true;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean addHotel(HotelVO hotel) throws RemoteException {
+		hotelDAO.insertHotel(new HotelPO(hotel));
+		return true;
 	}
 	
 	@Override
@@ -48,13 +43,8 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 
 
 	@Override
-	public HotelVO getHotelInfo(String hotelAddress) {
-		try {
-			return new HotelVO(hotelDAO.getHotelDetails(hotelAddress));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public HotelVO getHotelInfo(String hotelAddress) throws RemoteException {
+		return new HotelVO(hotelDAO.getHotelDetails(hotelAddress));
 	}
 	
 	

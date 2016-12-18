@@ -1,5 +1,7 @@
 package businesslogicservice.hotelblservice;
 
+import java.rmi.RemoteException;
+
 import vo.HotelVO;
 
 /**
@@ -22,8 +24,9 @@ public interface MaintainHotelBasicInfoService {
 	 * 修改酒店基本信息
 	 * @param modified
 	 * @return 修改成功返回true，修改失败返回false
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public boolean confirmModify(HotelVO modified);
+	public boolean confirmModify(HotelVO modified) throws RemoteException;
 
 }

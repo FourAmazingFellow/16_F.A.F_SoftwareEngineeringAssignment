@@ -1,5 +1,6 @@
 package businesslogic.hotelbl.queryHotel;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import data_Stub.HotelDAOImpl_Stub;
@@ -7,7 +8,7 @@ import po.RoomType;
 
 public class MockQueryHotelServiceImpl extends QueryHotelServiceImpl {
 
-	public MockQueryHotelServiceImpl(String userID) {
+	public MockQueryHotelServiceImpl(String userID) throws RemoteException {
 		super(userID);
 		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
 		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 1000);

@@ -1,5 +1,7 @@
 package businesslogicservice.orderblservice;
 
+import java.rmi.RemoteException;
+
 import vo.OrderVO;
 
 /**
@@ -14,7 +16,8 @@ public interface WithdrawOrderService {
      * 撤销订单（（扣除信用值），系统将订单置为撤销状态，记录撤销时间，更新空房列表）
      * @param vo 订单VO
      * @return boolean 
+     * @throws RemoteException 
      * @see
      */
-    public boolean withdrawOrder(OrderVO vo, boolean isTooLate); 
+    public boolean withdrawOrder(OrderVO vo, boolean isTooLate) throws RemoteException; 
 }

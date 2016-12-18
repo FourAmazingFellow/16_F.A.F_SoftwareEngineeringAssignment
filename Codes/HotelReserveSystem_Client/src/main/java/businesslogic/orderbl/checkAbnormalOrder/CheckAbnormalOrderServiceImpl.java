@@ -1,5 +1,6 @@
 package businesslogic.orderbl.checkAbnormalOrder;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,14 +18,14 @@ public class CheckAbnormalOrderServiceImpl implements CheckAbnormalOrderService 
 	}
 	
 	@Override
-	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) {
+	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) throws RemoteException {
 		ArrayList<BriefOrderInfoVO> abnormalBriefOrderList = abnormalOrderListHelper.getAbnormalOrderList(date);
 		
 		return abnormalBriefOrderList;
 	}
 
 	@Override
-	public OrderVO getDetailedOrder(String orderID) {
+	public OrderVO getDetailedOrder(String orderID) throws RemoteException {
 		OrderVO detailedAbnormalOrder = abnormalOrderListHelper.getDetailedOrder(orderID);
 		
 		return detailedAbnormalOrder;

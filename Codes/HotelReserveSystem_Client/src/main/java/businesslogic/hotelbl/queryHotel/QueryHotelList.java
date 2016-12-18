@@ -15,15 +15,9 @@ public class QueryHotelList {
 		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 	}
 	
-	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition, ArrayList<BriefOrderInfoPO> orderedHotelList) {
-		ArrayList<BriefHotelInfoPO> orderedHotelInfoPOs;
-		try {
-			orderedHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
-			return orderedHotelInfoPOs;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
+	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition, ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {
+		ArrayList<BriefHotelInfoPO> orderedHotelInfoPOs = hotelDAO.getHotelBriefInfoListByQuerying(condition, orderedHotelList);
+		return orderedHotelInfoPOs;
 	}
 	
 	

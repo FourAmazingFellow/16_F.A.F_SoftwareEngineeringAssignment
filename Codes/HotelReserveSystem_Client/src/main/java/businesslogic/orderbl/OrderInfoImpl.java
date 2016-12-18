@@ -21,58 +21,38 @@ public class OrderInfoImpl implements OrderInfo {
 	
 	
 	@Override
-	public ArrayList<OrderVO> getAllOrders(String userID) {
+	public ArrayList<OrderVO> getAllOrders(String userID) throws RemoteException {
 		ArrayList<OrderVO> result = null;
-		try {
-			result = transformer.detailedPo2voList(orderDAO.getUserAllOrders(userID));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		result = transformer.detailedPo2voList(orderDAO.getUserAllOrders(userID));
 		return result;
 	}
 
 	@Override
-	public boolean isReserved(String userID, String address) {
+	public boolean isReserved(String userID, String address) throws RemoteException {
 		boolean result = false;
-		try {
-			result = orderDAO.isReserved(userID, address);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		result = orderDAO.isReserved(userID, address);
 		return result;
 	}
 
 	@Override
-	public ArrayList<OrderVO> getCommentableOrderList(String userID) {
+	public ArrayList<OrderVO> getCommentableOrderList(String userID) throws RemoteException {
 		ArrayList<OrderVO> result = null;
-		try {
-			result = transformer.detailedPo2voList(orderDAO.getCommentableOrders(userID));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		result = transformer.detailedPo2voList(orderDAO.getCommentableOrders(userID));
 		return result;
 	}
 
 	@Override
-	public ArrayList<OrderVO> getOrderList(String userID, String address) {
+	public ArrayList<OrderVO> getOrderList(String userID, String address) throws RemoteException {
 		ArrayList<OrderVO> result = null;
-		try {
-			result = transformer.detailedPo2voList(orderDAO.getUserOrdersByHotel(userID, address));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		result = transformer.detailedPo2voList(orderDAO.getUserOrdersByHotel(userID, address));
 		return result;
 	}
 
 	@Override
-	public ArrayList<BriefOrderInfoVO> getReservedOrderList(String userID) {
+	public ArrayList<BriefOrderInfoVO> getReservedOrderList(String userID) throws RemoteException {
 		ArrayList<BriefOrderInfoVO> result = null;
-		try {
-			if(orderDAO.getReservedOrderList(userID) != null) {
-				result = transformer.briefPo2voList(orderDAO.getReservedOrderList(userID));
-			}
-		} catch (RemoteException e) {
-			e.printStackTrace();
+		if(orderDAO.getReservedOrderList(userID) != null) {
+			result = transformer.briefPo2voList(orderDAO.getReservedOrderList(userID));
 		}
 		return result;
 	}

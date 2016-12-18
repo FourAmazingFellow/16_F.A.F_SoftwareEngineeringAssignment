@@ -27,27 +27,16 @@ public class UserOrderList {
 	 * @param userID
 	 * @param orderType
 	 * @return 客户简要订单列表
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoVO> getUserOrderList(String userID, Enum<OrderType> orderType) {
-		try {
-			briefUserOrderlist = poTransformer.briefPo2voList(orderDaoService.getUserOrderList(userID, orderType));
-		} catch (RemoteException e) {
-			//异常捕捉代码
-			e.printStackTrace();
-			return null;
-		}
+	public ArrayList<BriefOrderInfoVO> getUserOrderList(String userID, Enum<OrderType> orderType) throws RemoteException {
+		briefUserOrderlist = poTransformer.briefPo2voList(orderDaoService.getUserOrderList(userID, orderType));
 		return briefUserOrderlist;
 	}
 	
-	public OrderVO getDetailedOrder(String orderID) {
-		try {
-			detailedOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
-		} catch (RemoteException e) {
-			//异常捕捉代码
-			e.printStackTrace();
-			return null;
-		}
+	public OrderVO getDetailedOrder(String orderID) throws RemoteException {
+		detailedOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
 		return detailedOrder;
 	}
 }

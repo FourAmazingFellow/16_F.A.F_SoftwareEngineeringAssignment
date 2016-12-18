@@ -1,5 +1,6 @@
 package businesslogic.strategybl.updateStrategy;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.hotelbl.HotelInfoService;
@@ -66,10 +67,11 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @return 返回是否增加成功
      * @throws UnableAddStrategyException 
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException, WrongInputException{
+    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException, WrongInputException, RemoteException{
         if(!valid(address, strategy)){
             return false;
         }
@@ -84,10 +86,11 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @return 返回是否修改成功
      * @throws UnableToModifyStrategyException 
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException, WrongInputException{
+    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException, WrongInputException, RemoteException{
         if(!valid(address, strategy)){
             return false;
         }
@@ -102,10 +105,11 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @return 返回是否删除成功
      * @throws UnableToDeleteStrategyException 
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException, WrongInputException{
+    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException, WrongInputException, RemoteException{
         if(!valid(address, strategy)){
             return false;
         }
@@ -119,10 +123,11 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @param strategy StrategyVO型，包含策略信息
      * @return 返回该策略信息是否有效
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean valid(String address, StrategyVO strategy) throws WrongInputException{
+    public boolean valid(String address, StrategyVO strategy) throws WrongInputException, RemoteException{
         strategyList=StrategyList.getInstance(address);
         return strategyList.valid(address,strategy);
     }
@@ -133,10 +138,11 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
      * @param strategyVO 策略信息
      * @return 返回商圈是否存在
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException, RemoteException {
         return strategyList.verifyTradeArea(city, strategyVO);
     }
 

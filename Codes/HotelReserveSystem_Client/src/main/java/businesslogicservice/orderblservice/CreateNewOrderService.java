@@ -1,6 +1,7 @@
 package businesslogicservice.orderblservice;
 
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import po.RoomType;
@@ -19,9 +20,10 @@ public interface CreateNewOrderService {
 	 * 获取该酒店简要信息 (调用HotelInfoService)
 	 * @param address String型， 同层调用传来的酒店地址
 	 * @return 返回该酒店简要信息
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public BriefHotelInfoVO getHotelBriefInfo(String address);
+	public BriefHotelInfoVO getHotelBriefInfo(String address) throws RemoteException;
 	
 	/**
 	 * 初始化新订单(需要查询信用值是否>0)
@@ -37,26 +39,29 @@ public interface CreateNewOrderService {
 	 * @param address String型 酒店地址
 	 * @param roomType RoomType枚举类型
 	 * @return 所有房型的RoomVO的ArrayList
+	 * @throws RemoteException 
 	 * @see
 	 */
-	 public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day);
+	 public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) throws RemoteException;
 	
 	/**
 	 * 获取订单总价
 	 * @param vo 订单VO
 	 * @return 订单总价
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public int getPrice(OrderVO vo); 
+	public int getPrice(OrderVO vo) throws RemoteException; 
 	
 	/**
 	 * 获取该酒店对应房型的原始价格
 	 * @param hotelAddress
 	 * @param roomType
 	 * @return
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public int getOriginalPrice(String hotelAddress, RoomType roomType);
+	public int getOriginalPrice(String hotelAddress, RoomType roomType) throws RemoteException;
 	
 	/**
 	 * 检查订单可否被满足,及是否所需拥有全部信息
@@ -70,7 +75,8 @@ public interface CreateNewOrderService {
 	 * 添加新的订单
 	 * @param vo 订单VO
 	 * @return boolean 是否生成成功
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public boolean addNewOrder(OrderVO vo);
+	public boolean addNewOrder(OrderVO vo) throws RemoteException;
 }

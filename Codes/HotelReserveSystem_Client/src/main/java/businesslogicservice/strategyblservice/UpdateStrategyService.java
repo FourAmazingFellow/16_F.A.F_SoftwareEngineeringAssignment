@@ -1,5 +1,6 @@
 package businesslogicservice.strategyblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.strategybl.exception.UnableAddStrategyException;
@@ -43,9 +44,10 @@ public interface UpdateStrategyService {
      * @return boolean型，返回是否制定折扣策略成功
      * @throws UnableAddStrategyException 
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException, WrongInputException;
+    public boolean add(String address, StrategyVO strategy) throws UnableAddStrategyException, WrongInputException, RemoteException;
     
     /**
      * 修改某条折扣策略
@@ -54,9 +56,10 @@ public interface UpdateStrategyService {
      * @return boolean型，返回是否修改折扣策略成功
      * @throws UnableToModifyStrategyException 
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException, WrongInputException;
+    public boolean modify(String address, StrategyVO strategy) throws UnableToModifyStrategyException, WrongInputException, RemoteException;
     
     /**
      * 删除某条折扣策略
@@ -65,9 +68,10 @@ public interface UpdateStrategyService {
      * @return boolean型，返回是否删除折扣策略成功
      * @throws UnableToDeleteStrategyException 
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException, WrongInputException;
+    public boolean delete(String address, StrategyVO strategy) throws UnableToDeleteStrategyException, WrongInputException, RemoteException;
     
     /**
      * 检查该策略信息是否符合规范
@@ -75,9 +79,10 @@ public interface UpdateStrategyService {
      * @param strategy StrategyVO型，折扣策略信息
      * @return boolean型，返回该策略信息是否符合规范
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean valid(String address, StrategyVO strategy) throws WrongInputException;
+    public boolean valid(String address, StrategyVO strategy) throws WrongInputException, RemoteException;
     
     /**
      * 验证特定商圈会员专属折扣的商圈名称在某城市是否存在
@@ -85,9 +90,10 @@ public interface UpdateStrategyService {
      * @param strategyVO 策略信息
      * @return 返回商圈是否存在
      * @throws WrongInputException 
+     * @throws RemoteException 
      * @see
      */
-    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException;
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException, RemoteException;
     
     /**
      * 获得商圈列表

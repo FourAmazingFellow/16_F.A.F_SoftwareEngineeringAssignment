@@ -20,9 +20,10 @@ public interface BrowseHotelOrderService {
 	 * @param address String型 酒店地址
 	 * @param orderType 订单类型
 	 * @return 该酒店的所有订单BriefOrderInfoVO的ArrayList
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoVO>  getHotelOrderList (String address, Enum<OrderType> orderType);
+	public ArrayList<BriefOrderInfoVO>  getHotelOrderList (String address, Enum<OrderType> orderType) throws RemoteException;
 
 	/**
 	 * 得到酒店订单详情

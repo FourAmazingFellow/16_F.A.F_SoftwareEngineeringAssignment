@@ -29,16 +29,11 @@ public class HotelOrderList {
 	 * @param address
 	 * @param orderType
 	 * @return
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) {
-		try {
-			briefOrderlist = poTransformer.briefPo2voList(orderDaoService.getHotelOrderList(address, orderType));
-		} catch (RemoteException e) {
-			// 异常捕捉代码
-			e.printStackTrace();
-			return null;
-		}
+	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) throws RemoteException {
+		briefOrderlist = poTransformer.briefPo2voList(orderDaoService.getHotelOrderList(address, orderType));
 		return briefOrderlist;
 	}
 

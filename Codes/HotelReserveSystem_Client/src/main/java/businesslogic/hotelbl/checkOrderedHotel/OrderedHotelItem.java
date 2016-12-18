@@ -19,16 +19,11 @@ public class OrderedHotelItem {
 		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
 	}
 	
-	public BriefHotelInfoVO getBriefHotelInfo() {
-		try {
-			if(hotelDAO.getHotelBriefInfo(hotelAddress) != null) {
-				return new BriefHotelInfoVO(hotelDAO.getHotelBriefInfo(hotelAddress));
-			}
-			else
-				return null;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
+	public BriefHotelInfoVO getBriefHotelInfo() throws RemoteException {
+		if(hotelDAO.getHotelBriefInfo(hotelAddress) != null) {
+			return new BriefHotelInfoVO(hotelDAO.getHotelBriefInfo(hotelAddress));
 		}
+		else
+			return null;
 	}
 }

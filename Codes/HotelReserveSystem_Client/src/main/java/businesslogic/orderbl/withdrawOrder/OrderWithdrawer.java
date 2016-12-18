@@ -32,7 +32,7 @@ public class OrderWithdrawer {
 		addSpareRoomService = factory.createRoomInfoService();
 	}
 	
-	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
+	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) throws RemoteException {
 		// TODO Codes 更改订单信息，置为已撤销状态，记录撤销时间, 根据isTooLate更改客户信用值
 		if(vo == null){
 			System.out.println("客户所要撤销的订单为空指针");
@@ -51,18 +51,12 @@ public class OrderWithdrawer {
 		}
 		po.setLastedOrderDoneTime(new Date());
 		
-		try {
-			//更改订单信息，增加空房
-			if(orderDaoService.updateOrder(po) && addSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType)){
-				return true;
-			}else{
-				return false;
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-		return false;
+		//更改订单信息，增加空房
+		if(orderDaoService.updateOrder(po) && addSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	/**

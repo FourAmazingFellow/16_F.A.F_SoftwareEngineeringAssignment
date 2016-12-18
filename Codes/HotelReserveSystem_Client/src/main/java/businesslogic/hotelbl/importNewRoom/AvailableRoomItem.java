@@ -26,19 +26,13 @@ public class AvailableRoomItem {
 		this.roomInfoService = factory.createRoomInfoService();
 	}
 	
-	public boolean addRoom(RoomVO room) {
-		try {
-			HotelPO hotelPO = hotelDAO.getHotelDetails(address);
-			HashMap<RoomType, Integer> roomTypeAndPrice = hotelPO.getRoomTypeAndPrice();
-			HashMap<RoomType, Integer> roomTypeAndNums = hotelPO.getRoomTypeAndNums();
-			roomTypeAndNums.put((RoomType)room.roomType, room.roomNum);
-			roomTypeAndPrice.put((RoomType)room.roomType, room.roomPrice);
-			hotelDAO.updateHotel(hotelPO);
-			return roomInfoService.updateSpareRoom(address, room);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
+	public boolean addRoom(RoomVO room) throws RemoteException {
+		HotelPO hotelPO = hotelDAO.getHotelDetails(address);
+		HashMap<RoomType, Integer> roomTypeAndPrice = hotelPO.getRoomTypeAndPrice();
+		HashMap<RoomType, Integer> roomTypeAndNums = hotelPO.getRoomTypeAndNums();
+		roomTypeAndNums.put((RoomType)room.roomType, room.roomNum);
+		roomTypeAndPrice.put((RoomType)room.roomType, room.roomPrice);
+		hotelDAO.updateHotel(hotelPO);
+		return roomInfoService.updateSpareRoom(address, room);
 	}
 }

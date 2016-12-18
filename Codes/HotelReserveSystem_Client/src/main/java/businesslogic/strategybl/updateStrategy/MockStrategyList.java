@@ -70,7 +70,7 @@ public class MockStrategyList extends StrategyList{
     }
     
     @Override
-    public boolean valid(String address, StrategyVO strategyVO) throws WrongInputException{
+    public boolean valid(String address, StrategyVO strategyVO) throws WrongInputException, RemoteException{
         StrategyItem strategyItem=new MockStrategyItem(strategyVO);
         return strategyItem.valid();
     }

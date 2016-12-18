@@ -1,5 +1,6 @@
 package bl_Driver.strategyblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.strategybl.exception.UnableAddStrategyException;
@@ -17,7 +18,7 @@ import vo.StrategyVO;
  * @see
  */
 public class UpdateStrategyService_Driver {
-    public void drive(UpdateStrategyService updateStrategyService){
+    public void drive(UpdateStrategyService updateStrategyService) throws RemoteException{
         ArrayList<StrategyVO> strategyList=updateStrategyService.getStrategyList("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion);
         if(strategyList.isEmpty())
             System.out.println("This kind of strategy doesn't exit!\n");

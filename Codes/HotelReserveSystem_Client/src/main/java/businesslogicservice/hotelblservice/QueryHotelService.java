@@ -1,5 +1,6 @@
 package businesslogicservice.hotelblservice;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.HotelVO;
@@ -22,25 +23,28 @@ public interface QueryHotelService {
 	 * condition[2]代表的是用户所希望的浏览时的酒店的排序方式，"0"代表的是按价格从低到高，"1"代表的是按价格从高到低，"2"代表的是按星级从低到高，"3"代表的是按星级从高到低，"4"代表的是按评分从低到高，"5"代表的是按评分从高到低(所有其他的数据将被当作非法数据)；
 	 * condition[3]代表的是用户是否限定只搜索自己预定过的酒店，"0"代表不限定，"1"代表限定，这两者以外的其他字符均会被当成非法字符；
      * @return 返回符合输入条件的所有酒店的简要信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying (String[] condition);
+    public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListByQuerying (String[] condition) throws RemoteException;
     
     /**
      * 获取酒店详细信息
      * @param address String型，界面传递来的酒店地址
      * @return 返回酒店详细信息
+     * @throws RemoteException 
      * @see
      */
-    public HotelVO getHotelDetails(String address);
+    public HotelVO getHotelDetails(String address) throws RemoteException;
     
     /**
      * 获取用户在该酒店的所有订单
      * @param address String型，界面传递来的酒店地址
      * @param ID long型，界面传递来的用户标识
      * @return 返回用户在该酒店的所有订单的列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<OrderVO> getOrders(String address, String userID);
+    public ArrayList<OrderVO> getOrders(String address, String userID) throws RemoteException;
 
 }

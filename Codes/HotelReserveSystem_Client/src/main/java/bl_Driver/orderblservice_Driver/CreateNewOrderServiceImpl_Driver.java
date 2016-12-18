@@ -1,12 +1,14 @@
 package bl_Driver.orderblservice_Driver;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.orderblservice.CreateNewOrderService;
 import businesslogicservice.orderblservice.ResultMessage;
 import vo.BriefHotelInfoVO;
 import vo.OrderVO;
 
 public class CreateNewOrderServiceImpl_Driver {
-	public void drive(CreateNewOrderService createNewOrderService){
+	public void drive(CreateNewOrderService createNewOrderService) throws RemoteException{
 		BriefHotelInfoVO hotelInfoVO = createNewOrderService.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
 		System.out.println("确定预定位于" + hotelInfoVO.hotelAddress + "的" + hotelInfoVO.hotelName + "?");
 		

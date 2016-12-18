@@ -18,14 +18,10 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 		this.hotelDAO = hotelDAO;
 	}
 	
-	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) {
+	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) throws RemoteException {
 		this.hotelAddress = hotelAddress;
 		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
-		try {
-			this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
 	}
 	
 	@Override
@@ -34,14 +30,9 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 	}
 
 	@Override
-	public boolean confirmModify(HotelVO modified) {
-		try {
-			hotelDAO.updateHotel(new HotelPO(modified));
-			return true;
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean confirmModify(HotelVO modified) throws RemoteException {
+		hotelDAO.updateHotel(new HotelPO(modified));
+		return true;
 	}
 	
 }

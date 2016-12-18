@@ -30,7 +30,7 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	}
 	
 	@Override
-	public BriefHotelInfoVO getHotelBriefInfo(String address) {
+	public BriefHotelInfoVO getHotelBriefInfo(String address) throws RemoteException {
 		// 得到的同时界面层应将可选房型置好
 		BriefHotelInfoVO briefHotelInfo = hotelInfoGetter.getHotelBriefInfo(address);
 		return briefHotelInfo;
@@ -45,14 +45,9 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	}
 
 	@Override
-	public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) {
+	public int getAvailableRoomNum(String address, Enum<RoomType> roomType, Date day) throws RemoteException {
 		int num = -1;
-		try {
-			num = roomInfoService.getAvailableRoomNum(address, roomType, day);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		num = roomInfoService.getAvailableRoomNum(address, roomType, day);
 		return num;
 	}
 	
@@ -62,18 +57,18 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	}
 
 	@Override
-	public int getPrice(OrderVO vo) {
+	public int getPrice(OrderVO vo) throws RemoteException {
 		int price = newOrder.getPrice(vo);
 		return price;
 	}
 
 	@Override
-	public boolean addNewOrder(OrderVO vo) {
+	public boolean addNewOrder(OrderVO vo) throws RemoteException {
 		return newOrder.addNewOrder(vo);
 	}
 
 	@Override
-	public int getOriginalPrice(String hotelAddress, RoomType roomType) {
+	public int getOriginalPrice(String hotelAddress, RoomType roomType) throws RemoteException {
 		return newOrder.getOriginalPrice(hotelAddress, roomType);
 	}
 }

@@ -15,7 +15,7 @@ public class BrowseHotelOrderServiceImpl implements BrowseHotelOrderService {
 		hotelListHelper = new HotelOrderList();
 	}
 	
-	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) {
+	public ArrayList<BriefOrderInfoVO> getHotelOrderList(String address, Enum<OrderType> orderType) throws RemoteException {
 		ArrayList<BriefOrderInfoVO> hotelOrderList = hotelListHelper.getHotelOrderList(address, orderType);
 		
 		return hotelOrderList;

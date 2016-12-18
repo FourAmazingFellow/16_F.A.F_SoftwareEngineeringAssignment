@@ -44,11 +44,11 @@ public class NewOrder {
 		return newOrderVO;
 	}
 	
-	public int getOriginalPrice(String hotelAddress, RoomType roomType) {
+	public int getOriginalPrice(String hotelAddress, RoomType roomType) throws RemoteException {
 		return hotelInfoService.getRoomPrice(hotelAddress, roomType);
 	}
 	
-	public int getPrice(OrderVO vo) {
+	public int getPrice(OrderVO vo) throws RemoteException {
 		// Codes 用到strategyInfoService,orderDao 并将VO中是否被打过折属性重置
 		double discount = -1;
 		discount = strategyInfoService.getBestDiscount(vo);
@@ -59,31 +59,20 @@ public class NewOrder {
 		return (int)(vo.totalPrice * discount);
 	}
 
-	public boolean addNewOrder(OrderVO vo) {
+	public boolean addNewOrder(OrderVO vo) throws RemoteException {
 		OrderPO newOrderPO = voTransformer.orderVO2PO(vo);
 		newOrderPO.setOrderProducedTime(new Date());
-		try {
-			 if(reduceSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType) 
-					 && orderDao.insertOrder(newOrderPO))
-				 return true;
-			 else {
-				return false;
-			}
-		} catch (RemoteException e) {
-			//异常捕捉代码
-			e.printStackTrace();
+		if(reduceSpareRoom(vo.hotelAddress, vo.beginDate, vo.finishDate, vo.num, vo.roomType) 
+				 && orderDao.insertOrder(newOrderPO))
+			 return true;
+		 else {
 			return false;
 		}
 	}
 	
-	private boolean reduceSpareRoom(String address, Date beginDate, Date finishDate, int num, Enum<RoomType> roomType){
+	private boolean reduceSpareRoom(String address, Date beginDate, Date finishDate, int num, Enum<RoomType> roomType) throws RemoteException{
 		for(Date currentDate = beginDate; currentDate.compareTo(finishDate) <= 0; currentDate = addOneDay(currentDate)){
-			try {
-				roomInfoService.reduceRoom(address, num, roomType, addOneDay(currentDate));
-			} catch (RemoteException e) {
-				e.printStackTrace();
-				return false;
-			}
+			roomInfoService.reduceRoom(address, num, roomType, addOneDay(currentDate));
 		}
 		return true;
 	}

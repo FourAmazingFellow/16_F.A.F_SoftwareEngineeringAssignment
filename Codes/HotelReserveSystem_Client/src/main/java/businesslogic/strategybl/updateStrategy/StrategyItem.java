@@ -233,9 +233,10 @@ public class StrategyItem {
      * 判断该策略信息是否有效
      * 
      * @return 返回该策略信息是否有效
+     * @throws RemoteException 
      * @see
      */
-    public boolean valid() throws WrongInputException {
+    public boolean valid() throws WrongInputException, RemoteException {
         // 格式验证
         //验证折扣类型是否与地址相对应
         if (address.equals("Web")) {
@@ -353,9 +354,10 @@ public class StrategyItem {
      *            策略信息
      * @return 返回商圈是否存在
      * @throws WrongInputException
+     * @throws RemoteException 
      * @see
      */
-    public boolean verifyTradeArea(String city) throws WrongInputException {
+    public boolean verifyTradeArea(String city) throws WrongInputException, RemoteException {
         // 调用hotelbl方法得到该城市的商圈列表，然后判断该商圈是否存在
         if (!strategyType.equals(StrategyType.VipTradeAreaMarket)) {
             throw new WrongInputException("the type of strategy is not vip discount in special trade area");

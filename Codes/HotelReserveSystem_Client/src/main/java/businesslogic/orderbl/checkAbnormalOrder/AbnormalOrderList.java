@@ -23,25 +23,13 @@ public class AbnormalOrderList {
 		poTransformer = new POList2VOList();
 	}
 
-	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) {
-		try {
-			abnormalOrderList = poTransformer.briefPo2voList(orderDaoService.getAllAbnormalList(date));
-		} catch (RemoteException e) {
-			// 异常捕捉代码
-			e.printStackTrace();
-			return null;
-		}
+	public ArrayList<BriefOrderInfoVO> getAbnormalOrderList(Date date) throws RemoteException {
+		abnormalOrderList = poTransformer.briefPo2voList(orderDaoService.getAllAbnormalList(date));
 		return abnormalOrderList;
 	}
 
-	public OrderVO getDetailedOrder(String orderID) {
-		try {
-			detailedAbnormalOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
-		} catch (RemoteException e) {
-			// 异常捕捉代码
-			e.printStackTrace();
-			return null;
-		}
+	public OrderVO getDetailedOrder(String orderID) throws RemoteException {
+		detailedAbnormalOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
 
 		// 检查该订单号对应的订单是不是异常订单 - Codes
 		if(detailedAbnormalOrder.orderState == OrderState.ABNORMAL_ORDER)

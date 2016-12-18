@@ -1,5 +1,6 @@
 package businesslogic.hotelbl.checkOrderedHotel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class OrderedHotelList {
 	
 	private FactoryService factory;
 	
-	public OrderedHotelList(String userID) {
+	public OrderedHotelList(String userID) throws RemoteException {
 		this.userID = userID;
 		this.factory = new FactoryServiceImpl();
 		this.orderInfo = factory.createOrderInfo();
@@ -61,7 +62,7 @@ public class OrderedHotelList {
 		return hotelState;
 	}
 	
-	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList() {
+	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList() throws RemoteException {
 		ArrayList<BriefOrderInfoVO> hotelList = this.getAddress();
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
 		for(BriefOrderInfoVO orderInfoVO : hotelList) {

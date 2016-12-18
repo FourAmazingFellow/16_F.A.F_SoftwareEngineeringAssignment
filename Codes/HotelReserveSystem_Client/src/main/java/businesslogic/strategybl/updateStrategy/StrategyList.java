@@ -394,9 +394,10 @@ public class StrategyList {
      * @param strategy
      *            StrategyVO型，包含策略信息
      * @return 返回该策略信息是否有效
+     * @throws RemoteException 
      * @see
      */
-    public boolean valid(String address, StrategyVO strategyVO) throws WrongInputException {
+    public boolean valid(String address, StrategyVO strategyVO) throws WrongInputException, RemoteException {
         StrategyItem strategyItem = new StrategyItem(strategyVO);
         return strategyItem.valid();
     }
@@ -410,9 +411,10 @@ public class StrategyList {
      *            策略信息
      * @return 返回商圈是否存在
      * @throws WrongInputException
+     * @throws RemoteException 
      * @see
      */
-    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
+    public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException, RemoteException {
         StrategyItem strategyItem = new StrategyItem(strategyVO);
         return strategyItem.verifyTradeArea(city);
     }

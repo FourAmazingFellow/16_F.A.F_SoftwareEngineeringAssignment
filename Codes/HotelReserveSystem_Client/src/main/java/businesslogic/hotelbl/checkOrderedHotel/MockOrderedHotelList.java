@@ -1,5 +1,6 @@
 package businesslogic.hotelbl.checkOrderedHotel;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,7 @@ public class MockOrderedHotelList extends OrderedHotelList {
 	
 	String userID;
 	
-	public MockOrderedHotelList(String userID) {
+	public MockOrderedHotelList(String userID) throws RemoteException {
 		super(userID);
 		this.userID = userID;
 	}
