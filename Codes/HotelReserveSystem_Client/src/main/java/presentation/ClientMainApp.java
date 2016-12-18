@@ -1,6 +1,7 @@
 package presentation;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,33 +12,41 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import po.OrderType;
 import presentation.hotelui.ScreenPanelController;
+import presentation.hotelui.SearchDetailsPanelController;
 import presentation.hotelui.SearchPanelController;
 import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.orderui.CreateOrderPanelController;
 import presentation.orderui.DetailedOrderPanelController;
-import presentation.userui.login.LoginController;
-import presentation.userui.login.RegisterController;
 import runner.ClientRunner;
 
 public class ClientMainApp extends Application {
 	public static String userID = "原";
 	
+	private MainApp mainApp;
 	private Stage primaryStage;
 	private BorderPane clientRootLayout;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		ClientRunner clientRunner = new ClientRunner();
-		clientRunner.start();
+		try {
+			clientRunner.start();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 
 		showClientRootPanel();
-		showCreateOrderPanel(ClientMainApp.userID, "Jingling Hotel", "江苏省南京市栖霞区仙林大道163号");
+		showSearchView();
 	}
 
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+	
 	//显示客户导航栏
 	public void showClientRootPanel() {
 		try {
@@ -52,47 +61,6 @@ public class ClientMainApp extends Application {
 
 			// Give the controller access to the main app.
 			ClientRootBoardController controller = loader.getController();
-			controller.setMainApp(this);
-
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	//显示初始界面 --- 登陆界面
-	public void showLoginView() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-
-			loader.setLocation(ClientMainApp.class.getResource("userui/login/Login.fxml"));
-			AnchorPane loginPanel = (AnchorPane) loader.load();
-
-			Scene scene = new Scene(loginPanel);
-			primaryStage.setScene(scene);
-
-			LoginController controller = loader.getController();
-			controller.setMainApp(this);
-
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	//显示新用户注册界面
-	public void showRegisterPanel() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("userui/login/Register.fxml"));
-			AnchorPane registerPanel = (AnchorPane) loader.load();
-
-			// Show the scene containing the root layout.
-			Scene scene = new Scene(registerPanel);
-			primaryStage.setScene(scene);
-
-			// Give the controller access to the main app.
-			RegisterController controller = loader.getController();
 			controller.setMainApp(this);
 
 			primaryStage.show();
@@ -142,11 +110,7 @@ public class ClientMainApp extends Application {
 	}
 	
 	//显示搜索结果
-	public void showSearchDetailsPanel(String city, String district, String hotelName, String roomType, String roomNum, 
-			String beginDate, String finishDate) {
-		String[] conditions = {city, district, hotelName, "0", "100000000", "0", "6", "0.0", "6.0", "0",
-				roomType, roomNum, beginDate, finishDate};
-		
+	public void showSearchDetailsPanel(String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("orderui/SearchDetailsPanel.fxml"));
@@ -154,10 +118,10 @@ public class ClientMainApp extends Application {
 
 			clientRootLayout.setCenter(searchResultPanel);
 			
-			S controller = loader.getController();
+			SearchDetailsPanelController controller = loader.getController();
 			controller.setMainApp(this);
 			//默认显示所有订单
-			controller.getBriefOrderList(userID, OrderType.ALL);
+			controller.showSearchResult(conditions);
 
 			primaryStage.show();
 		} catch (IOException e) {
@@ -201,7 +165,6 @@ public class ClientMainApp extends Application {
 			
 			primaryStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
