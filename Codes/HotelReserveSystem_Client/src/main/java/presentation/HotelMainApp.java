@@ -13,7 +13,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import po.OrderType;
-import po.StrategyType;
 import presentation.mainui.HotelRootBoardController;
 import presentation.orderui.BrowseHotelOrderPanelController;
 import presentation.orderui.GetDetailedOrderDonePanelController;
@@ -56,13 +55,16 @@ public class HotelMainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 		
-//		showHotelRootPanel();
-		showMarketStrategyEditDialog(new Strategy(new StrategyVO("", StrategyType.VipTradeAreaMarket, "商圈折扣", 0.88f, 3, "栖霞区")), "", false);
+		showHotelRootPanel();
 //		showHotelOrderPanel();
 	}
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	 public Stage getPrimaryStage() {
+	        return primaryStage;
+	    }
 
 	public void showHotelRootPanel() {
 		try {

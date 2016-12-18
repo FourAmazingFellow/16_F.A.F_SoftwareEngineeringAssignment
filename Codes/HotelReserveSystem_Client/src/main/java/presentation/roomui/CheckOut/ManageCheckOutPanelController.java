@@ -1,5 +1,6 @@
 package presentation.roomui.CheckOut;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,11 +12,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import po.RoomType;
 import presentation.HotelMainApp;
 import presentation.roomui.CheckIn.model.CheckInListWrapper;
@@ -90,8 +93,16 @@ public class ManageCheckOutPanelController {
     public void showAllCheckOutList(String address) {
         this.address = address;
         // 从bl层获得数据，并添加到checkOutData中
-        ArrayList<RoomVO> allCheckOutVOs = updateCheckOutService.getCheckOutList(address);
-        showCheckOutList(allCheckOutVOs);
+        try {
+            ArrayList<RoomVO> allCheckOutVOs = updateCheckOutService.getCheckOutList(address);
+            showCheckOutList(allCheckOutVOs);
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
     }
     
     // roomTypeChoiceBox的事件行为
@@ -101,9 +112,17 @@ public class ManageCheckOutPanelController {
         }
         Enum<RoomType> roomType=RoomType.chineseToEnum(roomTypeStr);
         
-        ArrayList<RoomVO> searchedCheckOutVOs = updateCheckOutService.searchCheckOutInfo(address,
-                roomType);
-        showCheckOutList(searchedCheckOutVOs);
+        try {
+            ArrayList<RoomVO> searchedCheckOutVOs = updateCheckOutService.searchCheckOutInfo(address,
+                    roomType);
+            showCheckOutList(searchedCheckOutVOs);
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -120,9 +139,17 @@ public class ManageCheckOutPanelController {
                 isValid=true;
             }
         }
-        ArrayList<RoomVO> searchedCheckOutVOsbyTime = updateCheckOutService.searchCheckOutInfo(address,
-                startDate,endDate);
-        showCheckOutList(searchedCheckOutVOsbyTime);
+        try {
+            ArrayList<RoomVO> searchedCheckOutVOsbyTime = updateCheckOutService.searchCheckOutInfo(address,
+                    startDate,endDate);
+            showCheckOutList(searchedCheckOutVOsbyTime);
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
     }
 
     @FXML

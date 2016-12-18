@@ -239,5 +239,7 @@
 }
 
 .tab-pane-small{
-    -fx-background-color:black ;
+    -fx-font-size: 10.0pt;
+    -fx-border-width: 1.2;
+    -fx-border-color: #1d1d1d;
 }

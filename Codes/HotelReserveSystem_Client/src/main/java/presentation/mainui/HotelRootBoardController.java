@@ -15,6 +15,7 @@ public class HotelRootBoardController {
     private HotelMainApp mainApp;
     
     
+    
     public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
     }
@@ -63,20 +64,18 @@ public class HotelRootBoardController {
     void handleEnrollValuableRoom(ActionEvent event) {
         
     }
-
-    @FXML
-    void handleLookPersonalInfo(ActionEvent event) {
-        
-    }
-    
+ 
     @FXML
     void handleLogOut(ActionEvent event) {
+        //关闭酒店工作人员界面
+        mainApp.getPrimaryStage().close();
+        //打开登录界面
         
     }
     
     @FXML
     void handleExit(ActionEvent event) {
-        
+        System.exit(0);
     }
 
 }

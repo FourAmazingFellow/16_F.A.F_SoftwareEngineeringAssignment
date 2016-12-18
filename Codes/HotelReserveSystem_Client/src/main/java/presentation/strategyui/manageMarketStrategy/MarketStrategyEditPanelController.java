@@ -1,5 +1,6 @@
 package presentation.strategyui.manageMarketStrategy;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -30,87 +31,103 @@ import presentation.strategyui.model.Strategy;
 import vo.StrategyVO;
 
 public class MarketStrategyEditPanelController {
-    
+
     @FXML
     private TabPane strategyTypeTabPane;
-    
+
     @FXML
     private Tab memberRankMarketStrategyTab;
-    
+
     @FXML
     private Tab VIPTradeAreaMarketStrategyTab;
-    
+
     @FXML
     private Tab specialTimeMarketStrategyTab;
-    
+
     @FXML
     private TextField strategyNameTextField1;
 
     @FXML
     private TextField strategyNameTextField2;
-    
+
     @FXML
     private TextField strategyNameTextField3;
-    
+
     @FXML
     private TextField discountTextField1;
-    
+
     @FXML
     private TextField discountTextField2;
-    
+
     @FXML
     private TextField discountTextField3;
-    
+
     @FXML
     private ChoiceBox<Integer> vipRankChoiceBox1;
-    
+
     @FXML
     private ChoiceBox<Integer> vipRankChoiceBox2;
-    
+
     @FXML
     private ChoiceBox<String> cityChoiceBox2;
-    
+
     @FXML
     private ChoiceBox<String> tradeAreaChoiceBox2;
-    
+
     @FXML
     private DatePicker startTimeDatePicker3;
 
     @FXML
     private DatePicker endTimeDatePicker3;
-    
+
     private Stage dialogStage;
     private Strategy strategy;
     private boolean isConfirmed = false;
-    private ObservableList<String> cityListData=FXCollections.observableArrayList("南京市","上海市");
-    private ObservableList<String> tradeAreaListData=FXCollections.observableArrayList();
-    private ObservableList<Integer> vipRankList=FXCollections.observableArrayList(0,1,2,3,4);
-    private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
+    private ObservableList<String> cityListData = FXCollections.observableArrayList("南京市", "上海市");
+    private ObservableList<String> tradeAreaListData = FXCollections.observableArrayList();
+    private ObservableList<Integer> vipRankList = FXCollections.observableArrayList(0, 1, 2, 3, 4);
+    private StrategyUIFactoryService strategyUIFactoryService = new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
     private boolean isNewaPromotion;
-    
-    
+
     @FXML
     private void initialize() {
-        
+
         vipRankChoiceBox1.setItems(vipRankList);
         vipRankChoiceBox2.setItems(vipRankList);
         cityChoiceBox2.setItems(cityListData);
         tradeAreaChoiceBox2.setItems(tradeAreaListData);
-        setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityChoiceBox2.getSelectionModel().getSelectedItem()));
-        //给cityChoiceBox2添加监听
+        try {
+            setTradeAreaList(updateStrategyService
+                    .getBusinessDistrictList(cityChoiceBox2.getSelectionModel().getSelectedItem()));
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
+        // 给cityChoiceBox2添加监听
         cityChoiceBox2.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityListData.get((int)newValue)));
+                try {
+                    setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityListData.get((int) newValue)));
+                } catch (RemoteException e) {
+                    Alert alert = new Alert(AlertType.WARNING);
+                    alert.setTitle("NetWork Warning");
+                    alert.setHeaderText("Fail to connect with the server!");
+                    alert.setContentText("Please check your network connection!");
+                    alert.showAndWait();
+                }
             }
         });
     }
-    
-    public void setTradeAreaList(ArrayList<BusinessDistrictPO> tradeAreaPOs){
+
+    public void setTradeAreaList(ArrayList<BusinessDistrictPO> tradeAreaPOs) {
         tradeAreaListData.clear();
-        for(BusinessDistrictPO tradeAreaPO:tradeAreaPOs){
+        for (BusinessDistrictPO tradeAreaPO : tradeAreaPOs) {
             tradeAreaListData.add(tradeAreaPO.getBusinessDistrictName());
         }
     }
@@ -124,38 +141,49 @@ public class MarketStrategyEditPanelController {
     }
 
     public void setStrategy(Strategy strategy, String address, boolean isNewaPromotion) {
-     // 把传进来的strategy设为成员变量，便于修改
+        // 把传进来的strategy设为成员变量，便于修改
         this.strategy = strategy;
         this.address = address;
-     // 把其他策略类型的tab设置为disable,并把不能修改的东西设成disable,如果是修改strategy,把默认值设为原始值
+        // 把其他策略类型的tab设置为disable,并把不能修改的东西设成disable,如果是修改strategy,把默认值设为原始值
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
             VIPTradeAreaMarketStrategyTab.setDisable(true);
             specialTimeMarketStrategyTab.setDisable(true);
-            if(!isNewaPromotion){
+            strategyTypeTabPane.getSelectionModel().select(0);
+            if (!isNewaPromotion) {
                 strategyNameTextField1.setText(strategy.getStrategyName());
                 discountTextField1.setText(String.valueOf(strategy.getDiscount()));
                 vipRankChoiceBox1.getSelectionModel().select(strategy.getVipRank());
             }
-        }else if(strategy.getStrategyType() == StrategyType.VipTradeAreaMarket){
+        } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
             memberRankMarketStrategyTab.setDisable(true);
             specialTimeMarketStrategyTab.setDisable(true);
-            if(!isNewaPromotion){
+            strategyTypeTabPane.getSelectionModel().select(1);
+            if (!isNewaPromotion) {
                 strategyNameTextField2.setText(strategy.getStrategyName());
                 discountTextField2.setText(String.valueOf(strategy.getDiscount()));
                 vipRankChoiceBox2.getSelectionModel().select(strategy.getVipRank());
-                for(String city: cityListData){
-                    for(BusinessDistrictPO tradeArea:updateStrategyService.getBusinessDistrictList(city)){
-                        if(tradeArea.equals(strategy.getTradeArea())){
-                            cityChoiceBox2.getSelectionModel().select(city);
+                for (String city : cityListData) {
+                    try {
+                        for (BusinessDistrictPO tradeArea : updateStrategyService.getBusinessDistrictList(city)) {
+                            if (tradeArea.equals(strategy.getTradeArea())) {
+                                cityChoiceBox2.getSelectionModel().select(city);
+                            }
                         }
+                    } catch (RemoteException e) {
+                        Alert alert = new Alert(AlertType.WARNING);
+                        alert.setTitle("NetWork Warning");
+                        alert.setHeaderText("Fail to connect with the server!");
+                        alert.setContentText("Please check your network connection!");
+                        alert.showAndWait();
                     }
                 }
                 tradeAreaChoiceBox2.getSelectionModel().select(strategy.getTradeArea());
             }
-        }else if(strategy.getStrategyType()==StrategyType.SpecificTimeMarket){
+        } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
             memberRankMarketStrategyTab.setDisable(true);
             VIPTradeAreaMarketStrategyTab.setDisable(true);
-            if(!isNewaPromotion){
+            strategyTypeTabPane.getSelectionModel().select(2);
+            if (!isNewaPromotion) {
                 strategyNameTextField3.setText(strategy.getStrategyName());
                 discountTextField3.setText(String.valueOf(strategy.getDiscount()));
                 try {
@@ -179,13 +207,10 @@ public class MarketStrategyEditPanelController {
     @FXML
     void handleConfirm() {
         // 判断输入的数据是否有效
-        boolean inputValid = false;
-        while (!inputValid) {
-            if (isInputValid()) {
-                inputValid = true;
-            }
+        if (!isInputValid()) {
+            return;
         }
-        
+
         // 弹出对话框请求确认
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("确认添加或修改策略");
@@ -200,16 +225,16 @@ public class MarketStrategyEditPanelController {
             handleCancel();
             return;
         }
-        
+
         // 把新建或修改的strategy传给上一个界面
         strategy.setStrategyName(strategyNameTextField1.getText());
         strategy.setDiscount(Integer.parseInt(discountTextField1.getText()));
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
             strategy.setVipRank(vipRankChoiceBox1.getSelectionModel().getSelectedItem());
-        }else if (strategy.getStrategyType()==StrategyType.VipTradeAreaMarket){
+        } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
             strategy.setVipRank(vipRankChoiceBox2.getSelectionModel().getSelectedItem());
             strategy.setTradeArea(tradeAreaChoiceBox2.getSelectionModel().getSelectedItem());
-        }else if(strategy.getStrategyType()==StrategyType.SpecificTimeMarket){
+        } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
             strategy.setStartTime(LocalDateAdapter.toDate(startTimeDatePicker3.getValue()));
             strategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker3.getValue()));
         }
@@ -217,7 +242,7 @@ public class MarketStrategyEditPanelController {
 
     private boolean isInputValid() {
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
-            if(strategyNameTextField1.getText()==""){
+            if (strategyNameTextField1.getText() == "") {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("策略名称空缺");
@@ -226,7 +251,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField1.getText()==""||!isDigit(discountTextField1.getText())) {
+            if (discountTextField1.getText() == "" || !isDigit(discountTextField1.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -235,8 +260,8 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-        }else if(strategy.getStrategyType() == StrategyType.VipTradeAreaMarket){
-            if(strategyNameTextField2.getText()==""){
+        } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
+            if (strategyNameTextField2.getText() == "") {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("策略名称空缺");
@@ -245,7 +270,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField2.getText()==""||!isDigit(discountTextField2.getText())) {
+            if (discountTextField2.getText() == "" || !isDigit(discountTextField2.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -254,9 +279,18 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            
-        }else if(strategy.getStrategyType() == StrategyType.SpecificTimeMarket){
-            if(strategyNameTextField3.getText()==""){
+            if (cityChoiceBox2.getSelectionModel().getSelectedIndex() < 0
+                    || tradeAreaChoiceBox2.getSelectionModel().getSelectedIndex() < 0) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("策略信息错误");
+                alert.setHeaderText("没有选择城市或商圈");
+                alert.setContentText("请选择城市和商圈");
+
+                alert.showAndWait();
+                return false;
+            }
+        } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
+            if (strategyNameTextField3.getText() == "") {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("策略名称空缺");
@@ -265,7 +299,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField3.getText()==""||!isDigit(discountTextField3.getText())) {
+            if (discountTextField3.getText() == "" || !isDigit(discountTextField3.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -274,7 +308,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if(startTimeDatePicker3.getValue()==null||endTimeDatePicker3.getValue()==null){
+            if (startTimeDatePicker3.getValue() == null || endTimeDatePicker3.getValue() == null) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("时间空缺");
@@ -286,7 +320,7 @@ public class MarketStrategyEditPanelController {
         }
         StrategyVO strategyVO = null;
         try {
-            strategyVO=strategy.toVO(address);
+            strategyVO = strategy.toVO(address);
         } catch (ParseException e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
@@ -296,9 +330,9 @@ public class MarketStrategyEditPanelController {
             alert.showAndWait();
             return false;
         }
-        
+
         try {
-            if(updateStrategyService.valid(address, strategyVO)){
+            if (updateStrategyService.valid(address, strategyVO)) {
                 return true;
             }
         } catch (WrongInputException e) {
@@ -308,12 +342,18 @@ public class MarketStrategyEditPanelController {
             alert.setHeaderText("策略信息错误");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
         }
         return false;
     }
-    
-    private boolean isDigit(String str){
+
+    private boolean isDigit(String str) {
         return CheckInEditPanelController.isDigit(str);
     }
-    
+
 }

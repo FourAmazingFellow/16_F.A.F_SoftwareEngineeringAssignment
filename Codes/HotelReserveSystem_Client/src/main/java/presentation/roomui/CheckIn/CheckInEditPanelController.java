@@ -255,9 +255,15 @@ public class CheckInEditPanelController {
     
     public static boolean isDigit(String str){
         for(char c:str.toCharArray()){
-            if(c<'0'||c>'9'){
+            if((c<'0'||c>'9')&&c!='.'){
                 return false;
             }
+        }
+        if(str.indexOf('.')==0||str.indexOf('.')==str.length()-1){
+            return false;
+        }
+        if(str.indexOf('.')!=str.lastIndexOf('.')){
+            return false;
         }
         return true;
     }

@@ -50,7 +50,6 @@
 				</Button>
 				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="133.0" styleClass="choice-box-small" text="用户名" GridPane.columnIndex="7">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleLookPersonalInfo" text="Personal Information" />
 						<MenuItem mnemonicParsing="false" onAction="#handleLogOut" text="LOGOUT" />
 						<MenuItem mnemonicParsing="false" onAction="#handleExit" text="EXIT" />
 					</items>

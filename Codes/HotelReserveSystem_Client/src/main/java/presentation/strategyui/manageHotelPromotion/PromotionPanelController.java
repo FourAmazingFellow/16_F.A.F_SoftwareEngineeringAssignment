@@ -1,6 +1,7 @@
 package presentation.strategyui.manageHotelPromotion;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -10,9 +11,7 @@ import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -20,15 +19,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
 import po.StrategyType;
 import presentation.HotelMainApp;
-import presentation.roomui.CheckIn.ManageCheckInPanelController;
-import presentation.roomui.CheckIn.model.CheckIn;
-import presentation.roomui.CheckIn.model.CheckInListWrapper;
 import presentation.strategyui.model.Strategy;
 import presentation.strategyui.model.StrategyListWrapper;
-import vo.RoomVO;
 import vo.StrategyVO;
 
 public class PromotionPanelController {
@@ -332,7 +326,7 @@ public class PromotionPanelController {
         }
         try {
             if (selectedTab == 0)
-                updateStrategyService.delete(address, birthDayPromotionData.get(selectStrategy).toVO(address));
+                    updateStrategyService.delete(address, birthDayPromotionData.get(selectStrategy).toVO(address));
             else if (selectedTab == 1)
                 updateStrategyService.delete(address, mutiRoomPromotionData.get(selectStrategy).toVO(address));
             else if (selectedTab == 2)
@@ -353,6 +347,9 @@ public class PromotionPanelController {
         } catch (ParseException e) {
             e.printStackTrace();
             return;
+        }catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
         // 在StrategyData中也删掉

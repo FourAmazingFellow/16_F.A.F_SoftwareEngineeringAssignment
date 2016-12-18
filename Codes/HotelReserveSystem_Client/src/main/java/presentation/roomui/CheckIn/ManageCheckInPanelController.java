@@ -1,5 +1,6 @@
 package presentation.roomui.CheckIn;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,8 +93,16 @@ public class ManageCheckInPanelController {
     public void showAllCheckInList(String address) {
         this.address = address;
         // 从bl层获得数据，并添加到checkInData中
-        ArrayList<RoomVO> allCheckInVOs = updateCheckInService.getCheckInList(address);
-        showCheckInList(allCheckInVOs);
+        try {
+            ArrayList<RoomVO> allCheckInVOs = updateCheckInService.getCheckInList(address);
+            showCheckInList(allCheckInVOs);
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
     }
 
     // roomTypeChoiceBox的事件行为
@@ -103,9 +112,17 @@ public class ManageCheckInPanelController {
         }
         Enum<RoomType> roomType=RoomType.chineseToEnum(roomTypeStr);
         
-        ArrayList<RoomVO> searchedCheckInVOs = updateCheckInService.searchCheckInInfo(address,
-                roomType);
-        showCheckInList(searchedCheckInVOs);
+        try {
+            ArrayList<RoomVO> searchedCheckInVOs  = updateCheckInService.searchCheckInInfo(address,
+                    roomType);
+            showCheckInList(searchedCheckInVOs);
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -122,9 +139,17 @@ public class ManageCheckInPanelController {
                 isValid=true;
             }
         }
-        ArrayList<RoomVO> searchedCheckInVOsbyTime = updateCheckInService.searchCheckInInfo(address,
-                startDate,endDate);
-        showCheckInList(searchedCheckInVOsbyTime);
+        try {
+            ArrayList<RoomVO> searchedCheckInVOsbyTime= updateCheckInService.searchCheckInInfo(address,
+                    startDate,endDate);
+            showCheckInList(searchedCheckInVOsbyTime);
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
     }
 
     @FXML

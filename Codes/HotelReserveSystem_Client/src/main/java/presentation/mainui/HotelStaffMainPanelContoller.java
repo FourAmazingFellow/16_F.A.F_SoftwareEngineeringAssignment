@@ -25,4 +25,5 @@ public class HotelStaffMainPanelContoller {
     void handlEditHotelInfo(ActionEvent event) {
         
     }
+    
 }

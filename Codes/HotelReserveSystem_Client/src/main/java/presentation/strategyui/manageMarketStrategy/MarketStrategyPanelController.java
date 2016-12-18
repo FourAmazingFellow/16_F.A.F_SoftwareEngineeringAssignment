@@ -1,5 +1,6 @@
 package presentation.strategyui.manageMarketStrategy;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -25,37 +26,37 @@ import presentation.strategyui.model.StrategyListWrapper;
 import vo.StrategyVO;
 
 public class MarketStrategyPanelController {
-    
+
     @FXML
     private TextField strategyNameTextField;
-    
+
     @FXML
     private TabPane strategyTypeTabPane;
-    
+
     @FXML
     private Tab MemberRankMarketStrategyTab;
-    
+
     @FXML
     private Tab VIPTradeAreaMarketStrategyTab;
-    
+
     @FXML
     private Tab specialTimeMarketStrategyTab;
-    
+
     @FXML
     private TableView<Strategy> memberRankMarketStrategyTable;
-    
+
     @FXML
     private TableView<Strategy> VIPTradeAreaMarketStrategyTable;
-    
+
     @FXML
     private TableView<Strategy> specialTimeMarketStrategyTable;
-    
+
     @FXML
     private TableColumn<Strategy, String> strategyNameColumn1;
-    
+
     @FXML
     private TableColumn<Strategy, String> strategyNameColumn2;
-    
+
     @FXML
     private TableColumn<Strategy, String> strategyNameColumn3;
 
@@ -64,16 +65,16 @@ public class MarketStrategyPanelController {
 
     @FXML
     private TableColumn<Strategy, String> discountColumn2;
-    
+
     @FXML
     private TableColumn<Strategy, String> discountColumn3;
-    
+
     @FXML
     private TableColumn<Strategy, String> VIPRankColumn1;
 
     @FXML
     private TableColumn<Strategy, String> VIPRankColumn2;
-    
+
     @FXML
     private TableColumn<Strategy, String> tradeAreaColumn2;
 
@@ -82,7 +83,7 @@ public class MarketStrategyPanelController {
 
     @FXML
     private TableColumn<Strategy, String> endTimeColumn3;
-    
+
     private HotelMainApp mainApp;
     private ObservableList<Strategy> memberRankStrategyData = FXCollections.observableArrayList();
     private ObservableList<Strategy> VIPTradeAreaStrategyData = FXCollections.observableArrayList();
@@ -91,18 +92,17 @@ public class MarketStrategyPanelController {
     private StrategyUIFactoryService strategyUIFactoryService;
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
-    
-    
-    private ObservableList<String> tradeAreaList=FXCollections.observableArrayList();
-    
+
+    private ObservableList<String> tradeAreaList = FXCollections.observableArrayList();
+
     @FXML
     private void initialize() {
         strategyList = new StrategyListWrapper();
-     // Initialize the strategyTable and its columns.
+        // Initialize the strategyTable and its columns.
         memberRankMarketStrategyTable.setItems(memberRankStrategyData);
         VIPTradeAreaMarketStrategyTable.setItems(VIPTradeAreaStrategyData);
         specialTimeMarketStrategyTable.setItems(specialTimeStrategyData);
-        
+
         strategyNameColumn1.setCellValueFactory(cellData -> cellData.getValue().strategyNameProperty());
         strategyNameColumn2.setCellValueFactory(cellData -> cellData.getValue().strategyNameProperty());
         strategyNameColumn3.setCellValueFactory(cellData -> cellData.getValue().strategyNameProperty());
@@ -114,16 +114,19 @@ public class MarketStrategyPanelController {
         tradeAreaColumn2.setCellValueFactory(cellData -> cellData.getValue().tradeAreaProperty());
         startTimeColumn3.setCellValueFactory(cellData -> cellData.getValue().startTimeProperty());
         endTimeColumn3.setCellValueFactory(cellData -> cellData.getValue().endTimeProperty());
-        
+
         // 为tabPane增加监听,每次切换策略类型，都刷新一下策略列表
-        strategyTypeTabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->{showAllMarketStrategyList(address);});
+        strategyTypeTabPane.getSelectionModel().selectedIndexProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    showAllMarketStrategyList(address);
+                });
 
     }
-    
+
     public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
     }
-    
+
     public void showAllMarketStrategyList(String address) {
         this.address = address;
         // 从bl层获得数据，并添加到checkInData中
@@ -131,31 +134,31 @@ public class MarketStrategyPanelController {
         showVipTradeAreaStrategyList();
         showspecialTimeStrategyList();
     }
-    
-    public void showMemberRankStrategyList(){
+
+    public void showMemberRankStrategyList() {
         ArrayList<StrategyVO> memberRankStrategyVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.MemberRankMarket);
         strategyList.setStrategyList(memberRankStrategyVOs);
         memberRankStrategyData.clear();
         memberRankStrategyData.addAll(strategyList.getStrategyList());
     }
-    
-    public void showVipTradeAreaStrategyList(){
+
+    public void showVipTradeAreaStrategyList() {
         ArrayList<StrategyVO> vipTradeAreaStrategyVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.VipTradeAreaMarket);
         strategyList.setStrategyList(vipTradeAreaStrategyVOs);
         VIPTradeAreaStrategyData.clear();
         VIPTradeAreaStrategyData.addAll(strategyList.getStrategyList());
     }
-    
-    public void showspecialTimeStrategyList(){
+
+    public void showspecialTimeStrategyList() {
         ArrayList<StrategyVO> specialTimeStrategyVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.SpecificTimeMarket);
         strategyList.setStrategyList(specialTimeStrategyVOs);
         specialTimeStrategyData.clear();
         specialTimeStrategyData.addAll(strategyList.getStrategyList());
     }
-    
+
     @FXML
     void handleSearchWithStrategyName(ActionEvent event) {
         int selectedIndex = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
@@ -175,9 +178,9 @@ public class MarketStrategyPanelController {
             searchedStrategyVO = updateStrategyService.getStrategyInfo(address, StrategyType.VipTradeAreaMarket,
                     strategyNameTextField.getText());
         } else if (selectedIndex == 2) {
-            searchedStrategyVO = updateStrategyService.getStrategyInfo(address,
-                    StrategyType.SpecificTimeMarket, strategyNameTextField.getText());
-        } 
+            searchedStrategyVO = updateStrategyService.getStrategyInfo(address, StrategyType.SpecificTimeMarket,
+                    strategyNameTextField.getText());
+        }
         if (searchedStrategyVO == null) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("搜索不到");
@@ -198,21 +201,21 @@ public class MarketStrategyPanelController {
     @FXML
     void handleNewMarketStrategy(ActionEvent event) {
         int selectedTab = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
-        Strategy strategy=null;
-        if(selectedTab==0){
-            strategy=new Strategy(StrategyType.MemberRankMarket);
-        }else if(selectedTab==1)
-            strategy=new Strategy(StrategyType.VipTradeAreaMarket);
-        else if(selectedTab==2)
-            strategy=new Strategy(StrategyType.SpecificTimeMarket);
-        boolean isNewaPromotion=true;
-        boolean isConfirmed=mainApp.showMarketStrategyEditDialog(strategy,address,isNewaPromotion);
-        if(isConfirmed){
-            if(selectedTab==0)
+        Strategy strategy = null;
+        if (selectedTab == 0) {
+            strategy = new Strategy(StrategyType.MemberRankMarket);
+        } else if (selectedTab == 1)
+            strategy = new Strategy(StrategyType.VipTradeAreaMarket);
+        else if (selectedTab == 2)
+            strategy = new Strategy(StrategyType.SpecificTimeMarket);
+        boolean isNewaPromotion = true;
+        boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, address, isNewaPromotion);
+        if (isConfirmed) {
+            if (selectedTab == 0)
                 memberRankMarketStrategyTable.getItems().add(strategy);
-            else if(selectedTab==1)
+            else if (selectedTab == 1)
                 VIPTradeAreaMarketStrategyTable.getItems().add(strategy);
-            else if(selectedTab==2)
+            else if (selectedTab == 2)
                 specialTimeMarketStrategyTable.getItems().add(strategy);
         }
     }
@@ -221,13 +224,13 @@ public class MarketStrategyPanelController {
     void handleDeleteMarketStrategy(ActionEvent event) {
         int selectedTab = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
         int selectedStrategy = -1;
-        if(selectedTab==0){
-            selectedStrategy=memberRankMarketStrategyTable.getSelectionModel().getSelectedIndex();
-        }else if(selectedTab==1)
-            selectedStrategy=VIPTradeAreaMarketStrategyTable.getSelectionModel().getSelectedIndex();
-        else if(selectedTab==2)
-            selectedStrategy=specialTimeMarketStrategyTable.getSelectionModel().getSelectedIndex();
-        //如果没有选中策略，则警告
+        if (selectedTab == 0) {
+            selectedStrategy = memberRankMarketStrategyTable.getSelectionModel().getSelectedIndex();
+        } else if (selectedTab == 1)
+            selectedStrategy = VIPTradeAreaMarketStrategyTable.getSelectionModel().getSelectedIndex();
+        else if (selectedTab == 2)
+            selectedStrategy = specialTimeMarketStrategyTable.getSelectionModel().getSelectedIndex();
+        // 如果没有选中策略，则警告
         if (selectedStrategy < 0) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("无法删除");
@@ -237,11 +240,11 @@ public class MarketStrategyPanelController {
             return;
         }
         try {
-            if(selectedTab==0)
+            if (selectedTab == 0)
                 updateStrategyService.delete(address, memberRankStrategyData.get(selectedStrategy).toVO(address));
-            else if(selectedTab==1)
+            else if (selectedTab == 1)
                 updateStrategyService.delete(address, VIPTradeAreaStrategyData.get(selectedStrategy).toVO(address));
-            else if(selectedTab==2)
+            else if (selectedTab == 2)
                 updateStrategyService.delete(address, specialTimeStrategyData.get(selectedStrategy).toVO(address));
         } catch (UnableToDeleteStrategyException e) {
             e.printStackTrace();
@@ -257,30 +260,33 @@ public class MarketStrategyPanelController {
         } catch (ParseException e) {
             e.printStackTrace();
             return;
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-     // 在StrategyData中也删掉
-        if(selectedTab==0){
+        // 在StrategyData中也删掉
+        if (selectedTab == 0) {
             memberRankMarketStrategyTable.getItems().remove(selectedStrategy);
-        }else if(selectedTab==1)
+        } else if (selectedTab == 1)
             VIPTradeAreaMarketStrategyTable.getItems().remove(selectedStrategy);
-        else if(selectedTab==2)
+        else if (selectedTab == 2)
             specialTimeMarketStrategyTable.getItems().remove(selectedStrategy);
-        
+
     }
 
     @FXML
     void handleModifyMarketStrategy(ActionEvent event) {
         int selectedTab = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
         int selectedStrategy = -1;
-        Strategy strategy=null;
-        if(selectedTab==0){
-            selectedStrategy=memberRankMarketStrategyTable.getSelectionModel().getSelectedIndex();
-        }else if(selectedTab==1)
-            selectedStrategy=VIPTradeAreaMarketStrategyTable.getSelectionModel().getSelectedIndex();
-        else if(selectedTab==2)
-            selectedStrategy=specialTimeMarketStrategyTable.getSelectionModel().getSelectedIndex();
-      //如果没有选中策略，则警告
-        if(selectedStrategy<0){
+        Strategy strategy = null;
+        if (selectedTab == 0) {
+            selectedStrategy = memberRankMarketStrategyTable.getSelectionModel().getSelectedIndex();
+        } else if (selectedTab == 1)
+            selectedStrategy = VIPTradeAreaMarketStrategyTable.getSelectionModel().getSelectedIndex();
+        else if (selectedTab == 2)
+            selectedStrategy = specialTimeMarketStrategyTable.getSelectionModel().getSelectedIndex();
+        // 如果没有选中策略，则警告
+        if (selectedStrategy < 0) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("无法修改");
             alert.setHeaderText("无法进行修改");
@@ -288,28 +294,27 @@ public class MarketStrategyPanelController {
             alert.showAndWait();
             return;
         }
-      //得到要修改的strategy
+        // 得到要修改的strategy
         try {
-        if(selectedTab==0){
-                strategy=new Strategy(memberRankStrategyData.get(selectedStrategy).toVO(address));
-        }else if(selectedTab==1)
-            strategy=new Strategy(VIPTradeAreaStrategyData.get(selectedStrategy).toVO(address));
-        else if(selectedTab==2)
-            strategy=new Strategy(specialTimeStrategyData.get(selectedStrategy).toVO(address));
+            if (selectedTab == 0) {
+                strategy = new Strategy(memberRankStrategyData.get(selectedStrategy).toVO(address));
+            } else if (selectedTab == 1)
+                strategy = new Strategy(VIPTradeAreaStrategyData.get(selectedStrategy).toVO(address));
+            else if (selectedTab == 2)
+                strategy = new Strategy(specialTimeStrategyData.get(selectedStrategy).toVO(address));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        boolean isNewaPromotion=false;
-        boolean isConfirmed=mainApp.showMarketStrategyEditDialog(strategy,address,isNewaPromotion);
-        if(isConfirmed){
-            if(selectedTab==0)
+        boolean isNewaPromotion = false;
+        boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, address, isNewaPromotion);
+        if (isConfirmed) {
+            if (selectedTab == 0)
                 memberRankMarketStrategyTable.getItems().add(strategy);
-            else if(selectedTab==1)
+            else if (selectedTab == 1)
                 VIPTradeAreaMarketStrategyTable.getItems().add(strategy);
-            else if(selectedTab==2)
+            else if (selectedTab == 2)
                 specialTimeMarketStrategyTable.getItems().add(strategy);
         }
     }
-
 
 }
