@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import presentation.ClientMainApp;
 import presentation.MainApp;
 import vo.UserVO;
 
@@ -37,10 +38,6 @@ public class RegisterController {
 		userFactory = new UserUIFactoryServiceImpl();
 		// register = userFactory.createLoginAndSignUpService();
 		register = new LoginAndSignUpServiceImpl_Stub();
-	}
-
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
 	}
 
 	public void register() {
@@ -82,5 +79,9 @@ public class RegisterController {
 	
 	public void registerButtonAction(){
 		
+	}
+
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
 	}
 }
