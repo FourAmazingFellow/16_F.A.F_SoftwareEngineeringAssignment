@@ -40,7 +40,7 @@ public class CheckInItem {
     private FactoryService factoryService;
 
     public CheckInItem() {
-         checkInDAO = RemoteHelper.getInstance().getRoomDAO();
+        checkInDAO = RemoteHelper.getInstance().getRoomDAO();
         factoryService=new FactoryServiceImpl();
         roomInfoService = factoryService.createRoomInfoService();
         strategyInfoService = factoryService.createStrategyInfoService();
@@ -87,12 +87,8 @@ public class CheckInItem {
      */
     public boolean addCheckIn(String address, boolean updateSpareRoom) throws RemoteException {
         CheckInPO checkInPO = new CheckInPO(roomType, roomNum, address, checkInTime, expDepartTime);
-        try {
-            checkInDAO.insertCheckIn(checkInPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        checkInDAO.insertCheckIn(checkInPO);
+       
         // 根据布尔值决定是否更新空房
         if (updateSpareRoom) {
             Date today = new Date();

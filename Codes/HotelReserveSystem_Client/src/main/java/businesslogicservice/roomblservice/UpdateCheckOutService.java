@@ -22,27 +22,30 @@ public interface UpdateCheckOutService {
      * 获取退房信息列表
      * @param address String型， 酒店地址
      * @return ArrayList<RoomVO>，返回退房信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<RoomVO> getCheckOutList(String address);
+    public ArrayList<RoomVO> getCheckOutList(String address) throws RemoteException;
     
     /**
      * 搜索实际离开时间在某个时间段的退房信息列表
      * @param address String型， 酒店地址
      * @param time Date型，实际离开时间
      * @return ArrayList<RoomVO>型，返回退房信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date startTime, Date endTime);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Date startTime, Date endTime) throws RemoteException;
     
     /**
      * 按房间类型查找相应的退房信息
      * @param address String型， 酒店地址
      * @param roomType 枚举类，酒店房间类型
      * @return ArrayList<RoomVO>型，返回退房信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<RoomVO> searchCheckOutInfo(String address, Enum<RoomType> roomType);
+    public ArrayList<RoomVO> searchCheckOutInfo(String address, Enum<RoomType> roomType) throws RemoteException;
     
     /**
      * 增加退房信息

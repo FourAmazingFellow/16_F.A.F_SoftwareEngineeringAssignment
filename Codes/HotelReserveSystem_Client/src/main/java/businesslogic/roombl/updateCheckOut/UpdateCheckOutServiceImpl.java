@@ -23,10 +23,11 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * 得到退房信息列表
      * @param address String型，酒店地址
      * @return ArrayList<RoomVO>型，退房信息VO列表 
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public ArrayList<RoomVO> getCheckOutList(String address){
+    public ArrayList<RoomVO> getCheckOutList(String address) throws RemoteException{
         ArrayList<CheckOutItem> checkOutItems=checkOutList.getCheckOutList(address);
         ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
         for(CheckOutItem checkOutItem:checkOutItems){
@@ -40,10 +41,11 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * @param address String型，酒店地址
      * @param time Date型，退房时间
      * @return ArrayList<RoomVO>型，返回符合条件的退房信息列表
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public ArrayList<RoomVO> searchCheckOutInfo(String address , Date startTime, Date endTime){
+    public ArrayList<RoomVO> searchCheckOutInfo(String address , Date startTime, Date endTime) throws RemoteException{
         ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, startTime, endTime);
         ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
         for(CheckOutItem checkOutItem:checkOutItems){
@@ -57,10 +59,11 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
      * @param address String型，酒店地址
      * @param roomType 枚举类，房间类型
      * @return ArrayList<RoomVO>型，符合条件的退房信息列表
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public ArrayList<RoomVO> searchCheckOutInfo(String address ,Enum<RoomType> roomType){
+    public ArrayList<RoomVO> searchCheckOutInfo(String address ,Enum<RoomType> roomType) throws RemoteException{
         ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo(address, roomType);
         ArrayList<RoomVO> checkOutVOs=new ArrayList<RoomVO>();
         for(CheckOutItem checkOutItem:checkOutItems){

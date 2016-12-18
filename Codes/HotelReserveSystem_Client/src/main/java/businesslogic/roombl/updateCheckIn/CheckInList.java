@@ -31,17 +31,13 @@ public class CheckInList {
      * @param address
      *            String型，酒店地址
      * @return ArrayList<CheckInItem>型，入住信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<CheckInItem> getCheckInList(String address) {
+    public ArrayList<CheckInItem> getCheckInList(String address) throws RemoteException {
         ArrayList<RoomPO> roomPOs;
         ArrayList<CheckInItem> checkInItems = new ArrayList<CheckInItem>();
-        try {
-            roomPOs = roomDAO.getCheckInInfoList(address);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return null;
-        }
+        roomPOs = roomDAO.getCheckInInfoList(address);
         for (RoomPO roomPO : roomPOs) {
             checkInItems.add(new CheckInItem(roomPO));
         }
@@ -56,17 +52,13 @@ public class CheckInList {
      * @param time
      *            Date型，入住时间
      * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<CheckInItem> searchCheckInInfo(String address, Date startTime, Date endTime) {
+    public ArrayList<CheckInItem> searchCheckInInfo(String address, Date startTime, Date endTime) throws RemoteException {
         ArrayList<RoomPO> roomPOs;
         ArrayList<CheckInItem> checkInItems = new ArrayList<CheckInItem>();
-        try {
-            roomPOs = roomDAO.getCheckInInfo(address, startTime, endTime);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return null;
-        }
+        roomPOs = roomDAO.getCheckInInfo(address, startTime, endTime);
         for (RoomPO roomPO : roomPOs) {
             checkInItems.add(new CheckInItem(roomPO));
         }
@@ -81,17 +73,13 @@ public class CheckInList {
      * @param time
      *            Date型，入住时间
      * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<CheckInItem> searchCheckInInfo(String address, Enum<RoomType> roomType) {
+    public ArrayList<CheckInItem> searchCheckInInfo(String address, Enum<RoomType> roomType) throws RemoteException {
         ArrayList<RoomPO> roomPOs;
         ArrayList<CheckInItem> checkInItems = new ArrayList<CheckInItem>();
-        try {
-            roomPOs = roomDAO.getCheckInInfo(address, roomType);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return null;
-        }
+        roomPOs = roomDAO.getCheckInInfo(address, roomType);
         for (RoomPO roomPO : roomPOs) {
             checkInItems.add(new CheckInItem(roomPO));
         }

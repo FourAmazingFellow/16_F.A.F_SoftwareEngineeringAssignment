@@ -22,27 +22,30 @@ public interface UpdateCheckInService {
      * 获取入住信息列表
      * @param address String型， 酒店地址
      * @return ArrayList<RoomVO>，返回入住信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<RoomVO> getCheckInList(String address);
+    public ArrayList<RoomVO> getCheckInList(String address) throws RemoteException;
     
     /**
      * 搜索入住时间在某个时间段的入住信息列表
      * @param address String型， 酒店地址
      * @param time Date型，入住时间
      * @return ArrayList<RoomVO>型，返回入住信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<RoomVO> searchCheckInInfo(String address, Date startTime, Date endTime);
+    public ArrayList<RoomVO> searchCheckInInfo(String address, Date startTime, Date endTime) throws RemoteException;
     
     /**
      * 按房间类型查找相应的入住信息
      * @param address String型， 酒店地址
      * @param roomType 枚举类，酒店房间类型
      * @return ArrayList<RoomVO>型，返回入住信息列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<RoomVO> searchCheckInInfo(String address , Enum<RoomType> roomType);
+    public ArrayList<RoomVO> searchCheckInInfo(String address , Enum<RoomType> roomType) throws RemoteException;
     
     /**
      * 增加入住信息

@@ -1,5 +1,6 @@
 package businesslogic.roombl.browseSpareRoom;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.BrowseSpareRoomService;
@@ -23,10 +24,11 @@ public class BrowseSpareRoomServiceImpl implements BrowseSpareRoomService{
      * 得到空房列表
      * @param address String型，酒店地址
      * @return ArrayList<RoomVO>型，返回空房列表
+     * @throws RemoteException 
      * @see
      */
     @Override
-    public ArrayList<RoomVO> getRoomInfoList(String address) {
+    public ArrayList<RoomVO> getRoomInfoList(String address) throws RemoteException {
         ArrayList<SpareRoomItem> spareRoomItems=spareRoomList.getRoomInfoList(address);
         ArrayList<RoomVO> roomVOs=new ArrayList<RoomVO>();
         for(SpareRoomItem spareRoomItem:spareRoomItems){
