@@ -6,17 +6,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.userui.manageuser.addNewUserController">
 	<children>
-		<Label fx:id="manageUserLabel" layoutX="100.0" layoutY="100.0" prefHeight="74.0" prefWidth="228.0" styleClass="label-header" text="管理用户" />
+		<Label fx:id="manageUserLabel" layoutX="99.0" layoutY="77.0" prefHeight="74.0" prefWidth="228.0" styleClass="label-header" text="管理用户" />
 		
-		<HBox layoutX="300.0" layoutY="550.0" spacing="100.0">
+		<HBox layoutX="299.0" layoutY="527.0" spacing="100.0">
 			<children>
 				<Button fx:id="cancelButton" layoutX="353.0" layoutY="635.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="50.0" prefWidth="150.0" text="取消" />
 				<Button fx:id="confirmButton" layoutX="535.0" layoutY="623.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="50.0" prefWidth="150.0" text="确认" />
 			</children>
 		</HBox>
-      <AnchorPane layoutX="150.0" layoutY="200.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+      <AnchorPane layoutX="149.0" layoutY="177.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
             <GridPane fx:id="webMarketStaffInfo1" layoutX="100.0" layoutY="25.0" prefHeight="200.0" prefWidth="400.0">
                <children>

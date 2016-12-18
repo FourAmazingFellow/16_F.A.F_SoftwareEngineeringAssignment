@@ -20,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import po.UserType;
 import presentation.HotelMainApp;
+import presentation.WebsiteManageMainApp;
 import vo.ClientInfoVO;
 import vo.HotelStaffInfoVO;
 import vo.HotelVO;
@@ -27,7 +28,7 @@ import vo.HotelVO;
 public class ManageHotelController {
 	private HotelUIFactoryService hotelFactory;
 	private ManageHotelInfoService manageHotel;
-	private HotelMainApp mainApp;
+	private WebsiteManageMainApp mainApp;
 	private String hotelAddress;
 	private String hotelName, hotelNameNew;
 	private String tradeArea;
@@ -107,14 +108,14 @@ public class ManageHotelController {
 		manageHotel = hotelFactory.createManageHotelInfoService(null);
 	}
 
-	public void setMainApp(HotelMainApp mainApp) {
+	public void setMainApp(WebsiteManageMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
 	@FXML
 	void searchButtonAction(ActionEvent event) throws RemoteException {
 		tabPane.getSelectionModel().select(hotelInfoTab);
-		String userID = searchField.getText();
+		this.hotelAddress = searchField.getText();
 		HotelVO hotel = manageHotel.getHotelInfo(hotelAddress);
 
 		if (hotel == null) {

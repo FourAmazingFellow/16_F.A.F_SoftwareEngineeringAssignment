@@ -1,38 +1,59 @@
 package presentation;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import presentation.hotelui.managehotel.ManageHotelController;
 import presentation.mainui.WebsiteManageRootBoardController;
+import presentation.userui.manageuser.ManageUserController;
+import runner.ClientRunner;
 
-public class WebsiteManageMainApp extends Application{
+public class WebsiteManageMainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane websiteManageRootLayout;
+	private ClientRunner clientRunner;
 
 	@Override
 	public void start(Stage primaryStage) {
+		clientRunner = new ClientRunner();
+		try {
+			clientRunner.start();
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
-		
-		
+
+		showWebManageRootPanel();
 	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	 public Stage getPrimaryStage() {
+	        return primaryStage;
+	    }
 
-	//显示网站管理人员导航栏
+	// 显示网站管理人员导航栏
 	public void showWebManageRootPanel() {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("mainui/websiteManageRootLayout.fxml"));
+			loader.setLocation(WebsiteManageMainApp.class.getResource("mainui/websiteManageRootBoard.fxml"));
 			websiteManageRootLayout = (BorderPane) loader.load();
 
 			// Show the scene containing the root layout.
@@ -48,18 +69,18 @@ public class WebsiteManageMainApp extends Application{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showManageUserPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("userui/manageuser/ManageUser.fxml"));
+			loader.setLocation(WebsiteManageMainApp.class.getResource("userui/manageuser/ManageUser.fxml"));
 			AnchorPane searchPanel = (AnchorPane) loader.load();
 
 			websiteManageRootLayout.setCenter(searchPanel);
-			
+
 			// Give the controller access to the main app.
-			WebsiteManageRootBoardController controller = loader.getController();
-			
+			ManageUserController controller = loader.getController();
+
 			controller.setMainApp(this);
 
 			primaryStage.show();
@@ -71,14 +92,14 @@ public class WebsiteManageMainApp extends Application{
 	public void showManageHotelPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("userui/managehotel/ManageHotel.fxml"));
+			loader.setLocation(WebsiteManageMainApp.class.getResource("hotelui/managehotel/ManageHotel.fxml"));
 			AnchorPane searchPanel = (AnchorPane) loader.load();
 
 			websiteManageRootLayout.setCenter(searchPanel);
-			
+
 			// Give the controller access to the main app.
-			WebsiteManageRootBoardController controller = loader.getController();
-			
+			ManageHotelController controller = loader.getController();
+
 			controller.setMainApp(this);
 
 			primaryStage.show();

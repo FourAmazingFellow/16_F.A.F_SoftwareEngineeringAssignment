@@ -11,24 +11,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.mainui.WebsitePromotionRootBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.mainui.WebsiteManageRootBoardController">
 	<top>
 		<GridPane prefHeight="60.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
 			<columnConstraints>
 				<ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
 				<ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="-0.0" prefWidth="200.0" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="manageUserSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="管理用户" textAlignment="CENTER">
+				<Button fx:id="manageUserSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#manageUserAction" prefHeight="60.0" prefWidth="400.0" text="管理用户" textAlignment="CENTER">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="manageHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="400.0" text="管理酒店" textAlignment="CENTER" GridPane.columnIndex="1">
+				<Button fx:id="manageHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#manageHotelAction" prefHeight="60.0" prefWidth="400.0" text="管理酒店" textAlignment="CENTER" GridPane.columnIndex="1">
 					<font>
 						<Font size="18.0" />
 					</font>

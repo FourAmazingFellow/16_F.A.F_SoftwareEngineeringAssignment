@@ -10,17 +10,18 @@ import presentation.WebsiteManageMainApp;
 public class WebsiteManageRootBoardController {
 	private WebsiteManageMainApp mainApp;
 
-	@FXML
-	private Button manageHotelSection;
+    @FXML
+    private Button manageHotelSection;
 
-	@FXML
-	private MenuButton userActionButton;
+    @FXML
+    private MenuButton userActionButton;
 
-	@FXML
-	private MenuItem userIDMenuItem;
+    @FXML
+    private MenuItem userIDMenuItem;
 
-	@FXML
-	private Button manageUserSection;	
+    @FXML
+    private Button manageUserSection;
+
 
 	@FXML
 	void initialize() {
