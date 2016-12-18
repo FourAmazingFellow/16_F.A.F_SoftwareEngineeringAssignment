@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.hotelbl.HotelInfoService;
-import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
@@ -147,7 +146,7 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     }
 
     @Override
-    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
+    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException {
         return hotelInfoService.getBusinessDistrictList(city);
     }
 }

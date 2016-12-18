@@ -98,7 +98,8 @@ public interface UpdateStrategyService {
     /**
      * 获得商圈列表
      * @return 返回商圈列表
+     * @throws RemoteException 
      * @see
      */
-    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city);
+    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException;
 }
