@@ -1,15 +1,17 @@
 package presentation.strategyui.manageMarketStrategy;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
+import factory.StrategyUIFactoryServiceImpl;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -20,9 +22,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import po.BusinessDistrictPO;
 import po.StrategyType;
 import presentation.roomui.CheckIn.CheckInEditPanelController;
-import presentation.roomui.CheckOut.ManageCheckOutPanelController;
 import presentation.roomui.util.LocalDateAdapter;
 import presentation.strategyui.model.Strategy;
 import vo.StrategyVO;
@@ -66,6 +68,9 @@ public class MarketStrategyEditPanelController {
     private ChoiceBox<Integer> vipRankChoiceBox2;
     
     @FXML
+    private ChoiceBox<String> cityChoiceBox2;
+    
+    @FXML
     private ChoiceBox<String> tradeAreaChoiceBox2;
     
     @FXML
@@ -77,17 +82,37 @@ public class MarketStrategyEditPanelController {
     private Stage dialogStage;
     private Strategy strategy;
     private boolean isConfirmed = false;
-    
+    private ObservableList<String> cityListData=FXCollections.observableArrayList("南京市","上海市");
+    private ObservableList<String> tradeAreaListData=FXCollections.observableArrayList();
     private ObservableList<Integer> vipRankList=FXCollections.observableArrayList(0,1,2,3,4);
-    private StrategyUIFactoryService strategyUIFactoryService;
+    private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
     private boolean isNewaPromotion;
     
+    
     @FXML
     private void initialize() {
+        
         vipRankChoiceBox1.setItems(vipRankList);
         vipRankChoiceBox2.setItems(vipRankList);
+        cityChoiceBox2.setItems(cityListData);
+        tradeAreaChoiceBox2.setItems(tradeAreaListData);
+        setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityChoiceBox2.getSelectionModel().getSelectedItem()));
+        //给cityChoiceBox2添加监听
+        cityChoiceBox2.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityListData.get((int)newValue)));
+            }
+        });
+    }
+    
+    public void setTradeAreaList(ArrayList<BusinessDistrictPO> tradeAreaPOs){
+        tradeAreaListData.clear();
+        for(BusinessDistrictPO tradeAreaPO:tradeAreaPOs){
+            tradeAreaListData.add(tradeAreaPO.getBusinessDistrictName());
+        }
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -118,6 +143,13 @@ public class MarketStrategyEditPanelController {
                 strategyNameTextField2.setText(strategy.getStrategyName());
                 discountTextField2.setText(String.valueOf(strategy.getDiscount()));
                 vipRankChoiceBox2.getSelectionModel().select(strategy.getVipRank());
+                for(String city: cityListData){
+                    for(BusinessDistrictPO tradeArea:updateStrategyService.getBusinessDistrictList(city)){
+                        if(tradeArea.equals(strategy.getTradeArea())){
+                            cityChoiceBox2.getSelectionModel().select(city);
+                        }
+                    }
+                }
                 tradeAreaChoiceBox2.getSelectionModel().select(strategy.getTradeArea());
             }
         }else if(strategy.getStrategyType()==StrategyType.SpecificTimeMarket){
@@ -222,6 +254,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
+            
         }else if(strategy.getStrategyType() == StrategyType.SpecificTimeMarket){
             if(strategyNameTextField3.getText()==""){
                 Alert alert = new Alert(AlertType.WARNING);

@@ -1,15 +1,19 @@
 package presentation;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import po.OrderType;
+import po.StrategyType;
 import presentation.mainui.HotelRootBoardController;
 import presentation.orderui.BrowseHotelOrderPanelController;
 import presentation.orderui.GetDetailedOrderDonePanelController;
@@ -24,22 +28,37 @@ import presentation.strategyui.manageHotelPromotion.PromotionEditPanelController
 import presentation.strategyui.manageMarketStrategy.MarketStrategyEditPanelController;
 import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController;
 import presentation.strategyui.model.Strategy;
+import runner.ClientRunner;
+import vo.StrategyVO;
 
 public class HotelMainApp extends Application {
 	
-	public static String hotelAddress = "";
+    private ClientRunner clientRunner;
+    
+	public static String hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 	public static String userId;
 	private Stage primaryStage;
 	private BorderPane hotelRootLayout;
 	
 	@Override
 	public void start(Stage primaryStage) {
+	    clientRunner = new ClientRunner();
+        try {
+            clientRunner.start();
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+        }
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 		
-		showHotelRootPanel();
-		showHotelOrderPanel();
+//		showHotelRootPanel();
+		showMarketStrategyEditDialog(new Strategy(new StrategyVO("", StrategyType.VipTradeAreaMarket, "商圈折扣", 0.88f, 3, "栖霞区")), "", false);
+//		showHotelOrderPanel();
 	}
 	public static void main(String[] args) {
 		launch(args);
@@ -258,7 +277,7 @@ public class HotelMainApp extends Application {
 	            SpareRoomTablePanelController spareRoomController = loader.getController();
 	            spareRoomController.setMainApp(this);
 	            //默认显示空房列表
-	            spareRoomController.showSpareRoomList(hotelAddress);;
+	            spareRoomController.showSpareRoomList(hotelAddress);
 
 	            primaryStage.show();
 	        } catch (IOException e) {
@@ -368,7 +387,7 @@ public class HotelMainApp extends Application {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(HotelMainApp.class.getResource("strategyui/manegeMarketStrategy/MarketStrategyEditPanel.fxml"));
+	            loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyEditPanel.fxml"));
 	            AnchorPane page = (AnchorPane) loader.load();
 
 	            // Create the dialog Stage.

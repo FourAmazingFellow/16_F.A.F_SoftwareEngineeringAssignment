@@ -2,11 +2,16 @@ package businesslogic.strategybl.updateStrategy;
 
 import java.util.ArrayList;
 
+import businesslogic.hotelbl.HotelInfoService;
+import businesslogic.strategybl.StrategyInfoService;
 import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
+import po.BusinessDistrictPO;
 import po.StrategyType;
 import vo.StrategyVO;
 
@@ -19,6 +24,8 @@ import vo.StrategyVO;
 public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     
     private StrategyList strategyList;
+    private FactoryService factory=new FactoryServiceImpl();
+    private HotelInfoService hotelInfoService=factory.createHotelInfoService();
     
     /**
      * 得到某种策略类型的列表
@@ -131,5 +138,10 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     @Override
     public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
         return strategyList.verifyTradeArea(city, strategyVO);
+    }
+
+    @Override
+    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
+        return hotelInfoService.getBusinessDistrictList(city);
     }
 }

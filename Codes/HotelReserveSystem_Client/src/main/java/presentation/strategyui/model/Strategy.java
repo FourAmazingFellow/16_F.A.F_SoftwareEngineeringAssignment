@@ -136,8 +136,8 @@ public class Strategy {
         return strategyName.get();
     }
     
-    public int getDiscount(){
-        return Integer.parseInt(discount.get());
+    public float getDiscount(){
+        return Float.parseFloat(discount.get());
     }
     
     public int getMinRoomNum(){

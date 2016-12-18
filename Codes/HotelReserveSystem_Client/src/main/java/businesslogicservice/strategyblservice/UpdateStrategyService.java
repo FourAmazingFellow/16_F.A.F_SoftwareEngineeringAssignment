@@ -6,6 +6,7 @@ import businesslogic.strategybl.exception.UnableAddStrategyException;
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
+import po.BusinessDistrictPO;
 import po.StrategyType;
 import vo.StrategyVO;
 
@@ -88,4 +89,10 @@ public interface UpdateStrategyService {
      */
     public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException;
     
+    /**
+     * 获得商圈列表
+     * @return 返回商圈列表
+     * @see
+     */
+    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city);
 }

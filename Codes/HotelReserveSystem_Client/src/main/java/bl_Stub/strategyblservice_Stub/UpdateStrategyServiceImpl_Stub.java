@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
+import po.BusinessDistrictPO;
 import po.StrategyType;
 import vo.StrategyVO;
 
@@ -94,6 +95,12 @@ public class UpdateStrategyServiceImpl_Stub implements UpdateStrategyService{
     @Override
     public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException {
         return true;
+    }
+
+    @Override
+    public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
