@@ -4,29 +4,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-	prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css"
-	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
-		<TabPane fx:id="orderListTab" layoutX="100.0" layoutY="100.0"
-			prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+		<TabPane fx:id="orderListTab" layoutX="100.0" layoutY="100.0" prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab fx:id="allTab" text="全部">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0">
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<TableView fx:id="orderDetailTableAll" prefHeight="400.0"
-									prefWidth="800.0">
+								<TableView fx:id="orderDetailTableAll" prefHeight="400.0" prefWidth="800.0">
 									<columns>
-										<TableColumn minWidth="100.0" prefWidth="150.0"
-											text="酒店名称" />
-										<TableColumn prefWidth="150.0" text="酒店地址" />
-										<TableColumn prefWidth="150.0" text="所属商圈" />
-										<TableColumn prefWidth="130.0" text="酒店星级" />
-										<TableColumn prefWidth="130.0" text="酒店评分" />
-										<TableColumn prefWidth="150.0" text="标记" />
+										<TableColumn fx:id="hotelNameColumn" minWidth="100.0" prefWidth="150.0" text="酒店名称" />
+										<TableColumn fx:id="hotelAddressColumn" prefWidth="150.0" text="酒店地址" />
+										<TableColumn fx:id="tradeAreaColumn" prefWidth="150.0" text="所属商圈" />
+										<TableColumn fx:id="hotelStarColumn" prefWidth="130.0" text="酒店星级" />
+										<TableColumn fx:id="hotelMarkColumn" prefWidth="130.0" text="酒店评分" />
+										<TableColumn fx:id="tagColumn" prefWidth="150.0" text="标记" />
 									</columns>
 								</TableView>
 							</children>
@@ -35,64 +28,55 @@
 				</Tab>
 				<Tab fx:id="normalTab" text="正常订单">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0">
-							<children>
-								<TableView fx:id="orderDetailTableNormal" prefHeight="400.0"
-									prefWidth="800.0">
-									<columns>
-										<TableColumn minWidth="100.0" prefWidth="150.0"
-											text="酒店名称" />
-										<TableColumn prefWidth="150.0" text="酒店地址" />
-										<TableColumn prefWidth="150.0" text="所属商圈" />
-										<TableColumn prefWidth="130.0" text="酒店星级" />
-										<TableColumn prefWidth="130.0" text="酒店评分" />
-										<TableColumn prefWidth="150.0" text="标记" />
-									</columns>
-								</TableView>
-							</children>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="orderDetailTableNormal" prefHeight="400.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="hotelNameColumn1" minWidth="100.0" prefWidth="150.0" text="酒店名称" />
+                              <TableColumn fx:id="hotelAddressColumn1" prefWidth="150.0" text="酒店地址" />
+                              <TableColumn fx:id="tradeAreaColumn1" prefWidth="150.0" text="所属商圈" />
+                              <TableColumn fx:id="hotelStarColumn1" prefWidth="130.0" text="酒店星级" />
+                              <TableColumn fx:id="hotelMarkColumn1" prefWidth="130.0" text="酒店评分" />
+                              <TableColumn fx:id="tagColumn1" prefWidth="150.0" text="标记" />
+                           </columns>
+                        </TableView>
+                     </children>
 						</AnchorPane>
 					</content>
 				</Tab>
 				<Tab fx:id="abnormalTab" text="异常订单">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0">
-							<children>
-								<TableView fx:id="orderDetailTableAbnormal"
-									prefHeight="400.0" prefWidth="800.0">
-									<columns>
-										<TableColumn minWidth="100.0" prefWidth="150.0"
-											text="酒店名称" />
-										<TableColumn prefWidth="150.0" text="酒店地址" />
-										<TableColumn prefWidth="150.0" text="所属商圈" />
-										<TableColumn prefWidth="130.0" text="酒店星级" />
-										<TableColumn prefWidth="130.0" text="酒店评分" />
-										<TableColumn prefWidth="150.0" text="标记" />
-									</columns>
-								</TableView>
-							</children>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="orderDetailTableAbmormal" prefHeight="400.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="hotelNameColumn2" minWidth="100.0" prefWidth="150.0" text="酒店名称" />
+                              <TableColumn fx:id="hotelAddressColumn2" prefWidth="150.0" text="酒店地址" />
+                              <TableColumn fx:id="tradeAreaColumn2" prefWidth="150.0" text="所属商圈" />
+                              <TableColumn fx:id="hotelStarColumn2" prefWidth="130.0" text="酒店星级" />
+                              <TableColumn fx:id="hotelMarkColumn2" prefWidth="130.0" text="酒店评分" />
+                              <TableColumn fx:id="tagColumn2" prefWidth="150.0" text="标记" />
+                           </columns>
+                        </TableView>
+                     </children>
 						</AnchorPane>
 					</content>
 				</Tab>
 				<Tab fx:id="undoTab" text="撤销订单">
 					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-							prefWidth="200.0">
-							<children>
-								<TableView fx:id="orderDetailTableUndo" prefHeight="400.0"
-									prefWidth="800.0">
-									<columns>
-										<TableColumn minWidth="100.0" prefWidth="150.0"
-											text="酒店名称" />
-										<TableColumn prefWidth="150.0" text="酒店地址" />
-										<TableColumn prefWidth="150.0" text="所属商圈" />
-										<TableColumn prefWidth="130.0" text="酒店星级" />
-										<TableColumn prefWidth="130.0" text="酒店评分" />
-										<TableColumn prefWidth="150.0" text="标记" />
-									</columns>
-								</TableView>
-							</children>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="orderDetailTableUndo" prefHeight="400.0" prefWidth="800.0">
+                           <columns>
+                              <TableColumn fx:id="hotelNameColumn3" minWidth="100.0" prefWidth="150.0" text="酒店名称" />
+                              <TableColumn fx:id="hotelAddressColumn3" prefWidth="150.0" text="酒店地址" />
+                              <TableColumn fx:id="tradeAreaColumn3" prefWidth="150.0" text="所属商圈" />
+                              <TableColumn fx:id="hotelStarColumn3" prefWidth="130.0" text="酒店星级" />
+                              <TableColumn fx:id="hotelMarkColumn3" prefWidth="130.0" text="酒店评分" />
+                              <TableColumn fx:id="tagColumn3" prefWidth="150.0" text="标记" />
+                           </columns>
+                        </TableView>
+                     </children>
 						</AnchorPane>
 					</content>
 				</Tab>
@@ -100,12 +84,8 @@
 		</TabPane>
 		<HBox layoutX="500.0" layoutY="600.0" spacing="50.0">
 			<children>
-				<Button fx:id="hotelDetailButton" layoutX="565.0" layoutY="625.0"
-					mnemonicParsing="false" onAction="#hotelDetailButtonAction"
-					prefHeight="50.0" prefWidth="200.0" text="查看酒店详情" />
-				<Button fx:id="orderDoneButton" layoutX="749.0" layoutY="637.0"
-					mnemonicParsing="false" onAction="#orderDoneButtonAction"
-					prefHeight="50.0" prefWidth="150.0" text="生成订单" />
+				<Button fx:id="hotelDetailButton" layoutX="565.0" layoutY="625.0" mnemonicParsing="false" onAction="#hotelDetailButtonAction" prefHeight="50.0" prefWidth="200.0" text="查看酒店详情" />
+				<Button fx:id="orderDoneButton" layoutX="749.0" layoutY="637.0" mnemonicParsing="false" onAction="#orderDoneButtonAction" prefHeight="50.0" prefWidth="150.0" text="生成订单" />
 			</children>
 		</HBox>
 	</children>
