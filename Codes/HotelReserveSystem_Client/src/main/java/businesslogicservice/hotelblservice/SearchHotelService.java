@@ -2,6 +2,7 @@ package businesslogicservice.hotelblservice;
 
 import java.util.ArrayList;
 
+import po.BusinessDistrictPO;
 import vo.OrderedHotelInfoVO;
 
 /**
@@ -38,4 +39,10 @@ public interface SearchHotelService {
 	 */
 	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition);
 
+	/**
+	 * 获得商圈列表
+	 * @return 返回商圈列表
+	 * @see
+	 */
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city);
 }

@@ -17,6 +17,7 @@ import factory.FactoryService;
 import factory.FactoryServiceImpl;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
+import po.BusinessDistrictPO;
 import po.OrderState;
 import po.RoomType;
 import rmi.RemoteHelper;
@@ -127,6 +128,16 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@Override
+	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) {
+		try {
+			return hotelDAO.getBusinessDistrictList(city);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
