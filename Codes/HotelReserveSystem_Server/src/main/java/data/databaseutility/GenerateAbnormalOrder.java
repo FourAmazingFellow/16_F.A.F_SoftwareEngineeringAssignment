@@ -23,7 +23,7 @@ public class GenerateAbnormalOrder implements Runnable {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			
-			pstmt = conn.prepareStatement("select * from orderinfo where orderState = 1 and lastedOrderDoneTime < date_sub(sysdate(),interval 3600 seconds)");
+			pstmt = conn.prepareStatement("select * from orderinfo where orderState = 1 and lastedOrderDoneTime < date_sub(sysdate(),interval 3600 second)");
 			
 			rs = pstmt.executeQuery();
 			
@@ -88,9 +88,9 @@ public class GenerateAbnormalOrder implements Runnable {
 		while(true) {
 			checkAbnormalOrders();
 			try {
-				wait(3600000);
+				Thread.sleep(3600000);
 			} catch (InterruptedException e) {
-				System.out.println("线程等待时出错！！");
+				System.out.println("线程挂起错误！");
 				e.printStackTrace();
 			}
 		}

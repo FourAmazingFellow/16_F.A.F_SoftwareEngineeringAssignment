@@ -45,6 +45,17 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	public boolean addHotelStaff(HotelStaffInfoVO staff) {
 		return userService.insert(staff);
 	}
+
+
+	@Override
+	public HotelVO getHotelInfo(String hotelAddress) {
+		try {
+			return new HotelVO(hotelDAO.getHotelDetails(hotelAddress));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	
 	

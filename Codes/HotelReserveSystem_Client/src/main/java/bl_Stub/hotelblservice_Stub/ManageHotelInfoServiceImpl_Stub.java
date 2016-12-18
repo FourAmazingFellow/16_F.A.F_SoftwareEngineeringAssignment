@@ -48,4 +48,10 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 		return true;
 	}
 
+	@Override
+	public HotelVO getHotelInfo(String hotelAddress) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

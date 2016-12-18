@@ -10,7 +10,9 @@ import vo.HotelVO;
  * @see
  */
 public interface ManageHotelInfoService {
+
 	
+	public HotelVO getHotelInfo(String hotelAddress);
 	/**
 	 * 添加酒店
 	 * @param hotel HotelVO型，界面传递来的酒店信息
