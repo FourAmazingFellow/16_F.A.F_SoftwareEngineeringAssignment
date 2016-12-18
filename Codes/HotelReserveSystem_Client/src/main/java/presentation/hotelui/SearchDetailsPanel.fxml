@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="273.0" layoutY="-462.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="89.0" text="筛选" />
       <TableView layoutX="-38.0" layoutY="-401.0" prefHeight="307.0" prefWidth="533.0">
