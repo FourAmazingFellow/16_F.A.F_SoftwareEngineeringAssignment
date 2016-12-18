@@ -2,6 +2,8 @@ package runner;
 
 
 
+import java.rmi.RemoteException;
+
 import rmi.LinkToServer;
 
 public class ClientRunner {
@@ -12,7 +14,7 @@ public class ClientRunner {
 		this.linkToServer = new LinkToServer();
 	}
 	
-	public void start() {
+	public void start() throws RemoteException {
 		linkToServer.linkToServer();
 	}
 	
