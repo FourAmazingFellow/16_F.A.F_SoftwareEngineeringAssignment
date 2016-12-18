@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
@@ -12,16 +13,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.SearchPanelController">
    <children>
-      <Button fx:id="searchButton" alignment="CENTER" layoutX="324.0" layoutY="474.0" mnemonicParsing="false" opacity="0.8" prefHeight="67.0" prefWidth="196.0" text="搜索" textAlignment="CENTER" AnchorPane.leftAnchor="324.0" AnchorPane.rightAnchor="410.0">
+      <Button fx:id="searchButton" alignment="CENTER" layoutX="371.0" layoutY="501.0" mnemonicParsing="false" opacity="0.8" prefHeight="70.0" prefWidth="200.0" text="搜索" textAlignment="CENTER" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="districtChooser" layoutX="324.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="133.0" styleClass="choice-box-big" stylesheets="@../DarkTheme.css" />
-      <DatePicker layoutX="118.0" layoutY="271.0" prefHeight="98.0" prefWidth="175.0" />
-      <ChoiceBox layoutX="474.0" layoutY="285.0" prefHeight="67.0" prefWidth="150.0" />
-      <DatePicker layoutX="638.0" layoutY="271.0" prefHeight="98.0" prefWidth="175.0" />
-      <ChoiceBox layoutX="196.0" layoutY="164.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="528.0" layoutY="164.0" prefWidth="150.0" />
+      <DatePicker fx:id="beginDatePicker" layoutX="130.0" layoutY="288.0" prefHeight="70.0" prefWidth="250.0" AnchorPane.leftAnchor="130.0" />
+      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="130.0" layoutY="189.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.leftAnchor="130.0" />
+      <DatePicker fx:id="finishDatePicker" layoutX="620.0" layoutY="292.0" prefHeight="70.0" prefWidth="250.0" AnchorPane.rightAnchor="130.0" />
+      <ChoiceBox fx:id="roomNumChoiceBox" layoutX="570.0" layoutY="189.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.rightAnchor="130.0" />
+      <TextField fx:id="searchTextArea" layoutX="134.0" layoutY="393.0" prefHeight="60.0" prefWidth="698.0" promptText="请填入要搜索的信息..." AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" />
+      <Line endX="100.0" layoutX="499.5" layoutY="343.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" AnchorPane.leftAnchor="397.0" AnchorPane.rightAnchor="398.0" />
+      <Text fill="#f2eeee" layoutX="429.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="入住区间" textAlignment="CENTER" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="428.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="tradeAreaChoiceBox" layoutX="570.0" layoutY="89.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.rightAnchor="130.0" />
+      <ChoiceBox fx:id="cityChoiceBox" layoutX="128.0" layoutY="89.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.leftAnchor="130.0" />
    </children>
 </AnchorPane>

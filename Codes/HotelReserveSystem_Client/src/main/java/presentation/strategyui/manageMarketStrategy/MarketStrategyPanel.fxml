@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="80.0" layoutY="23.0" styleClass="label-title" text="管理网站营销策略" />
       <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="111.0" prefHeight="440.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">

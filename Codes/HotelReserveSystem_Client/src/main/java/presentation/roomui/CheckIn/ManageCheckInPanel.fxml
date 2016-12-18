@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.roomui.CheckIn.ManageCheckInPanelController">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="80.0" layoutY="29.0" styleClass="label-title" text="入住信息列表" />
       <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="90.0" layoutY="105.0" prefHeight="35.0" prefWidth="216.0" styleClass="choice-box-small" />

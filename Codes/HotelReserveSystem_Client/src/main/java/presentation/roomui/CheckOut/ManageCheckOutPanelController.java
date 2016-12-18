@@ -134,7 +134,7 @@ public class ManageCheckOutPanelController {
         }else{
             tmpCheckOut=new CheckOut();
         }
-        boolean isConfirmed=mainApp.showCheckOutEditDialog(tmpCheckOut);
+        boolean isConfirmed=mainApp.showCheckOutEditDialog(tmpCheckOut, address);
         if(isConfirmed){
             checkOutTable.getItems().add(tmpCheckOut);
         }

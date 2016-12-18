@@ -134,10 +134,6 @@
     -fx-background-insets: 0.0 0.0 0.0 0.0, 0.0, 1.0, 2.0;
 }
 
-.button-small{
-    -fx-font-size:13pt;
-}
-
 .menu-button {
 	-fx-padding: 5.0 22.0 5.0 22.0;   
     -fx-border-color: #e2e2e2;

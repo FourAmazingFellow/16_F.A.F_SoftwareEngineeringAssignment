@@ -247,7 +247,7 @@ public class PromotionPanelController {
             strategy = new Strategy(StrategyType.SpecificTimePromotion);
 
         boolean isNewaPromotion = true;
-        boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, isNewaPromotion);
+        boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, address, isNewaPromotion);
         if (isConfirmed) {
             if (selectedTab == 0)
                 birthdayPromotionTable.getItems().add(strategy);
@@ -296,7 +296,7 @@ public class PromotionPanelController {
             e.printStackTrace();
         }
         boolean isNewaPromotion = false;
-        boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, isNewaPromotion);
+        boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, address, isNewaPromotion);
         if (isConfirmed) {
             if (selectedTab == 0)
                 birthdayPromotionTable.getItems().add(strategy);
