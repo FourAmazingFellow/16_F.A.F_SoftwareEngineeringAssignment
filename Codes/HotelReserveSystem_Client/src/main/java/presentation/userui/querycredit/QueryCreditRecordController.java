@@ -1,5 +1,6 @@
 package presentation.userui.querycredit;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
@@ -9,15 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import po.CreditRecordPO;
 import presentation.ClientMainApp;
-import presentation.hotelui.enrollavaluableroom.Room;
 import vo.CreditRecordVO;
-import vo.RoomVO;
 
 public class QueryCreditRecordController {
 	private UserUIFactoryService userFactory;
@@ -73,10 +73,19 @@ public class QueryCreditRecordController {
 	}
 	
 	public void showCreditRecordList(){
-		ArrayList<CreditRecordVO> creditRecordVOs = queryClientCreditRecord.queryCreditRecord(userID);
-		creditRecordList.setCreditRecordList(creditRecordVOs);
-		creditRecordData.clear();
-		creditRecordData.addAll(creditRecordList.getCreditRecordList());
+		ArrayList<CreditRecordVO> creditRecordVOs;
+		try {
+			creditRecordVOs = queryClientCreditRecord.queryCreditRecord(userID);
+			creditRecordList.setCreditRecordList(creditRecordVOs);
+			creditRecordData.clear();
+			creditRecordData.addAll(creditRecordList.getCreditRecordList());
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 	}
 	
 	@FXML
