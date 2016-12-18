@@ -1,5 +1,7 @@
 package presentation.userui.manageuser;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.ManageUserInfoService;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryServiceImpl;
@@ -50,7 +52,7 @@ public class addNewUserController {
 			manageUser = userFactory.createManageUserInfoService();
 	    }
 	    
-	    public void addNewUser(){
+	    public void addNewUser() throws RemoteException{
 	    	this.userID = webMarketUserIDField.getText();
 	    	this.password = webMarketPasswordField.getText();
 	    	this.telNum = webMarketTelNumField.getText();
@@ -76,7 +78,7 @@ public class addNewUserController {
 	    }
 
 	    @FXML
-	    void confirmButtonAction(ActionEvent event) {
+	    void confirmButtonAction(ActionEvent event) throws RemoteException {
 	    	addNewUser();
 	    }
 }

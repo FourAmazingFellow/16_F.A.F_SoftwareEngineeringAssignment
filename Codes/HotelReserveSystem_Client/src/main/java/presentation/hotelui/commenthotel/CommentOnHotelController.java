@@ -1,5 +1,7 @@
 package presentation.hotelui.commenthotel;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.hotelblservice.CommentOnHotelService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
@@ -55,7 +57,7 @@ public class CommentOnHotelController {
 		this.mainApp = mainApp;
 	}
 	
-	public void commentOnHotel(){
+	public void commentOnHotel() throws RemoteException{
 		this.mark = Float.parseFloat(rankField.getText());
 		this.comments = commentArea.getText();
 		boolean result = comment.confirmComment(userID, mark, comments, hotelAddress);
@@ -79,7 +81,7 @@ public class CommentOnHotelController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		commentOnHotel();
 	}
 }

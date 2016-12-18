@@ -1,5 +1,6 @@
 package presentation.userui.signvip;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -50,16 +51,16 @@ public class SignRegularVipController {
 	@FXML
 	void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		// signVip = userFactory.createSignVipService();
-		// modifyClientInfo = userFactory.createModifyClientInfoService();
-		signVip = new SignVipServiceImpl_Stub(new Date(1997 - 1900, 3 - 1, 22));
+		 signVip = userFactory.createSignVipService();
+		 modifyClientInfo = userFactory.createModifyClientInfoService();
+//		signVip = new SignVipServiceImpl_Stub(new Date(1997 - 1900, 3 - 1, 22));
 	}
 
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
 
-	public void signRegularVip() {
+	public void signRegularVip() throws RemoteException {
 		LocalDate date = datePicker.getValue();
 		this.birth = getDate(date);
 		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
@@ -104,7 +105,7 @@ public class SignRegularVipController {
 
 	@FXML
 	// 注册按钮action，跳转提示框（是否注册成功）
-	void signButttonAction(ActionEvent event) {
+	void signButttonAction(ActionEvent event) throws RemoteException {
 		signRegularVip();
 	}
 }

@@ -1,5 +1,7 @@
 package presentation.userui.login;
 
+import java.rmi.RemoteException;
+
 import bl_Stub.userblservice_Stub.LoginAndSignUpServiceImpl_Stub;
 import businesslogic.userbl.loginAndSignUp.CheckLoginInfo;
 import businesslogicservice.userblservice.LoginAndSignUpService;
@@ -36,15 +38,15 @@ public class LoginController {
 	private void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		check = new CheckLoginInfo();
-		// login = userFactory.createLoginAndSignUpService();
-		login = new LoginAndSignUpServiceImpl_Stub();
+		 login = userFactory.createLoginAndSignUpService();
+//		login = new LoginAndSignUpServiceImpl_Stub();
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	public void verifyLogin() {
+	public void verifyLogin() throws RemoteException {
 		String userID = userIDTextArea.getText();
 		String password = passwordTextArea.getText();
 		UserType userType = check.checkUser(userID, password);
@@ -74,7 +76,7 @@ public class LoginController {
 		}
 	}
 
-	public void loginButtonAction() {
+	public void loginButtonAction() throws RemoteException {
 		verifyLogin();
 	}
 

@@ -1,5 +1,6 @@
 package presentation.hotelui.managehotel;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -111,7 +112,7 @@ public class ManageHotelController {
 	}
 
 	@FXML
-	void searchButtonAction(ActionEvent event) {
+	void searchButtonAction(ActionEvent event) throws RemoteException {
 		tabPane.getSelectionModel().select(hotelInfoTab);
 		String userID = searchField.getText();
 		HotelVO hotel = manageHotel.getHotelInfo(hotelAddress);
@@ -136,7 +137,7 @@ public class ManageHotelController {
 
 	}
 
-	public void addNewHotel() {
+	public void addNewHotel() throws RemoteException {
 		tabPane.getSelectionModel().select(hotelInfoTab);
 		this.hotelNameNew = hotelNameField.getText();
 		this.staffID = hotelStaffIDfField.getText();
@@ -164,7 +165,7 @@ public class ManageHotelController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		addNewHotel();
 	}
 }

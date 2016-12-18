@@ -1,5 +1,6 @@
 package presentation.userui.maintain;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 
 import bl_Stub.userblservice_Stub.ModifyClientInfoServiceImpl_Stub;
@@ -70,9 +71,9 @@ public class EditController {
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		clientInfo();
-		// modifyClientInfo = userFactory.createModifyClientInfoService();
-		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
-				1000, "阿里巴巴");
+		 modifyClientInfo = userFactory.createModifyClientInfoService();
+//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
+//				1000, "阿里巴巴");
 	}
 
 	public void setMainApp(ClientMainApp clientMainApp) {
@@ -91,7 +92,7 @@ public class EditController {
 			birthOrEnterpriseLabel.setText(enterpriseName);
 	}
 
-	public void editClientInfo() {
+	public void editClientInfo() throws RemoteException {
 		newUserID = userIDField.getText();
 		newTelNum = telNumField.getText();
 		UserVO user = new UserVO(newUserID, password, newTelNum, UserType.Client);
@@ -121,7 +122,7 @@ public class EditController {
 	}
 
 	@FXML
-	void saveButtonAction(ActionEvent event) {
+	void saveButtonAction(ActionEvent event) throws RemoteException {
 		editClientInfo();
 
 	}

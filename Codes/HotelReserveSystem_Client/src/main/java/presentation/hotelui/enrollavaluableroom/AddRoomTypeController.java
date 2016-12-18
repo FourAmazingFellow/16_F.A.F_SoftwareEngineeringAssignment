@@ -1,5 +1,7 @@
 package presentation.hotelui.enrollavaluableroom;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.hotelblservice.ImportNewRoomService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
@@ -67,7 +69,7 @@ public class AddRoomTypeController {
 		this.mainApp = mainApp;
 	}
 
-	public void addRoomType() {
+	public void addRoomType() throws RemoteException {
 		this.roomTypeStr = choiceBox.getTypeSelector();
 		this.roomType = (RoomType) RoomType.chineseToEnum(roomTypeStr);
 		this.roomNum = Integer.parseInt(roomNumberField.getText());
@@ -94,7 +96,7 @@ public class AddRoomTypeController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		addRoomType();
 	}
 }

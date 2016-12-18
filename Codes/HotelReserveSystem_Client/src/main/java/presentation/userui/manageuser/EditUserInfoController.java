@@ -1,5 +1,7 @@
 package presentation.userui.manageuser;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.ManageUserInfoService;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryServiceImpl;
@@ -124,7 +126,7 @@ public class EditUserInfoController {
 		this.mainApp = mainApp;
 	}
 
-	public void editClientInfo() {
+	public void editClientInfo() throws RemoteException {
 		this.userIDm = clientUserIDField.getText();
 		this.passwordm = clientPasswordField.getText();
 		this.telNumm = clientTelNumField.getText();
@@ -144,7 +146,7 @@ public class EditUserInfoController {
 		}
 	}
 
-	public void editWebUserInfo() {
+	public void editWebUserInfo() throws RemoteException {
 		this.userIDm = webMarketPasswordField.getText();
 		this.passwordm = webMarketPasswordField.getText();
 		this.telNumm = webMarketTelNumField.getText();
@@ -170,7 +172,7 @@ public class EditUserInfoController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		if (tabPane.getSelectionModel().equals(clientTab)) {
 			editClientInfo();
 		} else if (tabPane.getSelectionModel().equals(webMarketStaffTab)) {

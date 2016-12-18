@@ -1,5 +1,7 @@
 package presentation.userui.signvip;
 
+import java.rmi.RemoteException;
+
 import bl_Stub.userblservice_Stub.SignVipServiceImpl_Stub;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import businesslogicservice.userblservice.SignVipService;
@@ -48,16 +50,16 @@ public class SignEnterpriseVipController {
 	@FXML
 	void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		// signVip = userFactory.createSignVipService();
-		// modifyClientInfo = userFactory.createModifyClientInfoService();
-		signVip = new SignVipServiceImpl_Stub("阿里巴巴", "alibaba6");
+		 signVip = userFactory.createSignVipService();
+		 modifyClientInfo = userFactory.createModifyClientInfoService();
+//		signVip = new SignVipServiceImpl_Stub("阿里巴巴", "alibaba6");
 	}
 
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
 
-	public void signEnterpriseVip() {
+	public void signEnterpriseVip() throws RemoteException {
 		this.enterpriseID = enterpriseNameField.getText();
 		this.enterprisePassword = enterprisePasswordField.getText();
 		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
@@ -86,7 +88,7 @@ public class SignEnterpriseVipController {
 
 	@FXML
 	// 注册按钮action，跳转提示框（是否注册成功）
-	void signButtonAction(ActionEvent event) {
+	void signButtonAction(ActionEvent event) throws RemoteException {
 		signEnterpriseVip();
 	}
 }

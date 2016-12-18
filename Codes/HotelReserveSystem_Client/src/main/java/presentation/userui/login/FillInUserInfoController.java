@@ -1,5 +1,7 @@
 package presentation.userui.login;
 
+import java.rmi.RemoteException;
+
 import bl_Stub.userblservice_Stub.LoginAndSignUpServiceImpl_Stub;
 import businesslogicservice.userblservice.LoginAndSignUpService;
 import businesslogicservice.userblservice.ManageUserInfoService;
@@ -57,15 +59,15 @@ public class FillInUserInfoController {
 	@FXML
 	void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		// registerInfo = userFactory.createLoginAndSignUpService();
-		registerInfo = new LoginAndSignUpServiceImpl_Stub();
+		 registerInfo = userFactory.createLoginAndSignUpService();
+//		registerInfo = new LoginAndSignUpServiceImpl_Stub();
 		userIDField.setText(userID);
 		passwordField.setText(password);
 		userTypeChoiceBox.setItems((ObservableList<String>) FXCollections.observableArrayList("客户", "网站营销人员", "网站管理人员"));
 		userTypeChoiceBox.setValue("客户");
 	}
 
-	public void registerInfo() {
+	public void registerInfo() throws RemoteException {
 		String userTypeStr = userTypeChoiceBox.getValue();
 		String telNum = telNumField.getText();
 		UserType userType;

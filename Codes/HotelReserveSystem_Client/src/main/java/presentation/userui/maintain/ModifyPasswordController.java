@@ -1,5 +1,7 @@
 package presentation.userui.maintain;
 
+import java.rmi.RemoteException;
+
 import bl_Stub.userblservice_Stub.ModifyClientInfoServiceImpl_Stub;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
@@ -49,12 +51,12 @@ public class ModifyPasswordController {
 	@FXML
 	void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		// modifyClientInfo = userFactory.createModifyClientInfoService();
-		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
-				1000, "阿里巴巴");
+		 modifyClientInfo = userFactory.createModifyClientInfoService();
+//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
+//				1000, "阿里巴巴");
 	}
 
-	public void modifyPassword() {
+	public void modifyPassword() throws RemoteException {
 		this.prePassword = prePasswordField.getText();
 		this.newPassword = newPasswordField.getText();
 		this.newPasswordConfirm = newPasswordConfirmField.getText();
@@ -88,7 +90,7 @@ public class ModifyPasswordController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		modifyPassword();
 	}
 }

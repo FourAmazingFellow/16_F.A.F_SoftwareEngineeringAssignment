@@ -1,5 +1,7 @@
 package presentation.userui.login;
 
+import java.rmi.RemoteException;
+
 import bl_Stub.userblservice_Stub.LoginAndSignUpServiceImpl_Stub;
 import businesslogicservice.userblservice.LoginAndSignUpService;
 import factory.UserUIFactoryService;
@@ -36,11 +38,11 @@ public class RegisterController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		// register = userFactory.createLoginAndSignUpService();
-		register = new LoginAndSignUpServiceImpl_Stub();
+		 register = userFactory.createLoginAndSignUpService();
+//		register = new LoginAndSignUpServiceImpl_Stub();
 	}
 
-	public void register() {
+	public void register() throws RemoteException {
 		String userID = r_userIDArea.getText();
 		String password = r_passwordArea.getText();
 		String password_c = r_passwordCofirmArea.getText();

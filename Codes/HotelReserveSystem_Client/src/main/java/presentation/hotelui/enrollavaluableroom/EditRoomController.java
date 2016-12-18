@@ -1,5 +1,7 @@
 package presentation.hotelui.enrollavaluableroom;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.hotelblservice.ImportNewRoomService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
@@ -61,7 +63,7 @@ public class EditRoomController {
 		this.mainApp = mainApp;
 	}
 	
-	public void editRoomType(){
+	public void editRoomType() throws RemoteException{
 		this.roomNumm = Integer.parseInt(roomNumField.getText());
 		this.roomPricem = Integer.parseInt(roomPriceField.getText());
 		RoomVO modified = new RoomVO(RoomType.chineseToEnum(roomTypeLabel.getText()), roomNumm, roomPricem, selected.address);
@@ -86,7 +88,7 @@ public class EditRoomController {
 	}
 
 	@FXML
-	void deleteButtonAction(ActionEvent event) {
+	void deleteButtonAction(ActionEvent event) throws RemoteException {
 		RoomVO deleted = new RoomVO(selected.roomType, 0, selected.roomPrice, selected.address);
 		boolean result = importNewRoom.addRoom(deleted);
 		if (result == false) {
@@ -104,7 +106,7 @@ public class EditRoomController {
 	}
 
 	@FXML
-	void saveButtonAction(ActionEvent event) {
+	void saveButtonAction(ActionEvent event) throws RemoteException {
 		editRoomType();
 	}
 }

@@ -1,5 +1,7 @@
 package presentation.userui.manageuser;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.ManageUserInfoService;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryServiceImpl;
@@ -130,7 +132,7 @@ public class ManageUserController {
 	}
 
 	@FXML
-	void searchButtonAction(ActionEvent event) {
+	void searchButtonAction(ActionEvent event) throws RemoteException {
 		this.userID = searchField.getText();
 		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
 		this.client = client;

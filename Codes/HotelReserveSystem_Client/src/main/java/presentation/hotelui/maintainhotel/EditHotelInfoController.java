@@ -1,5 +1,7 @@
 package presentation.hotelui.maintainhotel;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.hotelblservice.MaintainHotelBasicInfoService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
@@ -60,7 +62,7 @@ public class EditHotelInfoController {
 	}
 
 	@FXML
-	void initialize() {
+	void initialize() throws RemoteException {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(null);
 		showPreDetails();
@@ -80,7 +82,7 @@ public class EditHotelInfoController {
 		serviceField.setText(hotelVO.facilityAndService);
 	}
 
-	public void editHotelInfo() {
+	public void editHotelInfo() throws RemoteException {
 		this.hotelStarm = Integer.parseInt(hotelStarField.getText());
 		this.briefIntrom = briefIntroductionField.getText();
 		this.servicem = serviceField.getText();
@@ -108,7 +110,7 @@ public class EditHotelInfoController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		editHotelInfo();
 	}
 }

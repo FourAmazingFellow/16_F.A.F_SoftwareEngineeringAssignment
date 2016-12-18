@@ -1,5 +1,7 @@
 package presentation.hotelui.maintainhotel;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.hotelblservice.MaintainHotelBasicInfoService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
@@ -56,7 +58,7 @@ public class MaintainHotelInfoController {
 	private Label serviceLabel;
 
 	@FXML
-	void initialize() {
+	void initialize() throws RemoteException {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(hotelAddress);
 		showHotelDetail();

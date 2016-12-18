@@ -1,5 +1,7 @@
 package presentation.userui.addcredit;
 
+import java.rmi.RemoteException;
+
 import bl_Stub.userblservice_Stub.AddCreditValueServiceImpl_Stub;
 import bl_Stub.userblservice_Stub.ModifyClientInfoServiceImpl_Stub;
 import businesslogicservice.userblservice.AddCreditValueService;
@@ -57,18 +59,18 @@ public class AddCreditValueController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		// addCreditValue = userFactory.createAddCreditValueService();
-		// clientCreditInfo = userFactory.createModifyClientInfoService();
-		clientCreditInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "123456678900", UserType.Client,
-				1000, "阿里巴巴");
-		addCreditValue = new AddCreditValueServiceImpl_Stub();
+		 addCreditValue = userFactory.createAddCreditValueService();
+		 clientCreditInfo = userFactory.createModifyClientInfoService();
+//		clientCreditInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "123456678900", UserType.Client,
+//				1000, "阿里巴巴");
+//		addCreditValue = new AddCreditValueServiceImpl_Stub();
 	}
 
 	public void setMainApp(WebsitePromotionMainApp webPromotion) {
 		this.mainApp = webPromotion;
 	}
 
-	public void searchButtonAction() {
+	public void searchButtonAction() throws RemoteException {
 		String userID = searchField.getText();
 		ClientInfoVO client = clientCreditInfo.getClientInfo(userID);
 
@@ -85,7 +87,7 @@ public class AddCreditValueController {
 		}
 	}
 
-	public void addCreditValue() {
+	public void addCreditValue() throws RemoteException {
 		int creditAdded = Integer.parseInt(addCreditField.getText());
 		if (addCreditField.getText().equals(null)) {
 			Alert alert1 = new Alert(AlertType.WARNING);
@@ -111,7 +113,7 @@ public class AddCreditValueController {
 		}
 	}
 
-	public void comfirmButtonAction() {
+	public void comfirmButtonAction() throws RemoteException {
 		addCreditValue();
 	}
 	

@@ -1,5 +1,6 @@
 package presentation.userui.maintain;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.Optional;
 
@@ -70,15 +71,15 @@ public class ModifyClientInfoController {
 	private Button creditButton;
 
 	@FXML
-	private void initialize() {
+	private void initialize() throws RemoteException {
 		userIDLabel.setText(null);
 		creditValueLabel.setText(null);
 		birthOrEnterpriseLabel.setText(null);
 		clientInfo(userID);
 		userFactory = new UserUIFactoryServiceImpl();
-		// modifyClientInfo = userFactory.createModifyClientInfoService();
-		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
-				1000, "阿里巴巴");
+		 modifyClientInfo = userFactory.createModifyClientInfoService();
+//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
+//				1000, "阿里巴巴");
 
 	}
 
@@ -87,7 +88,7 @@ public class ModifyClientInfoController {
 	}
 
 	//获取客户信息，显示在界面上
-	public void clientInfo(String userID){
+	public void clientInfo(String userID) throws RemoteException{
 		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
 		this.userID = userID;
 		this.password = client.password;
