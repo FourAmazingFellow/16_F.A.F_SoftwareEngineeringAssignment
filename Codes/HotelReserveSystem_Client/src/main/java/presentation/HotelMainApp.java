@@ -28,7 +28,6 @@ import presentation.strategyui.manageMarketStrategy.MarketStrategyEditPanelContr
 import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController;
 import presentation.strategyui.model.Strategy;
 import runner.ClientRunner;
-import vo.StrategyVO;
 
 public class HotelMainApp extends Application {
 	
@@ -55,7 +54,7 @@ public class HotelMainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 		
-		showHotelRootPanel();
+		initHotelRootPanel();
 //		showHotelOrderPanel();
 	}
 	public static void main(String[] args) {
@@ -66,7 +65,7 @@ public class HotelMainApp extends Application {
 	        return primaryStage;
 	    }
 
-	public void showHotelRootPanel() {
+	public void initHotelRootPanel() {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
@@ -272,8 +271,7 @@ public class HotelMainApp extends Application {
 	            AnchorPane browseSpareRoomPanel = (AnchorPane) loader.load();
 
 	            // Show the scene containing the root layout.
-	            Scene scene = new Scene(browseSpareRoomPanel);
-	            primaryStage.setScene(scene);
+	            hotelRootLayout.setCenter(browseSpareRoomPanel);
 
 	            // Give the controller access to the main app.
 	            SpareRoomTablePanelController spareRoomController = loader.getController();

@@ -33,18 +33,39 @@ public class Strategy {
         this.discount=new SimpleStringProperty(String.valueOf(strategyVO.discount));
         this.strategyName=new SimpleStringProperty(strategyVO.strategyName);
         if(strategyVO.strategyType==StrategyType.MemberRankMarket){
-            vipRank=new SimpleStringProperty(String.valueOf(strategyVO.vipRank));
+            if(strategyVO.vipRank!=0)
+                vipRank=new SimpleStringProperty(String.valueOf(strategyVO.vipRank));
+            else 
+                vipRank=new SimpleStringProperty(String.valueOf(0));
         }else if(strategyVO.strategyType==StrategyType.MultiRoomPromotion){
-            minRoomNum=new SimpleStringProperty(String.valueOf(strategyVO.minRoomNum));
+            if(strategyVO.minRoomNum!=0)
+                minRoomNum=new SimpleStringProperty(String.valueOf(strategyVO.minRoomNum));
+            else
+                minRoomNum=new SimpleStringProperty(String.valueOf(0));
         }else if(strategyVO.strategyType==StrategyType.CooperationEnterprisePromotion){
-            enterpriseName=new SimpleStringProperty(strategyVO.enterpriseName);
-            securityCode=new SimpleStringProperty(strategyVO.securityCode);
+            if(strategyVO.enterpriseName!=null)
+                enterpriseName=new SimpleStringProperty(strategyVO.enterpriseName);
+            else
+                enterpriseName=new SimpleStringProperty("");
+            if(strategyVO.securityCode!=null)
+                securityCode=new SimpleStringProperty(strategyVO.securityCode);
+            else 
+                securityCode=new SimpleStringProperty("");
         }else if(strategyVO.strategyType==StrategyType.VipTradeAreaMarket){
-            vipRank=new SimpleStringProperty(String.valueOf(strategyVO.vipRank));
+            if(strategyVO.vipRank!=0)
+                vipRank=new SimpleStringProperty(String.valueOf(strategyVO.vipRank));
+            else
+                vipRank=new SimpleStringProperty(String.valueOf(0));
             tradeArea=new SimpleStringProperty(strategyVO.tradeArea);
         }else{
-            startTime=new SimpleStringProperty(dateFormat.format(strategyVO.startTime));
-            endTime=new SimpleStringProperty(dateFormat.format(strategyVO.endTime));
+            if(strategyVO.startTime!=null)
+                startTime=new SimpleStringProperty(dateFormat.format(strategyVO.startTime));
+            else 
+                startTime=new SimpleStringProperty();
+            if(strategyVO.endTime!=null)
+                endTime=new SimpleStringProperty(dateFormat.format(strategyVO.endTime));
+            else 
+                endTime=new SimpleStringProperty();
         }
     }
     

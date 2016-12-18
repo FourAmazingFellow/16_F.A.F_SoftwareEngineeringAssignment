@@ -7,7 +7,7 @@ import vo.StrategyVO;
 
 public class StrategyListWrapper {
 
-    private List<Strategy> strategyList;
+    private List<Strategy> strategyList=new ArrayList<>();
     
     public List<Strategy> getStrategyList(){
         return strategyList;

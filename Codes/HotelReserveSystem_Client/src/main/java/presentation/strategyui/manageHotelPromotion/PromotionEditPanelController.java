@@ -7,6 +7,7 @@ import java.util.Optional;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
+import factory.StrategyUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -82,7 +83,7 @@ public class PromotionEditPanelController {
     private Strategy strategy;
     private boolean isConfirmed = false;
 
-    private StrategyUIFactoryService strategyUIFactoryService;
+    private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
     private boolean isNewaPromotion;

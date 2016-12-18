@@ -23,10 +23,19 @@ public class CheckIn {
     }
     
     public CheckIn(Enum<RoomType> roomType, int roomNum, Date checkInTime, Date expDepartTime){
-        this.roomType=new SimpleStringProperty(RoomType.enumToChinese(roomType));
+        if(roomType!=null)
+            this.roomType=new SimpleStringProperty(RoomType.enumToChinese(roomType));
+        else 
+            this.roomType=new SimpleStringProperty();
         this.roomNum=new SimpleStringProperty(String.valueOf(roomNum));
-        this.checkInTime=new SimpleStringProperty(dateFormat.format(checkInTime));
-        this.expDepartTime=new SimpleStringProperty(dateFormat.format(expDepartTime));
+        if(checkInTime!=null)
+            this.checkInTime=new SimpleStringProperty(dateFormat.format(checkInTime));
+        else 
+            this.checkInTime=new SimpleStringProperty();
+        if(expDepartTime!=null)
+            this.expDepartTime=new SimpleStringProperty(dateFormat.format(expDepartTime));
+        else 
+            this.expDepartTime=new SimpleStringProperty();
     }
     
     public StringProperty roomTypeProperty(){

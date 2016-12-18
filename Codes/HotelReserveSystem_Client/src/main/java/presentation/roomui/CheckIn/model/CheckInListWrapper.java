@@ -8,7 +8,7 @@ import vo.RoomVO;
 
 public class CheckInListWrapper {
 
-    private List<CheckIn> checkInList;
+    private List<CheckIn> checkInList=new ArrayList<>();
     
     public List<CheckIn> getCheckInList(){
         return checkInList;
@@ -20,7 +20,7 @@ public class CheckInListWrapper {
     }
    
     public void setCheckInList(ArrayList<RoomVO> checkInList){
-        checkInList.clear();
+        this.checkInList.clear();
         for(RoomVO roomVO: checkInList){
             CheckInVO checkInVO=(CheckInVO)roomVO;
             this.checkInList.add(checkInVOToModel(checkInVO));

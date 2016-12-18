@@ -13,7 +13,7 @@ import vo.RoomVO;
 
 public class SpareRoomListWrapper {
     
-    private List<SpareRoom> spareRoomList;
+    private List<SpareRoom> spareRoomList=new ArrayList<>();
     
     private RoomUIFactoryService roomUIFactoryService;
     private BrowseSpareRoomService browseSpareRoomService;

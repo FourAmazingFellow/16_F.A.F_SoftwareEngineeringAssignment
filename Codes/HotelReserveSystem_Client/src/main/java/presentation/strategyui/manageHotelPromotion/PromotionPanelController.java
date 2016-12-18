@@ -9,6 +9,7 @@ import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
+import factory.StrategyUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -102,7 +103,7 @@ public class PromotionPanelController {
     private ObservableList<Strategy> mutiRoomPromotionData = FXCollections.observableArrayList();
     private ObservableList<Strategy> specialTimePromotionData = FXCollections.observableArrayList();
     private StrategyListWrapper strategyList;
-    private StrategyUIFactoryService strategyUIFactoryService;
+    private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
 
@@ -154,32 +155,32 @@ public class PromotionPanelController {
     public void showbirthdayPromotionList() {
         ArrayList<StrategyVO> birthdayPromotionVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.BirthdayPromotion);
-        strategyList.setStrategyList(birthdayPromotionVOs);
         birthDayPromotionData.clear();
+        strategyList.setStrategyList(birthdayPromotionVOs);
         birthDayPromotionData.addAll(strategyList.getStrategyList());
     }
 
     public void showEnterprisePromotionList() {
         ArrayList<StrategyVO> enterprisePromotionVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.CooperationEnterprisePromotion);
-        strategyList.setStrategyList(enterprisePromotionVOs);
         enterprisePromotinonData.clear();
+        strategyList.setStrategyList(enterprisePromotionVOs);
         enterprisePromotinonData.addAll(strategyList.getStrategyList());
     }
 
     public void showMutiRoomPromotionList() {
         ArrayList<StrategyVO> multiRoomPromotionVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.MultiRoomPromotion);
-        strategyList.setStrategyList(multiRoomPromotionVOs);
         mutiRoomPromotionData.clear();
+        strategyList.setStrategyList(multiRoomPromotionVOs);
         mutiRoomPromotionData.addAll(strategyList.getStrategyList());
     }
 
     public void showSpecialTimePromotionList() {
         ArrayList<StrategyVO> specialTimePromotionVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.SpecificTimePromotion);
-        strategyList.setStrategyList(specialTimePromotionVOs);
         specialTimePromotionData.clear();
+        strategyList.setStrategyList(specialTimePromotionVOs);
         specialTimePromotionData.addAll(strategyList.getStrategyList());
     }
 

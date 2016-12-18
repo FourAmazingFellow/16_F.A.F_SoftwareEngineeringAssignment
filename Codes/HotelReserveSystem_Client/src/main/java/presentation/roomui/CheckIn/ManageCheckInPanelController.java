@@ -7,6 +7,7 @@ import java.util.Date;
 
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import factory.RoomUIFactoryService;
+import factory.RoomUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -56,7 +57,7 @@ public class ManageCheckInPanelController {
     private ObservableList<CheckIn> checkIndata = FXCollections.observableArrayList();
     private CheckInListWrapper checkInList;
     private String address;
-    private RoomUIFactoryService roomUIFactoryService;
+    private RoomUIFactoryService roomUIFactoryService=new RoomUIFactoryServiceImpl();
     private UpdateCheckInService updateCheckInService = roomUIFactoryService.createUpdateCheckInService();
 
     @FXML
@@ -85,8 +86,8 @@ public class ManageCheckInPanelController {
     }
 
     public void showCheckInList(ArrayList<RoomVO> checkInVOs) {
-        checkInList.setCheckInList(checkInVOs);
         checkIndata.clear();
+        checkInList.setCheckInList(checkInVOs);
         checkIndata.addAll(checkInList.getCheckInList());
     }
 
@@ -109,6 +110,7 @@ public class ManageCheckInPanelController {
     void handleSearchByRoomType(String roomTypeStr) {
         if (roomTypeStr.equals( "全部房型")) {
             showAllCheckInList(address);
+            return;
         }
         Enum<RoomType> roomType=RoomType.chineseToEnum(roomTypeStr);
         
@@ -154,10 +156,10 @@ public class ManageCheckInPanelController {
 
     @FXML
     void handleNewCheckIn() {
-        int selectedIndex = roomTypeChoiceBox.getSelectionModel().getSelectedIndex();
+        int selectedIndex = checkInTable.getSelectionModel().getSelectedIndex();
         CheckIn tmpCheckIn;
-        if(selectedIndex>=1){
-            tmpCheckIn=new CheckIn(RoomType.chineseToEnum(roomTypeChoiceBox.getItems().get(selectedIndex)),0,null,null);
+        if(selectedIndex>=0){
+            tmpCheckIn=new CheckIn(checkInTable.getItems().get(selectedIndex).getRoomType(),0,null,null);
         }else{
             tmpCheckIn=new CheckIn();
         }

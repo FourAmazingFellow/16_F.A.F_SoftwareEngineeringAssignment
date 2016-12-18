@@ -49,8 +49,8 @@ public class SpareRoomTablePanelController {
     public void showSpareRoomList(String address){
         this.address=address;
         //从bl层获得数据，并添加到spareRoomData中
-        spareRoomList.setSpareRoomListFromData(address);
         spareRoomData.clear();
+        spareRoomList.setSpareRoomListFromData(address);
         spareRoomData.addAll(spareRoomList.getSpareRoomList());
     }
     

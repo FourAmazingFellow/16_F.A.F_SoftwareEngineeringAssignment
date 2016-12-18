@@ -8,6 +8,7 @@ import java.util.Optional;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import factory.RoomUIFactoryService;
+import factory.RoomUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,7 +59,7 @@ public class CheckInEditPanelController {
     private CheckIn checkIn;
     private boolean isConfirmed = false;
     
-    private RoomUIFactoryService roomUIFactoryService;
+    private RoomUIFactoryService roomUIFactoryService=new RoomUIFactoryServiceImpl();
     private UpdateCheckInService updateCheckInService = roomUIFactoryService.createUpdateCheckInService();
     private String address;
     

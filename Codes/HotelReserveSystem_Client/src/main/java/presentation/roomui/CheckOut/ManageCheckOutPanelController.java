@@ -8,6 +8,7 @@ import java.util.Date;
 import businesslogicservice.roomblservice.UpdateCheckInService;
 import businesslogicservice.roomblservice.UpdateCheckOutService;
 import factory.RoomUIFactoryService;
+import factory.RoomUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -56,7 +57,7 @@ public class ManageCheckOutPanelController {
     private ObservableList<CheckOut> checkOutdata = FXCollections.observableArrayList();
     private CheckOutListWrapper checkOutList;
     private String address;
-    private RoomUIFactoryService roomUIFactoryService;
+    private RoomUIFactoryService roomUIFactoryService=new RoomUIFactoryServiceImpl();
     private UpdateCheckOutService updateCheckOutService = roomUIFactoryService.createUpdateCheckOutService();
 
     @FXML
@@ -85,8 +86,8 @@ public class ManageCheckOutPanelController {
     }
     
     public void showCheckOutList(ArrayList<RoomVO> checkOutVOs) {
-        checkOutList.setCheckOutList(checkOutVOs);
         checkOutdata.clear();
+        checkOutList.setCheckOutList(checkOutVOs);
         checkOutdata.addAll(checkOutList.getCheckOutList());
     }
     

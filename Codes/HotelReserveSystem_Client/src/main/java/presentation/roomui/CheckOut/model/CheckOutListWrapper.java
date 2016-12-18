@@ -9,7 +9,7 @@ import vo.RoomVO;
 
 public class CheckOutListWrapper {
 
-    private List<CheckOut> checkOutList;
+    private List<CheckOut> checkOutList=new ArrayList<>();
     
     public List<CheckOut> getCheckOutList(){
         return checkOutList;
@@ -21,7 +21,7 @@ public class CheckOutListWrapper {
     }
     
     public void setCheckOutList(ArrayList<RoomVO> checkOutList){
-        checkOutList.clear();
+        this.checkOutList.clear();
         for(RoomVO roomVO: checkOutList){
             CheckOutVO checkOutVO=(CheckOutVO)roomVO;
             this.checkOutList.add(checkInVOToModel(checkOutVO));

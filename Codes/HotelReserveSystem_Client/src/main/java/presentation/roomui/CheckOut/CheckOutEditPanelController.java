@@ -8,6 +8,7 @@ import java.util.Optional;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.roomblservice.UpdateCheckOutService;
 import factory.RoomUIFactoryService;
+import factory.RoomUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,7 +49,7 @@ public class CheckOutEditPanelController {
     private CheckOut checkOut;
     private boolean isConfirmed = false;
     
-    private RoomUIFactoryService roomUIFactoryService;
+    private RoomUIFactoryService roomUIFactoryService=new RoomUIFactoryServiceImpl();
     private UpdateCheckOutService updateCheckOutService=roomUIFactoryService.createUpdateCheckOutService();
     private String address;
     

@@ -17,7 +17,7 @@ public class SpareRoom {
     private final StringProperty roomPrice;
     
     public SpareRoom(Enum<RoomType> roomType,int roomNum, int roomPrice){
-        this.roomType=new SimpleStringProperty(roomType.name());
+        this.roomType=new SimpleStringProperty(RoomType.enumToChinese(roomType));
         this.roomNum=new SimpleStringProperty(String.valueOf(roomNum));
         this.roomPrice=new SimpleStringProperty(String.valueOf(roomPrice));
     }

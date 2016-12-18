@@ -8,6 +8,7 @@ import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
+import factory.StrategyUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -89,7 +90,7 @@ public class MarketStrategyPanelController {
     private ObservableList<Strategy> VIPTradeAreaStrategyData = FXCollections.observableArrayList();
     private ObservableList<Strategy> specialTimeStrategyData = FXCollections.observableArrayList();
     private StrategyListWrapper strategyList;
-    private StrategyUIFactoryService strategyUIFactoryService;
+    private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
 
@@ -138,24 +139,24 @@ public class MarketStrategyPanelController {
     public void showMemberRankStrategyList() {
         ArrayList<StrategyVO> memberRankStrategyVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.MemberRankMarket);
-        strategyList.setStrategyList(memberRankStrategyVOs);
         memberRankStrategyData.clear();
+        strategyList.setStrategyList(memberRankStrategyVOs);
         memberRankStrategyData.addAll(strategyList.getStrategyList());
     }
 
     public void showVipTradeAreaStrategyList() {
         ArrayList<StrategyVO> vipTradeAreaStrategyVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.VipTradeAreaMarket);
-        strategyList.setStrategyList(vipTradeAreaStrategyVOs);
         VIPTradeAreaStrategyData.clear();
+        strategyList.setStrategyList(vipTradeAreaStrategyVOs);
         VIPTradeAreaStrategyData.addAll(strategyList.getStrategyList());
     }
 
     public void showspecialTimeStrategyList() {
         ArrayList<StrategyVO> specialTimeStrategyVOs = updateStrategyService.getStrategyList(address,
                 StrategyType.SpecificTimeMarket);
-        strategyList.setStrategyList(specialTimeStrategyVOs);
         specialTimeStrategyData.clear();
+        strategyList.setStrategyList(specialTimeStrategyVOs);
         specialTimeStrategyData.addAll(strategyList.getStrategyList());
     }
 
