@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.roomui.CheckOut.CheckOutEditPanelController">
    <children>
       <Label layoutX="100.0" layoutY="48.0" styleClass="label-title" text="填写退房信息" />
       <GridPane layoutX="220.0" layoutY="112.0" prefHeight="378.0" prefWidth="590.0">

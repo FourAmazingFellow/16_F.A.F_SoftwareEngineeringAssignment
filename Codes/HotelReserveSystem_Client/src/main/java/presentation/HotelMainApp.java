@@ -28,7 +28,7 @@ import presentation.strategyui.model.Strategy;
 public class HotelMainApp extends Application {
 	
 	public static String hotelAddress = "";
-	
+	public static String userId;
 	private Stage primaryStage;
 	private BorderPane hotelRootLayout;
 	
@@ -59,6 +59,8 @@ public class HotelMainApp extends Application {
 			// Give the controller access to the main app.
 			HotelRootBoardController controller = loader.getController();
 			controller.setMainApp(this);
+			controller.setAddress(hotelAddress);
+			controller.setUserId(userId);
 
 			primaryStage.show();
 		} catch (IOException e) {
@@ -117,7 +119,7 @@ public class HotelMainApp extends Application {
 	/**
 	 * 办理入住界面
 	 */
-	public void showManageCheckInPanel(String address) {
+	public void showManageCheckInPanel() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(HotelMainApp.class.getResource("roomui/CheckIn/ManageCheckInPanel.fxml"));
@@ -129,7 +131,7 @@ public class HotelMainApp extends Application {
             ManageCheckInPanelController controller = loader.getController();
             controller.setMainApp(this);
             //默认显示所有订单
-            controller.showAllCheckInList(address);
+            controller.showAllCheckInList(hotelAddress);
 
             primaryStage.show();
         } catch (IOException e) {
@@ -144,7 +146,7 @@ public class HotelMainApp extends Application {
 	 * @return
 	 * @see
 	 */
-	 public boolean showCheckInEditDialog(CheckIn checkIn, String address) {
+	 public boolean showCheckInEditDialog(CheckIn checkIn) {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
 	            FXMLLoader loader = new FXMLLoader();
@@ -162,7 +164,7 @@ public class HotelMainApp extends Application {
 	            // Set the person into the controller.
 	            CheckInEditPanelController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
-	            controller.setCheckIn(checkIn, address);;
+	            controller.setCheckIn(checkIn, hotelAddress);;
 
 	            // Show the dialog and wait until the user closes it
 	            dialogStage.showAndWait();
@@ -179,7 +181,7 @@ public class HotelMainApp extends Application {
 	  * @param address
 	  * @see
 	  */
-	 public void showManageCheckOutPanel(String address) {
+	 public void showManageCheckOutPanel() {
 	        try {
 	            FXMLLoader loader = new FXMLLoader();
 	            loader.setLocation(HotelMainApp.class.getResource("roomui/CheckOut/ManageCheckOutPanel.fxml"));
@@ -191,7 +193,7 @@ public class HotelMainApp extends Application {
 	            ManageCheckOutPanelController controller = loader.getController();
 	            controller.setMainApp(this);
 	            //默认显示所有订单
-	            controller.showAllCheckOutList(address);
+	            controller.showAllCheckOutList(hotelAddress);
 
 	            primaryStage.show();
 	        } catch (IOException e) {
@@ -207,7 +209,7 @@ public class HotelMainApp extends Application {
 	  * @return
 	  * @see
 	  */
-	 public boolean showCheckOutEditDialog(CheckOut checkOut, String address) {
+	 public boolean showCheckOutEditDialog(CheckOut checkOut) {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
 	            FXMLLoader loader = new FXMLLoader();
@@ -225,7 +227,7 @@ public class HotelMainApp extends Application {
 	            // Set the person into the controller.
 	            CheckOutEditPanelController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
-	            controller.setCheckOut(checkOut, address);
+	            controller.setCheckOut(checkOut, hotelAddress);
 
 	            // Show the dialog and wait until the user closes it
 	            dialogStage.showAndWait();
@@ -242,7 +244,7 @@ public class HotelMainApp extends Application {
 	  * @param address
 	  * @see
 	  */
-	 public void showSpareRoomTablePanel(String address){
+	 public void showSpareRoomTablePanel( ){
 	        try {
 	            FXMLLoader loader = new FXMLLoader();
 	            loader.setLocation(HotelMainApp.class.getResource("roomui/spareRoom/SpareRoomTablePanel.fxml"));
@@ -256,7 +258,7 @@ public class HotelMainApp extends Application {
 	            SpareRoomTablePanelController spareRoomController = loader.getController();
 	            spareRoomController.setMainApp(this);
 	            //默认显示空房列表
-	            spareRoomController.showSpareRoomList(address);;
+	            spareRoomController.showSpareRoomList(hotelAddress);;
 
 	            primaryStage.show();
 	        } catch (IOException e) {
@@ -269,7 +271,7 @@ public class HotelMainApp extends Application {
 	  * @param address
 	  * @see
 	  */
-	 public void showManagePromotionPanel(String address){
+	 public void showManagePromotionPanel(){
 	     try {
 	         FXMLLoader loader = new FXMLLoader();
 	         loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPabel.fxml"));
@@ -281,7 +283,7 @@ public class HotelMainApp extends Application {
 	         MarketStrategyPanelController controller = loader.getController();
 	         controller.setMainApp(this);
 	         //默认显示所有订单
-	         controller.showAllMarketStrategyList(address);;
+	         controller.showAllMarketStrategyList(hotelAddress);;
 
 	         primaryStage.show();
 	     } catch (IOException e) {
@@ -298,7 +300,7 @@ public class HotelMainApp extends Application {
 	  * @return
 	  * @see
 	  */
-	 public boolean showPromotionEditDialog(Strategy strategy, String address, boolean isNewaPromotion) {
+	 public boolean showPromotionEditDialog(Strategy strategy, boolean isNewaPromotion) {
 	        try {
 	            // Load the fxml file and create a new stage for the popup dialog.
 	            FXMLLoader loader = new FXMLLoader();
@@ -316,7 +318,7 @@ public class HotelMainApp extends Application {
 	            // Set the person into the controller.
 	            PromotionEditPanelController controller = loader.getController();
 	            controller.setDialogStage(dialogStage);
-	            controller.setStrategy(strategy, address, isNewaPromotion);
+	            controller.setStrategy(strategy, hotelAddress, isNewaPromotion);
 
 	            // Show the dialog and wait until the user closes it
 	            dialogStage.showAndWait();
@@ -327,6 +329,7 @@ public class HotelMainApp extends Application {
 	            return false;
 	        }
 	    }
+	 
 	 
 	 /**
 	  * 管理营销策略界面
@@ -345,7 +348,7 @@ public class HotelMainApp extends Application {
 	         MarketStrategyPanelController controller = loader.getController();
 	         controller.setMainApp(this);
 	         //默认显示所有订单
-	         controller.showAllMarketStrategyList(address);;
+	         controller.showAllMarketStrategyList(address);
 
 	         primaryStage.show();
 	     } catch (IOException e) {
