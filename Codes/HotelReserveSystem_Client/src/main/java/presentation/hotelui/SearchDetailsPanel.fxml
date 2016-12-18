@@ -5,26 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.SearchDetailsPanelController">
    <children>
-      <Button fx:id="filterButton" layoutX="718.0" layoutY="84.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="筛选" AnchorPane.rightAnchor="60.0" />
-      <TableView layoutX="50.0" layoutY="135.0" prefHeight="432.0" prefWidth="910.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
+      <Button fx:id="filterButton" layoutX="718.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleScreenButton" prefHeight="50.0" prefWidth="200.0" text="筛选" AnchorPane.rightAnchor="60.0" />
+      <TableView fx:id="hotelTableView" layoutX="50.0" layoutY="135.0" prefHeight="432.0" prefWidth="910.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
         <columns>
-          <TableColumn prefWidth="147.43806076049805" text="酒店名称" />
-            <TableColumn prefWidth="136.5618896484375" text="商圈" />
-            <TableColumn prefWidth="234.38662719726562" text="酒店地址" />
-            <TableColumn prefWidth="114.00558471679688" text="星级" />
-            <TableColumn prefWidth="121.86090087890625" text="评分" />
-            <TableColumn prefWidth="156.0723876953125" text="起售价" />
+          <TableColumn fx:id="hotelNameCol" prefWidth="143.15505981445312" text="酒店名称" />
+            <TableColumn fx:id="tradeAreaCol" prefWidth="108.80551147460938" text="商圈" />
+            <TableColumn fx:id="hotelAddressCol" prefWidth="271.7233581542969" text="酒店地址" />
+            <TableColumn fx:id="starLevelCol" prefWidth="74.62615966796875" text="星级" />
+            <TableColumn fx:id="markCol" prefWidth="76.25225830078125" text="评分" />
+            <TableColumn fx:id="orderTypesCol" prefWidth="256.74774169921875" text="历史订单状态" />
         </columns>
       </TableView>
-      <DatePicker fx:id="beginDatePicker" layoutX="320.0" layoutY="15.0" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
+      <DatePicker fx:id="beginDatePicker" layoutX="320.0" layoutY="15.0" onAction="#dateFilter" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
       <DatePicker fx:id="finishDatePicker" layoutX="320.0" layoutY="79.0" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
       <ChoiceBox fx:id="cityChoiceBox" layoutX="58.0" layoutY="17.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.leftAnchor="60.0" />
       <ChoiceBox fx:id="districtChoiceBox" layoutX="58.0" layoutY="75.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.leftAnchor="60.0" />
       <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="717.0" layoutY="22.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.rightAnchor="60.0" />
-      <Button fx:id="returnButton" layoutX="176.0" layoutY="585.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="checkDetailedHotelButton" layoutX="643.0" layoutY="585.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="查看详情" />
-      <Button fx:id="createButton" layoutX="409.0" layoutY="585.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
+      <Button fx:id="returnButton" layoutX="176.0" layoutY="585.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="checkDetailedHotelButton" layoutX="643.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleCheckDetailedHotel" prefHeight="40.0" prefWidth="150.0" text="查看详情" />
+      <Button fx:id="createButton" layoutX="409.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleCreateOrder" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
    </children>
 </AnchorPane>

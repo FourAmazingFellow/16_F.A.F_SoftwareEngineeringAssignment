@@ -13,7 +13,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="602.0" layoutY="7.0" styleClass="label-title" text="订单内容">
+      <Label layoutX="602.0" layoutY="7.0" styleClass="label-title" text="信息内容">
          <font>
             <Font size="24.0" />
          </font>

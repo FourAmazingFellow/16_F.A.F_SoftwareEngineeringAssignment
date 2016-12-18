@@ -121,13 +121,48 @@ public class ClientMainApp extends Application {
 			SearchDetailsPanelController controller = loader.getController();
 			controller.setMainApp(this);
 			//默认显示所有订单
-			controller.showSearchResult(conditions);
+			controller.setConditions(conditions);
+			controller.showSearchResult();
 
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	//显示搜索筛选界面
+	public boolean showScreenDialog(String[] conditions) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/ScreenPanel.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("酒店筛选");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the person into the controller.
+			ScreenPanelController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+
+			return controller.isConfirmClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public void showDetailedHotelPanel(String hoteledAddress) {
+		// TODO Auto-generated method stub
+	}
+	
 	//显示所有订单列表
 	public void showUserOrderPanel(String userID) {
 		try {
@@ -169,34 +204,6 @@ public class ClientMainApp extends Application {
 		}
 		
 		
-	}
-	
-	public boolean showHotelScreenPanel() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("hotelui/ScreenPanel.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-
-			// Create the dialog Stage.
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("酒店筛选");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			// Set the person into the controller.
-			ScreenPanelController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-
-			// Show the dialog and wait until the user closes it
-			dialogStage.showAndWait();
-
-			return controller.isConfirmClicked();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 	
 	/**
