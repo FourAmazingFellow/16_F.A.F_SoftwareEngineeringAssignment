@@ -2,6 +2,7 @@ package presentation;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.HashMap;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import po.OrderType;
 import presentation.hotelui.ScreenPanelController;
 import presentation.hotelui.SearchDetailsPanelController;
 import presentation.hotelui.SearchPanelController;
+import presentation.hotelui.reservedhotel.DetailedHotelPanelController;
 import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.orderui.CreateOrderPanelController;
@@ -159,8 +161,29 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
-	public void showDetailedHotelPanel(String hoteledAddress) {
+	public void showDetailedHotelPanel(String hotelAddress) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/detailedHotelPanel.fxml"));
+			AnchorPane detailedHotelPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(detailedHotelPanel);
+			
+			// Give the controller access to the main app.
+			DetailedHotelPanelController controller = loader.getController();
+			controller.setMainApp(this);
+			//默认显示所有订单
+			controller.showDetailedOrderPanel(hotelAddress);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showHotelComments(HashMap<String, String> comments) {
 		// TODO Auto-generated method stub
+		
 	}
 	
 	//显示所有订单列表

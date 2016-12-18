@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.reservedhotel.DetailedHotelPanelController">
+   <children>
+      <Label layoutX="236.0" layoutY="7.0" styleClass="label-title" text="酒店信息类型">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="602.0" layoutY="6.0" styleClass="label-title" text="信息内容">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="160.0" layoutY="46.0" prefHeight="509.0" prefWidth="680.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="31.824005126953125" minHeight="0.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="60.615936279296875" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="酒店名称" textAlignment="CENTER" />
+            <Label fx:id="hotelNameLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="所在商圈" textAlignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="districtLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="酒店地址" textAlignment="CENTER" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="酒店星级" textAlignment="CENTER" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="起售价格" textAlignment="CENTER" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="酒店评分" textAlignment="CENTER" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="酒店简介" textAlignment="CENTER" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="所在城市" textAlignment="CENTER" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="设施服务" textAlignment="CENTER" GridPane.rowIndex="8" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="单人房价格" textAlignment="CENTER" GridPane.rowIndex="9" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="标准间价格" textAlignment="CENTER" GridPane.rowIndex="10" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="三人房价格" textAlignment="CENTER" GridPane.rowIndex="11" />
+            <Label alignment="CENTER" contentDisplay="CENTER" text="大床房价格" textAlignment="CENTER" GridPane.rowIndex="12" />
+            <Label fx:id="hotelAddressLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="hotelStarLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="hotelMarkLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="cityLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="minPriceLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="singleRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="stanRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="triRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label fx:id="kingRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <TextField fx:id="briefIntroTextField" prefHeight="55.0" prefWidth="394.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="facilityAndServiceTextField" prefHeight="55.0" prefWidth="417.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+         </children>
+      </GridPane>
+      <Button fx:id="returnButton" layoutX="249.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="createOrderButton" layoutX="434.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
+      <Button fx:id="checkCommentsButton" layoutX="605.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="查看评价" />
+   </children>
+</AnchorPane>
