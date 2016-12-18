@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.strategyui.manageMarketStrategy.WebsiteMarketMainUIController">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox layoutX="65.0" layoutY="225.0" spacing="50.0">
          <children>

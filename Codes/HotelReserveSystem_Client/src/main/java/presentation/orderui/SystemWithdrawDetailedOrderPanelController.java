@@ -1,6 +1,7 @@
 package presentation.orderui;
 
 import java.rmi.RemoteException;
+import java.util.Optional;
 
 import businesslogicservice.orderblservice.CheckAbnormalOrderService;
 import factory.OrderUIFactoryService;
@@ -8,6 +9,8 @@ import factory.OrderUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import po.OrderState;
@@ -117,18 +120,39 @@ public class SystemWithdrawDetailedOrderPanelController {
 	public void systemWithdraw(){
 		boolean isRecoverHalf = false;
 		//请操作人员选择要恢复信用值的全部或一半 TO-DO
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("选择要恢复的信用值");
+		alert.setHeaderText("需要您确认要恢复信用值的全部？还是一半？");
+		alert.setContentText("请选择：");
+
+		ButtonType buttonTypeOne = new ButtonType("全部");
+		ButtonType buttonTypeTwo = new ButtonType("一半");
+		ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+			isRecoverHalf = false;
+		} else if (result.get() == buttonTypeTwo) {
+			isRecoverHalf = true;
+		} else {
+			mainApp.showAbnormalOrderPanel();
+			return;
+		}
+		
 		if(abnormalOrderChecker.systemWithdrawOrder(currentOrderVO, isRecoverHalf)){
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("操作成功");
-			alert.setContentText("延迟入住成功!");
+			Alert alert_ = new Alert(AlertType.INFORMATION);
+			alert_.setTitle("操作成功");
+			alert_.setContentText("撤销订单成功!并成功恢复了用户的信用值！");
 
-			alert.showAndWait();
+			alert_.showAndWait();
 		}else{
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("操作失败");
-			alert.setContentText("请检查您的网络连接！");
+			Alert alert_ = new Alert(AlertType.WARNING);
+			alert_.setTitle("操作失败");
+			alert_.setContentText("请检查您的网络连接！");
 
-			alert.showAndWait();
+			alert_.showAndWait();
 		}
 		mainApp.showAbnormalOrderPanel();
 	}

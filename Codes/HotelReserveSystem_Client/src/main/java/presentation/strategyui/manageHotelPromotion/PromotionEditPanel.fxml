@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.strategyui.manageHotelPromotion.PromotionEditPanelController">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="100.0" layoutY="44.0" styleClass="label-title" text="填写促销策略" />
       <TabPane fx:id="strategyTypeTabPane" layoutX="100.0" layoutY="100.0" prefHeight="445.0" prefWidth="810.0" tabClosingPolicy="UNAVAILABLE">
