@@ -78,6 +78,7 @@ public class BrowseUserOrderPanelController {
 		orderTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				System.out.println(OrderType.values()[(int) newValue]);
 				getBriefOrderList(ClientMainApp.userID, OrderType.values()[(int) newValue]);
 			}
 		});

@@ -15,43 +15,61 @@
 	<top>
 		<GridPane prefHeight="66.0" prefWidth="995.0" BorderPane.alignment="CENTER">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2166748046875" minWidth="10.0" prefWidth="181.26766967773438" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="218.33078002929688" minWidth="10.0" prefWidth="199.73233032226562" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="180.26766967773438" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="10.0" prefWidth="163.67156982421875" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="526.9685668945312" minWidth="10.0" prefWidth="169.32843017578125" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2166748046875" minWidth="10.0" prefWidth="121.66667175292969" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="263.0" minWidth="9.0" prefWidth="126.66667175292969" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="203.66665649414062" minWidth="9.0" prefWidth="121.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="9.0" prefWidth="119.66665649414062" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="9.0" prefWidth="120.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="10.0" prefWidth="118.33331298828125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="10.0" prefWidth="152.3333740234375" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="526.9685668945312" minWidth="10.0" prefWidth="124.6666259765625" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="searchHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="234.0" text="搜索酒店" textAlignment="CENTER">
+				<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMaintainHotelInfo" prefHeight="60.0" prefWidth="171.0" styleClass="button-small" text="酒店信息" textAlignment="CENTER">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="modifyPersonalInfoSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="221.0" text="个人基本信息" textAlignment="CENTER" GridPane.columnIndex="1">
+				<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBrowseOrder" prefHeight="60.0" prefWidth="157.0" styleClass="button-small" text="浏览订单" textAlignment="CENTER" GridPane.columnIndex="1">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myOrderSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="我的订单" textAlignment="CENTER" GridPane.columnIndex="2">
+				<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBrowseSpareRoom" prefHeight="60.0" prefWidth="210.0" styleClass="button-small" text="浏览空房" textAlignment="CENTER" GridPane.columnIndex="2">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myReservedHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="我的酒店" textAlignment="CENTER" GridPane.columnIndex="3">
+				<Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckIn" prefHeight="60.0" prefWidth="120.0" styleClass="button-small" text="办理入住" textAlignment="CENTER" GridPane.columnIndex="3">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="185.0" text="UserID" GridPane.columnIndex="4">
+				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="133.0" styleClass="choice-box-small" text="用户名" GridPane.columnIndex="7">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Personal Information" />
-						<MenuItem mnemonicParsing="false" text="LOGOUT" />
-						<MenuItem mnemonicParsing="false" text="EXIT" />
+						<MenuItem mnemonicParsing="false" onAction="#handleLookPersonalInfo" text="Personal Information" />
+						<MenuItem mnemonicParsing="false" onAction="#handleLogOut" text="LOGOUT" />
+						<MenuItem mnemonicParsing="false" onAction="#handleExit" text="EXIT" />
 					</items>
 				</MenuButton>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckOut" prefHeight="60.0" prefWidth="120.0" styleClass="button-small" text="办理退房" textAlignment="CENTER" GridPane.columnIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleManagePromotion" prefHeight="60.0" prefWidth="120.0" styleClass="button-small" text="促销策略" textAlignment="CENTER" GridPane.columnIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEnrollValuableRoom" prefHeight="60.0" prefWidth="158.0" styleClass="button-small" text="录入可用客房" textAlignment="CENTER" GridPane.columnIndex="6">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
 			</children>
 		</GridPane>
 	</top>
