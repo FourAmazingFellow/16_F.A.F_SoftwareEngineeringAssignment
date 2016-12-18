@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import po.OrderType;
 import presentation.hotelui.ScreenPanelController;
+import presentation.hotelui.SearchDetailsPanelController;
 import presentation.hotelui.SearchPanelController;
 import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
@@ -35,7 +36,7 @@ public class ClientMainApp extends Application {
 		this.primaryStage.setResizable(false);
 
 		showClientRootPanel();
-		showCreateOrderPanel(ClientMainApp.userID, "Jingling Hotel", "江苏省南京市栖霞区仙林大道163号");
+		showSearchView();
 	}
 
 	//显示客户导航栏
@@ -142,11 +143,7 @@ public class ClientMainApp extends Application {
 	}
 	
 	//显示搜索结果
-	public void showSearchDetailsPanel(String city, String district, String hotelName, String roomType, String roomNum, 
-			String beginDate, String finishDate) {
-		String[] conditions = {city, district, hotelName, "0", "100000000", "0", "6", "0.0", "6.0", "0",
-				roomType, roomNum, beginDate, finishDate};
-		
+	public void showSearchDetailsPanel(String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("orderui/SearchDetailsPanel.fxml"));
@@ -154,10 +151,10 @@ public class ClientMainApp extends Application {
 
 			clientRootLayout.setCenter(searchResultPanel);
 			
-			S controller = loader.getController();
+			SearchDetailsPanelController controller = loader.getController();
 			controller.setMainApp(this);
 			//默认显示所有订单
-			controller.getBriefOrderList(userID, OrderType.ALL);
+			controller.showSearchResult(conditions);
 
 			primaryStage.show();
 		} catch (IOException e) {

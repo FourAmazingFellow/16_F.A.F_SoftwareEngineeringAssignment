@@ -11,43 +11,53 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DateCell;
+
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import po.BusinessDistrictPO;
 import presentation.ClientMainApp;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DateCell;
 
-public class SearchPanelController {
-	// Reference to the main application
+public class SearchDetailsPanelController {
 	private ClientMainApp mainApp;
 	private ObservableList<String> cityList = FXCollections.observableArrayList("南京市", "上海市");
 	private ObservableList<String> districList;
+	
+	private String[] conditions;
+	
+    @FXML
+    private ChoiceBox<String> rankTypeChoiceBox;
 
-	@FXML
-	private Button searchButton;
+    @FXML
+    private Button checkDetailedHotelButton;
 
-	@FXML
-	private ChoiceBox<Integer> roomNumChoiceBox;
+    @FXML
+    private DatePicker beginDatePicker;
 
-	@FXML
-	private DatePicker beginDatePicker;
+    @FXML
+    private Button createButton;
 
-	@FXML
-	private ChoiceBox<String> tradeAreaChoiceBox;
+    @FXML
+    private ChoiceBox<String> cityChoiceBox;
 
-	@FXML
-	private ChoiceBox<String> cityChoiceBox;
+    @FXML
+    private DatePicker finishDatePicker;
 
-	@FXML
-	private DatePicker finishDatePicker;
+    @FXML
+    private Button returnButton;
 
-	@FXML
-	private ChoiceBox<String> roomTypeChoiceBox;
+    @FXML
+    private Button filterButton;
 
-	@FXML
+    @FXML
+    private ChoiceBox<String> districtChoiceBox;
+
+    
+    @FXML
 	private TextField searchTextArea;
 	
 	private HotelUIFactoryService factory;
@@ -81,21 +91,11 @@ public class SearchPanelController {
 		setDistrictChoiceBox("南京市");
 
 		setDatePicker();
-		
-		roomTypeChoiceBox.setItems(FXCollections.observableArrayList("单人房","标准间","三人房","大床房"));
-		roomTypeChoiceBox.setValue("标准间");
-		
-		roomNumChoiceBox.setItems(FXCollections.observableArrayList(1,2,3,4));
-		roomNumChoiceBox.setValue(1);
 	}
 
 	@FXML
-	private void showSearchResult() {
-		String[] conditions = {cityChoiceBox.getValue(), tradeAreaChoiceBox.getValue(), searchTextArea.getText(), "0", "100000000", "0", "6", "0.0", "6.0", "0",
-				String.valueOf(roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().get()), String.valueOf(roomNumChoiceBox.getSelectionModel().selectedIndexProperty().get() + 1),
-				getDate(beginDatePicker.getValue()), getDate(finishDatePicker.getValue())};
-		
-		mainApp.showSearchDetailsPanel(conditions);
+	public void showSearchResult(String[] _conditions) {
+		this.conditions = _conditions;
 	}
 	
 	private String getDate(LocalDate date) {
@@ -108,8 +108,8 @@ public class SearchPanelController {
 		for(BusinessDistrictPO districtPO: tradeAreaList) {
 			districList.add(districtPO.getBusinessDistrictName());
 		}
-		tradeAreaChoiceBox.setItems(districList);
-		tradeAreaChoiceBox.setValue(districList.get(0));
+		districtChoiceBox.setItems(districList);
+		districtChoiceBox.setValue(districList.get(0));
 	}
 	
 	private void setDatePicker() {

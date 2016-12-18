@@ -5,20 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="273.0" layoutY="-462.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="89.0" text="筛选" />
-      <TableView layoutX="-38.0" layoutY="-401.0" prefHeight="307.0" prefWidth="533.0">
+      <Button fx:id="filterButton" layoutX="718.0" layoutY="84.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="筛选" AnchorPane.rightAnchor="60.0" />
+      <TableView layoutX="50.0" layoutY="135.0" prefHeight="432.0" prefWidth="910.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
         <columns>
-          <TableColumn prefWidth="532.0" text="C1" />
+          <TableColumn prefWidth="147.43806076049805" text="酒店名称" />
+            <TableColumn prefWidth="136.5618896484375" text="商圈" />
+            <TableColumn prefWidth="234.38662719726562" text="酒店地址" />
+            <TableColumn prefWidth="114.00558471679688" text="星级" />
+            <TableColumn prefWidth="121.86090087890625" text="评分" />
+            <TableColumn prefWidth="156.0723876953125" text="起售价" />
         </columns>
       </TableView>
-      <TextField layoutX="-38.0" layoutY="-462.0" prefHeight="23.0" prefWidth="115.0" text="酒店名称" />
-      <DatePicker layoutX="184.0" layoutY="-533.0" prefHeight="23.0" prefWidth="89.0" />
-      <DatePicker layoutX="184.0" layoutY="-510.0" prefHeight="23.0" prefWidth="89.0" />
-      <ChoiceBox layoutX="-56.0" layoutY="-522.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="348.0" layoutY="-522.0" prefWidth="150.0" />
-      <ChoiceBox layoutX="126.0" layoutY="-462.0" prefHeight="23.0" prefWidth="89.0" />
-      <RadioButton layoutX="405.0" layoutY="-458.0" mnemonicParsing="false" text="是否限定预订" textFill="#eee0e6" />
+      <DatePicker fx:id="beginDatePicker" layoutX="320.0" layoutY="15.0" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
+      <DatePicker fx:id="finishDatePicker" layoutX="320.0" layoutY="79.0" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
+      <ChoiceBox fx:id="cityChoiceBox" layoutX="58.0" layoutY="17.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.leftAnchor="60.0" />
+      <ChoiceBox fx:id="districtChoiceBox" layoutX="58.0" layoutY="75.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.leftAnchor="60.0" />
+      <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="717.0" layoutY="22.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.rightAnchor="60.0" />
+      <Button fx:id="returnButton" layoutX="176.0" layoutY="585.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="checkDetailedHotelButton" layoutX="643.0" layoutY="585.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="查看详情" />
+      <Button fx:id="createButton" layoutX="409.0" layoutY="585.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
    </children>
 </AnchorPane>
