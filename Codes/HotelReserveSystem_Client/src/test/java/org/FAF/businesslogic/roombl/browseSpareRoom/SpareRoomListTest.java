@@ -2,6 +2,7 @@ package org.FAF.businesslogic.roombl.browseSpareRoom;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -27,7 +28,11 @@ public class SpareRoomListTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @Before
@@ -43,24 +48,30 @@ public class SpareRoomListTest {
 
     @Test
     public void testGetRoomInfoList() {
-        ArrayList<SpareRoomItem> spareRoomItems = spareRoomList.getRoomInfoList(address);
-        assertEquals(4, spareRoomItems.size());
+        ArrayList<SpareRoomItem> spareRoomItems;
+		try {
+			spareRoomItems = spareRoomList.getRoomInfoList(address);
+			assertEquals(4, spareRoomItems.size());
 //        RoomVO roomVOFromArray = spareRoomItems.get(0).toVO();
-        for(SpareRoomItem spareRoomItem:spareRoomItems){
-            RoomVO roomVO=spareRoomItem.toVO();
-            if(roomVO.roomType==RoomType.SINGLE_ROOM){
-                assertTrue(equalSpareRoom(roomVO1, roomVO));
-            }
-            if(roomVO.roomType==RoomType.STANDARD_ROOM){
-                assertTrue(equalSpareRoom(roomVO2, roomVO));
-            }
-            if(roomVO.roomType==RoomType.TRIBLE_ROOM){
-                assertTrue(equalSpareRoom(roomVO3, roomVO));
-            }
-            if(roomVO.roomType==RoomType.KING_SIZE_ROOM){
-                assertTrue(equalSpareRoom(roomVO4, roomVO));
-            }
-        }
+			for(SpareRoomItem spareRoomItem:spareRoomItems){
+				RoomVO roomVO=spareRoomItem.toVO();
+				if(roomVO.roomType==RoomType.SINGLE_ROOM){
+					assertTrue(equalSpareRoom(roomVO1, roomVO));
+				}
+				if(roomVO.roomType==RoomType.STANDARD_ROOM){
+					assertTrue(equalSpareRoom(roomVO2, roomVO));
+				}
+				if(roomVO.roomType==RoomType.TRIBLE_ROOM){
+					assertTrue(equalSpareRoom(roomVO3, roomVO));
+				}
+				if(roomVO.roomType==RoomType.KING_SIZE_ROOM){
+					assertTrue(equalSpareRoom(roomVO4, roomVO));
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     public boolean equalSpareRoom(RoomVO roomVO1, RoomVO roomVO2) {

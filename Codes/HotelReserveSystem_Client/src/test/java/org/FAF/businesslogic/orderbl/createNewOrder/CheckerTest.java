@@ -3,8 +3,9 @@ package org.FAF.businesslogic.orderbl.createNewOrder;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import businesslogic.orderbl.createNewOrder.Checker;
@@ -24,7 +25,11 @@ public class CheckerTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -42,8 +47,14 @@ public class CheckerTest {
 
 	@Test
 	public void canUserCreateNewOrderTest_1() {
-		boolean result = checker.canUserCreateNewOrder("原");
-		assertEquals(canUserCreateNewOrder, result);
+		boolean result;
+		try {
+			result = checker.canUserCreateNewOrder("原");
+			assertEquals(canUserCreateNewOrder, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	//异常情况下的Test

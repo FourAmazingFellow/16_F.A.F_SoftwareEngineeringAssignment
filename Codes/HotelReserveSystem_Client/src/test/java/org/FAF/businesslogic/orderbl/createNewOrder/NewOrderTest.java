@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.orderbl.createNewOrder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -48,7 +49,11 @@ public class NewOrderTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 
 	@SuppressWarnings("deprecation")
@@ -103,15 +108,27 @@ public class NewOrderTest {
 	@Test
 	public void getPriceTest_1() {
 		OrderVO tempOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
-		int result = newOrder.getPrice(tempOrder);
-		assertEquals("NewOrder.getPrice has an error!", 320, result);
+		int result;
+		try {
+			result = newOrder.getPrice(tempOrder);
+			assertEquals("NewOrder.getPrice has an error!", 320, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 //	@Test
 	public void addNewOrderTest_1() {
 		OrderVO testOrder = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num, totalPrice, 
 				orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale, isCommented);
-		boolean result = newOrder.addNewOrder(testOrder);
-		assertEquals("NewOrder.addNewOrder has an error!", addResult, result);
+		boolean result;
+		try {
+			result = newOrder.addNewOrder(testOrder);
+			assertEquals("NewOrder.addNewOrder has an error!", addResult, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 }

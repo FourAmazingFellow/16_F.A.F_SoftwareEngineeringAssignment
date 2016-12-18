@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.orderbl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -42,7 +43,11 @@ public class OrderInfoImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -71,143 +76,173 @@ public class OrderInfoImplTest {
 
 	@Test
 	public void getAllOrdersTest_1() {
-		ArrayList<OrderVO> allOrders = orderInfoImpl.getAllOrders("原");
-		OrderVO firstOrder = allOrders.get(0);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
-				firstOrder.orderID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
-				firstOrder.userID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
-				firstOrder.hotelName);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
-				firstOrder.hotelAddress);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
-				firstOrder.beginDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
-				firstOrder.finishDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
-				firstOrder.roomType);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
-				firstOrder.totalPrice);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
-				firstOrder.orderState);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderProducedTime!",
-				orderProducedTime, firstOrder.orderProducedTime);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in lastedOrderDoneTime!",
-				lastedOrderDoneTime, firstOrder.lastedOrderDoneTime);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in numOfPerson!", numOfPerson,
-				firstOrder.numOfPerson);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isChildren!", isChildren,
-				firstOrder.isChildren);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isOnSale!", isOnSale,
-				firstOrder.isOnSale);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isCommented!", isCommented,
-				firstOrder.isCommented);
+		ArrayList<OrderVO> allOrders;
+		try {
+			allOrders = orderInfoImpl.getAllOrders("原");
+			OrderVO firstOrder = allOrders.get(0);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
+					firstOrder.orderID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
+					firstOrder.userID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
+					firstOrder.hotelName);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
+					firstOrder.hotelAddress);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
+					firstOrder.beginDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
+					firstOrder.finishDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
+					firstOrder.roomType);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
+					firstOrder.totalPrice);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
+					firstOrder.orderState);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderProducedTime!",
+					orderProducedTime, firstOrder.orderProducedTime);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in lastedOrderDoneTime!",
+					lastedOrderDoneTime, firstOrder.lastedOrderDoneTime);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in numOfPerson!", numOfPerson,
+					firstOrder.numOfPerson);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isChildren!", isChildren,
+					firstOrder.isChildren);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isOnSale!", isOnSale,
+					firstOrder.isOnSale);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isCommented!", isCommented,
+					firstOrder.isCommented);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	@Test
 	public void isReservedTest_1() {
-		boolean result = orderInfoImpl.isReserved("原", "江苏省南京市栖霞区仙林大道163号");
-		assertEquals(isReserved, result);
+		boolean result;
+		try {
+			result = orderInfoImpl.isReserved("原", "江苏省南京市栖霞区仙林大道163号");
+			assertEquals(isReserved, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	@Test
 	public void getCommentableOrderListTest_1() {
-		ArrayList<OrderVO> result = orderInfoImpl.getCommentableOrderList(userID);
-		OrderVO firstOrder = result.get(0);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
-				firstOrder.orderID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
-				firstOrder.userID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
-				firstOrder.hotelName);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
-				firstOrder.hotelAddress);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
-				firstOrder.beginDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
-				firstOrder.finishDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
-				firstOrder.roomType);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
-				firstOrder.totalPrice);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
-				firstOrder.orderState);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderProducedTime!",
-				orderProducedTime, firstOrder.orderProducedTime);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in lastedOrderDoneTime!",
-				lastedOrderDoneTime, firstOrder.lastedOrderDoneTime);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in numOfPerson!", numOfPerson,
-				firstOrder.numOfPerson);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isChildren!", isChildren,
-				firstOrder.isChildren);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isOnSale!", isOnSale,
-				firstOrder.isOnSale);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isCommented!", isCommented,
-				firstOrder.isCommented);
+		ArrayList<OrderVO> result;
+		try {
+			result = orderInfoImpl.getCommentableOrderList(userID);
+			OrderVO firstOrder = result.get(0);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
+					firstOrder.orderID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
+					firstOrder.userID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
+					firstOrder.hotelName);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
+					firstOrder.hotelAddress);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
+					firstOrder.beginDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
+					firstOrder.finishDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
+					firstOrder.roomType);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
+					firstOrder.totalPrice);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
+					firstOrder.orderState);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderProducedTime!",
+					orderProducedTime, firstOrder.orderProducedTime);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in lastedOrderDoneTime!",
+					lastedOrderDoneTime, firstOrder.lastedOrderDoneTime);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in numOfPerson!", numOfPerson,
+					firstOrder.numOfPerson);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isChildren!", isChildren,
+					firstOrder.isChildren);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isOnSale!", isOnSale,
+					firstOrder.isOnSale);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isCommented!", isCommented,
+					firstOrder.isCommented);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
 	public void getOrderListTest_1(){
-		ArrayList<OrderVO> result = orderInfoImpl.getOrderList("原", "江苏省南京市栖霞区仙林大道163号");
-		OrderVO firstOrder = result.get(0);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
-				firstOrder.orderID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
-				firstOrder.userID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
-				firstOrder.hotelName);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
-				firstOrder.hotelAddress);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
-				firstOrder.beginDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
-				firstOrder.finishDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
-				firstOrder.roomType);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
-				firstOrder.totalPrice);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
-				firstOrder.orderState);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderProducedTime!",
-				orderProducedTime, firstOrder.orderProducedTime);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in lastedOrderDoneTime!",
-				lastedOrderDoneTime, firstOrder.lastedOrderDoneTime);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in numOfPerson!", numOfPerson,
-				firstOrder.numOfPerson);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isChildren!", isChildren,
-				firstOrder.isChildren);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isOnSale!", isOnSale,
-				firstOrder.isOnSale);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isCommented!", isCommented,
-				firstOrder.isCommented);	
+		ArrayList<OrderVO> result;
+		try {
+			result = orderInfoImpl.getOrderList("原", "江苏省南京市栖霞区仙林大道163号");
+			OrderVO firstOrder = result.get(0);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
+					firstOrder.orderID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
+					firstOrder.userID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
+					firstOrder.hotelName);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
+					firstOrder.hotelAddress);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
+					firstOrder.beginDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
+					firstOrder.finishDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
+					firstOrder.roomType);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
+					firstOrder.totalPrice);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
+					firstOrder.orderState);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderProducedTime!",
+					orderProducedTime, firstOrder.orderProducedTime);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in lastedOrderDoneTime!",
+					lastedOrderDoneTime, firstOrder.lastedOrderDoneTime);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in numOfPerson!", numOfPerson,
+					firstOrder.numOfPerson);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isChildren!", isChildren,
+					firstOrder.isChildren);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isOnSale!", isOnSale,
+					firstOrder.isOnSale);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in isCommented!", isCommented,
+					firstOrder.isCommented);	
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
 	public void getReservedOrderListTest_1(){
-		ArrayList<BriefOrderInfoVO> result = orderInfoImpl.getReservedOrderList("原");
-		BriefOrderInfoVO firstOrder = result.get(0);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
-				firstOrder.orderID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
-				firstOrder.userID);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
-				firstOrder.hotelName);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
-				firstOrder.hotelAddress);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
-				firstOrder.beginDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
-				firstOrder.finishDate);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
-				firstOrder.roomType);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
-				firstOrder.totalPrice);
-		assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
-				firstOrder.orderState);	
+		ArrayList<BriefOrderInfoVO> result;
+		try {
+			result = orderInfoImpl.getReservedOrderList("原");
+			BriefOrderInfoVO firstOrder = result.get(0);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderID!", orderID,
+					firstOrder.orderID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in userID!", userID,
+					firstOrder.userID);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelName!", hotelName,
+					firstOrder.hotelName);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in hotelAddress!", hotelAddress,
+					firstOrder.hotelAddress);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in beginDate!", beginDate,
+					firstOrder.beginDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in finishDate!", finishDate,
+					firstOrder.finishDate);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in roomType!", roomType,
+					firstOrder.roomType);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in num!", num, firstOrder.num);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in totalPrice!", totalPrice,
+					firstOrder.totalPrice);
+			assertEquals("OrderInfoImpl.getReservedOrderList(String userID) has an error in orderState!", orderState,
+					firstOrder.orderState);	
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 }

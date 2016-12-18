@@ -33,7 +33,11 @@ public class CheckOutListTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
     
     
@@ -56,43 +60,61 @@ public class CheckOutListTest {
     
     @Test
     public void testGetCheckOutList(){
-        ArrayList<CheckOutItem> checkOutItems=checkOutList.getCheckOutList("江苏省南京市栖霞区仙林大道163号");
-        assertEquals(3,checkOutItems.size());
-        for(CheckOutItem checkOutItem:checkOutItems){
-            CheckOutVO checkOutVO=(CheckOutVO)checkOutItem.toVO();
-            if(checkOutVO.roomType==RoomType.SINGLE_ROOM)
-                assertTrue(equalCheckOut(checkOutVO, checkOutVO1));
-            if(checkOutVO.roomType==RoomType.STANDARD_ROOM)
-                assertTrue(equalCheckOut(checkOutVO, checkOutVO2));
-            if(checkOutVO.roomType==RoomType.TRIBLE_ROOM)
-                assertTrue(equalCheckOut(checkOutVO, checkOutVO3));
-        }
-        checkOutItems = checkOutList.getCheckOutList("江苏省南京市栖霞区仙林大道164号");
-        assertEquals(1, checkOutItems.size());
-        assertTrue(equalCheckOut(checkOutVO4, (CheckOutVO)checkOutItems.get(0).toVO()));
+        ArrayList<CheckOutItem> checkOutItems;
+		try {
+			checkOutItems = checkOutList.getCheckOutList("江苏省南京市栖霞区仙林大道163号");
+			assertEquals(3,checkOutItems.size());
+			for(CheckOutItem checkOutItem:checkOutItems){
+				CheckOutVO checkOutVO=(CheckOutVO)checkOutItem.toVO();
+				if(checkOutVO.roomType==RoomType.SINGLE_ROOM)
+					assertTrue(equalCheckOut(checkOutVO, checkOutVO1));
+				if(checkOutVO.roomType==RoomType.STANDARD_ROOM)
+					assertTrue(equalCheckOut(checkOutVO, checkOutVO2));
+				if(checkOutVO.roomType==RoomType.TRIBLE_ROOM)
+					assertTrue(equalCheckOut(checkOutVO, checkOutVO3));
+			}
+			checkOutItems = checkOutList.getCheckOutList("江苏省南京市栖霞区仙林大道164号");
+			assertEquals(1, checkOutItems.size());
+			assertTrue(equalCheckOut(checkOutVO4, (CheckOutVO)checkOutItems.get(0).toVO()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
     
     @Test
     public void testSearchCheckOutInfo1(){
-        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", startTime, endTime);
-        assertEquals(2,checkOutItems.size());
-        for(CheckOutItem checkOutItem:checkOutItems){
-            CheckOutVO checkOutVO=(CheckOutVO)checkOutItem.toVO();
-            if(checkOutVO.roomType==RoomType.SINGLE_ROOM){
-                assertTrue(equalCheckOut(checkOutVO, checkOutVO1));
-            }
-            if(checkOutVO.roomType==RoomType.STANDARD_ROOM){
-                assertTrue(equalCheckOut(checkOutVO, checkOutVO2));
-            }
-        }
+        ArrayList<CheckOutItem> checkOutItems;
+		try {
+			checkOutItems = checkOutList.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", startTime, endTime);
+			assertEquals(2,checkOutItems.size());
+			for(CheckOutItem checkOutItem:checkOutItems){
+				CheckOutVO checkOutVO=(CheckOutVO)checkOutItem.toVO();
+				if(checkOutVO.roomType==RoomType.SINGLE_ROOM){
+					assertTrue(equalCheckOut(checkOutVO, checkOutVO1));
+				}
+				if(checkOutVO.roomType==RoomType.STANDARD_ROOM){
+					assertTrue(equalCheckOut(checkOutVO, checkOutVO2));
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
     
     @Test
     public void testSearchCheckOutInfo2(){
-        ArrayList<CheckOutItem> checkOutItems=checkOutList.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", RoomType.TRIBLE_ROOM);
-        assertEquals(1,checkOutItems.size());
-        CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
-        assertTrue(equalCheckOut(checkOutVO3, checkOutVOFromArray));
+        ArrayList<CheckOutItem> checkOutItems;
+		try {
+			checkOutItems = checkOutList.searchCheckOutInfo("江苏省南京市栖霞区仙林大道163号", RoomType.TRIBLE_ROOM);
+			assertEquals(1,checkOutItems.size());
+			CheckOutVO checkOutVOFromArray=(CheckOutVO) checkOutItems.get(0).toVO();
+			assertTrue(equalCheckOut(checkOutVO3, checkOutVOFromArray));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
     
 //    @Test

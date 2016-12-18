@@ -2,6 +2,7 @@ package org.FAF.businesslogic.orderbl.checkAbnormalOrder;
 
 import static org.junit.Assert.assertEquals;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -40,7 +41,11 @@ public class SystemOrderWithdrawerTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")

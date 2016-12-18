@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.orderbl.getOrderDone;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -46,7 +47,11 @@ public class GetOrderDoneServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -85,18 +90,24 @@ public class GetOrderDoneServiceImplTest {
 	
 	@Test
 	public void getHotelNotDoneOrderListTest_1(){
-		ArrayList<BriefOrderInfoVO> resultList = getOrderDoneServiceImpl.getHotelNotDoneOrderList("江苏省南京市栖霞区仙林大道163号");
-		BriefOrderInfoVO fisrtOrder = resultList.get(0);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in orderID!", orderID, fisrtOrder.orderID);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in userID!", userID, fisrtOrder.userID);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in hotelName!", hotelName, fisrtOrder.hotelName);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in hotelAddress!", hotelAddress, fisrtOrder.hotelAddress);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in beginDate!", beginDate, fisrtOrder.beginDate);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in finishDate!", finishDate, fisrtOrder.finishDate);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in roomType!", roomType, fisrtOrder.roomType);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in num!", num, fisrtOrder.num);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in totalPrice!", totalPrice, fisrtOrder.totalPrice);
-		assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in orderState!", orderState, fisrtOrder.orderState);
+		ArrayList<BriefOrderInfoVO> resultList;
+		try {
+			resultList = getOrderDoneServiceImpl.getHotelNotDoneOrderList("江苏省南京市栖霞区仙林大道163号");
+			BriefOrderInfoVO fisrtOrder = resultList.get(0);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in orderID!", orderID, fisrtOrder.orderID);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in userID!", userID, fisrtOrder.userID);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in hotelName!", hotelName, fisrtOrder.hotelName);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in hotelAddress!", hotelAddress, fisrtOrder.hotelAddress);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in beginDate!", beginDate, fisrtOrder.beginDate);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in finishDate!", finishDate, fisrtOrder.finishDate);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in roomType!", roomType, fisrtOrder.roomType);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in num!", num, fisrtOrder.num);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in totalPrice!", totalPrice, fisrtOrder.totalPrice);
+			assertEquals("GetOrderDoneServiceImpl.getHotelNotDoneOrderList has an error in orderState!", orderState, fisrtOrder.orderState);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
@@ -127,8 +138,14 @@ public class GetOrderDoneServiceImplTest {
 				new Date(116, 11, 20), new Date(116, 11, 21), RoomType.STANDARD_ROOM,
 				1, 200, null, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
-		boolean result = getOrderDoneServiceImpl.getOrderDone(vo);
-		assertEquals(canGetOrderDone, result);
+		boolean result;
+		try {
+			result = getOrderDoneServiceImpl.getOrderDone(vo);
+			assertEquals(canGetOrderDone, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test

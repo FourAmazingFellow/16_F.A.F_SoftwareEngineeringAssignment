@@ -1,6 +1,8 @@
 package org.FAF.businesslogic.orderbl.createNewOrder;
 
 import static org.junit.Assert.*;
+
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -70,7 +72,11 @@ public class CreateNewOrderServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -127,37 +133,49 @@ public class CreateNewOrderServiceImplTest {
 
 	@Test
 	public void getHotelBriefInfoTest_1() {
-		BriefHotelInfoVO briefHotelInfo = createNewOrderServiceImpl.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
-		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in hotelName!", hotelName_,
-				briefHotelInfo.hotelName);
-		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in tradeArea!", tradeArea,
-				briefHotelInfo.tradeArea);
-		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in hotelAddress!", hotelAddress_,
-				briefHotelInfo.hotelAddress);
-		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in starLevel!", starLevel,
-				briefHotelInfo.starLevel);
-		assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in mark!", mark, briefHotelInfo.mark, 0);
+		BriefHotelInfoVO briefHotelInfo;
+		try {
+			briefHotelInfo = createNewOrderServiceImpl.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
+			assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in hotelName!", hotelName_,
+					briefHotelInfo.hotelName);
+			assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in tradeArea!", tradeArea,
+					briefHotelInfo.tradeArea);
+			assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in hotelAddress!", hotelAddress_,
+					briefHotelInfo.hotelAddress);
+			assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in starLevel!", starLevel,
+					briefHotelInfo.starLevel);
+			assertEquals("CreateNewOrderServiceImpl.getHotelBriefInfo has an error in mark!", mark, briefHotelInfo.mark, 0);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	@Test
 	public void initNewOrderTest_1() {
-		OrderVO result = createNewOrderServiceImpl.initNewOrder(userID, hotelName, hotelAddress);
-		assertEquals("orderID!", null, result.orderID);
-		assertEquals("userID!", userID, result.userID);
-		assertEquals("hotelName!", hotelName, result.hotelName);
-		assertEquals("hotelAddress!", hotelAddress, result.hotelAddress);
-		assertEquals("beginDate!", null, result.beginDate);
-		assertEquals("finishDate!", null, result.finishDate);
-		assertEquals("roomType!", null, result.roomType);
-		assertEquals("num!", -1, result.num);
-		assertEquals("totalPrice!", -1, result.totalPrice);
-		assertEquals("orderState!", OrderState.NOT_DONE_ORDER, result.orderState);
-		assertEquals("orderProducedTime!", null, result.orderProducedTime);
-		assertEquals("lastedOrderDoneTime!", null, result.lastedOrderDoneTime);
-		assertEquals("numOfPerson!", -1, result.numOfPerson);
-		assertEquals("isChildren!", false, result.isChildren);
-		assertEquals("isOnSale!", false, result.isOnSale);
-		assertEquals("isCommented!", false, result.isCommented);
+		OrderVO result;
+		try {
+			result = createNewOrderServiceImpl.initNewOrder(userID, hotelName, hotelAddress);
+			assertEquals("orderID!", null, result.orderID);
+			assertEquals("userID!", userID, result.userID);
+			assertEquals("hotelName!", hotelName, result.hotelName);
+			assertEquals("hotelAddress!", hotelAddress, result.hotelAddress);
+			assertEquals("beginDate!", null, result.beginDate);
+			assertEquals("finishDate!", null, result.finishDate);
+			assertEquals("roomType!", null, result.roomType);
+			assertEquals("num!", -1, result.num);
+			assertEquals("totalPrice!", -1, result.totalPrice);
+			assertEquals("orderState!", OrderState.NOT_DONE_ORDER, result.orderState);
+			assertEquals("orderProducedTime!", null, result.orderProducedTime);
+			assertEquals("lastedOrderDoneTime!", null, result.lastedOrderDoneTime);
+			assertEquals("numOfPerson!", -1, result.numOfPerson);
+			assertEquals("isChildren!", false, result.isChildren);
+			assertEquals("isOnSale!", false, result.isOnSale);
+			assertEquals("isCommented!", false, result.isCommented);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 
@@ -165,8 +183,13 @@ public class CreateNewOrderServiceImplTest {
 	@Test
 	public void getAvailableRoomNumTest_1() {
 		int num = -1;
-		num = createNewOrderServiceImpl.getAvailableRoomNum(hotelAddress, RoomType.STANDARD_ROOM, new Date(116, 11, 15));
-		assertEquals("CreateNewOrderServiceImpl.getAvailableRoomNum has an Error!", roomNum, num);
+		try {
+			num = createNewOrderServiceImpl.getAvailableRoomNum(hotelAddress, RoomType.STANDARD_ROOM, new Date(116, 11, 15));
+			assertEquals("CreateNewOrderServiceImpl.getAvailableRoomNum has an Error!", roomNum, num);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	@Test
@@ -193,8 +216,14 @@ public class CreateNewOrderServiceImplTest {
 		OrderVO orderVO = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num,
 				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
 				isCommented);
-		int result = createNewOrderServiceImpl.getPrice(orderVO);
-		assertEquals("CreateNewOrderServiceImpl.getPrice has an error!", price, result);
+		int result;
+		try {
+			result = createNewOrderServiceImpl.getPrice(orderVO);
+			assertEquals("CreateNewOrderServiceImpl.getPrice has an error!", price, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	@Test
@@ -202,7 +231,13 @@ public class CreateNewOrderServiceImplTest {
 		OrderVO orderVO = new OrderVO(userID, orderID, hotelName, hotelAddress, beginDate, finishDate, roomType, num,
 				totalPrice, orderState, orderProducedTime, lastedOrderDoneTime, numOfPerson, isChildren, isOnSale,
 				isCommented);
-		boolean result = createNewOrderServiceImpl.addNewOrder(orderVO);
-		assertEquals("CreateNewOrderServiceImpl.addNewOrder has an error!", addResult, result);
+		boolean result;
+		try {
+			result = createNewOrderServiceImpl.addNewOrder(orderVO);
+			assertEquals("CreateNewOrderServiceImpl.addNewOrder has an error!", addResult, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 }

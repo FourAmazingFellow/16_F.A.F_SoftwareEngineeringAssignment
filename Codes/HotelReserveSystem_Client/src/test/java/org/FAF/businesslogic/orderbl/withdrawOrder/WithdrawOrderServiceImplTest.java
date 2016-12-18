@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.orderbl.withdrawOrder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -22,7 +23,11 @@ public class WithdrawOrderServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@Before
@@ -38,15 +43,27 @@ public class WithdrawOrderServiceImplTest {
 				1, 400, OrderState.DONE_ORDER, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
 		
-		boolean result = withdrawOrderServiceImpl.withdrawOrder(vo, false);
-		assertEquals(false, result);
+		boolean result;
+		try {
+			result = withdrawOrderServiceImpl.withdrawOrder(vo, false);
+			assertEquals(false, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	//空指针测试
 	@Test
 	public void withdrawOrderTest_2() {
-		boolean result = withdrawOrderServiceImpl.withdrawOrder(null, false);
-		assertEquals(false, result);
+		boolean result;
+		try {
+			result = withdrawOrderServiceImpl.withdrawOrder(null, false);
+			assertEquals(false, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	//正常撤销测试
@@ -58,7 +75,13 @@ public class WithdrawOrderServiceImplTest {
 				1, 200, OrderState.NOT_DONE_ORDER, new Date(116, 11, 15, 18, 0), new Date(116, 11, 20, 22, 0), 2, 
 				false, false, false);
 		
-		boolean result = withdrawOrderServiceImpl.withdrawOrder(vo, false);
-		assertEquals(true, result);
+		boolean result;
+		try {
+			result = withdrawOrderServiceImpl.withdrawOrder(vo, false);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 }

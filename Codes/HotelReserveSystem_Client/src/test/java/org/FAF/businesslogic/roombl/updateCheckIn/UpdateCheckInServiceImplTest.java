@@ -36,7 +36,11 @@ public class UpdateCheckInServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @SuppressWarnings("deprecation")
@@ -64,44 +68,62 @@ public class UpdateCheckInServiceImplTest {
 
     @Test
     public void testGetCheckInList() {
-        ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.getCheckInList("江苏省南京市栖霞区仙林大道163号");
-        assertEquals(3,checkInVOs.size());
-        for(RoomVO roomVO:checkInVOs){
-            checkInVO=(CheckInVO)roomVO;
-            if(checkInVO.roomType==RoomType.SINGLE_ROOM)
-                assertTrue(equalCheckIn(checkInVO, checkInVO1));
-            if(checkInVO.roomType==RoomType.STANDARD_ROOM)
-                assertTrue(equalCheckIn(checkInVO, checkInVO2));
-            if(checkInVO.roomType==RoomType.TRIBLE_ROOM)
-                assertTrue(equalCheckIn(checkInVO, checkInVO3));
-        }
-        checkInVOs = updateCheckInServiceImpl.getCheckInList("江苏省南京市栖霞区仙林大道164号");
-        assertEquals(1, checkInVOs.size());
-        assertTrue(equalCheckIn(checkInVO4, (CheckInVO)checkInVOs.get(0)));
+        ArrayList<RoomVO> checkInVOs;
+		try {
+			checkInVOs = updateCheckInServiceImpl.getCheckInList("江苏省南京市栖霞区仙林大道163号");
+			assertEquals(3,checkInVOs.size());
+			for(RoomVO roomVO:checkInVOs){
+				checkInVO=(CheckInVO)roomVO;
+				if(checkInVO.roomType==RoomType.SINGLE_ROOM)
+					assertTrue(equalCheckIn(checkInVO, checkInVO1));
+				if(checkInVO.roomType==RoomType.STANDARD_ROOM)
+					assertTrue(equalCheckIn(checkInVO, checkInVO2));
+				if(checkInVO.roomType==RoomType.TRIBLE_ROOM)
+					assertTrue(equalCheckIn(checkInVO, checkInVO3));
+			}
+			checkInVOs = updateCheckInServiceImpl.getCheckInList("江苏省南京市栖霞区仙林大道164号");
+			assertEquals(1, checkInVOs.size());
+			assertTrue(equalCheckIn(checkInVO4, (CheckInVO)checkInVOs.get(0)));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 
     }
 
     @Test
     public void testSearchCheckInInfo1() {
-        ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号",startTime,endTime);
-        assertEquals(2,checkInVOs.size());
-        for(RoomVO roomVO:checkInVOs){
-            CheckInVO checkInVO=(CheckInVO)roomVO;
-            if(checkInVO.roomType==RoomType.SINGLE_ROOM){
-                assertTrue(equalCheckIn(checkInVO, checkInVO1));
-            }
-            if(checkInVO.roomType==RoomType.STANDARD_ROOM){
-                assertTrue(equalCheckIn(checkInVO, checkInVO2));
-            }
-        }
+        ArrayList<RoomVO> checkInVOs;
+		try {
+			checkInVOs = updateCheckInServiceImpl.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号",startTime,endTime);
+			assertEquals(2,checkInVOs.size());
+			for(RoomVO roomVO:checkInVOs){
+				CheckInVO checkInVO=(CheckInVO)roomVO;
+				if(checkInVO.roomType==RoomType.SINGLE_ROOM){
+					assertTrue(equalCheckIn(checkInVO, checkInVO1));
+				}
+				if(checkInVO.roomType==RoomType.STANDARD_ROOM){
+					assertTrue(equalCheckIn(checkInVO, checkInVO2));
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
     public void testSearchCheckInInfo2() {
-        ArrayList<RoomVO> checkInVOs=updateCheckInServiceImpl.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", RoomType.TRIBLE_ROOM);
-        assertEquals(1,checkInVOs.size());
-        CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
-        assertTrue(equalCheckIn(checkInVO3, checkInfromArray));
+        ArrayList<RoomVO> checkInVOs;
+		try {
+			checkInVOs = updateCheckInServiceImpl.searchCheckInInfo("江苏省南京市栖霞区仙林大道163号", RoomType.TRIBLE_ROOM);
+			assertEquals(1,checkInVOs.size());
+			CheckInVO checkInfromArray=(CheckInVO)checkInVOs.get(0);
+			assertTrue(equalCheckIn(checkInVO3, checkInfromArray));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
 //    @Test
