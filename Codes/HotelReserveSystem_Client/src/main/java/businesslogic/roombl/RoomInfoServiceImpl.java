@@ -70,7 +70,7 @@ public class RoomInfoServiceImpl implements RoomInfoService{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Calendar calendar=Calendar.getInstance();
+        Calendar calendar= Calendar.getInstance();
         calendar.setTime(today);
         calendar.add(Calendar.DATE, 6);
         Date availbleEndTime=calendar.getTime();

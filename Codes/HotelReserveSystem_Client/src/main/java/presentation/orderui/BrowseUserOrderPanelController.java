@@ -78,6 +78,7 @@ public class BrowseUserOrderPanelController {
 		orderTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				System.out.println(OrderType.values()[(int) newValue]);
 				getBriefOrderList(ClientMainApp.userID, OrderType.values()[(int) newValue]);
 			}
 		});
@@ -97,9 +98,6 @@ public class BrowseUserOrderPanelController {
 		
 		factory = new OrderUIFactoryServiceImpl();
 		browseHelper = factory.createBrowseUserOrderService();
-//		browseHelper = new BrowseUserOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
-//				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
-//				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
 	public void setMainApp(ClientMainApp mainApp) {
@@ -113,10 +111,12 @@ public class BrowseUserOrderPanelController {
 	
 	private void showBriefOrderList() {
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
+		briefFxOrderList = FXCollections.observableArrayList();
+		
 		for (BriefOrderInfoVO vo : list) {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}
-
+		
 		userOrders.setItems(briefFxOrderList);
 
 		userIDColumn.setCellValueFactory(cellData -> cellData.getValue().getUserID());

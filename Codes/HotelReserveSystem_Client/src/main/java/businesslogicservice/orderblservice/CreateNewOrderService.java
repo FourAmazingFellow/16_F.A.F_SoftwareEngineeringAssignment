@@ -50,6 +50,15 @@ public interface CreateNewOrderService {
 	public int getPrice(OrderVO vo); 
 	
 	/**
+	 * 获取该酒店对应房型的原始价格
+	 * @param hotelAddress
+	 * @param roomType
+	 * @return
+	 * @see
+	 */
+	public int getOriginalPrice(String hotelAddress, RoomType roomType);
+	
+	/**
 	 * 检查订单可否被满足,及是否所需拥有全部信息
 	 * @param vo 订单VO
 	 * @return ResultMessage

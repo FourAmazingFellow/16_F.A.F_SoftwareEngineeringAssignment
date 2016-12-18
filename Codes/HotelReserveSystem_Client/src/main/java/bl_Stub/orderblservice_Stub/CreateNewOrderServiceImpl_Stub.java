@@ -67,5 +67,11 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 		return 0000000000000003;
 	}
 
+	@Override
+	public int getOriginalPrice(String hotelAddress, RoomType roomType) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

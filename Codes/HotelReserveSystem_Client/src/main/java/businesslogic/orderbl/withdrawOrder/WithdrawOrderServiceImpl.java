@@ -12,7 +12,6 @@ public class WithdrawOrderServiceImpl implements WithdrawOrderService {
 	
 	@Override
 	public boolean withdrawOrder(OrderVO vo, boolean isTooLate) {
-		
 		return orderWithdrawer.withdrawOrder(vo, isTooLate);
 	}
 

@@ -46,7 +46,6 @@ public class Checker {
 		try {
 			message = orderChecker.checkOrder(vo);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return message;

@@ -102,11 +102,6 @@ public class BrowseHotelOrderPanelController {
 
 		factory = new OrderUIFactoryServiceImpl();
 		hotelOrderBrowser = factory.createBrowseHotelOrderService();
-		
-//		hotelOrderBrowser = new BrowseHotelOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
-//				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
-//				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
-//				false, true, false);
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {

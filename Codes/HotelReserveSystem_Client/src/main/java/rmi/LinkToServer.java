@@ -13,7 +13,7 @@ public class LinkToServer {
 	public void linkToServer() {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
-			remoteHelper.setRemote(Naming.lookup("rmi://172.28.135.124:1099/DataRemoteObjectMySql"));
+			remoteHelper.setRemote(Naming.lookup("rmi://192.168.1.100:1099/DataRemoteObjectMySql"));
 			System.out.println("连接成功");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

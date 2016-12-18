@@ -71,4 +71,9 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	public boolean addNewOrder(OrderVO vo) {
 		return newOrder.addNewOrder(vo);
 	}
+
+	@Override
+	public int getOriginalPrice(String hotelAddress, RoomType roomType) {
+		return newOrder.getOriginalPrice(hotelAddress, roomType);
+	}
 }

@@ -187,7 +187,7 @@ public class CreateOrderPanelController {
 	
 	@SuppressWarnings("deprecation")
 	private Date getDate(LocalDate l) {
-		return new Date(l.getYear() - 1900, l.getMonthValue() - 1, l.getDayOfMonth());
+		return new Date(l.getYear() - 1900, l.getMonthValue() - 1, l.getDayOfMonth(), 0, 0, 0);
 	}
 	
 	private boolean getTF(String s) {
@@ -199,14 +199,14 @@ public class CreateOrderPanelController {
 	
 	@SuppressWarnings("deprecation")
 	private Date getLastedDoneTime (Date d, String s) {
-		Date result = d;
+		Date result = new Date(d.getYear(), d.getMonth(), d.getDate());
 		String time = s.split(":")[0];
 		if(time.equals("16")) 
-			d.setHours(16);
+			result.setHours(16);
 		else if(time.equals("19"))
-			d.setHours(19);
+			result.setHours(19);
 		else
-			d.setHours(22);
+			result.setHours(22);
 		
 		return result;
 	}
@@ -218,11 +218,15 @@ public class CreateOrderPanelController {
 	 */
 	private void showResult(ResultMessage resultMessage) {
 		if(resultMessage == ResultMessage.SUCCEED){
+			newOrderVO.totalPrice = 
+			newOrderCreater.getOriginalPrice(newOrderVO.hotelAddress, (RoomType)newOrderVO.roomType) * newOrderVO.num;
 			int price = newOrderCreater.getPrice(newOrderVO);
 			newOrderVO.totalPrice = newOrderCreater.getPrice(newOrderVO);
+			newOrderVO.totalPrice = price;
+			
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("生成订单");
-			conf.setContentText("订单价格为" + price + "。\n" + "确认生成订单？");
+			conf.setContentText("订单价格为 " + price + "\n" + "确认生成订单？");
 
 			Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
 			if(result.get() == javafx.scene.control.ButtonType.OK) {

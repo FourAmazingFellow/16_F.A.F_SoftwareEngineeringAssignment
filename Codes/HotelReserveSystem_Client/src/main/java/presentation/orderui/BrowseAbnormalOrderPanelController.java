@@ -106,7 +106,6 @@ public class BrowseAbnormalOrderPanelController {
 		for (BriefOrderInfoVO vo : list) {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}
-
 		abnormalOrderTableView.setItems(briefFxOrderList);
 
 		userIDColumn.setCellValueFactory(cellData -> cellData.getValue().getUserID());
