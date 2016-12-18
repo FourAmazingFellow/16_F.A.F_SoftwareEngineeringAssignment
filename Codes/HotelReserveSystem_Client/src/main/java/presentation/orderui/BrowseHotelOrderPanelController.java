@@ -109,7 +109,15 @@ public class BrowseHotelOrderPanelController {
 	}
 
 	public void getBriefOrderList(String address, OrderType orderType) {
-		list = hotelOrderBrowser.getHotelOrderList(address, orderType);
+		try {
+			list = hotelOrderBrowser.getHotelOrderList(address, orderType);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 		showBriefOrderList();
 	}
 

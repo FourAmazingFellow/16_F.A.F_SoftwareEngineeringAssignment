@@ -1,5 +1,6 @@
 package presentation.orderui;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
@@ -149,7 +150,15 @@ public class CreateOrderPanelController {
 	public void initOrder(String userID, String hotelName, String hotelAddress) {
 		hotelNameLabel.setText(hotelName);
 		hotelAddressLabel.setText(hotelAddress);
-		newOrderVO = newOrderCreater.initNewOrder(userID, hotelName, hotelAddress);
+		try {
+			newOrderVO = newOrderCreater.initNewOrder(userID, hotelName, hotelAddress);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 	}
 	
 	public void setMainApp(ClientMainApp mainApp) {
@@ -218,32 +227,40 @@ public class CreateOrderPanelController {
 	 */
 	private void showResult(ResultMessage resultMessage) {
 		if(resultMessage == ResultMessage.SUCCEED){
-			newOrderVO.totalPrice = 
-			newOrderCreater.getOriginalPrice(newOrderVO.hotelAddress, (RoomType)newOrderVO.roomType) * newOrderVO.num;
-			int price = newOrderCreater.getPrice(newOrderVO);
-			newOrderVO.totalPrice = newOrderCreater.getPrice(newOrderVO);
-			newOrderVO.totalPrice = price;
-			
-			Alert conf = new Alert(AlertType.CONFIRMATION);
-			conf.setTitle("生成订单");
-			conf.setContentText("订单价格为 " + price + "\n" + "确认生成订单？");
+			try {
+				newOrderVO.totalPrice = 
+				newOrderCreater.getOriginalPrice(newOrderVO.hotelAddress, (RoomType)newOrderVO.roomType) * newOrderVO.num;
+				int price = newOrderCreater.getPrice(newOrderVO);
+				newOrderVO.totalPrice = newOrderCreater.getPrice(newOrderVO);
+				newOrderVO.totalPrice = price;
+				
+				Alert conf = new Alert(AlertType.CONFIRMATION);
+				conf.setTitle("生成订单");
+				conf.setContentText("订单价格为 " + price + "\n" + "确认生成订单？");
 
-			Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
-			if(result.get() == javafx.scene.control.ButtonType.OK) {
-				//判断订单生成是否成功
-				if(newOrderCreater.addNewOrder(newOrderVO)){
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("操作成功");
-					alert.setContentText("订单已经成功生成！");
+				Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
+				if(result.get() == javafx.scene.control.ButtonType.OK) {
+					//判断订单生成是否成功
+					if(newOrderCreater.addNewOrder(newOrderVO)){
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("操作成功");
+						alert.setContentText("订单已经成功生成！");
 
-					alert.showAndWait();
-				}else{
-					Alert alert = new Alert(AlertType.WARNING);
-					alert.setTitle("操作失败");
-					alert.setContentText("请检查您的网络连接！");
+						alert.showAndWait();
+					}else{
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("操作失败");
+						alert.setContentText("请检查您的网络连接！");
 
-					alert.showAndWait();
-				}	
+						alert.showAndWait();
+					}
+				}
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+	            alert.setTitle("NetWork Warning");
+	            alert.setHeaderText("Fail to connect with the server!");
+	            alert.setContentText("Please check your network connection!");
+	            alert.showAndWait();
 			}
 		}else if (resultMessage == ResultMessage.NUM_CANNOT_SATISFIED) {
 			Alert alert = new Alert(AlertType.WARNING);

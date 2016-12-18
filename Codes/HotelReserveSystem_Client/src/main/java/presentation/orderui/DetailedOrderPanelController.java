@@ -1,5 +1,6 @@
 package presentation.orderui;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.Optional;
 
@@ -71,19 +72,26 @@ public class DetailedOrderPanelController {
 	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
+
 	public void commentOrder() {
-		
+
 	}
-	
+
 	public void showDetailedOrderPanel(String orderID) {
-		this.vo = browseHelper.getDetailedOrder(orderID);
-		
-		//若订单已过时，则不可撤销订单
-		if(vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0 || 
-				vo.orderState != OrderState.NOT_DONE_ORDER)
+		try {
+			this.vo = browseHelper.getDetailedOrder(orderID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+
+		// 若订单已过时，则不可撤销订单
+		if (vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0 || vo.orderState != OrderState.NOT_DONE_ORDER)
 			withdrawOrderButton.setDisable(true);
-		
+
 		orderStateLabel.setText(getOrderState((OrderState) vo.orderState));
 		isOnSaleLabel.setText(getTorF(vo.isOnSale));
 		isCommentedLabel.setText(getTorF(vo.isCommented));
@@ -100,14 +108,14 @@ public class DetailedOrderPanelController {
 		totalPrcieLabel.setText(String.valueOf(vo.totalPrice));
 		roomTypeLabel.setText(getRoomType((RoomType) vo.roomType));
 	}
-	
+
 	public void returnAction() {
 		mainApp.showUserOrderPanel(ClientMainApp.userID);
 	}
-	
+
 	public void withDrawOrderAction() {
 		Date now = new Date();
-		if(vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0) {
+		if (vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("操作失败");
 			alert.setContentText("订单异常，不能执行撤销操作");
@@ -115,46 +123,62 @@ public class DetailedOrderPanelController {
 			alert.showAndWait();
 			mainApp.showDetailedOrderPanel(vo.orderID);
 		}
-			
-		if(vo.lastedOrderDoneTime.getTime() - now.getTime() < 1000*60*60*6){
+
+		if (vo.lastedOrderDoneTime.getTime() - now.getTime() < 1000 * 60 * 60 * 6) {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("确认撤销订单");
 			conf.setContentText("距离最晚订单执行时间不足6小时，撤销订单会扣除信用值，确认撤销订单吗？");
 
 			Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
-			if(result.get() == javafx.scene.control.ButtonType.OK) {
-				if(orderWithdrawer.withdrawOrder(vo, true)){
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("操作成功");
-					alert.setContentText("撤销订单成功");
+			if (result.get() == javafx.scene.control.ButtonType.OK) {
+				try {
+					if (orderWithdrawer.withdrawOrder(vo, true)) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("操作成功");
+						alert.setContentText("撤销订单成功");
 
-					alert.showAndWait();
-				}else{
+						alert.showAndWait();
+					} else {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("操作失败");
+						alert.setContentText("请检查您的网络连接！");
+
+						alert.showAndWait();
+					}
+				} catch (RemoteException e) {
 					Alert alert = new Alert(AlertType.WARNING);
-					alert.setTitle("操作失败");
-					alert.setContentText("请检查您的网络连接！");
-
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
 					alert.showAndWait();
 				}
 			}
-		}else {
+		} else {
 			Alert conf = new Alert(AlertType.CONFIRMATION);
 			conf.setTitle("确认撤销订单");
 			conf.setContentText("确认撤销订单？");
 
 			Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
-			if(result.get() == javafx.scene.control.ButtonType.OK) {
-				if(orderWithdrawer.withdrawOrder(vo, false)){
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("操作成功");
-					alert.setContentText("撤销订单成功");
+			if (result.get() == javafx.scene.control.ButtonType.OK) {
+				try {
+					if (orderWithdrawer.withdrawOrder(vo, false)) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("操作成功");
+						alert.setContentText("撤销订单成功");
 
-					alert.showAndWait();
-				}else{
+						alert.showAndWait();
+					} else {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("操作失败");
+						alert.setContentText("请检查您的网络连接！");
+
+						alert.showAndWait();
+					}
+				} catch (RemoteException e) {
 					Alert alert = new Alert(AlertType.WARNING);
-					alert.setTitle("操作失败");
-					alert.setContentText("请检查您的网络连接！");
-
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
 					alert.showAndWait();
 				}
 			}
@@ -198,6 +222,5 @@ public class DetailedOrderPanelController {
 		else
 			return "否";
 	}
-	
-	
+
 }

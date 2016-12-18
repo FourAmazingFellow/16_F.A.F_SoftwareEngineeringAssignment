@@ -1,5 +1,6 @@
 package presentation.orderui;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.orderblservice.BrowseUserOrderService;
@@ -105,7 +106,15 @@ public class BrowseUserOrderPanelController {
 	}
 	
 	public void getBriefOrderList(String userID, OrderType orderType) {
-		list = browseHelper.getUserOrderList(userID, orderType);
+		try {
+			list = browseHelper.getUserOrderList(userID, orderType);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 		showBriefOrderList();
 	}
 	

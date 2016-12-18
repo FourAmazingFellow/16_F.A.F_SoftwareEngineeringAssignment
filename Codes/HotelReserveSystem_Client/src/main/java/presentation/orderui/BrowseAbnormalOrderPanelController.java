@@ -1,5 +1,6 @@
 package presentation.orderui;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -94,7 +95,15 @@ public class BrowseAbnormalOrderPanelController {
 	}
 
 	public void getBriefAbnormalOrderList(Date date) {
-		list = abnormalOrderBrowser.getAbnormalOrderList(date);
+		try {
+			list = abnormalOrderBrowser.getAbnormalOrderList(date);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 		showBriefOrderList();
 	}
 	
@@ -121,7 +130,15 @@ public class BrowseAbnormalOrderPanelController {
 	public void searchOrderByID() {
 		String orderID = searchTextField.getText();
 		OrderVO vo = null;
-		vo = abnormalOrderBrowser.getDetailedOrder(orderID);
+		try {
+			vo = abnormalOrderBrowser.getDetailedOrder(orderID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 		if (vo == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("订单号错误");
