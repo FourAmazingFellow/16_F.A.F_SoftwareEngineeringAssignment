@@ -1,6 +1,6 @@
 package org.FAF.businesslogic.orderbl.browseHotelOrder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -47,7 +47,11 @@ public class BrowseHotelOrderServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -77,18 +81,25 @@ public class BrowseHotelOrderServiceImplTest {
 	
 	@Test
 	public void testHotelOrderArrayList_1(){
-		ArrayList<BriefOrderInfoVO> briefOrderInfoList = browseHotelOrderServiceImpl.getHotelOrderList("江苏省南京市栖霞区仙林大道163号", OrderType.ALL);
-		BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, fisrtOrder.userID);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in hotelName!", hotelName, fisrtOrder.hotelName);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in hotelAddress!", hotelAddress, fisrtOrder.hotelAddress);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in beginDate!", beginDate, fisrtOrder.beginDate);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in finishDate!", finishDate, fisrtOrder.finishDate);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in roomType!", roomType, fisrtOrder.roomType);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in num!", num, fisrtOrder.num);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in totalPrice!", totalPrice, fisrtOrder.totalPrice);
-		assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderState!", orderState, fisrtOrder.orderState);
+		ArrayList<BriefOrderInfoVO> briefOrderInfoList;
+		try {
+			briefOrderInfoList = browseHotelOrderServiceImpl.getHotelOrderList("江苏省南京市栖霞区仙林大道163号", OrderType.ALL);
+			BriefOrderInfoVO fisrtOrder = briefOrderInfoList.get(0);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderID!", orderID, fisrtOrder.orderID);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in userID!", userID, fisrtOrder.userID);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in hotelName!", hotelName, fisrtOrder.hotelName);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in hotelAddress!", hotelAddress, fisrtOrder.hotelAddress);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in beginDate!", beginDate, fisrtOrder.beginDate);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in finishDate!", finishDate, fisrtOrder.finishDate);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in roomType!", roomType, fisrtOrder.roomType);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in num!", num, fisrtOrder.num);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in totalPrice!", totalPrice, fisrtOrder.totalPrice);
+			assertEquals("BrowseHotelOrderServiceImpl.getHotelOrderList(String address, Enum<OrderType> orderType) has an error in orderState!", orderState, fisrtOrder.orderState);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+
 	}
 	
 	@Test

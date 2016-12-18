@@ -1,5 +1,6 @@
 package presentation.hotelui;
 
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -11,6 +12,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
@@ -66,7 +69,15 @@ public class SearchPanelController {
 	@FXML
 	private void initialize() {
 		factory = new HotelUIFactoryServiceImpl();
-		searchHotelService = factory.createSearchHotelService(ClientMainApp.userID);
+		try {
+			searchHotelService = factory.createSearchHotelService(ClientMainApp.userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+		}
 		
 		cityChoiceBox.setItems(cityList);
 		cityChoiceBox.setValue("南京市");
@@ -103,13 +114,22 @@ public class SearchPanelController {
 	}
 	
 	private void setDistrictChoiceBox(String cityName) {
-		ArrayList<BusinessDistrictPO> tradeAreaList = searchHotelService.getBusinessDistrictList(cityName);
-		districList = FXCollections.observableArrayList();
-		for(BusinessDistrictPO districtPO: tradeAreaList) {
-			districList.add(districtPO.getBusinessDistrictName());
+		ArrayList<BusinessDistrictPO> tradeAreaList;
+		try {
+			tradeAreaList = searchHotelService.getBusinessDistrictList(cityName);
+			districList = FXCollections.observableArrayList();
+			for(BusinessDistrictPO districtPO: tradeAreaList) {
+				districList.add(districtPO.getBusinessDistrictName());
+			}
+			tradeAreaChoiceBox.setItems(districList);
+			tradeAreaChoiceBox.setValue(districList.get(0));
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
 		}
-		tradeAreaChoiceBox.setItems(districList);
-		tradeAreaChoiceBox.setValue(districList.get(0));
 	}
 	
 	private void setDatePicker() {
