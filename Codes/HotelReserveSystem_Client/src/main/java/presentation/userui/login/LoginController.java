@@ -13,9 +13,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import po.UserType;
 import presentation.ClientMainApp;
+import presentation.MainApp;
 
 public class LoginController {
-	private ClientMainApp mainApp;
+	private MainApp mainApp;
 	private LoginAndSignUpService login;
 	private CheckLoginInfo check;
 	private UserUIFactoryService userFactory;
@@ -35,43 +36,49 @@ public class LoginController {
 	private void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		check = new CheckLoginInfo();
-//		login = userFactory.createLoginAndSignUpService();
+		// login = userFactory.createLoginAndSignUpService();
 		login = new LoginAndSignUpServiceImpl_Stub();
 	}
 
-	public void setMainApp(ClientMainApp clientMainApp) {
-		this.mainApp = clientMainApp;
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
 	}
-	
-	
-	public void verifyLogin(){
+
+	public void verifyLogin() {
 		String userID = userIDTextArea.getText();
 		String password = passwordTextArea.getText();
 		UserType userType = check.checkUser(userID, password);
 		boolean result = login.login(userID, password);
-		
-		if(result == false){
+
+		if (result == false) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("用户名或密码错误！");
 			alert.setContentText("请重新输入！");
 			alert.show();
-		}
-		else if(result == true){
+		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("login info");
 			alert.setHeaderText("登录成功！");
 			alert.show();
+			
+			if(userType == UserType.Client)
+				mainApp.showClientMainApp();
+			else if(userType == UserType.HotelStaff)
+				mainApp.showHotelMainApp();
+			else if(userType == UserType.WebMarketStaff)
+				mainApp.showWebsitePromotionMainApp();
+			else if (userType == UserType.WebManageStaff)
+				mainApp.showWebsiteManageMainApp();
+				
 		}
 	}
-	
-	public void loginButtonAction(){
+
+	public void loginButtonAction() {
 		verifyLogin();
 	}
-	
-	
-	public void showRegisterPanel(){
-		mainApp.showRegisterPanel();
+
+	public void showRegisterPanel() {
 	}
 
 }

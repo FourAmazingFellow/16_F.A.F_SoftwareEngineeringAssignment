@@ -6,20 +6,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<children>
 		<HBox fx:id="searchBox" layoutX="500.0" layoutY="100.0" spacing="10.0">
 			<children>
-				<TextField layoutX="526.0" layoutY="121.0" prefHeight="50.0" prefWidth="250.0" />
-				<Button layoutX="874.0" layoutY="130.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="搜索" />
+				<TextField fx:id="searchField" layoutX="526.0" layoutY="121.0" prefHeight="50.0" prefWidth="250.0" />
+				<Button fx:id="searchButton" layoutX="874.0" layoutY="130.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="50.0" prefWidth="150.0" text="搜索" />
 			</children>
 		</HBox>
 		<Label fx:id="manageHotelLabel" layoutX="100.0" layoutY="100.0" prefHeight="50.0" prefWidth="150.0" styleClass="label-title" text="管理酒店" />
 		
 		<HBox layoutX="300.0" layoutY="550.0" spacing="100.0">
 			<children>
-				<Button fx:id="cancelButton" layoutX="353.0" layoutY="635.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="取消" />
-				<Button fx:id="confirmButton" layoutX="535.0" layoutY="623.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="确认" />
+				<Button fx:id="cancelButton" layoutX="353.0" layoutY="635.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="50.0" prefWidth="150.0" text="取消" />
+				<Button fx:id="confirmButton" layoutX="535.0" layoutY="623.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="50.0" prefWidth="150.0" text="确认" />
 			</children>
 		</HBox>
       <TabPane layoutX="200.0" layoutY="200.0" prefHeight="300.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
@@ -46,14 +46,14 @@
                               <Label text="地址" GridPane.rowIndex="1" />
                               <Label text="商圈" GridPane.rowIndex="2" />
                               <Label text="设施服务" GridPane.rowIndex="3" />
-                              <Label text="hotelName" GridPane.columnIndex="1" />
-                              <Label text="hotelAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="service" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="tradeArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="评价" GridPane.rowIndex="5" />
+                              <Label fx:id="hotelNameLabel" text="hotelName" GridPane.columnIndex="1" />
+                              <Label fx:id="hotelAddressLabel" text="hotelAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="serviceLabel" text="service" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="tradeAreaLabel" text="tradeArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="简介" GridPane.rowIndex="5" />
                               <Label text="星级" GridPane.rowIndex="4" />
-                              <Label text="comments" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label text="★★★★☆" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label fx:id="briefIntroLabel" text="briefIntro" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="starLabel" text="★★★★☆" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>
@@ -69,10 +69,10 @@
                               <Label text="工作人员账号" GridPane.rowIndex="1" />
                               <Label text="账号密码" GridPane.rowIndex="2" />
                               <Label text="联系方式" GridPane.rowIndex="3" />
-                              <TextField prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" />
-                              <TextField prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="hotelNameField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="hotelStaffIDfField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="passwordField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="telNumField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                            <columnConstraints>
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

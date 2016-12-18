@@ -1,31 +1,72 @@
 package presentation.hotelui.reservedhotel;
 
-	import javafx.fxml.FXML;
-	import javafx.scene.control.Button;
-	import javafx.scene.control.TabPane;
-	import javafx.scene.control.TableView;
+import businesslogicservice.hotelblservice.CheckOrderedHotelService;
+import businesslogicservice.hotelblservice.ManageHotelInfoService;
+import factory.HotelUIFactoryService;
+import factory.HotelUIFactoryServiceImpl;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
+import presentation.HotelMainApp;
 
-	public class ReservedHotelCintroller {
+public class ReservedHotelCintroller {
+	private HotelUIFactoryService hotelFactory;
+	private CheckOrderedHotelService checkOrderedHotel;
+	private HotelMainApp mainApp;
 
-	    @FXML
-	    private TableView<?> orderDetailTableAbnormal;
+	@FXML
+	private Tab abnormalTab;
 
-	    @FXML
-	    private TableView<?> orderDetailTableNormal;
+	@FXML
+	private Tab undoTab;
 
-	    @FXML
-	    private TabPane orderListTab;
+	@FXML
+	private Tab normalTab;
 
-	    @FXML
-	    private TableView<?> orderDetailTableAll;
+	@FXML
+	private TableView<?> orderDetailTableAbnormal;
 
-	    @FXML
-	    private Button orderDoneButton;
+	@FXML
+	private TableView<?> orderDetailTableNormal;
 
-	    @FXML
-	    private TableView<?> orderDetailTableUndo;
+	@FXML
+	private TabPane orderListTab;
 
-	    @FXML
-	    private Button hotelDetailButton;
+	@FXML
+	private TableView<?> orderDetailTableAll;
+
+	@FXML
+	private Button orderDoneButton;
+
+	@FXML
+	private Tab allTab;
+
+	@FXML
+	private TableView<?> orderDetailTableUndo;
+
+	@FXML
+	private Button hotelDetailButton;
+
+	@FXML
+	void hotelDetailButtonAction(ActionEvent event) {
 
 	}
+
+	@FXML
+	void orderDoneButtonAction(ActionEvent event) {
+
+	}
+
+	@FXML
+	void initialize() {
+		hotelFactory = new HotelUIFactoryServiceImpl();
+		checkOrderedHotel = hotelFactory.createCheckOrderedHotelService();
+	}
+
+	public void setMainApp(HotelMainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+}

@@ -26,6 +26,12 @@ public class AddCreditValueController {
 
 	@FXML
 	private Button cancelButton;
+	
+	@FXML
+	private Button confirmButton;
+	
+	@FXML
+	private Button searchButton;
 
 	@FXML
 	private TextField searchField;
@@ -41,9 +47,6 @@ public class AddCreditValueController {
 
 	@FXML
 	private TextField addCreditField;
-
-	@FXML
-	private Button confirmButton;
 
 	@FXML
 	private HBox searchBox;
@@ -110,6 +113,10 @@ public class AddCreditValueController {
 
 	public void comfirmButtonAction() {
 		addCreditValue();
+	}
+	
+	public void cancelButtonAction(){
+		return;
 	}
 
 }

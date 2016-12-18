@@ -37,7 +37,7 @@
 		</GridPane>
 		<HBox layoutX="300.0" layoutY="550.0" spacing="100.0">
 			<children>
-				<Button fx:id="cancelButton" layoutX="353.0" layoutY="635.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="取消" />
+				<Button fx:id="cancelButton" layoutX="353.0" layoutY="635.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="50.0" prefWidth="150.0" text="取消" />
 				<Button fx:id="confirmButton" layoutX="535.0" layoutY="623.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="确认" />
 			</children>
 		</HBox>

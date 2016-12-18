@@ -5,4 +5,4 @@
  * @author sparkler
  *
  */
-package presentation.userui.managehotel;
+package presentation.hotelui.managehotel;

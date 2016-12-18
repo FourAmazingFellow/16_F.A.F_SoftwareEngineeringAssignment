@@ -4,7 +4,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
 	prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css"
@@ -13,7 +12,7 @@
 		<TabPane fx:id="orderListTab" layoutX="100.0" layoutY="100.0"
 			prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
-				<Tab text="全部">
+				<Tab fx:id="allTab" text="全部">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
 							prefWidth="200.0">
@@ -34,7 +33,7 @@
 						</AnchorPane>
 					</content>
 				</Tab>
-				<Tab text="正常订单">
+				<Tab fx:id="normalTab" text="正常订单">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
 							prefWidth="200.0">
@@ -55,7 +54,7 @@
 						</AnchorPane>
 					</content>
 				</Tab>
-				<Tab text="异常订单">
+				<Tab fx:id="abnormalTab" text="异常订单">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
 							prefWidth="200.0">
@@ -76,7 +75,7 @@
 						</AnchorPane>
 					</content>
 				</Tab>
-				<Tab text="撤销订单">
+				<Tab fx:id="undoTab" text="撤销订单">
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
 							prefWidth="200.0">
@@ -102,9 +101,11 @@
 		<HBox layoutX="500.0" layoutY="600.0" spacing="50.0">
 			<children>
 				<Button fx:id="hotelDetailButton" layoutX="565.0" layoutY="625.0"
-					mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="查看酒店详情" />
+					mnemonicParsing="false" onAction="#hotelDetailButtonAction"
+					prefHeight="50.0" prefWidth="200.0" text="查看酒店详情" />
 				<Button fx:id="orderDoneButton" layoutX="749.0" layoutY="637.0"
-					mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="生成订单" />
+					mnemonicParsing="false" onAction="#orderDoneButtonAction"
+					prefHeight="50.0" prefWidth="150.0" text="生成订单" />
 			</children>
 		</HBox>
 	</children>
