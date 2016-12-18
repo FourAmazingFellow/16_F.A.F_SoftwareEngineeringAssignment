@@ -2,7 +2,6 @@ package presentation.userui.login;
 
 import java.rmi.RemoteException;
 
-import bl_Stub.userblservice_Stub.LoginAndSignUpServiceImpl_Stub;
 import businesslogicservice.userblservice.LoginAndSignUpService;
 import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
@@ -11,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import presentation.ClientMainApp;
 import presentation.MainApp;
 import vo.UserVO;
 

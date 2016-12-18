@@ -98,6 +98,9 @@ public class SearchDetailsPanelController {
 	}
 
 	public void showSearchResult() {
+		cityChoiceBox.setValue(conditions[0]);
+		setDistrictChoiceBox(conditions[0]);
+		
 		ArrayList<OrderedHotelInfoVO> list;
 		try {
 			list = searchHotelService.getHotelBriefInfoListBySearching(conditions);
@@ -148,9 +151,13 @@ public class SearchDetailsPanelController {
 		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			String hoteledAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
-			mainApp.showDetailedHotelPanel(hoteledAddress);
+			mainApp.showDetailedHotelPanel(hoteledAddress, conditions);
 		} else {
-
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("警告");
+			alert.setHeaderText("您没有在表中选择任何酒店！");
+			alert.setContentText("请在表中选择一个酒店！");
+			alert.showAndWait();
 		}
 	}
 
@@ -162,7 +169,11 @@ public class SearchDetailsPanelController {
 			String hotelName = hotelTableView.getItems().get(selectedIndex).getHotelName().getValue();
 			mainApp.showCreateOrderPanel(ClientMainApp.userID, hotelName, hotelAddress);
 		} else {
-
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("警告");
+			alert.setHeaderText("您没有在表中选择任何酒店！");
+			alert.setContentText("请在表中选择一个酒店！");
+			alert.showAndWait();
 		}
 	}
 
@@ -180,7 +191,6 @@ public class SearchDetailsPanelController {
 		}
 
 		cityChoiceBox.setItems(cityList);
-		cityChoiceBox.setValue("南京市");
 
 		cityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
@@ -189,9 +199,20 @@ public class SearchDetailsPanelController {
 			}
 		});
 
-		setDistrictChoiceBox("南京市");
+		
 
 		setDatePicker();
+		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级排序", "按评分排序"));
+		
+		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				if(newValue.intValue() == 0)
+					hotelTableView.getSortOrder().add(starLevelCol);
+				else if(newValue.intValue() == 1)
+					hotelTableView.getSortOrder().add(markCol);
+			}
+		});
 	}
 
 	private String getDate(LocalDate date) {

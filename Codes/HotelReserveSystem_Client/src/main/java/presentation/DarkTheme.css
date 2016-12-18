@@ -2,8 +2,36 @@
 	-fx-font-size: 18.0pt;
 }
 
+.scroll-pane {
+	-fx-background-color: #1d1d1d;
+}
+
+.scroll-pane .viewport{
+	-fx-background-color: transparent;
+}
+
 .background {
     -fx-background-color: #1d1d1d;
+}
+
+.text-area {
+    -fx-background-color: #1d1d1d;
+    -fx-font-size: 14.0pt;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: #1d1d1d;
+}
+
+.text-area .scroll-pane .viewport{
+	-fx-font-size: 14.0pt;
+    -fx-background-color: #1d1d1d;
+}
+
+
+.text-area .scroll-pane .content{
+	-fx-font-size: 14.0pt;
+    -fx-background-color: transparent;
 }
 
 .label {

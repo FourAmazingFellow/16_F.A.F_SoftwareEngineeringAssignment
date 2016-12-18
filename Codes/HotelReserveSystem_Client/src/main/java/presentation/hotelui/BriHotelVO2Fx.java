@@ -13,8 +13,10 @@ public class BriHotelVO2Fx {
 				break;
 			case DONE_ORDER:
 				orderTypes += "正常 ";
+				break;
 			case WITHDREW_ORDER:
 				orderTypes += "撤销 ";
+				break;
 			default:
 				break;
 			}

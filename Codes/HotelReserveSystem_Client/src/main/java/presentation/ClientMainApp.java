@@ -115,7 +115,7 @@ public class ClientMainApp extends Application {
 	public void showSearchDetailsPanel(String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("orderui/SearchDetailsPanel.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/SearchDetailsPanel.fxml"));
 			AnchorPane searchResultPanel = (AnchorPane) loader.load();
 
 			clientRootLayout.setCenter(searchResultPanel);
@@ -161,7 +161,7 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
-	public void showDetailedHotelPanel(String hotelAddress) {
+	public void showDetailedHotelPanel(String hotelAddress, String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/detailedHotelPanel.fxml"));
@@ -171,7 +171,7 @@ public class ClientMainApp extends Application {
 			
 			// Give the controller access to the main app.
 			DetailedHotelPanelController controller = loader.getController();
-			controller.setMainApp(this);
+			controller.setMainApp(this, conditions);
 			//默认显示所有订单
 			controller.showDetailedOrderPanel(hotelAddress);
 
@@ -182,7 +182,6 @@ public class ClientMainApp extends Application {
 	}
 	
 	public void showHotelComments(HashMap<String, String> comments) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -240,5 +239,24 @@ public class ClientMainApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public void simplyShowDetailedHotelPanel(String hotelAddress) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/detailedHotelPanel.fxml"));
+			AnchorPane detailedHotelPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(detailedHotelPanel);
+			
+			// Give the controller access to the main app.
+			DetailedHotelPanelController controller = loader.getController();
+			//默认显示所有订单
+			controller.showDetailedOrderPanel(hotelAddress);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,8 +1,6 @@
 package presentation.hotelui.reservedhotel;
 
 import java.rmi.RemoteException;
-import java.security.KeyStore.PrivateKeyEntry;
-import java.util.HashMap;
 import java.util.Set;
 
 import businesslogicservice.hotelblservice.QueryHotelService;
@@ -14,13 +12,14 @@ import javafx.scene.control.Alert.AlertType;
 import po.RoomType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import presentation.ClientMainApp;
 import vo.HotelVO;
-import vo.OrderVO;
 
 public class DetailedHotelPanelController {
 
+	private String[] conditions;
+	
 	@FXML
     private Label stanRoomPriceLabel;
 
@@ -52,13 +51,13 @@ public class DetailedHotelPanelController {
     private Label hotelAddressLabel;
 
     @FXML
-    private TextField briefIntroTextField;
+    private TextArea briefIntroTextArea;
 
     @FXML
     private Button createOrderButton;
 
     @FXML
-    private TextField facilityAndServiceTextField;
+    private TextArea facilityAndServiceTextArea;
 
     @FXML
     private Button returnButton;
@@ -88,8 +87,13 @@ public class DetailedHotelPanelController {
 		}
 	}
 	
-	public void setMainApp(ClientMainApp mainApp) {
+	public void setMainApp(ClientMainApp mainApp, String[] _conditions) {
 		this.mainApp = mainApp;
+		this.conditions = _conditions;
+	}
+	
+	public void returnAction() {
+		mainApp.showSearchDetailsPanel(conditions);
 	}
 	
 	public void showDetailedOrderPanel(String address) {
@@ -110,8 +114,8 @@ public class DetailedHotelPanelController {
 	    cityLabel.setText(vo.city);
 	    hotelStarLabel.setText(starLevel[vo.starLevel - 1]);
 	    hotelAddressLabel.setText(vo.hotelAddress);
-	    briefIntroTextField.setText(vo.briefIntroduction);
-	    facilityAndServiceTextField.setText(vo.facilityAndService);
+	    briefIntroTextArea.setText(vo.briefIntroduction);
+	    facilityAndServiceTextArea.setText(vo.facilityAndService);
 	    districtLabel.setText(vo.tradeArea);
 	    
 	    Set<RoomType> roomTypes = vo.roomTypeAndPrice.keySet();

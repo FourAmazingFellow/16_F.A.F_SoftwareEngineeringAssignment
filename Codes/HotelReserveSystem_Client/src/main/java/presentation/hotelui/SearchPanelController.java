@@ -110,7 +110,7 @@ public class SearchPanelController {
 	}
 	
 	private String getDate(LocalDate date) {
-		return String.valueOf(date.getYear()) + "-" + String.valueOf(date.getMonth()) + "-" + String.valueOf(date.getDayOfMonth());
+		return String.valueOf(date.getYear()) + "-" + String.valueOf(date.getMonthValue()) + "-" + String.valueOf(date.getDayOfMonth());
 	}
 	
 	private void setDistrictChoiceBox(String cityName) {

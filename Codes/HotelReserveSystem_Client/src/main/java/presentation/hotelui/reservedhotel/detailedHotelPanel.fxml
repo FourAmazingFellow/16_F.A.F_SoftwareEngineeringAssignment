@@ -24,15 +24,15 @@
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="31.824005126953125" minHeight="0.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="60.615936279296875" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
@@ -63,12 +63,24 @@
             <Label fx:id="stanRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Label fx:id="triRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="11" />
             <Label fx:id="kingRoomPriceLabel" styleClass="label-bright" text="无" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <TextField fx:id="briefIntroTextField" prefHeight="55.0" prefWidth="394.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="facilityAndServiceTextField" prefHeight="55.0" prefWidth="417.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ScrollPane hbarPolicy="NEVER" maxHeight="90.0" prefHeight="90.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <content>
+                  <TextArea fx:id="briefIntroTextArea" editable="false" maxHeight="88.0" prefHeight="90.0" prefWidth="338.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextArea>
+               </content>
+            </ScrollPane>
+            <ScrollPane hbarPolicy="NEVER" maxHeight="90.0" prefHeight="90.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <content>
+                  <TextArea fx:id="facilityAndServiceTextArea" editable="false" maxHeight="88.0" prefHeight="90.0" prefWidth="338.0" />
+               </content>
+            </ScrollPane>
          </children>
       </GridPane>
-      <Button fx:id="returnButton" layoutX="249.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="createOrderButton" layoutX="434.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
-      <Button fx:id="checkCommentsButton" layoutX="605.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="查看评价" />
+      <Button fx:id="returnButton" layoutX="249.0" layoutY="584.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="createOrderButton" layoutX="434.0" layoutY="584.0" mnemonicParsing="false" onAction="#createAction" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
+      <Button fx:id="checkCommentsButton" layoutX="605.0" layoutY="584.0" mnemonicParsing="false" onAction="#checkComments" prefHeight="40.0" prefWidth="150.0" text="查看评价" />
    </children>
 </AnchorPane>

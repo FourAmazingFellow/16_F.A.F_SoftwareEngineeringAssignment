@@ -40,6 +40,11 @@ public class ScreenPanelController {
 		hotelMarkChoiceBox.setItems(FXCollections.observableArrayList("3", "4", "5"));
 		hotelRoomTypeChoiceBox.setItems(FXCollections.observableArrayList("单人房","标准间","三人房","大床房"));
 		isReservedBox.setItems(FXCollections.observableArrayList("否", "是"));
+		
+		hotelPriceChoiceBox.setValue("不限");
+		hotelMarkChoiceBox.setValue("4");
+		hotelRoomTypeChoiceBox.setValue("标准间");
+		isReservedBox.setValue("否");
 	}
 	
 	public void setDialogStage(Stage dialogStage) {
