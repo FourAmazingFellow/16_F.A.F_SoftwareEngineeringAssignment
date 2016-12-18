@@ -40,15 +40,10 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      * businesslogicservice.userblservice.ManageUserInfoService#add(vo.UserVO)
      */
     @Override
-    public boolean add(UserVO user) {
+    public boolean add(UserVO user) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
-        try {
-            userDAO.insertUser(new UserPO(user));
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        userDAO.insertUser(new UserPO(user));
+        return true;
     }
 
     /*
@@ -62,14 +57,10 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      * getHotelStaffInfo(java.lang.String)
      */
     @Override
-    public HotelStaffInfoVO getHotelStaffInfo(String userID) {
+    public HotelStaffInfoVO getHotelStaffInfo(String userID) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        try {
-            this.hotelStaffInfoVO = new HotelStaffInfoVO(userDAO.getHotelStaffInfo(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.hotelStaffInfoVO = new HotelStaffInfoVO(userDAO.getHotelStaffInfo(this.userID));
         return hotelStaffInfoVO;
     }
 
@@ -85,14 +76,10 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      * .lang.String)
      */
     @Override
-    public UserVO getUserInfo(String userID) {
+    public UserVO getUserInfo(String userID) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        try {
-            this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
         return userVO;
     }
 
@@ -110,15 +97,10 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      * vo.UserVO, java.lang.String)
      */
     @Override
-    public boolean modifyUserInfo(UserVO userVO, String userID) {
+    public boolean modifyUserInfo(UserVO userVO, String userID) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
-        try {
-            userDAO.updateUser(new UserPO(userVO), userID);
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        userDAO.updateUser(new UserPO(userVO), userID);
+        return true;
     }
 
 }

@@ -16,15 +16,10 @@ public class VerifyEnterpriseVipImpl implements VerifyEnterpriseVip {
     }
 
     @Override
-    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) {
+    public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) throws RemoteException {
         strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
         boolean verifyed = false;
-        try {
-            verifyed = strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        verifyed = strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
         return verifyed;
     }
 

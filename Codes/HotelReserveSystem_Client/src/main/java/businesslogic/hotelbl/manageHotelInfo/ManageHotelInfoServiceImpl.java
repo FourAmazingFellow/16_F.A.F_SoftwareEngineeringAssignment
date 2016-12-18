@@ -37,7 +37,7 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	}
 	
 	@Override
-	public boolean addHotelStaff(HotelStaffInfoVO staff) {
+	public boolean addHotelStaff(HotelStaffInfoVO staff) throws RemoteException {
 		return userService.insert(staff);
 	}
 

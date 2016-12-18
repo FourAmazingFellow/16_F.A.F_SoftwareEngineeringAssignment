@@ -1,5 +1,7 @@
 package bl_Driver.userblservice_Driver;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.ManageUserInfoService;
 import po.UserType;
 import vo.UserVO;
@@ -12,7 +14,7 @@ import vo.WebMarketStaffInfoVO;
  * @see
  */
 public class ManageUserInfoServiceImpl_Driver {
-    public void drive(ManageUserInfoService manageUserInfoService){
+    public void drive(ManageUserInfoService manageUserInfoService) throws RemoteException{
         UserVO userVO = manageUserInfoService.getUserInfo("原");
         
         System.out.println("The client's info are :"+userVO);

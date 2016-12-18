@@ -1,5 +1,7 @@
 package bl_Driver.userblservice_Driver;
 
+import java.rmi.RemoteException;
+
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import vo.ClientInfoVO;
 
@@ -10,7 +12,7 @@ import vo.ClientInfoVO;
  * @see
  */
 public class ModifyClientInfoServiceImpl_Driver {
-    public void drive(ModifyClientInfoService modifyClientInfoService){
+    public void drive(ModifyClientInfoService modifyClientInfoService) throws RemoteException{
         
         ClientInfoVO userVO = modifyClientInfoService.getClientInfo("原");
         System.out.println("The client's info are :"+userVO);

@@ -37,7 +37,7 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	}
 
 	@Override
-	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress) {
+	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress) throws RemoteException {
 		if (checker.canUserCreateNewOrder(userID)) {
 			return newOrder.initNewOrder(userID, hotelName , hotelAddress);
 		} else

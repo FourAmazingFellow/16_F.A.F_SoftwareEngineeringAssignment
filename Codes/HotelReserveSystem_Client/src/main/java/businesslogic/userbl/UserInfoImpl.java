@@ -16,15 +16,10 @@ public class UserInfoImpl implements UserInfo{
     }
     
     @Override
-    public boolean insert(HotelStaffInfoVO hotelStaffInfoVO) {
+    public boolean insert(HotelStaffInfoVO hotelStaffInfoVO) throws RemoteException {
         userDAO = RemoteHelper.getInstance().getUserDAO();
-        try {
-            userDAO.insertUser(new HotelStaffInfoPO(hotelStaffInfoVO));
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        } 
+        userDAO.insertUser(new HotelStaffInfoPO(hotelStaffInfoVO));
+        return true;
     }
 
 }

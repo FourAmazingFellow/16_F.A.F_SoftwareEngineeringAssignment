@@ -1,5 +1,6 @@
 package bl_Driver.userblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 
 import businesslogicservice.userblservice.SignVipService;
@@ -8,7 +9,7 @@ import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
 public class SignVipServiceImpl_Driver {
-    public void drive(SignVipService signVipService) {
+    public void drive(SignVipService signVipService) throws RemoteException {
         @SuppressWarnings("deprecation")
         RegularVipVO regularVipVO = new RegularVipVO("原", "qwe123", "12345678900", UserType.Client, 500, null,
                 new Date(1997, 10, 10), 2);

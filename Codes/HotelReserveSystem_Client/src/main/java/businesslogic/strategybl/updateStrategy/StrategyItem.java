@@ -167,9 +167,10 @@ public class StrategyItem {
      * @param address
      *            string型，酒店地址
      * @return 返回是否修改成功
+     * @throws RemoteException 
      * @see
      */
-    public boolean modify(String address) {
+    public boolean modify(String address) throws RemoteException {
         StrategyPO strategyPO;
         if (strategyType.equals(StrategyType.BirthdayPromotion)) {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount);
@@ -186,12 +187,7 @@ public class StrategyItem {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
         boolean updated;
-        try {
-            updated=strategyDAO.updateStrategy(strategyPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        updated=strategyDAO.updateStrategy(strategyPO);
         return updated;
     }
 
@@ -201,9 +197,10 @@ public class StrategyItem {
      * @param address
      *            string型，酒店地址
      * @return 返回是否删除成功
+     * @throws RemoteException 
      * @see
      */
-    public boolean delete(String address) {
+    public boolean delete(String address) throws RemoteException {
         StrategyPO strategyPO;
         if (strategyType.equals(StrategyType.BirthdayPromotion)) {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount);
@@ -220,12 +217,7 @@ public class StrategyItem {
             strategyPO = new StrategyPO(address, strategyType, strategyName, discount, vipRank);
         }
         boolean deleted;
-        try {
-            deleted=strategyDAO.deleteStrategy(strategyPO);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        deleted=strategyDAO.deleteStrategy(strategyPO);
         return deleted;
     }
 

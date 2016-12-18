@@ -29,26 +29,18 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     }
 
     @Override
-    public boolean addCreditValue(String userID, int creditAdded) {
+    public boolean addCreditValue(String userID, int creditAdded) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         ClientInfoPO clientInfoPO = new ClientInfoPO();
-        try {
-            clientInfoPO = userDAO.getClientInfo(this.userID);
-        } catch (RemoteException e1) {
-            e1.printStackTrace();
-        }
+        clientInfoPO = userDAO.getClientInfo(this.userID);
         this.creditValue = clientInfoPO.getCreditValue();
 //        System.out.println(creditValue);
         this.creditResult = creditValue + creditAdded;
         
         //update普通会员vipRank
         RegularVipPO regularVipPO = null;
-        try {
-            regularVipPO = userDAO.getRegularVipInfo(this.userID);
-        } catch (RemoteException e2) {
-            e2.printStackTrace();
-        }
+        regularVipPO = userDAO.getRegularVipInfo(this.userID);
         if (regularVipPO != null) {
             if (creditResult <= 600)
                 this.vipRank = 0;
@@ -64,32 +56,19 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
             RegularVipPO modifiedVipRank = new RegularVipPO(regularVipPO.getUserID(),
                     regularVipPO.getPassword(), regularVipPO.getTelNum(), UserType.Client, creditResult, creditRecord,
                     regularVipPO.getBirth(), vipRank);
-            try {
-                userDAO.updateRegularVipInfo(modifiedVipRank);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            userDAO.updateRegularVipInfo(modifiedVipRank);
         }
         //update信用记录和信用值
         this.creditRecord = new ArrayList<>();
-        try {
-            creditRecord = userDAO.queryCreditRecord(userID);
-        } catch (RemoteException e1) {
-            e1.printStackTrace();
-        }
+        creditRecord = userDAO.queryCreditRecord(userID);
         CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), "-1",
                 ActionType.RECHARGE, creditAdded, creditResult);
         creditRecord.add(creditRecordPO);
 
         ClientInfoPO modified = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(),
                 clientInfoPO.getTelNum(), UserType.Client, creditResult, creditRecord);
-        try {
-            userDAO.updateClient(modified, userID);
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        userDAO.updateClient(modified, userID);
+        return true;
 
     }
 

@@ -17,26 +17,18 @@ public class VipInfoImpl implements VipInfo {
     }
     
     @Override
-    public RegularVipVO getRegularVipInfo(String userID) {
+    public RegularVipVO getRegularVipInfo(String userID) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        try {
-            this.regularVipVO = new RegularVipVO(userDAO.getRegularVipInfo(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.regularVipVO = new RegularVipVO(userDAO.getRegularVipInfo(this.userID));
         return regularVipVO;
     }
 
     @Override
-    public EnterpriseVipVO getEnterpriseVipInfo(String userID) {
+    public EnterpriseVipVO getEnterpriseVipInfo(String userID) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        try {
-            this.enterpriseVipVO = new EnterpriseVipVO(userDAO.getEnterpriseVipInfo(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.enterpriseVipVO = new EnterpriseVipVO(userDAO.getEnterpriseVipInfo(this.userID));
         return enterpriseVipVO;
     }
 

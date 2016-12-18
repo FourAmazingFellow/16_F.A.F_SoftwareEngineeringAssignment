@@ -30,9 +30,10 @@ public interface CreateNewOrderService {
 	 * @param userID String型 客户ID
 	 * @param address String型 酒店地址
 	 * @return 被初始化的OrderVO 若用户信用值<0,则返回null
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress);
+	public OrderVO initNewOrder(String userID, String hotelName, String hotelAddress) throws RemoteException;
 	
 	/**
 	 * 得到所有房型的RoomVO (调用RoomInfoService)

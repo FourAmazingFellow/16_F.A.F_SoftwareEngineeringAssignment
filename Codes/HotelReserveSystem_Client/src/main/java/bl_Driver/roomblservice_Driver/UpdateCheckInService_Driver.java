@@ -21,7 +21,7 @@ import vo.RoomVO;
 public class UpdateCheckInService_Driver {
     
     @SuppressWarnings("deprecation")
-    public void drive(UpdateCheckInService updateCheckInService){
+    public void drive(UpdateCheckInService updateCheckInService) throws RemoteException{
         ArrayList<RoomVO> checkInInfoList=updateCheckInService.getCheckInList("江苏省南京市栖霞区仙林大道163号");
         if(checkInInfoList.isEmpty())
             System.out.println("This hotel doesn't have checkIn!\n");

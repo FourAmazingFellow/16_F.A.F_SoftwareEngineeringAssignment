@@ -1,5 +1,7 @@
 package bl_Driver.userbl_Driver;
 
+import java.rmi.RemoteException;
+
 import businesslogic.userbl.VipInfo;
 import vo.UserVO;
 
@@ -10,7 +12,7 @@ import vo.UserVO;
  * @see
  */
 public class VipInfoImpl_Driver {
-    public void drive(VipInfo userInfoService){
+    public void drive(VipInfo userInfoService) throws RemoteException{
         UserVO userVO1 = userInfoService.getRegularVipInfo("原");
         System.out.println("The regular VIP's credit information are: "+userVO1);
         

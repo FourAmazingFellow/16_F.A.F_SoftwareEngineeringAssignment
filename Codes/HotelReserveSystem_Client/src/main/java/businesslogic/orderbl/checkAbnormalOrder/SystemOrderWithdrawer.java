@@ -101,9 +101,10 @@ public class SystemOrderWithdrawer {
 	 * @param price 订单价值（等价于信用值）
 	 * @param actionType 操作类型
 	 * @return 恢复结果
+	 * @throws RemoteException 
 	 * @see
 	 */
-	private boolean recoverCreditValue(String userID, String orderID, boolean isRecoverHalfCredit, int price, ActionType actionType) {
+	private boolean recoverCreditValue(String userID, String orderID, boolean isRecoverHalfCredit, int price, ActionType actionType) throws RemoteException {
 		if (isRecoverHalfCredit) {
 			if (userCreditService.changeCreditValue(userID, price / 2, orderID, actionType))
 				return true;

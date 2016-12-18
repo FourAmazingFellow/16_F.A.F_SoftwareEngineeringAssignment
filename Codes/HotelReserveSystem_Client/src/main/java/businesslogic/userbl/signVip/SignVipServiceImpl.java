@@ -32,29 +32,18 @@ public class SignVipServiceImpl implements SignVipService {
     }
 
     @Override
-    public boolean signRegularVip(RegularVipVO regularVip) {
+    public boolean signRegularVip(RegularVipVO regularVip) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
-        try {
-//            System.out.println(regularVip.userID);
-            userDAO.signRegularVip(new RegularVipPO(regularVip));
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        userDAO.signRegularVip(new RegularVipPO(regularVip));
+        return true;
     }
 
     @Override
-    public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) {
+    public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         if (verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword) == true) {
-            try {
-                userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
-                return true;
-            } catch (RemoteException e) {
-                e.printStackTrace();
-                return false;
-            }
+        	userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
+        	return true;
         } else
             return false;
     }

@@ -27,45 +27,29 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     }
     
     @Override
-    public int getCreditValue(String userID) {
+    public int getCreditValue(String userID) throws RemoteException {
         userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
-        try {
-            this.creditValue = userDAO.getCreditValue(this.userID);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.creditValue = userDAO.getCreditValue(this.userID);
         return creditValue;
     }
 
     @Override
-    public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) {
+    public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) throws RemoteException {
         userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
-        try {
-            this.clientInfoPO = userDAO.getClientInfo(this.userID);
-        } catch (RemoteException e1) {
-            e1.printStackTrace();
-        }
+        this.clientInfoPO = userDAO.getClientInfo(this.userID);
         creditValue = clientInfoPO.getCreditValue();
         this.creditResult = creditValue + num;
         
       //update普通会员vipRank
         RegularVipPO regularVipPO = null;
-        try {
-            regularVipPO = userDAO.getRegularVipInfo(this.userID);
-        } catch (RemoteException e2) {
-            e2.printStackTrace();
-        }
+        regularVipPO = userDAO.getRegularVipInfo(this.userID);
         
         this.creditRecord = new ArrayList<CreditRecordPO>();
-        try {
-            creditRecord = userDAO.queryCreditRecord(this.userID);
-        } catch (RemoteException e1) {
-            e1.printStackTrace();
-        }
+        creditRecord = userDAO.queryCreditRecord(this.userID);
         
         if (regularVipPO != null) {
             if (creditResult <= 600)
@@ -82,24 +66,15 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
             RegularVipPO modifiedVipRank = new RegularVipPO(regularVipPO.getUserID(),
                     regularVipPO.getPassword(), regularVipPO.getTelNum(), UserType.Client, creditResult, creditRecord,
                     regularVipPO.getBirth(), vipRank);
-            try {
-                userDAO.updateRegularVipInfo(modifiedVipRank);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
+            userDAO.updateRegularVipInfo(modifiedVipRank);
         }
         //update信用记录和信用值
         CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(System.currentTimeMillis()), orderID,
                 actionType, num, creditResult);
         creditRecord.add(creditRecordPO);
         ClientInfoPO modified = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(), UserType.Client, creditResult, creditRecord);
-        try {
-            userDAO.updateClient(modified, this.userID);
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        userDAO.updateClient(modified, this.userID);
+        return true;
     }
 
 }

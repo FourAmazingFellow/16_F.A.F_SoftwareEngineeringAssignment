@@ -21,7 +21,7 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
     }
 
     @Override
-    public boolean login(String userID, String password) {
+    public boolean login(String userID, String password) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
         check = new CheckLoginInfo();
         check.setUserDAO(userDAO);
@@ -34,22 +34,18 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
 
     /**
      * 用户（客户、网站人员）注册
+     * @throws RemoteException 
      */
     @Override
-    public boolean add(UserVO user) {
+    public boolean add(UserVO user) throws RemoteException {
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
-        try {
-            if (user.userType == UserType.Client){
-                ClientInfoVO client = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client, 0, null);
-                userDAO.insertClient(new ClientInfoPO(client));
-            }
-            else
-                userDAO.insertUser(new UserPO(user));
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
+        if (user.userType == UserType.Client){
+            ClientInfoVO client = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client, 0, null);
+            userDAO.insertClient(new ClientInfoPO(client));
         }
+        else
+            userDAO.insertUser(new UserPO(user));
+        return true;
     }
 
 }

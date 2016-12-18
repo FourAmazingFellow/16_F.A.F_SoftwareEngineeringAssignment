@@ -1,5 +1,7 @@
 package bl_Driver.userbl_Driver;
 
+import java.rmi.RemoteException;
+
 import businesslogic.userbl.ClientCreditInfo;
 import po.ActionType;
 
@@ -10,7 +12,7 @@ import po.ActionType;
  * @see
  */
 public class ClientCreditInfoImpl_Driver {
-    public void drive(ClientCreditInfo clientCreditService){
+    public void drive(ClientCreditInfo clientCreditService) throws RemoteException{
         int creditValue = clientCreditService.getCreditValue("原");
         System.out.println("The client's credit value is: "+creditValue);
     

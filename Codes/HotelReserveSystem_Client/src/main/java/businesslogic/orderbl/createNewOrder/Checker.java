@@ -25,9 +25,10 @@ public class Checker {
 	 * 判断该客户能否生成订单
 	 * @param UserID
 	 * @return boolean 能否生成订单
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public boolean canUserCreateNewOrder(String userID) {
+	public boolean canUserCreateNewOrder(String userID) throws RemoteException {
 		int credit = clientCreditGetter.getCreditValue(userID);
 		if (credit <= 0) {
 			return false;

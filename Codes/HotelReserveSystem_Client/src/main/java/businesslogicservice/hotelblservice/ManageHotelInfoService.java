@@ -28,8 +28,9 @@ public interface ManageHotelInfoService {
 	 * 添加酒店工作人员
 	 * @param staff UserVO型，界面传递来的员工信息
 	 * @return 添加酒店工作人员成功返回true，添加酒店工作人员失败返回false
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public boolean addHotelStaff(HotelStaffInfoVO staff);
+	public boolean addHotelStaff(HotelStaffInfoVO staff) throws RemoteException;
 
 }

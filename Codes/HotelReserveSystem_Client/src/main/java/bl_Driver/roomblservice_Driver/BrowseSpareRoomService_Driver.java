@@ -1,5 +1,6 @@
 package bl_Driver.roomblservice_Driver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.roomblservice.BrowseSpareRoomService;
@@ -12,7 +13,7 @@ import vo.RoomVO;
  * @see
  */
 public class BrowseSpareRoomService_Driver {
-    public void drive(BrowseSpareRoomService browseSpareRoomService){
+    public void drive(BrowseSpareRoomService browseSpareRoomService) throws RemoteException{
         ArrayList<RoomVO> spareRoomList=browseSpareRoomService.getRoomInfoList("江苏省南京市栖霞区仙林大道163号");
         if(spareRoomList.isEmpty())
             System.out.println("No spareRoom!\n");

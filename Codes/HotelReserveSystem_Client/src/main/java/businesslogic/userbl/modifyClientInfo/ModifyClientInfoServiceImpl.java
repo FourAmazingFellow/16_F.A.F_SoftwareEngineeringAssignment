@@ -24,29 +24,20 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
     }
     
     @Override
-    public ClientInfoVO getClientInfo(String userID) {
+    public ClientInfoVO getClientInfo(String userID) throws RemoteException {
         this.userDAO =RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
-        try {
-            this.clientInfoVO = new ClientInfoVO(userDAO.getClientInfo(this.userID));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        this.clientInfoVO = new ClientInfoVO(userDAO.getClientInfo(this.userID));
         return clientInfoVO;
     }
 
     @Override
-    public boolean modifyClientInfo(UserVO user, String oldUserID) {
+    public boolean modifyClientInfo(UserVO user, String oldUserID) throws RemoteException {
         this.userDAO =RemoteHelper.getInstance().getUserDAO();
         this.clientInfoVO = getClientInfo(oldUserID);
         ClientInfoVO modified = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client, clientInfoVO.creditValue, clientInfoVO.creditRecord);
-        try {
-            userDAO.updateClient(new ClientInfoPO(modified), oldUserID);
-            return true;
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return false;
-        }
+        userDAO.updateClient(new ClientInfoPO(modified), oldUserID);
+        return true;
     }
     
     

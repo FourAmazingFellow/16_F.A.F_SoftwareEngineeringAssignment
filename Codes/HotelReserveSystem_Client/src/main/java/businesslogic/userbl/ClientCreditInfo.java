@@ -1,5 +1,7 @@
 package businesslogic.userbl;
 
+import java.rmi.RemoteException;
+
 import po.ActionType;
 
 /**
@@ -14,9 +16,10 @@ public interface ClientCreditInfo {
      * 获取客户的信用值
      * @param ID long型，业务逻辑层传递过来的用户标识
      * @return 返回客户当前信用值
+     * @throws RemoteException 
      * @see
      */
-    public int getCreditValue(String userID);
+    public int getCreditValue(String userID) throws RemoteException;
     
     /**
      * 改变客户的信用值（有订单变化）
@@ -25,9 +28,10 @@ public interface ClientCreditInfo {
      * @param orderID String型，业务逻辑层传递过来的订单号
      * @param actionType ActionType型，业务逻辑层传递过来的订单变化类型
      * @return 改变成功则返回true，改变失败则返回false
+     * @throws RemoteException 
      * @see
      */
-    public boolean changeCreditValue(String userID,int num,String orderID, ActionType actionType);
+    public boolean changeCreditValue(String userID,int num,String orderID, ActionType actionType) throws RemoteException;
     
 
 }

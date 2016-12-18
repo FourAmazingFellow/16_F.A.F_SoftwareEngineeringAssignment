@@ -65,9 +65,10 @@ public class OrderTerminator {
 	 * @param price 订单价值（等价于信用值）
 	 * @param actionType 操作类型
 	 * @return 恢复结果
+	 * @throws RemoteException 
 	 * @see
 	 */
-	private boolean recoverCreditValue(String userID, String orderID, int price, ActionType actionType) {
+	private boolean recoverCreditValue(String userID, String orderID, int price, ActionType actionType) throws RemoteException {
 		if (userCreditService.changeCreditValue(userID, price, orderID, actionType))
 			return true;
 		else

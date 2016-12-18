@@ -17,7 +17,7 @@ import vo.RoomVO;
  * @see
  */
 public class UpdateCheckOutService_Driver {
-    public void drive(UpdateCheckOutService updateCheckOutService){
+    public void drive(UpdateCheckOutService updateCheckOutService) throws RemoteException{
         ArrayList<RoomVO> checkOutInfoList=updateCheckOutService.getCheckOutList("江苏省南京市栖霞区仙林大道163号");
         if(checkOutInfoList.isEmpty())
             System.out.println("This hotel doesn't have checkOut!\n");

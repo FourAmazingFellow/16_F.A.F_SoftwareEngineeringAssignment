@@ -42,7 +42,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
     }
     
     @Override
-    public String getAvailblePromotionName(OrderVO order) {
+    public String getAvailblePromotionName(OrderVO order) throws RemoteException {
         ArrayList<StrategyItem> availblePromotion = new ArrayList<>();
         address = order.hotelAddress;
         strategyList = StrategyList.getInstance(address);

@@ -58,13 +58,13 @@ public class MockStrategyList extends StrategyList{
     }
     
     @Override
-    public boolean modify(String address, StrategyVO strategyVO){
+    public boolean modify(String address, StrategyVO strategyVO) throws RemoteException{
         StrategyItem strategyItem=new MockStrategyItem(strategyVO);
         return strategyItem.modify(address);
     }
     
     @Override
-    public boolean delete(String address, StrategyVO strategyVO){
+    public boolean delete(String address, StrategyVO strategyVO) throws RemoteException{
         StrategyItem strategyItem=new MockStrategyItem(strategyVO);
         return strategyItem.delete(address);
     }

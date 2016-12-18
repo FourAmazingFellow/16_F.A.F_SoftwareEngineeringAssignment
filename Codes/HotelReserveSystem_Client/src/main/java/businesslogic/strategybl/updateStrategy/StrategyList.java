@@ -237,9 +237,10 @@ public class StrategyList {
      *            StrategyVO型，包含策略信息
      * @return 返回是否修改成功
      * @throws UnableToModifyStrategyException
+     * @throws RemoteException 
      * @see
      */
-    public boolean modify(String address, StrategyVO strategyVO) throws UnableToModifyStrategyException {
+    public boolean modify(String address, StrategyVO strategyVO) throws UnableToModifyStrategyException, RemoteException {
         if (!address.equals(this.address) || !address.equals(strategyVO.address)) {
             throw new UnableToModifyStrategyException(
                     "the address is not this hotel's address, you cann't modify other hotel's strategy");
@@ -353,9 +354,10 @@ public class StrategyList {
      *            StrategyVO型，包含策略信息
      * @return 返回是否删除成功
      * @throws UnableToDeleteStrategyException
+     * @throws RemoteException 
      * @see
      */
-    public boolean delete(String address, StrategyVO strategyVO) throws UnableToDeleteStrategyException {
+    public boolean delete(String address, StrategyVO strategyVO) throws UnableToDeleteStrategyException, RemoteException {
         if (!address.equals(this.address) || !address.equals(strategyVO.address)) {
             throw new UnableToDeleteStrategyException(
                     "the address is not this hotel's address, you cann't delete other hotel's strategy");

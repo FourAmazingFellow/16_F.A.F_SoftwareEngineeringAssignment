@@ -30,19 +30,17 @@ public class CheckLoginInfo {
      * @param password
      *            String型，用户密码
      * @return
+     * @throws RemoteException 
      * @see
      */
-    public UserType checkUser(String userID, String password) {
+    public UserType checkUser(String userID, String password) throws RemoteException {
         this.userID = userID;
         this.userType = null;
         this.userDAO = RemoteHelper.getInstance().getUserDAO();
-        try {
-            userPO = userDAO.getUserInfo(this.userID);
-            client = userDAO.getClientInfo(this.userID);
-            hotelStaff = userDAO.getHotelStaffInfo(this.userID);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        userPO = userDAO.getUserInfo(this.userID);
+        client = userDAO.getClientInfo(this.userID);
+        hotelStaff = userDAO.getHotelStaffInfo(this.userID);
+        
         if (userPO != null) {
             this.password = userPO.getPassword();
             if (this.password.equals(password))
