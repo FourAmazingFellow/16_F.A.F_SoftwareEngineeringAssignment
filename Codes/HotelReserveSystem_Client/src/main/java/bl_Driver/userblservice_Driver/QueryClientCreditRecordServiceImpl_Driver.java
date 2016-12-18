@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import po.CreditRecordPO;
+import vo.CreditRecordVO;
 
 /**
  * 
@@ -13,7 +14,7 @@ import po.CreditRecordPO;
  */
 public class QueryClientCreditRecordServiceImpl_Driver {
     public void drive(QueryClientCreditRecordService queryClientCreditService){
-        ArrayList<CreditRecordPO> userVO = queryClientCreditService.queryCreditRecord("原");
+        ArrayList<CreditRecordVO> userVO = queryClientCreditService.queryCreditRecord("原");
         System.out.println("The client's credit value and records are: "+userVO);
     }
 }

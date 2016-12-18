@@ -1,5 +1,6 @@
 package presentation.hotelui.enrollavaluableroom;
 
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -77,7 +78,7 @@ public class EnrollAvaluableRoomController {
 		this.mainApp = mainApp;
 	}
 
-	public void enrollAvaluableRoom() {
+	public void enrollAvaluableRoom() throws RemoteException {
 		ArrayList<RoomVO> roomVOs = importNewRoom.getAvailableRoomList(address);
 		roomList.setRoomList(roomVOs);
 		roomData.clear();

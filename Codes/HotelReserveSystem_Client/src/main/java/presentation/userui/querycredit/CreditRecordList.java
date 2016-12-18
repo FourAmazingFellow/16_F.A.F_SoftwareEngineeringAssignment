@@ -14,7 +14,7 @@ public class CreditRecordList {
         return creditRecordList;
     }
     
-    public void setRoomList(ArrayList<CreditRecordVO> creditRecordVOs){
+    public void setCreditRecordList(ArrayList<CreditRecordVO> creditRecordVOs){
     	creditRecordList.clear();
         for(CreditRecordVO creditRecordVO:creditRecordVOs){
         	creditRecordList.add(new CreditRecord(creditRecordVO));

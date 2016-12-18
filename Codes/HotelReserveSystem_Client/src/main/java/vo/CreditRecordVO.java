@@ -35,4 +35,13 @@ public class CreditRecordVO {
         this.userID = clientInfoPO.getUserID();
         creditRecord = clientInfoPO.getCreditRecord();
     }
+
+	public CreditRecordVO(CreditRecordPO creditRecordPO) {
+		this.changeTime = creditRecordPO.getChangeTime();
+		this.orderID = creditRecordPO.getOrderID();
+		this.action = creditRecordPO.getAction();
+		this.process = creditRecordPO.getProcess();
+		this.creditResult = creditRecordPO.getCreditResult();
+		
+	}
 }

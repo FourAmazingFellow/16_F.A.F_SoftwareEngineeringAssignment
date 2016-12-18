@@ -10,8 +10,8 @@ public class MockQueryClientCreditRecordServiceImpl extends QueryClientCreditRec
  @SuppressWarnings("unused")
 private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900", 500, null);
  private ArrayList<CreditRecordPO> creditRecord;
-    @Override
-    public ArrayList<CreditRecordPO> queryCreditRecord(String userID) {
-        return creditRecord;
-    }
+//    @Override
+//    public ArrayList<CreditRecordPO> queryCreditRecord(String userID) {
+//        return creditRecord;
+//    }
 }

@@ -2,7 +2,7 @@ package businesslogicservice.userblservice;
 
 import java.util.ArrayList;
 
-import po.CreditRecordPO;
+import vo.CreditRecordVO;
 
 /**
  * 
@@ -18,6 +18,6 @@ public interface QueryClientCreditRecordService {
      * @return 返回用户的信用记录
      * @see
      */
-    public ArrayList<CreditRecordPO> queryCreditRecord(String userID);
+    public ArrayList<CreditRecordVO> queryCreditRecord(String userID);
     
 }
