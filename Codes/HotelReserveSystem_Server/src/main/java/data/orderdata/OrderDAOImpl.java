@@ -49,7 +49,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else if(roomType == RoomType.TRIBLE_ROOM)
 			return 2;
 		else
-			return 0000000000000003;
+			return 3;
 	}	
 	
 	//将数据库中储存订单类型的int型转换成OrderState型
@@ -76,7 +76,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else if(orderType == OrderType.DONE_ORDER)
 			return 2;
 		else 
-			return 0000000000000003;
+			return 3;
 	}
 	
 	//将订单类型的OrderState型转换成int型
@@ -88,7 +88,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else if(orderState == OrderState.DONE_ORDER)
 			return 2;
 		else 
-			return 0000000000000003;
+			return 3;
 	}
 	
 	//将数据库中储存的isChildren由int转换成boolean

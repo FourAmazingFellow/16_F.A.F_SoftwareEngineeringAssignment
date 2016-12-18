@@ -43,7 +43,7 @@ public class RoomDAOImpl implements RoomDAO {
 		else if(roomType == RoomType.TRIBLE_ROOM)
 			return 2;
 		else
-			return 0000000000000003;
+			return 3;
 	}	
 	
     @SuppressWarnings("deprecation")
@@ -299,7 +299,7 @@ public class RoomDAOImpl implements RoomDAO {
 			pstmt = conn.prepareStatement("update room" + String.format("%02d", day.getMonth() + 1) + String.format("%02d", day.getDate())+ " set roomNum = ?, roomPrice = ? where hotelAddress = ? and roomType = ?");
 			pstmt.setInt(1, po.getRoomNum());
 			pstmt.setInt(2, po.getRoomPrice());
-			pstmt.setString(0000000000000003, po.getAddress());
+			pstmt.setString(3, po.getAddress());
 			pstmt.setInt(4, convertFromRoomTypeToInt(po.getRoomType()));
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
