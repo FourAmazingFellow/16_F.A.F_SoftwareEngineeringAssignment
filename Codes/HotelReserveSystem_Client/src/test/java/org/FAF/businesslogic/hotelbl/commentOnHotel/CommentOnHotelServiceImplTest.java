@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl.commentOnHotel;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,7 +45,11 @@ public class CommentOnHotelServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络连接错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -77,31 +82,44 @@ public class CommentOnHotelServiceImplTest {
 	@Test
 	public void testGetCommentableOrderList() {
 		commentOnHotel = new CommentOnHotelServiceImpl();
-		ArrayList<OrderVO> orderVOs = commentOnHotel.getCommentableOrderList("原");
-		assertEquals(2, orderVOs.size());
-		assertEquals(orderID, orderVOs.get(0).orderID);
-		assertEquals(userID, orderVOs.get(0).userID);
-		assertEquals(hotelName, orderVOs.get(0).hotelName);
-		assertEquals(hotelAddress, orderVOs.get(0).hotelAddress);
-		assertEquals(beginDate, orderVOs.get(0).beginDate);
-		assertEquals(finishDate, orderVOs.get(0).finishDate);
-		assertEquals(roomType, orderVOs.get(0).roomType);
-		assertEquals(num, orderVOs.get(0).num);
-		assertEquals(totalPrice, orderVOs.get(0).totalPrice);
-		assertEquals(orderState, orderVOs.get(0).orderState);
-		assertEquals(orderProducedTime, orderVOs.get(0).orderProducedTime);
-		assertEquals(lastedOrderDoneTime, orderVOs.get(0).lastedOrderDoneTime);
-		assertEquals(numOfPerson, orderVOs.get(0).numOfPerson);
-		assertEquals(isChildren, orderVOs.get(0).isChildren);
-		assertEquals(isOnSale, orderVOs.get(0).isOnSale);
-		assertEquals(isCommented, orderVOs.get(0).isCommented);
+		ArrayList<OrderVO> orderVOs;
+		try {
+			orderVOs = commentOnHotel.getCommentableOrderList("原");
+			assertEquals(2, orderVOs.size());
+			assertEquals(orderID, orderVOs.get(0).orderID);
+			assertEquals(userID, orderVOs.get(0).userID);
+			assertEquals(hotelName, orderVOs.get(0).hotelName);
+			assertEquals(hotelAddress, orderVOs.get(0).hotelAddress);
+			assertEquals(beginDate, orderVOs.get(0).beginDate);
+			assertEquals(finishDate, orderVOs.get(0).finishDate);
+			assertEquals(roomType, orderVOs.get(0).roomType);
+			assertEquals(num, orderVOs.get(0).num);
+			assertEquals(totalPrice, orderVOs.get(0).totalPrice);
+			assertEquals(orderState, orderVOs.get(0).orderState);
+			assertEquals(orderProducedTime, orderVOs.get(0).orderProducedTime);
+			assertEquals(lastedOrderDoneTime, orderVOs.get(0).lastedOrderDoneTime);
+			assertEquals(numOfPerson, orderVOs.get(0).numOfPerson);
+			assertEquals(isChildren, orderVOs.get(0).isChildren);
+			assertEquals(isOnSale, orderVOs.get(0).isOnSale);
+			assertEquals(isCommented, orderVOs.get(0).isCommented);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 	
 	@Test
 	public void testConfirmComment() {
 		commentOnHotel = new CommentOnHotelServiceImpl();
-		boolean result = commentOnHotel.confirmComment("原", 4.0f, "该酒店服务到位，应有尽有！", "江苏省南京市栖霞区仙林大道163号");
-		assertEquals(true, result);
+		boolean result;
+		try {
+			result = commentOnHotel.confirmComment("原", 4.0f, "该酒店服务到位，应有尽有！", "江苏省南京市栖霞区仙林大道163号");
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 }

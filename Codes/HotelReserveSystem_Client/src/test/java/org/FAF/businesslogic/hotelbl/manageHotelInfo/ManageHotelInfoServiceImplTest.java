@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl.manageHotelInfo;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import org.junit.Before;
@@ -43,7 +44,11 @@ public class ManageHotelInfoServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@Before
@@ -80,8 +85,14 @@ public class ManageHotelInfoServiceImplTest {
 	@Test
 	public void testAddHotel() {
 		manageHotelInfoService = new ManageHotelInfoServiceImpl();
-		boolean result = manageHotelInfoService.addHotel(hotelVO);
-		assertEquals(true, result);
+		boolean result;
+		try {
+			result = manageHotelInfoService.addHotel(hotelVO);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 //	@Test

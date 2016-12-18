@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.hotelbl.queryHotel;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
 
 import businesslogic.hotelbl.queryHotel.MockQueryHotelServiceImpl;
 import businesslogic.hotelbl.queryHotel.QueryHotelServiceImpl;
@@ -46,7 +48,11 @@ public class QueryHotelServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -93,41 +99,53 @@ public class QueryHotelServiceImplTest {
 	
 	@Test
 	public void testGetHotelDetails() {
-		queryHotel = new QueryHotelServiceImpl("原");
-		HotelVO hotelDetails = queryHotel.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "Jingling Hotel", hotelDetails.hotelName);
-	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "栖霞区", hotelDetails.tradeArea);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道163号", hotelDetails.hotelAddress);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 5, hotelDetails.starLevel);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 5.0f, hotelDetails.mark, 0);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", "南京最好的酒店", hotelDetails.briefIntroduction);
-//		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", "所有服务应有尽有", hotelDetails.facilityAndService);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotelDetails.roomTypeAndPrice);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndNums!", roomTypeAndNums, hotelDetails.roomTypeAndNums);
-//		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotelDetails.comments);	
+		try {
+			queryHotel = new QueryHotelServiceImpl("原");
+			HotelVO hotelDetails = queryHotel.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "Jingling Hotel", hotelDetails.hotelName);
+		 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "栖霞区", hotelDetails.tradeArea);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道163号", hotelDetails.hotelAddress);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 5, hotelDetails.starLevel);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 5.0f, hotelDetails.mark, 0);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", "南京最好的酒店", hotelDetails.briefIntroduction);
+//			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", "所有服务应有尽有", hotelDetails.facilityAndService);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotelDetails.roomTypeAndPrice);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndNums!", roomTypeAndNums, hotelDetails.roomTypeAndNums);
+//			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotelDetails.comments);	
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 	
 	@Test
 	public void testGetOrders() {
-		queryHotel = new MockQueryHotelServiceImpl("原");
-		ArrayList<OrderVO> orderVOs = queryHotel.getOrders("江苏省南京市栖霞区仙林大道163号", "原");
-		assertEquals(4, orderVOs.size());
-		assertEquals(orderID, orderVOs.get(0).orderID);
-		assertEquals(userID, orderVOs.get(0).userID);
-		assertEquals(hotelName, orderVOs.get(0).hotelName);
-		assertEquals(hotelAddress, orderVOs.get(0).hotelAddress);
-		assertEquals(beginDate, orderVOs.get(0).beginDate);
-		assertEquals(finishDate, orderVOs.get(0).finishDate);
-		assertEquals(roomType, orderVOs.get(0).roomType);
-		assertEquals(num, orderVOs.get(0).num);
-		assertEquals(totalPrice, orderVOs.get(1).totalPrice);
-		assertEquals(orderState, orderVOs.get(1).orderState);
-//		assertEquals(orderProducedTime, orderVOs.get(1).orderProducedTime);
-//		assertEquals(lastedOrderDoneTime, orderVOs.get(1).lastedOrderDoneTime);
-		assertEquals(numOfPerson, orderVOs.get(0).numOfPerson);
-		assertEquals(isChildren, orderVOs.get(0).isChildren);
-		assertEquals(isOnSale, orderVOs.get(0).isOnSale);
-		assertEquals(isCommented, orderVOs.get(0).isCommented);
+		try {
+			queryHotel = new MockQueryHotelServiceImpl("原");
+			ArrayList<OrderVO> orderVOs = queryHotel.getOrders("江苏省南京市栖霞区仙林大道163号", "原");
+			assertEquals(4, orderVOs.size());
+			assertEquals(orderID, orderVOs.get(0).orderID);
+			assertEquals(userID, orderVOs.get(0).userID);
+			assertEquals(hotelName, orderVOs.get(0).hotelName);
+			assertEquals(hotelAddress, orderVOs.get(0).hotelAddress);
+			assertEquals(beginDate, orderVOs.get(0).beginDate);
+			assertEquals(finishDate, orderVOs.get(0).finishDate);
+			assertEquals(roomType, orderVOs.get(0).roomType);
+			assertEquals(num, orderVOs.get(0).num);
+			assertEquals(totalPrice, orderVOs.get(1).totalPrice);
+			assertEquals(orderState, orderVOs.get(1).orderState);
+//			assertEquals(orderProducedTime, orderVOs.get(1).orderProducedTime);
+//			assertEquals(lastedOrderDoneTime, orderVOs.get(1).lastedOrderDoneTime);
+			assertEquals(numOfPerson, orderVOs.get(0).numOfPerson);
+			assertEquals(isChildren, orderVOs.get(0).isChildren);
+			assertEquals(isOnSale, orderVOs.get(0).isOnSale);
+			assertEquals(isCommented, orderVOs.get(0).isCommented);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 
 }

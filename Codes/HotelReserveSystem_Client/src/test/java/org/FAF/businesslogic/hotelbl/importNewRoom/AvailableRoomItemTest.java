@@ -2,6 +2,8 @@ package org.FAF.businesslogic.hotelbl.importNewRoom;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,7 +23,11 @@ public class AvailableRoomItemTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@Before
@@ -32,8 +38,14 @@ public class AvailableRoomItemTest {
 	@Test
 	public void testAddRoom() {
 		availableRoomItem = new AvailableRoomItem("江苏省南京市栖霞区仙林大道163号");
-		boolean result = availableRoomItem.addRoom(room);
-		assertEquals(true, result);
+		boolean result;
+		try {
+			result = availableRoomItem.addRoom(room);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 }

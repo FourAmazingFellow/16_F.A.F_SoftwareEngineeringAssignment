@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl.maintainHotelBasicInfo;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import org.junit.Before;
@@ -36,7 +37,11 @@ public class MaintainHotelBasicInfoServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络连接错误");
+		}
 	}
 	
 	@Before
@@ -74,27 +79,39 @@ public class MaintainHotelBasicInfoServiceImplTest {
 
 	@Test
 	public void testEnrollHotelBasicInfo() {
-		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
-		HotelVO hotel = maintainHotelBasicInfo.enrollHotelBasicInfo(this.hotelAddress);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotel.hotelName);
-	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, hotel.tradeArea);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotel.hotelAddress);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotel.starLevel);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotel.mark, 0);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotel.city);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, hotel.min_Price);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotel.briefIntroduction);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotel.facilityAndService);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotel.roomTypeAndPrice);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndNums!", roomTypeAndNums, hotel.roomTypeAndNums);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotel.comments);
+		try {
+			maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
+			HotelVO hotel = maintainHotelBasicInfo.enrollHotelBasicInfo(this.hotelAddress);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotel.hotelName);
+		 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, hotel.tradeArea);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotel.hotelAddress);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotel.starLevel);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotel.mark, 0);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotel.city);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, hotel.min_Price);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotel.briefIntroduction);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotel.facilityAndService);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotel.roomTypeAndPrice);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndNums!", roomTypeAndNums, hotel.roomTypeAndNums);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotel.comments);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+
 	}
 	
 	@Test
 	public void testConfirmModify() {
-		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
-		boolean result = maintainHotelBasicInfo.confirmModify(modified);
-		assertEquals(true, result);
+		try {
+			maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
+			boolean result = maintainHotelBasicInfo.confirmModify(modified);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 
 }

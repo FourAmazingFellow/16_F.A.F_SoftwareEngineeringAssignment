@@ -27,16 +27,12 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
 	}
 
 	@Override
-	public ArrayList<CreditRecordVO> queryCreditRecord(String userID) {
+	public ArrayList<CreditRecordVO> queryCreditRecord(String userID) throws RemoteException {
 		userDAO = RemoteHelper.getInstance().getUserDAO();
 		this.userID = userID;
 		this.creditRecordPOs = new ArrayList<>();
 		this.creditRecordVOs = new ArrayList<>();
-		try {
-			creditRecordPOs = userDAO.queryCreditRecord(this.userID);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		creditRecordPOs = userDAO.queryCreditRecord(this.userID);
 		for (CreditRecordPO i : creditRecordPOs) {
 			CreditRecordVO creditRecordVO = new CreditRecordVO(i);
 			creditRecordVOs.add(creditRecordVO);

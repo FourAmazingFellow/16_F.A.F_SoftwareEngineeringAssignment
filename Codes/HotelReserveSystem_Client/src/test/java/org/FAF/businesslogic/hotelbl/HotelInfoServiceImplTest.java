@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -46,7 +47,11 @@ public class HotelInfoServiceImplTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@Before
@@ -84,56 +89,88 @@ public class HotelInfoServiceImplTest {
 	public void testGetHotelBriefInfo1() {
 		hotelInfo = new HotelInfoServiceImpl();
 //		hotelInfo.setHotelDAO(hotelDAO);
-		BriefHotelInfoVO briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, briefHotelInfo.hotelName);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, briefHotelInfo.tradeArea);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, briefHotelInfo.hotelAddress);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, briefHotelInfo.starLevel);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfo.mark, 0);	
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, briefHotelInfo.city);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, briefHotelInfo.min_Price);
+		BriefHotelInfoVO briefHotelInfo;
+		try {
+			briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道163号");
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, briefHotelInfo.hotelName);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, briefHotelInfo.tradeArea);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, briefHotelInfo.hotelAddress);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, briefHotelInfo.starLevel);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, briefHotelInfo.mark, 0);	
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, briefHotelInfo.city);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, briefHotelInfo.min_Price);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+
 	}
 	
 	@Test
 	public void testGetHotelBriefInfo2() {
 		hotelInfo = new HotelInfoServiceImpl();
 //		hotelInfo.setHotelDAO(hotelDAO);
-		BriefHotelInfoVO briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道169号");
-		assertNull(briefHotelInfo);				
+		BriefHotelInfoVO briefHotelInfo;
+		try {
+			briefHotelInfo = hotelInfo.getHotelBriefInfo("江苏省南京市栖霞区仙林大道169号");
+			assertNull(briefHotelInfo);				
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
 	public void testGetHotelDetails1() {
 		hotelInfo = new HotelInfoServiceImpl();
 //		hotelInfo.setHotelDAO(hotelDAO);
-		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotelDetails.hotelName);
-	 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, hotelDetails.tradeArea);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotelDetails.hotelAddress);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotelDetails.starLevel);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotelDetails.mark, 0);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotelDetails.city);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, hotelDetails.min_Price);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotelDetails.briefIntroduction);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotelDetails.facilityAndService);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotelDetails.roomTypeAndPrice);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndNums!", roomTypeAndNums, hotelDetails.roomTypeAndNums);
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotelDetails.comments);
+		HotelVO hotelDetails;
+		try {
+			hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道163号");
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotelDetails.hotelName);
+		 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, hotelDetails.tradeArea);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", hotelAddress, hotelDetails.hotelAddress);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", starLevel, hotelDetails.starLevel);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", mark, hotelDetails.mark, 0);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in city!", city, hotelDetails.city);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in min_Price!", min_Price, hotelDetails.min_Price);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in briefIntroduction!", briefIntroduction, hotelDetails.briefIntroduction);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in facilityAndService!", facilityAndService, hotelDetails.facilityAndService);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndPrice!", roomTypeAndPrice, hotelDetails.roomTypeAndPrice);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in roomTypeAndNums!", roomTypeAndNums, hotelDetails.roomTypeAndNums);
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in comments!", comments, hotelDetails.comments);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+
 	}
 	
 	@Test
 	public void testGetHotelDetails2() {
 		hotelInfo = new HotelInfoServiceImpl();
 //		hotelInfo.setHotelDAO(hotelDAO);
-		HotelVO hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道168号");
-		assertNull(hotelDetails);
+		HotelVO hotelDetails;
+		try {
+			hotelDetails = hotelInfo.getHotelDetails("江苏省南京市栖霞区仙林大道168号");
+			assertNull(hotelDetails);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 	@Test
 	public void testGetBusinessDistrctList() {
 		hotelInfo = new HotelInfoServiceImpl();
-		ArrayList<BusinessDistrictPO> businessDistrictPOs = hotelInfo.getBusinessDistrictList("上海市");
-		assertEquals(18, businessDistrictPOs.size());
+		ArrayList<BusinessDistrictPO> businessDistrictPOs;
+		try {
+			businessDistrictPOs = hotelInfo.getBusinessDistrictList("上海市");
+			assertEquals(18, businessDistrictPOs.size());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 	
 

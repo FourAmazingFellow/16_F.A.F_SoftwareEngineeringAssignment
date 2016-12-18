@@ -2,6 +2,7 @@ package org.FAF.businesslogic.hotelbl.queryHotel;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,7 +28,11 @@ public class QueryHotelListTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
 	}
 	
 	@Before
@@ -44,13 +49,20 @@ public class QueryHotelListTest {
 	public void testGetHotelBriefInfoListByQuerying() {
 		queryHotelList = new QueryHotelList();
 		String[] conditions  = {"南京市", "栖霞区", "starLevel", "0"};
-		ArrayList<BriefHotelInfoPO> hotelInfoPOs = queryHotelList.getHotelBriefInfoListByQuerying(conditions, orderedHotelList);
-		assertEquals(5, hotelInfoPOs.size());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "如家酒店", hotelInfoPOs.get(0).getHotelName());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "栖霞区", hotelInfoPOs.get(0).getTradeArea());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道165号", hotelInfoPOs.get(0).getHotelAddress());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 0000000000000003, hotelInfoPOs.get(0).getStarLevel());
-		assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 0000000000000003.8f, hotelInfoPOs.get(0).getMark(), 0);
+		ArrayList<BriefHotelInfoPO> hotelInfoPOs;
+		try {
+			hotelInfoPOs = queryHotelList.getHotelBriefInfoListByQuerying(conditions, orderedHotelList);
+			assertEquals(5, hotelInfoPOs.size());
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", "如家酒店", hotelInfoPOs.get(0).getHotelName());
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", "栖霞区", hotelInfoPOs.get(0).getTradeArea());
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelAddress!", "江苏省南京市栖霞区仙林大道165号", hotelInfoPOs.get(0).getHotelAddress());
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in starLevel!", 0000000000000003, hotelInfoPOs.get(0).getStarLevel());
+			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in mark!", 0000000000000003.8f, hotelInfoPOs.get(0).getMark(), 0);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 
 }

@@ -1,8 +1,9 @@
 package org.FAF.businesslogic.hotelbl.commentOnHotel;
 
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,7 +49,11 @@ public class CommentableOrderListTest {
 	@BeforeClass
 	public static void set() {
 		linkToServer = new LinkToServer();
-		linkToServer.linkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络连接错误");
+		}
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -83,24 +88,31 @@ public class CommentableOrderListTest {
 	public void testGetCommentableOrderList() {
 		commentableOrderList = new CommentableOrderList("原");
 //		commentableOrderList.setOrderInfo(orderInfo);
-		ArrayList<OrderVO> orderVOs = commentableOrderList.getCommentableOrderList();
-		assertEquals(2, orderVOs.size());
-		assertEquals(orderID, orderVOs.get(0).orderID);
-		assertEquals(userID, orderVOs.get(0).userID);
-		assertEquals(hotelName, orderVOs.get(0).hotelName);
-		assertEquals(hotelAddress, orderVOs.get(0).hotelAddress);
-		assertEquals(beginDate, orderVOs.get(0).beginDate);
-		assertEquals(finishDate, orderVOs.get(0).finishDate);
-		assertEquals(roomType, orderVOs.get(0).roomType);
-		assertEquals(num, orderVOs.get(0).num);
-		assertEquals(totalPrice, orderVOs.get(0).totalPrice);
-		assertEquals(orderState, orderVOs.get(0).orderState);
-		assertEquals(orderProducedTime, orderVOs.get(0).orderProducedTime);
-		assertEquals(lastedOrderDoneTime, orderVOs.get(0).lastedOrderDoneTime);
-		assertEquals(numOfPerson, orderVOs.get(0).numOfPerson);
-		assertEquals(isChildren, orderVOs.get(0).isChildren);
-		assertEquals(isOnSale, orderVOs.get(0).isOnSale);
-		assertEquals(isCommented, orderVOs.get(0).isCommented);
+		ArrayList<OrderVO> orderVOs;
+		try {
+			orderVOs = commentableOrderList.getCommentableOrderList();
+			assertEquals(2, orderVOs.size());
+			assertEquals(orderID, orderVOs.get(0).orderID);
+			assertEquals(userID, orderVOs.get(0).userID);
+			assertEquals(hotelName, orderVOs.get(0).hotelName);
+			assertEquals(hotelAddress, orderVOs.get(0).hotelAddress);
+			assertEquals(beginDate, orderVOs.get(0).beginDate);
+			assertEquals(finishDate, orderVOs.get(0).finishDate);
+			assertEquals(roomType, orderVOs.get(0).roomType);
+			assertEquals(num, orderVOs.get(0).num);
+			assertEquals(totalPrice, orderVOs.get(0).totalPrice);
+			assertEquals(orderState, orderVOs.get(0).orderState);
+			assertEquals(orderProducedTime, orderVOs.get(0).orderProducedTime);
+			assertEquals(lastedOrderDoneTime, orderVOs.get(0).lastedOrderDoneTime);
+			assertEquals(numOfPerson, orderVOs.get(0).numOfPerson);
+			assertEquals(isChildren, orderVOs.get(0).isChildren);
+			assertEquals(isOnSale, orderVOs.get(0).isOnSale);
+			assertEquals(isCommented, orderVOs.get(0).isCommented);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+		
 	}
 
 }
