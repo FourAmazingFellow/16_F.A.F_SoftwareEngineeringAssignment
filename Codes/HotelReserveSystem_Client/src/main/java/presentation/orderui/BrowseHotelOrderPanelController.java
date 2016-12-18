@@ -114,6 +114,7 @@ public class BrowseHotelOrderPanelController {
 	}
 
 	private void showBriefOrderList() {
+
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
 		ObservableList<FxBriefOrder> briefFxOrderList = FXCollections.observableArrayList();
 

@@ -136,7 +136,7 @@ public class ManageCheckInPanelController {
         }else{
             tmpCheckIn=new CheckIn();
         }
-        boolean isConfirmed=mainApp.showCheckInEditDialog(tmpCheckIn, address);
+        boolean isConfirmed=mainApp.showCheckInEditDialog(tmpCheckIn);
         if(isConfirmed){
             checkInTable.getItems().add(tmpCheckIn);
         }

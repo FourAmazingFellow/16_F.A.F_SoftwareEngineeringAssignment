@@ -56,7 +56,7 @@ public class SpareRoomTablePanelController {
     
     @FXML
     void handleNewCheckIn(ActionEvent event) {
-        mainApp.showManageCheckInPanel(address);
+        mainApp.showManageCheckInPanel();
     }
    
 
