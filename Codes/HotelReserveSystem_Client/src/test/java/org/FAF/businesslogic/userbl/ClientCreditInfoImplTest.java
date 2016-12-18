@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.userbl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -16,55 +17,73 @@ import po.CreditRecordPO;
 import rmi.LinkToServer;
 
 public class ClientCreditInfoImplTest {
-    private ClientCreditInfoImpl clientCreditInfo;
-    private String userID;
-//    private String password;
-//    private String telNum;
-    private int creditValue;
-    private String orderID;
-    private ActionType actionType;
-    private ArrayList<CreditRecordPO> creditRecord;
-    private int num;
-    private UserDAO userDAO;
-    
-    private static LinkToServer linkToServer;
-    
-    @BeforeClass
-    public static void set() {
-        linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
-    }
-    
-    @Before
-    public void setUp() throws Exception {
-        this.userID = "Accident";
-//        this.password = "123456789";
-//        this.telNum = "12345678906";
-        this.creditValue = 2500;
-//        int creditPre = creditValue;
-//        @SuppressWarnings("deprecation")
-//        CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(2016, 11, 11), "2016111100001111", ActionType.ORDER_DONE, 500, creditPre+500);
-//        this.creditRecord = new ArrayList<>();
-//        creditRecord.add(creditRecordPO);
-        this.num = 400;
-        this.orderID = "0000000000000003";
-        this.actionType = ActionType.ORDER_DONE;
-     //   this.userDAO = new UserDAOImpl_Stub(this.userID, this.password, this.telNum, this.creditValue, this.creditRecord);
-    }
-    
-    @Test
-    public void testGetCreditValue() {
-       clientCreditInfo = new ClientCreditInfoImpl();
-       clientCreditInfo.setUserDAO(userDAO);
-       assertEquals("ClientCreditInfo.getCreditValue(userID) has an error in creditValue!",this.creditValue,clientCreditInfo.getCreditValue(userID));
-    }
+	private ClientCreditInfoImpl clientCreditInfo;
+	private String userID;
+	// private String password;
+	// private String telNum;
+	private int creditValue;
+	private String orderID;
+	private ActionType actionType;
+	private ArrayList<CreditRecordPO> creditRecord;
+	private int num;
+	private UserDAO userDAO;
 
-    @Test
-    public void testChangeCreditValue() {
-      clientCreditInfo = new ClientCreditInfoImpl();
-      clientCreditInfo.setUserDAO(userDAO);
-      boolean result = clientCreditInfo.changeCreditValue(userID, num,orderID, actionType);
-      assertEquals(true,result);
-    }
+	private static LinkToServer linkToServer;
+
+	@BeforeClass
+	public static void set() {
+		linkToServer = new LinkToServer();
+		try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信问题");
+		}
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		this.userID = "Accident";
+		// this.password = "123456789";
+		// this.telNum = "12345678906";
+		this.creditValue = 2500;
+		// int creditPre = creditValue;
+		// @SuppressWarnings("deprecation")
+		// CreditRecordPO creditRecordPO = new CreditRecordPO(new Date(2016, 11,
+		// 11), "2016111100001111", ActionType.ORDER_DONE, 500, creditPre+500);
+		// this.creditRecord = new ArrayList<>();
+		// creditRecord.add(creditRecordPO);
+		this.num = 400;
+		this.orderID = "0000000000000003";
+		this.actionType = ActionType.ORDER_DONE;
+		// this.userDAO = new UserDAOImpl_Stub(this.userID, this.password,
+		// this.telNum, this.creditValue, this.creditRecord);
+	}
+
+	@Test
+	public void testGetCreditValue() {
+		clientCreditInfo = new ClientCreditInfoImpl();
+		clientCreditInfo.setUserDAO(userDAO);
+		try {
+			assertEquals("ClientCreditInfo.getCreditValue(userID) has an error in creditValue!", this.creditValue,
+					clientCreditInfo.getCreditValue(userID));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+
+	@Test
+	public void testChangeCreditValue() {
+		clientCreditInfo = new ClientCreditInfoImpl();
+		clientCreditInfo.setUserDAO(userDAO);
+		boolean result;
+		try {
+			result = clientCreditInfo.changeCreditValue(userID, num, orderID, actionType);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 
 }

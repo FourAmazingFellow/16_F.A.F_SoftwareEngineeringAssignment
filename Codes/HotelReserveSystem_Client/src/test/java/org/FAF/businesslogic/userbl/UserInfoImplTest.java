@@ -1,6 +1,8 @@
 package org.FAF.businesslogic.userbl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
+import java.rmi.RemoteException;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -27,7 +29,11 @@ public class UserInfoImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @Before
@@ -39,8 +45,14 @@ public class UserInfoImplTest {
         userInfoImpl = new UserInfoImpl();
         userInfoImpl.setUserDAO(userDAO);
         HotelStaffInfoVO staff = new HotelStaffInfoVO(userID, password, telNum, userType, hotelAddress);
-        boolean result = userInfoImpl.insert(staff);
-        assertEquals(true, result);
+        boolean result;
+		try {
+			result = userInfoImpl.insert(staff);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
 }

@@ -2,6 +2,7 @@ package org.FAF.businesslogic.strategybl;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -26,7 +27,11 @@ public class StrategyInfoServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @SuppressWarnings("deprecation")
@@ -42,17 +47,32 @@ public class StrategyInfoServiceImplTest {
     @Test
     public void testGetAvailblePromotionName() {
         
-        assertEquals("四间房以上折扣", strategyInfoServiceImpl.getAvailblePromotionName(orderVO));
+        try {
+			assertEquals("四间房以上折扣", strategyInfoServiceImpl.getAvailblePromotionName(orderVO));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
     public void testGetAvailbleMarketStrategyName() {
-        assertEquals("VIP1以上会员折扣", strategyInfoServiceImpl.getAvailbleMarketStrategyName(orderVO));
+        try {
+			assertEquals("VIP1以上会员折扣", strategyInfoServiceImpl.getAvailbleMarketStrategyName(orderVO));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
     public void testGetBestDiscount() {
-        assertEquals(0.85f, strategyInfoServiceImpl.getBestDiscount(orderVO), 0.01);
+        try {
+			assertEquals(0.85f, strategyInfoServiceImpl.getBestDiscount(orderVO), 0.01);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
 }

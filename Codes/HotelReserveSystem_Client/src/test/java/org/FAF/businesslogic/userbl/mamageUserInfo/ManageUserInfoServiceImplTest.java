@@ -2,6 +2,8 @@ package org.FAF.businesslogic.userbl.mamageUserInfo;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -37,7 +39,11 @@ public class ManageUserInfoServiceImplTest{
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
     
     @Before
@@ -65,29 +71,45 @@ public class ManageUserInfoServiceImplTest{
         manageUserInfo = new ManageUserInfoServiceImpl();
         manageUserInfo.setUserDAO(userDAO);
         UserVO user = new UserVO(userIDNew, passwordNew, telNumNew, userTypeNew);
-        boolean result = manageUserInfo.add(user);
-        assertEquals(true, result);
+        boolean result;
+		try {
+			result = manageUserInfo.add(user);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
     
     @Test
     public void testGetHotelStaffInfo(){
         manageUserInfo = new ManageUserInfoServiceImpl();
         manageUserInfo.setUserDAO(userDAO);
-        hotelStaffInfoVO = manageUserInfo.getHotelStaffInfo(userID);
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userID, hotelStaffInfoVO.userID);        
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in password!", password, hotelStaffInfoVO.password);        
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in telNum!", telNum, hotelStaffInfoVO.telNum);        
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in hotelAddress!", hotelAddress, hotelStaffInfoVO.hotelAddress);        
+        try {
+			hotelStaffInfoVO = manageUserInfo.getHotelStaffInfo(userID);
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userID, hotelStaffInfoVO.userID);        
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in password!", password, hotelStaffInfoVO.password);        
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in telNum!", telNum, hotelStaffInfoVO.telNum);        
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in hotelAddress!", hotelAddress, hotelStaffInfoVO.hotelAddress);        
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
     
     @Test
     public void testGetUserInfo() {
         manageUserInfo = new ManageUserInfoServiceImpl();
         manageUserInfo.setUserDAO(userDAO);
-        userVO = manageUserInfo.getUserInfo(userIDw);
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userIDw, userVO.userID);        
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in password!", passwordw, userVO.password);        
-        assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in telNum!", telNumw, userVO.telNum);        
+        try {
+			userVO = manageUserInfo.getUserInfo(userIDw);
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userIDw, userVO.userID);        
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in password!", passwordw, userVO.password);        
+			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in telNum!", telNumw, userVO.telNum);        
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
         
     }
     
@@ -96,8 +118,14 @@ public class ManageUserInfoServiceImplTest{
         manageUserInfo = new ManageUserInfoServiceImpl();
         manageUserInfo.setUserDAO(userDAO);
         UserVO modified = new UserVO(userID, "hstaff00011234", telNum, userType);
-       boolean result = manageUserInfo.modifyUserInfo(modified, userID);
-       assertEquals(true, result);
+       boolean result;
+	try {
+		result = manageUserInfo.modifyUserInfo(modified, userID);
+		assertEquals(true, result);
+	} catch (RemoteException e) {
+		e.printStackTrace();
+		fail();
+	}
     }
 
 

@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.userbl;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -35,7 +36,11 @@ public class VipInfoImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @SuppressWarnings("deprecation")
@@ -66,16 +71,22 @@ public class VipInfoImplTest {
     public void testGetRegularVipInfo() {
         vipInfo = new VipInfoImpl();
         vipInfo.setUserDAO(userDAO);
-        RegularVipVO regularVip = vipInfo.getRegularVipInfo(this.userIDr);
-        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in userID!", userIDr, regularVip.userID);
-        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in password!", passwordr, regularVip.password);
-        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in telNum!", telNumr, regularVip.telNum);
-        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in creditValue!", creditValuer,
-                regularVip.creditValue);
+        RegularVipVO regularVip;
+		try {
+			regularVip = vipInfo.getRegularVipInfo(this.userIDr);
+			assertEquals("VipInfo.getRegularVipInfo(userID) has an error in userID!", userIDr, regularVip.userID);
+			assertEquals("VipInfo.getRegularVipInfo(userID) has an error in password!", passwordr, regularVip.password);
+			assertEquals("VipInfo.getRegularVipInfo(userID) has an error in telNum!", telNumr, regularVip.telNum);
+			assertEquals("VipInfo.getRegularVipInfo(userID) has an error in creditValue!", creditValuer,
+					regularVip.creditValue);
 //        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in creditRecord!", creditRecord,
 //                regularVip.creditRecord);
-        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in birth!", birth, regularVip.birth);
-        assertEquals("VipInfo.getRegularVipInfo(userID) has an error in vipRank!", vipRank, regularVip.vipRank);
+			assertEquals("VipInfo.getRegularVipInfo(userID) has an error in birth!", birth, regularVip.birth);
+			assertEquals("VipInfo.getRegularVipInfo(userID) has an error in vipRank!", vipRank, regularVip.vipRank);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
 
     }
 
@@ -83,17 +94,23 @@ public class VipInfoImplTest {
     public void testGetEnterpriseVipInfo() {
         vipInfo = new VipInfoImpl();
         vipInfo.setUserDAO(userDAO);
-        EnterpriseVipVO enterpriseVip = vipInfo.getEnterpriseVipInfo(this.userIDe);
-        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in userID!", userIDe, enterpriseVip.userID);
-        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in password!", passworde,
-                enterpriseVip.password);
-        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in telNum!", telNume, enterpriseVip.telNum);
-        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in creditValue!", creditValuee,
-                enterpriseVip.creditValue);
+        EnterpriseVipVO enterpriseVip;
+		try {
+			enterpriseVip = vipInfo.getEnterpriseVipInfo(this.userIDe);
+			assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in userID!", userIDe, enterpriseVip.userID);
+			assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in password!", passworde,
+					enterpriseVip.password);
+			assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in telNum!", telNume, enterpriseVip.telNum);
+			assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in creditValue!", creditValuee,
+					enterpriseVip.creditValue);
 //        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in creditRecord!", creditRecord,
 //                enterpriseVip.creditRecord);
-        assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in enterpriseID!", enterpriseID,
-                enterpriseVip.enterpriseID);
+			assertEquals("VipInfo.getEnterpriseVipInfo(userID) has an error in enterpriseID!", enterpriseID,
+					enterpriseVip.enterpriseID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
 }

@@ -2,6 +2,8 @@ package org.FAF.businesslogic.userbl.loginAndSignUp;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,7 +24,11 @@ public class CheckLoginInfoTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
     
     @Before
@@ -36,8 +42,14 @@ public class CheckLoginInfoTest {
     public void testCheckUser() {
         checkLoginInfo = new CheckLoginInfo();
         checkLoginInfo.setUserDAO(userDAO);
-        UserType result = checkLoginInfo.checkUser(userID, password);
-        assertNotNull(result);
+        UserType result;
+		try {
+			result = checkLoginInfo.checkUser(userID, password);
+			assertNotNull(result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
         
     }
 }

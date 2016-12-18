@@ -1,6 +1,8 @@
 package org.FAF.businesslogic.userbl.modifyClientInfo;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
+import java.rmi.RemoteException;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -26,7 +28,11 @@ public class ModifyClientInfoServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @Before
@@ -43,26 +49,36 @@ public class ModifyClientInfoServiceImplTest {
     public void testGetClientInfo() {
         modifyClientInfo = new ModifyClientInfoServiceImpl();
         modifyClientInfo.setUserDAO(userDAO);
-        this.clientInfoVO = modifyClientInfo.getClientInfo(userID);
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in userID!", userID,
-                clientInfoVO.userID);
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in password!", password,
-                clientInfoVO.password);
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in telNum!", telNum,
-                clientInfoVO.telNum);
-        assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in creditValue!", creditValue,
-                clientInfoVO.creditValue);
+        try {
+			this.clientInfoVO = modifyClientInfo.getClientInfo(userID);
+			assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in userID!", userID,
+					clientInfoVO.userID);
+			assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in password!", password,
+					clientInfoVO.password);
+			assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in telNum!", telNum,
+					clientInfoVO.telNum);
+			assertEquals("ModifyClientInfoService.getUserInfo(userID,userType) has an error in creditValue!", creditValue,
+					clientInfoVO.creditValue);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
     public void testModifyClientInfo() {
         modifyClientInfo = new ModifyClientInfoServiceImpl();
         modifyClientInfo.setUserDAO(userDAO);
-        this.clientInfoVO = modifyClientInfo.getClientInfo(userID);
-        ClientInfoVO modified = new ClientInfoVO(clientInfoVO.userID, clientInfoVO.password, "12345678900",
-                UserType.Client, clientInfoVO.creditValue, clientInfoVO.creditRecord);
-        boolean result = modifyClientInfo.modifyClientInfo(modified, userID);
-        assertEquals(true, result);
+        try {
+			this.clientInfoVO = modifyClientInfo.getClientInfo(userID);
+			ClientInfoVO modified = new ClientInfoVO(clientInfoVO.userID, clientInfoVO.password, "12345678900",
+					UserType.Client, clientInfoVO.creditValue, clientInfoVO.creditRecord);
+			boolean result = modifyClientInfo.modifyClientInfo(modified, userID);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
 }

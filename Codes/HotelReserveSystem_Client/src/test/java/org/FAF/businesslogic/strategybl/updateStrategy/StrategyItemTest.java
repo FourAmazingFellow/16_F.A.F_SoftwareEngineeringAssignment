@@ -2,6 +2,7 @@ package org.FAF.businesslogic.strategybl.updateStrategy;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -26,7 +27,11 @@ public class StrategyItemTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @Before
@@ -51,16 +56,26 @@ public class StrategyItemTest {
     public void testModify() {
         boolean modifyed = false;
         strategyItem=new StrategyItem(new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣",0.85f,2));
-        modifyed = strategyItem.modify(address);
-        assertTrue(modifyed);
+        try {
+			modifyed = strategyItem.modify(address);
+			assertTrue(modifyed);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
     public void testDelete() {
         boolean deleted = false;
         strategyItem=new StrategyItem(new StrategyVO(address, StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f,2));
-        deleted = strategyItem.delete(address);
-        assertTrue(deleted);
+        try {
+			deleted = strategyItem.delete(address);
+			assertTrue(deleted);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
@@ -69,11 +84,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertTrue(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(valied);
     }
     
     //地址长度《50
@@ -83,11 +103,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     //折扣名称
@@ -97,11 +122,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     //房间数量小于可用客房数
@@ -111,11 +141,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     //验证码为8位
@@ -125,11 +160,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     //验证码只能有字母和数字
@@ -139,11 +179,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     //会员等级要0《X《4
@@ -153,11 +198,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     //开始时间大于结束时间
@@ -168,11 +218,16 @@ public class StrategyItemTest {
         strategyItem = new StrategyItem(strategyVO);
         boolean valied = false;
         try {
-            valied = strategyItem.valid();
+            try {
+				valied = strategyItem.valid();
+				assertFalse(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(valied);
     }
     
     @Test
@@ -180,22 +235,32 @@ public class StrategyItemTest {
         boolean verified=false;
         strategyItem=new StrategyItem(new StrategyVO("Web", StrategyType.VipTradeAreaMarket, "南京市栖霞区VIP2会员优惠",0.86f, 2, "栖霞区"));
         try {
-            verified=strategyItem.verifyTradeArea("南京市");
+            try {
+				verified=strategyItem.verifyTradeArea("南京市");
+				assertTrue(verified);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(verified);
     }
     
     @Test
     public void testVerifyTradeArea1(){
         boolean verified=false;
         try {
-            verified=strategyItem.verifyTradeArea("南宁市");
+            try {
+				verified=strategyItem.verifyTradeArea("南宁市");
+				assertFalse(verified);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertFalse(verified);
     }
     
     

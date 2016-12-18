@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.userbl.signVip;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 
 import org.junit.Before;
@@ -41,7 +42,11 @@ public class SignVipServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @SuppressWarnings("deprecation")
@@ -65,8 +70,14 @@ public class SignVipServiceImplTest {
         signVip = new SignVipServiceImpl();
         signVip.setUserDAO(userDAO);
         regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 3);
-        boolean result = signVip.signRegularVip(regularVip);
-        assertEquals(true, result);
+        boolean result;
+		try {
+			result = signVip.signRegularVip(regularVip);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
@@ -76,8 +87,14 @@ public class SignVipServiceImplTest {
         signVip.setVerifyEnterpriseVip();
         enterpriseVip = new EnterpriseVipVO(userIDe, password, telNum, userType, 0, null, enterpriseID,
                 enterprisePassword);
-        boolean result = signVip.signEnterpriseVip(enterpriseVip);
-        assertEquals(true, result);
+        boolean result;
+		try {
+			result = signVip.signEnterpriseVip(enterpriseVip);
+			assertEquals(true, result);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
 }

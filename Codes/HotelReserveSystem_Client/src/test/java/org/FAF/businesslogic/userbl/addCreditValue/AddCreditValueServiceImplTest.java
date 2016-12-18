@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.userbl.addCreditValue;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -31,7 +32,11 @@ public class AddCreditValueServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
     
     @Before
@@ -57,8 +62,14 @@ public class AddCreditValueServiceImplTest {
     public void testAddCreditValue() {
      addCreditValue = new AddCreditValueServiceImpl();
      addCreditValue.setUserDAO(userDAO);
-     boolean result = addCreditValue.addCreditValue(userID, creditAdded);
-     assertEquals(true , result);
+     boolean result;
+	try {
+		result = addCreditValue.addCreditValue(userID, creditAdded);
+		assertEquals(true , result);
+	} catch (RemoteException e) {
+		e.printStackTrace();
+		fail();
+	}
 
     }
 	

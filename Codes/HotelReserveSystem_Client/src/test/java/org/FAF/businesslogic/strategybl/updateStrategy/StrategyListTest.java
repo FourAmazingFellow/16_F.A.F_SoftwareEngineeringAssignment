@@ -2,6 +2,7 @@ package org.FAF.businesslogic.strategybl.updateStrategy;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,7 +30,11 @@ public class StrategyListTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信问题");
+		}
     }
     
     @Before
@@ -223,11 +228,16 @@ public class StrategyListTest {
         boolean valied = false;
         StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.SpecificTimePromotion, "双十一折扣",0.9f, new Date(116,10,30,00,00,00), new Date(116,11,10,00,00,00));
         try {
-            valied =strategyList.valid(address, strategyVO1);
+            try {
+				valied =strategyList.valid(address, strategyVO1);
+				assertTrue(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(valied);
     }
     
     public boolean equalStrategy(StrategyVO strategyVO1, StrategyVO strategyVO2){

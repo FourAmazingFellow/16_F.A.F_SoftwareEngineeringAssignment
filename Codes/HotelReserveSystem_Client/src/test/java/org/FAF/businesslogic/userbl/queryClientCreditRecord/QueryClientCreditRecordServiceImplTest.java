@@ -1,7 +1,8 @@
 package org.FAF.businesslogic.userbl.queryClientCreditRecord;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -36,7 +37,11 @@ public class QueryClientCreditRecordServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信错误");
+		}
     }
 
     @Before

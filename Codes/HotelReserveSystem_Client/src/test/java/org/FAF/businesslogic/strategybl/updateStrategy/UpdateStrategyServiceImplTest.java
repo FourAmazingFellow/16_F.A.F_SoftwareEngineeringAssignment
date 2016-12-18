@@ -2,6 +2,7 @@ package org.FAF.businesslogic.strategybl.updateStrategy;
 
 import static org.junit.Assert.*;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -28,7 +29,11 @@ public class UpdateStrategyServiceImplTest {
     @BeforeClass
     public static void set() {
         linkToServer = new LinkToServer();
-        linkToServer.linkToServer();
+        try {
+			linkToServer.linkToServer();
+		} catch (RemoteException e) {
+			System.out.println("网络通信问题");
+		}
     }
     
     @Before
@@ -63,13 +68,18 @@ public class UpdateStrategyServiceImplTest {
         boolean added = false;
         StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.8f, 2);
         try {
-            added = updateStrategyServiceImpl.add(address, strategyVO1);
+            try {
+				added = updateStrategyServiceImpl.add(address, strategyVO1);
+				assertTrue(added);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (UnableAddStrategyException e) {
             System.out.println(e.getMessage());
         } catch (WrongInputException e) {
             e.printStackTrace();
         }
-        assertTrue(added);
     }
     
     @Test
@@ -77,10 +87,16 @@ public class UpdateStrategyServiceImplTest {
         boolean modifyed = false;
         StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣",0.8f, 2);
         try {
-            updateStrategyServiceImpl.add(address, strategyVO1);
-            strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
-            modifyed =updateStrategyServiceImpl.modify(address, strategyVO1);
-            updateStrategyServiceImpl.delete(address, strategyVO1);
+            try {
+				updateStrategyServiceImpl.add(address, strategyVO1);
+				strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
+				modifyed =updateStrategyServiceImpl.modify(address, strategyVO1);
+				updateStrategyServiceImpl.delete(address, strategyVO1);
+				assertTrue(modifyed);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (UnableToModifyStrategyException e) {
             System.out.println(e.getMessage());
         } catch (WrongInputException e) {
@@ -90,7 +106,6 @@ public class UpdateStrategyServiceImplTest {
         } catch (UnableToDeleteStrategyException e) {
             e.printStackTrace();
         }
-        assertTrue(modifyed);
     }
 
     @Test
@@ -98,13 +113,18 @@ public class UpdateStrategyServiceImplTest {
         boolean deleted = false;
         StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.8f, 2);
         try {
-            deleted = updateStrategyServiceImpl.delete(address, strategyVO1);
+            try {
+				deleted = updateStrategyServiceImpl.delete(address, strategyVO1);
+				assertTrue(deleted);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (UnableToDeleteStrategyException e) {
             System.out.println(e.getMessage());
         } catch (WrongInputException e) {
             e.printStackTrace();
         }
-        assertTrue(deleted);
     }
     
     @Test
@@ -112,11 +132,16 @@ public class UpdateStrategyServiceImplTest {
         boolean valied = false;
         StrategyVO strategyVO1=new StrategyVO("江苏省南京市栖霞区仙林大道163号", StrategyType.MultiRoomPromotion, "2房间以上折扣", 0.85f, 2);
         try {
-            valied = updateStrategyServiceImpl.valid(address, strategyVO1);
+            try {
+				valied = updateStrategyServiceImpl.valid(address, strategyVO1);
+				assertTrue(valied);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+				fail();
+			}
         } catch (WrongInputException e) {
             System.out.println(e.getMessage());
         }
-        assertTrue(valied);
     }
     
     public boolean equalStrategy(StrategyVO strategyVO1, StrategyVO strategyVO2){
