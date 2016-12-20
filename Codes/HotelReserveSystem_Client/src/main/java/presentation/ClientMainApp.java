@@ -442,7 +442,7 @@ public class ClientMainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * Returns the main stage.
 	 * 

@@ -40,12 +40,18 @@ public class ClientRootBoardController {
     }
     
     public void myReservedHotelAction() {
-    	
+    	mainApp.showReservedHotelPanel();
     }
     
     public void searchHotelAction() {
     	mainApp.showSearchView();
     }
     
-    
+	public void handleLogout() {
+		mainApp.logout();
+	}
+
+	public void handleExit() {
+		System.exit(0);
+	}
 }
