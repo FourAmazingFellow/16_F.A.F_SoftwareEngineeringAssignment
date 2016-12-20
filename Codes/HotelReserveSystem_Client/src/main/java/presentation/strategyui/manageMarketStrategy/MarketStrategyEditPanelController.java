@@ -89,11 +89,11 @@ public class MarketStrategyEditPanelController {
     private StrategyUIFactoryService strategyUIFactoryService = new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
-    private boolean isNewaPromotion;
 
     @FXML
     private void initialize() {
-
+        startTimeDatePicker3.setEditable(false);
+        endTimeDatePicker3.setEditable(false);
         vipRankChoiceBox1.setItems(vipRankList);
         vipRankChoiceBox2.setItems(vipRankList);
         cityChoiceBox2.setItems(cityListData);
@@ -153,6 +153,7 @@ public class MarketStrategyEditPanelController {
                 strategyNameTextField1.setText(strategy.getStrategyName());
                 discountTextField1.setText(String.valueOf(strategy.getDiscount()));
                 vipRankChoiceBox1.getSelectionModel().select(strategy.getVipRank());
+                strategyNameTextField1.setDisable(true);
             }
         } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
             memberRankMarketStrategyTab.setDisable(true);
@@ -178,6 +179,7 @@ public class MarketStrategyEditPanelController {
                     }
                 }
                 tradeAreaChoiceBox2.getSelectionModel().select(strategy.getTradeArea());
+                strategyNameTextField2.setDisable(true);
             }
         } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
             memberRankMarketStrategyTab.setDisable(true);
@@ -192,11 +194,10 @@ public class MarketStrategyEditPanelController {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                strategyNameTextField3.setDisable(true);
             }
         }
-        if (!isNewaPromotion) {
-            strategyNameTextField1.setDisable(true);
-        }
+        
     }
 
     @FXML
@@ -222,19 +223,22 @@ public class MarketStrategyEditPanelController {
             isConfirmed = true;
         } else {
             isConfirmed = false;
-            handleCancel();
             return;
         }
 
         // 把新建或修改的strategy传给上一个界面
-        strategy.setStrategyName(strategyNameTextField1.getText());
-        strategy.setDiscount(Integer.parseInt(discountTextField1.getText()));
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
+            strategy.setStrategyName(strategyNameTextField1.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField1.getText()));
             strategy.setVipRank(vipRankChoiceBox1.getSelectionModel().getSelectedItem());
         } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
+            strategy.setStrategyName(strategyNameTextField2.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField2.getText()));
             strategy.setVipRank(vipRankChoiceBox2.getSelectionModel().getSelectedItem());
             strategy.setTradeArea(tradeAreaChoiceBox2.getSelectionModel().getSelectedItem());
         } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
+            strategy.setStrategyName(strategyNameTextField3.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField3.getText()));
             strategy.setStartTime(LocalDateAdapter.toDate(startTimeDatePicker3.getValue()));
             strategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker3.getValue()));
         }
@@ -251,11 +255,20 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField1.getText().equals("") || !isDigit(discountTextField1.getText())) {
+            if (discountTextField1.getText().equals("") || !isDiscount(discountTextField1.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
+
+                alert.showAndWait();
+                return false;
+            }
+            if(vipRankChoiceBox1.getSelectionModel().getSelectedIndex()<0){
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("策略信息错误");
+                alert.setHeaderText("会员等级空缺");
+                alert.setContentText("请选择会员等级");
 
                 alert.showAndWait();
                 return false;
@@ -270,11 +283,20 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField2.getText().equals("") || !isDigit(discountTextField2.getText())) {
+            if (discountTextField2.getText().equals("") || !isDiscount(discountTextField2.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
+
+                alert.showAndWait();
+                return false;
+            }
+            if(vipRankChoiceBox2.getSelectionModel().getSelectedIndex()<0){
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("策略信息错误");
+                alert.setHeaderText("会员等级空缺");
+                alert.setContentText("请选择会员等级");
 
                 alert.showAndWait();
                 return false;
@@ -299,11 +321,11 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField3.getText().equals("")|| !isDigit(discountTextField3.getText())) {
+            if (discountTextField3.getText().equals("")|| !isDiscount(discountTextField3.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
 
                 alert.showAndWait();
                 return false;
@@ -319,8 +341,24 @@ public class MarketStrategyEditPanelController {
             }
         }
         StrategyVO strategyVO = null;
+        Strategy tmpStrategy =new Strategy(strategy.getStrategyType());
+        if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
+            tmpStrategy.setStrategyName(strategyNameTextField1.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField1.getText()));
+            tmpStrategy.setVipRank(vipRankChoiceBox1.getSelectionModel().getSelectedItem());
+        } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
+            tmpStrategy.setStrategyName(strategyNameTextField2.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField2.getText()));
+            tmpStrategy.setVipRank(vipRankChoiceBox2.getSelectionModel().getSelectedItem());
+            tmpStrategy.setTradeArea(tradeAreaChoiceBox2.getSelectionModel().getSelectedItem());
+        } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
+            tmpStrategy.setStrategyName(strategyNameTextField3.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField3.getText()));
+            tmpStrategy.setStartTime(LocalDateAdapter.toDate(startTimeDatePicker3.getValue()));
+            tmpStrategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker3.getValue()));
+        }
         try {
-            strategyVO = strategy.toVO(address);
+            strategyVO = tmpStrategy.toVO(address);
         } catch (ParseException e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
@@ -352,7 +390,7 @@ public class MarketStrategyEditPanelController {
         return false;
     }
 
-    private boolean isDigit(String str) {
+    private boolean isDiscount(String str) {
         for (char c : str.toCharArray()) {
             if ((c < '0' || c > '9') && c != '.') {
                 return false;
@@ -362,6 +400,9 @@ public class MarketStrategyEditPanelController {
             return false;
         }
         if (str.indexOf('.') != str.lastIndexOf('.')) {
+            return false;
+        }
+        if(Float.parseFloat(str)>1||Float.parseFloat(str)<=0){
             return false;
         }
         return true;

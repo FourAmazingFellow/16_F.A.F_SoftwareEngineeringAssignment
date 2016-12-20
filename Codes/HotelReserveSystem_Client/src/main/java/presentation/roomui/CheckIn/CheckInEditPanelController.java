@@ -11,7 +11,6 @@ import factory.RoomUIFactoryService;
 import factory.RoomUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -69,7 +68,7 @@ public class CheckInEditPanelController {
         // Initialize the choiceBox
         roomTypeChoiceBox.setItems(roomTypeList);
         // 增加提示词
-        roomTypeChoiceBox.setTooltip(new Tooltip("select roomType to check in"));
+        roomTypeChoiceBox.setTooltip(new Tooltip("请选择一个房间类型来办理入住"));
         // 入住时间设置默认值是当前时间
         checkInTimeDatepicker.setValue(LocalDate.now());
         // 只能创建当天的入住信息
@@ -139,7 +138,6 @@ public class CheckInEditPanelController {
             updateSpareRoom = false;
         } else if (result.get() == cancel) {
             alert.close();
-            handleCancel();
             return;
         }
 
@@ -168,7 +166,16 @@ public class CheckInEditPanelController {
 
     private boolean isInputValid() {
         // 判断格式对否
-        if (roomNumTextField.getText() == "" || !isInteger(roomNumTextField.getText())) {
+        if(roomTypeChoiceBox.getSelectionModel().getSelectedIndex()<0){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("入住信息错误");
+            alert.setHeaderText("入住房间类型空缺");
+            alert.setContentText("请选择入住的房间类型");
+
+            alert.showAndWait();
+            return false;
+        }
+        if (roomNumTextField.getText().equals("") || !isInteger(roomNumTextField.getText())) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("入住信息错误");
             alert.setHeaderText("入住房间数量错误");

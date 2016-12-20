@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import po.RoomType;
 import presentation.HotelMainApp;
 import presentation.roomui.CheckIn.model.CheckIn;
@@ -51,13 +52,15 @@ public class ManageCheckInPanelController {
     @FXML
     private TableColumn<CheckIn, String> expDepartTimeColumn;
 
+    @FXML
+    private Button searchByCheckInDateButton = new Button();
+
     private HotelMainApp mainApp;
-    private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型",
-            "单人间", "标准间", "三人间","大床房");
+    private ObservableList<String> roomTypeList = FXCollections.observableArrayList("全部房型", "单人间", "标准间", "三人间", "大床房");
     private ObservableList<CheckIn> checkIndata = FXCollections.observableArrayList();
     private CheckInListWrapper checkInList;
     private String address;
-    private RoomUIFactoryService roomUIFactoryService=new RoomUIFactoryServiceImpl();
+    private RoomUIFactoryService roomUIFactoryService = new RoomUIFactoryServiceImpl();
     private UpdateCheckInService updateCheckInService = roomUIFactoryService.createUpdateCheckInService();
 
     @FXML
@@ -78,7 +81,10 @@ public class ManageCheckInPanelController {
         roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchByRoomType(roomTypeList.get((int) newValue));
         });
-        roomTypeChoiceBox.setTooltip(new Tooltip("show check in list of selected roomType"));
+        roomTypeChoiceBox.setTooltip(new Tooltip("选择某房间类型显示对应入住信息"));
+        searchByCheckInDateButton.setTooltip(new Tooltip("用入住时间搜索入住信息"));
+        startDatePicker.setEditable(false);
+        endDatePicker.setEditable(false);
     }
 
     public void setMainApp(HotelMainApp mainApp) {
@@ -108,15 +114,21 @@ public class ManageCheckInPanelController {
 
     // roomTypeChoiceBox的事件行为
     void handleSearchByRoomType(String roomTypeStr) {
-        if (roomTypeStr.equals( "全部房型")) {
+        //如果之前搜索过，为了避免歧义，把之前搜索的时间选择器的值设成null
+        if(startDatePicker.getValue()!=null){
+            startDatePicker.setValue(null);
+        }
+        if(endDatePicker.getValue()!=null){
+            endDatePicker.setValue(null);
+        }
+        if (roomTypeStr.equals("全部房型")) {
             showAllCheckInList(address);
             return;
         }
-        Enum<RoomType> roomType=RoomType.chineseToEnum(roomTypeStr);
-        
+        Enum<RoomType> roomType = RoomType.chineseToEnum(roomTypeStr);
+
         try {
-            ArrayList<RoomVO> searchedCheckInVOs  = updateCheckInService.searchCheckInInfo(address,
-                    roomType);
+            ArrayList<RoomVO> searchedCheckInVOs = updateCheckInService.searchCheckInInfo(address, roomType);
             showCheckInList(searchedCheckInVOs);
         } catch (RemoteException e) {
             Alert alert = new Alert(AlertType.WARNING);
@@ -129,21 +141,18 @@ public class ManageCheckInPanelController {
 
     @FXML
     void handleSearchWithDate() {
-        Date startDate=null,endDate=null;
-        //判断时间是否为空，是否合适
-        boolean isValid=false;
-        while(!isValid){
-            LocalDate startTime = startDatePicker.getValue();
-            LocalDate endTime = endDatePicker.getValue();
-            startDate=LocalDateAdapter.toDate(startTime);
-            endDate=LocalDateAdapter.toDate(endTime);
-            if(validStartAndEndDate(startDate, endDate)){
-                isValid=true;
-            }
+        Date startDate = null, endDate = null;
+        // 判断时间是否为空，是否合适
+        LocalDate startTime = startDatePicker.getValue();
+        LocalDate endTime = endDatePicker.getValue();
+        startDate = LocalDateAdapter.toDate(startTime);
+        endDate = LocalDateAdapter.toDate(endTime);
+        if (!validStartAndEndDate(startDate, endDate)) {
+            return;
         }
         try {
-            ArrayList<RoomVO> searchedCheckInVOsbyTime= updateCheckInService.searchCheckInInfo(address,
-                    startDate,endDate);
+            ArrayList<RoomVO> searchedCheckInVOsbyTime = updateCheckInService.searchCheckInInfo(address, startDate,
+                    endDate);
             showCheckInList(searchedCheckInVOsbyTime);
         } catch (RemoteException e) {
             Alert alert = new Alert(AlertType.WARNING);
@@ -158,19 +167,19 @@ public class ManageCheckInPanelController {
     void handleNewCheckIn() {
         int selectedIndex = checkInTable.getSelectionModel().getSelectedIndex();
         CheckIn tmpCheckIn;
-        if(selectedIndex>=0){
-            tmpCheckIn=new CheckIn(checkInTable.getItems().get(selectedIndex).getRoomType(),0,null,null);
-        }else{
-            tmpCheckIn=new CheckIn();
+        if (selectedIndex >= 0) {
+            tmpCheckIn = new CheckIn(checkInTable.getItems().get(selectedIndex).getRoomType(), 0, null, null);
+        } else {
+            tmpCheckIn = new CheckIn();
         }
-        boolean isConfirmed=mainApp.showCheckInEditDialog(tmpCheckIn);
-        if(isConfirmed){
+        boolean isConfirmed = mainApp.showCheckInEditDialog(tmpCheckIn);
+        if (isConfirmed) {
             checkInTable.getItems().add(tmpCheckIn);
         }
     }
 
-    public static boolean validStartAndEndDate(Date startDate,Date endDate){
-        if(startDate==null||endDate==null){
+    public static boolean validStartAndEndDate(Date startDate, Date endDate) {
+        if (startDate == null || endDate == null) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("搜索信息错误");
             alert.setHeaderText("搜索的时间为空");
@@ -178,7 +187,7 @@ public class ManageCheckInPanelController {
 
             alert.showAndWait();
             return false;
-        }else if(endDate.compareTo(new Date())>0){
+        } else if (endDate.compareTo(new Date()) > 0) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("搜索信息错误");
             alert.setHeaderText("搜索的结束时间不合理");
@@ -186,7 +195,7 @@ public class ManageCheckInPanelController {
 
             alert.showAndWait();
             return false;
-        }else if(endDate.compareTo(startDate)<0){
+        } else if (endDate.compareTo(startDate) < 0) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("搜索信息错误");
             alert.setHeaderText("搜索的开始时间和结束时间不合理");

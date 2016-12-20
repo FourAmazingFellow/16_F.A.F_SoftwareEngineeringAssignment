@@ -66,6 +66,7 @@ public class CheckOutEditPanelController {
         // 只能创建当天的入住信息
         hourTextField.setText("12");
         minuteTxtField.setText("00");
+        actDepartTimeDatepicker.setEditable(false);
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -141,6 +142,15 @@ public class CheckOutEditPanelController {
 
     private boolean isInputValid() {
         // 判断格式对否
+        if(roomTypeChoiceBox.getValue()==null){
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("退房信息错误");
+            alert.setHeaderText("退房房间类型空缺");
+            alert.setContentText("请选择退房房间类型");
+
+            alert.showAndWait();
+            return false;
+        }
         if (roomNumTextField.getText().equals("")|| !isInteger(roomNumTextField.getText())) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("退房信息错误");
@@ -170,8 +180,13 @@ public class CheckOutEditPanelController {
             return false;
         }
         CheckOutVO checkOutVO;
+        CheckOut tmpCheckOut=new CheckOut();
+        tmpCheckOut.setRoomType(RoomType.chineseToEnum(roomTypeChoiceBox.getSelectionModel().getSelectedItem()));
+        tmpCheckOut.setRoomNum(Integer.parseInt(roomNumTextField.getText()));
+        tmpCheckOut.setActDepartTime(LocalDateAdapter.toDate(actDepartTimeDatepicker.getValue()),
+                Integer.parseInt(hourTextField.getText()), Integer.parseInt(minuteTxtField.getText()));
         try {
-            checkOutVO = checkOut.toVO(address);
+            checkOutVO = tmpCheckOut.toVO(address);
         } catch (ParseException e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
@@ -189,7 +204,6 @@ public class CheckOutEditPanelController {
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (WrongInputException e) {
-            e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("退房信息错误");
             alert.setHeaderText("退房信息错误");

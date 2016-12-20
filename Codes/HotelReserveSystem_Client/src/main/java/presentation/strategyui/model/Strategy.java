@@ -117,7 +117,7 @@ public class Strategy {
         this.strategyName.set(strategyName);
     }
     
-    public void setDiscount(int discount){
+    public void setDiscount(float discount){
         this.discount.set(String.valueOf(discount));
     }
     
@@ -191,13 +191,19 @@ public class Strategy {
     
     public StrategyVO toVO(String address) throws ParseException{
         if(getStrategyType()==StrategyType.BirthdayPromotion){
-            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount());
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount());
         }else if(getStrategyType()==StrategyType.CooperationEnterprisePromotion){
-            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getEnterpriseName(), getSecurityCode());
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getEnterpriseName(), getSecurityCode());
         }else if(getStrategyType()==StrategyType.MultiRoomPromotion){
-            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getMinRoomNum());
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getMinRoomNum());
         }else if(getStrategyType()==StrategyType.SpecificTimePromotion){
-            new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getStartTime(), getEndTime());
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getStartTime(), getEndTime());
+        }else if(getStrategyType()==StrategyType.MemberRankMarket){
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(),getVipRank());
+        }else if(getStrategyType()==StrategyType.VipTradeAreaMarket){
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getVipRank(), getTradeArea());
+        }else if(getStrategyType()==StrategyType.SpecificTimeMarket){
+            return new StrategyVO(address, getStrategyType(), getStrategyName(), getDiscount(), getStartTime(), getEndTime());
         }
         return null;
     }

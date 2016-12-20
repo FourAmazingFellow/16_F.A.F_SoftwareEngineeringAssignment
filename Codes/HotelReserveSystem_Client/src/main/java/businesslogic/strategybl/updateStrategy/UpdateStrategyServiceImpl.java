@@ -56,7 +56,11 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     public StrategyVO getStrategyInfo(String address, Enum<StrategyType> strategyType, String name){
         strategyList=StrategyList.getInstance(address);
         StrategyItem strategyItem=strategyList.getStrategyInfo(address, strategyType, name);
-        return strategyItem.toVO();
+        if(strategyItem!=null)
+            return strategyItem.toVO();
+        else {
+            return null;
+        }
     }
     
     /**

@@ -28,8 +28,7 @@ public class StrategyVO {
         this.address=address;
         this.strategyName=strategyName;
         this.discount=discount;
-        if(strategyType.equals(StrategyType.BirthdayPromotion))
-            this.strategyType=strategyType;
+        this.strategyType=strategyType;
     }
     
     public StrategyVO(String address, Enum<StrategyType> strategyType, String strategyName, float discount, int inputInt){

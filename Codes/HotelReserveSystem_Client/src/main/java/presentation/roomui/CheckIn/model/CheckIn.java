@@ -64,15 +64,29 @@ public class CheckIn {
     }
     
     public void setCheckInTime(Date date, int hour, int minute){
-        String dateStr=dateFormat.format(date);
+        SimpleDateFormat tmpDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr=tmpDateFormat.format(date);
         dateStr=dateStr+" "+hour+":"+minute+":00";
-        this.checkInTime.set(dateStr);
+        Date tmpDate = null;
+        try {
+            tmpDate=dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.checkInTime.set(dateFormat.format(tmpDate));
     }
     
     public void setExpDepartTime(Date date, int hour, int minute){
-        String dateStr=dateFormat.format(date);
+        SimpleDateFormat tmpDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr=tmpDateFormat.format(date);
         dateStr=dateStr+" "+hour+":"+minute+":00";
-        this.expDepartTime.set(dateStr);
+        Date tmpDate = null;
+        try {
+            tmpDate=dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.expDepartTime.set(dateFormat.format(tmpDate));
     }
     
     public Enum<RoomType> getRoomType(){

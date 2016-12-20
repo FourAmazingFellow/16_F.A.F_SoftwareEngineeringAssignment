@@ -1,9 +1,9 @@
 package presentation.strategyui.manageHotelPromotion;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
@@ -14,11 +14,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import po.StrategyType;
 import presentation.HotelMainApp;
@@ -138,6 +140,13 @@ public class PromotionPanelController {
                 });
         ;
     }
+    
+    @FXML
+    public void handleClickedStrategyNameTextField(MouseEvent event){
+        if(strategyNameTextField.getText().equals("用折扣名称搜索...")){
+            strategyNameTextField.setText("");
+        }
+    }
 
     public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
@@ -187,12 +196,8 @@ public class PromotionPanelController {
     @FXML
     void handleSearchWithStrategyName() {
         int selectedIndex = strategyTypeTabPane.getSelectionModel().getSelectedIndex();
-        if (strategyNameTextField.getText() == "") {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("策略名称错误");
-            alert.setHeaderText("策略名称空缺");
-            alert.setContentText("请输入搜索的策略名称");
-            alert.showAndWait();
+        if (strategyNameTextField.getText().equals("")) {
+            showAllPromotionList(address);
             return;
         }
         StrategyVO searchedStrategyVO = null;
@@ -218,14 +223,25 @@ public class PromotionPanelController {
             alert.showAndWait();
             return;
         }
-        if (selectedIndex == 0)
-            birthdayPromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
-        else if (selectedIndex == 1)
-            multiRoomPromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
-        else if (selectedIndex == 2)
-            cooperationEnterprisePromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
-        else if (selectedIndex == 3)
-            spcialTimePromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+        if (selectedIndex == 0){
+//            birthdayPromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+            birthDayPromotionData.clear();
+            birthDayPromotionData.add(new Strategy(searchedStrategyVO));
+        }
+        else if (selectedIndex == 1){
+//            multiRoomPromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+            mutiRoomPromotionData.clear();
+            mutiRoomPromotionData.add(new Strategy(searchedStrategyVO));
+        }
+        else if (selectedIndex == 2){
+//            cooperationEnterprisePromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+            enterprisePromotinonData.clear();
+            enterprisePromotinonData.add(new Strategy(searchedStrategyVO));
+        }
+        else if (selectedIndex == 3){
+            specialTimePromotionData.clear();
+            specialTimePromotionData.add(new Strategy(searchedStrategyVO));
+        }
     }
 
     @FXML
@@ -323,6 +339,15 @@ public class PromotionPanelController {
             alert.setHeaderText("无法进行删除");
             alert.setContentText("请选择一个策略来删除");
             alert.showAndWait();
+            return;
+        }
+        Alert alert1 = new Alert(AlertType.CONFIRMATION);
+        alert1.setTitle("确认删除策略");
+        alert1.setHeaderText("你是否确定要删除该策略？");
+        alert1.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert1.showAndWait();
+        if (result.get() != ButtonType.OK) {
             return;
         }
         try {

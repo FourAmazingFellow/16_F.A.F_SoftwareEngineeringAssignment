@@ -55,9 +55,16 @@ public class CheckOut {
     }
     
     public void setActDepartTime(Date date, int hour, int minute){
-        String dateStr=dateFormat.format(date);
+        SimpleDateFormat tmpDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr=tmpDateFormat.format(date);
         dateStr=dateStr+" "+hour+":"+minute+":00";
-        this.actDepartTime.set(dateStr);
+        Date tmpDate = null;
+        try {
+            tmpDate=dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.actDepartTime.set(dateFormat.format(tmpDate));
     }
     
     public Enum<RoomType> getRoomType(){

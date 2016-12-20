@@ -23,11 +23,13 @@ public enum StrategyType {
         }else if(strategyType==StrategyType.MultiRoomPromotion){
             return "多房间折扣";
         }else if(strategyType==StrategyType.SpecificTimeMarket){
-            return "特定时间促销折扣";
-        }else if(strategyType==StrategyType.SpecificTimePromotion){
             return "特定时间营销折扣";
-        }else{
+        }else if(strategyType==StrategyType.SpecificTimePromotion){
+            return "特定时间促销折扣";
+        }else if(strategyType==StrategyType.VipTradeAreaMarket){
             return "专属商圈会员等级折扣";
+        }else {
+            return null;
         }
     }
     
