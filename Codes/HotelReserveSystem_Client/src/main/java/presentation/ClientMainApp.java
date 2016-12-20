@@ -19,6 +19,7 @@ import presentation.hotelui.reservedhotel.HotelCommentsPanelController;
 import presentation.hotelui.reservedhotel.ReservedHotelPanelController;
 import presentation.hotelui.reservedhotel.SearchedDetailedHotelPanelController;
 import presentation.hotelui.reservedhotel.SimpleDetailedHotelPanelController;
+import presentation.hotelui.reservedhotel.SimpleHotelCommentsPanelController;
 import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.orderui.CreateOrderPanelController;
@@ -113,15 +114,15 @@ public class ClientMainApp extends Application {
 	public void showReservedHotelPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(
-					ClientMainApp.class.getResource("hotelui/reservedhotel/ReservedHotelPanel.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/ReservedHotelPanel.fxml"));
 			AnchorPane reservedHotelPanel = (AnchorPane) loader.load();
 
 			clientRootLayout.setCenter(reservedHotelPanel);
 
 			ReservedHotelPanelController controller = loader.getController();
 
-			controller.setMainApp(this);
+			controller.setMainApp(this);			
+			controller.showReservedHotels();
 
 			primaryStage.show();
 		} catch (IOException e) {
@@ -240,7 +241,7 @@ public class ClientMainApp extends Application {
 	}
 
 	// 显示酒店评论界面
-	public void showHotelComments(HashMap<String, String> comments) {
+	public void showHotelComments(HashMap<String, String> comments, String hotelAddress, String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/HotelCommentsPanel.fxml"));
@@ -252,7 +253,28 @@ public class ClientMainApp extends Application {
 			HotelCommentsPanelController controller = loader.getController();
 
 			// Give the mainApp access to the controller
-			controller.setMainApp(this);
+			controller.setMainApp(this, hotelAddress, conditions);
+			controller.showComments(comments);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void simplyShowHotelComments(HashMap<String, String> comments, String hotelAddress) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/SimpleHotelCommentsPanel.fxml"));
+			AnchorPane hotelCommentsPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(hotelCommentsPanel);
+
+			// Give the controller access to the mainApp.
+			SimpleHotelCommentsPanelController controller = loader.getController();
+
+			// Give the mainApp access to the controller
+			controller.setMainApp(this, hotelAddress);
 			controller.showComments(comments);
 
 			primaryStage.show();

@@ -142,6 +142,6 @@ public class SimpleDetailedHotelPanelController {
 	
 	@FXML
 	private void checkComments() {
-		mainApp.showHotelComments(vo.comments);
+		mainApp.simplyShowHotelComments(vo.comments, vo.hotelAddress);
 	}
 }
