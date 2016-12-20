@@ -113,6 +113,7 @@ public class EditUserInfoController {
 		this.mainApp = mainApp;
 	}
 
+	//显示修改前的信息
 	public void showPreUserInfo(ClientInfoVO client, UserVO webUser) {
 		if (client != null) {
 			tabPane.getSelectionModel().select(clientTab);
@@ -128,6 +129,7 @@ public class EditUserInfoController {
 		}
 	}
 
+	//修改客户信息
 	public void editClientInfo() {
 		this.userIDm = clientUserIDField.getText();
 		this.passwordm = clientPasswordField.getText();
@@ -158,6 +160,7 @@ public class EditUserInfoController {
 		}
 	}
 
+	//修改网站人员信息
 	public void editWebUserInfo() {
 		this.userIDm = webMarketPasswordField.getText();
 		this.passwordm = webMarketPasswordField.getText();
@@ -188,11 +191,13 @@ public class EditUserInfoController {
 	}
 
 	@FXML
+	//取消按钮操作，返回管理用户界面
 	public void cancelButtonAction(ActionEvent event) {
-		return;
+		mainApp.showManageUserPanel();
 	}
 
 	@FXML
+	//确认按钮操作，根据选择的tab调用不同的修改方法
 	public void confirmButtonAction(ActionEvent event) {
 		if (tabPane.getSelectionModel().equals(clientTab)) {
 			editClientInfo();

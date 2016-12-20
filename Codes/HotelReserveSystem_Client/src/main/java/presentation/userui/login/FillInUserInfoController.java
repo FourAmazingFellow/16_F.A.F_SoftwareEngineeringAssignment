@@ -2,74 +2,77 @@ package presentation.userui.login;
 
 import java.rmi.RemoteException;
 
-import bl_Stub.userblservice_Stub.LoginAndSignUpServiceImpl_Stub;
-import businesslogicservice.userblservice.LoginAndSignUpService;
 import businesslogicservice.userblservice.ManageUserInfoService;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import po.UserType;
+import presentation.MainApp;
 import vo.UserVO;
 
 public class FillInUserInfoController {
 	private UserUIFactoryService userFactory;
-	private LoginAndSignUpService registerInfo;
 	private ModifyClientInfoService modifyClientInfo;
 	private ManageUserInfoService manageUserInfo;
+	private MainApp mainApp;
 	private String userID;
 	private String password;
-	
-    @FXML
-    private Label userIDField;
 
-    @FXML
-    private GridPane userInfoPane;
+	@FXML
+	private Label userIDField;
 
-    @FXML
-    private Button cancelButton;
+	@FXML
+	private GridPane userInfoPane;
 
-    @FXML
-    private ChoiceBox<String> userTypeChoiceBox;
+	@FXML
+	private Button cancelButton;
 
-    @FXML
-    private TextField telNumField;
+	@FXML
+	private ChoiceBox<String> userTypeChoiceBox;
 
-    @FXML
-    private Label passwordField;
+	@FXML
+	private TextField telNumField;
 
-    @FXML
-    private Button confirmButton;
+	@FXML
+	private Label passwordField;
 
-    @FXML
-    private Label userInfoLabel;
+	@FXML
+	private Button confirmButton;
 
-	public FillInUserInfoController(String userID, String password) {
-		this.userID = userID;
-		this.password = password;
-	}
+	@FXML
+	private Label userInfoLabel;
 
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		 registerInfo = userFactory.createLoginAndSignUpService();
-//		registerInfo = new LoginAndSignUpServiceImpl_Stub();
-		userIDField.setText(userID);
-		passwordField.setText(password);
-		userTypeChoiceBox.setItems((ObservableList<String>) FXCollections.observableArrayList("客户", "网站营销人员", "网站管理人员"));
+		modifyClientInfo = userFactory.createModifyClientInfoService();
+		// registerInfo = new LoginAndSignUpServiceImpl_Stub();
+		userTypeChoiceBox
+				.setItems((ObservableList<String>) FXCollections.observableArrayList("客户", "网站营销人员", "网站管理人员"));
 		userTypeChoiceBox.setValue("客户");
 	}
+	
+	public void setMainApp(MainApp mainApp){
+		this.mainApp = mainApp;
+	}
 
-	public void registerInfo() {
+	public void setUserIDAndPassword(String userID, String password){
+		userIDField.setText(userID);
+		passwordField.setText(password);
+	}
+	
+	public void fillInRegisterInfo() {
 		String userTypeStr = userTypeChoiceBox.getValue();
 		String telNum = telNumField.getText();
 		UserType userType;
@@ -111,6 +114,16 @@ public class FillInUserInfoController {
 			}
 		}
 
+	}
+
+	@FXML
+	public void cancelButtonAction(ActionEvent event) {
+		mainApp.showRegisterPanel();
+	}
+
+	@FXML
+	public void comfirmButtonAction(ActionEvent event) {
+		fillInRegisterInfo();
 	}
 
 }

@@ -56,10 +56,13 @@ public class SignEnterpriseVipController {
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
+	
+	//设置userID
 	public void setUserID(String userID){
 		this.userID = userID;
 	}
 	
+	//注册企业会员
 	public void signEnterpriseVip(){
 		this.enterpriseID = enterpriseNameField.getText();
 		this.enterprisePassword = enterprisePasswordField.getText();
@@ -110,9 +113,9 @@ public class SignEnterpriseVipController {
 	}
 	
 	@FXML
-	// 取消按钮action
+	// 取消按钮action,返回维护个人信息界面
 	public void cancelbuttonAction(ActionEvent event) {
-		return;
+		mainApp.showModifyClientInfoPanel();
 	}
 
 	@FXML

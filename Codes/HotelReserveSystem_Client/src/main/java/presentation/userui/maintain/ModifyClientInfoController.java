@@ -114,7 +114,7 @@ public class ModifyClientInfoController {
 	@FXML
 	// 编辑按钮action，跳转编辑界面
 	public void editButtonAction() {
-		mainApp.showEditClientInfoPanel(client, regularVip, enterpriseVip);
+		mainApp.showEditClientInfoPanel(userID);
 	}
 
 	@FXML

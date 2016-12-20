@@ -20,7 +20,6 @@ import presentation.ClientMainApp;
 import vo.ClientInfoVO;
 import vo.RegularVipVO;
 
-@SuppressWarnings("unused")
 public class SignRegularVipController {
 	private ClientMainApp mainApp;
 	private SignVipService signVip;
@@ -131,9 +130,9 @@ public class SignRegularVipController {
 	}
 
 	@FXML
-	// 取消按钮action
+	// 取消按钮action,返回维护个人信息界面
 	public void cancelButtonAction(ActionEvent event) {
-		return;
+		mainApp.showModifyClientInfoPanel();
 	}
 
 	@FXML

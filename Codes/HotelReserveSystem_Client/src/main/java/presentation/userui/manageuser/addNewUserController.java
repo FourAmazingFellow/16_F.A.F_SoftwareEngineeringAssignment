@@ -57,7 +57,8 @@ public class addNewUserController {
 		this.mainApp = mainApp;
 	}
 
-	public void addNewUser()  {
+	// 添加新用户
+	public void addNewUser() {
 		this.userID = webMarketUserIDField.getText();
 		this.password = webMarketPasswordField.getText();
 		this.telNum = webMarketTelNumField.getText();
@@ -96,11 +97,13 @@ public class addNewUserController {
 	}
 
 	@FXML
+	// 取消按钮操作，返回管理用户界面
 	void cancelButtonAction(ActionEvent event) {
-		return;
+		mainApp.showManageUserPanel();
 	}
 
 	@FXML
+	//确认添加按钮操作，保存添加
 	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		addNewUser();
 	}

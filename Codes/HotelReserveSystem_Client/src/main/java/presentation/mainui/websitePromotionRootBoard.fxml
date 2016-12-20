@@ -15,37 +15,31 @@
 	<top>
 		<GridPane prefHeight="66.0" prefWidth="995.0" BorderPane.alignment="CENTER">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2166748046875" minWidth="10.0" prefWidth="181.26766967773438" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="218.33078002929688" minWidth="10.0" prefWidth="199.73233032226562" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="180.26766967773438" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="10.0" prefWidth="163.67156982421875" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2166748046875" minWidth="250.0" prefWidth="250.0" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="218.33078002929688" minWidth="250.0" prefWidth="199.73233032226562" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="250.0" prefWidth="180.26766967773438" />
 				<ColumnConstraints hgrow="SOMETIMES" maxWidth="526.9685668945312" minWidth="10.0" prefWidth="169.32843017578125" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="searchHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="234.0" text="搜索酒店" textAlignment="CENTER">
+				<Button fx:id="addCreditSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addCreditAction" prefHeight="60.0" prefWidth="250.0" text="管理信用充值" textAlignment="CENTER">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="modifyPersonalInfoSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="221.0" text="个人基本信息" textAlignment="CENTER" GridPane.columnIndex="1">
+				<Button fx:id="manageAbnormalOrderSection" alignment="CENTER" contentDisplay="CENTER" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="管理异常订单" textAlignment="CENTER" GridPane.columnIndex="1">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myOrderSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="我的订单" textAlignment="CENTER" GridPane.columnIndex="2">
+				<Button fx:id="updateStrategySection" alignment="CENTER" contentDisplay="CENTER" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="制定营销策略" textAlignment="CENTER" GridPane.columnIndex="2">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myReservedHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="210.0" text="我的酒店" textAlignment="CENTER" GridPane.columnIndex="3">
-					<font>
-						<Font size="18.0" />
-					</font>
-				</Button>
-				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="185.0" text="UserID" GridPane.columnIndex="4">
+				<MenuButton fx:id="userActionButton" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="UserID" GridPane.columnIndex="3">
 					<items>
 						<MenuItem mnemonicParsing="false" text="Personal Information" />
 						<MenuItem mnemonicParsing="false" text="LOGOUT" />

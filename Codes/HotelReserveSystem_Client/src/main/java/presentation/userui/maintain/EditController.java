@@ -26,6 +26,9 @@ public class EditController {
 	private ModifyClientInfoService modifyClientInfo;
 	private UserUIFactoryService userFactory;
 	private String userID, newUserID;
+	private ClientInfoVO client;
+	private RegularVipVO regularVip;
+	private EnterpriseVipVO enterpriseVip;
 	private String password;
 	private String telNum, newTelNum;
 	private int creditValue;
@@ -73,14 +76,29 @@ public class EditController {
 	}
 
 	// 显示未修改前的客户信息
-	public void showPreClientInfo(ClientInfoVO client, RegularVipVO regularVip, EnterpriseVipVO enterpriseVip) {
+	public void showPreClientInfo(String userID) {
+		try {
+			this.client = modifyClientInfo.getClientInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		this.userID = client.userID;
 		this.password = client.password;
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
+		
+		if (client instanceof EnterpriseVipVO) {
+			this.enterpriseVip = (EnterpriseVipVO) client;
+		} else if (client instanceof RegularVipVO) {
+			this.regularVip = (RegularVipVO) client;
+		}
 		this.birth = regularVip.birth;
-		if(birth == null){
-		this.enterpriseName = enterpriseVip.enterpriseID;
+		if (birth == null) {
+			this.enterpriseName = enterpriseVip.enterpriseID;
 		}
 		userIDField.setText(userID);
 		telNumField.setText(telNum);
@@ -92,6 +110,7 @@ public class EditController {
 			birthOrEnterpriseLabel.setText(enterpriseName);
 	}
 
+	// 编辑客户信息
 	public void editClientInfo() {
 		newUserID = userIDField.getText();
 		newTelNum = telNumField.getText();
@@ -121,18 +140,22 @@ public class EditController {
 	}
 
 	@FXML
+	// 返回按钮对应操作，返回客户信息界面
 	void cancelButtonAction(ActionEvent event) {
-		return;
+		mainApp.showModifyClientInfoPanel();
 	}
 
 	@FXML
+	// 修改密码按钮对应操作，跳转修改密码界面
 	void modifyPasswordButtonAction(ActionEvent event) {
 		mainApp.showModifyPasswordPanel(userID, telNum, password);
 	}
 
 	@FXML
+	// 保存编辑按钮操作，保存修改
 	void saveButtonAction(ActionEvent event) {
 		editClientInfo();
 
 	}
+
 }

@@ -18,10 +18,10 @@ import presentation.WebsitePromotionMainApp;
 import vo.ClientInfoVO;
 
 public class AddCreditValueController {
-	private WebsitePromotionMainApp mainApp;
 	private AddCreditValueService addCreditValue;
 	private ModifyClientInfoService clientCreditInfo;
 	private UserUIFactoryService userFactory;
+	private WebsitePromotionMainApp mainApp;
 
 	@FXML
 	private Button cancelButton;
@@ -63,11 +63,11 @@ public class AddCreditValueController {
 //		addCreditValue = new AddCreditValueServiceImpl_Stub();
 	}
 
-	public void setMainApp(WebsitePromotionMainApp webPromotion) {
-		this.mainApp = webPromotion;
-	}
-
-	public void searchButtonAction(){
+public void setMainApp(WebsitePromotionMainApp mainApp){
+	this.mainApp = mainApp;
+}
+	
+	public void showClientDetail(){
 		String userID = searchField.getText();
 		ClientInfoVO client = null;
 		try {
@@ -92,7 +92,6 @@ public class AddCreditValueController {
 
 		}
 	}
-
 	public void addCreditValue(){
 		int creditAdded = Integer.parseInt(addCreditField.getText());
 		if (addCreditField.getText().equals(null)) {
@@ -128,12 +127,16 @@ public class AddCreditValueController {
 		}
 	}
 
+	public void searchButtonAction(){
+		showClientDetail();
+	}
+	
 	public void comfirmButtonAction() {
 		addCreditValue();
 	}
 	
 	public void cancelButtonAction(){
-		return;
+		mainApp.showAddCreditPanel();
 	}
 
 }

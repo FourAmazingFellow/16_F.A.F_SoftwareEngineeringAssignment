@@ -31,9 +31,6 @@ import presentation.userui.querycredit.QueryCreditRecordController;
 import presentation.userui.signvip.SignEnterpriseVipController;
 import presentation.userui.signvip.SignRegularVipController;
 import runner.ClientRunner;
-import vo.ClientInfoVO;
-import vo.EnterpriseVipVO;
-import vo.RegularVipVO;
 
 public class ClientMainApp extends Application {
 	public static String userID = "原";
@@ -348,7 +345,7 @@ public class ClientMainApp extends Application {
 	}
 
 	// 显示维护个人信息编辑界面
-	public void showEditClientInfoPanel(ClientInfoVO client, RegularVipVO regularVip, EnterpriseVipVO enterpriseVip) {
+	public void showEditClientInfoPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("userui/maintain/Edit.fxml"));
@@ -359,7 +356,7 @@ public class ClientMainApp extends Application {
 			EditController controller = loader.getController();
 
 			controller.setMainApp(this);
-			controller.showPreClientInfo(client, regularVip, enterpriseVip);
+			controller.showPreClientInfo(userID);
 
 			primaryStage.show();
 		} catch (IOException e) {

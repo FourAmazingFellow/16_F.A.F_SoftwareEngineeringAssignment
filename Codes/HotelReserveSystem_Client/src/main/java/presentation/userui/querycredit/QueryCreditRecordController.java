@@ -66,6 +66,7 @@ public class QueryCreditRecordController {
 		this.mainApp = mainApp;
 	}
 
+	//显示信用记录列表
 	public void showCreditRecordList(String userID) {
 		this.userID = userID;
 		ArrayList<CreditRecordVO> creditRecordVOs;
@@ -92,7 +93,8 @@ public class QueryCreditRecordController {
 	}
 
 	@FXML
+	//返回按钮操作，返回维护个人信息界面
 	public void returnButtonAction(ActionEvent event) {
-		return;
+		mainApp.showModifyClientInfoPanel();
 	}
 }

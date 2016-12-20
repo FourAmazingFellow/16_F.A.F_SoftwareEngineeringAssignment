@@ -35,6 +35,12 @@ public class ManageUserController {
 	private Button searchButton;
 
 	@FXML
+	private Button addButton;
+
+	@FXML
+	private Button editButton;
+	
+	@FXML
 	private TextField searchField;
 
 	@FXML
@@ -49,20 +55,12 @@ public class ManageUserController {
 	@FXML
 	private GridPane webMarketStaffInfo;
 
-	@FXML
-	private Button confirmButton;
 
 	@FXML
 	private Label passwordLabel;
 
 	@FXML
 	private Label creditValueLabel;
-
-	@FXML
-	private Button cancelButton;
-
-	@FXML
-	private Button modifyButton;
 
 	@FXML
 	private Label webMarketpasswordLabel;
@@ -91,8 +89,6 @@ public class ManageUserController {
 	@FXML
 	private Label webMarketuserIDLabel;
 
-	@FXML
-	private Button addButton;
 
 	@FXML
 	private Label manageUserLabel;
@@ -123,6 +119,7 @@ public class ManageUserController {
 		this.mainApp = mainApp;
 	}
 
+	//显示用户信息
 	public void showUserInfo() {
 		 this.userID = searchField.getText();
 //		this.userID = "原";
@@ -198,14 +195,11 @@ public class ManageUserController {
 	}
 
 	@FXML
+	//搜索按钮操作，显示搜索后的信息
 	public void searchButtonAction(ActionEvent event) {
 		showUserInfo();
 	}
 
-	@FXML
-	public void returnButtonAction(ActionEvent event) {
-		return;
-	}
 
 	@FXML
 	public void editButtonAction(ActionEvent event) {

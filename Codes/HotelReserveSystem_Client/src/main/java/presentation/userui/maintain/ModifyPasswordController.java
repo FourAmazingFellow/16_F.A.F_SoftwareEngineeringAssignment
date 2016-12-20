@@ -13,12 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import po.UserType;
+import presentation.ClientMainApp;
 import vo.UserVO;
 
 public class ModifyPasswordController {
 
 	private ModifyClientInfoService modifyClientInfo;
 	private UserUIFactoryService userFactory;
+	private ClientMainApp mainApp;
 	private String userID;
 	private String telNum;
 	private String prePassword, prePasswordTrue, newPassword, newPasswordConfirm;
@@ -52,8 +54,12 @@ public class ModifyPasswordController {
 		// "qwe123", "12345678900", UserType.Client,
 		// 1000, "阿里巴巴");
 	}
+	
+	public void setMainApp(ClientMainApp mainApp){
+		this.mainApp = mainApp;
+	}
 
-
+	//显示客户账号信息，并保存密码和联系方式
 	public void showUserID(String userID,String telNum, String prePasswordTrue) {
 		this.userID = userID;
 		this.telNum = telNum;
@@ -61,6 +67,7 @@ public class ModifyPasswordController {
 		this.prePasswordTrue = prePasswordTrue;
 	}
 
+	//修改密码
 	public void modifyPassword() {
 		this.prePassword = prePasswordField.getText();
 		this.newPassword = newPasswordField.getText();
@@ -100,11 +107,13 @@ public class ModifyPasswordController {
 	}
 
 	@FXML
+	//取消按钮操作，返回编辑信息界面
 	public void cancelButtonAction(ActionEvent event) {
-		return;
+		mainApp.showEditClientInfoPanel(userID);
 	}
 
 	@FXML
+	//确认修改按钮操作，保存修改
 	public void confirmButtonAction(ActionEvent event){
 		modifyPassword();
 	}

@@ -37,11 +37,15 @@ public class RegisterController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		 register = userFactory.createLoginAndSignUpService();
-//		register = new LoginAndSignUpServiceImpl_Stub();
+		register = userFactory.createLoginAndSignUpService();
+		// register = new LoginAndSignUpServiceImpl_Stub();
 	}
 
-	public void register(){
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+	
+	public void register() {
 		String userID = r_userIDArea.getText();
 		String password = r_passwordArea.getText();
 		String password_c = r_passwordCofirmArea.getText();
@@ -62,23 +66,22 @@ public class RegisterController {
 				alert.setTitle("register info");
 				alert.setHeaderText("注册成功！");
 				alert.show();
-				
-				new FillInUserInfoController(userID, password);
-				
+				mainApp.showFillInUserInfoPanel(userID, password);
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("wrong");
 				alert.setHeaderText("用户名已被占用！");
 				alert.setContentText("请重新输入！");
 				alert.show();
+				return;
 			}
-
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("两次密码不一致！");
 			alert.setContentText("请重新输入！");
 			alert.show();
+			return;
 		}
 
 	}
@@ -86,12 +89,8 @@ public class RegisterController {
 	public void returnButton() {
 		mainApp.showLoginView();
 	}
-	
-	public void registerButtonAction(){
-		
-	}
 
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
+	public void registerButtonAction() {
+		register();
 	}
 }

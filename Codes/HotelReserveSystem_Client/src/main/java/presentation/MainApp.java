@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import presentation.userui.login.FillInUserInfoController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
 
@@ -64,6 +65,27 @@ public class MainApp extends Application {
 		}
 	}
 
+	public void showFillInUserInfoPanel(String userID, String password){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("userui/login/FillInUserInfo.fxml"));
+			AnchorPane registerPanel = (AnchorPane) loader.load();
+
+			// Show the scene containing the root layout.
+			Scene scene = new Scene(registerPanel);
+			primaryStage.setScene(scene);
+
+			// Give the controller access to the main app.
+			FillInUserInfoController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setUserIDAndPassword(userID, password);
+			
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void showClientMainApp(String userID) {
 		mainApp = new ClientMainApp();
 		try {
