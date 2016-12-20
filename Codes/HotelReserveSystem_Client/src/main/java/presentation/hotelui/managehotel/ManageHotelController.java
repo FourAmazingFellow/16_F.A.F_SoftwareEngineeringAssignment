@@ -165,6 +165,7 @@ public class ManageHotelController {
 			hotelAddressLabel.setText(hotelAddress);
 			starLabel.setText(String.valueOf(hotelStar));
 			tradeAreaLabel.setText(tradeArea);
+			serviceLabel.setText(service);
 			briefIntroLabel.setText(briefIntro);
 		}
 

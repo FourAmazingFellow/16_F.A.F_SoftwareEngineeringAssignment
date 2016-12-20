@@ -25,11 +25,6 @@ public class CommentOnHotelController {
 	private float mark;
 	private String comments;
 
-	public CommentOnHotelController(String userID, String hotelAddress) {
-		this.userID = userID;
-		this.hotelAddress = hotelAddress;
-	}
-
 	@FXML
 	private Label commentLabel;
 
@@ -40,7 +35,7 @@ public class CommentOnHotelController {
 	private TextArea commentArea;
 
 	@FXML
-	private TextField rankField;
+	private TextField markField;
 
 	@FXML
 	private GridPane commentField;
@@ -52,15 +47,40 @@ public class CommentOnHotelController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		comment = hotelFactory.createCommentOnHotelService();
+		
+		markField.setText("");
+		commentArea.setText("");
+		
 	}
 
 	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
+	public void setuserIDAndAddress(String userID, String address){
+		this.userID = userID;
+		this.hotelAddress = address;
+	}
+	
 	public void commentOnHotel() {
-		this.mark = Float.parseFloat(rankField.getText());
+		this.mark = Float.parseFloat(markField.getText());
 		this.comments = commentArea.getText();
+		if(markField.getText().equals("")|| comments.equals("")){
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
+		else if(mark<0||mark>5){
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("wrong");
+			alert.setHeaderText("评分不在规定范围内（0~5之间）！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
 		boolean result = false;
 		try {
 			result = comment.confirmComment(userID, mark, comments, hotelAddress);

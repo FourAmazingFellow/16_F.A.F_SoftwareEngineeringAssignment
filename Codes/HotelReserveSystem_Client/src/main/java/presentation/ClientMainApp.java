@@ -37,7 +37,6 @@ import vo.RegularVipVO;
 public class ClientMainApp extends Application {
 	public static String userID = "原";
 
-	private MainApp mainApp;
 	private Stage primaryStage;
 	private BorderPane clientRootLayout;
 
@@ -55,10 +54,6 @@ public class ClientMainApp extends Application {
 
 		showClientRootPanel();
 		showReservedHotelPanel();
-	}
-
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
 	}
 
 	// 显示客户导航栏
@@ -350,7 +345,6 @@ public class ClientMainApp extends Application {
 
 			ModifyPasswordController controller = loader.getController();
 
-			controller.setMainApp(this);
 			controller.showUserID(userID, password);
 
 			primaryStage.show();
