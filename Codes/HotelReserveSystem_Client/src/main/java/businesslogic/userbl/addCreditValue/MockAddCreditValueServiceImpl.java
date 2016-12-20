@@ -16,7 +16,7 @@ public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
     private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900", 500, null);
     private String userID;
     private int creditValue;
-    private int creditResult;
+//    private int creditResult;
     private ClientInfoPO clientInfoPO;
 
     @Override
@@ -30,7 +30,7 @@ public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
             e1.printStackTrace();
         }
    //     creditValue = clientInfoPO.getCreditValue();
-        this.creditResult = creditValue + creditAdded;
+//        this.creditResult = creditValue + creditAdded;
 //        clientInfoPO = new ClientInfoPO(clientInfoPO.getUserID(), clientInfoPO.getPassword(), clientInfoPO.getTelNum(),
 //                UserType.Client, creditResult, clientInfoPO.getCreditRecord());
         try {

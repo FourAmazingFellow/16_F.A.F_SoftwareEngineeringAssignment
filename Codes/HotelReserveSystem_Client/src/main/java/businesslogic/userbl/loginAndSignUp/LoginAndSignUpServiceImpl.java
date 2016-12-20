@@ -4,10 +4,11 @@ import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.LoginAndSignUpService;
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ClientInfoPO;
 import po.UserPO;
 import po.UserType;
-import rmi.RemoteHelper;
 import vo.ClientInfoVO;
 import vo.UserVO;
 
@@ -16,13 +17,15 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
     private UserDAO userDAO;
     private CheckLoginInfo check;
 
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    private FactoryService factoryService;
+    
+    public LoginAndSignUpServiceImpl() {
+    	this.factoryService = new FactoryServiceImpl();
+    	this.userDAO = factoryService.getUserDAO();
     }
 
     @Override
     public boolean login(String userID, String password) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         check = new CheckLoginInfo();
         check.setUserDAO(userDAO);
         UserType userType = check.checkUser(userID, password);
@@ -38,7 +41,6 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
      */
     @Override
     public boolean add(UserVO user) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         if (user.userType == UserType.Client){
             ClientInfoVO client = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client, 0, null);
             userDAO.insertClient(new ClientInfoPO(client));

@@ -3,11 +3,12 @@ package businesslogic.userbl.loginAndSignUp;
 import java.rmi.RemoteException;
 
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ClientInfoPO;
 import po.HotelStaffInfoPO;
 import po.UserPO;
 import po.UserType;
-import rmi.RemoteHelper;
 
 public class CheckLoginInfo {
     private UserDAO userDAO;
@@ -18,6 +19,13 @@ public class CheckLoginInfo {
     private String password;
     private UserType userType;
 
+    private FactoryService factoryService;
+    
+    public CheckLoginInfo() {
+    	this.factoryService = new FactoryServiceImpl();
+    	this.userDAO = factoryService.getUserDAO();
+    }
+    
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
@@ -36,7 +44,6 @@ public class CheckLoginInfo {
     public UserType checkUser(String userID, String password) throws RemoteException {
         this.userID = userID;
         this.userType = null;
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         userPO = userDAO.getUserInfo(this.userID);
         client = userDAO.getClientInfo(this.userID);
         hotelStaff = userDAO.getHotelStaffInfo(this.userID);

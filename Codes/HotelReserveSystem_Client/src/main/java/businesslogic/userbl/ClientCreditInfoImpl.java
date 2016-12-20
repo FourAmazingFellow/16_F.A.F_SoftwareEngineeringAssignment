@@ -5,12 +5,13 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ActionType;
 import po.ClientInfoPO;
 import po.CreditRecordPO;
 import po.RegularVipPO;
 import po.UserType;
-import rmi.RemoteHelper;
 
 public class ClientCreditInfoImpl implements ClientCreditInfo{
 
@@ -22,13 +23,19 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
     private ArrayList<CreditRecordPO> creditRecord;
     private ClientInfoPO clientInfoPO;
     
+    private FactoryService factory;
+    
     public void setUserDAO(UserDAO userDAO){
         this.userDAO = userDAO;
     }
     
+    public ClientCreditInfoImpl() {
+    	factory = new FactoryServiceImpl();
+        userDAO = factory.getUserDAO();
+	}
+    
     @Override
     public int getCreditValue(String userID) throws RemoteException {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         this.creditValue = userDAO.getCreditValue(this.userID);
@@ -37,7 +44,6 @@ public class ClientCreditInfoImpl implements ClientCreditInfo{
 
     @Override
     public boolean changeCreditValue(String userID, int num, String orderID, ActionType actionType) throws RemoteException {
-        userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.creditValue = 0;
         this.clientInfoPO = userDAO.getClientInfo(this.userID);

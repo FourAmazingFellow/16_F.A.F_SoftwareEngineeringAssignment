@@ -6,9 +6,10 @@ import businesslogic.strategybl.VerifyEnterpriseVipImpl;
 import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogicservice.userblservice.SignVipService;
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.EnterpriseVipPO;
 import po.RegularVipPO;
-import rmi.RemoteHelper;
 import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
@@ -23,8 +24,12 @@ public class SignVipServiceImpl implements SignVipService {
     private UserDAO userDAO;
     private VerifyEnterpriseVip verifyEnterpriseVip;
 
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    private FactoryService factoryService;
+    
+    
+    public SignVipServiceImpl() {
+    	this.factoryService = new FactoryServiceImpl();
+    	this.userDAO = factoryService.getUserDAO();
     }
 
     public void setVerifyEnterpriseVip() {
@@ -33,14 +38,12 @@ public class SignVipServiceImpl implements SignVipService {
 
     @Override
     public boolean signRegularVip(RegularVipVO regularVip) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         userDAO.signRegularVip(new RegularVipPO(regularVip));
         return true;
     }
 
     @Override
     public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         if (verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword) == true) {
         	userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
         	return true;

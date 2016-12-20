@@ -6,12 +6,13 @@ import java.util.ArrayList;
 
 import businesslogicservice.userblservice.AddCreditValueService;
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.ActionType;
 import po.ClientInfoPO;
 import po.CreditRecordPO;
 import po.RegularVipPO;
 import po.UserType;
-import rmi.RemoteHelper;
 
 public class AddCreditValueServiceImpl implements AddCreditValueService {
     private UserDAO userDAO;
@@ -21,21 +22,20 @@ public class AddCreditValueServiceImpl implements AddCreditValueService {
     private int vipRank;
     private ArrayList<CreditRecordPO> creditRecord;
 
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
+    private FactoryService factoryService;
+    
 
     public AddCreditValueServiceImpl() {
+    	this.factoryService = new FactoryServiceImpl();
+    	this.userDAO = factoryService.getUserDAO();
     }
 
     @Override
     public boolean addCreditValue(String userID, int creditAdded) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         ClientInfoPO clientInfoPO = new ClientInfoPO();
         clientInfoPO = userDAO.getClientInfo(this.userID);
         this.creditValue = clientInfoPO.getCreditValue();
-//        System.out.println(creditValue);
         this.creditResult = creditValue + creditAdded;
         
         //update普通会员vipRank

@@ -4,8 +4,9 @@ import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.ManageUserInfoService;
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.UserPO;
-import rmi.RemoteHelper;
 import vo.HotelStaffInfoVO;
 import vo.UserVO;
 
@@ -21,12 +22,12 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
     private String userID;
     private UserVO userVO;
     private HotelStaffInfoVO hotelStaffInfoVO;
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
+    
+    private FactoryService factoryService;
+    
     public ManageUserInfoServiceImpl() {
+    	this.factoryService = new FactoryServiceImpl();
+    	this.userDAO = factoryService.getUserDAO();
     }
 
     /*
@@ -41,7 +42,6 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      */
     @Override
     public boolean add(UserVO user) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         userDAO.insertUser(new UserPO(user));
         return true;
     }
@@ -58,7 +58,6 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      */
     @Override
     public HotelStaffInfoVO getHotelStaffInfo(String userID) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.hotelStaffInfoVO = new HotelStaffInfoVO(userDAO.getHotelStaffInfo(this.userID));
         return hotelStaffInfoVO;
@@ -77,7 +76,6 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      */
     @Override
     public UserVO getUserInfo(String userID) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         this.userID = userID;
         this.userVO = new UserVO(userDAO.getUserInfo(this.userID));
         return userVO;
@@ -98,7 +96,6 @@ public class ManageUserInfoServiceImpl implements ManageUserInfoService {
      */
     @Override
     public boolean modifyUserInfo(UserVO userVO, String userID) throws RemoteException {
-        this.userDAO = RemoteHelper.getInstance().getUserDAO();
         userDAO.updateUser(new UserPO(userVO), userID);
         return true;
     }

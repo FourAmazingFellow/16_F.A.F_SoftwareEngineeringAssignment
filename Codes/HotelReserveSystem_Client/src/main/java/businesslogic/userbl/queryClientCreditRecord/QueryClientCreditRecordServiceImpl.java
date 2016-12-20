@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
 import dataservice.userDAO.UserDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.CreditRecordPO;
-import rmi.RemoteHelper;
 import vo.CreditRecordVO;
 
 /**
@@ -22,13 +23,15 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
 	private ArrayList<CreditRecordVO> creditRecordVOs;
 	private ArrayList<CreditRecordPO> creditRecordPOs;
 
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	private FactoryService factoryService;
+	
+	public QueryClientCreditRecordServiceImpl() {
+		this.factoryService = new FactoryServiceImpl();
+		this.userDAO = factoryService.getUserDAO();
 	}
 
 	@Override
 	public ArrayList<CreditRecordVO> queryCreditRecord(String userID) throws RemoteException {
-		userDAO = RemoteHelper.getInstance().getUserDAO();
 		this.userID = userID;
 		this.creditRecordPOs = new ArrayList<>();
 		this.creditRecordVOs = new ArrayList<>();
