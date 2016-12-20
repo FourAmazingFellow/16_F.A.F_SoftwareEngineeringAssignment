@@ -42,7 +42,7 @@ public class HotelDAOImpl implements HotelDAO {
 		else if(roomType == RoomType.TRIBLE_ROOM)
 			return 2;
 		else
-			return 0000000000000003;
+			return 3;
 	}
 	
 	//判断一个hotel是否在用户预订列表中
@@ -107,27 +107,27 @@ public class HotelDAOImpl implements HotelDAO {
 			conn = JDBC_Connection.getConnection();
 			//根据酒店地址获得数据库数据
 			if(condition[2].length() == 0) {
-				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and  min_Price between ? and ? and starLevel between ? and ? and mark between ? and ?");
+				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and  min_Price < ? and starLevel between ? and ? and mark between ? and ? and max_Price > ?");
 				pstmt.setString(1, condition[0]);
 				pstmt.setString(2, condition[1]);
-				pstmt.setInt(3, 0);
+				pstmt.setInt(3, Integer.parseInt(condition[4]));
+				pstmt.setInt(4, Integer.parseInt(condition[5]));
+				pstmt.setInt(5, Integer.parseInt(condition[6]));
+				pstmt.setFloat(6, Float.parseFloat(condition[7]));
+				pstmt.setFloat(7, Float.parseFloat(condition[8]));
+				pstmt.setInt(8, Integer.parseInt(condition[3]));
+			}
+			else {
+				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and hotelName = ? and  min_Price < ? and starLevel between ? and ? and mark between ? and ? max_Price > ?");
+				pstmt.setString(1, condition[0]);
+				pstmt.setString(2, condition[1]);
+				pstmt.setString(3, condition[2]);
 				pstmt.setInt(4, Integer.parseInt(condition[4]));
 				pstmt.setInt(5, Integer.parseInt(condition[5]));
 				pstmt.setInt(6, Integer.parseInt(condition[6]));
 				pstmt.setFloat(7, Float.parseFloat(condition[7]));
 				pstmt.setFloat(8, Float.parseFloat(condition[8]));
-			}
-			else {
-				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and hotelName = ? and  min_Price between ? and ? and starLevel between ? and ? and mark between ? and ?");
-				pstmt.setString(1, condition[0]);
-				pstmt.setString(2, condition[1]);
-				pstmt.setString(3, condition[2]);
-				pstmt.setInt(4, Integer.parseInt(condition[3]));
-				pstmt.setInt(5, Integer.parseInt(condition[4]));
-				pstmt.setInt(6, Integer.parseInt(condition[5]));
-				pstmt.setInt(7, Integer.parseInt(condition[6]));
-				pstmt.setFloat(8, Float.parseFloat(condition[7]));
-				pstmt.setFloat(9, Float.parseFloat(condition[8]));
+				pstmt.setInt(9, Integer.parseInt(condition[3]));
 			}
 			
 			rs = pstmt.executeQuery();
