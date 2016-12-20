@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 
-import javax.swing.SortingFocusTraversalPolicy;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,7 +26,6 @@ import presentation.orderui.DetailedOrderPanelController;
 import presentation.userui.maintain.EditController;
 import presentation.userui.maintain.ModifyClientInfoController;
 import presentation.userui.maintain.ModifyPasswordController;
-import presentation.userui.manageuser.EditUserInfoController;
 import presentation.userui.querycredit.QueryCreditRecordController;
 import presentation.userui.signvip.SignEnterpriseVipController;
 import presentation.userui.signvip.SignRegularVipController;
@@ -57,7 +54,7 @@ public class ClientMainApp extends Application {
 		this.primaryStage.setResizable(false);
 
 		showClientRootPanel();
-		showSearchView();
+		showReservedHotelPanel();
 	}
 
 	public void setMainApp(MainApp mainApp) {
@@ -112,7 +109,7 @@ public class ClientMainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
-					ClientMainApp.class.getResource("hotelui/reservedhotel/ReservedHotelPanelController.fxml"));
+					ClientMainApp.class.getResource("hotelui/reservedhotel/ReservedHotelPanel.fxml"));
 			AnchorPane reservedHotelPanel = (AnchorPane) loader.load();
 
 			clientRootLayout.setCenter(reservedHotelPanel);

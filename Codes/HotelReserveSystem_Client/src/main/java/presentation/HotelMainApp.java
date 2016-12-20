@@ -55,7 +55,7 @@ public class HotelMainApp extends Application {
 		this.primaryStage.setResizable(false);
 		
 		initHotelRootPanel();
-//		showHotelOrderPanel();
+		showHotelOrderPanel();
 	}
 	public static void main(String[] args) {
 		launch(args);
@@ -88,6 +88,10 @@ public class HotelMainApp extends Application {
 		}
 	}
 	
+	/**
+	 * 根据已登陆用户显示酒店所有订单
+	 * @see
+	 */
 	public void showHotelOrderPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();

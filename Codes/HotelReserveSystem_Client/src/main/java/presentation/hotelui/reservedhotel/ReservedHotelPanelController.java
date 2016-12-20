@@ -6,14 +6,11 @@ import java.util.ArrayList;
 import businesslogicservice.hotelblservice.CheckOrderedHotelService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
@@ -23,9 +20,6 @@ import presentation.hotelui.FxBriefHotelInfo;
 import vo.OrderedHotelInfoVO;
 
 public class ReservedHotelPanelController {
-
-	@FXML
-	private ChoiceBox<String> rankTypeChoiceBox;
 
 	@FXML
 	private Button checkDetailedHotelButton;
@@ -71,18 +65,6 @@ public class ReservedHotelPanelController {
 	private void intialize() {
 		factory = new HotelUIFactoryServiceImpl();
 		checkReservedHotelService = factory.createCheckOrderedHotelService();
-
-		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级排序", "按评分排序"));
-
-		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				if (newValue.intValue() == 0)
-					hotelTableView.getSortOrder().add(starLevelCol);
-				else if (newValue.intValue() == 1)
-					hotelTableView.getSortOrder().add(markCol);
-			}
-		});
 		
 		showReservedHotels();
 	}

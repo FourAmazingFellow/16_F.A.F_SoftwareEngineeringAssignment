@@ -38,6 +38,13 @@ public class HotelCommentsPanelController {
 	private ClientMainApp mainApp;
 	private String hotelAddress;
 
+	@FXML
+	private void initialize() {
+		userOneLabel.setText("");
+		userTwoLabel.setText("");
+		userThreeLabel.setText("");
+	}
+	
 	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}

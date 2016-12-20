@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.reservedhotel.ReservedHotelPanelController">
    <children>
-      <TableView fx:id="hotelTableView" layoutX="50.0" layoutY="82.0" prefHeight="485.0" prefWidth="910.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
+      <TableView fx:id="hotelTableView" layoutX="50.0" layoutY="15.0" prefHeight="552.0" prefWidth="910.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="40.0">
         <columns>
           <TableColumn fx:id="hotelNameCol" prefWidth="143.15505981445312" text="酒店名称" />
             <TableColumn fx:id="tradeAreaCol" prefWidth="108.80551147460938" text="商圈" />
@@ -17,10 +17,8 @@
             <TableColumn fx:id="orderTypesCol" prefWidth="256.74774169921875" text="历史订单状态" />
         </columns>
       </TableView>
-      <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="463.0" layoutY="20.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.topAnchor="20.0" />
       <Button fx:id="returnButton" layoutX="176.0" layoutY="585.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
       <Button fx:id="checkDetailedHotelButton" layoutX="643.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleCheckDetailedHotel" prefHeight="40.0" prefWidth="150.0" text="查看详情" />
       <Button fx:id="createButton" layoutX="409.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleCreateOrder" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
-      <Label layoutX="329.0" layoutY="32.0" text="排序方式" />
    </children>
 </AnchorPane>
