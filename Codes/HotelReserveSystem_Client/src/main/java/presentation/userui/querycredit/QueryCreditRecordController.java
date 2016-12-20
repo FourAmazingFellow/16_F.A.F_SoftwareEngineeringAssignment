@@ -71,7 +71,7 @@ public class QueryCreditRecordController {
 		ArrayList<CreditRecordVO> creditRecordVOs;
 		try {
 			creditRecordVOs = queryClientCreditRecord.queryCreditRecord(this.userID);
-			if (creditRecordVOs.isEmpty()) {
+			if (creditRecordVOs == null) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("wrong");
 				alert.setHeaderText("找不到信用记录！");

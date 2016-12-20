@@ -46,8 +46,8 @@
                </font>
             </Label>
             <TextField fx:id="r_userIDArea" prefHeight="55.0" prefWidth="461.0" promptText="请输入用户名..." GridPane.columnIndex="1" />
-            <TextField fx:id="r_passwordArea" prefHeight="55.0" prefWidth="461.0" promptText="请输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="r_passwordCofirmArea" prefHeight="55.0" prefWidth="461.0" promptText="请重复输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="r_passwordArea" prefHeight="55.0" prefWidth="461.0" promptText="请输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="r_passwordCofirmArea" prefHeight="55.0" prefWidth="461.0" promptText="请重复输入密码..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="registerButton" layoutX="320.0" layoutY="508.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="确定">

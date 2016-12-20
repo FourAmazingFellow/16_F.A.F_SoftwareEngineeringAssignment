@@ -28,6 +28,7 @@ public class ManageUserController {
 	private ModifyClientInfoService modifyClientInfo;
 	private String userID;
 	private ClientInfoVO client;
+	private HotelStaffInfoVO hotelStaff;
 	private UserVO webUser;
 
 	@FXML
@@ -113,33 +114,20 @@ public class ManageUserController {
 		userFactory = new UserUIFactoryServiceImpl();
 		manageUser = userFactory.createManageUserInfoService();
 		modifyClientInfo = userFactory.createModifyClientInfoService();
-		
+
 		searchField.setText("");
-		
-		
+
 	}
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	public void showClientPanel() {
-		tabPane.getSelectionModel().select(clientTab);
-	}
-
-	public void showHotelStaffPanel() {
-		tabPane.getSelectionModel().select(hotelStaffTab);
-	}
-
-	public void showWebMarketPanel() {
-		tabPane.getSelectionModel().select(webMarketStaffTab);
-	}
-
-	@FXML
-	public void searchButtonAction(ActionEvent event){
-		this.userID = searchField.getText();
-		if(userID.equals("")){	
-		Alert alert = new Alert(AlertType.WARNING);
+	public void showUserInfo() {
+		 this.userID = searchField.getText();
+//		this.userID = "原";
+		if (userID.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("未输入查找的用户名！");
 			alert.setContentText("请重新输入！");
@@ -147,6 +135,8 @@ public class ManageUserController {
 			return;
 		}
 		ClientInfoVO client = null;
+		HotelStaffInfoVO hotelStaff = null;
+		UserVO webUser = null;
 		try {
 			client = modifyClientInfo.getClientInfo(userID);
 		} catch (RemoteException e) {
@@ -157,45 +147,47 @@ public class ManageUserController {
 			alert.showAndWait();
 		}
 		this.client = client;
-		HotelStaffInfoVO hotelStaff = null;
-		try {
-			hotelStaff = manageUser.getHotelStaffInfo(userID);
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-		UserVO webUser = null;
-		try {
-			webUser = manageUser.getUserInfo(userID);
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-		this.webUser = webUser;
-		if (client != null) {
+		if (this.client == null) {
+			try {
+				hotelStaff = manageUser.getHotelStaffInfo(userID);
+				this.hotelStaff = hotelStaff;
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("NetWork Warning");
+				alert.setHeaderText("Fail to connect with the server!");
+				alert.setContentText("Please check your network connection!");
+				alert.showAndWait();
+			}
+		} else if (this.client == null && this.hotelStaff == null) {
+			try {
+				webUser = manageUser.getUserInfo(userID);
+				this.webUser = webUser;
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("NetWork Warning");
+				alert.setHeaderText("Fail to connect with the server!");
+				alert.setContentText("Please check your network connection!");
+				alert.showAndWait();
+			}}
+		
+		if (this.client != null) {
 			tabPane.getSelectionModel().select(clientTab);
 			userIDLabel.setText(client.userID);
 			passwordLabel.setText(client.password);
 			telNumLabel.setText(client.telNum);
 			creditValueLabel.setText(String.valueOf(client.creditValue));
-		} else if (hotelStaff != null) {
+		} else if (this.hotelStaff != null) {
 			tabPane.getSelectionModel().select(hotelStaffTab);
 			hoteluserIDLabel.setText(hotelStaff.userID);
 			hotelpasswordLabel.setText(hotelStaff.password);
 			hoteltelNumLabel.setText(hotelStaff.telNum);
 			hotelAddressLabel.setText(hotelStaff.hotelAddress);
-		} else if (webUser != null) {
+		} else if (this.webUser != null) {
 			tabPane.getSelectionModel().select(webMarketStaffTab);
 			webMarketuserIDLabel.setText(webUser.userID);
 			webMarketpasswordLabel.setText(webUser.password);
 			webMarkettelNumLabel.setText(webUser.telNum);
-		} else if(client == null && hotelStaff == null && webUser == null){
+		} else if (client == null && hotelStaff == null && webUser == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("未找到相关用户！");
@@ -203,6 +195,11 @@ public class ManageUserController {
 			alert.show();
 			return;
 		}
+	}
+
+	@FXML
+	public void searchButtonAction(ActionEvent event) {
+		showUserInfo();
 	}
 
 	@FXML

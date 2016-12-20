@@ -88,7 +88,7 @@ public class WebsiteManageMainApp extends Application {
 			ManageUserController controller = loader.getController();
 
 			controller.setMainApp(this);
-			controller.showClientPanel();
+//			controller.showUserInfo();
 			
 			primaryStage.show();
 		} catch (IOException e) {

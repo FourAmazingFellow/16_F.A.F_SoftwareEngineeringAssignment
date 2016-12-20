@@ -120,7 +120,7 @@ public class ModifyClientInfoController {
 	@FXML
 	// 查看信用记录按钮action，跳转信用记录界面
 	public void creditButtonAction() {
-		mainApp.showQueryCreditRecordPanel(userID);
+		mainApp.showQueryCreditRecordPanel();
 	}
 
 	@FXML

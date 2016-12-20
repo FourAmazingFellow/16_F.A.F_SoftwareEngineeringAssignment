@@ -79,14 +79,16 @@ public class EditController {
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
 		this.birth = regularVip.birth;
+		if(birth == null){
 		this.enterpriseName = enterpriseVip.enterpriseID;
+		}
 		userIDField.setText(userID);
 		telNumField.setText(telNum);
 		creditValueLabel.setText(String.valueOf(creditValue));
 		// 判断是否非空
 		if (birth != null)
 			birthOrEnterpriseLabel.setText(String.valueOf(birth));
-		else if (!enterpriseName.isEmpty())
+		else if (enterpriseName != null)
 			birthOrEnterpriseLabel.setText(enterpriseName);
 	}
 
@@ -125,7 +127,7 @@ public class EditController {
 
 	@FXML
 	void modifyPasswordButtonAction(ActionEvent event) {
-		mainApp.showModifyPasswordPanel(userID, password);
+		mainApp.showModifyPasswordPanel(userID, telNum, password);
 	}
 
 	@FXML

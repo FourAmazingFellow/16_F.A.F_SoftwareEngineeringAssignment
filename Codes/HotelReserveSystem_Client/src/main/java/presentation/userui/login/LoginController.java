@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import businesslogic.userbl.loginAndSignUp.CheckLoginInfo;
 import businesslogicservice.userblservice.LoginAndSignUpService;
+import businesslogicservice.userblservice.ManageUserInfoService;
 import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
 import javafx.fxml.FXML;
@@ -19,7 +20,12 @@ public class LoginController {
 	private MainApp mainApp;
 	private LoginAndSignUpService login;
 	private CheckLoginInfo check;
+	private ManageUserInfoService manageUserInfo;
 	private UserUIFactoryService userFactory;
+	private String userID;
+	private String password;
+	private UserType userType;
+	private String address;
 	@FXML
 	private TextField userIDTextArea;
 
@@ -37,6 +43,7 @@ public class LoginController {
 		userFactory = new UserUIFactoryServiceImpl();
 		check = new CheckLoginInfo();
 		login = userFactory.createLoginAndSignUpService();
+		manageUserInfo = userFactory.createManageUserInfoService();
 	}
 
 	public void setMainApp(MainApp mainApp) {
@@ -44,9 +51,9 @@ public class LoginController {
 	}
 
 	public void verifyLogin() {
-		String userID = userIDTextArea.getText();
-		String password = passwordTextArea.getText();
-		UserType userType = null;
+		this.userID = userIDTextArea.getText();
+		this.password = passwordTextArea.getText();
+		this.userType = null;
 		try {
 			userType = check.checkUser(userID, password);
 		} catch (RemoteException e1) {
@@ -80,14 +87,22 @@ public class LoginController {
 			alert.show();
 
 			if (userType == UserType.Client)
-				mainApp.showClientMainApp();
-			else if (userType == UserType.HotelStaff)
-				mainApp.showHotelMainApp();
+				mainApp.showClientMainApp(userID);
+			else if (userType == UserType.HotelStaff){
+				try {
+					this.address = manageUserInfo.getHotelStaffInfo(userID).hotelAddress;
+				} catch (RemoteException e) {
+					Alert alert1 = new Alert(AlertType.WARNING);
+					alert1.setTitle("NetWork Warning");
+					alert1.setHeaderText("Fail to connect with the server!");
+					alert1.setContentText("Please check your network connection!");
+					alert1.showAndWait();
+				}
+				mainApp.showHotelMainApp(userID, address);}
 			else if (userType == UserType.WebMarketStaff)
-				mainApp.showWebsitePromotionMainApp();
+				mainApp.showWebsitePromotionMainApp(userID);
 			else if (userType == UserType.WebManageStaff)
-				mainApp.showWebsiteManageMainApp();
-
+				mainApp.showWebsiteManageMainApp(userID);
 		}
 	}
 

@@ -11,9 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import po.UserType;
-import presentation.ClientMainApp;
 import vo.UserVO;
 
 public class ModifyPasswordController {
@@ -31,13 +30,13 @@ public class ModifyPasswordController {
 	private Label passwordTitleLabel;
 
 	@FXML
-	private TextField prePasswordField;
+	private PasswordField prePasswordField;
 
 	@FXML
-	private TextField newPasswordField;
+	private PasswordField newPasswordField;
 
 	@FXML
-	private TextField newPasswordConfirmField;
+	private PasswordField newPasswordConfirmField;
 
 	@FXML
 	private Button cancelButton;
@@ -55,8 +54,9 @@ public class ModifyPasswordController {
 	}
 
 
-	public void showUserID(String userID, String prePasswordTrue) {
+	public void showUserID(String userID,String telNum, String prePasswordTrue) {
 		this.userID = userID;
+		this.telNum = telNum;
 		userIDLabel.setText(userID);
 		this.prePasswordTrue = prePasswordTrue;
 	}

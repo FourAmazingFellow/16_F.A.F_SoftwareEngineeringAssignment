@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import presentation.MainApp;
 import vo.UserVO;
@@ -19,10 +20,10 @@ public class RegisterController {
 	private UserUIFactoryService userFactory;
 
 	@FXML
-	private TextField r_passwordCofirmArea;
+	private PasswordField r_passwordCofirmArea;
 
 	@FXML
-	private TextField r_passwordArea;
+	private PasswordField r_passwordArea;
 
 	@FXML
 	private TextField r_userIDArea;

@@ -351,7 +351,7 @@ public class ClientMainApp extends Application {
 	public void showEditClientInfoPanel(ClientInfoVO client, RegularVipVO regularVip, EnterpriseVipVO enterpriseVip) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("userui/maintain/EditController.fxml"));
+			loader.setLocation(ClientMainApp.class.getResource("userui/maintain/Edit.fxml"));
 			AnchorPane detailedOrderPanel = (AnchorPane) loader.load();
 
 			clientRootLayout.setCenter(detailedOrderPanel);
@@ -368,7 +368,7 @@ public class ClientMainApp extends Application {
 	}
 
 	// 显示维护个人信息修改密码界面
-	public void showModifyPasswordPanel(String userID, String password) {
+	public void showModifyPasswordPanel(String userID, String telNum, String password) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("userui/maintain/ModifyPassword.fxml"));
@@ -378,7 +378,7 @@ public class ClientMainApp extends Application {
 
 			ModifyPasswordController controller = loader.getController();
 
-			controller.showUserID(userID, password);
+			controller.showUserID(userID,telNum, password);
 
 			primaryStage.show();
 		} catch (IOException e) {
@@ -387,7 +387,7 @@ public class ClientMainApp extends Application {
 	}
 
 	// 显示维护个人信息查看信用记录界面
-	public void showQueryCreditRecordPanel(String userID) {
+	public void showQueryCreditRecordPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("userui/querycredit/QueryCreditRecord.fxml"));
