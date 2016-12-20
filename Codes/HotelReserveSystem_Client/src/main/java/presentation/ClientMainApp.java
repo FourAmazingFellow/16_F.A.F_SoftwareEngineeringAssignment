@@ -37,6 +37,7 @@ import vo.RegularVipVO;
 public class ClientMainApp extends Application {
 	public static String userID = "原";
 
+	private MainApp mainApp;
 	private Stage primaryStage;
 	private BorderPane clientRootLayout;
 
@@ -56,7 +57,6 @@ public class ClientMainApp extends Application {
 		showSearchView();
 	}
 
-<<<<<<< HEAD
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
@@ -66,8 +66,6 @@ public class ClientMainApp extends Application {
 		mainApp.showLoginView();
 	}
 	
-=======
->>>>>>> origin/master
 	// 显示客户导航栏
 	public void showClientRootPanel() {
 		try {
