@@ -55,7 +55,7 @@ public class CheckIn {
     }
     
     public void setRoomType(Enum<RoomType> roomType){
-        String roomTypeStr=roomType.name();
+        String roomTypeStr=RoomType.enumToChinese(roomType);
         this.roomType.set(roomTypeStr);
     }
     

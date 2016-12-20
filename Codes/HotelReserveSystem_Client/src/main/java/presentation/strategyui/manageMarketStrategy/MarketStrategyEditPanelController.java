@@ -242,7 +242,7 @@ public class MarketStrategyEditPanelController {
 
     private boolean isInputValid() {
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
-            if (strategyNameTextField1.getText() == "") {
+            if (strategyNameTextField1.getText().equals("")) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("策略名称空缺");
@@ -251,7 +251,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField1.getText() == "" || !isDigit(discountTextField1.getText())) {
+            if (discountTextField1.getText().equals("") || !isDigit(discountTextField1.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -261,7 +261,7 @@ public class MarketStrategyEditPanelController {
                 return false;
             }
         } else if (strategy.getStrategyType() == StrategyType.VipTradeAreaMarket) {
-            if (strategyNameTextField2.getText() == "") {
+            if (strategyNameTextField2.getText().equals("")) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("策略名称空缺");
@@ -270,7 +270,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField2.getText() == "" || !isDigit(discountTextField2.getText())) {
+            if (discountTextField2.getText().equals("") || !isDigit(discountTextField2.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -290,7 +290,7 @@ public class MarketStrategyEditPanelController {
                 return false;
             }
         } else if (strategy.getStrategyType() == StrategyType.SpecificTimeMarket) {
-            if (strategyNameTextField3.getText() == "") {
+            if (strategyNameTextField3.getText().equals("")) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("策略名称空缺");
@@ -299,7 +299,7 @@ public class MarketStrategyEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField3.getText() == "" || !isDigit(discountTextField3.getText())) {
+            if (discountTextField3.getText().equals("")|| !isDigit(discountTextField3.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -353,7 +353,18 @@ public class MarketStrategyEditPanelController {
     }
 
     private boolean isDigit(String str) {
-        return CheckInEditPanelController.isDigit(str);
+        for (char c : str.toCharArray()) {
+            if ((c < '0' || c > '9') && c != '.') {
+                return false;
+            }
+        }
+        if (str.indexOf('.') == 0 || str.indexOf('.') == str.length() - 1) {
+            return false;
+        }
+        if (str.indexOf('.') != str.lastIndexOf('.')) {
+            return false;
+        }
+        return true;
     }
 
 }

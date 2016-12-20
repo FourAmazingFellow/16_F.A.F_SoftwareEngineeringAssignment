@@ -15,7 +15,7 @@
             <Label text="房间数量" GridPane.rowIndex="1" />
             <Label text="实际离开时间" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="roomTypeChoiceBox" prefHeight="44.0" prefWidth="440.0" styleClass="choice-box-small" GridPane.columnIndex="1" />
-            <TextField fx:id="roomNumTextField" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="roomNumTextField" onMouseClicked="#handleClickRoomNum" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <AnchorPane prefHeight="200.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <DatePicker fx:id="actDepartTimeDatepicker" layoutY="43.0" prefHeight="31.0" prefWidth="235.0" />

@@ -75,7 +75,7 @@ public class ManageCheckOutPanelController {
         roomTypeChoiceBox.setItems(roomTypeList);
         // 为roomTypeChoiceBox增加监听
         roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            handleSearchByRoomType(newValue.toString());
+            handleSearchByRoomType(roomTypeList.get((int) newValue));
         });
         roomTypeChoiceBox.setTooltip(new Tooltip("show check out list of selected roomType"));
 
