@@ -17,6 +17,8 @@ import presentation.orderui.GetDetailedOrderDonePanelController;
 import presentation.orderui.SystemWithdrawDetailedOrderPanelController;
 
 public class WebsitePromotionMainApp extends Application {
+	public static String userID = "";
+	
 	private Stage primaryStage;
 	private BorderPane websitePromotionRootLayout;
 	

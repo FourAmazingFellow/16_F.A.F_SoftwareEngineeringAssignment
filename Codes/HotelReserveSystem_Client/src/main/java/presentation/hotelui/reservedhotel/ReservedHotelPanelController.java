@@ -65,11 +65,9 @@ public class ReservedHotelPanelController {
 	private void intialize() {
 		factory = new HotelUIFactoryServiceImpl();
 		checkReservedHotelService = factory.createCheckOrderedHotelService();
-		
-		showReservedHotels();
 	}
 
-	private void showReservedHotels() {
+	public  void showReservedHotels() {
 		ArrayList<OrderedHotelInfoVO> list;
 		try {
 			list = checkReservedHotelService.enrollHotelBreifInfoList(ClientMainApp.userID);

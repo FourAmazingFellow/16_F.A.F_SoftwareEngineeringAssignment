@@ -203,6 +203,7 @@ public class SearchDetailsPanelController {
 
 		setDatePicker();
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级排序", "按评分排序"));
+		rankTypeChoiceBox.setValue("排序方式");
 		
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override

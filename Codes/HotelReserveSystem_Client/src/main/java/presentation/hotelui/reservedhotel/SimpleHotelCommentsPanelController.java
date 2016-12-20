@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import presentation.ClientMainApp;
 
-public class HotelCommentsPanelController {
+public class SimpleHotelCommentsPanelController {
 	@FXML
 	private GridPane commentsGridPane;
 
@@ -37,8 +37,7 @@ public class HotelCommentsPanelController {
 
 	private ClientMainApp mainApp;
 	private String hotelAddress;
-	private String[] conditions;
-	
+
 	@FXML
 	private void initialize() {
 		userOneLabel.setText("");
@@ -46,14 +45,13 @@ public class HotelCommentsPanelController {
 		userThreeLabel.setText("");
 	}
 	
-	public void setMainApp(ClientMainApp mainApp, String hotelAddress, String[] conditions) {
+	public void setMainApp(ClientMainApp mainApp, String hotelAddress) {
 		this.mainApp = mainApp;
 		this.hotelAddress = hotelAddress;
-		this.conditions = conditions;
 	}
 
 	public void returnAction() {
-		mainApp.showDetailedHotelPanel(hotelAddress, conditions);
+		mainApp.simplyShowDetailedHotelPanel(hotelAddress);
 	}
 
 	public void showComments(HashMap<String, String> comments) {

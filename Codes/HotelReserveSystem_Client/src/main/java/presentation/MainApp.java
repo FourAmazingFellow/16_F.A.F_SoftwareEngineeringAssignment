@@ -12,12 +12,15 @@ import presentation.userui.login.RegisterController;
 
 public class MainApp extends Application {
 	private Stage primaryStage;
+	private Application mainApp;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
+		
+		showClientMainApp("原");
 	}
 
 	// 显示初始界面 --- 登陆界面
@@ -61,19 +64,45 @@ public class MainApp extends Application {
 		}
 	}
 
-	public void showClientMainApp() {
-	
+	public void showClientMainApp(String userID) {
+		mainApp = new ClientMainApp();
+		try {
+			ClientMainApp.userID = userID;
+			mainApp.start(primaryStage);
+			((ClientMainApp) mainApp).setMainApp(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void showHotelMainApp() {
-
+	public void showHotelMainApp(String hotelAddress, String userID) {
+		mainApp = new HotelMainApp();
+		try {
+			HotelMainApp.hotelAddress = hotelAddress;
+			HotelMainApp.userId = userID;
+			mainApp.start(primaryStage);		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void showWebsitePromotionMainApp() {
-
+	public void showWebsitePromotionMainApp(String userID) {
+		mainApp = new WebsiteManageMainApp();
+		try {
+			WebsiteManageMainApp.userID = userID;
+			mainApp.start(primaryStage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	public void showWebsiteManageMainApp(){
-		
+	public void showWebsiteManageMainApp(String userID){
+		mainApp = new WebsiteManageMainApp();
+		try {
+			WebsiteManageMainApp.userID = userID;
+			mainApp.start(primaryStage);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void main(String[] args) {
