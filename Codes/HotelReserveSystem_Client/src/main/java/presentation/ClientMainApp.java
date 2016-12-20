@@ -36,7 +36,7 @@ import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
 public class ClientMainApp extends Application {
-	public static String userID = "原";
+	public static String userID = "Accident";
 
 	private MainApp mainApp;
 	private Stage primaryStage;
@@ -187,6 +187,7 @@ public class ClientMainApp extends Application {
 
 			// Set the person into the controller.
 			ScreenPanelController controller = loader.getController();
+			controller.setConditions(conditions);
 			controller.setDialogStage(dialogStage);
 
 			// Show the dialog and wait until the user closes it
@@ -327,7 +328,7 @@ public class ClientMainApp extends Application {
 	}
 
 	// 显示维护个人信息界面
-	public void showModifyClientInfoPanel(String userID) {
+	public void showModifyClientInfoPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("userui/maintain/ModifyClientInfo.fxml"));

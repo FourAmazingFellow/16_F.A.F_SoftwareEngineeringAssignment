@@ -62,7 +62,7 @@ public class ReservedHotelPanelController {
 	}
 	
 	@FXML
-	private void intialize() {
+	private void initialize() {
 		factory = new HotelUIFactoryServiceImpl();
 		checkReservedHotelService = factory.createCheckOrderedHotelService();
 	}
@@ -92,6 +92,8 @@ public class ReservedHotelPanelController {
 			alert.setHeaderText("Fail to connect with the server!");
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
