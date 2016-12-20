@@ -6,18 +6,22 @@ import java.util.HashMap;
 import java.util.Set;
 
 import dataservice.hotelDAO.HotelDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.HotelPO;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.RoomVO;
 
 public class AvailableRoomList {
 	private HotelDAO hotelDAO;
 	private String hotelAddress;
+
+	private FactoryService factory;
 	
 	public AvailableRoomList(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
-		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
+		this.factory = new FactoryServiceImpl();
+		this.hotelDAO = factory.getHotelDAO();
 	}
 	
 	public ArrayList<RoomVO> getAvailableRoomList() throws RemoteException {

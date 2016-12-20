@@ -5,17 +5,20 @@ import java.util.ArrayList;
 
 import businesslogicservice.hotelblservice.CommentOnHotelService;
 import dataservice.hotelDAO.HotelDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.HotelPO;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class CommentOnHotelServiceImpl implements CommentOnHotelService{
 
 	private CommentableOrderList commentableOrderList;
 	private HotelDAO hotelDAO;
+	private FactoryService factory;
 	
 	public CommentOnHotelServiceImpl() {
-		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
+		this.factory = new FactoryServiceImpl();
+		this.hotelDAO = factory.getHotelDAO();
 	}
 	
 	@Override

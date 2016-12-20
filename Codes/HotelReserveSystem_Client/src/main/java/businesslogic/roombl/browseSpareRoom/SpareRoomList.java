@@ -8,9 +8,10 @@ import java.util.Date;
 
 import businesslogic.roombl.exception.NoThisRoomTypeSpareRoomException;
 import dataservice.roomDAO.RoomDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.RoomPO;
 import po.RoomType;
-import rmi.RemoteHelper;
 
 /**
  * 
@@ -21,8 +22,12 @@ import rmi.RemoteHelper;
 public class SpareRoomList {
 
     private RoomDAO roomDAO;
+    
+    private FactoryService factoryService;
+    
     public SpareRoomList(){
-        roomDAO=RemoteHelper.getInstance().getRoomDAO();
+    	this.factoryService = new FactoryServiceImpl();
+        roomDAO=factoryService.getRoomDAO();
     }
     
     /**

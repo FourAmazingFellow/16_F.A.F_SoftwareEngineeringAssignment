@@ -9,9 +9,10 @@ import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.strategyDAO.StrategyDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.StrategyPO;
 import po.StrategyType;
-import rmi.RemoteHelper;
 import vo.StrategyVO;
 
 /**
@@ -36,10 +37,13 @@ public class StrategyList {
 
     private static StrategyList strategyList;
     private String address;
+    
+    private FactoryService factoryService;
 
     protected StrategyList(String address) {
         this.address = address;
-        strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
+        factoryService = new FactoryServiceImpl();
+        strategyDAO = factoryService.getStrategyDAO();
         birthdatyPromotionList = getStrategyList(address, StrategyType.BirthdayPromotion);
         multiRoomPromotionList = getStrategyList(address, StrategyType.MultiRoomPromotion);
         memberRankMarketList = getStrategyList(address, StrategyType.MemberRankMarket);

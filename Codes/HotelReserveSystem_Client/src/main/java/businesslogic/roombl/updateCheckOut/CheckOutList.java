@@ -6,9 +6,10 @@ import java.util.Date;
 
 import businesslogic.strategybl.exception.WrongInputException;
 import dataservice.roomDAO.RoomDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.RoomPO;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.RoomVO;
 
 /**
@@ -21,8 +22,11 @@ public class CheckOutList {
 
     private RoomDAO roomDAO;
     
+    private FactoryService factoryService;
+    
     public CheckOutList(){
-        roomDAO=RemoteHelper.getInstance().getRoomDAO();
+    	this.factoryService = new FactoryServiceImpl();
+        roomDAO=factoryService.getRoomDAO();
     }
     
     /**

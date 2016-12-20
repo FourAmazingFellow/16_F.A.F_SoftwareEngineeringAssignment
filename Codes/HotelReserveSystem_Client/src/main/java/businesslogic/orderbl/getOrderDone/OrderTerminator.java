@@ -10,7 +10,6 @@ import factory.FactoryServiceImpl;
 import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class OrderTerminator {
@@ -21,7 +20,7 @@ public class OrderTerminator {
 	
 	public OrderTerminator(){
 		factory = new FactoryServiceImpl();
-		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		orderDaoService = factory.getOrderDAO();
 		userCreditService = factory.createClientCreditInfoService();
 	}
 	

@@ -17,6 +17,12 @@ import businesslogic.userbl.UserInfoImpl;
 import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogic.userbl.VipInfo;
 import businesslogic.userbl.VipInfoImpl;
+import dataservice.hotelDAO.HotelDAO;
+import dataservice.orderDAO.OrderDAO;
+import dataservice.roomDAO.RoomDAO;
+import dataservice.strategyDAO.StrategyDAO;
+import dataservice.userDAO.UserDAO;
+import rmi.RemoteHelper;
 
 public class FactoryServiceImpl implements FactoryService {
 	@Override
@@ -62,5 +68,30 @@ public class FactoryServiceImpl implements FactoryService {
 	@Override
 	public VerifyEnterpriseVip createVerifyEnterpriseVip() {
 		return new VerifyEnterpriseVipImpl();
+	}
+
+	@Override
+	public HotelDAO getHotelDAO() {
+		return RemoteHelper.getInstance().getHotelDAO();
+	}
+
+	@Override
+	public OrderDAO getOrderDAO() {
+		return RemoteHelper.getInstance().getOrderDAO();
+	}
+
+	@Override
+	public RoomDAO getRoomDAO() {
+		return RemoteHelper.getInstance().getRoomDAO();
+	}
+
+	@Override
+	public StrategyDAO getStrategyDAO() {
+		return RemoteHelper.getInstance().getStrategyDAO();
+	}
+
+	@Override
+	public UserDAO getUserDAO() {
+		return RemoteHelper.getInstance().getUserDAO();
 	}
 }

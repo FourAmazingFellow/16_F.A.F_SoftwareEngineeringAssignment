@@ -8,7 +8,6 @@ import dataservice.hotelDAO.HotelDAO;
 import factory.FactoryService;
 import factory.FactoryServiceImpl;
 import po.HotelPO;
-import rmi.RemoteHelper;
 import vo.HotelStaffInfoVO;
 import vo.HotelVO;
 
@@ -25,8 +24,8 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 	
 	
 	public ManageHotelInfoServiceImpl() {
-		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
 		this.factory = new FactoryServiceImpl();
+		this.setHotelDAO(factory.getHotelDAO());
 		this.userService = factory.createUserInfo();
 	}
 	

@@ -15,7 +15,6 @@ import factory.FactoryServiceImpl;
 import po.OrderPO;
 import po.OrderState;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class NewOrder {
@@ -29,7 +28,7 @@ public class NewOrder {
 	
 	public NewOrder() {
 		factory = new FactoryServiceImpl();
-		orderDao = RemoteHelper.getInstance().getOrderDAO();
+		orderDao = factory.getOrderDAO();
 		hotelInfoService = factory.createHotelInfoService();
 		roomInfoService = factory.createRoomInfoService();
 		strategyInfoService = factory.createStrategyInfoService();

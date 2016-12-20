@@ -23,7 +23,7 @@ public class GenerateAbnormalOrder implements Runnable {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			
-			pstmt = conn.prepareStatement("select * from orderinfo where orderState = 1 and lastedOrderDoneTime < date_sub(sysdate(),interval 3600 second)");
+			pstmt = conn.prepareStatement("select * from orderinfo where orderState = 1 and lastedOrderDoneTime > date_sub(sysdate(),interval 60 second)");
 			
 			rs = pstmt.executeQuery();
 			
@@ -70,7 +70,7 @@ public class GenerateAbnormalOrder implements Runnable {
 			//根据酒店地址获得数据库数据
 			Calendar calendar = Calendar.getInstance();
 			String day = "" + String.format("%02d", calendar.get(Calendar.MONTH) + 1) + String.format("%02d", calendar.get(Calendar.DATE));
-			pstmt = conn.prepareStatement("update room" + day + " set roomNums = roomNums + ? where hotelAddress = ? and roomType = ?");
+			pstmt = conn.prepareStatement("update room" + day + " set roomNum = roomNum + ? where hotelAddress = ? and roomType = ?");
 			pstmt.setInt(1, roomNums);
 			pstmt.setString(2, hotelAddress);
 			pstmt.setInt(3, roomType);
