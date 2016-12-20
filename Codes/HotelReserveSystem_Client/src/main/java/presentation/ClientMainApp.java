@@ -36,7 +36,7 @@ import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
 public class ClientMainApp extends Application {
-	public static String userID = "Accident";
+	public static String userID = "原";
 
 	private MainApp mainApp;
 	private Stage primaryStage;

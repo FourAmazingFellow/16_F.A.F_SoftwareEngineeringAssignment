@@ -141,7 +141,7 @@ public class CreateOrderPanelController {
 		newOrderVO.num = numChoicer.getValue();
 		newOrderVO.numOfPerson = numOfPersonChoicer.getValue();
 		newOrderVO.orderProducedTime = new Date();
-		newOrderVO.roomType = RoomType.chineseToEnum(roomTypeChoicer.getValue());
+		newOrderVO.roomType = RoomType.chinToEnum(roomTypeChoicer.getValue());
 		
 		ResultMessage resultMessage = newOrderCreater.checkNewOrder(newOrderVO);
 		showResult(resultMessage);

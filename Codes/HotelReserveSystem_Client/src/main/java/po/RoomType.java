@@ -43,4 +43,21 @@ public enum RoomType {
         }
         return roomType;
     }
+    
+    public static Enum<RoomType> chinToEnum(String roomTypeStr){
+        if(roomTypeStr==null||roomTypeStr.isEmpty()){
+            return null;
+        }
+        Enum<RoomType> roomType;
+        if(roomTypeStr.equals("单人房")){
+            roomType=RoomType.SINGLE_ROOM;
+        }else if(roomTypeStr.equals("标准间")){
+            roomType=RoomType.STANDARD_ROOM;
+        }else if(roomTypeStr.equals("三人房")){
+            roomType=RoomType.TRIBLE_ROOM;
+        }else{
+            roomType=RoomType.KING_SIZE_ROOM;
+        }
+        return roomType;
+    }
 }

@@ -80,7 +80,8 @@ public class MainApp extends Application {
 		try {
 			HotelMainApp.hotelAddress = hotelAddress;
 			HotelMainApp.userId = userID;
-			mainApp.start(primaryStage);		
+			mainApp.start(primaryStage);	
+			((ClientMainApp) mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

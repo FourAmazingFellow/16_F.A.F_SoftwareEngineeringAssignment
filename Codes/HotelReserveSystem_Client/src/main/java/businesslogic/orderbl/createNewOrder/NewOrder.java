@@ -48,7 +48,6 @@ public class NewOrder {
 	}
 	
 	public int getPrice(OrderVO vo) throws RemoteException {
-		// Codes 用到strategyInfoService,orderDao 并将VO中是否被打过折属性重置
 		double discount = -1;
 		discount = strategyInfoService.getBestDiscount(vo);
 		
