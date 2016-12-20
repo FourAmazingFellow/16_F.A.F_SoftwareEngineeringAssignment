@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.Optional;
 
-import businesslogic.userbl.VipInfo;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
@@ -24,7 +23,6 @@ import vo.RegularVipVO;
 public class ModifyClientInfoController {
 	private ClientMainApp mainApp;
 	private ModifyClientInfoService modifyClientInfo;
-	private VipInfo vipInfo;
 	private UserUIFactoryService userFactory;
 	private String userID;
 	private String telNum;
@@ -84,6 +82,7 @@ public class ModifyClientInfoController {
 	public void showClientInfo(String userID) {
 		try {
 			this.client = modifyClientInfo.getClientInfo(userID);
+
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("NetWork Warning");
@@ -94,26 +93,13 @@ public class ModifyClientInfoController {
 		this.userID = userID;
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
-		try {
-			this.regularVip = vipInfo.getRegularVipInfo(userID);
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
+		if (client instanceof EnterpriseVipVO) {
+			this.enterpriseVip = (EnterpriseVipVO) client;
+			this.enterpriseName = enterpriseVip.enterpriseID;
+		} else if (client instanceof RegularVipVO) {
+			this.regularVip = (RegularVipVO) client;
+			this.birth = regularVip.birth;
 		}
-		this.birth = regularVip.birth;
-		try {
-			this.enterpriseVip = vipInfo.getEnterpriseVipInfo(userID);
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-		this.enterpriseName = enterpriseVip.enterpriseID;
 
 		userIDLabel.setText(userID);
 		telNumLabel.setText(telNum);
@@ -121,7 +107,7 @@ public class ModifyClientInfoController {
 		// 判断是否非空
 		if (birth != null)
 			birthOrEnterpriseLabel.setText(String.valueOf(birth));
-		else if (!enterpriseName.isEmpty())
+		else if (enterpriseName != null)
 			birthOrEnterpriseLabel.setText(enterpriseName);
 	}
 
@@ -148,13 +134,13 @@ public class ModifyClientInfoController {
 			ButtonType signRegularVip = new ButtonType("注册普通会员");
 			ButtonType signEnterpriseVip = new ButtonType("注册企业会员");
 			ButtonType cancel = new ButtonType("取消", ButtonData.CANCEL_CLOSE);
-			alert.getButtonTypes().setAll(signRegularVip,signEnterpriseVip,cancel);
+			alert.getButtonTypes().setAll(signRegularVip, signEnterpriseVip, cancel);
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == signRegularVip) {
 				mainApp.showSignRegularVipPanel(userID);
 			} else if (result.get() == signEnterpriseVip) {
 				mainApp.showSignEnterpriseVipPanel(userID);
-			} else{
+			} else {
 				return;
 			}
 			// 不为空则已经是会员了，不可重复注册

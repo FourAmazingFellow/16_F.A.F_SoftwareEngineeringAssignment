@@ -35,7 +35,7 @@ import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
 public class ClientMainApp extends Application {
-	public static String userID = "原";
+	public static String userID = "Accident";
 
 	private Stage primaryStage;
 	private BorderPane clientRootLayout;
@@ -295,7 +295,7 @@ public class ClientMainApp extends Application {
 	}
 
 	// 显示维护个人信息界面
-	public void showModifyClientInfoPanel(String userID) {
+	public void showModifyClientInfoPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("userui/maintain/ModifyClientInfo.fxml"));
