@@ -7,8 +7,12 @@ import dataservice.userDAO.UserDAO;
 import factory.FactoryService;
 import factory.FactoryServiceImpl;
 import po.ClientInfoPO;
+import po.EnterpriseVipPO;
+import po.RegularVipPO;
 import po.UserType;
 import vo.ClientInfoVO;
+import vo.EnterpriseVipVO;
+import vo.RegularVipVO;
 import vo.UserVO;
 
 public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
@@ -30,9 +34,23 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService{
     
     @Override
     public ClientInfoVO getClientInfo(String userID) throws RemoteException {
-        this.userID = userID;
-        this.clientInfoVO = new ClientInfoVO(userDAO.getClientInfo(this.userID));
-        return clientInfoVO;
+    	this.userID = userID;
+		this.clientInfoVO = new ClientInfoVO(userDAO.getClientInfo(this.userID));
+		EnterpriseVipPO enterpriseVipPO = userDAO.getEnterpriseVipInfo(userID);
+		RegularVipPO regularVipPO = userDAO.getRegularVipInfo(userID);
+		if (enterpriseVipPO.getEnterpriseID() != null) {
+			EnterpriseVipVO enterpriseVipVO = new EnterpriseVipVO(clientInfoVO.userID, clientInfoVO.password,
+					clientInfoVO.telNum, clientInfoVO.userType, clientInfoVO.creditValue, clientInfoVO.creditRecord,
+					enterpriseVipPO.getEnterpriseID(), enterpriseVipPO.getEnterprisepassword());
+			return enterpriseVipVO;
+		} else if (regularVipPO.getBirth() != null) {
+			RegularVipVO regularVipVO = new RegularVipVO(clientInfoVO.userID, clientInfoVO.password,
+					clientInfoVO.telNum, clientInfoVO.userType, clientInfoVO.creditValue, clientInfoVO.creditRecord,
+					regularVipPO.getBirth(), regularVipPO.getVipRank());
+			return regularVipVO;
+		}else{
+			return clientInfoVO;
+		}
     }
 
     @Override

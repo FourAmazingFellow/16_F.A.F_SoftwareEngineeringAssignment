@@ -70,7 +70,6 @@ public class VipInfoImplTest {
     @Test
     public void testGetRegularVipInfo() {
         vipInfo = new VipInfoImpl();
-        vipInfo.setUserDAO(userDAO);
         RegularVipVO regularVip;
 		try {
 			regularVip = vipInfo.getRegularVipInfo(this.userIDr);
@@ -93,7 +92,6 @@ public class VipInfoImplTest {
     @Test
     public void testGetEnterpriseVipInfo() {
         vipInfo = new VipInfoImpl();
-        vipInfo.setUserDAO(userDAO);
         EnterpriseVipVO enterpriseVip;
 		try {
 			enterpriseVip = vipInfo.getEnterpriseVipInfo(this.userIDe);

@@ -68,7 +68,6 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignRegularVip() {
         signVip = new SignVipServiceImpl();
-        signVip.setUserDAO(userDAO);
         regularVip = new RegularVipVO(userID, password, telNum, userType, 0, null, birth, 3);
         boolean result;
 		try {
@@ -83,7 +82,6 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignEnterpriseVip() {
         signVip = new SignVipServiceImpl();
-        signVip.setUserDAO(userDAO);
         signVip.setVerifyEnterpriseVip();
         enterpriseVip = new EnterpriseVipVO(userIDe, password, telNum, userType, 0, null, enterpriseID,
                 enterprisePassword);

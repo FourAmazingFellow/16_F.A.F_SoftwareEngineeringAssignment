@@ -61,7 +61,6 @@ public class AddCreditValueServiceImplTest {
     @Test
     public void testAddCreditValue() {
      addCreditValue = new AddCreditValueServiceImpl();
-     addCreditValue.setUserDAO(userDAO);
      boolean result;
 	try {
 		result = addCreditValue.addCreditValue(userID, creditAdded);

@@ -54,7 +54,6 @@ public class LoginAndSignUpServiceImplTest {
 	public void testLogin() {
 		loginAndSignUp = new LoginAndSignUpServiceImpl();
 		// check = new CheckLoginInfo();
-		loginAndSignUp.setUserDAO(userDAO);
 		// check.setUserDAO(userDAO);
 		boolean result;
 		try {
@@ -69,7 +68,6 @@ public class LoginAndSignUpServiceImplTest {
 	@Test
 	public void testAdd() {
 		loginAndSignUp = new LoginAndSignUpServiceImpl();
-		loginAndSignUp.setUserDAO(userDAO);
 		UserVO user = new UserVO(userIDNew, passwordNew, telNumNew, userTypeNew);
 		boolean result;
 		try {

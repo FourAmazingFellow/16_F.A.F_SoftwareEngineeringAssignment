@@ -69,7 +69,6 @@ public class ManageUserInfoServiceImplTest{
     @Test
     public void testAdd() {
         manageUserInfo = new ManageUserInfoServiceImpl();
-        manageUserInfo.setUserDAO(userDAO);
         UserVO user = new UserVO(userIDNew, passwordNew, telNumNew, userTypeNew);
         boolean result;
 		try {
@@ -84,7 +83,6 @@ public class ManageUserInfoServiceImplTest{
     @Test
     public void testGetHotelStaffInfo(){
         manageUserInfo = new ManageUserInfoServiceImpl();
-        manageUserInfo.setUserDAO(userDAO);
         try {
 			hotelStaffInfoVO = manageUserInfo.getHotelStaffInfo(userID);
 			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userID, hotelStaffInfoVO.userID);        
@@ -100,7 +98,6 @@ public class ManageUserInfoServiceImplTest{
     @Test
     public void testGetUserInfo() {
         manageUserInfo = new ManageUserInfoServiceImpl();
-        manageUserInfo.setUserDAO(userDAO);
         try {
 			userVO = manageUserInfo.getUserInfo(userIDw);
 			assertEquals("ManageUserInfoService.getUserInfo(userID,userType) has an error in userID!", userIDw, userVO.userID);        
@@ -116,7 +113,6 @@ public class ManageUserInfoServiceImplTest{
     @Test
     public void testModifyUserInfo() {
         manageUserInfo = new ManageUserInfoServiceImpl();
-        manageUserInfo.setUserDAO(userDAO);
         UserVO modified = new UserVO(userID, "hstaff00011234", telNum, userType);
        boolean result;
 	try {
