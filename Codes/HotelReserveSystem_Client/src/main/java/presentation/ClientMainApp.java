@@ -15,7 +15,10 @@ import po.OrderType;
 import presentation.hotelui.ScreenPanelController;
 import presentation.hotelui.SearchDetailsPanelController;
 import presentation.hotelui.SearchPanelController;
-import presentation.hotelui.reservedhotel.DetailedHotelPanelController;
+import presentation.hotelui.reservedhotel.HotelCommentsPanelController;
+import presentation.hotelui.reservedhotel.ReservedHotelPanelController;
+import presentation.hotelui.reservedhotel.SearchedDetailedHotelPanelController;
+import presentation.hotelui.reservedhotel.SimpleDetailedHotelPanelController;
 import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.orderui.CreateOrderPanelController;
@@ -52,7 +55,7 @@ public class ClientMainApp extends Application {
 	//显示客户导航栏
 	public void showClientRootPanel() {
 		try {
-			// Load root layout from fxml file.
+			// Load root layout from FXML file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("mainui/clientRootBoard.fxml"));
 			clientRootLayout = (BorderPane) loader.load();
@@ -61,7 +64,7 @@ public class ClientMainApp extends Application {
 			Scene scene = new Scene(clientRootLayout);
 			primaryStage.setScene(scene);
 
-			// Give the controller access to the main app.
+			// Give the controller access to the mainApp.
 			ClientRootBoardController controller = loader.getController();
 			controller.setMainApp(this);
 
@@ -80,7 +83,7 @@ public class ClientMainApp extends Application {
 
 			clientRootLayout.setCenter(searchPanel);
 			
-			// Give the controller access to the main app.
+			// Give the controller access to the mainApp.
 			CreateOrderPanelController controller = loader.getController();
 			
 			controller.setMainApp(this);
@@ -92,6 +95,24 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	//显示"我预定过的酒店"界面
+	public void showReservedHotelPanel() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/ReservedHotelPanelController.fxml"));
+			AnchorPane reservedHotelPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(reservedHotelPanel);
+			
+			ReservedHotelPanelController controller = loader.getController();
+
+			controller.setMainApp(this);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	//显示用户主界面 --- 搜索界面
 	public void showSearchView() {
 		try {
@@ -101,7 +122,7 @@ public class ClientMainApp extends Application {
 
 			clientRootLayout.setCenter(searchPanel);
 			
-			// Give the controller access to the main app.
+			// Give the controller access to the mainApp.
 			SearchPanelController controller = loader.getController();
 			controller.setMainApp(this);
 
@@ -161,6 +182,7 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	//由"搜索界面"到达的酒店详情
 	public void showDetailedHotelPanel(String hotelAddress, String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -169,10 +191,10 @@ public class ClientMainApp extends Application {
 
 			clientRootLayout.setCenter(detailedHotelPanel);
 			
-			// Give the controller access to the main app.
-			DetailedHotelPanelController controller = loader.getController();
+			// Give the controller access to the mainApp.
+			SearchedDetailedHotelPanelController controller = loader.getController();
+			
 			controller.setMainApp(this, conditions);
-			//默认显示所有订单
 			controller.showDetailedOrderPanel(hotelAddress);
 
 			primaryStage.show();
@@ -181,8 +203,46 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	//由"我预定过的酒店"到达的详情界面
+		public void simplyShowDetailedHotelPanel(String hotelAddress) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/simpleDetailedHotelPanel.fxml"));
+				AnchorPane detailedHotelPanel = (AnchorPane) loader.load();
+
+				clientRootLayout.setCenter(detailedHotelPanel);
+				
+				SimpleDetailedHotelPanelController controller = loader.getController();
+
+				controller.setMainApp(this);
+				controller.showDetailedOrderPanel(hotelAddress);
+
+				primaryStage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	//显示酒店评论界面
 	public void showHotelComments(HashMap<String, String> comments) {
-		
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/HotelCommentsPanel.fxml"));
+			AnchorPane hotelCommentsPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(hotelCommentsPanel);
+			
+			// Give the controller access to the mainApp.
+			HotelCommentsPanelController controller = loader.getController();
+			
+			// Give the mainApp access to the controller
+			controller.setMainApp(this);
+			controller.showComments(comments);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//显示所有订单列表
@@ -194,10 +254,11 @@ public class ClientMainApp extends Application {
 
 			clientRootLayout.setCenter(allUserOrderPanel);
 			
-			// Give the controller access to the main app.
+			// Give the controller access to the mainApp.
 			BrowseUserOrderPanelController controller = loader.getController();
-			controller.setMainApp(this);
+			
 			//默认显示所有订单
+			controller.setMainApp(this);
 			controller.getBriefOrderList(userID, OrderType.ALL);
 
 			primaryStage.show();
@@ -225,7 +286,6 @@ public class ClientMainApp extends Application {
 			e.printStackTrace();
 		}
 		
-		
 	}
 	
 	/**
@@ -239,24 +299,5 @@ public class ClientMainApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-	}
-
-	public void simplyShowDetailedHotelPanel(String hotelAddress) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ClientMainApp.class.getResource("hotelui/reservedhotel/detailedHotelPanel.fxml"));
-			AnchorPane detailedHotelPanel = (AnchorPane) loader.load();
-
-			clientRootLayout.setCenter(detailedHotelPanel);
-			
-			// Give the controller access to the main app.
-			DetailedHotelPanelController controller = loader.getController();
-			//默认显示所有订单
-			controller.showDetailedOrderPanel(hotelAddress);
-
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }

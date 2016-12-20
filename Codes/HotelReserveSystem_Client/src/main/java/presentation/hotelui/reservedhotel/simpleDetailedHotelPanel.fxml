@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.reservedhotel.SearchedDetailedHotelPanelController">
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.hotelui.reservedhotel.SimpleDetailedHotelPanelController">
    <children>
       <Label layoutX="236.0" layoutY="7.0" styleClass="label-title" text="酒店信息类型">
          <font>

@@ -63,6 +63,10 @@ public class ReservedHotelPanelController {
 
 	private ObservableList<FxBriefHotelInfo> briefFxHotelList;
 
+	public void setMainApp(ClientMainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+	
 	@FXML
 	private void intialize() {
 		factory = new HotelUIFactoryServiceImpl();
@@ -79,9 +83,11 @@ public class ReservedHotelPanelController {
 					hotelTableView.getSortOrder().add(markCol);
 			}
 		});
+		
+		showReservedHotels();
 	}
 
-	public void showReservedHotels() {
+	private void showReservedHotels() {
 		ArrayList<OrderedHotelInfoVO> list;
 		try {
 			list = checkReservedHotelService.enrollHotelBreifInfoList(ClientMainApp.userID);
@@ -109,9 +115,6 @@ public class ReservedHotelPanelController {
 		}
 	}
 
-	public void setMainApp(ClientMainApp mainApp) {
-		this.mainApp = mainApp;
-	}
 
 	@FXML
 	private void returnAction() {

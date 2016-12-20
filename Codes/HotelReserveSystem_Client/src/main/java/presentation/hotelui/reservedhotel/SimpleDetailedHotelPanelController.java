@@ -8,18 +8,15 @@ import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import po.RoomType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
+import po.RoomType;
 import presentation.ClientMainApp;
 import vo.HotelVO;
 
-public class DetailedHotelPanelController {
-
-	private String[] conditions;
-	
+public class SimpleDetailedHotelPanelController {
 	@FXML
     private Label stanRoomPriceLabel;
 
@@ -87,13 +84,12 @@ public class DetailedHotelPanelController {
 		}
 	}
 	
-	public void setMainApp(ClientMainApp mainApp, String[] _conditions) {
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
-		this.conditions = _conditions;
 	}
 	
 	public void returnAction() {
-		mainApp.showSearchDetailsPanel(conditions);
+		mainApp.showReservedHotelPanel();
 	}
 	
 	public void showDetailedOrderPanel(String address) {
