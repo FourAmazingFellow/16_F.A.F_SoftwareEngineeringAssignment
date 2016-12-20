@@ -7,9 +7,10 @@ import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import presentation.HotelMainApp;
 import vo.HotelVO;
@@ -56,11 +57,18 @@ public class MaintainHotelInfoController {
 
 	@FXML
 	private Label serviceLabel;
-
+//create方法参数？？？
 	@FXML
-	void initialize() throws RemoteException {
+	void initialize(){
 		hotelFactory = new HotelUIFactoryServiceImpl();
-		maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(hotelAddress);
+		try {
+			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(hotelAddress);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();		}
 		showHotelDetail();
 	}
 

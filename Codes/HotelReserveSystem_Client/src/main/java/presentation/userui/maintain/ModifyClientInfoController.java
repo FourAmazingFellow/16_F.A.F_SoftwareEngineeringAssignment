@@ -4,20 +4,20 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.Optional;
 
-import bl_Stub.userblservice_Stub.ModifyClientInfoServiceImpl_Stub;
+import org.junit.experimental.theories.Theories;
+
 import businesslogic.userbl.VipInfo;
 import businesslogicservice.userblservice.ModifyClientInfoService;
-import businesslogicservice.userblservice.SignVipService;
 import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import po.UserType;
 import presentation.ClientMainApp;
 import presentation.userui.querycredit.QueryCreditRecordController;
 import presentation.userui.signvip.SignEnterpriseVipController;
@@ -37,17 +37,15 @@ public class ModifyClientInfoController {
 	private int creditValue;
 	private Date birth;
 	private String enterpriseName;
+	private ClientInfoVO client;
+	private RegularVipVO regularVip;
+	private EnterpriseVipVO enterpriseVip;
 
-	public ModifyClientInfoController(String userID) {
-		this.userID = userID;
-	}
-	
 	@FXML
 	private Label InfoLabel;
 
 	@FXML
 	private Label telNumLabel;
-
 
 	@FXML
 	private GridPane InfoTable;
@@ -60,10 +58,10 @@ public class ModifyClientInfoController {
 
 	@FXML
 	private Label birthOrEnterpriseLabel;
-	
+
 	@FXML
 	private Button editButton;
-	
+
 	@FXML
 	private Button signVipButton;
 
@@ -71,15 +69,16 @@ public class ModifyClientInfoController {
 	private Button creditButton;
 
 	@FXML
-	private void initialize() throws RemoteException {
-		userIDLabel.setText(null);
-		creditValueLabel.setText(null);
-		birthOrEnterpriseLabel.setText(null);
-		clientInfo(userID);
+	public void initialize() {
+		userIDLabel.setText("");
+		telNumLabel.setText("");
+		creditValueLabel.setText("");
+		birthOrEnterpriseLabel.setText("");
 		userFactory = new UserUIFactoryServiceImpl();
-		 modifyClientInfo = userFactory.createModifyClientInfoService();
-//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "12345678900", UserType.Client,
-//				1000, "阿里巴巴");
+		modifyClientInfo = userFactory.createModifyClientInfoService();
+		// modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("Accident",
+		// "qwe123", "12345678900", UserType.Client,
+		// 1000, "阿里巴巴");
 
 	}
 
@@ -87,56 +86,86 @@ public class ModifyClientInfoController {
 		this.mainApp = clientMainApp;
 	}
 
-	//获取客户信息，显示在界面上
-	public void clientInfo(String userID) throws RemoteException{
-		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
+	// 获取客户信息，显示在界面上
+	public void showClientInfo(String userID) {
+		try {
+			this.client = modifyClientInfo.getClientInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		this.userID = userID;
 		this.password = client.password;
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
-		RegularVipVO regular = vipInfo.getRegularVipInfo(userID);
-		this.birth = regular.birth;
-		EnterpriseVipVO enterprise = vipInfo.getEnterpriseVipInfo(userID);
-		this.enterpriseName = enterprise.enterpriseID;
-		
+		try {
+			this.regularVip = vipInfo.getRegularVipInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+		this.birth = regularVip.birth;
+		try {
+			this.enterpriseVip = vipInfo.getEnterpriseVipInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+		this.enterpriseName = enterpriseVip.enterpriseID;
+
 		userIDLabel.setText(userID);
 		telNumLabel.setText(telNum);
 		creditValueLabel.setText(String.valueOf(creditValue));
-		//判断是否非空
-		if(birth != null)
+		// 判断是否非空
+		if (birth != null)
 			birthOrEnterpriseLabel.setText(String.valueOf(birth));
-		else if(!enterpriseName.isEmpty())
+		else if (!enterpriseName.isEmpty())
 			birthOrEnterpriseLabel.setText(enterpriseName);
 	}
-	
+
 	@FXML
-	//编辑按钮action，跳转编辑界面
+	// 编辑按钮action，跳转编辑界面
 	public void editButtonAction() {
-		new EditController(userID, password, telNum, creditValue, birth, enterpriseName);
+		mainApp.showEditClientInfoPanel(client, regularVip, enterpriseVip);
 	}
 
 	@FXML
-	//查看信用记录按钮action，跳转信用记录界面
+	// 查看信用记录按钮action，跳转信用记录界面
 	public void creditButtonAction() {
-		new QueryCreditRecordController(userID);
+		mainApp.showQueryCreditRecordPanel(userID);
 	}
 
 	@FXML
-	//注册会员按钮action，跳转注册会员相关界面
+	// 注册会员按钮action，跳转注册会员相关界面
 	public void signVipButtonAction() {
-		//检查生日（企业名）一栏，若为空则说明不是会员，可以注册
-		if(birthOrEnterpriseLabel.getText().equals(null)){
-			Alert alert = new Alert(AlertType.NONE);
+		// 检查生日（企业名）一栏，若为空则说明不是会员，可以注册
+		if (birthOrEnterpriseLabel.getText().equals("")) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("vip info");
+			alert.setHeaderText("请选择注册会员类型！");
 			ButtonType signRegularVip = new ButtonType("注册普通会员");
 			ButtonType signEnterpriseVip = new ButtonType("注册企业会员");
+			ButtonType cancel = new ButtonType("取消", ButtonData.CANCEL_CLOSE);
+			alert.getButtonTypes().setAll(signRegularVip,signEnterpriseVip,cancel);
 			Optional<ButtonType> result = alert.showAndWait();
-			if(result.get() == signRegularVip){
-				new SignRegularVipController(userID);
-			}else if(result.get() == signEnterpriseVip){
-				new SignEnterpriseVipController(userID);
+			if (result.get() == signRegularVip) {
+				mainApp.showSignRegularVipPanel(userID);
+			} else if (result.get() == signEnterpriseVip) {
+				mainApp.showSignEnterpriseVipPanel(userID);
+			} else{
+				return;
 			}
-			//不为空则已经是会员了，不可重复注册
-		}else{
+			// 不为空则已经是会员了，不可重复注册
+		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("您已经是会员了！");

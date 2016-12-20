@@ -9,15 +9,14 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import po.RoomType;
 import presentation.HotelMainApp;
-import presentation.userui.manageuser.addNewUserController;
 import vo.RoomVO;
 
 public class AddRoomTypeController {
@@ -30,10 +29,10 @@ public class AddRoomTypeController {
 	public int roomPrice;
 	public String address;
 
-	public  AddRoomTypeController(String address) {
+	public AddRoomTypeController(String address) {
 		this.address = address;
 	}
-	
+
 	@FXML
 	private Label addNewRoomTypeLabel;
 
@@ -59,7 +58,7 @@ public class AddRoomTypeController {
 	private ChoiceBox<String> choiceBox;
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		importNewRoom = hotelFactory.createImportNewRoomService();
 		choiceBox.setItems(FXCollections.observableArrayList("单人房", "标准间", "三人房", "大床房"));
@@ -69,13 +68,22 @@ public class AddRoomTypeController {
 		this.mainApp = mainApp;
 	}
 
-	public void addRoomType() throws RemoteException {
+	public void addRoomType() {
 		this.roomTypeStr = choiceBox.getTypeSelector();
 		this.roomType = (RoomType) RoomType.chineseToEnum(roomTypeStr);
 		this.roomNum = Integer.parseInt(roomNumberField.getText());
 		this.roomPrice = Integer.parseInt(primePriceField.getText());
 		RoomVO room = new RoomVO(roomType, roomNum, roomPrice, address);
-		boolean result = importNewRoom.addRoom(room);
+		boolean result = false;
+		try {
+			result = importNewRoom.addRoom(room);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("add info");
@@ -89,14 +97,14 @@ public class AddRoomTypeController {
 			alert.show();
 		}
 	}
-	
+
 	@FXML
 	void cancelButtonAction(ActionEvent event) {
 		return;
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) throws RemoteException {
+	void confirmButtonAction(ActionEvent event) {
 		addRoomType();
 	}
 }

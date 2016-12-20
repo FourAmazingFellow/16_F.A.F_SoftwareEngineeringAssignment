@@ -8,12 +8,11 @@ import factory.HotelUIFactoryServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import po.RoomType;
-import javafx.scene.control.Alert.AlertType;
 import presentation.HotelMainApp;
 import vo.RoomVO;
 
@@ -50,7 +49,7 @@ public class EditRoomController {
 	private Label roomTypeLabel;
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		importNewRoom = hotelFactory.createImportNewRoomService();
 		
@@ -63,11 +62,20 @@ public class EditRoomController {
 		this.mainApp = mainApp;
 	}
 	
-	public void editRoomType() throws RemoteException{
+	public void editRoomType() {
 		this.roomNumm = Integer.parseInt(roomNumField.getText());
 		this.roomPricem = Integer.parseInt(roomPriceField.getText());
 		RoomVO modified = new RoomVO(RoomType.chineseToEnum(roomTypeLabel.getText()), roomNumm, roomPricem, selected.address);
-		boolean result = importNewRoom.addRoom(modified);
+		boolean result = false;
+		try {
+			result = importNewRoom.addRoom(modified);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == false) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -88,9 +96,18 @@ public class EditRoomController {
 	}
 
 	@FXML
-	void deleteButtonAction(ActionEvent event) throws RemoteException {
+	void deleteButtonAction(ActionEvent event) {
 		RoomVO deleted = new RoomVO(selected.roomType, 0, selected.roomPrice, selected.address);
-		boolean result = importNewRoom.addRoom(deleted);
+		boolean result = false;
+		try {
+			result = importNewRoom.addRoom(deleted);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == false) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");

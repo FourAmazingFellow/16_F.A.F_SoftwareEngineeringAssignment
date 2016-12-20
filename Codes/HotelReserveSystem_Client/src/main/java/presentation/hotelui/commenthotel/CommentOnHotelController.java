@@ -24,11 +24,12 @@ public class CommentOnHotelController {
 	private String hotelAddress;
 	private float mark;
 	private String comments;
-	
+
 	public CommentOnHotelController(String userID, String hotelAddress) {
 		this.userID = userID;
 		this.hotelAddress = hotelAddress;
 	}
+
 	@FXML
 	private Label commentLabel;
 
@@ -48,19 +49,28 @@ public class CommentOnHotelController {
 	private Button confirmButton;
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		comment = hotelFactory.createCommentOnHotelService();
 	}
-	
-	public void setMainApp(ClientMainApp mainApp){
+
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
-	public void commentOnHotel() throws RemoteException{
+
+	public void commentOnHotel() {
 		this.mark = Float.parseFloat(rankField.getText());
 		this.comments = commentArea.getText();
-		boolean result = comment.confirmComment(userID, mark, comments, hotelAddress);
+		boolean result = false;
+		try {
+			result = comment.confirmComment(userID, mark, comments, hotelAddress);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("comment info");
@@ -74,14 +84,14 @@ public class CommentOnHotelController {
 			alert.show();
 		}
 	}
-	
+
 	@FXML
 	void cancelButtonAction(ActionEvent event) {
 		return;
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) throws RemoteException {
+	void confirmButtonAction(ActionEvent event) {
 		commentOnHotel();
 	}
 }

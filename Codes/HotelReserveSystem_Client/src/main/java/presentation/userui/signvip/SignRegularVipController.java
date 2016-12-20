@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import bl_Stub.userblservice_Stub.SignVipServiceImpl_Stub;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import businesslogicservice.userblservice.SignVipService;
 import factory.UserUIFactoryService;
@@ -21,6 +20,7 @@ import presentation.ClientMainApp;
 import vo.ClientInfoVO;
 import vo.RegularVipVO;
 
+@SuppressWarnings("unused")
 public class SignRegularVipController {
 	private ClientMainApp mainApp;
 	private SignVipService signVip;
@@ -31,9 +31,6 @@ public class SignRegularVipController {
 	private int vipRank;
 	private Date birth;
 
-	public SignRegularVipController(String userID) {
-		this.userID = userID;
-	}
 
 	@FXML
 	private HBox birthday;
@@ -47,23 +44,50 @@ public class SignRegularVipController {
 	@FXML
 	private DatePicker datePicker;
 
-	@SuppressWarnings("deprecation")
 	@FXML
-	void initialize() {
+	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		 signVip = userFactory.createSignVipService();
-		 modifyClientInfo = userFactory.createModifyClientInfoService();
-//		signVip = new SignVipServiceImpl_Stub(new Date(1997 - 1900, 3 - 1, 22));
+		signVip = userFactory.createSignVipService();
+		modifyClientInfo = userFactory.createModifyClientInfoService();
+		// signVip = new SignVipServiceImpl_Stub(new Date(1997 - 1900, 3 - 1,
+		// 22));
+		
+//		datePicker.setValue(LocalDate.now());
+		datePicker.setEditable(false);
 	}
 
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
+	
+	public void setUserID(String userID){
+		this.userID = userID;
+	}
 
-	public void signRegularVip() throws RemoteException {
+	public void signRegularVip() {
 		LocalDate date = datePicker.getValue();
+		
+		if(date == null){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("未选择生日！");
+			alert.setContentText("请选择！");
+			alert.show();
+			return;
+		}
+		
 		this.birth = getDate(date);
-		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
+		
+		ClientInfoVO client = null;
+		try {
+			client = modifyClientInfo.getClientInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		this.creditValue = client.creditValue;
 		if (creditValue <= 600)
 			this.vipRank = 0;
@@ -77,7 +101,16 @@ public class SignRegularVipController {
 			this.vipRank = 4;
 		RegularVipVO regularVip = new RegularVipVO(userID, client.password, client.telNum, UserType.Client,
 				client.creditValue, client.creditRecord, birth, vipRank);
-		boolean result = signVip.signRegularVip(regularVip);
+		boolean result = false;
+		try {
+			result = signVip.signRegularVip(regularVip);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("sign info");
@@ -99,13 +132,13 @@ public class SignRegularVipController {
 
 	@FXML
 	// 取消按钮action
-	void cancelButtonAction(ActionEvent event) {
+	public void cancelButtonAction(ActionEvent event) {
 		return;
 	}
 
 	@FXML
 	// 注册按钮action，跳转提示框（是否注册成功）
-	void signButttonAction(ActionEvent event) throws RemoteException {
+	public void signButttonAction(ActionEvent event) {
 		signRegularVip();
 	}
 }

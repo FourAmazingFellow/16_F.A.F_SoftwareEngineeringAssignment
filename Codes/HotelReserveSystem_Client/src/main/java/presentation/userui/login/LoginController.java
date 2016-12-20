@@ -2,7 +2,6 @@ package presentation.userui.login;
 
 import java.rmi.RemoteException;
 
-import bl_Stub.userblservice_Stub.LoginAndSignUpServiceImpl_Stub;
 import businesslogic.userbl.loginAndSignUp.CheckLoginInfo;
 import businesslogicservice.userblservice.LoginAndSignUpService;
 import factory.UserUIFactoryService;
@@ -14,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import po.UserType;
-import presentation.ClientMainApp;
 import presentation.MainApp;
 
 public class LoginController {
@@ -35,22 +33,40 @@ public class LoginController {
 	private PasswordField passwordTextArea;
 
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		check = new CheckLoginInfo();
-		 login = userFactory.createLoginAndSignUpService();
-//		login = new LoginAndSignUpServiceImpl_Stub();
+		login = userFactory.createLoginAndSignUpService();
+		// login = new LoginAndSignUpServiceImpl_Stub();
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	public void verifyLogin() throws RemoteException {
+	public void verifyLogin() {
 		String userID = userIDTextArea.getText();
 		String password = passwordTextArea.getText();
-		UserType userType = check.checkUser(userID, password);
-		boolean result = login.login(userID, password);
+		UserType userType = null;
+		try {
+			userType = check.checkUser(userID, password);
+		} catch (RemoteException e1) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+		boolean result = false;
+		try {
+			result = login.login(userID, password);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 
 		if (result == false) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -63,16 +79,16 @@ public class LoginController {
 			alert.setTitle("login info");
 			alert.setHeaderText("登录成功！");
 			alert.show();
-			
-			if(userType == UserType.Client)
+
+			if (userType == UserType.Client)
 				mainApp.showClientMainApp();
-			else if(userType == UserType.HotelStaff)
+			else if (userType == UserType.HotelStaff)
 				mainApp.showHotelMainApp();
-			else if(userType == UserType.WebMarketStaff)
+			else if (userType == UserType.WebMarketStaff)
 				mainApp.showWebsitePromotionMainApp();
 			else if (userType == UserType.WebManageStaff)
 				mainApp.showWebsiteManageMainApp();
-				
+
 		}
 	}
 

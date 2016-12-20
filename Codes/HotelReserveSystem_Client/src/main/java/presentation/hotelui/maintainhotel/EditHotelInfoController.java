@@ -60,11 +60,19 @@ public class EditHotelInfoController {
 	public EditHotelInfoController(HotelVO hotelVO) {
 		this.hotelVO = hotelVO;
 	}
-
+//create方法中参数？？？
 	@FXML
-	void initialize() throws RemoteException {
+	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
-		maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(null);
+		try {
+			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(null);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		showPreDetails();
 	}
 
@@ -82,14 +90,23 @@ public class EditHotelInfoController {
 		serviceField.setText(hotelVO.facilityAndService);
 	}
 
-	public void editHotelInfo() throws RemoteException {
+	public void editHotelInfo()  {
 		this.hotelStarm = Integer.parseInt(hotelStarField.getText());
 		this.briefIntrom = briefIntroductionField.getText();
 		this.servicem = serviceField.getText();
 		HotelVO modified = new HotelVO(hotelVO.hotelName, hotelVO.tradeArea, hotelVO.hotelAddress, hotelStarm,
 				hotelVO.mark, hotelVO.tradeArea, briefIntrom, servicem, hotelVO.roomTypeAndPrice,
 				hotelVO.roomTypeAndNums, hotelVO.comments);
-		boolean result = maintainHotelBasicInfo.confirmModify(modified);
+		boolean result = false;
+		try {
+			result = maintainHotelBasicInfo.confirmModify(modified);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
@@ -110,7 +127,7 @@ public class EditHotelInfoController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) throws RemoteException {
+	void confirmButtonAction(ActionEvent event){
 		editHotelInfo();
 	}
 }

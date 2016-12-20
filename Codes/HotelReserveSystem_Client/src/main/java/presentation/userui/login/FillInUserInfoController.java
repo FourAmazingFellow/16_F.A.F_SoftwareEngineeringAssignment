@@ -11,10 +11,12 @@ import factory.UserUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import po.UserType;
 import vo.UserVO;
@@ -57,7 +59,7 @@ public class FillInUserInfoController {
 	}
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		 registerInfo = userFactory.createLoginAndSignUpService();
 //		registerInfo = new LoginAndSignUpServiceImpl_Stub();
@@ -67,22 +69,46 @@ public class FillInUserInfoController {
 		userTypeChoiceBox.setValue("客户");
 	}
 
-	public void registerInfo() throws RemoteException {
+	public void registerInfo() {
 		String userTypeStr = userTypeChoiceBox.getValue();
 		String telNum = telNumField.getText();
 		UserType userType;
 		if (userTypeStr.equals("客户")) {
 			userType = UserType.Client;
 			UserVO user = new UserVO(userID, password, telNum, userType);
-			modifyClientInfo.modifyClientInfo(user, userID);
+			try {
+				modifyClientInfo.modifyClientInfo(user, userID);
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("NetWork Warning");
+				alert.setHeaderText("Fail to connect with the server!");
+				alert.setContentText("Please check your network connection!");
+				alert.showAndWait();
+			}
 		} else if (userTypeStr.equals("网站营销人员")) {
 			userType = UserType.WebMarketStaff;
 			UserVO user = new UserVO(userID, password, telNum, userType);
-			manageUserInfo.modifyUserInfo(user, userID);
+			try {
+				manageUserInfo.modifyUserInfo(user, userID);
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("NetWork Warning");
+				alert.setHeaderText("Fail to connect with the server!");
+				alert.setContentText("Please check your network connection!");
+				alert.showAndWait();
+			}
 		} else if (userTypeStr.equals("网站管理人员")) {
 			userType = UserType.WebManageStaff;
 			UserVO user = new UserVO(userID, password, telNum, userType);
-			manageUserInfo.modifyUserInfo(user, userID);
+			try {
+				manageUserInfo.modifyUserInfo(user, userID);
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("NetWork Warning");
+				alert.setHeaderText("Fail to connect with the server!");
+				alert.setContentText("Please check your network connection!");
+				alert.showAndWait();
+			}
 		}
 
 	}

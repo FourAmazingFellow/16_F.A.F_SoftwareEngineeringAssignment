@@ -103,11 +103,17 @@ public class EditUserInfoController {
 	}
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		manageUser = userFactory.createManageUserInfoService();
 		modifyClientInfo = userFactory.createModifyClientInfoService();
+	}
 
+	public void setMainApp(WebsiteManageMainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+
+	public void showPreUserInfo(ClientInfoVO client, UserVO webUser) {
 		if (client != null) {
 			tabPane.getSelectionModel().select(clientTab);
 			clientUserIDField.setText(client.userID);
@@ -122,16 +128,21 @@ public class EditUserInfoController {
 		}
 	}
 
-	public void setMainApp(WebsiteManageMainApp mainApp) {
-		this.mainApp = mainApp;
-	}
-
-	public void editClientInfo() throws RemoteException {
+	public void editClientInfo() {
 		this.userIDm = clientUserIDField.getText();
 		this.passwordm = clientPasswordField.getText();
 		this.telNumm = clientTelNumField.getText();
 		UserVO modified = new UserVO(userIDm, passwordm, telNumm, UserType.Client);
-		boolean result = modifyClientInfo.modifyClientInfo(modified, client.userID);
+		boolean result = false;
+		try {
+			result = modifyClientInfo.modifyClientInfo(modified, client.userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
@@ -143,15 +154,25 @@ public class EditUserInfoController {
 			alert.setHeaderText("修改失败！");
 			alert.setContentText("请重试！");
 			alert.show();
+			return;
 		}
 	}
 
-	public void editWebUserInfo() throws RemoteException {
+	public void editWebUserInfo() {
 		this.userIDm = webMarketPasswordField.getText();
 		this.passwordm = webMarketPasswordField.getText();
 		this.telNumm = webMarketTelNumField.getText();
 		UserVO modified = new UserVO(userIDm, passwordm, telNumm, webUser.userType);
-		boolean result = manageUser.modifyUserInfo(modified, webUser.userID);
+		boolean result = false;
+		try {
+			result = manageUser.modifyUserInfo(modified, webUser.userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
@@ -167,12 +188,12 @@ public class EditUserInfoController {
 	}
 
 	@FXML
-	void cancelButtonAction(ActionEvent event) {
+	public void cancelButtonAction(ActionEvent event) {
 		return;
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) throws RemoteException {
+	public void confirmButtonAction(ActionEvent event) {
 		if (tabPane.getSelectionModel().equals(clientTab)) {
 			editClientInfo();
 		} else if (tabPane.getSelectionModel().equals(webMarketStaffTab)) {

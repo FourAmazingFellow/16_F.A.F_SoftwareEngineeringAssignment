@@ -32,7 +32,7 @@ public class ClientRootBoardController {
     }
     
     public void modifyPersonalInfoAction() {
-    	
+    	mainApp.showModifyClientInfoPanel(ClientMainApp.userID);
     }
     
     public void myOrderAction() {

@@ -2,7 +2,6 @@ package presentation.hotelui.managehotel;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.Set;
 
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
 import factory.HotelUIFactoryService;
@@ -10,18 +9,17 @@ import factory.HotelUIFactoryServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import po.RoomType;
 import po.UserType;
-import presentation.HotelMainApp;
 import presentation.WebsiteManageMainApp;
-import vo.ClientInfoVO;
 import vo.HotelStaffInfoVO;
 import vo.HotelVO;
 
@@ -38,6 +36,9 @@ public class ManageHotelController {
 	private String staffID;
 	private String password;
 	private String telNum;
+	private HashMap<RoomType, Integer> hash1 = new HashMap<>();
+	private HashMap<RoomType, Integer> hash2 = new HashMap<>();
+	private HashMap<String, String> hash3 = new HashMap<>();
 
 	@FXML
 	private Button searchButton;
@@ -103,9 +104,23 @@ public class ManageHotelController {
 	private TabPane tabPane;
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		manageHotel = hotelFactory.createManageHotelInfoService(null);
+		
+		hotelNameLabel.setText("");
+		hotelAddressLabel.setText("");
+		starLabel.setText("");
+		tradeAreaLabel.setText("");
+		serviceLabel.setText("");
+		briefIntroLabel.setText("");
+		
+		searchField.setText("");
+		
+		hotelNameField.setText("");
+		hotelStaffIDfField.setText("");
+		passwordField.setText("");
+		telNumField.setText("");
 	}
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
@@ -113,16 +128,33 @@ public class ManageHotelController {
 	}
 
 	@FXML
-	void searchButtonAction(ActionEvent event) throws RemoteException {
-		tabPane.getSelectionModel().select(hotelInfoTab);
+	void searchButtonAction(ActionEvent event) {
+//		tabPane.getSelectionModel().select(0);;
 		this.hotelAddress = searchField.getText();
-		HotelVO hotel = manageHotel.getHotelInfo(hotelAddress);
-
+		if(hotelAddress.equals("")){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("未输入搜索信息！");
+			alert.setContentText("请输入！");
+			alert.show();
+			return;
+		}
+		HotelVO hotel = null;
+		try {
+			hotel = manageHotel.getHotelInfo(hotelAddress);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (hotel == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("酒店地址输入错误！");
 			alert.setContentText("请重新输入！");
+			return;
 		} else {
 			this.hotelName = hotel.hotelName;
 			this.tradeArea = hotel.tradeArea;
@@ -138,21 +170,49 @@ public class ManageHotelController {
 
 	}
 
-	public void addNewHotel() throws RemoteException {
-		tabPane.getSelectionModel().select(hotelInfoTab);
+	public void addNewHotel() {
+//		tabPane.getSelectionModel().select(hotelInfoTab);
 		this.hotelNameNew = hotelNameField.getText();
 		this.staffID = hotelStaffIDfField.getText();
 		this.password = passwordField.getText();
 		this.telNum = telNumField.getText();
-		HotelVO newHotel = new HotelVO(hotelNameNew, null, null, 0, 0, null, null, null, null, null, null);
-		boolean result1 = manageHotel.addHotel(newHotel);
+		
+		if(hotelNameNew.equals("")||staffID.equals("")||password.equals("")||telNum.equals("")){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
+		HotelVO newHotel = new HotelVO(hotelNameNew, "", "", 0, 0, "", "", "", hash1, hash2, hash3);
+		boolean result1 = false;
+		try {
+			result1 = manageHotel.addHotel(newHotel);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		HotelStaffInfoVO staff = new HotelStaffInfoVO(staffID, password, telNum, UserType.HotelStaff, null);
-		boolean result2 = manageHotel.addHotelStaff(staff);
+		boolean result2 = false;
+		try {
+			result2 = manageHotel.addHotelStaff(staff);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result1 == false || result2 == false) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("添加失败！");
 			alert.setContentText("请重试！");
+			alert.show();
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("add info");
@@ -166,7 +226,7 @@ public class ManageHotelController {
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) throws RemoteException {
+	void confirmButtonAction(ActionEvent event) {
 		addNewHotel();
 	}
 }

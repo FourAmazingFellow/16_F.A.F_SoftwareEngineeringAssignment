@@ -40,12 +40,21 @@ public class RegisterController {
 //		register = new LoginAndSignUpServiceImpl_Stub();
 	}
 
-	public void register() throws RemoteException {
+	public void register(){
 		String userID = r_userIDArea.getText();
 		String password = r_passwordArea.getText();
 		String password_c = r_passwordCofirmArea.getText();
 		UserVO user = new UserVO(userID, password, null, null);
-		boolean result = register.add(user);
+		boolean result = false;
+		try {
+			result = register.add(user);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (password.equals(password_c)) {
 			if (result == true) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);

@@ -26,12 +26,6 @@ public class QueryCreditRecordController {
 	private String userID;
 	private CreditRecordList creditRecordList;
 	private ObservableList<CreditRecord> creditRecordData = FXCollections.observableArrayList();
-
-
-	public QueryCreditRecordController(String userID) {
-		this.userID = userID;
-	}
-
 	@FXML
 	private Label creditLabel;
 
@@ -57,39 +51,48 @@ public class QueryCreditRecordController {
 	private TableColumn<CreditRecord, String> creditResultColumn;
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		queryClientCreditRecord = userFactory.createQueryClientCreditRecordService();
-		
+
 		timeColumn.setCellValueFactory(cellData -> cellData.getValue().changeTimeProperty());
 		orderIDColumn.setCellValueFactory(cellData -> cellData.getValue().orderIDProperty());
 		actionColumn.setCellValueFactory(cellData -> cellData.getValue().actionProperty());
 		procassColumn.setCellValueFactory(cellData -> cellData.getValue().processProperty());
 		creditResultColumn.setCellValueFactory(cellData -> cellData.getValue().creditResultProperty());
 	}
-	
-	public void setMainApp(ClientMainApp mainApp){
+
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
-	public void showCreditRecordList(){
+
+	public void showCreditRecordList(String userID) {
+		this.userID = userID;
 		ArrayList<CreditRecordVO> creditRecordVOs;
 		try {
-			creditRecordVOs = queryClientCreditRecord.queryCreditRecord(userID);
+			creditRecordVOs = queryClientCreditRecord.queryCreditRecord(this.userID);
+			if (creditRecordVOs.isEmpty()) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("wrong");
+				alert.setHeaderText("找不到信用记录！");
+				alert.setContentText("请重试！");
+				alert.show();
+				return;
+			}
 			creditRecordList.setCreditRecordList(creditRecordVOs);
 			creditRecordData.clear();
 			creditRecordData.addAll(creditRecordList.getCreditRecordList());
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("NetWork Warning");
-            alert.setHeaderText("Fail to connect with the server!");
-            alert.setContentText("Please check your network connection!");
-            alert.showAndWait();
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
 		}
 	}
-	
+
 	@FXML
-	void returnButtonAction(ActionEvent event) {
+	public void returnButtonAction(ActionEvent event) {
 		return;
 	}
 }

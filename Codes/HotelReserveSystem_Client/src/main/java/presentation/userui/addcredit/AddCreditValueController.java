@@ -2,8 +2,6 @@ package presentation.userui.addcredit;
 
 import java.rmi.RemoteException;
 
-import bl_Stub.userblservice_Stub.AddCreditValueServiceImpl_Stub;
-import bl_Stub.userblservice_Stub.ModifyClientInfoServiceImpl_Stub;
 import businesslogicservice.userblservice.AddCreditValueService;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
@@ -16,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import po.UserType;
 import presentation.WebsitePromotionMainApp;
 import vo.ClientInfoVO;
 
@@ -70,9 +67,18 @@ public class AddCreditValueController {
 		this.mainApp = webPromotion;
 	}
 
-	public void searchButtonAction() throws RemoteException {
+	public void searchButtonAction(){
 		String userID = searchField.getText();
-		ClientInfoVO client = clientCreditInfo.getClientInfo(userID);
+		ClientInfoVO client = null;
+		try {
+			client = clientCreditInfo.getClientInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 
 		if (client == null) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -87,7 +93,7 @@ public class AddCreditValueController {
 		}
 	}
 
-	public void addCreditValue() throws RemoteException {
+	public void addCreditValue(){
 		int creditAdded = Integer.parseInt(addCreditField.getText());
 		if (addCreditField.getText().equals(null)) {
 			Alert alert1 = new Alert(AlertType.WARNING);
@@ -100,7 +106,16 @@ public class AddCreditValueController {
 			alert2.setHeaderText("信用值格式错误！（整百倍数）");
 			alert2.setContentText("请重新输入！");
 		}
-		boolean result = addCreditValue.addCreditValue(userIDLabel.getText(), creditAdded);
+		boolean result = false;
+		try {
+			result = addCreditValue.addCreditValue(userIDLabel.getText(), creditAdded);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		if (result == false) {
 			Alert alert3 = new Alert(AlertType.WARNING);
 			alert3.setTitle("wrong");
@@ -113,7 +128,7 @@ public class AddCreditValueController {
 		}
 	}
 
-	public void comfirmButtonAction() throws RemoteException {
+	public void comfirmButtonAction() {
 		addCreditValue();
 	}
 	

@@ -13,8 +13,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import presentation.hotelui.managehotel.ManageHotelController;
 import presentation.mainui.WebsiteManageRootBoardController;
+import presentation.userui.manageuser.EditUserInfoController;
 import presentation.userui.manageuser.ManageUserController;
+import presentation.userui.manageuser.addNewUserController;
 import runner.ClientRunner;
+import vo.ClientInfoVO;
+import vo.UserVO;
 
 public class WebsiteManageMainApp extends Application {
 	private Stage primaryStage;
@@ -82,7 +86,8 @@ public class WebsiteManageMainApp extends Application {
 			ManageUserController controller = loader.getController();
 
 			controller.setMainApp(this);
-
+			controller.showClientPanel();
+			
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -101,10 +106,50 @@ public class WebsiteManageMainApp extends Application {
 			ManageHotelController controller = loader.getController();
 
 			controller.setMainApp(this);
+			
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showEditUserInfoPanel(ClientInfoVO client, UserVO webUser){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(WebsiteManageMainApp.class.getResource("userui/manageuser/EditUserInfo.fxml"));
+			AnchorPane searchPanel = (AnchorPane) loader.load();
+
+			websiteManageRootLayout.setCenter(searchPanel);
+
+			// Give the controller access to the main app.
+			EditUserInfoController controller = loader.getController();
+
+			controller.setMainApp(this);
+			controller.showPreUserInfo(client, webUser);
 
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void showAddUserPanel(){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(WebsiteManageMainApp.class.getResource("userui/manageuser/AddNewUser.fxml"));
+			AnchorPane searchPanel = (AnchorPane) loader.load();
+
+			websiteManageRootLayout.setCenter(searchPanel);
+
+			// Give the controller access to the main app.
+			addNewUserController controller = loader.getController();
+
+			controller.setMainApp(this);
+			
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

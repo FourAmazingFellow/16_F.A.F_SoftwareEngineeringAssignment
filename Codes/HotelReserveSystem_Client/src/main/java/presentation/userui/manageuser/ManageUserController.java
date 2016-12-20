@@ -109,10 +109,14 @@ public class ManageUserController {
 	private HBox searchBox;
 
 	@FXML
-	void initialize() {
+	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		manageUser = userFactory.createManageUserInfoService();
 		modifyClientInfo = userFactory.createModifyClientInfoService();
+		
+		searchField.setText("");
+		
+		
 	}
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
@@ -132,12 +136,47 @@ public class ManageUserController {
 	}
 
 	@FXML
-	void searchButtonAction(ActionEvent event) throws RemoteException {
+	public void searchButtonAction(ActionEvent event){
 		this.userID = searchField.getText();
-		ClientInfoVO client = modifyClientInfo.getClientInfo(userID);
+		if(userID.equals("")){	
+		Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("未输入查找的用户名！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
+		ClientInfoVO client = null;
+		try {
+			client = modifyClientInfo.getClientInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		this.client = client;
-		HotelStaffInfoVO hotelStaff = manageUser.getHotelStaffInfo(userID);
-		UserVO webUser = manageUser.getUserInfo(userID);
+		HotelStaffInfoVO hotelStaff = null;
+		try {
+			hotelStaff = manageUser.getHotelStaffInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+		UserVO webUser = null;
+		try {
+			webUser = manageUser.getUserInfo(userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		this.webUser = webUser;
 		if (client != null) {
 			tabPane.getSelectionModel().select(clientTab);
@@ -156,31 +195,40 @@ public class ManageUserController {
 			webMarketuserIDLabel.setText(webUser.userID);
 			webMarketpasswordLabel.setText(webUser.password);
 			webMarkettelNumLabel.setText(webUser.telNum);
+		} else if(client == null && hotelStaff == null && webUser == null){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("未找到相关用户！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
 		}
 	}
 
 	@FXML
-	void returnButtonAction(ActionEvent event) {
+	public void returnButtonAction(ActionEvent event) {
 		return;
 	}
 
 	@FXML
-	void editButtonAction(ActionEvent event) {
+	public void editButtonAction(ActionEvent event) {
 		if (tabPane.getSelectionModel().equals(clientTab)) {
-			new EditUserInfoController(client);
+			this.webUser = null;
+			mainApp.showEditUserInfoPanel(client, webUser);
 		} else if (tabPane.getSelectionModel().equals(hotelStaffTab)) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("不可对酒店工作人员信息进行修改！");
 			alert.show();
 		} else if (tabPane.getSelectionModel().equals(webMarketStaffTab)) {
-			new EditUserInfoController(webUser);
+			this.client = null;
+			mainApp.showEditUserInfoPanel(client, webUser);
 		}
 	}
 
 	@FXML
-	void addButtonAction(ActionEvent event) {
-		new addNewUserController();
+	public void addButtonAction(ActionEvent event) {
+		mainApp.showAddUserPanel();
 	}
 
 }
