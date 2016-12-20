@@ -11,68 +11,45 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-	prefWidth="1000.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.mainui.ClientRootBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.mainui.ClientRootBoardController">
 	<top>
-		<GridPane prefHeight="66.0" prefWidth="995.0"
-			BorderPane.alignment="CENTER">
+		<GridPane prefHeight="66.0" prefWidth="995.0" BorderPane.alignment="CENTER">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2166748046875"
-					minWidth="10.0" prefWidth="181.26766967773438" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="218.33078002929688"
-					minWidth="10.0" prefWidth="209.44381713867188" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="209.55618286132812"
-					minWidth="10.0" prefWidth="200.68853759765625" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125"
-					minWidth="10.0" prefWidth="191.68853759765625" />
-				<ColumnConstraints hgrow="SOMETIMES" maxWidth="526.9685668945312"
-					minWidth="10.0" prefWidth="188.31146240234375" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="224.2166748046875" minWidth="10.0" prefWidth="181.26766967773438" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="218.33078002929688" minWidth="10.0" prefWidth="209.44381713867188" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="209.55618286132812" minWidth="10.0" prefWidth="200.68853759765625" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="222.6300048828125" minWidth="10.0" prefWidth="191.68853759765625" />
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="526.9685668945312" minWidth="10.0" prefWidth="188.31146240234375" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Button fx:id="searchHotelSection" alignment="CENTER"
-					contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchHotelAction"
-					prefHeight="60.0" prefWidth="234.0" text="搜索酒店" textAlignment="CENTER">
+				<Button fx:id="searchHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchHotelAction" prefHeight="60.0" prefWidth="234.0" text="搜索酒店" textAlignment="CENTER">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="modifyPersonalInfoSection" alignment="CENTER"
-					contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifyPersonalInfoAction"
-					prefHeight="60.0" prefWidth="218.0" text="个人基本信息" textAlignment="CENTER"
-					GridPane.columnIndex="1">
+				<Button fx:id="modifyPersonalInfoSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modifyPersonalInfoAction" prefHeight="60.0" prefWidth="218.0" text="个人基本信息" textAlignment="CENTER" GridPane.columnIndex="1">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myOrderSection" alignment="CENTER"
-					contentDisplay="CENTER" mnemonicParsing="false" onAction="#myOrderAction"
-					prefHeight="58.0" prefWidth="205.0" text="我的订单" textAlignment="CENTER"
-					GridPane.columnIndex="2">
+				<Button fx:id="myOrderSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#myOrderAction" prefHeight="58.0" prefWidth="205.0" text="我的订单" textAlignment="CENTER" GridPane.columnIndex="2">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="myReservedHotelSection" alignment="CENTER"
-					contentDisplay="CENTER" mnemonicParsing="false" onAction="#myReservedHotelAction"
-					prefHeight="60.0" prefWidth="204.0" text="我的酒店" textAlignment="CENTER"
-					GridPane.columnIndex="3">
+				<Button fx:id="myReservedHotelSection" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#myReservedHotelAction" prefHeight="60.0" prefWidth="204.0" text="我的酒店" textAlignment="CENTER" GridPane.columnIndex="3">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<MenuButton fx:id="userActionButton" mnemonicParsing="false"
-					prefHeight="60.0" prefWidth="206.0" text="UserID"
-					GridPane.columnIndex="4">
+				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="206.0" text="用户名" textAlignment="CENTER" GridPane.columnIndex="4">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Personal Information" />
-						<MenuItem mnemonicParsing="false" text="LOGOUT" />
-						<MenuItem mnemonicParsing="false" text="EXIT" />
+						<MenuItem fx:id="personalInfoButton" mnemonicParsing="false" onAction="#modifyPersonalInfoAction" text="个人信息" />
+						<MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" text="登出" />
+						<MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="退出" />
 					</items>
 				</MenuButton>
 			</children>

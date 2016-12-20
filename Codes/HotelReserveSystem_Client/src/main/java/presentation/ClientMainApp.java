@@ -54,13 +54,18 @@ public class ClientMainApp extends Application {
 		this.primaryStage.setResizable(false);
 
 		showClientRootPanel();
-		showReservedHotelPanel();
+		showSearchView();
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
+	public void logout() {
+		userID = "";
+		mainApp.showLoginView();
+	}
+	
 	// 显示客户导航栏
 	public void showClientRootPanel() {
 		try {

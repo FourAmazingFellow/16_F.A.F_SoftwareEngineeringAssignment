@@ -21,6 +21,8 @@ import vo.ClientInfoVO;
 import vo.UserVO;
 
 public class WebsiteManageMainApp extends Application {
+	public static String userID = "";
+	
 	private Stage primaryStage;
 	private BorderPane websiteManageRootLayout;
 	private ClientRunner clientRunner;

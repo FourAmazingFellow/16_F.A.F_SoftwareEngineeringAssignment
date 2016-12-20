@@ -37,7 +37,6 @@ public class LoginController {
 		userFactory = new UserUIFactoryServiceImpl();
 		check = new CheckLoginInfo();
 		login = userFactory.createLoginAndSignUpService();
-		// login = new LoginAndSignUpServiceImpl_Stub();
 	}
 
 	public void setMainApp(MainApp mainApp) {
