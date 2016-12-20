@@ -187,6 +187,7 @@ public class ClientMainApp extends Application {
 
 			// Set the person into the controller.
 			ScreenPanelController controller = loader.getController();
+			controller.setConditions(conditions);
 			controller.setDialogStage(dialogStage);
 
 			// Show the dialog and wait until the user closes it

@@ -17,6 +17,7 @@
 .text-area {
     -fx-background-color: #1d1d1d;
     -fx-font-size: 14.0pt;
+    -fx-text-fill: white;
 }
 
 .text-area .scroll-pane {
@@ -26,12 +27,14 @@
 .text-area .scroll-pane .viewport{
 	-fx-font-size: 14.0pt;
     -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
 }
 
 
 .text-area .scroll-pane .content{
 	-fx-font-size: 14.0pt;
     -fx-background-color: transparent;
+    -fx-text-fill: white;
 }
 
 .label {

@@ -199,11 +199,9 @@ public class SearchDetailsPanelController {
 			}
 		});
 
-		
-
 		setDatePicker();
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级排序", "按评分排序"));
-		rankTypeChoiceBox.setValue("排序方式");
+		rankTypeChoiceBox.setValue("按星级排序");
 		
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
@@ -217,7 +215,7 @@ public class SearchDetailsPanelController {
 	}
 
 	private String getDate(LocalDate date) {
-		return String.valueOf(date.getYear()) + "-" + String.valueOf(date.getMonth()) + "-"
+		return String.valueOf(date.getYear()) + "-" + String.valueOf(date.getMonthValue()) + "-"
 				+ String.valueOf(date.getDayOfMonth());
 	}
 
