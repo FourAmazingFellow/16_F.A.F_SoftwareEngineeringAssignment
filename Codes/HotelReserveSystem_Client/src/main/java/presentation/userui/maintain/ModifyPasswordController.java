@@ -20,7 +20,6 @@ public class ModifyPasswordController {
 
 	private ModifyClientInfoService modifyClientInfo;
 	private UserUIFactoryService userFactory;
-	private ClientMainApp mainApp;
 	private String userID;
 	private String telNum;
 	private String prePassword, prePasswordTrue, newPassword, newPasswordConfirm;
@@ -55,9 +54,6 @@ public class ModifyPasswordController {
 		// 1000, "阿里巴巴");
 	}
 
-	public void setMainApp(ClientMainApp mainApp) {
-		this.mainApp = mainApp;
-	}
 
 	public void showUserID(String userID, String prePasswordTrue) {
 		this.userID = userID;

@@ -22,12 +22,12 @@ public class CheckOut {
     }
     
     public CheckOut(Enum<RoomType> roomType, int roomNum, Date actDepartTime){
-        if(roomType==null)
+        if(roomType!=null)
             this.roomType=new SimpleStringProperty(RoomType.enumToChinese(roomType));
         else 
             this.roomType=new SimpleStringProperty();
         this.roomNum=new SimpleStringProperty(String.valueOf(roomNum));
-        if(roomType==null)
+        if(actDepartTime!=null)
             this.actDepartTime=new SimpleStringProperty(dateFormat.format(actDepartTime));
         else 
             this.actDepartTime=new SimpleStringProperty();
@@ -46,7 +46,7 @@ public class CheckOut {
     }
     
     public void setRoomType(Enum<RoomType> roomType){
-        String roomTypeStr=roomType.name();
+        String roomTypeStr=RoomType.enumToChinese(roomType);
         this.roomType.set(roomTypeStr);
     }
     

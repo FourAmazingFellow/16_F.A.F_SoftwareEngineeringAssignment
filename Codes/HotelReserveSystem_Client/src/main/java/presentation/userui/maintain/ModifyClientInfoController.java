@@ -4,8 +4,6 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.Optional;
 
-import org.junit.experimental.theories.Theories;
-
 import businesslogic.userbl.VipInfo;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
@@ -19,9 +17,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import presentation.ClientMainApp;
-import presentation.userui.querycredit.QueryCreditRecordController;
-import presentation.userui.signvip.SignEnterpriseVipController;
-import presentation.userui.signvip.SignRegularVipController;
 import vo.ClientInfoVO;
 import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
@@ -32,7 +27,6 @@ public class ModifyClientInfoController {
 	private VipInfo vipInfo;
 	private UserUIFactoryService userFactory;
 	private String userID;
-	private String password;
 	private String telNum;
 	private int creditValue;
 	private Date birth;
@@ -98,7 +92,6 @@ public class ModifyClientInfoController {
 			alert.showAndWait();
 		}
 		this.userID = userID;
-		this.password = client.password;
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
 		try {

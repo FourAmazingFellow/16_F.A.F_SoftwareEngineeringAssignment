@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -27,69 +28,71 @@ import presentation.roomui.util.LocalDateAdapter;
 import vo.CheckOutVO;
 
 public class CheckOutEditPanelController {
-    
+
     @FXML
     private ChoiceBox<String> roomTypeChoiceBox;
-    
+
     @FXML
     private TextField roomNumTextField;
 
     @FXML
     private DatePicker actDepartTimeDatepicker;
-    
+
     @FXML
     private TextField hourTextField;
 
     @FXML
     private TextField minuteTxtField;
-    
-    private ObservableList<String> roomTypeList = FXCollections.observableArrayList(
-            "单人间", "标准间", "三人间","大床房");
+
+    private ObservableList<String> roomTypeList = FXCollections.observableArrayList("单人间", "标准间", "三人间", "大床房");
     private Stage dialogStage;
     private CheckOut checkOut;
     private boolean isConfirmed = false;
-    
-    private RoomUIFactoryService roomUIFactoryService=new RoomUIFactoryServiceImpl();
-    private UpdateCheckOutService updateCheckOutService=roomUIFactoryService.createUpdateCheckOutService();
+
+    private RoomUIFactoryService roomUIFactoryService = new RoomUIFactoryServiceImpl();
+    private UpdateCheckOutService updateCheckOutService = roomUIFactoryService.createUpdateCheckOutService();
     private String address;
-    
+
     @FXML
     private void initialize() {
         roomNumTextField.setText("请输入退房房间数...");
-        
+
         // Initialize the choiceBox
         roomTypeChoiceBox.setItems(roomTypeList);
-        //增加提示词
+        // 增加提示词
         roomTypeChoiceBox.setTooltip(new Tooltip("select roomType to check out"));
-        //退房时间设置默认值是当前时间
-        actDepartTimeDatepicker=new DatePicker(LocalDate.now());
-        //只能创建当天的入住信息
-        actDepartTimeDatepicker.setDisable(true);
+        // 退房时间设置默认值是当前时间
+        actDepartTimeDatepicker.setValue(LocalDate.now());
+        // 只能创建当天的入住信息
         hourTextField.setText("12");
         minuteTxtField.setText("00");
     }
-    
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    //把默认的checkOut先放进去
-    public void setCheckOut(CheckOut checkOut,String address) {
-        //把传进来的checkIn设为成员变量，便于修改
-        this.checkOut=checkOut;
-        this.address=address;
-        
-        if(checkOut.getRoomType()!=null){
+    // 把默认的checkOut先放进去
+    public void setCheckOut(CheckOut checkOut, String address) {
+        // 把传进来的checkIn设为成员变量，便于修改
+        this.checkOut = checkOut;
+        this.address = address;
+
+        if (checkOut.getRoomType() != null) {
             roomTypeChoiceBox.getSelectionModel().select(RoomType.enumToChinese(checkOut.getRoomType()));
         }
     }
-    
 
     public boolean isConfirmed() {
         return isConfirmed;
     }
     
+    @FXML
+    void handleClickRoomNum(MouseEvent event) {
+        if(roomNumTextField.getText().equals("请输入退房房间数..."))
+            roomNumTextField.setText("");
+    }
+
     @FXML
     void handleCanclel() {
         dialogStage.close();
@@ -97,35 +100,32 @@ public class CheckOutEditPanelController {
 
     @FXML
     void handleConfirm() {
-      //判断输入的数据是否有效
-        boolean inputValid=false;
-        while(!inputValid){
-            if(isInputValid()){
-                inputValid=true;
-            }
+        // 判断输入的数据是否有效
+        if (!isInputValid()) {
+            return;
         }
-        
-        //弹出对话框请求确认
+
+        // 弹出对话框请求确认
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("确认退房");
         alert.setHeaderText("你是否确定要退房？");
         alert.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            isConfirmed=true;
+        if (result.get() == ButtonType.OK) {
+            isConfirmed = true;
         } else {
-            isConfirmed=false;
+            isConfirmed = false;
             handleCanclel();
             return;
         }
-      //把新建的checkOut传给上一个界面
+        // 把新建的checkOut传给上一个界面
         checkOut.setRoomType(RoomType.chineseToEnum(roomTypeChoiceBox.getSelectionModel().getSelectedItem()));
         checkOut.setRoomNum(Integer.parseInt(roomNumTextField.getText()));
-        checkOut.setActDepartTime(LocalDateAdapter.toDate(actDepartTimeDatepicker.getValue()), 
+        checkOut.setActDepartTime(LocalDateAdapter.toDate(actDepartTimeDatepicker.getValue()),
                 Integer.parseInt(hourTextField.getText()), Integer.parseInt(minuteTxtField.getText()));
 
-      //在数据库中增加退房信息
+        // 在数据库中增加退房信息
         try {
             updateCheckOutService.addCheckOut(address, checkOut.toVO(address));
         } catch (RemoteException e) {
@@ -135,13 +135,13 @@ public class CheckOutEditPanelController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
+
         dialogStage.close();
     }
-    
+
     private boolean isInputValid() {
-      //判断格式对否
-        if(roomNumTextField.getText()==""||!isDigit(roomNumTextField.getText())){
+        // 判断格式对否
+        if (roomNumTextField.getText().equals("")|| !isInteger(roomNumTextField.getText())) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("退房信息错误");
             alert.setHeaderText("退房房间数量错误");
@@ -150,8 +150,8 @@ public class CheckOutEditPanelController {
             alert.showAndWait();
             return false;
         }
-        if(actDepartTimeDatepicker.getValue()==null||
-                hourTextField.getText()==""||minuteTxtField.getText()==""){
+        if (actDepartTimeDatepicker.getValue() == null || hourTextField.getText().equals("")
+                || minuteTxtField.getText().equals("")) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("退房信息错误");
             alert.setHeaderText("实际离开时间空缺");
@@ -160,7 +160,7 @@ public class CheckOutEditPanelController {
             alert.showAndWait();
             return false;
         }
-        if(!isDigit(hourTextField.getText())||!isDigit(minuteTxtField.getText())){
+        if (!isHourNum(hourTextField.getText()) || !isMinuteNum(minuteTxtField.getText())) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("退房信息错误");
             alert.setHeaderText("实际离开时间错误");
@@ -171,7 +171,7 @@ public class CheckOutEditPanelController {
         }
         CheckOutVO checkOutVO;
         try {
-            checkOutVO=checkOut.toVO(address);
+            checkOutVO = checkOut.toVO(address);
         } catch (ParseException e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
@@ -181,9 +181,9 @@ public class CheckOutEditPanelController {
             alert.showAndWait();
             return false;
         }
-      //调用逻辑层的valid方法进一步验证数据是否合理
+        // 调用逻辑层的valid方法进一步验证数据是否合理
         try {
-            if(updateCheckOutService.validCheckOut(address, checkOutVO)){
+            if (updateCheckOutService.validCheckOut(address, checkOutVO)) {
                 return true;
             }
         } catch (RemoteException e) {
@@ -198,10 +198,35 @@ public class CheckOutEditPanelController {
         }
         return false;
     }
-    
-    private boolean isDigit(String str){
-        return CheckInEditPanelController.isDigit(str);
-    }
 
+    private boolean isHourNum(String hourStr){
+        if(!isInteger(hourStr)){
+            return false;
+        }
+        int hour=Integer.parseInt(hourStr);
+        if(hour<0||hour>=24){
+            return false;
+        }
+        return true;
+    }
     
+    private boolean isMinuteNum(String minuteStr){
+        if(!isInteger(minuteStr)){
+            return false;
+        }
+        int hour=Integer.parseInt(minuteStr);
+        if(hour<0||hour>=60){
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean isInteger(String str){
+        for (char c : str.toCharArray()) {
+            if ((c < '0' || c > '9')) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
