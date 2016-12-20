@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 import businesslogic.roombl.updateCheckOut.AvailableRoomService;
 import dataservice.hotelDAO.HotelDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.BusinessDistrictPO;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.HotelVO;
 
@@ -15,12 +16,15 @@ public class HotelInfoServiceImpl implements HotelInfoService, AvailableRoomServ
 
 	private HotelDAO hotelDAO;
 	
+	private FactoryService factory;
+	
 	public void setHotelDAO(HotelDAO hotelDAO) {
 		this.hotelDAO = hotelDAO;
 	}
 	
 	public HotelInfoServiceImpl() {
-		this.setHotelDAO(RemoteHelper.getInstance().getHotelDAO());
+		this.factory = new FactoryServiceImpl();
+		this.setHotelDAO(factory.getHotelDAO());
 	}
 	
 	@Override
@@ -31,17 +35,6 @@ public class HotelInfoServiceImpl implements HotelInfoService, AvailableRoomServ
 		else {
 			return null;
 		}
-//		try {
-//			if(hotelDAO.getHotelBriefInfo(address) != null) {
-//				return new BriefHotelInfoVO(hotelDAO.getHotelBriefInfo(address));
-//			}
-//			else {
-//				return null;
-//			}
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
 	}
 
 	@Override

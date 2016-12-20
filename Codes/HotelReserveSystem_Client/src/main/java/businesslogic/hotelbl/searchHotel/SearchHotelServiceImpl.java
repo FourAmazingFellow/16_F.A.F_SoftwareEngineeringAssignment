@@ -20,7 +20,6 @@ import po.BriefOrderInfoPO;
 import po.BusinessDistrictPO;
 import po.OrderState;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.BriefOrderInfoVO;
 import vo.OrderedHotelInfoVO;
@@ -93,9 +92,9 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 	}
 	
 	public SearchHotelServiceImpl(String userID) throws RemoteException {
-		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.userID = userID;
 		this.factory = new FactoryServiceImpl();
+		this.hotelDAO = factory.getHotelDAO();
 		this.orderInfo = factory.createOrderInfo();
 		orderList = orderInfo.getReservedOrderList(userID);
 		this.roomInfoService = factory.createRoomInfoService();

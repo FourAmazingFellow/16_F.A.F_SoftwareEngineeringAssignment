@@ -5,8 +5,9 @@ import java.util.ArrayList;
 
 import businesslogic.utilitybl.POList2VOList;
 import dataservice.orderDAO.OrderDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.OrderType;
-import rmi.RemoteHelper;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -16,8 +17,11 @@ public class UserOrderList {
 	private ArrayList<BriefOrderInfoVO> briefUserOrderlist;
 	private OrderVO detailedOrder;
 	
+	private FactoryService factory;
+	
 	public UserOrderList(){
-		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		this.factory = new FactoryServiceImpl();
+		orderDaoService = factory.getOrderDAO();
 		poTransformer = new POList2VOList();
 		briefUserOrderlist = new ArrayList<BriefOrderInfoVO>();
 	}

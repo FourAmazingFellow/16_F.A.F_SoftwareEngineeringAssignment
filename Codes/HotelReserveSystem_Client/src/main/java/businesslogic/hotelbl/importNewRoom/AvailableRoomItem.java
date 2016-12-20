@@ -9,7 +9,6 @@ import factory.FactoryService;
 import factory.FactoryServiceImpl;
 import po.HotelPO;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.RoomVO;
 
 public class AvailableRoomItem {
@@ -21,8 +20,8 @@ public class AvailableRoomItem {
 	
 	public AvailableRoomItem(String address) {
 		this.address = address;
-		hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.factory = new FactoryServiceImpl();
+		hotelDAO = factory.getHotelDAO();
 		this.roomInfoService = factory.createRoomInfoService();
 	}
 	

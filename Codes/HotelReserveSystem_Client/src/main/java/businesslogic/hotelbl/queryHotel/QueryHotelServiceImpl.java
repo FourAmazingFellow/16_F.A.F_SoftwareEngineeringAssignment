@@ -13,7 +13,6 @@ import factory.FactoryServiceImpl;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
 import po.OrderState;
-import rmi.RemoteHelper;
 import vo.BriefHotelInfoVO;
 import vo.BriefOrderInfoVO;
 import vo.HotelVO;
@@ -68,8 +67,8 @@ public class QueryHotelServiceImpl implements QueryHotelService {
 	}
 	
 	public QueryHotelServiceImpl(String userID) throws RemoteException {
-		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
 		this.factory = new FactoryServiceImpl();
+		this.hotelDAO = factory.getHotelDAO();
 		this.orderInfo = factory.createOrderInfo();
 		this.hotelList = new QueryHotelList();
 		orderList = orderInfo.getReservedOrderList(userID);

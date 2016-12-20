@@ -4,15 +4,19 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dataservice.hotelDAO.HotelDAO;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import po.BriefHotelInfoPO;
 import po.BriefOrderInfoPO;
-import rmi.RemoteHelper;
 
 public class QueryHotelList {
 	private HotelDAO hotelDAO;
 	
+	private FactoryService factory;
+	
 	public QueryHotelList() {
-		this.hotelDAO = RemoteHelper.getInstance().getHotelDAO();
+		this.factory = new FactoryServiceImpl();
+		this.hotelDAO = factory.getHotelDAO();
 	}
 	
 	public ArrayList<BriefHotelInfoPO> getHotelBriefInfoListByQuerying(String[] condition, ArrayList<BriefOrderInfoPO> orderedHotelList) throws RemoteException {

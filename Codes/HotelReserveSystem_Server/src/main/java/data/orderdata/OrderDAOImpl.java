@@ -681,7 +681,7 @@ public class OrderDAOImpl implements OrderDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//根据用户名获得数据库数据
-			pstmt = conn.prepareStatement("select * from orderinfo where userID = ? and ( orderState = 0 or orderState = 2 or orderState = 0000000000000003)");
+			pstmt = conn.prepareStatement("select * from orderinfo where userID = ? and ( orderState = 0 or orderState = 2 or orderState = 3)");
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 			

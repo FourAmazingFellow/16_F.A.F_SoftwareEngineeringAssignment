@@ -4,20 +4,23 @@ import java.rmi.RemoteException;
 
 import businesslogic.userbl.VerifyEnterpriseVip;
 import dataservice.strategyDAO.StrategyDAO;
-import rmi.RemoteHelper;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 
 public class VerifyEnterpriseVipImpl implements VerifyEnterpriseVip {
 
-    StrategyDAO strategyDAO;
+    private StrategyDAO strategyDAO;
+    
+    private FactoryService factoryService;
 
     public VerifyEnterpriseVipImpl() {
-        strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
+    	this.factoryService = new FactoryServiceImpl();
+        strategyDAO = factoryService.getStrategyDAO();
         
     }
 
     @Override
     public boolean verifyEnterpriseMember(String enterpriseName, String securityCode) throws RemoteException {
-        strategyDAO = RemoteHelper.getInstance().getStrategyDAO();
         boolean verifyed = false;
         verifyed = strategyDAO.verifyEnterpriseMember(enterpriseName, securityCode);
         return verifyed;

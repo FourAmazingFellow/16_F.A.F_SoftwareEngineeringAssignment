@@ -15,7 +15,6 @@ import po.ActionType;
 import po.OrderPO;
 import po.OrderState;
 import po.RoomType;
-import rmi.RemoteHelper;
 import vo.OrderVO;
 
 public class SystemOrderWithdrawer {
@@ -27,7 +26,7 @@ public class SystemOrderWithdrawer {
 
 	public SystemOrderWithdrawer() {
 		factory = new FactoryServiceImpl();
-		orderDaoService = RemoteHelper.getInstance().getOrderDAO();
+		orderDaoService = factory.getOrderDAO();
 		userCreditService = factory.createClientCreditInfoService();
 		addSpareRoomService = factory.createRoomInfoService();
 	}

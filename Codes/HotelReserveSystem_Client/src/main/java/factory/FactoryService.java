@@ -9,6 +9,11 @@ import businesslogic.userbl.ClientCreditInfo;
 import businesslogic.userbl.UserInfo;
 import businesslogic.userbl.VerifyEnterpriseVip;
 import businesslogic.userbl.VipInfo;
+import dataservice.hotelDAO.HotelDAO;
+import dataservice.orderDAO.OrderDAO;
+import dataservice.roomDAO.RoomDAO;
+import dataservice.strategyDAO.StrategyDAO;
+import dataservice.userDAO.UserDAO;
 
 public interface FactoryService {
 	
@@ -29,4 +34,14 @@ public interface FactoryService {
 	public VipInfo createVipInfo();
 	
 	public VerifyEnterpriseVip createVerifyEnterpriseVip();
+	
+	public HotelDAO getHotelDAO();
+	
+	public OrderDAO getOrderDAO();
+	
+	public RoomDAO getRoomDAO();
+	
+	public StrategyDAO getStrategyDAO();
+	
+	public UserDAO getUserDAO();
 }

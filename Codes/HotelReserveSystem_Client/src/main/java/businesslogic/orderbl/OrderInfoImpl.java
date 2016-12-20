@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import businesslogic.hotelbl.OrderInfo;
 import businesslogic.utilitybl.POList2VOList;
 import dataservice.orderDAO.OrderDAO;
-import rmi.RemoteHelper;
+import factory.FactoryService;
+import factory.FactoryServiceImpl;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
 
@@ -14,9 +15,12 @@ public class OrderInfoImpl implements OrderInfo {
 	OrderDAO orderDAO;
 	POList2VOList transformer;
 	
+	private FactoryService factory;
+	
 	public OrderInfoImpl() {
 		transformer = new POList2VOList();
-		orderDAO = RemoteHelper.getInstance().getOrderDAO();
+		this.factory = new FactoryServiceImpl();
+		orderDAO = factory.getOrderDAO();
 	}
 	
 	
