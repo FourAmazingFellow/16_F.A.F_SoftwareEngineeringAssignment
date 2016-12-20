@@ -86,11 +86,11 @@ public class PromotionEditPanelController {
     private StrategyUIFactoryService strategyUIFactoryService = new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
-    private boolean isNewaPromotion;
 
     @FXML
     private void initialize() {
-
+        startTimeDatePicker4.setEditable(false);
+        endTimeDatePicker4.setEditable(false);
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -114,6 +114,7 @@ public class PromotionEditPanelController {
             if (!isNewaPromotion) {
                 strategyNameTextField1.setText(strategy.getStrategyName());
                 discountTextField1.setText(String.valueOf(strategy.getDiscount()));
+                strategyNameTextField1.setDisable(true);
             }
         } else if (strategy.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
             birthdayPromotionTab.setDisable(true);
@@ -125,6 +126,7 @@ public class PromotionEditPanelController {
                 discountTextField3.setText(String.valueOf(strategy.getDiscount()));
                 cooperationEnterpriseTextField3.setText(strategy.getEnterpriseName());
                 securityCodeTextField3.setText(strategy.getSecurityCode());
+                strategyNameTextField3.setDisable(true);
             }
         } else if (strategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
             birthdayPromotionTab.setDisable(true);
@@ -135,9 +137,10 @@ public class PromotionEditPanelController {
                 strategyNameTextField2.setText(strategy.getStrategyName());
                 discountTextField2.setText(String.valueOf(strategy.getDiscount()));
                 minRoomTextField2.setText(String.valueOf(strategy.getMinRoomNum()));
+                strategyNameTextField2.setDisable(true);
             }
         } else if (strategy.getStrategyType() == StrategyType.SpecificTimePromotion) {
-            specialTimePromotionTab.setDisable(true);
+            birthdayPromotionTab.setDisable(true);
             cooperationEnterPrisePromotionTab.setDisable(true);
             multiRoomPromotionTab.setDisable(true);
             strategyTypeTabPane.getSelectionModel().select(3);
@@ -150,10 +153,8 @@ public class PromotionEditPanelController {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                strategyNameTextField4.setDisable(true);
             }
-        }
-        if (!isNewaPromotion) {
-            strategyNameTextField1.setDisable(true);
         }
     }
 
@@ -165,7 +166,7 @@ public class PromotionEditPanelController {
     @FXML
     void handleConfirm() {
         // 判断输入的数据是否有效
-        if (isInputValid()) {
+        if (!isInputValid()) {
             return;
         }
 
@@ -185,13 +186,20 @@ public class PromotionEditPanelController {
         }
 
         // 把新建或修改的strategy传给上一个界面
-        strategy.setStrategyName(strategyNameTextField1.getText());
-        strategy.setDiscount(Integer.parseInt(discountTextField1.getText()));
-        if (strategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
+        if(strategy.getStrategyType()==StrategyType.BirthdayPromotion){
+            strategy.setStrategyName(strategyNameTextField1.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField1.getText()));
+        }else if (strategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
+            strategy.setStrategyName(strategyNameTextField2.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField2.getText()));
             strategy.setMinRoomNum(Integer.parseInt(minRoomTextField2.getText()));
         } else if (strategy.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
+            strategy.setStrategyName(strategyNameTextField3.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField3.getText()));
             strategy.setEnterpriseName(cooperationEnterpriseTextField3.getText());
         } else if (strategy.getStrategyType() == StrategyType.SpecificTimePromotion) {
+            strategy.setStrategyName(strategyNameTextField4.getText());
+            strategy.setDiscount(Float.parseFloat(discountTextField4.getText()));
             strategy.setStartTime(LocalDateAdapter.toDate(startTimeDatePicker4.getValue()));
             strategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker4.getValue()));
         }
@@ -209,11 +217,11 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField1.getText().equals("")|| !isDigit(discountTextField1.getText())) {
+            if (discountTextField1.getText().equals("")|| !isDiscount(discountTextField1.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
 
                 alert.showAndWait();
                 return false;
@@ -230,11 +238,11 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField3.getText().equals("")|| !isDigit(discountTextField3.getText())) {
+            if (discountTextField3.getText().equals("")|| !isDiscount(discountTextField3.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
 
                 alert.showAndWait();
                 return false;
@@ -250,11 +258,11 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField2.getText().equals("") || !isDigit(discountTextField2.getText())) {
+            if (discountTextField2.getText().equals("") || !isDiscount(discountTextField2.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
 
                 alert.showAndWait();
                 return false;
@@ -263,7 +271,7 @@ public class PromotionEditPanelController {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("最少房间数错误");
-                alert.setContentText("请在最少房间数中输入数字");
+                alert.setContentText("请在最少房间数中输入整数");
 
                 alert.showAndWait();
                 return false;
@@ -279,11 +287,11 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField4.getText().equals("")|| !isDigit(discountTextField4.getText())) {
+            if (discountTextField4.getText().equals("")|| !isDiscount(discountTextField4.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
-                alert.setContentText("请在折扣百分比中输入数字");
+                alert.setContentText("请在折扣百分比中输入数字且数字要小于1");
 
                 alert.showAndWait();
                 return false;
@@ -299,8 +307,26 @@ public class PromotionEditPanelController {
             }
         }
         StrategyVO strategyVO = null;
+        Strategy tmpStrategy =new Strategy(strategy.getStrategyType());
+        if(tmpStrategy.getStrategyType()==StrategyType.BirthdayPromotion){
+            tmpStrategy.setStrategyName(strategyNameTextField1.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField1.getText()));
+        }else if (tmpStrategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
+            tmpStrategy.setStrategyName(strategyNameTextField2.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField2.getText()));
+            tmpStrategy.setMinRoomNum(Integer.parseInt(minRoomTextField2.getText()));
+        } else if (tmpStrategy.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
+            tmpStrategy.setStrategyName(strategyNameTextField3.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField3.getText()));
+            tmpStrategy.setEnterpriseName(cooperationEnterpriseTextField3.getText());
+        } else if (tmpStrategy.getStrategyType() == StrategyType.SpecificTimePromotion) {
+            tmpStrategy.setStrategyName(strategyNameTextField4.getText());
+            tmpStrategy.setDiscount(Float.parseFloat(discountTextField4.getText()));
+            tmpStrategy.setStartTime(LocalDateAdapter.toDate(startTimeDatePicker4.getValue()));
+            tmpStrategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker4.getValue()));
+        }
         try {
-            strategyVO = strategy.toVO(address);
+            strategyVO = tmpStrategy.toVO(address);
         } catch (ParseException e) {
             e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
@@ -331,7 +357,7 @@ public class PromotionEditPanelController {
         return false;
     }
 
-    private boolean isDigit(String str) {
+    private boolean isDiscount(String str) {
         for (char c : str.toCharArray()) {
             if ((c < '0' || c > '9') && c != '.') {
                 return false;
@@ -341,6 +367,9 @@ public class PromotionEditPanelController {
             return false;
         }
         if (str.indexOf('.') != str.lastIndexOf('.')) {
+            return false;
+        }
+        if(Float.parseFloat(str)>1||Float.parseFloat(str)<=0){
             return false;
         }
         return true;
