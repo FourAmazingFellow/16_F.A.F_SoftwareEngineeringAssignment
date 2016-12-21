@@ -64,6 +64,9 @@ public class ScreenPanelController {
 		confirmClicked = true;
 		setPriceRange();
 		conditions[5] = String.valueOf((int)starLevelSlider.getValue());
+		conditions[7] = String.valueOf(hotelMarkChoiceBox.getValue());
+		System.out.println(hotelRoomTypeChoiceBox.getSelectionModel().getSelectedIndex());
+		System.out.println(isReservedBox.getSelectionModel().getSelectedIndex());
 		conditions[10] = String.valueOf(hotelRoomTypeChoiceBox.getSelectionModel().getSelectedIndex());
 		conditions[9] = String.valueOf(isReservedBox.getSelectionModel().getSelectedIndex());
 		
