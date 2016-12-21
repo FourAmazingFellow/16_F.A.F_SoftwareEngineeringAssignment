@@ -11,13 +11,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import po.OrderType;
 import presentation.mainui.WebsitePromotionRootBoardController;
 import presentation.orderui.BrowseAbnormalOrderPanelController;
-import presentation.orderui.BrowseHotelOrderPanelController;
-import presentation.orderui.GetDetailedOrderDonePanelController;
 import presentation.orderui.SystemWithdrawDetailedOrderPanelController;
+import presentation.strategyui.manageMarketStrategy.MarketStrategyEditPanelController;
+import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController;
+import presentation.strategyui.model.Strategy;
 import presentation.userui.addcredit.AddCreditValueController;
 import runner.ClientRunner;
 
@@ -27,6 +28,7 @@ public class WebsitePromotionMainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane websitePromotionRootLayout;
 	private ClientRunner clientRunner;
+	private static String websiteAddress="Web";
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -45,32 +47,53 @@ public class WebsitePromotionMainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 		
-		showWebsitePromotionRootPanel();
+		initWebsitePromotionRootPanel();
 		showAbnormalOrderPanel();
 	}
 
 	public static void main(String[] args) {
-		launch(args);
+	    launch(args);
 	}
+	
+	 public Stage getPrimaryStage() {
+         return primaryStage;
+     }
 
-	//显示网站营销人员的导航栏
-	public void showWebsitePromotionRootPanel() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(WebsitePromotionMainApp.class.getResource("mainui/websitePromotionRootBoard.fxml"));
-			websitePromotionRootLayout = (BorderPane) loader.load();
+	 public void setUserId(String userId){
+	     WebsitePromotionMainApp.userID=userId;
+	 }
 
-			Scene scene = new Scene(websitePromotionRootLayout);
-			primaryStage.setScene(scene);
-			
-			WebsitePromotionRootBoardController controller = loader.getController();
-			controller.setMainApp(this);
+	/**
+     * 显示网站营销人员导航栏
+     * 
+     * @see
+     */
+    public void initWebsitePromotionRootPanel() {
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HotelMainApp.class.getResource("mainui/websitePromotionRootBoard.fxml"));
+            websitePromotionRootLayout = (BorderPane) loader.load();
 
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            // Show the scene containing the root layout.
+            Scene scene = new Scene(websitePromotionRootLayout);
+            primaryStage.setScene(scene);
+
+            // Give the controller access to the main app.
+            WebsitePromotionRootBoardController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setUserId(WebsitePromotionMainApp.userID);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //显示网站营销人员的主界面
+    public void showWebsitePromotionMainPanel() {
+        
+    }
 	
 	public void showAbnormalOrderPanel() {
 		try {
@@ -107,15 +130,11 @@ public class WebsitePromotionMainApp extends Application {
 			
 			primaryStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	}
 
-	//显示网站营销人员的主界面
-	public void showWebsitePromotionMainPanel() {
-		
-	}
+	
 	//显示信用充值界面
 	public void showAddCreditPanel() {
 		try {
@@ -138,4 +157,69 @@ public class WebsitePromotionMainApp extends Application {
 			alert.showAndWait();
 		}		
 	}
+	
+
+    /**
+     * 管理营销策略界面
+     * @param address
+     * @see
+     */
+    public void showManageMarketStrategyPanel(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPanel.fxml"));
+            AnchorPane manageMarketStrategyPanel = (AnchorPane) loader.load();
+
+            websitePromotionRootLayout.setCenter(manageMarketStrategyPanel);
+            
+            // Give the controller access to the main app.
+            MarketStrategyPanelController controller = loader.getController();
+            controller.setMainApp(this);
+            //默认显示所有订单
+            controller.showAllMarketStrategyList(websiteAddress);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * 营销策略编辑界面
+     * @param strategy
+     * @param address
+     * @param isNewaPromotion
+     * @return
+     * @see
+     */
+    public boolean showMarketStrategyEditDialog(Strategy strategy, boolean isNewaPromotion) {
+           try {
+               // Load the fxml file and create a new stage for the popup dialog.
+               FXMLLoader loader = new FXMLLoader();
+               loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyEditPanel.fxml"));
+               AnchorPane page = (AnchorPane) loader.load();
+
+               // Create the dialog Stage.
+               Stage dialogStage = new Stage();
+               dialogStage.setTitle("Edit MarketStrategy");
+               dialogStage.initModality(Modality.WINDOW_MODAL);
+               dialogStage.initOwner(primaryStage);
+               Scene scene = new Scene(page);
+               dialogStage.setScene(scene);
+
+               // Set the person into the controller.
+               MarketStrategyEditPanelController controller = loader.getController();
+               controller.setDialogStage(dialogStage);
+               controller.setStrategy(strategy, websiteAddress, isNewaPromotion);
+
+               // Show the dialog and wait until the user closes it
+               dialogStage.showAndWait();
+
+               return controller.isConfirmed();
+           } catch (IOException e) {
+               e.printStackTrace();
+               return false;
+           }
+       }
+    
 }

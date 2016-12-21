@@ -29,21 +29,20 @@
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="manageAbnormalOrderSection" alignment="CENTER" contentDisplay="CENTER" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="管理异常订单" textAlignment="CENTER" GridPane.columnIndex="1">
+				<Button fx:id="manageAbnormalOrderSection" alignment="CENTER" contentDisplay="CENTER" minWidth="250.0" mnemonicParsing="false" onAction="#handleManageAbnormalOrder" prefHeight="60.0" prefWidth="250.0" text="管理异常订单" textAlignment="CENTER" GridPane.columnIndex="1">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<Button fx:id="updateStrategySection" alignment="CENTER" contentDisplay="CENTER" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="制定营销策略" textAlignment="CENTER" GridPane.columnIndex="2">
+				<Button fx:id="updateStrategySection" alignment="CENTER" contentDisplay="CENTER" minWidth="250.0" mnemonicParsing="false" onAction="#handleManageMarketStrategy" prefHeight="60.0" prefWidth="250.0" text="制定营销策略" textAlignment="CENTER" GridPane.columnIndex="2">
 					<font>
 						<Font size="18.0" />
 					</font>
 				</Button>
 				<MenuButton fx:id="userActionButton" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="UserID" GridPane.columnIndex="3">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Personal Information" />
-						<MenuItem mnemonicParsing="false" text="LOGOUT" />
-						<MenuItem mnemonicParsing="false" text="EXIT" />
+						<MenuItem mnemonicParsing="false" onAction="#handleLogOut" text="LOGOUT" />
+						<MenuItem mnemonicParsing="false" onAction="#handleExit" text="EXIT" />
 					</items>
 				</MenuButton>
 			</children>

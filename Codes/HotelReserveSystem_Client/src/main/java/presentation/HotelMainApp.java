@@ -24,8 +24,7 @@ import presentation.roomui.CheckOut.ManageCheckOutPanelController;
 import presentation.roomui.CheckOut.model.CheckOut;
 import presentation.roomui.spareRoom.SpareRoomTablePanelController;
 import presentation.strategyui.manageHotelPromotion.PromotionEditPanelController;
-import presentation.strategyui.manageMarketStrategy.MarketStrategyEditPanelController;
-import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController;
+import presentation.strategyui.manageHotelPromotion.PromotionPanelController;
 import presentation.strategyui.model.Strategy;
 import runner.ClientRunner;
 
@@ -65,6 +64,14 @@ public class HotelMainApp extends Application {
 	        return primaryStage;
 	    }
 
+	 public void setUserId(String userId){
+	     HotelMainApp.userId=userId;
+	 }
+	 
+	 public void setAddress(String address){
+	     HotelMainApp.hotelAddress=address;
+	 }
+	 
 	public void initHotelRootPanel() {
 		try {
 			// Load root layout from fxml file.
@@ -79,7 +86,6 @@ public class HotelMainApp extends Application {
 			// Give the controller access to the main app.
 			HotelRootBoardController controller = loader.getController();
 			controller.setMainApp(this);
-			controller.setAddress(hotelAddress);
 			controller.setUserId(userId);
 
 			primaryStage.show();
@@ -129,15 +135,6 @@ public class HotelMainApp extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
-	}
-	
-	/**
-	 * 酒店工作人员的主界面
-	 * 
-	 * @see
-	 */
-	public void showHotelMainPanel() {
-		
 	}
 	
 	/**
@@ -297,16 +294,16 @@ public class HotelMainApp extends Application {
 	 public void showManagePromotionPanel(){
 	     try {
 	         FXMLLoader loader = new FXMLLoader();
-	         loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPabel.fxml"));
+	         loader.setLocation(HotelMainApp.class.getResource("strategyui/manageHotelPromotion/PromotionPanel.fxml"));
 	         AnchorPane manageMarketStrategyPanel = (AnchorPane) loader.load();
 
 	         hotelRootLayout.setCenter(manageMarketStrategyPanel);
 	         
 	         // Give the controller access to the main app.
-	         MarketStrategyPanelController controller = loader.getController();
+	         PromotionPanelController controller = loader.getController();
 	         controller.setMainApp(this);
 	         //默认显示所有订单
-	         controller.showAllMarketStrategyList(hotelAddress);;
+	         controller.showAllPromotionList(hotelAddress);
 
 	         primaryStage.show();
 	     } catch (IOException e) {
@@ -354,66 +351,4 @@ public class HotelMainApp extends Application {
 	    }
 	 
 	 
-	 /**
-	  * 管理营销策略界面
-	  * @param address
-	  * @see
-	  */
-	 public void showManageMarketStrategyPanel(String address){
-	     try {
-	         FXMLLoader loader = new FXMLLoader();
-	         loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyPabel.fxml"));
-	         AnchorPane manageMarketStrategyPanel = (AnchorPane) loader.load();
-
-	         hotelRootLayout.setCenter(manageMarketStrategyPanel);
-	         
-	         // Give the controller access to the main app.
-	         MarketStrategyPanelController controller = loader.getController();
-	         controller.setMainApp(this);
-	         //默认显示所有订单
-	         controller.showAllMarketStrategyList(address);
-
-	         primaryStage.show();
-	     } catch (IOException e) {
-	         e.printStackTrace();
-	     }
-	 }
-	 
-	 /**
-	  * 营销策略编辑界面
-	  * @param strategy
-	  * @param address
-	  * @param isNewaPromotion
-	  * @return
-	  * @see
-	  */
-	 public boolean showMarketStrategyEditDialog(Strategy strategy, String address, boolean isNewaPromotion) {
-	        try {
-	            // Load the fxml file and create a new stage for the popup dialog.
-	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/MarketStrategyEditPanel.fxml"));
-	            AnchorPane page = (AnchorPane) loader.load();
-
-	            // Create the dialog Stage.
-	            Stage dialogStage = new Stage();
-	            dialogStage.setTitle("Edit MarketStrategy");
-	            dialogStage.initModality(Modality.WINDOW_MODAL);
-	            dialogStage.initOwner(primaryStage);
-	            Scene scene = new Scene(page);
-	            dialogStage.setScene(scene);
-
-	            // Set the person into the controller.
-	            MarketStrategyEditPanelController controller = loader.getController();
-	            controller.setDialogStage(dialogStage);
-	            controller.setStrategy(strategy, address, isNewaPromotion);
-
-	            // Show the dialog and wait until the user closes it
-	            dialogStage.showAndWait();
-
-	            return controller.isConfirmed();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            return false;
-	        }
-	    }
 }

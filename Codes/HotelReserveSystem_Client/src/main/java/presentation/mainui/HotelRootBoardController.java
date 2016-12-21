@@ -11,7 +11,6 @@ public class HotelRootBoardController {
     private MenuButton userActionButton;
     
     private String userId;
-    private String address;
     private HotelMainApp mainApp;
     
     
@@ -22,11 +21,7 @@ public class HotelRootBoardController {
     
     public void setUserId(String userId){
         this.userId=userId;
-        userActionButton.setText(userId);
-    }
-    
-    public void setAddress(String address){
-        this.address=address;
+        userActionButton.setText(this.userId);
     }
 
     @FXML
@@ -36,7 +31,7 @@ public class HotelRootBoardController {
     
     @FXML
     void handleBrowseOrder(ActionEvent event) {
-        
+        mainApp.showHotelOrderPanel();
     }
 
     @FXML

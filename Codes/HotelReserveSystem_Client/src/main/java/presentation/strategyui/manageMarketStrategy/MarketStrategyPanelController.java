@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import po.StrategyType;
-import presentation.HotelMainApp;
+import presentation.WebsitePromotionMainApp;
 import presentation.strategyui.model.Strategy;
 import presentation.strategyui.model.StrategyListWrapper;
 import vo.StrategyVO;
@@ -88,7 +88,7 @@ public class MarketStrategyPanelController {
     @FXML
     private TableColumn<Strategy, String> endTimeColumn3;
 
-    private HotelMainApp mainApp;
+    private WebsitePromotionMainApp mainApp;
     private ObservableList<Strategy> memberRankStrategyData = FXCollections.observableArrayList();
     private ObservableList<Strategy> VIPTradeAreaStrategyData = FXCollections.observableArrayList();
     private ObservableList<Strategy> specialTimeStrategyData = FXCollections.observableArrayList();
@@ -96,8 +96,6 @@ public class MarketStrategyPanelController {
     private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
-
-    private ObservableList<String> tradeAreaList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -134,7 +132,7 @@ public class MarketStrategyPanelController {
         }
     }
 
-    public void setMainApp(HotelMainApp mainApp) {
+    public void setMainApp(WebsitePromotionMainApp mainApp) {
         this.mainApp = mainApp;
     }
 
@@ -225,7 +223,7 @@ public class MarketStrategyPanelController {
         else if (selectedTab == 2)
             strategy = new Strategy(StrategyType.SpecificTimeMarket);
         boolean isNewaPromotion = true;
-        boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, address, isNewaPromotion);
+        boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, isNewaPromotion);
         if (isConfirmed) {
             if (selectedTab == 0)
                 memberRankMarketStrategyTable.getItems().add(strategy);
@@ -331,7 +329,7 @@ public class MarketStrategyPanelController {
             e.printStackTrace();
         }
         boolean isNewaPromotion = false;
-        boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, address, isNewaPromotion);
+        boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, isNewaPromotion);
         if (isConfirmed) {
             if (selectedTab == 0)
                 memberRankMarketStrategyTable.getItems().add(strategy);
