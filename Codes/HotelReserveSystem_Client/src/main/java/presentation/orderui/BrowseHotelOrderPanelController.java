@@ -58,10 +58,7 @@ public class BrowseHotelOrderPanelController {
 
 	@FXML
 	private TableColumn<FxBriefOrder, String> finishDateColumn;
-
-	@FXML
-	private Button returnButton;
-
+	
 	@FXML
 	private Button getDetailedOrderButton;
 
@@ -159,10 +156,6 @@ public class BrowseHotelOrderPanelController {
 		} else {
 			mainApp.showHotelDetailedOrderPanel(orderID);
 		}
-	}
-
-	public void returnButtonAction() {
-		mainApp.showHotelMainPanel();
 	}
 
 	public void showDetailedOrder() {

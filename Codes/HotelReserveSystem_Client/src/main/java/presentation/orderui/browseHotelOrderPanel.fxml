@@ -19,8 +19,7 @@
             <TableColumn fx:id="totalPriceColumn" prefWidth="75.2843017578125" text="总价" />
         </columns>
       </TableView>
-      <Button fx:id="getDetailedOrderButton" layoutX="300.0" layoutY="560.0" mnemonicParsing="false" onAction="#returnButtonAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="returnButton" layoutX="562.0" layoutY="560.0" mnemonicParsing="false" onAction="#showDetailedOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <Button fx:id="returnButton" layoutX="560.0" layoutY="560.0" mnemonicParsing="false" onAction="#showDetailedOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" />
       <TextField fx:id="searchTextField" layoutX="124.0" layoutY="54.0" prefHeight="43.0" prefWidth="642.0" promptText="请填入所要搜索的订单号......" />
       <Button fx:id="searchButton" layoutX="765.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchOrderByID" text="搜索" />
       <ChoiceBox fx:id="orderTypeChoiceBox" layoutX="239.0" layoutY="115.0" prefHeight="30.0" prefWidth="200.0" styleClass="choice-box-small" />
