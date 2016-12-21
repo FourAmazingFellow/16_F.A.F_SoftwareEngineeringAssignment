@@ -2,13 +2,27 @@ package presentation.mainui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import presentation.HotelMainApp;
 
 public class HotelRootBoardController {
 
+	@FXML
+    private MenuItem exitButton;
+
     @FXML
     private MenuButton userActionButton;
+
+    @FXML
+    private MenuItem logoutButton;
+
+    @FXML
+    private Button enrollAvalableRoomSection;
+
+    @FXML
+    private Button htelInfoSection;
     
     private String userId;
     private HotelMainApp mainApp;
@@ -26,7 +40,7 @@ public class HotelRootBoardController {
 
     @FXML
     void handleMaintainHotelInfo(ActionEvent event) {
-        
+        mainApp.showMaintainHotelInfoPanel();
     }
     
     @FXML
@@ -57,7 +71,7 @@ public class HotelRootBoardController {
 
     @FXML
     void handleEnrollValuableRoom(ActionEvent event) {
-        
+        mainApp.showEnrollAvaluableRoomPanel();
     }
  
     @FXML

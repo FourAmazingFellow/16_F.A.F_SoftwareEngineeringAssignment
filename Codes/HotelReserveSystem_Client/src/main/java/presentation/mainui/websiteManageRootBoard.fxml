@@ -33,11 +33,10 @@
 						<Font size="18.0" />
 					</font>
 				</Button>
-				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="UserID" GridPane.columnIndex="2">
+				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="用户名" GridPane.columnIndex="2">
 					<items>
-						<MenuItem fx:id="userIDMenuItem" mnemonicParsing="false" text="Personal Information" />
-						<MenuItem mnemonicParsing="false" text="LOGOUT" />
-						<MenuItem mnemonicParsing="false" text="EXIT" />
+						<MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogout" text="登出" />
+						<MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="退出" />
 					</items>
 				</MenuButton>
 			</children>

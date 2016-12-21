@@ -14,13 +14,16 @@ public class WebsiteManageRootBoardController {
     private Button manageHotelSection;
 
     @FXML
+    private MenuItem exitButton;
+
+    @FXML
     private MenuButton userActionButton;
 
     @FXML
-    private MenuItem userIDMenuItem;
+    private Button manageUserSection;
 
     @FXML
-    private Button manageUserSection;
+    private MenuItem logoutButton;
 
 
 	@FXML
@@ -40,5 +43,13 @@ public class WebsiteManageRootBoardController {
 	@FXML
 	void manageHotelAction(ActionEvent event) {
 		mainApp.showManageHotelPanel();
+	}
+	
+	public void handleLogout() {
+		mainApp.logout();
+	}
+
+	public void handleExit() {
+		System.exit(0);
 	}
 }

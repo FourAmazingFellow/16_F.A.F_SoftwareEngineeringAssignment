@@ -8,9 +8,9 @@ import factory.HotelUIFactoryServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import presentation.HotelMainApp;
 import vo.HotelVO;
@@ -21,10 +21,7 @@ public class MaintainHotelInfoController {
 	private HotelMainApp mainApp;
 	private String hotelAddress;
 	private HotelVO hotelVO;
-	
-	public MaintainHotelInfoController(String hotelAddress) {
-		this.hotelAddress = hotelAddress;
-	}
+
 	@FXML
 	private Label maintainHotelInfoLabel;
 
@@ -53,30 +50,48 @@ public class MaintainHotelInfoController {
 	private Label hotelMarkLabel;
 
 	@FXML
-	private Button returnButton;
+	private Label serviceLabel;
 
 	@FXML
-	private Label serviceLabel;
-//create方法参数？？？
-	@FXML
-	void initialize(){
+	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
-		try {
-			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(hotelAddress);
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();		}
-		showHotelDetail();
+
+//		String address = "南京市栖霞区仙林大道163号";
+//		// this.hotelAddress = address;
+//		String hotelName = "F.A.F酒店";
+//		String tradeArea = "栖霞区";
+//		int starLevel = 4;
+//		float mark = (float) 4.6;
+//		String city = "南京市";
+//		String facilityAndService = "空调、热水";
+//		String briefIntroduction = "南京市最好的酒店";
+//		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
+//		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 150);
+//		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
+//		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 30);
+//		HashMap<String, String> comments = new HashMap<>();
+//		comments.put("原", "这是我住过最舒服的酒店！！！！！");
+//		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl_Stub(hotelName, tradeArea, address, starLevel,
+//				mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		
+		 try {
+		 maintainHotelBasicInfo =
+		 hotelFactory.createMaintainHotelBasicInfoService(hotelAddress);
+		 } catch (RemoteException e) {
+		 Alert alert = new Alert(AlertType.WARNING);
+		 alert.setTitle("NetWork Warning");
+		 alert.setHeaderText("Fail to connect with the server!");
+		 alert.setContentText("Please check your network connection!");
+		 alert.showAndWait();
+		 }
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
-	public void showHotelDetail(){
+
+	public void showHotelDetail(String address) {
+		this.hotelAddress = address;
 		this.hotelVO = maintainHotelBasicInfo.enrollHotelBasicInfo(hotelAddress);
 		hotelNameLabel.setText(hotelVO.hotelName);
 		hotelAddressLabel.setText(hotelVO.hotelAddress);
@@ -86,14 +101,9 @@ public class MaintainHotelInfoController {
 		briefIntroductionabel.setText(hotelVO.briefIntroduction);
 		serviceLabel.setText(hotelVO.facilityAndService);
 	}
-	
-	@FXML
-	void returnButtonAction(ActionEvent event) {
-		return;
-	}
 
 	@FXML
-	void editButtonAction(ActionEvent event) {
-		new EditHotelInfoController(hotelVO);
+	public void editButtonAction(ActionEvent event) {
+		mainApp.showEditHotelInfoPanel(hotelVO);
 	}
 }

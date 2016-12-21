@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -34,8 +35,10 @@ public class ManageHotelController {
 	private int hotelStar;
 	private String briefIntro;
 	private String staffID;
-	private String password;
+	private String password,passwordConfirm;
 	private String telNum;
+	private HotelVO newHotel;
+	private HotelStaffInfoVO staff;
 	private HashMap<RoomType, Integer> hash1 = new HashMap<>();
 	private HashMap<RoomType, Integer> hash2 = new HashMap<>();
 	private HashMap<String, String> hash3 = new HashMap<>();
@@ -86,7 +89,10 @@ public class ManageHotelController {
 	private Label hotelAddressLabel;
 
 	@FXML
-	private TextField passwordField;
+	private PasswordField passwordField;
+	
+    @FXML
+    private PasswordField passwordConfirmField;
 
 	@FXML
 	private Label manageHotelLabel;
@@ -107,6 +113,8 @@ public class ManageHotelController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		manageHotel = hotelFactory.createManageHotelInfoService(null);
+//		manageHotel = new ManageHotelInfoServiceImpl_Stub();
+				
 		
 		hotelNameLabel.setText("");
 		hotelAddressLabel.setText("");
@@ -128,7 +136,7 @@ public class ManageHotelController {
 	}
 
 	@FXML
-	void searchButtonAction(ActionEvent event) {
+	public void searchButtonAction(ActionEvent event) {
 //		tabPane.getSelectionModel().select(0);;
 		this.hotelAddress = searchField.getText();
 		if(hotelAddress.equals("")){
@@ -154,6 +162,7 @@ public class ManageHotelController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("酒店地址输入错误！");
 			alert.setContentText("请重新输入！");
+			alert.show();
 			return;
 		} else {
 			this.hotelName = hotel.hotelName;
@@ -176,7 +185,14 @@ public class ManageHotelController {
 		this.hotelNameNew = hotelNameField.getText();
 		this.staffID = hotelStaffIDfField.getText();
 		this.password = passwordField.getText();
+		this.passwordConfirm = passwordConfirmField.getText();
 		this.telNum = telNumField.getText();
+		
+//		this.hotelNameNew = "qwe";
+//		this.staffID = "staff";
+//		this.password = "qwe123";
+//		this.passwordConfirm = "qwe123";
+//		this.telNum = "12345678900";
 		
 		if(hotelNameNew.equals("")||staffID.equals("")||password.equals("")||telNum.equals("")){
 			Alert alert = new Alert(AlertType.WARNING);
@@ -185,8 +201,16 @@ public class ManageHotelController {
 			alert.setContentText("请重新输入！");
 			alert.show();
 			return;
+		} else if(!password.equals(passwordConfirm)){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("两次密码输入不一致！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
 		}
-		HotelVO newHotel = new HotelVO(hotelNameNew, "", "", 0, 0, "", "", "", hash1, hash2, hash3);
+		this.newHotel = null;
+		this.newHotel = new HotelVO(hotelNameNew, "", "", 0, 0, "", "", "", hash1, hash2, hash3);
 		boolean result1 = false;
 		try {
 			result1 = manageHotel.addHotel(newHotel);
@@ -197,7 +221,8 @@ public class ManageHotelController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
-		HotelStaffInfoVO staff = new HotelStaffInfoVO(staffID, password, telNum, UserType.HotelStaff, null);
+		this.staff = null;
+		this.staff = new HotelStaffInfoVO(staffID, password, telNum, UserType.HotelStaff, null);
 		boolean result2 = false;
 		try {
 			result2 = manageHotel.addHotelStaff(staff);
@@ -214,20 +239,23 @@ public class ManageHotelController {
 			alert.setHeaderText("添加失败！");
 			alert.setContentText("请重试！");
 			alert.show();
+			return;
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("add info");
 			alert.setHeaderText("添加成功！");
+			alert.show();
+			mainApp.showManageHotelPanel();
 		}
 	}
 
 	@FXML
-	void cancelButtonAction(ActionEvent event) {
-		return;
+	public void cancelButtonAction(ActionEvent event) {
+		mainApp.showManageHotelPanel();
 	}
 
 	@FXML
-	void confirmButtonAction(ActionEvent event) {
+	public void confirmButtonAction(ActionEvent event) {
 		addNewHotel();
 	}
 }

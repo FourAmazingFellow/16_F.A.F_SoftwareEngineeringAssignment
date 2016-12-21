@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import po.UserType;
@@ -21,10 +22,13 @@ public class addNewUserController {
 	private UserUIFactoryServiceImpl userFactory;
 	private ManageUserInfoService manageUser;
 	private String userID;
-	private String password;
+	private String password, passwordConfirm;
 	private String telNum;
 	@FXML
-	private TextField webMarketPasswordField;
+	private PasswordField webMarketPasswordField;
+	
+    @FXML
+    private PasswordField webMarketPasswordConfirmField;
 
 	@FXML
 	private Button cancelButton;
@@ -48,6 +52,9 @@ public class addNewUserController {
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		manageUser = userFactory.createManageUserInfoService();
+//		manageUser = new ManageUserInfoServiceImpl_Stub("staff0001", "qwe123", "12345678909", UserType.WebMarketStaff, "");
+//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原", "qwe123", "12345678900", UserType.Client, 1500, "阿里巴巴");
+		
 		webMarketUserIDField.setText("");
 		webMarketPasswordField.setText("");
 		webMarketTelNumField.setText("");
@@ -61,11 +68,19 @@ public class addNewUserController {
 	public void addNewUser() {
 		this.userID = webMarketUserIDField.getText();
 		this.password = webMarketPasswordField.getText();
+		this.passwordConfirm = webMarketPasswordConfirmField.getText();
 		this.telNum = webMarketTelNumField.getText();
 		if (userID.equals("") || password.equals("") || telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		} else if(!password.equals(passwordConfirm)){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("两次密码输入不一致！");
 			alert.setContentText("请重新输入！");
 			alert.show();
 			return;

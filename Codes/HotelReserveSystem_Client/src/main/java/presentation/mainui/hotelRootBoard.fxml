@@ -50,8 +50,8 @@
 				</Button>
 				<MenuButton fx:id="userActionButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="133.0" styleClass="choice-box-small" text="用户名" GridPane.columnIndex="7">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleLogOut" text="LOGOUT" />
-						<MenuItem mnemonicParsing="false" onAction="#handleExit" text="EXIT" />
+						<MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#handleLogOut" text="登出" />
+						<MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="退出" />
 					</items>
 				</MenuButton>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCheckOut" prefHeight="60.0" prefWidth="120.0" styleClass="button-small" text="办理退房" textAlignment="CENTER" GridPane.columnIndex="4">

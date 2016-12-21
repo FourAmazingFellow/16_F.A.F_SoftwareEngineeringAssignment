@@ -7,16 +7,16 @@ import vo.RoomVO;
 
 public class RoomList {
 
-    private List<Room> roomList;
-    
-    public List<Room> getStrategyList(){
-        return roomList;
-    }
-    
-    public void setRoomList(ArrayList<RoomVO> roomVOs){
-    	roomList.clear();
-        for(RoomVO roomVO:roomVOs){
-        	roomList.add(new Room(roomVO));
-        }
-    }
+	private List<Room> roomList = new ArrayList<>();
+
+	public List<Room> getStrategyList() {
+		return roomList;
+	}
+
+	public void setRoomList(ArrayList<RoomVO> roomVOs) {
+		roomList.clear();
+		for (RoomVO roomVO : roomVOs) {
+			roomList.add(new Room(roomVO));
+		}
+	}
 }

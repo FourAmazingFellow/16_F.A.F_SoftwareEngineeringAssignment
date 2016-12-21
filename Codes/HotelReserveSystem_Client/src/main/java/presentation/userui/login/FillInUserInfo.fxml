@@ -23,7 +23,7 @@
 			</rowConstraints>
 			<children>
 				<Label text="用户类型" GridPane.rowIndex="3" />
-				<ChoiceBox fx:id="userTypeChoiceBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+				<ChoiceBox fx:id="userTypeChoiceBox" prefWidth="200.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 				<Label text="联系方式" GridPane.rowIndex="4" />
 				<TextField fx:id="telNumField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="用户名" />

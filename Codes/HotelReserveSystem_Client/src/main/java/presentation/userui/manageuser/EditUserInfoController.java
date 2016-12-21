@@ -27,8 +27,8 @@ public class EditUserInfoController {
 	private ModifyClientInfoService modifyClientInfo;
 	private ClientInfoVO client;
 	private UserVO webUser;
+	private UserVO modified;
 	private String userIDm;
-	private String passwordm;
 	private String telNumm;
 
 	@FXML
@@ -94,47 +94,53 @@ public class EditUserInfoController {
 	@FXML
 	private TabPane tabPane;
 
-	public EditUserInfoController(ClientInfoVO client) {
-		this.client = client;
-	}
-
-	public EditUserInfoController(UserVO webUser) {
-		this.webUser = webUser;
-	}
-
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		manageUser = userFactory.createManageUserInfoService();
-		modifyClientInfo = userFactory.createModifyClientInfoService();
+		 manageUser = userFactory.createManageUserInfoService();
+		 modifyClientInfo = userFactory.createModifyClientInfoService();
+//		manageUser = new ManageUserInfoServiceImpl_Stub("staff0001", "qwe123", "12345678909", UserType.WebMarketStaff,
+//				"");
+//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原", "qwe123", "12345678900", UserType.Client, 1500,
+//				"阿里巴巴");
 	}
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	//显示修改前的信息
+	// 显示修改前的信息
 	public void showPreUserInfo(ClientInfoVO client, UserVO webUser) {
+		this.client = client;
+		this.webUser = webUser;
 		if (client != null) {
-			tabPane.getSelectionModel().select(clientTab);
+			// tabPane.getSelectionModel().select(clientTab);
 			clientUserIDField.setText(client.userID);
-			clientPasswordField.setText(client.password);
 			clientTelNumField.setText(client.telNum);
 			creditValueLabel.setText(String.valueOf(client.creditValue));
 		} else if (webUser != null) {
-			tabPane.getSelectionModel().select(webMarketStaffTab);
+			// tabPane.getSelectionModel().select(webMarketStaffTab);
 			webMarketUserIDField.setText(webUser.userID);
-			webMarketPasswordField.setText(webUser.password);
 			webMarketTelNumField.setText(webUser.telNum);
 		}
 	}
 
-	//修改客户信息
+	// 修改客户信息
 	public void editClientInfo() {
 		this.userIDm = clientUserIDField.getText();
-		this.passwordm = clientPasswordField.getText();
 		this.telNumm = clientTelNumField.getText();
-		UserVO modified = new UserVO(userIDm, passwordm, telNumm, UserType.Client);
+		if (userIDm.equals("") || telNumm.equals("")) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
+//		this.userIDm = "原";
+//		this.telNumm = "12345612345";
+		this.modified = null;
+		this.modified = new UserVO(userIDm, client.password, telNumm, UserType.Client);
 		boolean result = false;
 		try {
 			result = modifyClientInfo.modifyClientInfo(modified, client.userID);
@@ -160,12 +166,20 @@ public class EditUserInfoController {
 		}
 	}
 
-	//修改网站人员信息
+	// 修改网站人员信息
 	public void editWebUserInfo() {
 		this.userIDm = webMarketPasswordField.getText();
-		this.passwordm = webMarketPasswordField.getText();
 		this.telNumm = webMarketTelNumField.getText();
-		UserVO modified = new UserVO(userIDm, passwordm, telNumm, webUser.userType);
+		if (userIDm.equals("") || telNumm.equals("")) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
+		this.modified = null;
+		this.modified = new UserVO(userIDm, webUser.password, telNumm, webUser.userType);
 		boolean result = false;
 		try {
 			result = manageUser.modifyUserInfo(modified, webUser.userID);
@@ -191,17 +205,17 @@ public class EditUserInfoController {
 	}
 
 	@FXML
-	//取消按钮操作，返回管理用户界面
+	// 取消按钮操作，返回管理用户界面
 	public void cancelButtonAction(ActionEvent event) {
 		mainApp.showManageUserPanel();
 	}
 
 	@FXML
-	//确认按钮操作，根据选择的tab调用不同的修改方法
+	// 确认按钮操作，根据选择的tab调用不同的修改方法
 	public void confirmButtonAction(ActionEvent event) {
-		if (tabPane.getSelectionModel().equals(clientTab)) {
+		if (client != null) {
 			editClientInfo();
-		} else if (tabPane.getSelectionModel().equals(webMarketStaffTab)) {
+		} else if (webUser != null) {
 			editWebUserInfo();
 		}
 	}

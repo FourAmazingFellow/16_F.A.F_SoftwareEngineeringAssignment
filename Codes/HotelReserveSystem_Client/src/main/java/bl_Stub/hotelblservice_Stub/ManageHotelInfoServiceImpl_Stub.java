@@ -21,6 +21,14 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 	public String creditChangeRecord;
 	public Enum<UserType> UserType;
 	
+	public String hotelName;
+	public String city;
+	public String tradeArea;
+	public int starLevel;
+	public float mark;
+	public HashMap<RoomType, Integer> roomTypeAndNums;
+	
+	
 	public ManageHotelInfoServiceImpl_Stub(String briefIntroduction, String facilityAndService,
 			HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<String, String> comments) {
 		this.briefIntroduction = briefIntroduction;
@@ -38,6 +46,10 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 		UserType = userType;
 	}
 	
+	public ManageHotelInfoServiceImpl_Stub(){
+		
+	}
+	
 	@Override
 	public boolean addHotel(HotelVO hotel) {
 		return true;
@@ -50,8 +62,21 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 
 	@Override
 	public HotelVO getHotelInfo(String hotelAddress) {
-		// TODO Auto-generated method stub
-		return null;
+		this.hotelName = "F.A.F酒店";
+		this.tradeArea = "栖霞区";
+		this.starLevel = 4;
+		this.mark = (float) 4.6;
+		this.city = "南京市";
+		this.facilityAndService = "空调、热水";
+		this.briefIntroduction = "南京市最好的酒店";
+		this.roomTypeAndPrice = new HashMap<>();
+		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 150);
+		this.roomTypeAndNums = new HashMap<>();
+		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 30);
+		this.comments = new HashMap<>();
+		comments.put("原", "这是我住过最舒服的酒店！！！！！");
+		
+		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 }

@@ -3,15 +3,12 @@ package presentation.userui.querycredit;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import po.ActionType;
-import po.RoomType;
 import presentation.userui.DateToString;
 import vo.CreditRecordVO;
-import vo.RoomVO;
 
 public class CreditRecord {
 	private StringProperty userID;;

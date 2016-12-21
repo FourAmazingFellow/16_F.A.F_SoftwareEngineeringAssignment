@@ -16,5 +16,6 @@
 				<TableColumn fx:id="creditResultColumn" prefWidth="180.0" text="信用值结果" />
 			</columns>
 		</TableView>
+      <Button fx:id="returnButton" layoutX="768.0" layoutY="534.0" mnemonicParsing="false" onAction="#returnButtonAction" prefHeight="50.0" prefWidth="150.0" text="返回" />
 	</children>
 </AnchorPane>

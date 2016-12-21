@@ -50,11 +50,14 @@ public class QueryCreditRecordController {
 	@FXML
 	private TableColumn<CreditRecord, String> creditResultColumn;
 
+//	private ArrayList<CreditRecordVO> creditRecord;
+
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		queryClientCreditRecord = userFactory.createQueryClientCreditRecordService();
-
+//		queryClientCreditRecord = new QueryClientCreditRecordServiceImpl_Stub("原", "qwe123", "12345678900", 1500, creditRecord);
+		
 		timeColumn.setCellValueFactory(cellData -> cellData.getValue().changeTimeProperty());
 		orderIDColumn.setCellValueFactory(cellData -> cellData.getValue().orderIDProperty());
 		actionColumn.setCellValueFactory(cellData -> cellData.getValue().actionProperty());

@@ -23,6 +23,7 @@ import vo.UserVO;
 public class WebsiteManageMainApp extends Application {
 	public static String userID = "";
 	
+	private MainApp mainApp;
 	private Stage primaryStage;
 	private BorderPane websiteManageRootLayout;
 	private ClientRunner clientRunner;
@@ -46,13 +47,21 @@ public class WebsiteManageMainApp extends Application {
 		showWebManageRootPanel();
 	}
 
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+
+	public void logout() {
+		userID = "";
+		mainApp.showLoginView();
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	 public Stage getPrimaryStage() {
-	        return primaryStage;
-	    }
+
+	public Stage getPrimaryStage() {
+		return primaryStage;
+	}
 
 	// 显示网站管理人员导航栏
 	public void showWebManageRootPanel() {
@@ -76,6 +85,7 @@ public class WebsiteManageMainApp extends Application {
 		}
 	}
 
+	//显示管理用户界面
 	public void showManageUserPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -88,14 +98,17 @@ public class WebsiteManageMainApp extends Application {
 			ManageUserController controller = loader.getController();
 
 			controller.setMainApp(this);
-//			controller.showUserInfo();
-			
+			controller.setPreInfo();
+//			 controller.showUserInfo();
+//			controller.editButtonAction(null);
+
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	// 显示管理酒店界面
 	public void showManageHotelPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -108,14 +121,16 @@ public class WebsiteManageMainApp extends Application {
 			ManageHotelController controller = loader.getController();
 
 			controller.setMainApp(this);
+//			controller.confirmButtonAction(null);
 			
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void showEditUserInfoPanel(ClientInfoVO client, UserVO webUser){
+
+	// 显示编辑用户信息界面
+	public void showEditUserInfoPanel(ClientInfoVO client, UserVO webUser) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(WebsiteManageMainApp.class.getResource("userui/manageuser/EditUserInfo.fxml"));
@@ -128,6 +143,7 @@ public class WebsiteManageMainApp extends Application {
 
 			controller.setMainApp(this);
 			controller.showPreUserInfo(client, webUser);
+//			controller.editClientInfo();
 
 			primaryStage.show();
 		} catch (IOException e) {
@@ -135,7 +151,8 @@ public class WebsiteManageMainApp extends Application {
 		}
 	}
 
-	public void showAddUserPanel(){
+	// 显示添加新用户界面
+	public void showAddUserPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(WebsiteManageMainApp.class.getResource("userui/manageuser/AddNewUser.fxml"));
@@ -147,11 +164,11 @@ public class WebsiteManageMainApp extends Application {
 			addNewUserController controller = loader.getController();
 
 			controller.setMainApp(this);
-			
+
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

@@ -48,7 +48,7 @@ public class WebsitePromotionMainApp extends Application {
 		this.primaryStage.setResizable(false);
 		
 		initWebsitePromotionRootPanel();
-		showAbnormalOrderPanel();
+//		showAbnormalOrderPanel();
 	}
 
 	public static void main(String[] args) {
@@ -147,6 +147,8 @@ public class WebsitePromotionMainApp extends Application {
 			AddCreditValueController controller = loader.getController();
 			
 			controller.setMainApp(this);
+//			controller.searchButtonAction();
+//			controller.addCreditValue();
 			
 			primaryStage.show();
 		} catch (IOException e) {

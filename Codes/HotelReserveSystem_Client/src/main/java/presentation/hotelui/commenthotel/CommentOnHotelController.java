@@ -5,13 +5,15 @@ import java.rmi.RemoteException;
 import businesslogicservice.hotelblservice.CommentOnHotelService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import presentation.ClientMainApp;
@@ -35,7 +37,7 @@ public class CommentOnHotelController {
 	private TextArea commentArea;
 
 	@FXML
-	private TextField markField;
+	private ChoiceBox<Integer> markChoiceBox;
 
 	@FXML
 	private GridPane commentField;
@@ -47,36 +49,29 @@ public class CommentOnHotelController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		comment = hotelFactory.createCommentOnHotelService();
-		
-		markField.setText("");
+
+		markChoiceBox.setItems((ObservableList<Integer>) FXCollections.observableArrayList(1, 2, 3, 4, 5));
+		markChoiceBox.getSelectionModel().select(4);
 		commentArea.setText("");
-		
+
 	}
 
 	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	public void setuserIDAndAddress(String userID, String address){
+	public void setuserIDAndAddress(String userID, String address) {
 		this.userID = userID;
 		this.hotelAddress = address;
 	}
-	
+
 	public void commentOnHotel() {
-		this.mark = Float.parseFloat(markField.getText());
+		this.mark = markChoiceBox.getSelectionModel().getSelectedItem();
 		this.comments = commentArea.getText();
-		if(markField.getText().equals("")|| comments.equals("")){
+		if(comments.equals("")){
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
-			alert.setContentText("请重新输入！");
-			alert.show();
-			return;
-		}
-		else if(mark<0||mark>5){
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("wrong");
-			alert.setHeaderText("评分不在规定范围内（0~5之间）！");
 			alert.setContentText("请重新输入！");
 			alert.show();
 			return;
@@ -96,12 +91,14 @@ public class CommentOnHotelController {
 			alert.setTitle("comment info");
 			alert.setHeaderText("评价成功！");
 			alert.show();
+			mainApp.showUserOrderPanel(userID);
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("评价失败！");
 			alert.setContentText("请重试！");
 			alert.show();
+			return;
 		}
 	}
 
@@ -114,4 +111,5 @@ public class CommentOnHotelController {
 	void confirmButtonAction(ActionEvent event) {
 		commentOnHotel();
 	}
+
 }

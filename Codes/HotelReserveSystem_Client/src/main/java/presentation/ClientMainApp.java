@@ -15,6 +15,7 @@ import po.OrderType;
 import presentation.hotelui.ScreenPanelController;
 import presentation.hotelui.SearchDetailsPanelController;
 import presentation.hotelui.SearchPanelController;
+import presentation.hotelui.commenthotel.CommentOnHotelController;
 import presentation.hotelui.reservedhotel.HotelCommentsPanelController;
 import presentation.hotelui.reservedhotel.ReservedHotelPanelController;
 import presentation.hotelui.reservedhotel.SearchedDetailedHotelPanelController;
@@ -440,6 +441,25 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	public void showCommentOnHotelPanel(String hotelAddress) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("hotelui/commenthotel/CommentOnHotel.fxml"));
+			AnchorPane detailedOrderPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(detailedOrderPanel);
+
+			CommentOnHotelController controller = loader.getController();
+
+			controller.setMainApp(this);
+			controller.setuserIDAndAddress(userID, hotelAddress);
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Returns the main stage.
 	 * 
@@ -452,4 +472,6 @@ public class ClientMainApp extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	
 }

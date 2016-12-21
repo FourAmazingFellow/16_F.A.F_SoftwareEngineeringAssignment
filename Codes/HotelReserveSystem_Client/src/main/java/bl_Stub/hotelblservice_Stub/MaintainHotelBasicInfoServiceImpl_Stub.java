@@ -12,7 +12,7 @@ public class MaintainHotelBasicInfoServiceImpl_Stub implements MaintainHotelBasi
 	public String tradeArea;
 	public String hotelAddress;
 	public int starLevel;
-	public int mark;
+	public float mark;
 	public String city;
 	public String briefIntroduction;
 	public String facilityAndService;
@@ -21,7 +21,7 @@ public class MaintainHotelBasicInfoServiceImpl_Stub implements MaintainHotelBasi
 	public HashMap<String, String> comments;
 	
 	public MaintainHotelBasicInfoServiceImpl_Stub(String hotelName, String tradeArea, String hotelAddress,
-			int starLevel, int mark, String city, String briefIntroduction, String facilityAndService,
+			int starLevel, float mark, String city, String briefIntroduction, String facilityAndService,
 			HashMap<RoomType, Integer> roomTypeAndPrice, HashMap<RoomType, Integer> roomTypeAndNums, HashMap<String, String> comments) {
 		this.hotelName = hotelName;
 		this.tradeArea = tradeArea;

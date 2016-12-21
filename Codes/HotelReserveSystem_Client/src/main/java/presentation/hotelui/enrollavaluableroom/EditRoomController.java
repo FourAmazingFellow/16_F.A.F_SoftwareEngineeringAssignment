@@ -21,11 +21,9 @@ public class EditRoomController {
 	private ImportNewRoomService importNewRoom;
 	private HotelMainApp mainApp;
 	private RoomVO selected;
+	private RoomVO modified;
+	private RoomVO deleted;
 	private int roomNumm, roomPricem;
-
-	public EditRoomController(RoomVO selected) {
-		this.selected = selected;
-	}
 
 	@FXML
 	private Button cancelButton;
@@ -51,21 +49,42 @@ public class EditRoomController {
 	@FXML
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
-		importNewRoom = hotelFactory.createImportNewRoomService();
+		 importNewRoom = hotelFactory.createImportNewRoomService();
+//		 RoomType roomType = RoomType.KING_SIZE_ROOM;
+//		 int roomNum = 30;
+//		 int roomPrice = 150;
+//		 String address  ="南京市栖霞区仙林大道163号";
+//		importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum, roomPrice, address);
 		
-		roomTypeLabel.setText(RoomType.enumToChinese(selected.roomType));
-		roomNumField.setText(String.valueOf(selected.roomNum));
-		roomPriceField.setText(String.valueOf(selected.roomPrice));
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
+
+	public void showPreInfo(RoomVO selected) {
+		this.selected = selected;
+		roomTypeLabel.setText(RoomType.enumToChinese(selected.roomType));
+		roomNumField.setText(String.valueOf(selected.roomNum));
+		roomPriceField.setText(String.valueOf(selected.roomPrice));
+	}
+
+	// 编辑某一种房型
 	public void editRoomType() {
 		this.roomNumm = Integer.parseInt(roomNumField.getText());
 		this.roomPricem = Integer.parseInt(roomPriceField.getText());
-		RoomVO modified = new RoomVO(RoomType.chineseToEnum(roomTypeLabel.getText()), roomNumm, roomPricem, selected.address);
+		if (roomNumField.getText().equals("") || roomPriceField.getText().equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		}
+
+		this.modified = null;
+		this.modified = new RoomVO(RoomType.chineseToEnum(roomTypeLabel.getText()), roomNumm, roomPricem,
+				selected.address);
 		boolean result = false;
 		try {
 			result = importNewRoom.addRoom(modified);
@@ -82,22 +101,26 @@ public class EditRoomController {
 			alert.setHeaderText("修改失败！");
 			alert.setContentText("请重试！");
 			alert.show();
+			return;
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
 			alert.setHeaderText("修改成功！");
 			alert.show();
+			mainApp.showEnrollAvaluableRoomPanel();
 		}
-	}
-	
-	@FXML
-	void cancelButtonAction(ActionEvent event) {
-		return;
 	}
 
 	@FXML
+	void cancelButtonAction(ActionEvent event) {
+		mainApp.showEnrollAvaluableRoomPanel();
+	}
+
+	@FXML
+	// 删除某一种房型
 	void deleteButtonAction(ActionEvent event) {
-		RoomVO deleted = new RoomVO(selected.roomType, 0, selected.roomPrice, selected.address);
+		this.deleted = null;
+		this.deleted = new RoomVO(selected.roomType, 0, selected.roomPrice, selected.address);
 		boolean result = false;
 		try {
 			result = importNewRoom.addRoom(deleted);
@@ -114,11 +137,13 @@ public class EditRoomController {
 			alert.setHeaderText("删除失败！");
 			alert.setContentText("请重试！");
 			alert.show();
+			return;
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("delete info");
 			alert.setHeaderText("删除成功！");
 			alert.show();
+			mainApp.showEnrollAvaluableRoomPanel();
 		}
 	}
 
