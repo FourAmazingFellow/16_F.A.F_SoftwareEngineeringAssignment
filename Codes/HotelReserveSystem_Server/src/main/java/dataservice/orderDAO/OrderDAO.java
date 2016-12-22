@@ -134,5 +134,13 @@ public interface OrderDAO extends Remote {
 	 * @see
 	 */
 	public boolean updateOrder(OrderPO po) throws RemoteException;
-	
+
+	/**
+	 * 在数据库中将对应订单置为已评价
+	 * @param orderID
+	 * @return
+	 * @throws RemoteException
+	 * @see
+	 */
+	public boolean setOrderCommented(String orderID) throws RemoteException;
 }

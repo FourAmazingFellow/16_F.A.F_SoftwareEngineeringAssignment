@@ -644,7 +644,7 @@ public class OrderDAOImpl implements OrderDAO {
 			pstmt = conn.prepareStatement("update orderinfo set userID = ?, hotelName = ?, hotelAddress = ?, beginDate = ?, finishDate = ?, roomType = ?, num = ?, totalPrice = ?, orderProducedTime = ?, lastedOrderDoneTime = ?, numOfPerson = ?, isChildren = ?, isOnSale = ?, orderState = ?, isCommented = ? where orderID = ?");
 			pstmt.setString(1, po.getUserID());
 			pstmt.setString(2, po.getHotelName());
-			pstmt.setString(0000000000000003, po.getHotelAddress());
+			pstmt.setString(3, po.getHotelAddress());
 			pstmt.setDate(4, new java.sql.Date(po.getBeginDate().getTime()));
 			pstmt.setDate(5, new java.sql.Date(po.getFinishDate().getTime()));
 			pstmt.setInt(6, convertFromRoomTypeToInt(po.getRoomType()));
@@ -708,6 +708,28 @@ public class OrderDAOImpl implements OrderDAO {
 		}
 		
 		return briefOrderInfoPOs;
+	}
+
+	@Override
+	public boolean setOrderCommented(String orderID) throws RemoteException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			//初始化数据库连接
+			conn = JDBC_Connection.getConnection();
+			//根据用户名和酒店地址获得数据库数据
+			pstmt = conn.prepareStatement("update orderinfo set isCommented = 1 where orderID = ?");
+			pstmt.setString(1, orderID);
+			pstmt.executeUpdate();
+			return true;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			//释放数据库资源
+			JDBC_Connection.free(null, conn, pstmt);
+		}
 	}
 
 }

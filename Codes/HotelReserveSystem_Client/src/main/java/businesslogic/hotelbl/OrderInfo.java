@@ -61,4 +61,13 @@ public interface OrderInfo {
 	 */
 	public ArrayList<BriefOrderInfoVO> getReservedOrderList(String userID) throws RemoteException;
 	
+	/**
+	 * 将对应的订单置为已评价订单
+	 * @param orderID
+	 * @return 若置成功则返回true，反之则返回false
+	 * @throws RemoteException
+	 * @see
+	 */
+	public boolean setOrderCommented(String orderID) throws RemoteException;
+	
 }

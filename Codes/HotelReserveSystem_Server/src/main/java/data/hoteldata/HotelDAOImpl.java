@@ -118,7 +118,7 @@ public class HotelDAOImpl implements HotelDAO {
 				pstmt.setInt(8, Integer.parseInt(condition[3]));
 			}
 			else {
-				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and hotelName = ? and  min_Price < ? and starLevel between ? and ? and mark between ? and ? max_Price > ?");
+				pstmt = conn.prepareStatement("select * from hotel where city = ? and tradeArea = ? and hotelName = ? and  min_Price < ? and starLevel between ? and ? and mark between ? and ? and max_Price > ?");
 				pstmt.setString(1, condition[0]);
 				pstmt.setString(2, condition[1]);
 				pstmt.setString(3, condition[2]);

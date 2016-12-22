@@ -33,6 +33,6 @@ public interface CommentOnHotelService {
 	 * @throws RemoteException 
 	 * @see
 	 */
-	public boolean confirmComment(String username, float mark, String comment, String hotelAddress) throws RemoteException;
+	public boolean confirmComment(String username, float mark, String comment, String hotelAddress, String orderID) throws RemoteException;
 
 }

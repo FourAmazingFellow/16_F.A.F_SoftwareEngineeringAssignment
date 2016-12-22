@@ -1,5 +1,6 @@
 package bl_Stub.hotelblservice_Stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -57,8 +58,10 @@ public class CommentOnHotelServiceImpl_Stub implements CommentOnHotelService{
 	}
 
 	@Override
-	public boolean confirmComment(String username, float mark, String comment, String hotelAddress) {
-		return true;
+	public boolean confirmComment(String username, float mark, String comment, String hotelAddress, String orderID)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

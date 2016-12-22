@@ -326,4 +326,9 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 		return userDAO.updateRegularVipInfo(regularVipPO);
 	}
 
+	@Override
+	public boolean setOrderCommented(String orderID) throws RemoteException {
+		return orderDAO.setOrderCommented(orderID);
+	}
+
 }

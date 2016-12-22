@@ -1,5 +1,6 @@
 package bl_Stub.hotelbl_Stub;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -49,6 +50,11 @@ public class OrderInfoImpl_Stub implements OrderInfo{
 		ArrayList<BriefOrderInfoVO> a = new ArrayList<BriefOrderInfoVO>();
 		a.add(testOrderVO);
 		return a;
+	}
+
+	@Override
+	public boolean setOrderCommented(String orderID) throws RemoteException {
+		return true;
 	}
 	
 }

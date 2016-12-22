@@ -3,6 +3,7 @@ package businesslogic.hotelbl.commentOnHotel;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.hotelbl.OrderInfo;
 import businesslogicservice.hotelblservice.CommentOnHotelService;
 import dataservice.hotelDAO.HotelDAO;
 import factory.FactoryService;
@@ -14,11 +15,13 @@ public class CommentOnHotelServiceImpl implements CommentOnHotelService{
 
 	private CommentableOrderList commentableOrderList;
 	private HotelDAO hotelDAO;
+	private OrderInfo orderInfo;
 	private FactoryService factory;
 	
 	public CommentOnHotelServiceImpl() {
 		this.factory = new FactoryServiceImpl();
 		this.hotelDAO = factory.getHotelDAO();
+		this.orderInfo = factory.createOrderInfo();
 	}
 	
 	@Override
@@ -28,14 +31,14 @@ public class CommentOnHotelServiceImpl implements CommentOnHotelService{
 	}
 
 	@Override
-	public boolean confirmComment(String username, float mark, String comment, String hotelAddress) throws RemoteException {
+	public boolean confirmComment(String username, float mark, String comment, String hotelAddress, String orderID) throws RemoteException {
 		HotelPO hotelPO = hotelDAO.getHotelDetails(hotelAddress);
 		int numsOfBeforeComments = hotelPO.getComments().size();
 		float nowMark = (numsOfBeforeComments * hotelPO.getMark() + mark) / (numsOfBeforeComments + 1);
 		hotelPO.setMark(nowMark);
 		hotelPO.getComments().put(username, comment);
 		hotelDAO.updateHotel(hotelPO);
-		return true;
+		return orderInfo.setOrderCommented(orderID);
 	}
 	
 }

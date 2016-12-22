@@ -61,4 +61,10 @@ public class OrderInfoImpl implements OrderInfo {
 		return result;
 	}
 
+
+	@Override
+	public boolean setOrderCommented(String orderID) throws RemoteException {
+		return false;
+	}
+
 }

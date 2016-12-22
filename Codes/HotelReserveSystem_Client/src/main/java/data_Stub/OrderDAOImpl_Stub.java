@@ -108,4 +108,9 @@ public class OrderDAOImpl_Stub implements OrderDAO {
 		System.out.println("OrderDAO update.");
 		return true;
 	}
+
+	@Override
+	public boolean setOrderCommented(String orderID) throws RemoteException {
+		return false;
+	}
 }
