@@ -144,7 +144,6 @@ public class BrowseUserOrderPanelController {
 		int selectedIndex = userOrders.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			String orderID = userOrders.getItems().get(selectedIndex).getOrderID().getValue();
-			System.out.println("请求查看订单号为" + orderID + "的订单详情");
 			mainApp.showDetailedOrderPanel(orderID);
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
