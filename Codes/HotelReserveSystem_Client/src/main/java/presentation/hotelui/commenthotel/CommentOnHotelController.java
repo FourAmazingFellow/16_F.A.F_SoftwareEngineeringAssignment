@@ -106,7 +106,7 @@ public class CommentOnHotelController {
 
 	@FXML
 	void cancelButtonAction(ActionEvent event) {
-		return;
+		mainApp.showDetailedOrderPanel(orderID);
 	}
 
 	@FXML

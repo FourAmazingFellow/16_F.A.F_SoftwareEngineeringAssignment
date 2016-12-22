@@ -59,6 +59,7 @@ public class QueryCreditRecordController {
 		queryClientCreditRecord = userFactory.createQueryClientCreditRecordService();
 //		queryClientCreditRecord = new QueryClientCreditRecordServiceImpl_Stub("原", "qwe123", "12345678900", 1500, creditRecord);
 		
+		creditTable.setItems(creditRecordData);
 		timeColumn.setCellValueFactory(cellData -> cellData.getValue().changeTimeProperty());
 		orderIDColumn.setCellValueFactory(cellData -> cellData.getValue().orderIDProperty());
 		actionColumn.setCellValueFactory(cellData -> cellData.getValue().actionProperty());
