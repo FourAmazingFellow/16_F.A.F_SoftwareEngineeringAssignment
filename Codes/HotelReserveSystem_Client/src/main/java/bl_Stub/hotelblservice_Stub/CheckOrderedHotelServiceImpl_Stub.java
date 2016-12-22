@@ -29,7 +29,7 @@ public class CheckOrderedHotelServiceImpl_Stub implements CheckOrderedHotelServi
 		ArrayList<OrderedHotelInfoVO> orderedHotelInfoVOList = new ArrayList<>();
 		Set<Enum<OrderState>> orderStates = new HashSet<>();
 		orderStates.add(OrderState.DONE_ORDER);
-		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, orderStates));
+		orderedHotelInfoVOList.add(new OrderedHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, orderStates, 100));
 		return orderedHotelInfoVOList;
 	}
 

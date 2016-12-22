@@ -19,6 +19,7 @@ import po.RoomType;
 
 public class HotelDAOImpl implements HotelDAO {
 
+	
 	//将数据库中储存房间类型的int型转换成RoomType型
 	private RoomType convertFromIntToRoomType(int roomType) {
 		switch(roomType) {

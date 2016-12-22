@@ -22,7 +22,7 @@ public class MockOrderedHotelList extends OrderedHotelList {
 		ArrayList<OrderedHotelInfoVO>  orderedHotelInfoVOs = new ArrayList<>();
 		Set<Enum<OrderState>> orderStates = new HashSet<>();
 		orderStates.add(OrderState.DONE_ORDER);
-		OrderedHotelInfoVO orderedHotelInfoVO = new OrderedHotelInfoVO("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, orderStates);
+		OrderedHotelInfoVO orderedHotelInfoVO = new OrderedHotelInfoVO("Jingling Hotel", "新街口", "江苏省南京市栖霞区仙林大道163号", 5, 5.0f, orderStates, 100);
 		orderedHotelInfoVOs.add(orderedHotelInfoVO);
 		return orderedHotelInfoVOs;
 	}
