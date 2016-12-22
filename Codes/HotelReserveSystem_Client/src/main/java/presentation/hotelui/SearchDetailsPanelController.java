@@ -14,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.shape.Ellipse;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
@@ -210,30 +209,31 @@ public class SearchDetailsPanelController {
 		});
 
 		setDatePicker();
-		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级从低到高排序","按星级从高到低","按评分从低到高排序","按评分从高到低","按价格从低到高排序", "按价格从高到低"));
-		rankTypeChoiceBox.setValue("按星级排序");
+		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("星级从低到高","星级从高到低","按评分从低到高","按评分从高到低","按价格从低到高", "按价格从高到低", "默认排序方式"));
+		rankTypeChoiceBox.setValue("默认排序方式");
 		
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				if(newValue.intValue() == 0) {
 					starLevelCol.setSortType(SortType.ASCENDING);
-					hotelTableView.getSortOrder().add(starLevelCol);
+					hotelTableView.getSortOrder().setAll(starLevelCol);
 				}else if(newValue.intValue() == 1) {
 					starLevelCol.setSortType(SortType.DESCENDING);
-					hotelTableView.getSortOrder().add(starLevelCol);
+					hotelTableView.getSortOrder().setAll(starLevelCol);
 				}else if(newValue.intValue() == 2) {
 					markCol.setSortType(SortType.ASCENDING);
-					hotelTableView.getSortOrder().add(markCol);
+					hotelTableView.getSortOrder().setAll(markCol);
 				} else if (newValue.intValue() == 3) {
 					markCol.setSortType(SortType.DESCENDING);
-					hotelTableView.getSortOrder().add(markCol);
+					hotelTableView.getSortOrder().setAll(markCol);
 				} else if (newValue.intValue() == 4) {
 					minPriceCol.setSortType(SortType.ASCENDING);
-					hotelTableView.getSortOrder().add(minPriceCol);
+					hotelTableView.getSortOrder().setAll(minPriceCol);
 				} else if (newValue.intValue() == 5) {
 					minPriceCol.setSortType(SortType.DESCENDING);
-					hotelTableView.getSortOrder().add(minPriceCol);
+					hotelTableView.getSortOrder().setAll(minPriceCol);
 				}
 			}
 		});
