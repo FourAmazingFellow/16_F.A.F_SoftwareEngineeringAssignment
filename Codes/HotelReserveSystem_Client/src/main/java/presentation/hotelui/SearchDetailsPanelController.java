@@ -14,11 +14,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import po.BusinessDistrictPO;
@@ -69,6 +71,9 @@ public class SearchDetailsPanelController {
 	@FXML
 	private TableColumn<FxBriefHotelInfo, String> markCol;
 
+	@FXML
+	private TableColumn<FxBriefHotelInfo, String>minPriceCol;
+	
 	@FXML
 	private TableColumn<FxBriefHotelInfo, String> tradeAreaCol;
 
@@ -121,6 +126,7 @@ public class SearchDetailsPanelController {
 			hotelAddressCol.setCellValueFactory(cellData -> cellData.getValue().getHotelAddress());
 			markCol.setCellValueFactory(cellData -> cellData.getValue().getMark());
 			starLevelCol.setCellValueFactory(cellData -> cellData.getValue().getStarLevel());
+			minPriceCol.setCellValueFactory(cellData -> cellData.getValue().getMinPrice());
 			tradeAreaCol.setCellValueFactory(cellData -> cellData.getValue().getTradeArea());
 			orderTypesCol.setCellValueFactory(cellData -> cellData.getValue().getOrderTypes());
 		} catch (RemoteException e) {
@@ -204,16 +210,31 @@ public class SearchDetailsPanelController {
 		});
 
 		setDatePicker();
-		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级排序", "按评分排序"));
+		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("按星级从低到高排序","按星级从高到低","按评分从低到高排序","按评分从高到低","按价格从低到高排序", "按价格从高到低"));
 		rankTypeChoiceBox.setValue("按星级排序");
 		
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				if(newValue.intValue() == 0)
+				if(newValue.intValue() == 0) {
+					starLevelCol.setSortType(SortType.ASCENDING);
 					hotelTableView.getSortOrder().add(starLevelCol);
-				else if(newValue.intValue() == 1)
+				}else if(newValue.intValue() == 1) {
+					starLevelCol.setSortType(SortType.DESCENDING);
+					hotelTableView.getSortOrder().add(starLevelCol);
+				}else if(newValue.intValue() == 2) {
+					markCol.setSortType(SortType.ASCENDING);
 					hotelTableView.getSortOrder().add(markCol);
+				} else if (newValue.intValue() == 3) {
+					markCol.setSortType(SortType.DESCENDING);
+					hotelTableView.getSortOrder().add(markCol);
+				} else if (newValue.intValue() == 4) {
+					minPriceCol.setSortType(SortType.ASCENDING);
+					hotelTableView.getSortOrder().add(minPriceCol);
+				} else if (newValue.intValue() == 5) {
+					minPriceCol.setSortType(SortType.DESCENDING);
+					hotelTableView.getSortOrder().add(minPriceCol);
+				}
 			}
 		});
 	}

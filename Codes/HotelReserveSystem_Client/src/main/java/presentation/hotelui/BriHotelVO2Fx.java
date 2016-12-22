@@ -24,7 +24,7 @@ public class BriHotelVO2Fx {
 		String starLevel[] = {"一","二","三","四","五"};
 		
 		return new FxBriefHotelInfo(vo.hotelName, vo.tradeArea, vo.hotelAddress,
-				starLevel[vo.starLevel - 1], vo.mark, orderTypes);
+				starLevel[vo.starLevel - 1], vo.mark, vo.min_Price, orderTypes);
 	}
 	
 	
