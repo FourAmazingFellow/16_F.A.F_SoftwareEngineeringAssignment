@@ -1,5 +1,8 @@
 package presentation.userui.login;
 
+import businesslogicservice.userblservice.LoginAndSignUpService;
+import factory.UserUIFactoryService;
+import factory.UserUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -10,8 +13,8 @@ import presentation.MainApp;
 
 public class RegisterController {
 	private MainApp mainApp;
-//	private LoginAndSignUpService register;
-//	private UserUIFactoryService userFactory;
+	private LoginAndSignUpService register;
+	private UserUIFactoryService userFactory;
 
 	@FXML
 	private PasswordField r_passwordCofirmArea;
@@ -30,9 +33,8 @@ public class RegisterController {
 
 	@FXML
 	public void initialize() {
-//		userFactory = new UserUIFactoryServiceImpl();
-//		register = userFactory.createLoginAndSignUpService();
-		// register = new LoginAndSignUpServiceImpl_Stub();
+		userFactory = new UserUIFactoryServiceImpl();
+		register = userFactory.createLoginAndSignUpService();
 	}
 
 	public void setMainApp(MainApp mainApp) {

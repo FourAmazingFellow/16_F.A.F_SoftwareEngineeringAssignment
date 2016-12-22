@@ -19,6 +19,9 @@ import presentation.ClientMainApp;
 import vo.OrderVO;
 
 public class DetailedOrderPanelController {
+	
+	@FXML
+	private Label typicalLabel;
 	@FXML
 	private Label orderStateLabel;
 	@FXML
@@ -107,7 +110,11 @@ public class DetailedOrderPanelController {
 		hotelNameLabel.setText(vo.hotelName);
 		hotelAddressLabel.setText(vo.hotelAddress);
 		numLabel.setText(String.valueOf(vo.num));
+		
+		if(vo.orderState == OrderState.WITHDREW_ORDER)
+			typicalLabel.setText("订单撤销时间");
 		latestOrderDoneTimeLabel.setText(FxBriefOrder.toSec(vo.lastedOrderDoneTime));
+		
 		finishDateLabel.setText(FxBriefOrder.toDate(vo.finishDate));
 		totalPrcieLabel.setText(String.valueOf(vo.totalPrice));
 		roomTypeLabel.setText(getRoomType((RoomType) vo.roomType));

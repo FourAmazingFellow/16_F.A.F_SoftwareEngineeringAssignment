@@ -49,7 +49,7 @@
             <Label alignment="CENTER" contentDisplay="CENTER" text="酒店地址" textAlignment="CENTER" GridPane.rowIndex="3" />
             <Label alignment="CENTER" contentDisplay="CENTER" text="订单生成时间" textAlignment="CENTER" GridPane.rowIndex="6" />
             <Label alignment="CENTER" contentDisplay="CENTER" text="开始时间" textAlignment="CENTER" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" contentDisplay="CENTER" text="最晚订单执行时间" textAlignment="CENTER" GridPane.rowIndex="7" />
+            <Label fx:id="typicalLabel" alignment="CENTER" contentDisplay="CENTER" text="最晚订单执行时间" textAlignment="CENTER" GridPane.rowIndex="7" />
             <Label alignment="CENTER" contentDisplay="CENTER" text="退房时间" textAlignment="CENTER" GridPane.rowIndex="5" />
             <Label alignment="CENTER" contentDisplay="CENTER" text="客房类型" textAlignment="CENTER" GridPane.rowIndex="8" />
             <Label alignment="CENTER" contentDisplay="CENTER" text="客房数量" textAlignment="CENTER" GridPane.rowIndex="9" />
