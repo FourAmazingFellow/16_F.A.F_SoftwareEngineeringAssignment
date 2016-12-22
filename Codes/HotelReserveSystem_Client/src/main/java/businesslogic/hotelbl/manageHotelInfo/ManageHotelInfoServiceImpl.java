@@ -43,7 +43,13 @@ public class ManageHotelInfoServiceImpl implements ManageHotelInfoService {
 
 	@Override
 	public HotelVO getHotelInfo(String hotelAddress) throws RemoteException {
-		return new HotelVO(hotelDAO.getHotelDetails(hotelAddress));
+		HotelVO hotelVO = null;
+		HotelPO hotelPO = hotelDAO.getHotelDetails(hotelAddress);
+		if(hotelPO != null)
+			hotelVO = new HotelVO(hotelPO);
+		else
+			hotelVO = null;
+		return hotelVO;
 	}
 	
 	

@@ -136,7 +136,7 @@ public class ManageUserController {
 	// 显示用户信息
 	public void showUserInfo() {
 		this.userID = searchField.getText();
-		// this.userID = "原";
+//		 this.userID = "yuan";
 		if (userID.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -180,13 +180,6 @@ public class ManageUserController {
 				alert.setContentText("Please check your network connection!");
 				alert.showAndWait();
 			}
-		}else {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("wrong");
-			alert.setHeaderText("未找到相关用户！");
-			alert.setContentText("请重新输入！");
-			alert.show();
-			return;
 		}
 
 		if (this.client != null) {
@@ -203,6 +196,13 @@ public class ManageUserController {
 			// tabPane.getSelectionModel().select(webMarketStaffTab);
 			webMarketuserIDLabel.setText(webUser.userID);
 			webMarkettelNumLabel.setText(webUser.telNum);
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("未找到相关用户！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
 		}
 	}
 

@@ -1,10 +1,8 @@
 package vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import po.ActionType;
-import po.ClientInfoPO;
 import po.CreditRecordPO;
 
 public class CreditRecordVO {
@@ -14,13 +12,6 @@ public class CreditRecordVO {
     public ActionType action;
     public int process;
     public int creditResult;
-    public ArrayList<CreditRecordPO> creditRecord;
-    
-    public CreditRecordVO(String userID, ArrayList<CreditRecordPO> creditRecord) {
-        super();
-        this.userID = userID;
-        this.creditRecord = creditRecord;
-    }
     
     public CreditRecordVO(Date changeTime, String orderID, ActionType action, int process, int creditResult) {
 		super();
@@ -30,11 +21,6 @@ public class CreditRecordVO {
 		this.process = process;
 		this.creditResult = creditResult;
 	}
-
-	public CreditRecordVO(ClientInfoPO clientInfoPO){
-        this.userID = clientInfoPO.getUserID();
-        creditRecord = clientInfoPO.getCreditRecord();
-    }
 
 	public CreditRecordVO(CreditRecordPO creditRecordPO) {
 		this.changeTime = creditRecordPO.getChangeTime();

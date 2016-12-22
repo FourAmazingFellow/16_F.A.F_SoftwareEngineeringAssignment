@@ -72,6 +72,8 @@ public class FillInUserInfoController {
 	}
 
 	public void setUserIDAndPassword(String userID, String password) {
+		this.userID = userID;
+		this.password = password;
 		userIDField.setText(userID);
 		passwordField.setText(password);
 	}
@@ -91,7 +93,6 @@ public class FillInUserInfoController {
 			if (userTypeStr.equals("客户")) {
 				userType = UserType.Client;
 				UserVO user = new UserVO(userID, password, telNum, userType);
-
 				try {
 					boolean result = register.add(user);
 					if (result == false) {

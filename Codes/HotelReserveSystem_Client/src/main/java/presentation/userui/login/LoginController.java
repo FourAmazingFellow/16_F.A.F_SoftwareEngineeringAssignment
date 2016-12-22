@@ -91,6 +91,7 @@ public class LoginController {
 				alert.setHeaderText("用户名或密码错误！");
 				alert.setContentText("请重新输入！");
 				alert.show();
+				return;
 			} else {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("login info");

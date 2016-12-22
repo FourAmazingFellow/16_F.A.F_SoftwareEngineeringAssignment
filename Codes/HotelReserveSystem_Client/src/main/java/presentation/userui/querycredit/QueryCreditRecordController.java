@@ -55,6 +55,7 @@ public class QueryCreditRecordController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
+		creditRecordList = new CreditRecordList();
 		queryClientCreditRecord = userFactory.createQueryClientCreditRecordService();
 //		queryClientCreditRecord = new QueryClientCreditRecordServiceImpl_Stub("原", "qwe123", "12345678900", 1500, creditRecord);
 		
@@ -83,8 +84,8 @@ public class QueryCreditRecordController {
 				alert.show();
 				return;
 			}
-			creditRecordList.setCreditRecordList(creditRecordVOs);
 			creditRecordData.clear();
+			creditRecordList.setCreditRecordList(creditRecordVOs);
 			creditRecordData.addAll(creditRecordList.getCreditRecordList());
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);

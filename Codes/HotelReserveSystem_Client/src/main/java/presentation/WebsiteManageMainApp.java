@@ -99,6 +99,7 @@ public class WebsiteManageMainApp extends Application {
 
 			controller.setMainApp(this);
 			controller.setPreInfo();
+//			controller.searchButtonAction(null);
 //			 controller.showUserInfo();
 //			controller.editButtonAction(null);
 
@@ -164,7 +165,8 @@ public class WebsiteManageMainApp extends Application {
 			addNewUserController controller = loader.getController();
 
 			controller.setMainApp(this);
-
+//			controller.addNewUser();
+			
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

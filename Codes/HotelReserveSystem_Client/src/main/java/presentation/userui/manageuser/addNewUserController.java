@@ -70,6 +70,10 @@ public class addNewUserController {
 		this.password = webMarketPasswordField.getText();
 		this.passwordConfirm = webMarketPasswordConfirmField.getText();
 		this.telNum = webMarketTelNumField.getText();
+//		this.userID = "test";
+//		this.password = "test";
+//		this.passwordConfirm = "test";
+//		this.telNum = "12345678944";
 		if (userID.equals("") || password.equals("") || telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -101,6 +105,7 @@ public class addNewUserController {
 			alert.setTitle("add info");
 			alert.setHeaderText("添加成功！");
 			alert.show();
+			mainApp.showManageUserPanel();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");

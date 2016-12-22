@@ -77,7 +77,7 @@ public class DetailedOrderPanelController {
 	}
 
 	public void commentOrder() {
-		mainApp.showCommentOnHotelPanel(hotelAddressLabel.getText());
+		mainApp.showCommentOnHotelPanel(hotelAddressLabel.getText(), vo.orderID);
 	}
 
 	public void showDetailedOrderPanel(String orderID) {

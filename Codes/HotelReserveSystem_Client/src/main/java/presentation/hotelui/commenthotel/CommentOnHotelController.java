@@ -25,6 +25,7 @@ public class CommentOnHotelController {
 	private String userID;
 	private String hotelAddress;
 	private float mark;
+	private String orderID;
 	private String comments;
 
 	@FXML
@@ -60,9 +61,10 @@ public class CommentOnHotelController {
 		this.mainApp = mainApp;
 	}
 
-	public void setuserIDAndAddress(String userID, String address) {
+	public void setuserIDAndAddress(String userID, String address, String orderID) {
 		this.userID = userID;
 		this.hotelAddress = address;
+		this.orderID = orderID;
 	}
 
 	public void commentOnHotel() {
@@ -78,7 +80,7 @@ public class CommentOnHotelController {
 		}
 		boolean result = false;
 		try {
-			result = comment.confirmComment(userID, mark, comments, hotelAddress);
+			result = comment.confirmComment(userID, mark, comments, hotelAddress, orderID);
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("NetWork Warning");

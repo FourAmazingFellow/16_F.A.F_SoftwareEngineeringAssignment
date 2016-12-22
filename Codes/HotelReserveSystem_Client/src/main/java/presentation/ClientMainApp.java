@@ -441,7 +441,7 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
-	public void showCommentOnHotelPanel(String hotelAddress) {
+	public void showCommentOnHotelPanel(String hotelAddress, String orderID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("hotelui/commenthotel/CommentOnHotel.fxml"));
@@ -452,7 +452,7 @@ public class ClientMainApp extends Application {
 			CommentOnHotelController controller = loader.getController();
 
 			controller.setMainApp(this);
-			controller.setuserIDAndAddress(userID, hotelAddress);
+			controller.setuserIDAndAddress(userID, hotelAddress, orderID);
 
 			primaryStage.show();
 		} catch (IOException e) {

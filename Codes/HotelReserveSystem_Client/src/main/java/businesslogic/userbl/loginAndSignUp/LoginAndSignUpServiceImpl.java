@@ -41,13 +41,14 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
      */
     @Override
     public boolean add(UserVO user) throws RemoteException {
+    	boolean result = false;
         if (user.userType == UserType.Client){
             ClientInfoVO client = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client, 0, null);
-            userDAO.insertClient(new ClientInfoPO(client));
+            result = userDAO.insertClient(new ClientInfoPO(client));
         }
         else
-            userDAO.insertUser(new UserPO(user));
-        return true;
+            result = userDAO.insertUser(new UserPO(user));
+        return result;
     }
 
 }
