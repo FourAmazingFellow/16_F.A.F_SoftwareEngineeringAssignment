@@ -64,7 +64,7 @@ public class OrderInfoImpl implements OrderInfo {
 
 	@Override
 	public boolean setOrderCommented(String orderID) throws RemoteException {
-		return false;
+		return orderDAO.setOrderCommented(orderID);
 	}
 
 }

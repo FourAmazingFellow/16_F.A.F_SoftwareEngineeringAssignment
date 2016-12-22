@@ -114,7 +114,7 @@ public class CommentOnHotelServiceImplTest {
 		commentOnHotel = new CommentOnHotelServiceImpl();
 		boolean result;
 		try {
-			result = commentOnHotel.confirmComment("原", 4.0f, "该酒店服务到位，应有尽有！", "江苏省南京市栖霞区仙林大道163号");
+			result = commentOnHotel.confirmComment("原", 4.0f, "该酒店服务到位，应有尽有！", "江苏省南京市栖霞区仙林大道163号", "0000000000000008");
 			assertEquals(true, result);
 		} catch (RemoteException e) {
 			e.printStackTrace();

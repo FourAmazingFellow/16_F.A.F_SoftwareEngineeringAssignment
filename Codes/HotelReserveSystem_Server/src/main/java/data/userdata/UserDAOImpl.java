@@ -40,10 +40,7 @@ public class UserDAOImpl implements UserDAO {
 		else if(userType == UserType.HotelStaff)
 			return 1;
 		else if(userType == UserType.WebMarketStaff)
-		{
-			System.out.println("hh");
 			return 2;
-		}
 		else
 			return 3;
 	}
