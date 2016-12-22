@@ -2,6 +2,7 @@ package presentation.userui.login;
 
 import java.rmi.RemoteException;
 
+import businesslogicservice.userblservice.LoginAndSignUpService;
 import businesslogicservice.userblservice.ManageUserInfoService;
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
@@ -23,8 +24,9 @@ import vo.UserVO;
 
 public class FillInUserInfoController {
 	private UserUIFactoryService userFactory;
-	private ModifyClientInfoService modifyClientInfo;
-	private ManageUserInfoService manageUserInfo;
+	private LoginAndSignUpService register;
+	// private ModifyClientInfoService modifyClientInfo;
+	// private ManageUserInfoService manageUserInfo;
 	private MainApp mainApp;
 	private String userID;
 	private String password;
@@ -56,61 +58,116 @@ public class FillInUserInfoController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		modifyClientInfo = userFactory.createModifyClientInfoService();
+		register = userFactory.createLoginAndSignUpService();
+		// modifyClientInfo = userFactory.createModifyClientInfoService();
 		// registerInfo = new LoginAndSignUpServiceImpl_Stub();
 		userTypeChoiceBox
 				.setItems((ObservableList<String>) FXCollections.observableArrayList("客户", "网站营销人员", "网站管理人员"));
 		userTypeChoiceBox.setValue("客户");
+		telNumField.setText("");
 	}
-	
-	public void setMainApp(MainApp mainApp){
+
+	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	public void setUserIDAndPassword(String userID, String password){
+	public void setUserIDAndPassword(String userID, String password) {
 		userIDField.setText(userID);
 		passwordField.setText(password);
 	}
-	
+
 	public void fillInRegisterInfo() {
 		String userTypeStr = userTypeChoiceBox.getValue();
 		String telNum = telNumField.getText();
 		UserType userType;
-		if (userTypeStr.equals("客户")) {
-			userType = UserType.Client;
-			UserVO user = new UserVO(userID, password, telNum, userType);
-			try {
-				modifyClientInfo.modifyClientInfo(user, userID);
-			} catch (RemoteException e) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("NetWork Warning");
-				alert.setHeaderText("Fail to connect with the server!");
-				alert.setContentText("Please check your network connection!");
-				alert.showAndWait();
-			}
-		} else if (userTypeStr.equals("网站营销人员")) {
-			userType = UserType.WebMarketStaff;
-			UserVO user = new UserVO(userID, password, telNum, userType);
-			try {
-				manageUserInfo.modifyUserInfo(user, userID);
-			} catch (RemoteException e) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("NetWork Warning");
-				alert.setHeaderText("Fail to connect with the server!");
-				alert.setContentText("Please check your network connection!");
-				alert.showAndWait();
-			}
-		} else if (userTypeStr.equals("网站管理人员")) {
-			userType = UserType.WebManageStaff;
-			UserVO user = new UserVO(userID, password, telNum, userType);
-			try {
-				manageUserInfo.modifyUserInfo(user, userID);
-			} catch (RemoteException e) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("NetWork Warning");
-				alert.setHeaderText("Fail to connect with the server!");
-				alert.setContentText("Please check your network connection!");
-				alert.showAndWait();
+		if (telNum.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.show();
+			return;
+		} else {
+			if (userTypeStr.equals("客户")) {
+				userType = UserType.Client;
+				UserVO user = new UserVO(userID, password, telNum, userType);
+
+				try {
+					boolean result = register.add(user);
+					if (result == false) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("wrong");
+						alert.setHeaderText("注册失败！");
+						alert.setContentText("请重试！");
+						alert.show();
+						return;
+					} else {
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("register info");
+						alert.setHeaderText("注册成功！");
+						alert.show();
+						mainApp.showLoginView();
+					}
+				} catch (RemoteException e) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
+					alert.showAndWait();
+				}
+
+			} else if (userTypeStr.equals("网站营销人员")) {
+				userType = UserType.WebMarketStaff;
+				UserVO user = new UserVO(userID, password, telNum, userType);
+				try {
+					boolean result = register.add(user);
+					if (result == false) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("wrong");
+						alert.setHeaderText("注册失败！");
+						alert.setContentText("请重试！");
+						alert.show();
+						return;
+					} else {
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("register info");
+						alert.setHeaderText("注册成功！");
+						alert.show();
+						mainApp.showLoginView();
+					}
+				} catch (RemoteException e) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
+					alert.showAndWait();
+				}
+			} else if (userTypeStr.equals("网站管理人员")) {
+				userType = UserType.WebManageStaff;
+				UserVO user = new UserVO(userID, password, telNum, userType);
+				try {
+					boolean result = register.add(user);
+					if (result == false) {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("wrong");
+						alert.setHeaderText("注册失败！");
+						alert.setContentText("请重试！");
+						alert.show();
+						return;
+					} else {
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("register info");
+						alert.setHeaderText("注册成功！");
+						alert.show();
+						mainApp.showLoginView();
+					}
+				} catch (RemoteException e) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
+					alert.showAndWait();
+				}
 			}
 		}
 
@@ -119,6 +176,11 @@ public class FillInUserInfoController {
 	@FXML
 	public void cancelButtonAction(ActionEvent event) {
 		mainApp.showRegisterPanel();
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("wrong");
+		alert.setHeaderText("注册失败！");
+		alert.setContentText("请重试！");
+		alert.showAndWait();
 	}
 
 	@FXML

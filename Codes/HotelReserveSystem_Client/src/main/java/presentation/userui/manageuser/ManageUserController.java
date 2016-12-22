@@ -39,7 +39,7 @@ public class ManageUserController {
 
 	@FXML
 	private Button editButton;
-	
+
 	@FXML
 	private TextField searchField;
 
@@ -88,7 +88,6 @@ public class ManageUserController {
 	@FXML
 	private Label webMarketuserIDLabel;
 
-
 	@FXML
 	private Label manageUserLabel;
 
@@ -109,9 +108,11 @@ public class ManageUserController {
 		userFactory = new UserUIFactoryServiceImpl();
 		manageUser = userFactory.createManageUserInfoService();
 		modifyClientInfo = userFactory.createModifyClientInfoService();
-//		manageUser = new ManageUserInfoServiceImpl_Stub("staff0001", "qwe123", "12345678909", UserType.WebMarketStaff, "qwe");
-//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原", "qwe123", "12345678900", UserType.Client, 1500, "阿里巴巴");
-//		searchField.setText("");
+		// manageUser = new ManageUserInfoServiceImpl_Stub("staff0001",
+		// "qwe123", "12345678909", UserType.WebMarketStaff, "qwe");
+		// modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原",
+		// "qwe123", "12345678900", UserType.Client, 1500, "阿里巴巴");
+		// searchField.setText("");
 
 	}
 
@@ -119,23 +120,23 @@ public class ManageUserController {
 		this.mainApp = mainApp;
 	}
 
-	public void setPreInfo(){
+	public void setPreInfo() {
 		userIDLabel.setText("");
 		telNumLabel.setText("");
 		creditValueLabel.setText("");
-		
+
 		hoteluserIDLabel.setText("");
 		hoteltelNumLabel.setText("");
 		hotelAddressLabel.setText("");
-		
+
 		webMarketuserIDLabel.setText("");
 		webMarkettelNumLabel.setText("");
 	}
-	
-	//显示用户信息
+
+	// 显示用户信息
 	public void showUserInfo() {
-		 this.userID = searchField.getText();
-//		this.userID = "原";
+		this.userID = searchField.getText();
+		// this.userID = "原";
 		if (userID.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -178,23 +179,8 @@ public class ManageUserController {
 				alert.setHeaderText("Fail to connect with the server!");
 				alert.setContentText("Please check your network connection!");
 				alert.showAndWait();
-			}}
-		
-		if (this.client != null) {
-//			tabPane.getSelectionModel().select(clientTab);
-			userIDLabel.setText(client.userID);
-			telNumLabel.setText(client.telNum);
-			creditValueLabel.setText(String.valueOf(client.creditValue));
-		} else if (this.hotelStaff != null) {
-//			tabPane.getSelectionModel().select(hotelStaffTab);
-			hoteluserIDLabel.setText(hotelStaff.userID);
-			hoteltelNumLabel.setText(hotelStaff.telNum);
-			hotelAddressLabel.setText(hotelStaff.hotelAddress);
-		} else if (this.webUser != null) {
-//			tabPane.getSelectionModel().select(webMarketStaffTab);
-			webMarketuserIDLabel.setText(webUser.userID);
-			webMarkettelNumLabel.setText(webUser.telNum);
-		} else if (this.client == null && this.hotelStaff == null && this.webUser == null) {
+			}
+		}else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("未找到相关用户！");
@@ -202,10 +188,26 @@ public class ManageUserController {
 			alert.show();
 			return;
 		}
+
+		if (this.client != null) {
+			// tabPane.getSelectionModel().select(clientTab);
+			userIDLabel.setText(client.userID);
+			telNumLabel.setText(client.telNum);
+			creditValueLabel.setText(String.valueOf(client.creditValue));
+		} else if (this.hotelStaff != null) {
+			// tabPane.getSelectionModel().select(hotelStaffTab);
+			hoteluserIDLabel.setText(hotelStaff.userID);
+			hoteltelNumLabel.setText(hotelStaff.telNum);
+			hotelAddressLabel.setText(hotelStaff.hotelAddress);
+		} else if (this.webUser != null) {
+			// tabPane.getSelectionModel().select(webMarketStaffTab);
+			webMarketuserIDLabel.setText(webUser.userID);
+			webMarkettelNumLabel.setText(webUser.telNum);
+		}
 	}
 
 	@FXML
-	//搜索按钮操作，显示搜索后的信息
+	// 搜索按钮操作，显示搜索后的信息
 	public void searchButtonAction(ActionEvent event) {
 		this.client = null;
 		this.hotelStaff = null;
@@ -214,15 +216,14 @@ public class ManageUserController {
 		showUserInfo();
 	}
 
-
 	@FXML
-	//编辑按钮操作，跳转编辑界面
+	// 编辑按钮操作，跳转编辑界面
 	public void editButtonAction(ActionEvent event) {
 		if (client != null) {
 			this.webUser = null;
 			mainApp.showEditUserInfoPanel(client, webUser);
 		} else if (hotelStaff != null) {
-			//不可以对酒店工作人员信息进行修改
+			// 不可以对酒店工作人员信息进行修改
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("不可对酒店工作人员信息进行修改！");
@@ -234,7 +235,7 @@ public class ManageUserController {
 	}
 
 	@FXML
-	//添加按钮操作，跳转添加新用户界面
+	// 添加按钮操作，跳转添加新用户界面
 	public void addButtonAction(ActionEvent event) {
 		mainApp.showAddUserPanel();
 	}
