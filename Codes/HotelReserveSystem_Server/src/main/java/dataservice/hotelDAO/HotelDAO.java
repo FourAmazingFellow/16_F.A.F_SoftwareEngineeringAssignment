@@ -60,7 +60,7 @@ public interface HotelDAO extends Remote {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void updateHotel(HotelPO po) throws RemoteException;
+	public boolean updateHotel(HotelPO po) throws RemoteException;
 	
 	/**
 	 * 增加新的酒店
@@ -68,7 +68,7 @@ public interface HotelDAO extends Remote {
 	 * @throws RemoteException
 	 * @see
 	 */
-	public void insertHotel(HotelPO po) throws RemoteException;
+	public boolean insertHotel(HotelPO po) throws RemoteException;
 	
 	/**
 	 * 获取所有的商圈的列表

@@ -70,7 +70,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insertUser(UserPO userPO) throws RemoteException;
+    public boolean insertUser(UserPO userPO) throws RemoteException;
     
     /**
      * 客户注册新账号
@@ -78,7 +78,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException;
+    public boolean insertClient(ClientInfoPO clientInfoPO) throws RemoteException;
     
     /**
      * 用户（酒店工作人员）注册新账号或网站管理人员添加酒店工作人员
@@ -86,7 +86,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException;
+    public boolean insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException;
   
     
     /**
@@ -95,7 +95,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void updateUser(UserPO userPO, String oldUserID) throws RemoteException;
+    public boolean updateUser(UserPO userPO, String oldUserID) throws RemoteException;
     
     /**
      * 更新客户信息
@@ -103,7 +103,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException;
+    public boolean updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException;
     
     /**
      * 注册普通会员
@@ -111,7 +111,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException;
+    public boolean signRegularVip(RegularVipPO regularVipPO) throws RemoteException;
     
     /**
      * 注册企业会员
@@ -119,7 +119,7 @@ public interface UserDAO extends Remote {
      * @throws RemoteException
      * @see
      */
-    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException;
+    public boolean signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException;
     
     /**
      * 得到普通会员信息
@@ -145,6 +145,6 @@ public interface UserDAO extends Remote {
      * @param userID String型，业务逻辑层传递过来的普通会员账号
      * @see
      */
-    public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException;
+    public boolean updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException;
 
 }

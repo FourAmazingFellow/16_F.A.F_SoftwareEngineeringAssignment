@@ -4,6 +4,9 @@ import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.Optional;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
@@ -86,6 +89,7 @@ public class PromotionEditPanelController {
     private StrategyUIFactoryService strategyUIFactoryService = new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
+    private boolean isNewPromotion;
 
     @FXML
     private void initialize() {
@@ -105,6 +109,7 @@ public class PromotionEditPanelController {
         // 把传进来的strategy设为成员变量，便于修改
         this.strategy = strategy;
         this.address = address;
+        this.isNewPromotion = isNewaPromotion;
         // 把其他策略类型的tab设置为disable,并把不能修改的东西设成disable,如果是修改strategy,把默认值设为原始值
         if (strategy.getStrategyType() == StrategyType.BirthdayPromotion) {
             cooperationEnterPrisePromotionTab.setDisable(true);
@@ -169,27 +174,11 @@ public class PromotionEditPanelController {
         if (!isInputValid()) {
             return;
         }
-
-        // 弹出对话框请求确认
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("确认添加或修改策略");
-        alert.setHeaderText("你是否确定要增加或修改该策略？");
-        alert.setContentText("Are you ok with this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            isConfirmed = true;
-        } else {
-            isConfirmed = false;
-            handleCancel();
-            return;
-        }
-
         // 把新建或修改的strategy传给上一个界面
-        if(strategy.getStrategyType()==StrategyType.BirthdayPromotion){
+        if (strategy.getStrategyType() == StrategyType.BirthdayPromotion) {
             strategy.setStrategyName(strategyNameTextField1.getText());
             strategy.setDiscount(Float.parseFloat(discountTextField1.getText()));
-        }else if (strategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
+        } else if (strategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
             strategy.setStrategyName(strategyNameTextField2.getText());
             strategy.setDiscount(Float.parseFloat(discountTextField2.getText()));
             strategy.setMinRoomNum(Integer.parseInt(minRoomTextField2.getText()));
@@ -204,6 +193,56 @@ public class PromotionEditPanelController {
             strategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker4.getValue()));
         }
 
+        try {
+            if (isNewPromotion)
+                updateStrategyService.add(address, strategy.toVO(address));
+            else 
+                updateStrategyService.modify(address, strategy.toVO(address));
+        } catch (UnableAddStrategyException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+            return;
+        } catch (WrongInputException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
+        } catch (ParseException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
+        } catch (UnableToModifyStrategyException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
+        }
+        isConfirmed=true;
+        Alert alert2 = new Alert(AlertType.INFORMATION);
+        alert2.setTitle("操作成功");
+        if (isNewPromotion)
+            alert2.setHeaderText("增加策略成功！");
+        else
+            alert2.setHeaderText("修改策略成功！");
+        alert2.showAndWait();
+        dialogStage.close();
     }
 
     private boolean isInputValid() {
@@ -217,7 +256,7 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField1.getText().equals("")|| !isDiscount(discountTextField1.getText())) {
+            if (discountTextField1.getText().equals("") || !isDiscount(discountTextField1.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -228,7 +267,7 @@ public class PromotionEditPanelController {
             }
         }
         if (strategy.getStrategyType() == StrategyType.CooperationEnterprisePromotion) {
-            if (strategyNameTextField3.getText().equals("")|| cooperationEnterpriseTextField3.getText().equals("")
+            if (strategyNameTextField3.getText().equals("") || cooperationEnterpriseTextField3.getText().equals("")
                     || securityCodeTextField3.getText().equals("")) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
@@ -238,7 +277,7 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField3.getText().equals("")|| !isDiscount(discountTextField3.getText())) {
+            if (discountTextField3.getText().equals("") || !isDiscount(discountTextField3.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -287,7 +326,7 @@ public class PromotionEditPanelController {
                 alert.showAndWait();
                 return false;
             }
-            if (discountTextField4.getText().equals("")|| !isDiscount(discountTextField4.getText())) {
+            if (discountTextField4.getText().equals("") || !isDiscount(discountTextField4.getText())) {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("策略信息错误");
                 alert.setHeaderText("折扣百分比错误");
@@ -307,11 +346,11 @@ public class PromotionEditPanelController {
             }
         }
         StrategyVO strategyVO = null;
-        Strategy tmpStrategy =new Strategy(strategy.getStrategyType());
-        if(tmpStrategy.getStrategyType()==StrategyType.BirthdayPromotion){
+        Strategy tmpStrategy = new Strategy(strategy.getStrategyType());
+        if (tmpStrategy.getStrategyType() == StrategyType.BirthdayPromotion) {
             tmpStrategy.setStrategyName(strategyNameTextField1.getText());
             tmpStrategy.setDiscount(Float.parseFloat(discountTextField1.getText()));
-        }else if (tmpStrategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
+        } else if (tmpStrategy.getStrategyType() == StrategyType.MultiRoomPromotion) {
             tmpStrategy.setStrategyName(strategyNameTextField2.getText());
             tmpStrategy.setDiscount(Float.parseFloat(discountTextField2.getText()));
             tmpStrategy.setMinRoomNum(Integer.parseInt(minRoomTextField2.getText()));
@@ -369,13 +408,13 @@ public class PromotionEditPanelController {
         if (str.indexOf('.') != str.lastIndexOf('.')) {
             return false;
         }
-        if(Float.parseFloat(str)>1||Float.parseFloat(str)<=0){
+        if (Float.parseFloat(str) > 1 || Float.parseFloat(str) <= 0) {
             return false;
         }
         return true;
     }
-    
-    private boolean isInteger(String str){
+
+    private boolean isInteger(String str) {
         for (char c : str.toCharArray()) {
             if ((c < '0' || c > '9')) {
                 return false;
@@ -383,6 +422,5 @@ public class PromotionEditPanelController {
         }
         return true;
     }
-
 
 }

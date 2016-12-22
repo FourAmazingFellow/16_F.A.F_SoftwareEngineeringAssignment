@@ -287,7 +287,7 @@ public class HotelDAOImpl implements HotelDAO {
 	}
 
 	@Override
-	public void updateHotel(HotelPO po) throws RemoteException {
+	public boolean updateHotel(HotelPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt_Hotel = null;
 		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ?, city = ?, min_Price = ? where hotelAddress = ?";
@@ -349,8 +349,10 @@ public class HotelDAOImpl implements HotelDAO {
 				pstmt_AddComments.setString(0000000000000003, comments.get(clientName));
 				pstmt_AddComments.executeUpdate();
 			}
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			JDBC_Connection.free(null, conn, pstmt_Hotel);
 			JDBC_Connection.free(null, null, pstmt_DeleteRoom);
@@ -361,7 +363,7 @@ public class HotelDAOImpl implements HotelDAO {
 	}
 
 	@Override
-	public void insertHotel(HotelPO po) throws RemoteException {
+	public boolean insertHotel(HotelPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstm_Hotel = null;
 		PreparedStatement pstm_Room = null;
@@ -397,8 +399,10 @@ public class HotelDAOImpl implements HotelDAO {
 				pstm_Room.setInt(4, roomTypeAndNums.get(roomType));
 				pstm_Room.executeUpdate();
 			}
+			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			JDBC_Connection.free(rs, conn, pstm_Hotel);
 			JDBC_Connection.free(rs, conn, pstm_Room);

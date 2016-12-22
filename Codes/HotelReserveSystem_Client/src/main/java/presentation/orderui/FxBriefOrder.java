@@ -70,19 +70,19 @@ public class FxBriefOrder {
 	public static String toDate(Date date) {
 		String year = String.valueOf(date.getYear() + 1900);
 		String month = String.valueOf(date.getMonth() + 1);
-		String day = String.valueOf(date.getDay());
-		return year + "年" + month + "月" + day + "日";
+		String day = String.valueOf(date.getDate());
+		return year + "-" + month + "-" + day;
 	}
 	
 	@SuppressWarnings("deprecation")
 	public static String toSec(Date date) {
 		String year = String.valueOf(date.getYear() + 1900);
 		String month = String.valueOf(date.getMonth() + 1);
-		String day = String.valueOf(date.getDay());
+		String day = String.valueOf(date.getDate());
 		String hour = String.valueOf(date.getHours());
 		String min = String.valueOf(date.getMinutes());
 		String sec = String.valueOf(date.getSeconds());
-		return year + "年" + month + "月" + day + "日" + " " + hour + ":" + min + ":" + sec;
+		return year + "-" + month + "-" + day  + " " + hour + ":" + min + ":" + sec;
 	}
 	
 	public StringProperty getUserID() {

@@ -229,7 +229,8 @@ public class CreateOrderPanelController {
 		if(resultMessage == ResultMessage.SUCCEED){
 			try {
 				newOrderVO.totalPrice = 
-				newOrderCreater.getOriginalPrice(newOrderVO.hotelAddress, (RoomType)newOrderVO.roomType) * newOrderVO.num;
+				(int) (newOrderCreater.getOriginalPrice(newOrderVO.hotelAddress, (RoomType)newOrderVO.roomType) * newOrderVO.num 
+				* ((newOrderVO.finishDate.getTime()-newOrderVO.beginDate.getTime())/1000*60*60*24));
 				int price = newOrderCreater.getPrice(newOrderVO);
 				newOrderVO.totalPrice = newOrderCreater.getPrice(newOrderVO);
 				newOrderVO.totalPrice = price;
@@ -245,8 +246,12 @@ public class CreateOrderPanelController {
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("操作成功");
 						alert.setContentText("订单已经成功生成！");
-
-						alert.showAndWait();
+						
+						Optional<javafx.scene.control.ButtonType> re = alert.showAndWait();
+						
+						if(re.get() == javafx.scene.control.ButtonType.OK) {
+							mainApp.showUserOrderPanel(ClientMainApp.userID);
+						}
 					}else{
 						Alert alert = new Alert(AlertType.WARNING);
 						alert.setTitle("操作失败");

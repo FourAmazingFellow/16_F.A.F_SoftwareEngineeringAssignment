@@ -339,7 +339,7 @@ public class HotelMainApp extends Application {
 			// Load the fxml file and create a new stage for the popup dialog.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
-					HotelMainApp.class.getResource("strategyui/manegeHotelPromotion/PromotionEditPanel.fxml"));
+					HotelMainApp.class.getResource("strategyui/manageHotelPromotion/PromotionEditPanel.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 
 			// Create the dialog Stage.

@@ -10,10 +10,10 @@
 
 <AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.CreateOrderPanelController">
    <children>
-      <GridPane layoutX="244.0" layoutY="12.0" prefHeight="547.0" prefWidth="679.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="77.0">
+      <GridPane layoutX="222.0" layoutY="12.0" prefHeight="547.0" prefWidth="679.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
         <columnConstraints>
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="391.4450988769531" minWidth="10.0" prefWidth="182.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="625.8492126464844" minWidth="10.0" prefWidth="497.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="391.4450988769531" minWidth="10.0" prefWidth="211.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="625.8492126464844" minWidth="10.0" prefWidth="468.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

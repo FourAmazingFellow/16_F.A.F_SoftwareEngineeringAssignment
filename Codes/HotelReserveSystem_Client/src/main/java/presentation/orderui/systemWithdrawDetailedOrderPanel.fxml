@@ -8,20 +8,20 @@
 
 <AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.SystemWithdrawDetailedOrderPanelController">
    <children>
-      <Label layoutX="240.0" layoutY="8.0" styleClass="label-title" text="订单信息类型">
+      <Label layoutX="187.0" layoutY="8.0" styleClass="label-title" text="订单信息类型">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="602.0" layoutY="7.0" styleClass="label-title" text="信息内容">
+      <Label layoutX="557.0" layoutY="7.0" styleClass="label-title" text="信息内容">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <GridPane layoutX="160.0" layoutY="47.0" prefHeight="509.0" prefWidth="680.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="238.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="525.0" minWidth="10.0" prefWidth="442.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

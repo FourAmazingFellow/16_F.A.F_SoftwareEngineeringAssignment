@@ -92,6 +92,10 @@ public class DetailedOrderPanelController {
 		if (vo.lastedOrderDoneTime.getTime() - (new Date()).getTime() < 0 || vo.orderState != OrderState.NOT_DONE_ORDER)
 			withdrawOrderButton.setDisable(true);
 
+		if(vo.orderState != OrderState.DONE_ORDER || vo.isCommented != false) {
+			commentButton.setDisable(true);
+		}
+		
 		orderStateLabel.setText(getOrderState((OrderState) vo.orderState));
 		isOnSaleLabel.setText(getTorF(vo.isOnSale));
 		isCommentedLabel.setText(getTorF(vo.isCommented));

@@ -89,20 +89,24 @@ public class UserDAOImpl_Stub implements UserDAO{
         return creditValue;
     }
     @Override
-    public void insertUser(UserPO po) throws RemoteException {
+    public boolean insertUser(UserPO po) throws RemoteException {
         System.out.println("Insert Succeed!\n");
+        return true;
     }
     @Override
-    public void updateUser(UserPO po, String oldUserID) throws RemoteException {
-        System.out.println("Update Succeed!\n");      
+    public boolean updateUser(UserPO po, String oldUserID) throws RemoteException {
+        System.out.println("Update Succeed!\n"); 
+        return true;
     }	
     @Override
-    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
+    public boolean insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
         System.out.println("Insert Succeed!\n");     
+        return true;
     }
     @Override
-    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
+    public boolean insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
         System.out.println("Insert Succeed!\n");      
+        return true;
     }
     @Override
     public ClientInfoPO getClientInfo(String userID) throws RemoteException {
@@ -113,17 +117,20 @@ public class UserDAOImpl_Stub implements UserDAO{
         return new HotelStaffInfoPO(userID, password, telNum, userType, hotelAddress);
     }
     @Override
-    public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
+    public boolean updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
         System.out.println("Update Succeed!\n");
+        return true;
     }
     @Override
-    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
+    public boolean signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
         System.out.println("Sign Succeed!\n");
+        return true;
         
     }
     @Override
-    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
+    public boolean signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
         System.out.println("Sign Succeed!\n");
+        return true;
         
     }
     @Override
@@ -142,8 +149,9 @@ public class UserDAOImpl_Stub implements UserDAO{
      * @see dataservice.userDAO.UserDAO#updateRegularVipInfo(po.RegularVipPO, java.lang.String)
      */
     @Override
-    public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
-        System.out.println("Update Succeed!\n");        
+    public boolean updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
+        System.out.println("Update Succeed!\n");     
+        return true;
     }
     
 }

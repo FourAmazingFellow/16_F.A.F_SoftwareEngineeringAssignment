@@ -131,12 +131,23 @@ public class CheckOutEditPanelController {
             updateCheckOutService.addCheckOut(address, checkOut.toVO(address));
         } catch (RemoteException e) {
             e.printStackTrace();
+            alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+            return;
         } catch (WrongInputException e) {
             e.printStackTrace();
+            return;
         } catch (ParseException e) {
             e.printStackTrace();
+            return;
         }
-
+        Alert alert2 = new Alert(AlertType.INFORMATION);
+        alert2.setTitle("退房成功");
+        alert2.setHeaderText("办理退房成功！");
+        alert2.showAndWait();
         dialogStage.close();
     }
 

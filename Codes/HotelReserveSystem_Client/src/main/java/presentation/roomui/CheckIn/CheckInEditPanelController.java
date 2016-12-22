@@ -155,12 +155,23 @@ public class CheckInEditPanelController {
             updateCheckInService.addCheckIn(address, checkIn.toVO(address), updateSpareRoom);
         } catch (RemoteException e) {
             e.printStackTrace();
+            alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+            return;
         } catch (WrongInputException e) {
             e.printStackTrace();
+            return;
         } catch (ParseException e) {
             e.printStackTrace();
+            return;
         }
-
+        Alert alert2 = new Alert(AlertType.INFORMATION);
+        alert2.setTitle("入住成功");
+        alert2.setHeaderText("办理入住成功！");
+        alert2.showAndWait();
         dialogStage.close();
     }
 
@@ -244,6 +255,7 @@ public class CheckInEditPanelController {
         // 调用逻辑层的valid方法进一步验证数据是否合理
         try {
             if (updateCheckInService.validCheckIn(address, checkInVO)) {
+               
                 return true;
             }
         } catch (RemoteException e) {
