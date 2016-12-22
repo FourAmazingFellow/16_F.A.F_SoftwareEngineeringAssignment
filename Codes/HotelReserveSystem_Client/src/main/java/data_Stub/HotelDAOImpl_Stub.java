@@ -77,13 +77,15 @@ public class HotelDAOImpl_Stub implements HotelDAO {
 	}
 
 	@Override
-	public void updateHotel(HotelPO po) throws RemoteException {
+	public boolean updateHotel(HotelPO po) throws RemoteException {
 		System.out.println("Update Succeed!\n");
+		return true;
 	}
 
 	@Override
-	public void insertHotel(HotelPO po) throws RemoteException {
+	public boolean insertHotel(HotelPO po) throws RemoteException {
 		System.out.println("Insert Succeed!\n");
+		return true;
 	}
 
 	@Override

@@ -70,25 +70,25 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void insertUser(UserPO userPO) throws RemoteException {
-		userDAO.insertUser(userPO);
+	public boolean insertUser(UserPO userPO) throws RemoteException {
+		return userDAO.insertUser(userPO);
 	}
 	
 	@Override
-    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
-        userDAO.insertClient(clientInfoPO);
+    public boolean insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
+		return userDAO.insertClient(clientInfoPO);
         
     }
 
     @Override
-    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
-        userDAO.insertHotelStaff(hotelStaffInfoPO);
+    public boolean insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
+    	return userDAO.insertHotelStaff(hotelStaffInfoPO);
         
     }
 
 	@Override
-	public void updateUser(UserPO po, String oldUserID) throws RemoteException {
-		userDAO.updateUser(po, oldUserID);
+	public boolean updateUser(UserPO po, String oldUserID) throws RemoteException {
+		return userDAO.updateUser(po, oldUserID);
 	}
 
 	@Override
@@ -267,13 +267,13 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void updateHotel(HotelPO po) throws RemoteException {
-		hotelDAO.updateHotel(po);
+	public boolean updateHotel(HotelPO po) throws RemoteException {
+		return hotelDAO.updateHotel(po);
 	}
 
 	@Override
-	public void insertHotel(HotelPO po) throws RemoteException {
-		hotelDAO.insertHotel(po);
+	public boolean insertHotel(HotelPO po) throws RemoteException {
+		return hotelDAO.insertHotel(po);
 	}
 
     @Override
@@ -287,18 +287,18 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
     }
 
     @Override
-    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
-    	userDAO.signRegularVip(regularVipPO);
+    public boolean signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
+    	return userDAO.signRegularVip(regularVipPO);
     }
 
     @Override
-	public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
-		userDAO.updateClient(clientInfoPO, oldUserID);
+	public boolean updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
+    	return userDAO.updateClient(clientInfoPO, oldUserID);
 	}
 
 	@Override
-    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
-    	userDAO.signEnterpriseVip(enterpriseVipPO);
+    public boolean signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
+		return userDAO.signEnterpriseVip(enterpriseVipPO);
     }
 
     @Override
@@ -322,8 +322,8 @@ public class DataRemoteObjectMySql extends UnicastRemoteObject implements HotelD
 	}
 
 	@Override
-	public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
-		userDAO.updateRegularVipInfo(regularVipPO);
+	public boolean updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
+		return userDAO.updateRegularVipInfo(regularVipPO);
 	}
 
 }

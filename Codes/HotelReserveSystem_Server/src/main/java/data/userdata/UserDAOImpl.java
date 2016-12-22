@@ -177,7 +177,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void insertUser(UserPO userPO) throws RemoteException {
+    public boolean insertUser(UserPO userPO) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -190,8 +190,10 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(3, SecurityTransform.encrypt(userPO.getpassword()));
 			pstmt.setInt(4, convertFromUserTypeToInt(userPO.getUserType()));
 			pstmt.executeUpdate();
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -199,7 +201,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
+    public boolean insertClient(ClientInfoPO clientInfoPO) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -212,8 +214,10 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(3, SecurityTransform.encrypt(clientInfoPO.getpassword()));
 			pstmt.setInt(4, clientInfoPO.getCreditValue());
 			pstmt.executeUpdate();
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -221,7 +225,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
+    public boolean insertHotelStaff(HotelStaffInfoPO hotelStaffInfoPO) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -234,8 +238,10 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(3, SecurityTransform.encrypt(hotelStaffInfoPO.getpassword()));
 			pstmt.setString(4, hotelStaffInfoPO.getHotelAddress());
 			pstmt.executeUpdate();
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -243,7 +249,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(UserPO userPO, String oldUserID) throws RemoteException {
+    public boolean updateUser(UserPO userPO, String oldUserID) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -259,6 +265,7 @@ public class UserDAOImpl implements UserDAO {
 				pstmt.setString(3, userPO.getTelNum());
 				pstmt.setString(4, oldUserID);
 				pstmt.executeUpdate();
+				return true;
 			}
 			else {
 				sql = "update webStaff set userID = ?, password = ?, telNum = ? where userID = ?";
@@ -268,9 +275,11 @@ public class UserDAOImpl implements UserDAO {
 				pstmt.setString(3, userPO.getTelNum());
 				pstmt.setString(4, oldUserID);
 				pstmt.executeUpdate();
+				return true;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -278,7 +287,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
+    public boolean updateClient(ClientInfoPO clientInfoPO, String oldUserID) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt_DeleteOldCreditRecord = null;
@@ -316,8 +325,10 @@ public class UserDAOImpl implements UserDAO {
 					pstmt_UpdateCreditRecord.executeUpdate();
 				}
 			}
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -327,7 +338,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
+    public boolean signRegularVip(RegularVipPO regularVipPO) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -339,8 +350,10 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setDate(2, regularVipPO.getBirth());
 			pstmt.setInt(3, regularVipPO.getVipRank());
 			pstmt.executeUpdate();
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -348,7 +361,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
+    public boolean signEnterpriseVip(EnterpriseVipPO enterpriseVipPO) throws RemoteException {
     	Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -359,8 +372,10 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(1, enterpriseVipPO.getUserID());
 			pstmt.setString(2, enterpriseVipPO.getEnterpriseID());
 			pstmt.executeUpdate();
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
@@ -480,7 +495,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
 	@Override
-	public void updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
+	public boolean updateRegularVipInfo(RegularVipPO regularVipPO) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -491,8 +506,10 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setInt(1, regularVipPO.getVipRank());
 			pstmt.setString(2, regularVipPO.getUserID());
 			pstmt.executeUpdate();
+			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();
+			return false;
 		} finally {
 			//释放数据库资源
 			JDBC_Connection.free(null, conn, pstmt);
