@@ -34,7 +34,7 @@ import presentation.userui.signvip.SignRegularVipController;
 import runner.ClientRunner;
 
 public class ClientMainApp extends Application {
-	public static String userID = "原";
+	public static String userID = "(*_*)JackWan";
 
 	private MainApp mainApp;
 	private Stage primaryStage;

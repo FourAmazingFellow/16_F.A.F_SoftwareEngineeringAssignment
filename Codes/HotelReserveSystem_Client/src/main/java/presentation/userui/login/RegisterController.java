@@ -89,8 +89,4 @@ public class RegisterController {
 	public void returnButton() {
 		mainApp.showLoginView();
 	}
-
-	public void registerButtonAction() {
-		register();
-	}
 }
