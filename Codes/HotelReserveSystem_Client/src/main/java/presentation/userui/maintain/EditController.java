@@ -113,6 +113,7 @@ public class EditController {
 	// 编辑客户信息
 	public void editClientInfo() {
 		newUserID = userIDField.getText();
+		ClientMainApp.userID = newUserID;
 		newTelNum = telNumField.getText();
 		UserVO user = new UserVO(newUserID, password, newTelNum, UserType.Client);
 		boolean result = false;

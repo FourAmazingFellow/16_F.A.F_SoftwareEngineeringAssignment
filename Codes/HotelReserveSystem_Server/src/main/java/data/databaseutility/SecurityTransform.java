@@ -11,7 +11,7 @@ public class SecurityTransform {
 	public static String encrypt(String password) {
 		String result = "";
 		for(char i : password.toCharArray()) {
-			result = result + (i^securityCode);
+			result = result + (char)(i^securityCode);
 		}
 		return result;
 	}
@@ -19,7 +19,7 @@ public class SecurityTransform {
 	public static String decrypt(String password) {
 		String result = "";
 		for(char i : password.toCharArray()) {
-			result = result + (i^securityCode);
+			result = result + (char)(i^securityCode);
 		}
 		return result;
 	}
