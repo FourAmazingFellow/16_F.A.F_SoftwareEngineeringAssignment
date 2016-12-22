@@ -100,6 +100,10 @@ public class SearchDetailsPanelController {
 	public void showSearchResult() {
 		cityChoiceBox.setValue(conditions[0]);
 		setDistrictChoiceBox(conditions[0]);
+		districtChoiceBox.setValue(conditions[1]);
+		beginDatePicker.setValue(LocalDate.parse(conditions[12]));
+		finishDatePicker.setValue(LocalDate.parse(conditions[13]));
+		
 		
 		ArrayList<OrderedHotelInfoVO> list;
 		try {

@@ -65,7 +65,7 @@ public class SearchPanelController {
 	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-
+	
 	@FXML
 	private void initialize() {
 		factory = new HotelUIFactoryServiceImpl();
@@ -102,11 +102,11 @@ public class SearchPanelController {
 
 	@FXML
 	private void showSearchResult() {
-		String[] conditions = {cityChoiceBox.getValue(), tradeAreaChoiceBox.getValue(), searchTextArea.getText(), "0", "100000000", "0", "6", "0.0", "6.0", "0",
+		String[] _conditions = {cityChoiceBox.getValue(), tradeAreaChoiceBox.getValue(), searchTextArea.getText(), "0", "100000000", "0", "6", "0.0", "6.0", "0",
 				String.valueOf(roomTypeChoiceBox.getSelectionModel().selectedIndexProperty().get()), String.valueOf(roomNumChoiceBox.getSelectionModel().selectedIndexProperty().get() + 1),
 				getDate(beginDatePicker.getValue()), getDate(finishDatePicker.getValue())};
 		
-		mainApp.showSearchDetailsPanel(conditions);
+		mainApp.showSearchDetailsPanel(_conditions);
 	}
 	
 	private String getDate(LocalDate date) {
