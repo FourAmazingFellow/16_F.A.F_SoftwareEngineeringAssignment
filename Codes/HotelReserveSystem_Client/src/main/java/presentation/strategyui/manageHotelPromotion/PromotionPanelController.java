@@ -105,7 +105,7 @@ public class PromotionPanelController {
     private ObservableList<Strategy> mutiRoomPromotionData = FXCollections.observableArrayList();
     private ObservableList<Strategy> specialTimePromotionData = FXCollections.observableArrayList();
     private StrategyListWrapper strategyList;
-    private StrategyUIFactoryService strategyUIFactoryService=new StrategyUIFactoryServiceImpl();
+    private StrategyUIFactoryService strategyUIFactoryService = new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
 
@@ -140,10 +140,10 @@ public class PromotionPanelController {
                 });
         ;
     }
-    
+
     @FXML
-    public void handleClickedStrategyNameTextField(MouseEvent event){
-        if(strategyNameTextField.getText().equals("用折扣名称搜索...")){
+    public void handleClickedStrategyNameTextField(MouseEvent event) {
+        if (strategyNameTextField.getText().equals("用折扣名称搜索...")) {
             strategyNameTextField.setText("");
         }
     }
@@ -223,22 +223,22 @@ public class PromotionPanelController {
             alert.showAndWait();
             return;
         }
-        if (selectedIndex == 0){
-//            birthdayPromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+        if (selectedIndex == 0) {
+            // birthdayPromotionTable.getSelectionModel().select(new
+            // Strategy(searchedStrategyVO));
             birthDayPromotionData.clear();
             birthDayPromotionData.add(new Strategy(searchedStrategyVO));
-        }
-        else if (selectedIndex == 1){
-//            multiRoomPromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+        } else if (selectedIndex == 1) {
+            // multiRoomPromotionTable.getSelectionModel().select(new
+            // Strategy(searchedStrategyVO));
             mutiRoomPromotionData.clear();
             mutiRoomPromotionData.add(new Strategy(searchedStrategyVO));
-        }
-        else if (selectedIndex == 2){
-//            cooperationEnterprisePromotionTable.getSelectionModel().select(new Strategy(searchedStrategyVO));
+        } else if (selectedIndex == 2) {
+            // cooperationEnterprisePromotionTable.getSelectionModel().select(new
+            // Strategy(searchedStrategyVO));
             enterprisePromotinonData.clear();
             enterprisePromotinonData.add(new Strategy(searchedStrategyVO));
-        }
-        else if (selectedIndex == 3){
+        } else if (selectedIndex == 3) {
             specialTimePromotionData.clear();
             specialTimePromotionData.add(new Strategy(searchedStrategyVO));
         }
@@ -309,14 +309,19 @@ public class PromotionPanelController {
         boolean isNewaPromotion = false;
         boolean isConfirmed = mainApp.showPromotionEditDialog(strategy, isNewaPromotion);
         if (isConfirmed) {
-            if (selectedTab == 0)
-                birthdayPromotionTable.getItems().add(strategy);
-            else if (selectedTab == 1)
-                multiRoomPromotionTable.getItems().add(strategy);
-            else if (selectedTab == 2)
-                cooperationEnterprisePromotionTable.getItems().add(strategy);
-            else if (selectedTab == 3)
-                spcialTimePromotionTable.getItems().add(strategy);
+            if (selectedTab == 0) {
+                birthDayPromotionData.remove(selectedStrategy);
+                birthdayPromotionTable.getItems().add(selectedStrategy,strategy);
+            } else if (selectedTab == 1) {
+                mutiRoomPromotionData.remove(selectedStrategy);
+                multiRoomPromotionTable.getItems().add(selectedStrategy,strategy);
+            } else if (selectedTab == 2) {
+                enterprisePromotinonData.remove(selectedStrategy);
+                cooperationEnterprisePromotionTable.getItems().add(selectedStrategy,strategy);
+            } else if (selectedTab == 3) {
+                specialTimePromotionData.remove(selectedStrategy);
+                spcialTimePromotionTable.getItems().add(selectedStrategy,strategy);
+            }
         }
     }
 
@@ -352,7 +357,7 @@ public class PromotionPanelController {
         }
         try {
             if (selectedTab == 0)
-                    updateStrategyService.delete(address, birthDayPromotionData.get(selectStrategy).toVO(address));
+                updateStrategyService.delete(address, birthDayPromotionData.get(selectStrategy).toVO(address));
             else if (selectedTab == 1)
                 updateStrategyService.delete(address, mutiRoomPromotionData.get(selectStrategy).toVO(address));
             else if (selectedTab == 2)
@@ -368,14 +373,26 @@ public class PromotionPanelController {
             alert.showAndWait();
             return;
         } catch (WrongInputException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("删除失败");
+            alert.setHeaderText("删除策略失败");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
             return;
         } catch (ParseException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("删除失败");
+            alert.setHeaderText("删除策略失败");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
             return;
-        }catch (RemoteException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+            return;
         }
 
         // 在StrategyData中也删掉
@@ -388,7 +405,11 @@ public class PromotionPanelController {
         else if (selectedTab == 3)
             spcialTimePromotionTable.getItems().remove(selectStrategy);
 
-    }
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("删除策略成功");
+        alert.setHeaderText("删除策略成功！");
+        alert.showAndWait();
 
+    }
 
 }

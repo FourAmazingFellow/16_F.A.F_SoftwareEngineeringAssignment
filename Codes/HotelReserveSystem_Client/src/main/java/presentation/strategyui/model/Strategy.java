@@ -166,7 +166,7 @@ public class Strategy {
     }
     
     public String getEnterpriseName(){
-        return strategyName.get();
+        return enterpriseName.get();
     }
     
     public String getSecurityCode(){

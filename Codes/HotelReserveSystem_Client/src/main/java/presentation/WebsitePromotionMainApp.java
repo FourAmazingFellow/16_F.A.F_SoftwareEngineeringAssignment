@@ -18,6 +18,7 @@ import presentation.orderui.BrowseAbnormalOrderPanelController;
 import presentation.orderui.SystemWithdrawDetailedOrderPanelController;
 import presentation.strategyui.manageMarketStrategy.MarketStrategyEditPanelController;
 import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelController;
+import presentation.strategyui.manageMarketStrategy.WebsiteMarketMainUIController;
 import presentation.strategyui.model.Strategy;
 import presentation.userui.addcredit.AddCreditValueController;
 import runner.ClientRunner;
@@ -48,7 +49,7 @@ public class WebsitePromotionMainApp extends Application {
 		this.primaryStage.setResizable(false);
 		
 		initWebsitePromotionRootPanel();
-//		showAbnormalOrderPanel();
+		showWebsitePromotionMainPanel();
 	}
 
 	public static void main(String[] args) {
@@ -92,7 +93,23 @@ public class WebsitePromotionMainApp extends Application {
     
     //显示网站营销人员的主界面
     public void showWebsitePromotionMainPanel() {
-        
+        try {
+            // Load root layout from fxml file.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HotelMainApp.class.getResource("strategyui/manageMarketStrategy/WebsiteMarketMainUI.fxml"));
+            AnchorPane websitePromotionMainUI = (AnchorPane) loader.load();
+
+            // Show the scene containing the root layout.
+            websitePromotionRootLayout.setCenter(websitePromotionMainUI);
+
+            // Give the controller access to the main app.
+            WebsiteMarketMainUIController controller = loader.getController();
+            controller.setMainApp(this);
+
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 	
 	public void showAbnormalOrderPanel() {

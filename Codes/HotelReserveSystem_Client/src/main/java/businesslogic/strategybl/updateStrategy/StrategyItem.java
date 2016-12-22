@@ -121,7 +121,7 @@ public class StrategyItem {
      * @see
      */
     public boolean add(String address) throws UnableAddStrategyException {
-        if (address.equals("Web")) {
+        if (!address.equals("Web")) {
             if (strategyType == StrategyType.MemberRankMarket
                     || strategyType == StrategyType.SpecificTimeMarket
                     || strategyType == StrategyType.VipTradeAreaMarket) {
@@ -231,7 +231,7 @@ public class StrategyItem {
     public boolean valid() throws WrongInputException, RemoteException {
         // 格式验证
         //验证折扣类型是否与地址相对应
-        if (address.equals("Web")) {
+        if (!address.equals("Web")) {
             if (strategyType == StrategyType.MemberRankMarket
                     || strategyType == StrategyType.SpecificTimeMarket
                     || strategyType == StrategyType.VipTradeAreaMarket) {

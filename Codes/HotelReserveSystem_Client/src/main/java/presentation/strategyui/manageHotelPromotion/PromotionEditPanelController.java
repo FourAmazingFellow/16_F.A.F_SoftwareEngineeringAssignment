@@ -186,6 +186,7 @@ public class PromotionEditPanelController {
             strategy.setStrategyName(strategyNameTextField3.getText());
             strategy.setDiscount(Float.parseFloat(discountTextField3.getText()));
             strategy.setEnterpriseName(cooperationEnterpriseTextField3.getText());
+            strategy.setSecurityCode(securityCodeTextField3.getText());
         } else if (strategy.getStrategyType() == StrategyType.SpecificTimePromotion) {
             strategy.setStrategyName(strategyNameTextField4.getText());
             strategy.setDiscount(Float.parseFloat(discountTextField4.getText()));
@@ -358,6 +359,7 @@ public class PromotionEditPanelController {
             tmpStrategy.setStrategyName(strategyNameTextField3.getText());
             tmpStrategy.setDiscount(Float.parseFloat(discountTextField3.getText()));
             tmpStrategy.setEnterpriseName(cooperationEnterpriseTextField3.getText());
+            tmpStrategy.setSecurityCode(securityCodeTextField3.getText());
         } else if (tmpStrategy.getStrategyType() == StrategyType.SpecificTimePromotion) {
             tmpStrategy.setStrategyName(strategyNameTextField4.getText());
             tmpStrategy.setDiscount(Float.parseFloat(discountTextField4.getText()));
@@ -380,7 +382,6 @@ public class PromotionEditPanelController {
                 return true;
             }
         } catch (WrongInputException e) {
-            e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("策略信息错误");
             alert.setHeaderText("策略信息错误");

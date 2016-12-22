@@ -295,6 +295,10 @@ public class MarketStrategyPanelController {
         else if (selectedTab == 2)
             specialTimeMarketStrategyTable.getItems().remove(selectedStrategy);
 
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("删除策略成功");
+        alert.setHeaderText("删除策略成功！");
+        alert.showAndWait();
     }
 
     @FXML
@@ -331,12 +335,16 @@ public class MarketStrategyPanelController {
         boolean isNewaPromotion = false;
         boolean isConfirmed = mainApp.showMarketStrategyEditDialog(strategy, isNewaPromotion);
         if (isConfirmed) {
-            if (selectedTab == 0)
-                memberRankMarketStrategyTable.getItems().add(strategy);
-            else if (selectedTab == 1)
-                VIPTradeAreaMarketStrategyTable.getItems().add(strategy);
-            else if (selectedTab == 2)
-                specialTimeMarketStrategyTable.getItems().add(strategy);
+            if (selectedTab == 0){
+                memberRankMarketStrategyTable.getItems().remove(selectedStrategy);
+                memberRankMarketStrategyTable.getItems().add(selectedStrategy, strategy);
+            }else if (selectedTab == 1){
+                VIPTradeAreaMarketStrategyTable.getItems().remove(selectedStrategy);
+                VIPTradeAreaMarketStrategyTable.getItems().add(selectedStrategy,strategy);
+            }else if (selectedTab == 2){
+                specialTimeMarketStrategyTable.getItems().remove(selectedStrategy);
+                specialTimeMarketStrategyTable.getItems().add(selectedStrategy,strategy);
+            }
         }
     }
 

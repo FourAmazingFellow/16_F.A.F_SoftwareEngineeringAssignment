@@ -61,7 +61,7 @@ public class HotelMainApp extends Application {
 		this.primaryStage.setResizable(false);
 
 		initHotelRootPanel();
-//		showHotelOrderPanel();
+		showHotelOrderPanel();
 	}
 
 	public static void main(String[] args) {

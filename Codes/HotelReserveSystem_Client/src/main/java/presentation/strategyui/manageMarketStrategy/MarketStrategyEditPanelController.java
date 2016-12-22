@@ -171,7 +171,7 @@ public class MarketStrategyEditPanelController {
                 for (String city : cityListData) {
                     try {
                         for (BusinessDistrictPO tradeArea : updateStrategyService.getBusinessDistrictList(city)) {
-                            if (tradeArea.equals(strategy.getTradeArea())) {
+                            if (tradeArea.getBusinessDistrictName().equals(strategy.getTradeArea())) {
                                 cityChoiceBox2.getSelectionModel().select(city);
                             }
                         }
@@ -251,24 +251,28 @@ public class MarketStrategyEditPanelController {
             alert.setHeaderText("策略信息错误");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+            return;
         } catch (WrongInputException e) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("策略信息错误");
             alert.setHeaderText("策略信息错误");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+            return;
         } catch (ParseException e) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("策略信息错误");
             alert.setHeaderText("策略信息错误");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+            return;
         } catch (UnableToModifyStrategyException e) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("策略信息错误");
             alert.setHeaderText("策略信息错误");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
+            return;
         }
         isConfirmed=true;
         Alert alert2 = new Alert(AlertType.INFORMATION);
@@ -411,7 +415,6 @@ public class MarketStrategyEditPanelController {
                 return true;
             }
         } catch (WrongInputException e) {
-            e.printStackTrace();
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("策略信息错误");
             alert.setHeaderText("策略信息错误");
