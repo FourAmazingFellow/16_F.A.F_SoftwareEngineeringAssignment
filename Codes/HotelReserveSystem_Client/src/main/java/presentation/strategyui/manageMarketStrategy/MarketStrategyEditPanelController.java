@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import businesslogic.strategybl.exception.UnableAddStrategyException;
+import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
+import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.StrategyUIFactoryService;
@@ -89,6 +92,7 @@ public class MarketStrategyEditPanelController {
     private StrategyUIFactoryService strategyUIFactoryService = new StrategyUIFactoryServiceImpl();
     private UpdateStrategyService updateStrategyService = strategyUIFactoryService.createUpdateStrategyService();
     private String address;
+    private boolean isNewPromotion;
 
     @FXML
     private void initialize() {
@@ -144,6 +148,7 @@ public class MarketStrategyEditPanelController {
         // 把传进来的strategy设为成员变量，便于修改
         this.strategy = strategy;
         this.address = address;
+        this.isNewPromotion=isNewaPromotion;
         // 把其他策略类型的tab设置为disable,并把不能修改的东西设成disable,如果是修改strategy,把默认值设为原始值
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
             VIPTradeAreaMarketStrategyTab.setDisable(true);
@@ -211,21 +216,6 @@ public class MarketStrategyEditPanelController {
         if (!isInputValid()) {
             return;
         }
-
-        // 弹出对话框请求确认
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("确认添加或修改策略");
-        alert.setHeaderText("你是否确定要增加或修改该策略？");
-        alert.setContentText("Are you ok with this?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            isConfirmed = true;
-        } else {
-            isConfirmed = false;
-            return;
-        }
-
         // 把新建或修改的strategy传给上一个界面
         if (strategy.getStrategyType() == StrategyType.MemberRankMarket) {
             strategy.setStrategyName(strategyNameTextField1.getText());
@@ -242,6 +232,53 @@ public class MarketStrategyEditPanelController {
             strategy.setStartTime(LocalDateAdapter.toDate(startTimeDatePicker3.getValue()));
             strategy.setEndTime(LocalDateAdapter.toDate(endTimeDatePicker3.getValue()));
         }
+        
+        try {
+            if (isNewPromotion)
+                updateStrategyService.add(address, strategy.toVO(address));
+            else 
+                updateStrategyService.modify(address, strategy.toVO(address));
+        } catch (RemoteException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("NetWork Warning");
+            alert.setHeaderText("Fail to connect with the server!");
+            alert.setContentText("Please check your network connection!");
+            alert.showAndWait();
+            return;
+        } catch (UnableAddStrategyException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (WrongInputException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (ParseException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        } catch (UnableToModifyStrategyException e) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("策略信息错误");
+            alert.setHeaderText("策略信息错误");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+        isConfirmed=true;
+        Alert alert2 = new Alert(AlertType.INFORMATION);
+        alert2.setTitle("操作成功");
+        if (isNewPromotion)
+            alert2.setHeaderText("增加策略成功！");
+        else
+            alert2.setHeaderText("修改策略成功！");
+        alert2.showAndWait();
+        dialogStage.close();
     }
 
     private boolean isInputValid() {
