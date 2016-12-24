@@ -16,9 +16,10 @@ public interface MaintainHotelBasicInfoService {
 	 * 获取酒店的基本信息
 	 * @param address String型，从界面传递来的酒店地址
 	 * @return 返回酒店的基本信息
+	 * @throws RemoteException 
 	 * @see
 	 */
-	public HotelVO enrollHotelBasicInfo(String address);
+	public HotelVO enrollHotelBasicInfo(String address) throws RemoteException;
 	
 	/**
 	 * 修改酒店基本信息

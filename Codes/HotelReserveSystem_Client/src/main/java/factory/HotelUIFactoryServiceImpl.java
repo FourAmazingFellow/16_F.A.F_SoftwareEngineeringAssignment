@@ -38,8 +38,8 @@ public class HotelUIFactoryServiceImpl implements HotelUIFactoryService {
 	}
 
 	@Override
-	public MaintainHotelBasicInfoService createMaintainHotelBasicInfoService(String hotelAddress) throws RemoteException {
-		return new MaintainHotelBasicInfoServiceImpl(hotelAddress);
+	public MaintainHotelBasicInfoService createMaintainHotelBasicInfoService() throws RemoteException {
+		return new MaintainHotelBasicInfoServiceImpl();
 	}
 
 	@Override

@@ -80,7 +80,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 	@Test
 	public void testEnrollHotelBasicInfo() {
 		try {
-			maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
+			maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl();
 			HotelVO hotel = maintainHotelBasicInfo.enrollHotelBasicInfo(this.hotelAddress);
 			assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in hotelName!", hotelName, hotel.hotelName);
 		 	assertEquals("HotelInfoServiceImpl.getHotelBriefInfo(String addtrss) has an error in tradeArea!", tradeArea, hotel.tradeArea);
@@ -104,7 +104,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 	@Test
 	public void testConfirmModify() {
 		try {
-			maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl(this.hotelAddress);
+			maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl();
 			boolean result = maintainHotelBasicInfo.confirmModify(modified);
 			assertEquals(true, result);
 		} catch (RemoteException e) {

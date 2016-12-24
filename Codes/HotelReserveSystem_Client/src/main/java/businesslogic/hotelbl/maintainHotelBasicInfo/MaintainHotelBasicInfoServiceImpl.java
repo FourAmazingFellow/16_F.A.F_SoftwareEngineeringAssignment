@@ -21,15 +21,15 @@ public class MaintainHotelBasicInfoServiceImpl implements MaintainHotelBasicInfo
 		this.hotelDAO = hotelDAO;
 	}
 	
-	public MaintainHotelBasicInfoServiceImpl(String hotelAddress) throws RemoteException {
-		this.hotelAddress = hotelAddress;
+	public MaintainHotelBasicInfoServiceImpl(){
 		this.factory = new FactoryServiceImpl();
 		this.setHotelDAO(factory.getHotelDAO());
-		this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
 	}
 	
 	@Override
-	public HotelVO enrollHotelBasicInfo(String address) {
+	public HotelVO enrollHotelBasicInfo(String address) throws RemoteException {
+		this.hotelAddress = address;
+		this.hotelVO = new HotelVO(hotelDAO.getHotelDetails(this.hotelAddress));
 		return hotelVO;
 	}
 

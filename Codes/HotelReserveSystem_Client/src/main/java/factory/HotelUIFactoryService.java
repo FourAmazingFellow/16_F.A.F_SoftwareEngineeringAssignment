@@ -26,7 +26,7 @@ public interface HotelUIFactoryService {
 	
 	public ImportNewRoomService createImportNewRoomService();
 	
-	public MaintainHotelBasicInfoService createMaintainHotelBasicInfoService(String hotelAddress) throws RemoteException;
+	public MaintainHotelBasicInfoService createMaintainHotelBasicInfoService() throws RemoteException;
 	
 	public ManageHotelInfoService createManageHotelInfoService(String hotelAddress);
 	
