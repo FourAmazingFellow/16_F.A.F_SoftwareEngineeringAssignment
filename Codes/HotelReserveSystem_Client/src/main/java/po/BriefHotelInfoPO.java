@@ -23,7 +23,9 @@ public class BriefHotelInfoPO implements Serializable{
 	private float mark;
 	private String city;
 	private int min_Price;
+	private int max_Price;
 	
+
 	public BriefHotelInfoPO(String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city) {
 		this.hotelName = hotelName;
 		this.tradeArea = tradeArea;
@@ -41,19 +43,28 @@ public class BriefHotelInfoPO implements Serializable{
 		this.mark = briefHotelInfoVO.mark;
 		this.city = briefHotelInfoVO.city;
 		this.min_Price = briefHotelInfoVO.min_Price;
+		this.max_Price = briefHotelInfoVO.max_Price;
 	}
 	
+	public int getMax_Price() {
+		return max_Price;
+	}
+	
+	public void setMax_Price(int max_Price) {
+		this.max_Price = max_Price;
+	}
+	public String getTradeArea() {
+		return tradeArea;
+	}
+	
+	public void setBusinessDistrict(String tradeArea) {
+		this.tradeArea = tradeArea;
+	}
 	public String getHotelName() {
 		return hotelName;
 	}
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
-	}
-	public String getTradeArea() {
-		return tradeArea;
-	}
-	public void setBusinessDistrict(String tradeArea) {
-		this.tradeArea = tradeArea;
 	}
 	public String getHotelAddress() {
 		return hotelAddress;

@@ -291,7 +291,7 @@ public class HotelDAOImpl implements HotelDAO {
 	public boolean updateHotel(HotelPO po) throws RemoteException {
 		Connection conn = null;
 		PreparedStatement pstmt_Hotel = null;
-		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ?, city = ?, min_Price = ? where hotelAddress = ?";
+		String sql_Hotel = "update hotel set hotelName = ?, starLevel = ?, mark = ?, briefIntroduction = ?, facilityAndService = ?, city = ?, min_Price = ?, max_Price = ? where hotelAddress = ?";
 		PreparedStatement pstmt_DeleteRoom = null;
 		String sql_DeleteRoom = "delete from roomtypeandprice where address = ?";
 		PreparedStatement pstmt_AddRoom = null;
@@ -309,12 +309,13 @@ public class HotelDAOImpl implements HotelDAO {
 			pstmt_Hotel = conn.prepareStatement(sql_Hotel);
 			pstmt_Hotel.setString(1, po.getHotelName());
 			pstmt_Hotel.setInt(2, po.getStarLevel());
-			pstmt_Hotel.setFloat(0000000000000003, po.getMark());
+			pstmt_Hotel.setFloat(3, po.getMark());
 			pstmt_Hotel.setString(4, po.getBriefIntroduction());
 			pstmt_Hotel.setString(5, po.getFacilityAndService());
 			pstmt_Hotel.setString(6, po.getCity());
 			pstmt_Hotel.setInt(7, po.getMin_Price());
-			pstmt_Hotel.setString(8, po.getHotelAddress());
+			pstmt_Hotel.setInt(8, po.getMax_Price());
+			pstmt_Hotel.setString(9, po.getHotelAddress());
 			pstmt_Hotel.executeUpdate();
 			
 			//删除酒店原来所有的房间信息
@@ -330,7 +331,7 @@ public class HotelDAOImpl implements HotelDAO {
 			for(RoomType roomType : roomTypes) {
 				pstmt_AddRoom.setString(1, po.getHotelAddress());
 				pstmt_AddRoom.setInt(2, convertFromRoomTypeToInt(roomType));
-				pstmt_AddRoom.setInt(0000000000000003, roomTypeAndPrice.get(roomType));
+				pstmt_AddRoom.setInt(3, roomTypeAndPrice.get(roomType));
 				pstmt_AddRoom.setInt(4, roomTypeAndNums.get(roomType));
 				pstmt_AddRoom.executeUpdate();
 			}
@@ -347,7 +348,7 @@ public class HotelDAOImpl implements HotelDAO {
 			for(String clientName : clientNames) {
 				pstmt_AddComments.setString(1, po.getHotelAddress());
 				pstmt_AddComments.setString(2, clientName);
-				pstmt_AddComments.setString(0000000000000003, comments.get(clientName));
+				pstmt_AddComments.setString(3, comments.get(clientName));
 				pstmt_AddComments.executeUpdate();
 			}
 			return true;

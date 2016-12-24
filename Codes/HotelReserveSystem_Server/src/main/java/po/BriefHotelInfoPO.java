@@ -21,6 +21,7 @@ public class BriefHotelInfoPO implements Serializable{
 	private float mark;
 	private String city;
 	private int min_Price;
+	private int max_Price;
 	
 	public BriefHotelInfoPO() {
 		
@@ -75,6 +76,12 @@ public class BriefHotelInfoPO implements Serializable{
 	}
 	public void setMin_Price(int min_Price) {
 		this.min_Price = min_Price;
+	}
+	public int getMax_Price() {
+		return max_Price;
+	}
+	public void setMax_Price(int max_Price) {
+		this.max_Price = max_Price;
 	}
 
 }

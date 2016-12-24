@@ -16,6 +16,7 @@ public class BriefHotelInfoVO{
     public float mark;
     public String city;
     public int min_Price;
+    public int max_Price;
 
     public BriefHotelInfoVO(BriefHotelInfoPO briefHotelInfoPO) {
     	this.hotelName = briefHotelInfoPO.getHotelName();
@@ -25,6 +26,7 @@ public class BriefHotelInfoVO{
         this.mark = briefHotelInfoPO.getMark();
         this.city = briefHotelInfoPO.getCity();
         this.min_Price = briefHotelInfoPO.getMin_Price();
+        this.max_Price = briefHotelInfoPO.getMax_Price();
     }
     
     public BriefHotelInfoVO(String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city) {
