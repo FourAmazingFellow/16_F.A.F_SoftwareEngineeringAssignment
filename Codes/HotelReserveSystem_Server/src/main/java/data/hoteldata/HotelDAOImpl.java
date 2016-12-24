@@ -379,7 +379,7 @@ public class HotelDAOImpl implements HotelDAO {
 			pstm_Hotel = conn.prepareStatement(sql_Hotel);
 			pstm_Hotel.setString(1, po.getHotelName());
 			pstm_Hotel.setString(2, po.getTradeArea());
-			pstm_Hotel.setString(0000000000000003, po.getHotelAddress());
+			pstm_Hotel.setString(3, po.getHotelAddress());
 			pstm_Hotel.setInt(4, po.getStarLevel());
 			pstm_Hotel.setFloat(5, po.getMark());
 			pstm_Hotel.setString(6, po.getBriefIntroduction());
@@ -397,7 +397,7 @@ public class HotelDAOImpl implements HotelDAO {
 			for(RoomType roomType : roomTypes) {
 				pstm_Room.setString(1, po.getHotelAddress());
 				pstm_Room.setInt(2, convertFromRoomTypeToInt(roomType));
-				pstm_Room.setInt(0000000000000003, roomTypeAndPrice.get(roomType));
+				pstm_Room.setInt(3, roomTypeAndPrice.get(roomType));
 				pstm_Room.setInt(4, roomTypeAndNums.get(roomType));
 				pstm_Room.executeUpdate();
 			}
