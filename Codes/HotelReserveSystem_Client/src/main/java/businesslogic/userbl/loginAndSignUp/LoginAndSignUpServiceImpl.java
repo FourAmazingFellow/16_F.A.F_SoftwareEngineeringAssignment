@@ -47,7 +47,10 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
             result = userDAO.insertClient(new ClientInfoPO(client));
         }
         else
-            result = userDAO.insertUser(new UserPO(user));
+        {
+        	UserPO userPO = new UserPO(user);
+        	result = userDAO.insertUser(userPO);
+        }
         return result;
     }
 

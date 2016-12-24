@@ -18,18 +18,17 @@ public class UserPO implements Serializable {
 	private String userID;
     private String password;
     private String telNum;
-    private Enum<UserType> UserType;
+    private UserType userType;
     
     public UserPO() {
     	
     }
     
     public UserPO(String userID, String password, String telNum, UserType userType) {
-        super();
         this.userID = userID;
         this.password = password;
         this.telNum = telNum;
-        this.UserType = userType;
+        this.userType = userType;
     }
     
     public void setUserID(String userID) {
@@ -50,11 +49,11 @@ public class UserPO implements Serializable {
     public String getTelNum() {
         return telNum;
     }
-    public Enum<UserType> getUserType() {
-        return UserType;
+    public UserType getUserType() {
+        return userType;
     }
-    public void setUserType(Enum<UserType> userType) {
-        UserType = userType;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
   

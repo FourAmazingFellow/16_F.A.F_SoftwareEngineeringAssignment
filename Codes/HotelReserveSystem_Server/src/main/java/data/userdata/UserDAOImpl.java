@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	//由对应的UserType转化为int型，顺序是根据UserType枚举变量声明的顺序，第一个声明的为1，依次顺延
-	private int convertFromUserTypeToInt(Enum<UserType> userType) {
+	private int convertFromUserTypeToInt(UserType userType) {
 		if(userType == UserType.Client)
 			return 0;
 		else if(userType == UserType.HotelStaff)

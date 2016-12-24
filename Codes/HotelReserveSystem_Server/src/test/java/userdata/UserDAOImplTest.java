@@ -56,7 +56,7 @@ public class UserDAOImplTest {
 		this.hotelAddress = "江苏省南京市栖霞区仙林大道163号";
 		this.hotelStaffTelNum = "12312312301";
 		this.hotelStaffPassword = "hstaff0001123";
-		this.userPO = new UserPO("webMarket4", "market104", "15161416510", UserType.WebMarketStaff);
+		this.userPO = new UserPO("webMarket6", "market104", "15161416510", UserType.WebMarketStaff);
 		ArrayList<CreditRecordPO> creditRecordPOs = new ArrayList<>();
 		Date changeTime = new Date(116, 10, 26);
 		Date changeTime2 = new Date(116, 10, 27);
@@ -69,73 +69,73 @@ public class UserDAOImplTest {
 		this.enterpriseVipPO = new EnterpriseVipPO("lucy", "lucy123", "12345678904", UserType.Client, 700, null, "万达", "wanda666");
 	}
 
-	@Test
-	public void testGetUserInfo() {
-		try {
-			UserPO userPO = userDAO.getUserInfo(userID);
-			assertEquals(userID,userPO.getUserID());
-			assertEquals(password, userPO.getpassword());
-			assertEquals(telNum, userPO.getTelNum());
-			assertEquals(UserType.WebManageStaff, userPO.getUserType());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
-	
-	@Test
-	public void testGetClientInfo() {
-		try {
-			ClientInfoPO clientInfoPO = userDAO.getClientInfo(clientID);
-			assertEquals(clientID,clientInfoPO.getUserID());
-			assertEquals(clientPassword, clientInfoPO.getpassword());
-			assertEquals(clientTelNum, clientInfoPO.getTelNum());
-			assertEquals(UserType.Client, clientInfoPO.getUserType());
-			assertEquals(creditValue, clientInfoPO.getCreditValue());
-			assertNull(clientInfoPO.getCreditRecord());
-			
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
-	
-	@Test
-	public void testGetHotelStaffInfo() {
-		try {
-			HotelStaffInfoPO hotelStaffInfoPO = userDAO.getHotelStaffInfo(hotelStaffID);
-			assertEquals(hotelStaffID,hotelStaffInfoPO.getUserID());
-			assertEquals(hotelStaffPassword, hotelStaffInfoPO.getpassword());
-			assertEquals(hotelStaffTelNum, hotelStaffInfoPO.getTelNum());
-			assertEquals(UserType.HotelStaff, hotelStaffInfoPO.getUserType());
-			assertEquals(hotelAddress, hotelStaffInfoPO.getHotelAddress());
-			
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
-	
-	@Test
-	public void testGetCreditValue() {
-		try {
-			int credit = userDAO.getCreditValue(clientID);
-			assertEquals(creditValue, credit);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			fail("Not yet implemented");
-		}
-	}
-	
 //	@Test
-//	public void testInsertUser() {
+//	public void testGetUserInfo() {
 //		try {
-//			userDAO.insertUser(userPO);
+//			UserPO userPO = userDAO.getUserInfo(userID);
+//			assertEquals(userID,userPO.getUserID());
+//			assertEquals(password, userPO.getpassword());
+//			assertEquals(telNum, userPO.getTelNum());
+//			assertEquals(UserType.WebManageStaff, userPO.getUserType());
 //		} catch (RemoteException e) {
 //			e.printStackTrace();
 //			fail("Not yet implemented");
 //		}
 //	}
+//	
+//	@Test
+//	public void testGetClientInfo() {
+//		try {
+//			ClientInfoPO clientInfoPO = userDAO.getClientInfo(clientID);
+//			assertEquals(clientID,clientInfoPO.getUserID());
+//			assertEquals(clientPassword, clientInfoPO.getpassword());
+//			assertEquals(clientTelNum, clientInfoPO.getTelNum());
+//			assertEquals(UserType.Client, clientInfoPO.getUserType());
+//			assertEquals(creditValue, clientInfoPO.getCreditValue());
+//			assertNull(clientInfoPO.getCreditRecord());
+//			
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
+//	
+//	@Test
+//	public void testGetHotelStaffInfo() {
+//		try {
+//			HotelStaffInfoPO hotelStaffInfoPO = userDAO.getHotelStaffInfo(hotelStaffID);
+//			assertEquals(hotelStaffID,hotelStaffInfoPO.getUserID());
+//			assertEquals(hotelStaffPassword, hotelStaffInfoPO.getpassword());
+//			assertEquals(hotelStaffTelNum, hotelStaffInfoPO.getTelNum());
+//			assertEquals(UserType.HotelStaff, hotelStaffInfoPO.getUserType());
+//			assertEquals(hotelAddress, hotelStaffInfoPO.getHotelAddress());
+//			
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
+//	
+//	@Test
+//	public void testGetCreditValue() {
+//		try {
+//			int credit = userDAO.getCreditValue(clientID);
+//			assertEquals(creditValue, credit);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//			fail("Not yet implemented");
+//		}
+//	}
+	
+	@Test
+	public void testInsertUser() {
+		try {
+			userDAO.insertUser(userPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			fail("Not yet implemented");
+		}
+	}
 //	
 //	@Test
 //	public void testnsertClient() {
