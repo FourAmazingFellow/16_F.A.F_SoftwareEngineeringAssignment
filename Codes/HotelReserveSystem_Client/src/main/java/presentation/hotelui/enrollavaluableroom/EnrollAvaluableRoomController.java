@@ -85,6 +85,14 @@ public class EnrollAvaluableRoomController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
+		if (roomVOs == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("找不到房型信息！");
+			alert.setContentText("请重试！");
+			alert.show();
+			return;
+		}
 		roomData.clear();
 		roomList.setRoomList(roomVOs);
 		roomData.addAll(roomList.getStrategyList());

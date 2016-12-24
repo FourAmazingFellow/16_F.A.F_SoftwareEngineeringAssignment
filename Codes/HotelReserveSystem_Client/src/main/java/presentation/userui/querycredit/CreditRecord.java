@@ -17,7 +17,7 @@ public class CreditRecord {
     private StringProperty action;
     private StringProperty process;
     private StringProperty creditResult;
-    private DateToString trans;
+    private DateToString trans = new DateToString();
     
 	public CreditRecord(CreditRecordVO creditRecordVO) {
 		this.changeTime = new SimpleStringProperty(trans.dateToString(creditRecordVO.changeTime));
@@ -111,4 +111,7 @@ public class CreditRecord {
 		return (Date) date;
 	}
 	
+	public CreditRecordVO toVO(String userID){
+		return new CreditRecordVO(getChangeTime(), getOrderID(), getAction(), getProcess(), getCreditResult());
+	}
 }

@@ -19,4 +19,5 @@ public class CreditRecordList {
 			creditRecordList.add(new CreditRecord(creditRecordVO));
 		}
 	}
+	
 }

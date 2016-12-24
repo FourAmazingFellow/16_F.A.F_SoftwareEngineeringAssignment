@@ -24,7 +24,7 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
 	private ArrayList<CreditRecordPO> creditRecordPOs;
 
 	private FactoryService factoryService;
-	
+
 	public QueryClientCreditRecordServiceImpl() {
 		this.factoryService = new FactoryServiceImpl();
 		this.userDAO = factoryService.getUserDAO();
@@ -36,11 +36,15 @@ public class QueryClientCreditRecordServiceImpl implements QueryClientCreditReco
 		this.creditRecordPOs = new ArrayList<>();
 		this.creditRecordVOs = new ArrayList<>();
 		creditRecordPOs = userDAO.queryCreditRecord(this.userID);
-		for (CreditRecordPO i : creditRecordPOs) {
-			CreditRecordVO creditRecordVO = new CreditRecordVO(i);
-			creditRecordVOs.add(creditRecordVO);
+		if (creditRecordPOs == null) {
+			return null;
+		} else {
+			for (CreditRecordPO i : creditRecordPOs) {
+				CreditRecordVO creditRecordVO = new CreditRecordVO(i);
+				creditRecordVOs.add(creditRecordVO);
 
+			}
+			return creditRecordVOs;
 		}
-		return creditRecordVOs;
 	}
 }

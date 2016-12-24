@@ -39,7 +39,7 @@ public class HotelMainApp extends Application {
 
 	private ClientRunner clientRunner;
 
-	public static String hotelAddress = "江苏省南京市栖霞区仙林大道163号";
+	public static String hotelAddress = "江苏省南京市栖霞区仙林大道166号";
 	public static String userId;
 	private Stage primaryStage;
 	private BorderPane hotelRootLayout;

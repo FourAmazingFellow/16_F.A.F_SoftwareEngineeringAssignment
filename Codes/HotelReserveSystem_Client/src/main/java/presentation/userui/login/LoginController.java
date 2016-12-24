@@ -96,7 +96,7 @@ public class LoginController {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("login info");
 				alert.setHeaderText("登录成功！");
-				alert.show();
+				alert.showAndWait();
 
 				if (userType == UserType.Client)
 					mainApp.showClientMainApp(userID);

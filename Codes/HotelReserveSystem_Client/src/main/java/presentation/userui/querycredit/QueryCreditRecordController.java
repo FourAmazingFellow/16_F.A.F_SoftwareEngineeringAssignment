@@ -74,20 +74,9 @@ public class QueryCreditRecordController {
 	//显示信用记录列表
 	public void showCreditRecordList(String userID) {
 		this.userID = userID;
-		ArrayList<CreditRecordVO> creditRecordVOs;
+		ArrayList<CreditRecordVO> creditRecordVOs = null;
 		try {
 			creditRecordVOs = queryClientCreditRecord.queryCreditRecord(this.userID);
-			if (creditRecordVOs == null) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("wrong");
-				alert.setHeaderText("找不到信用记录！");
-				alert.setContentText("请重试！");
-				alert.show();
-				return;
-			}
-			creditRecordData.clear();
-			creditRecordList.setCreditRecordList(creditRecordVOs);
-			creditRecordData.addAll(creditRecordList.getCreditRecordList());
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("NetWork Warning");
@@ -95,6 +84,17 @@ public class QueryCreditRecordController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
+		if (creditRecordVOs == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("找不到信用记录！");
+			alert.setContentText("请重试！");
+			alert.show();
+			return;
+		}
+		creditRecordData.clear();
+		creditRecordList.setCreditRecordList(creditRecordVOs);
+		creditRecordData.addAll(creditRecordList.getCreditRecordList());
 	}
 
 	@FXML
