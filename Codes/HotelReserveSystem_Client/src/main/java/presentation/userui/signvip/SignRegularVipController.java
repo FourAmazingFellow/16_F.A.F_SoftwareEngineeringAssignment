@@ -71,7 +71,7 @@ public class SignRegularVipController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("未选择生日！");
 			alert.setContentText("请选择！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		
@@ -114,13 +114,15 @@ public class SignRegularVipController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("sign info");
 			alert.setHeaderText("注册成功！");
-			alert.show();
+			alert.showAndWait();
+			mainApp.showModifyClientInfoPanel();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("注册失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
+			return;
 		}
 	}
 

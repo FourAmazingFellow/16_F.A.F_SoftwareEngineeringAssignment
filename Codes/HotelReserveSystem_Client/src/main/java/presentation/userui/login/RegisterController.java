@@ -13,6 +13,7 @@ import presentation.MainApp;
 
 public class RegisterController {
 	private MainApp mainApp;
+	@SuppressWarnings("unused")
 	private LoginAndSignUpService register;
 	private UserUIFactoryService userFactory;
 
@@ -50,20 +51,20 @@ public class RegisterController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else if (password.equals(password_c)) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("register info");
 			alert.setHeaderText("请继续完善您的信息！");
-			alert.show();
+			alert.showAndWait();
 			mainApp.showFillInUserInfoPanel(userID, password);
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("两次密码不一致！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 

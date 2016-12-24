@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import presentation.WebsiteManageMainApp;
+import presentation.WebsitePromotionMainApp;
 
 public class WebsiteManageRootBoardController {
 	private WebsiteManageMainApp mainApp;
@@ -33,6 +34,7 @@ public class WebsiteManageRootBoardController {
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
 		this.mainApp = mainApp;
+		userActionButton.setText(WebsitePromotionMainApp.userID);
 	}
 	
 	@FXML

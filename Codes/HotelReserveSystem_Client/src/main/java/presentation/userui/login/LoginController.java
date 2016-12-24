@@ -62,7 +62,7 @@ public class LoginController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 			try {
@@ -90,7 +90,7 @@ public class LoginController {
 				alert.setTitle("wrong");
 				alert.setHeaderText("用户名或密码错误！");
 				alert.setContentText("请重新输入！");
-				alert.show();
+				alert.showAndWait();
 				return;
 			} else {
 				Alert alert = new Alert(AlertType.CONFIRMATION);

@@ -31,6 +31,7 @@ public class HotelRootBoardController {
     
     public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
+    	userActionButton.setText(HotelMainApp.userId);
     }
     
     public void setUserId(String userId){

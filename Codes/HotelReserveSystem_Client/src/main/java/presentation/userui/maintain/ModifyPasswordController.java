@@ -87,13 +87,14 @@ public class ModifyPasswordController {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("modify info");
 				alert.setHeaderText("修改密码成功！");
-				alert.show();
+				alert.showAndWait();
+				mainApp.showModifyClientInfoPanel();
 			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("wrong");
 				alert.setHeaderText("两次新密码输入不一致！");
 				alert.setContentText("请重新输入！");
-				alert.show();
+				alert.showAndWait();
 				return;
 			}
 		} else {
@@ -101,7 +102,7 @@ public class ModifyPasswordController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("原密码输入错误！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 	}

@@ -453,6 +453,7 @@ public class HotelMainApp extends Application {
 				AddRoomTypeController controller = loader.getController();
 				controller.setMainApp(this);
 				controller.setHotelAddress(hotelAddress);
+//				controller.addRoomType();
 				
 				primaryStage.show();
 			} catch (IOException e) {

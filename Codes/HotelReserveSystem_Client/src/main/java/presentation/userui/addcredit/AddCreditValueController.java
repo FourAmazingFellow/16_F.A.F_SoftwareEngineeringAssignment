@@ -92,6 +92,8 @@ public class AddCreditValueController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("用户名输入错误！");
 			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
 		} else {
 			int creditValue = client.creditValue;
 			userIDLabel.setText(userID);
@@ -106,7 +108,7 @@ public class AddCreditValueController {
 			alert1.setTitle("wrong");
 			alert1.setHeaderText("未输入信用值！");
 			alert1.setContentText("请重新输入！");
-			alert1.show();
+			alert1.showAndWait();
 			return;
 		} else {
 			int creditAdded = Integer.parseInt(addCreditField.getText());
@@ -115,7 +117,7 @@ public class AddCreditValueController {
 				alert2.setTitle("wrong");
 				alert2.setHeaderText("信用值格式错误！（整百倍数）");
 				alert2.setContentText("请重新输入！");
-				alert2.show();
+				alert2.showAndWait();
 				return;
 			}
 			boolean result = false;
@@ -133,13 +135,13 @@ public class AddCreditValueController {
 				alert3.setTitle("wrong");
 				alert3.setHeaderText("充值失败！");
 				alert3.setContentText("请重试！");
-				alert3.show();
+				alert3.showAndWait();
 				return;
 			} else {
 				Alert alert4 = new Alert(AlertType.CONFIRMATION);
 				alert4.setTitle("add info");
 				alert4.setHeaderText("充值成功！");
-				alert4.show();
+				alert4.showAndWait();
 				mainApp.showAddCreditPanel();
 				
 			}

@@ -79,14 +79,14 @@ public class addNewUserController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else if(!password.equals(passwordConfirm)){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("两次密码输入不一致！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		UserVO user = new UserVO(userID, password, telNum, UserType.WebMarketStaff);
@@ -104,14 +104,14 @@ public class addNewUserController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("add info");
 			alert.setHeaderText("添加成功！");
-			alert.show();
+			alert.showAndWait();
 			mainApp.showManageUserPanel();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("添加失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 	}

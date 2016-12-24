@@ -142,7 +142,7 @@ public class ManageUserController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("未输入查找的用户名！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		ClientInfoVO client = null;
@@ -201,7 +201,7 @@ public class ManageUserController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("未找到相关用户！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 	}
@@ -227,7 +227,8 @@ public class ManageUserController {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("不可对酒店工作人员信息进行修改！");
-			alert.show();
+			alert.showAndWait();
+			return;
 		} else if (webUser != null) {
 			this.client = null;
 			mainApp.showEditUserInfoPanel(client, webUser);

@@ -72,7 +72,7 @@ public class SignEnterpriseVipController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		
@@ -102,13 +102,15 @@ public class SignEnterpriseVipController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("sign info");
 			alert.setHeaderText("注册成功！");
-			alert.show();
+			alert.showAndWait();
+			mainApp.showModifyClientInfoPanel();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("注册失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
+			return;
 		}
 	}
 	

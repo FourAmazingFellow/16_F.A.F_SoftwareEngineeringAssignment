@@ -89,7 +89,7 @@ public class QueryCreditRecordController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("找不到信用记录！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		creditRecordData.clear();

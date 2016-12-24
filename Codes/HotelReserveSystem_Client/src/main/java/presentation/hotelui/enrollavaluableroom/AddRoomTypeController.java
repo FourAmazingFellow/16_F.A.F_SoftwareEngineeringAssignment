@@ -58,14 +58,14 @@ public class AddRoomTypeController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		importNewRoom = hotelFactory.createImportNewRoomService();
-		
-//		RoomType roomType = RoomType.KING_SIZE_ROOM;
-//		 int roomNum = 30;
-//		 int roomPrice = 150;
-//		 String address  ="南京市栖霞区仙林大道163号";
-//		importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum, roomPrice, address);
-		
-		
+
+		// RoomType roomType = RoomType.KING_SIZE_ROOM;
+		// int roomNum = 30;
+		// int roomPrice = 150;
+		// String address ="南京市栖霞区仙林大道163号";
+		// importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum,
+		// roomPrice, address);
+
 		choiceBox.setItems(FXCollections.observableArrayList("单人房", "标准间", "三人房", "大床房"));
 		choiceBox.getSelectionModel().select(0);
 	}
@@ -81,47 +81,42 @@ public class AddRoomTypeController {
 
 	// 新增房型相关信息
 	public void addRoomType() {
-		this.roomTypeStr = choiceBox.getTypeSelector();
+		// this.roomTypeStr = choiceBox.getTypeSelector();
+//		this.roomTypeStr = "单人间";
 		this.roomType = (RoomType) RoomType.chineseToEnum(roomTypeStr);
 
-		if (roomTypeStr.equals("") || roomNumberField.getText().equals("") || primePriceField.getText().equals("")) {
+		this.roomNum = Integer.parseInt(roomNumberField.getText());
+		this.roomPrice = Integer.parseInt(primePriceField.getText());
+//		this.roomNum = 52;
+//		this.roomPrice = 123;
+
+		this.newRoom = null;
+		this.newRoom = new RoomVO(roomType, roomNum, roomPrice, address);
+		boolean result = false;
+		try {
+			result = importNewRoom.addRoom(newRoom);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+		if (result == true) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("add info");
+			alert.setHeaderText("添加成功！");
+			alert.showAndWait();
+			mainApp.showEnrollAvaluableRoomPanel();
+		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
-			alert.setHeaderText("信息填写不完整！");
-			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.setHeaderText("添加失败！");
+			alert.setContentText("请重试！");
+			alert.showAndWait();
 			return;
-		} else {
-			this.roomNum = Integer.parseInt(roomNumberField.getText());
-			this.roomPrice = Integer.parseInt(primePriceField.getText());
-
-			this.newRoomTypeInfoTable = null;
-			this.newRoom = new RoomVO(roomType, roomNum, roomPrice, address);
-			boolean result = false;
-			try {
-				result = importNewRoom.addRoom(newRoom);
-			} catch (RemoteException e) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("NetWork Warning");
-				alert.setHeaderText("Fail to connect with the server!");
-				alert.setContentText("Please check your network connection!");
-				alert.showAndWait();
-			}
-			if (result == true) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("add info");
-				alert.setHeaderText("添加成功！");
-				alert.show();
-				mainApp.showEnrollAvaluableRoomPanel();
-			} else {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("wrong");
-				alert.setHeaderText("添加失败！");
-				alert.setContentText("请重试！");
-				alert.show();
-				return;
-			}
 		}
+
 	}
 
 	@FXML

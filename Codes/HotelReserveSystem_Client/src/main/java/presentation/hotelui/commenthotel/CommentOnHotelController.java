@@ -75,7 +75,7 @@ public class CommentOnHotelController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		boolean result = false;
@@ -92,14 +92,14 @@ public class CommentOnHotelController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("comment info");
 			alert.setHeaderText("评价成功！");
-			alert.show();
+			alert.showAndWait();
 			mainApp.showUserOrderPanel(userID);
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("评价失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 	}

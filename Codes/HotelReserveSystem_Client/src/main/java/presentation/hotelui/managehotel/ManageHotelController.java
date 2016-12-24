@@ -144,7 +144,7 @@ public class ManageHotelController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("未输入搜索信息！");
 			alert.setContentText("请输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		HotelVO hotel = null;
@@ -162,7 +162,7 @@ public class ManageHotelController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("酒店地址输入错误！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 			this.hotelName = hotel.hotelName;
@@ -199,14 +199,14 @@ public class ManageHotelController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else if(!password.equals(passwordConfirm)){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("两次密码输入不一致！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		this.newHotel = null;
@@ -238,13 +238,13 @@ public class ManageHotelController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("添加失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("add info");
 			alert.setHeaderText("添加成功！");
-			alert.show();
+			alert.showAndWait();
 			mainApp.showManageHotelPanel();
 		}
 	}

@@ -29,6 +29,7 @@ public class ClientRootBoardController {
     
     public void setMainApp(ClientMainApp mainApp) {
     	this.mainApp = mainApp;
+    	userActionButton.setText(ClientMainApp.userID);
     }
     
     public void modifyPersonalInfoAction() {

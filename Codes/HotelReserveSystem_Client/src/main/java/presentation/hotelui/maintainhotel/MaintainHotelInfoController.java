@@ -76,7 +76,7 @@ public class MaintainHotelInfoController {
 		
 		 try {
 		 maintainHotelBasicInfo =
-		 hotelFactory.createMaintainHotelBasicInfoService(hotelAddress);
+		 hotelFactory.createMaintainHotelBasicInfoService();
 		 } catch (RemoteException e) {
 		 Alert alert = new Alert(AlertType.WARNING);
 		 alert.setTitle("NetWork Warning");
@@ -92,7 +92,15 @@ public class MaintainHotelInfoController {
 
 	public void showHotelDetail(String address) {
 		this.hotelAddress = address;
-		this.hotelVO = maintainHotelBasicInfo.enrollHotelBasicInfo(hotelAddress);
+		try {
+			this.hotelVO = maintainHotelBasicInfo.enrollHotelBasicInfo(hotelAddress);
+		} catch (RemoteException e) {
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("NetWork Warning");
+			 alert.setHeaderText("Fail to connect with the server!");
+			 alert.setContentText("Please check your network connection!");
+			 alert.showAndWait();
+		}
 		hotelNameLabel.setText(hotelVO.hotelName);
 		hotelAddressLabel.setText(hotelVO.hotelAddress);
 		hotelStarLabel.setText(String.valueOf(hotelVO.starLevel));

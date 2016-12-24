@@ -3,8 +3,6 @@ package presentation.userui.login;
 import java.rmi.RemoteException;
 
 import businesslogicservice.userblservice.LoginAndSignUpService;
-import businesslogicservice.userblservice.ManageUserInfoService;
-import businesslogicservice.userblservice.ModifyClientInfoService;
 import factory.UserUIFactoryService;
 import factory.UserUIFactoryServiceImpl;
 import javafx.collections.FXCollections;
@@ -87,7 +85,7 @@ public class FillInUserInfoController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 			if (userTypeStr.equals("客户")) {
@@ -100,13 +98,13 @@ public class FillInUserInfoController {
 						alert.setTitle("wrong");
 						alert.setHeaderText("注册失败！");
 						alert.setContentText("请重试！");
-						alert.show();
+						alert.showAndWait();
 						return;
 					} else {
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
-						alert.show();
+						alert.showAndWait();
 						mainApp.showLoginView();
 					}
 				} catch (RemoteException e) {
@@ -127,13 +125,13 @@ public class FillInUserInfoController {
 						alert.setTitle("wrong");
 						alert.setHeaderText("注册失败！");
 						alert.setContentText("请重试！");
-						alert.show();
+						alert.showAndWait();
 						return;
 					} else {
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
-						alert.show();
+						alert.showAndWait();
 						mainApp.showLoginView();
 					}
 				} catch (RemoteException e) {
@@ -153,13 +151,13 @@ public class FillInUserInfoController {
 						alert.setTitle("wrong");
 						alert.setHeaderText("注册失败！");
 						alert.setContentText("请重试！");
-						alert.show();
+						alert.showAndWait();
 						return;
 					} else {
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
-						alert.show();
+						alert.showAndWait();
 						mainApp.showLoginView();
 					}
 				} catch (RemoteException e) {

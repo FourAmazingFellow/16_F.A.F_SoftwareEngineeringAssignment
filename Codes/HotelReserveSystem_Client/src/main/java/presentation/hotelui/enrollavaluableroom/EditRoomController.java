@@ -78,7 +78,7 @@ public class EditRoomController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 
@@ -100,13 +100,13 @@ public class EditRoomController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("修改失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
 			alert.setHeaderText("修改成功！");
-			alert.show();
+			alert.showAndWait();
 			mainApp.showEnrollAvaluableRoomPanel();
 		}
 	}
@@ -136,13 +136,13 @@ public class EditRoomController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("删除失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("delete info");
 			alert.setHeaderText("删除成功！");
-			alert.show();
+			alert.showAndWait();
 			mainApp.showEnrollAvaluableRoomPanel();
 		}
 	}

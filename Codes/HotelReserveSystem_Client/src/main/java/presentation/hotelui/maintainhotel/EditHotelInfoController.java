@@ -84,7 +84,7 @@ public class EditHotelInfoController {
 //				mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 
 		try {
-			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService(null);
+			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService();
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("NetWork Warning");
@@ -120,7 +120,7 @@ public class EditHotelInfoController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		} else {
 
@@ -142,14 +142,14 @@ public class EditHotelInfoController {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("modify info");
 				alert.setHeaderText("修改成功！");
-				alert.show();
+				alert.showAndWait();
 				mainApp.showMaintainHotelInfoPanel();
 			} else {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("wrong");
 				alert.setHeaderText("修改失败！");
 				alert.setContentText("请重试！");
-				alert.show();
+				alert.showAndWait();
 				return;
 			}
 		}

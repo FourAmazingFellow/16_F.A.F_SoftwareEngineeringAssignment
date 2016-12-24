@@ -90,7 +90,7 @@ public class EnrollAvaluableRoomController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("找不到房型信息！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		roomData.clear();
@@ -117,7 +117,7 @@ public class EnrollAvaluableRoomController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("未选中房间类型！");
 			alert.setContentText("请重新选择！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 	}

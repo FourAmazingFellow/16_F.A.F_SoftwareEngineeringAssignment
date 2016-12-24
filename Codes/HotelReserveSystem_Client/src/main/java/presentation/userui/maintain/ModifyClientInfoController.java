@@ -149,7 +149,8 @@ public class ModifyClientInfoController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("您已经是会员了！");
 			alert.setContentText("不可重复注册！");
-			alert.show();
+			alert.showAndWait();
+			return;
 		}
 	}
 }

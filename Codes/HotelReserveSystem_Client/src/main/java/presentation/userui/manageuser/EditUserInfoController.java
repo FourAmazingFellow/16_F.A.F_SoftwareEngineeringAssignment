@@ -134,7 +134,7 @@ public class EditUserInfoController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 //		this.userIDm = "原";
@@ -155,13 +155,14 @@ public class EditUserInfoController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
 			alert.setHeaderText("修改成功！");
-			alert.show();
+			alert.showAndWait();
+			mainApp.showManageUserPanel();
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("修改失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 	}
@@ -175,7 +176,7 @@ public class EditUserInfoController {
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
-			alert.show();
+			alert.showAndWait();
 			return;
 		}
 		this.modified = null;
@@ -194,13 +195,14 @@ public class EditUserInfoController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("modify info");
 			alert.setHeaderText("修改成功！");
-			alert.show();
+			alert.showAndWait();
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("修改失败！");
 			alert.setContentText("请重试！");
-			alert.show();
+			alert.showAndWait();
+			return;
 		}
 	}
 
