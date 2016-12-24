@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBC_Connection {
-	static String drivername = "com.mysql.jdbc.Driver";
-	static String url = "jdbc:mysql://localhost:3306/reserveHotel?useSSL=false";
-	static String username = "root";
-	static String password = "ty13655258245.";
+	//数据库连接所需要的数据
+	private static String drivername = "com.mysql.jdbc.Driver";
+	private static String url = "jdbc:mysql://localhost:3306/reserveHotel?useSSL=false";
+	private static String username = "root";
+	private static String password = "ty13655258245.";
 	static {
 		try {
 			Class.forName(drivername);
@@ -18,7 +19,12 @@ public class JDBC_Connection {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * 与数据库建立连接
+	 * @return
+	 * @see
+	 */
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
@@ -29,6 +35,13 @@ public class JDBC_Connection {
 		return conn;
 	}
 
+	/**
+	 * 执行数据库资源的释放操作
+	 * @param rs
+	 * @param conn
+	 * @param stmt
+	 * @see
+	 */
 	public static void free(ResultSet rs, Connection conn, Statement stmt) {
 		try {
 			if(rs != null)
@@ -51,7 +64,7 @@ public class JDBC_Connection {
 			}
 		}
 	}
-	
+
 	public static void freeResultSetAndStatement(ResultSet rs, Statement statement) {
 		try {
 			if(rs != null)

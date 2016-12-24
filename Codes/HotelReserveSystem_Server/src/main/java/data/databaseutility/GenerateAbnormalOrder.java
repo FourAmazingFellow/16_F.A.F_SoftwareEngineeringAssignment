@@ -14,6 +14,11 @@ import java.util.Calendar;
  */
 public class GenerateAbnormalOrder implements Runnable {
 
+	/**
+	 * 遍历订单列表，获得在当前时间之前且并未执行的订单的列表
+	 * 将所有这些订单置为异常订单，并在订单对应酒店中增加对应房型的空房数量
+	 * @see
+	 */
 	private void checkAbnormalOrders() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -23,7 +28,7 @@ public class GenerateAbnormalOrder implements Runnable {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			
-			pstmt = conn.prepareStatement("select * from orderinfo where orderState = 1 and lastedOrderDoneTime > date_sub(sysdate(),interval 60 second)");
+			pstmt = conn.prepareStatement("select * from orderinfo where orderState = 1 and lastedOrderDoneTime < date_sub(sysdate(),interval 60 second)");
 			
 			rs = pstmt.executeQuery();
 			
@@ -40,6 +45,11 @@ public class GenerateAbnormalOrder implements Runnable {
 		}
 	}
 	
+	/**
+	 * 根据传过来的订单号，将该订单号对应的订单置为异常订单
+	 * @param orderID 已超时的未执行订单的订单号
+	 * @see checkAbnormalOrders
+	 */
 	private void setUndoOrdersToAbOrders(int orderID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -60,6 +70,13 @@ public class GenerateAbnormalOrder implements Runnable {
 		}
 	}
 	
+	/**
+	 * 增加对应酒店的特定房型的空房数
+	 * @param hotelAddress 需要增加房间数量的酒店的地址
+	 * @param roomType 需要增加的空房的房型
+	 * @param roomNums 需要增加的空房数量
+	 * @see checkAbnormalOrders
+	 */
 	private void addSpareRoom(String hotelAddress, int roomType, int roomNums) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -83,6 +100,9 @@ public class GenerateAbnormalOrder implements Runnable {
 		}
 	}
 	
+	/**
+	 * 启动这个循环检查的线程，并且每隔1小时检查一次
+	 */
 	@Override
 	public void run() {
 		while(true) {

@@ -21,6 +21,7 @@ import po.UserType;
 
 public class UserDAOImpl implements UserDAO {
 
+	//由int型转化为对应的UserType，顺序是根据UserType枚举变量声明的顺序，第一个声明的为1，依次顺延
 	private UserType convertFromIntToUserType(int userType) {
 		switch (userType) {
 		case 0:
@@ -34,6 +35,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 	
+	//由对应的UserType转化为int型，顺序是根据UserType枚举变量声明的顺序，第一个声明的为1，依次顺延
 	private int convertFromUserTypeToInt(Enum<UserType> userType) {
 		if(userType == UserType.Client)
 			return 0;
