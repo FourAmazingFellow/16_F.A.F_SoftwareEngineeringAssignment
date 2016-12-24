@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogicservice.userblservice.QueryClientCreditRecordService;
-import po.CreditRecordPO;
 import vo.CreditRecordVO;
 
 /**

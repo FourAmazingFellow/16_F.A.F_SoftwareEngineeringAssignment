@@ -10,13 +10,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import presentation.ClientMainApp;
+import presentation.userui.JudgeFormat;
 
 public class CommentOnHotelController {
 	private HotelUIFactoryService hotelFactory;
@@ -27,7 +28,8 @@ public class CommentOnHotelController {
 	private float mark;
 	private String orderID;
 	private String comments;
-
+	private JudgeFormat judge= new JudgeFormat();
+	
 	@FXML
 	private Label commentLabel;
 
@@ -70,10 +72,19 @@ public class CommentOnHotelController {
 	public void commentOnHotel() {
 		this.mark = markChoiceBox.getSelectionModel().getSelectedItem();
 		this.comments = commentArea.getText();
+		int commentsLength = judge.getStringLength(comments);
+		
 		if(comments.equals("")){
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else if (commentsLength < 5) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("长度不合理（至少五个字）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;

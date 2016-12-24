@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import po.UserType;
 import presentation.MainApp;
+import presentation.userui.JudgeFormat;
 import vo.UserVO;
 
 public class FillInUserInfoController {
@@ -28,6 +29,7 @@ public class FillInUserInfoController {
 	private MainApp mainApp;
 	private String userID;
 	private String password;
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private Label userIDField;
@@ -79,7 +81,10 @@ public class FillInUserInfoController {
 	public void fillInRegisterInfo() {
 		String userTypeStr = userTypeChoiceBox.getValue();
 		String telNum = telNumField.getText();
-		UserType userType;
+		boolean isNum = judge.isNumeric(telNum);
+		int telNumLength = judge.getStringLength(telNum);
+		
+		UserType userType = null;
 		if (telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -87,7 +92,22 @@ public class FillInUserInfoController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else {
+		} else if(isNum != true){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else if(telNumLength != 11){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式长度必须为11位！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}
+		else {
 			if (userTypeStr.equals("客户")) {
 				userType = UserType.Client;
 				UserVO user = new UserVO(userID, password, telNum, userType);

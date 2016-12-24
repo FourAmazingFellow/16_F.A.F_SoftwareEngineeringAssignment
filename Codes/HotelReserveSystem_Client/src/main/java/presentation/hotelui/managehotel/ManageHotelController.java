@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import po.RoomType;
 import po.UserType;
 import presentation.WebsiteManageMainApp;
+import presentation.userui.JudgeFormat;
 import vo.HotelStaffInfoVO;
 import vo.HotelVO;
 
@@ -35,13 +36,14 @@ public class ManageHotelController {
 	private int hotelStar;
 	private String briefIntro;
 	private String staffID;
-	private String password,passwordConfirm;
+	private String password, passwordConfirm;
 	private String telNum;
 	private HotelVO newHotel;
 	private HotelStaffInfoVO staff;
 	private HashMap<RoomType, Integer> hash1 = new HashMap<>();
 	private HashMap<RoomType, Integer> hash2 = new HashMap<>();
 	private HashMap<String, String> hash3 = new HashMap<>();
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private Button searchButton;
@@ -90,9 +92,9 @@ public class ManageHotelController {
 
 	@FXML
 	private PasswordField passwordField;
-	
-    @FXML
-    private PasswordField passwordConfirmField;
+
+	@FXML
+	private PasswordField passwordConfirmField;
 
 	@FXML
 	private Label manageHotelLabel;
@@ -113,18 +115,17 @@ public class ManageHotelController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		manageHotel = hotelFactory.createManageHotelInfoService(null);
-//		manageHotel = new ManageHotelInfoServiceImpl_Stub();
-				
-		
+		// manageHotel = new ManageHotelInfoServiceImpl_Stub();
+
 		hotelNameLabel.setText("");
 		hotelAddressLabel.setText("");
 		starLabel.setText("");
 		tradeAreaLabel.setText("");
 		serviceLabel.setText("");
 		briefIntroLabel.setText("");
-		
+
 		searchField.setText("");
-		
+
 		hotelNameField.setText("");
 		hotelStaffIDfField.setText("");
 		passwordField.setText("");
@@ -137,9 +138,9 @@ public class ManageHotelController {
 
 	@FXML
 	public void searchButtonAction(ActionEvent event) {
-//		tabPane.getSelectionModel().select(0);;
+		// tabPane.getSelectionModel().select(0);;
 		this.hotelAddress = searchField.getText();
-		if(hotelAddress.equals("")){
+		if (hotelAddress.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("未输入搜索信息！");
@@ -181,30 +182,80 @@ public class ManageHotelController {
 	}
 
 	public void addNewHotel() {
-//		tabPane.getSelectionModel().select(hotelInfoTab);
+		// tabPane.getSelectionModel().select(hotelInfoTab);
 		this.hotelNameNew = hotelNameField.getText();
 		this.staffID = hotelStaffIDfField.getText();
 		this.password = passwordField.getText();
 		this.passwordConfirm = passwordConfirmField.getText();
 		this.telNum = telNumField.getText();
-		
-//		this.hotelNameNew = "qwe";
-//		this.staffID = "staff";
-//		this.password = "qwe123";
-//		this.passwordConfirm = "qwe123";
-//		this.telNum = "12345678900";
-		
-		if(hotelNameNew.equals("")||staffID.equals("")||password.equals("")||telNum.equals("")){
+		boolean isValid = false;
+		isValid = judge.isLetterDigitOrChinese(staffID);
+		int userIDLength = 0;
+		userIDLength = judge.getStringLength(staffID);
+		boolean isPasswordValid = judge.isLetterOrDigit(password);
+		int passwordLength = judge.getStringLength(password);
+		boolean isNum = judge.isNumeric(telNum);
+		int telNumLength = judge.getStringLength(telNum);
+
+		// this.hotelNameNew = "qwe";
+		// this.staffID = "staff";
+		// this.password = "qwe123";
+		// this.passwordConfirm = "qwe123";
+		// this.telNum = "12345678900";
+
+		if (hotelNameNew.equals("") || staffID.equals("") || password.equals("") || telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if(!password.equals(passwordConfirm)){
+		} else if (isValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("用户名包含非法字符（只能是数字、字母或中文）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (0 >= userIDLength || userIDLength > 20) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("用户名长度不合理（1~20）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (isPasswordValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("密码包含非法字符（只能是数字或字母）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (5 >= passwordLength || passwordLength > 16) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("密码长度不合理（6~16）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (!password.equals(passwordConfirm)) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("两次密码输入不一致！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (isNum != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (telNumLength != 11) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;

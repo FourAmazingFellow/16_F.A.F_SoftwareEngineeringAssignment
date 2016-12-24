@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.ClientInfoPO;
-import po.UserType;
 
 public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
 
@@ -15,7 +14,7 @@ public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
 
     private UserDAO userDAO = new UserDAOImpl_Stub("原", "qwe123", "12345678900", 500, null);
     private String userID;
-    private int creditValue;
+//    private int creditValue;
 //    private int creditResult;
     private ClientInfoPO clientInfoPO;
 
@@ -23,7 +22,7 @@ public class MockAddCreditValueServiceImpl extends AddCreditValueServiceImpl{
     public boolean addCreditValue(String userID, int creditAdded) {
         this.userID = userID;
         this.clientInfoPO = new ClientInfoPO();
-        this.creditValue = 0;
+//        this.creditValue = 0;
         try {
             this.clientInfoPO = userDAO.getClientInfo(this.userID);
         } catch (RemoteException e1) {

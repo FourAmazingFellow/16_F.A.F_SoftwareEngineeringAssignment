@@ -48,18 +48,18 @@ public class EnrollAvaluableRoomController {
 	@FXML
 	private Label avaluableRoomListLabel;
 
-
 	@FXML
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		importNewRoom = hotelFactory.createImportNewRoomService();
-		
-//		RoomType roomType = RoomType.KING_SIZE_ROOM;
-//		 int roomNum = 30;
-//		 int roomPrice = 150;
-//		 String address  ="南京市栖霞区仙林大道163号";
-//		importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum, roomPrice, address);
-		
+
+		// RoomType roomType = RoomType.KING_SIZE_ROOM;
+		// int roomNum = 30;
+		// int roomPrice = 150;
+		// String address ="南京市栖霞区仙林大道163号";
+		// importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum,
+		// roomPrice, address);
+
 		roomList = new RoomList();
 		avaluableRoomInfoTable.setItems(roomData);
 		roomTypeColumn.setCellValueFactory(cellData -> cellData.getValue().roomTypeProperty());
@@ -72,7 +72,7 @@ public class EnrollAvaluableRoomController {
 		this.mainApp = mainApp;
 	}
 
-	//显示可用客房信息
+	// 显示可用客房信息
 	public void enrollAvaluableRoom(String address) {
 		this.address = address;
 		ArrayList<RoomVO> roomVOs = null;
@@ -105,20 +105,22 @@ public class EnrollAvaluableRoomController {
 
 	@FXML
 	public void editButtonAction(ActionEvent event) {
-		try {
-			this.selected = roomData.get(avaluableRoomInfoTable.getSelectionModel().getSelectedIndex()).toVO(address);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if(avaluableRoomInfoTable.getSelectionModel().getSelectedIndex()< 0){
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("wrong");
+		alert.setHeaderText("未选中房间类型！");
+		alert.setContentText("请重新选择！");
+		alert.showAndWait();
+		return;
 		}
-		if (selected != null)
-			mainApp.showEditAvaluableRoomTypePanel(selected);
 		else {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("wrong");
-			alert.setHeaderText("未选中房间类型！");
-			alert.setContentText("请重新选择！");
-			alert.showAndWait();
-			return;
+			try {
+				this.selected = roomData.get(avaluableRoomInfoTable.getSelectionModel().getSelectedIndex()).toVO(address);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			if (selected != null)
+				mainApp.showEditAvaluableRoomTypePanel(selected);
 		}
 	}
 }

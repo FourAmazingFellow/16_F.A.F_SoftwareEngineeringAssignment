@@ -103,13 +103,12 @@ public class MainApp extends Application {
 		}
 	}
 
-	public void showHotelMainApp(String hotelAddress, String userID) {
+	public void showHotelMainApp(String userID, String hotelAddress) {
 		mainApp = new HotelMainApp();
 		try {
 			HotelMainApp.hotelAddress = hotelAddress;
 			HotelMainApp.userId = userID;
 			mainApp.start(primaryStage);	
-			((ClientMainApp) mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

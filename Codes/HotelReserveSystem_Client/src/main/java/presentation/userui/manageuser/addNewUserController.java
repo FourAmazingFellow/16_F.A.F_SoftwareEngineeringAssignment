@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import po.UserType;
 import presentation.WebsiteManageMainApp;
+import presentation.userui.JudgeFormat;
 import vo.UserVO;
 
 public class addNewUserController {
@@ -24,11 +25,13 @@ public class addNewUserController {
 	private String userID;
 	private String password, passwordConfirm;
 	private String telNum;
+	private JudgeFormat judge = new JudgeFormat();
+
 	@FXML
 	private PasswordField webMarketPasswordField;
-	
-    @FXML
-    private PasswordField webMarketPasswordConfirmField;
+
+	@FXML
+	private PasswordField webMarketPasswordConfirmField;
 
 	@FXML
 	private Button cancelButton;
@@ -52,9 +55,11 @@ public class addNewUserController {
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		manageUser = userFactory.createManageUserInfoService();
-//		manageUser = new ManageUserInfoServiceImpl_Stub("staff0001", "qwe123", "12345678909", UserType.WebMarketStaff, "");
-//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原", "qwe123", "12345678900", UserType.Client, 1500, "阿里巴巴");
-		
+		// manageUser = new ManageUserInfoServiceImpl_Stub("staff0001",
+		// "qwe123", "12345678909", UserType.WebMarketStaff, "");
+		// modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原",
+		// "qwe123", "12345678900", UserType.Client, 1500, "阿里巴巴");
+
 		webMarketUserIDField.setText("");
 		webMarketPasswordField.setText("");
 		webMarketTelNumField.setText("");
@@ -70,10 +75,18 @@ public class addNewUserController {
 		this.password = webMarketPasswordField.getText();
 		this.passwordConfirm = webMarketPasswordConfirmField.getText();
 		this.telNum = webMarketTelNumField.getText();
-//		this.userID = "test";
-//		this.password = "test";
-//		this.passwordConfirm = "test";
-//		this.telNum = "12345678944";
+
+		boolean isValid = judge.isLetterDigitOrChinese(userID);
+		int newUserIDLength = judge.getStringLength(userID);
+		boolean isNum = judge.isNumeric(telNum);
+		int newTelNumLength = judge.getStringLength(telNum);
+		boolean isPasswordValid = judge.isLetterOrDigit(password);
+		int passwordLength = judge.getStringLength(password);
+
+		// this.userID = "test";
+		// this.password = "test";
+		// this.passwordConfirm = "test";
+		// this.telNum = "12345678944";
 		if (userID.equals("") || password.equals("") || telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -81,10 +94,52 @@ public class addNewUserController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if(!password.equals(passwordConfirm)){
+		} else if (!password.equals(passwordConfirm)) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("两次密码输入不一致！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (isValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("用户名包含非法字符（只能是数字、字母或中文）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (0 >= newUserIDLength || newUserIDLength > 20) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("用户名长度不合理（1~20）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (isPasswordValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("密码包含非法字符（只能是数字或字母）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (5 >= passwordLength || passwordLength > 16) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("密码长度不合理（6~16）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else if (isNum != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (newTelNumLength != 11) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
@@ -123,7 +178,7 @@ public class addNewUserController {
 	}
 
 	@FXML
-	//确认添加按钮操作，保存添加
+	// 确认添加按钮操作，保存添加
 	void confirmButtonAction(ActionEvent event) throws RemoteException {
 		addNewUser();
 	}

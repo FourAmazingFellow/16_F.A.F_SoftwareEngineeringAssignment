@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import po.UserType;
 import presentation.ClientMainApp;
+import presentation.userui.JudgeFormat;
 import vo.UserVO;
 
 public class ModifyPasswordController {
@@ -24,6 +25,7 @@ public class ModifyPasswordController {
 	private String userID;
 	private String telNum;
 	private String prePassword, prePasswordTrue, newPassword, newPasswordConfirm;
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private Label userIDLabel;
@@ -72,6 +74,26 @@ public class ModifyPasswordController {
 		this.prePassword = prePasswordField.getText();
 		this.newPassword = newPasswordField.getText();
 		this.newPasswordConfirm = newPasswordConfirmField.getText();
+		boolean isPrePasswordValid = judge.isLetterOrDigit(prePassword);
+		int prePasswordLength = judge.getStringLength(prePassword);
+		
+		boolean isNewPasswordValid = judge.isLetterOrDigit(newPassword);
+		int newPasswordLength = judge.getStringLength(newPassword);
+		if (isPrePasswordValid != true || isNewPasswordValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("密码包含非法字符（只能是数字或字母）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (5 >= prePasswordLength ||newPasswordLength<=5|| prePasswordLength > 16||newPasswordLength>16) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("密码长度不合理（6~16）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}
 		if (prePassword.equals(prePasswordTrue)) {
 			if (newPassword.equals(newPasswordConfirm)) {
 				UserVO user = new UserVO(userID, newPassword, telNum, UserType.Client);

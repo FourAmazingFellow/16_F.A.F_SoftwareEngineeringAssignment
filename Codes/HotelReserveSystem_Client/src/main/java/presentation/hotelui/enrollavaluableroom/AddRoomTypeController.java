@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import po.RoomType;
 import presentation.HotelMainApp;
+import presentation.userui.JudgeFormat;
 import vo.RoomVO;
 
 public class AddRoomTypeController {
@@ -29,6 +30,7 @@ public class AddRoomTypeController {
 	public int roomPrice;
 	public String address;
 	private RoomVO newRoom;
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private Label addNewRoomTypeLabel;
@@ -85,8 +87,29 @@ public class AddRoomTypeController {
 //		this.roomTypeStr = "单人间";
 		this.roomType = (RoomType) RoomType.chineseToEnum(roomTypeStr);
 
+		if (roomNumberField.getText().equals("") || primePriceField.getText().equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}
+		
 		this.roomNum = Integer.parseInt(roomNumberField.getText());
 		this.roomPrice = Integer.parseInt(primePriceField.getText());
+		
+		boolean isRoomNumValid = judge.isNumberPositive(roomNum);
+		boolean isRoomPriceValid = judge.isNumberPositive(roomPrice);
+		
+		if(isRoomNumValid != true || isRoomPriceValid !=true){
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("wrong");
+			alert.setHeaderText("数据格式错误（必须是自然数）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}
 //		this.roomNum = 52;
 //		this.roomPrice = 123;
 

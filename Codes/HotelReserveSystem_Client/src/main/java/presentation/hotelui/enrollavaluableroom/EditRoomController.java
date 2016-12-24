@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import po.RoomType;
 import presentation.HotelMainApp;
+import presentation.userui.JudgeFormat;
 import vo.RoomVO;
 
 public class EditRoomController {
@@ -24,6 +25,7 @@ public class EditRoomController {
 	private RoomVO modified;
 	private RoomVO deleted;
 	private int roomNumm, roomPricem;
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private Button cancelButton;
@@ -71,8 +73,6 @@ public class EditRoomController {
 
 	// 编辑某一种房型
 	public void editRoomType() {
-		this.roomNumm = Integer.parseInt(roomNumField.getText());
-		this.roomPricem = Integer.parseInt(roomPriceField.getText());
 		if (roomNumField.getText().equals("") || roomPriceField.getText().equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -81,7 +81,21 @@ public class EditRoomController {
 			alert.showAndWait();
 			return;
 		}
+		this.roomNumm = Integer.parseInt(roomNumField.getText());
+		this.roomPricem = Integer.parseInt(roomPriceField.getText());
 
+		boolean isRoomNumValid = judge.isNumberPositive(roomNumm);
+		boolean isRoomPriceValid = judge.isNumberPositive(roomPricem);
+		
+		if(isRoomNumValid != true || isRoomPriceValid !=true){
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("wrong");
+			alert.setHeaderText("数据格式错误（必须是自然数）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}
+		
 		this.modified = null;
 		this.modified = new RoomVO(RoomType.chineseToEnum(roomTypeLabel.getText()), roomNumm, roomPricem,
 				selected.address);

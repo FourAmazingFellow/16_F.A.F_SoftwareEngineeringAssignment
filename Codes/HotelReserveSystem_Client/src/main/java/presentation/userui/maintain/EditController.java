@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import po.UserType;
 import presentation.ClientMainApp;
+import presentation.userui.JudgeFormat;
 import vo.ClientInfoVO;
 import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
@@ -34,6 +35,8 @@ public class EditController {
 	private int creditValue;
 	private Date birth;
 	private String enterpriseName;
+	private JudgeFormat judge = new JudgeFormat();
+
 
 	@FXML
 	private Label InfoLabel;
@@ -90,7 +93,7 @@ public class EditController {
 		this.password = client.password;
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
-		
+
 		if (client instanceof EnterpriseVipVO) {
 			this.enterpriseVip = (EnterpriseVipVO) client;
 		} else if (client instanceof RegularVipVO) {
@@ -115,29 +118,70 @@ public class EditController {
 		newUserID = userIDField.getText();
 		ClientMainApp.userID = newUserID;
 		newTelNum = telNumField.getText();
-		UserVO user = new UserVO(newUserID, password, newTelNum, UserType.Client);
-		boolean result = false;
-		try {
-			result = modifyClientInfo.modifyClientInfo(user, userID);
-		} catch (RemoteException e) {
+		boolean isValid = judge.isLetterDigitOrChinese(newUserID);
+		int newUserIDLength = judge.getStringLength(newUserID);
+		boolean isNum = judge.isNumeric(newTelNum);
+		int newTelNumLength = judge.getStringLength(newTelNum);
+		if (newUserID.equals("") || newTelNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-		if (result == true) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("modify info");
-			alert.setHeaderText("修改成功！");
-			alert.showAndWait();
-		} else {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
-			alert.setHeaderText("修改失败！");
-			alert.setContentText("请重试！");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
+		} else if (isValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("用户名包含非法字符（必须是数字、字母或中文）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (0 >= newUserIDLength || newUserIDLength > 20) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("用户名长度不合理（1~20）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if(isNum != true){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else if(newTelNumLength != 11){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式长度必须为11位！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else {
+			UserVO user = new UserVO(newUserID, password, newTelNum, UserType.Client);
+			boolean result = false;
+			try {
+				result = modifyClientInfo.modifyClientInfo(user, userID);
+			} catch (RemoteException e) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("NetWork Warning");
+				alert.setHeaderText("Fail to connect with the server!");
+				alert.setContentText("Please check your network connection!");
+				alert.showAndWait();
+			}
+			if (result == true) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("modify info");
+				alert.setHeaderText("修改成功！");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("wrong");
+				alert.setHeaderText("修改失败！");
+				alert.setContentText("请重试！");
+				alert.showAndWait();
+				return;
+			}
 		}
 	}
 

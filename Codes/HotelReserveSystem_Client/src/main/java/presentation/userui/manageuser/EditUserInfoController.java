@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import po.UserType;
 import presentation.WebsiteManageMainApp;
+import presentation.userui.JudgeFormat;
 import vo.ClientInfoVO;
 import vo.UserVO;
 
@@ -30,6 +31,7 @@ public class EditUserInfoController {
 	private UserVO modified;
 	private String userIDm;
 	private String telNumm;
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private TextField webMarketPasswordField;
@@ -129,10 +131,42 @@ public class EditUserInfoController {
 	public void editClientInfo() {
 		this.userIDm = clientUserIDField.getText();
 		this.telNumm = clientTelNumField.getText();
+		boolean isValid = judge.isLetterDigitOrChinese(userIDm);
+		int newUserIDLength = judge.getStringLength(userIDm);
+		boolean isNum = judge.isNumeric(telNumm);
+		int newTelNumLength = judge.getStringLength(telNumm);
 		if (userIDm.equals("") || telNumm.equals("")) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (isValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("包含非法字符！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (0 >= newUserIDLength || newUserIDLength > 20) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("长度不合理（1~20）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if(isNum != true){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else if(newTelNumLength != 11){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
@@ -171,10 +205,42 @@ public class EditUserInfoController {
 	public void editWebUserInfo() {
 		this.userIDm = webMarketPasswordField.getText();
 		this.telNumm = webMarketTelNumField.getText();
+		boolean isValid = judge.isLetterDigitOrChinese(userIDm);
+		int newUserIDLength = judge.getStringLength(userIDm);
+		boolean isNum = judge.isNumeric(telNumm);
+		int newTelNumLength = judge.getStringLength(telNumm);
 		if (userIDm.equals("") || telNumm.equals("")) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (isValid != true) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("包含非法字符！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if (0 >= newUserIDLength || newUserIDLength > 20) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("长度不合理（1~20）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		} else if(isNum != true){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("包含非法字符（只能输入数字）！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}else if(newTelNumLength != 11){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;

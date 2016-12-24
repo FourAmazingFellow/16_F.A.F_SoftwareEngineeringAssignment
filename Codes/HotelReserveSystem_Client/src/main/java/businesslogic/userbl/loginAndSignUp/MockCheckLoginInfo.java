@@ -1,16 +1,10 @@
 package businesslogic.userbl.loginAndSignUp;
 
-import java.rmi.RemoteException;
-
-import data_Stub.UserDAOImpl_Stub;
-import dataservice.userDAO.UserDAO;
-import po.UserPO;
-
 public class MockCheckLoginInfo extends CheckLoginInfo{
-    private UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "12312312312");
-    private String userID;
-    private UserPO userPO;
-    private String password;
+//    private UserDAO userDAO = new UserDAOImpl_Stub("qwe123", "qweqwe", "12312312312");
+//    private String userID;
+//    private UserPO userPO;
+//    private String password;
     
 //    public boolean checkUser(String userID,String password) {
 //        this.userID = userID;
