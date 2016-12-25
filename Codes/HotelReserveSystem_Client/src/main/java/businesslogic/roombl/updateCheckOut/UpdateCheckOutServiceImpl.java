@@ -10,7 +10,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 负责实现界面层办理退房需要的服务
  * @author 双
  * @version 
  * @see
@@ -37,7 +37,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
     }
     
     /**
-     * 根据实际离开时间搜索退房信息
+     * 根据实际离开时间搜索符合条件的退房信息列表
      * @param address String型，酒店地址
      * @param time Date型，退房时间
      * @return ArrayList<RoomVO>型，返回符合条件的退房信息列表
@@ -55,7 +55,7 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
     }
     
     /**
-     * 根据房间类型搜索退房信息
+     * 根据房间类型搜索符合条件的退房信息列表
      * @param address String型，酒店地址
      * @param roomType 枚举类，房间类型
      * @return ArrayList<RoomVO>型，符合条件的退房信息列表
@@ -73,12 +73,12 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
     }
     
     /**
-     * 增加退房信息
+     * 增加退房信息，即办理入住
      * @param address String型，酒店地址
      * @param checkOut Room VO型，退房信息
      * @return 返回是否增加成功
      * @throws RemoteException 
-     * @throws WrongInputException 
+     * @throws WrongInputException 当退房信息有误时抛出该异常 
      * @see
      */
     @Override
@@ -90,11 +90,11 @@ public class UpdateCheckOutServiceImpl implements UpdateCheckOutService{
     }
   
     /**
-     * 判断该退房信息是否有效
+     * 验证从界面层传来的新增的退房信息是否有效
      * @param address String型，酒店地址
      * @param checkOut Room VO型，退房信息
-     * @return 返回是否退房信息有效
-     * @throws WrongInputException 
+     * @return 返回是否退房信息有
+     * @throws WrongInputException 当退房信息有误时抛出异常s
      * @throws RemoteException 
      * @see
      */

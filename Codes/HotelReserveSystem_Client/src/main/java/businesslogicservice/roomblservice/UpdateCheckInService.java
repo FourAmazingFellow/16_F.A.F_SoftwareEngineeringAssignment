@@ -11,7 +11,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 给view层的更新入住信息任务提供roombl接口
+ * 给界面层提供更新入住信息任所需的方法
  * @author 双
  * @version 
  * @see

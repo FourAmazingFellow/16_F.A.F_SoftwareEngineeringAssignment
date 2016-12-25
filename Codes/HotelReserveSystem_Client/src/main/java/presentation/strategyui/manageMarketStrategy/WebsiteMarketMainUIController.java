@@ -4,6 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import presentation.WebsitePromotionMainApp;
 
+/**
+ * 网站营销人员主界面的控制类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class WebsiteMarketMainUIController {
     
     private WebsitePromotionMainApp mainApp;

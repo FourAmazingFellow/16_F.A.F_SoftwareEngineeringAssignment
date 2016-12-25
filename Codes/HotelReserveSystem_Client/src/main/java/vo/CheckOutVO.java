@@ -4,6 +4,12 @@ import java.util.Date;
 
 import po.RoomType;
 
+/**
+ * 退房信息的VO类,负责在逻辑层和界面层传递数据
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckOutVO extends RoomVO{
 
     public Date actDepartTime;

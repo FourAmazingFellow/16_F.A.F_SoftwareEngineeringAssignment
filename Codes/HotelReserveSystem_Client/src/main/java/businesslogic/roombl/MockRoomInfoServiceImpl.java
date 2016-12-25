@@ -7,6 +7,12 @@ import po.RoomType;
 import vo.OrderVO;
 import vo.RoomVO;
 
+/**
+ * RoomInfoServiceImpl的Mock类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class MockRoomInfoServiceImpl extends RoomInfoServiceImpl{
 	
 	@Override

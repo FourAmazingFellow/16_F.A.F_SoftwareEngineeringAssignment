@@ -9,6 +9,12 @@ import javafx.beans.property.StringProperty;
 import po.StrategyType;
 import vo.StrategyVO;
 
+/**
+ * 策略的模型类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class Strategy {
     
     private StringProperty strategyType;

@@ -15,12 +15,11 @@ import po.BusinessDistrictPO;
 import po.RoomType;
 import po.StrategyPO;
 import po.StrategyType;
-import rmi.RemoteHelper;
 import vo.HotelVO;
 import vo.StrategyVO;
 
 /**
- * 
+ * 策略的Item类
  * @author 双
  * @version
  * @see
@@ -42,22 +41,21 @@ public class StrategyItem {
     private int maxVipRank = 4, minVipRank = 0;
 
     private StrategyDAO strategyDAO;
-
+    //hotelbl给同层调用的接口
     private HotelInfoService hotelInfoService;
     
     private FactoryService factoryService;
 
     public StrategyItem() {
-         strategyDAO=RemoteHelper.getInstance().getStrategyDAO();
+        //用工厂初始化同层接口和DAO
          factoryService=new FactoryServiceImpl();
+         strategyDAO=factoryService.getStrategyDAO();
          hotelInfoService=factoryService.createHotelInfoService();
     }
 
     /**
      * 构造函数
-     * 
-     * @param strategyPO
-     *            PO类，包含策略信息
+     * @param strategyPO  PO类，包含策略信息
      */
     public StrategyItem(StrategyPO strategyPO) {
         this();
@@ -84,9 +82,7 @@ public class StrategyItem {
 
     /**
      * 构造函数
-     * 
-     * @param strategyVO
-     *            VO类，包含策略信息
+     * @param strategyVO VO类，包含策略信息
      */
     public StrategyItem(StrategyVO strategyVO) {
         this();
@@ -113,14 +109,14 @@ public class StrategyItem {
 
     /**
      * 增加一个策略
-     * 
-     * @param address
-     *            string型，酒店地址
+     * @param address  string型，酒店地址
      * @return 返回是否增加成功
      * @throws UnableAddStrategyException 
      * @see
      */
     public boolean add(String address) throws UnableAddStrategyException {
+        //防御式
+        //如果地址不等于Web,则不能修改网站营销策略
         if (!address.equals("Web")) {
             if (strategyType == StrategyType.MemberRankMarket
                     || strategyType == StrategyType.SpecificTimeMarket
@@ -128,6 +124,7 @@ public class StrategyItem {
                 throw new UnableAddStrategyException("hotel staff cannot make website market strategy");
             }
         }
+        //如果地址等于Web,则不能修改酒店促销策略
         if (address.equals("Web")) {
             if (strategyType == StrategyType.BirthdayPromotion
                     || strategyType == StrategyType.CooperationEnterprisePromotion
@@ -163,9 +160,7 @@ public class StrategyItem {
 
     /**
      * 修改一个策略
-     * 
-     * @param address
-     *            string型，酒店地址
+     * @param address  string型，酒店地址
      * @return 返回是否修改成功
      * @throws RemoteException 
      * @see
@@ -192,10 +187,8 @@ public class StrategyItem {
     }
 
     /**
-     * 删除一个策略
-     * 
-     * @param address
-     *            string型，酒店地址
+     * 删除一个策略 
+     * @param address  string型，酒店地址
      * @return 返回是否删除成功
      * @throws RemoteException 
      * @see
@@ -223,7 +216,6 @@ public class StrategyItem {
 
     /**
      * 判断该策略信息是否有效
-     * 
      * @return 返回该策略信息是否有效
      * @throws RemoteException 
      * @see
@@ -415,7 +407,6 @@ public class StrategyItem {
 
     /**
      * 转成StrategyVO型的策略信息
-     * 
      * @return 返回StrategyVO，包含策略信息
      * @see
      */

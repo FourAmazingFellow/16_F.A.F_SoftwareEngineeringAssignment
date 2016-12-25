@@ -5,7 +5,7 @@ import java.util.Date;
 import po.StrategyType;
 
 /**
- * 
+ * 策略信息的VO类,负责在逻辑层和界面层传递数据
  * @author 双
  * @version 
  * @see

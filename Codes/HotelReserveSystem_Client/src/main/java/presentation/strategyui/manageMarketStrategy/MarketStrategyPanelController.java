@@ -29,6 +29,12 @@ import presentation.strategyui.model.Strategy;
 import presentation.strategyui.model.StrategyListWrapper;
 import vo.StrategyVO;
 
+/**
+ * 管理网站营销策略界面的控制类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class MarketStrategyPanelController {
 
     @FXML

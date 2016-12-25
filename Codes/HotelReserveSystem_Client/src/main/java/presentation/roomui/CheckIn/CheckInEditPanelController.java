@@ -27,6 +27,12 @@ import presentation.roomui.CheckIn.model.CheckIn;
 import presentation.roomui.util.LocalDateAdapter;
 import vo.CheckInVO;
 
+/**
+ * 编辑入住信息界面的控制类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckInEditPanelController {
 
     @FXML

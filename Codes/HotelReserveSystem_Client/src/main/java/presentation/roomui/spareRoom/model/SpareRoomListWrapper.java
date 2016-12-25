@@ -11,6 +11,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import vo.RoomVO;
 
+/**
+ * 用来装空房信息模型类对象的列表
+ * @author 双
+ * @version 
+ * @see
+ */
 public class SpareRoomListWrapper {
     
     private List<SpareRoom> spareRoomList=new ArrayList<>();

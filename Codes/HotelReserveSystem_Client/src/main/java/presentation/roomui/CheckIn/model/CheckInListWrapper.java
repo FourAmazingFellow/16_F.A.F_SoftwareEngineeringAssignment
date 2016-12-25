@@ -6,6 +6,12 @@ import java.util.List;
 import vo.CheckInVO;
 import vo.RoomVO;
 
+/**
+ * 用来装所有入住信息模型类对象的列表
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckInListWrapper {
 
     private List<CheckIn> checkInList=new ArrayList<>();

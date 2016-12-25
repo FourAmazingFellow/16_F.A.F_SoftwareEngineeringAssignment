@@ -6,7 +6,12 @@ import java.util.List;
 import vo.CheckOutVO;
 import vo.RoomVO;
 
-
+/**
+ * 用来装所有退房信息的模型类对象的列表
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckOutListWrapper {
 
     private List<CheckOut> checkOutList=new ArrayList<>();

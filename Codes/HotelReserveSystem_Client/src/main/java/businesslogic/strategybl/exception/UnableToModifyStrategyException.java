@@ -1,5 +1,11 @@
 package businesslogic.strategybl.exception;
 
+/**
+ * 当无法修改策略时抛出该异常
+ * @author 双
+ * @version 
+ * @see
+ */
 public class UnableToModifyStrategyException extends Exception{
 
     /**

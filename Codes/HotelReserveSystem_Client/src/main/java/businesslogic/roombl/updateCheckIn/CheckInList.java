@@ -13,7 +13,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 入住信息的列表类
  * @author 双
  * @version
  * @see
@@ -25,15 +25,14 @@ public class CheckInList {
 	private FactoryService factoryService;
 
 	public CheckInList() {
+	    //用工厂初始化roomDAO
 		this.factoryService = new FactoryServiceImpl();
 		roomDAO = factoryService.getRoomDAO();
 	}
 
 	/**
-	 * 得到入住信息列表
-	 * 
-	 * @param address
-	 *            String型，酒店地址
+	 * 从数据层得到入住信息列表
+	 * @param address String型，酒店地址
 	 * @return ArrayList<CheckInItem>型，入住信息列表
 	 * @throws RemoteException
 	 * @see
@@ -49,12 +48,9 @@ public class CheckInList {
 	}
 
 	/**
-	 * 根据入住时间搜索入住信息
-	 * 
-	 * @param address
-	 *            string型，酒店地址
-	 * @param time
-	 *            Date型，入住时间
+	 * 根据入住时间搜索符合条件的入住信息列表
+	 * @param address string型，酒店地址
+	 * @param time Date型，入住时间
 	 * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
 	 * @throws RemoteException
 	 * @see
@@ -71,12 +67,9 @@ public class CheckInList {
 	}
 
 	/**
-	 * 根据房间类型搜索入住信息
-	 * 
-	 * @param address
-	 *            string型，酒店地址
-	 * @param time
-	 *            Date型，入住时间
+	 * 根据房间类型搜索符合条件的入住信息列表
+	 * @param addressstring型，酒店地址
+	 * @param time Date型，入住时间
 	 * @return ArrayList<CheckInItem>型，返回符合条件的入住信息列表
 	 * @throws RemoteException
 	 * @see
@@ -92,12 +85,9 @@ public class CheckInList {
 	}
 
 	/**
-	 * 增加入住信息
-	 * 
-	 * @param address
-	 *            string型，酒店地址
-	 * @param checkIn
-	 *            Room VO型，入住信息
+	 * 增加入住信息，即办理入住
+	 * @param address string型，酒店地址
+	 * @param checkIn Room VO型，入住信息
 	 * @return 返回是否增加成功
 	 * @throws RemoteException
 	 * @see
@@ -109,13 +99,10 @@ public class CheckInList {
 
 	/**
 	 * 判断该入住信息是否有效
-	 * 
-	 * @param address
-	 *            string型，酒店地址
-	 * @param checkIn
-	 *            Room VO型，入住信息
+	 * @param address  string型，酒店地址
+	 * @param checkIn Room VO型，入住信息
 	 * @return 返回是否入住信息有效
-	 * @throws WrongInputException
+	 * @throws WrongInputException 当该入住信息有误时抛出该异常
 	 * @throws RemoteException
 	 * @see
 	 */

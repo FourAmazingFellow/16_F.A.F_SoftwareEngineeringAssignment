@@ -10,7 +10,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 负责实现界面层办理入住所需要的服务
  * @author 双
  * @version 
  * @see
@@ -37,7 +37,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
     }
     
     /**
-     * 根据入住时间搜索入住信息
+     * 根据入住时间搜索符合条件的入住信息列表
      * @param address string型，酒店地址
      * @param time Date型，入住时间
      * @return ArrayList<RoomVO>型，返回符合条件的入住信息列表
@@ -55,7 +55,7 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
     }
     
     /**
-     * 根据房间类型搜索入住信息
+     * 根据房间类型搜索符合条件的入住信息列表
      * @param address string型，酒店地址
      * @param roomType 枚举类，房间类型
      * @return ArrayList<RoomVO>型，符合条件的入住信息列表
@@ -73,9 +73,9 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
     }
     
     /**
-     * 增加入住信息
+     * 增加入住信息，即办理入住
      * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
+     * @param checkIn RoomVO型，入住信息
      * @return 返回是否增加成功
      * @throws RemoteException 
      * @throws WrongInputException 
@@ -90,11 +90,11 @@ public class UpdateCheckInServiceImpl implements UpdateCheckInService{
     }
    
     /**
-     * 判断该入住信息是否有效
+     * 验证从界面层传来的新增的入住信息是否有效
      * @param address string型，酒店地址
-     * @param checkIn Room VO型，入住信息
+     * @param checkIn RoomVO型，入住信息
      * @return 返回是否入住信息有效
-     * @throws WrongInputException 
+     * @throws WrongInputException 当入住信息有误时抛出异常 
      * @throws RemoteException 
      * @see
      */

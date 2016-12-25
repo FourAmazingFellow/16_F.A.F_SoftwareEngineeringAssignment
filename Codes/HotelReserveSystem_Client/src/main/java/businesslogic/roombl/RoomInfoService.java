@@ -10,7 +10,7 @@ import vo.OrderVO;
 import vo.RoomVO;
 
 /**
- * 给同层其他模块调用的roombl接口
+ * 给同层其他模块调用的接口
  * @author 双
  * @version 
  * @see

@@ -29,6 +29,12 @@ import presentation.roomui.util.LocalDateAdapter;
 import presentation.strategyui.model.Strategy;
 import vo.StrategyVO;
 
+/**
+ * 编辑网站营销策略界面的控制类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class MarketStrategyEditPanelController {
 
     @FXML

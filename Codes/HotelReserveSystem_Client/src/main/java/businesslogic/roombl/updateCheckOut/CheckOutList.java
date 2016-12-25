@@ -13,7 +13,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 退房信息的列表类
  * @author 双
  * @version 
  * @see
@@ -25,6 +25,7 @@ public class CheckOutList {
     private FactoryService factoryService;
     
     public CheckOutList(){
+        //用工厂初始化DAO
     	this.factoryService = new FactoryServiceImpl();
         roomDAO=factoryService.getRoomDAO();
     }
@@ -47,7 +48,7 @@ public class CheckOutList {
     }
     
     /**
-     * 根据退房时间搜索退房信息
+     * 根据退房时间搜索符合条件的退房信息列表
      * @param address string型，酒店地址
      * @param time Date型，退房时间
      * @return ArrayList<CheckOutItem>型，返回符合条件的退房信息列表
@@ -67,7 +68,7 @@ public class CheckOutList {
     }
     
     /**
-     * 根据房间类型搜索退房信息
+     * 根据房间类型搜索符合条件的退房信息列表
      * @param address string型，酒店地址
      * @param roomType 枚举类，房间类型
      * @return ArrayList<CheckOutItem>型，返回符合条件的退房信息列表
@@ -86,7 +87,7 @@ public class CheckOutList {
     }
     
     /**
-     * 增加退房信息
+     * 增加退房信息，即办理入住
      * @param address string型，酒店地址
      * @param CheckOut Room VO型，退房信息
      * @return 返回是否增加成功
@@ -103,7 +104,7 @@ public class CheckOutList {
      * @param address string型，酒店地址
      * @param CheckOut Room VO型，退房信息
      * @return 返回是否退房信息有效
-     * @throws WrongInputException 
+     * @throws WrongInputException 当退房信息有误时抛出异常
      * @throws RemoteException 
      * @see
      */

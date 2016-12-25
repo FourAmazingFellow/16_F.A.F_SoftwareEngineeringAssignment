@@ -19,7 +19,7 @@ import vo.CheckInVO;
 import vo.RoomVO;
 
 /**
- * 
+ * 入住信息的Item类
  * @author 双
  * @version
  * @see
@@ -33,12 +33,13 @@ public class CheckInItem {
 	private Date expDepartTime;
 
 	private RoomDAO checkInDAO;
+	private FactoryService factoryService;
 	private RoomInfoService roomInfoService;
+	//同层其他模块提供调用的接口
 	private StrategyInfoService strategyInfoService;
 
-	private FactoryService factoryService;
-
 	public CheckInItem() {
+	    //用工厂模式初始化DAO和同层接口
 		factoryService = new FactoryServiceImpl();
 		checkInDAO = factoryService.getRoomDAO();
 		roomInfoService = factoryService.createRoomInfoService();
@@ -46,9 +47,8 @@ public class CheckInItem {
 	}
 
 	/**
-	 * 
-	 * @param roomPO
-	 *            RoomPO型，入住信息
+	 * 用入住信息的PO构造该对象
+	 * @param roomPO RoomPO型，入住信息
 	 */
 	public CheckInItem(RoomPO roomPO) {
 		this();
@@ -61,9 +61,8 @@ public class CheckInItem {
 	}
 
 	/**
-	 * 
-	 * @param roomVO
-	 *            RoomVO型，入住信息
+	 * 用入住信息的VO构造该对象
+	 * @param roomVO  RoomVO型，入住信息
 	 */
 	public CheckInItem(RoomVO roomVO) {
 		this();
@@ -77,9 +76,7 @@ public class CheckInItem {
 
 	/**
 	 * 增加入住信息
-	 * 
-	 * @param address
-	 *            string型，酒店地址
+	 * @param address  string型，酒店地址
 	 * @return
 	 * @throws RemoteException
 	 * @see
@@ -90,6 +87,8 @@ public class CheckInItem {
 
 		// 根据布尔值决定是否更新空房
 		if (updateSpareRoom) {
+		    //更新空房
+		    //先得到今天的日期
 			Date today = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			try {
@@ -97,6 +96,7 @@ public class CheckInItem {
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
+			//在今天的空房列表中减少对应空房数量
 			roomInfoService.reduceRoom(address, roomNum, roomType, today);
 		}
 		return true;
@@ -104,9 +104,8 @@ public class CheckInItem {
 
 	/**
 	 * 判断该入住信息是否有效
-	 * 
 	 * @return 返回是否入住信息有效
-	 * @throws WrongInputException
+	 * @throws WrongInputException 当入住信息有误时抛出异常
 	 * @throws RemoteException
 	 * @see
 	 */
@@ -166,9 +165,8 @@ public class CheckInItem {
 	}
 
 	/**
-	 * 转成CheckInOutVO型
-	 * 
-	 * @return RoomVO型，包含入住信息
+	 * 把CheckInItem转成CheckInOutVO型
+	 * @return RoomVO型，是CheckInOutVO对象，包含入住信息
 	 * @see
 	 */
 	public RoomVO toVO() {

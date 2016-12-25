@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 import po.RoomType;
 
 /**
- *  Model class for a SpareRoomItem.
+ * 空房信息的模型类
  * @author 双
  * @version 
  * @see

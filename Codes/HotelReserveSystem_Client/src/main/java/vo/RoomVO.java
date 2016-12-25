@@ -3,7 +3,7 @@ package vo;
 import po.RoomType;
 
 /**
- * 
+ * 空房的VO类,负责在逻辑层和界面层传递数据
  * @author 双
  * @version
  * @see

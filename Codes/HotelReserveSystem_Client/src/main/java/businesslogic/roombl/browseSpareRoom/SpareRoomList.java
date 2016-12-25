@@ -14,7 +14,7 @@ import po.RoomPO;
 import po.RoomType;
 
 /**
- * 
+ * 空房的列表类
  * @author 双
  * @version
  * @see
@@ -26,6 +26,7 @@ public class SpareRoomList {
     private FactoryService factoryService;
     
     public SpareRoomList(){
+        //用工厂初始化roomDAO
     	this.factoryService = new FactoryServiceImpl();
         roomDAO=factoryService.getRoomDAO();
     }
@@ -54,6 +55,15 @@ public class SpareRoomList {
         return spareRoomItems;
     }
     
+    /**
+     * 得到某家酒店的某个房型的空房信息
+     * @param address String型，酒店地址
+     * @param roomType RoomType型，房间类型
+     * @return
+     * @throws NoThisRoomTypeSpareRoomException  当没有这种房型的空房时抛出异常
+     * @throws RemoteException
+     * @see
+     */
     public SpareRoomItem getSprareRoomInfo(String address, Enum<RoomType> roomType) throws NoThisRoomTypeSpareRoomException, RemoteException{
         SpareRoomItem spareRoomItem;
         RoomPO roomPO;

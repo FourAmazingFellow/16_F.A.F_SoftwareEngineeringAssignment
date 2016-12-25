@@ -4,6 +4,12 @@ import java.util.Date;
 
 import po.RoomType;
 
+/**
+ * 入住信息的vo,负责在逻辑层和界面层传递数据
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckInVO extends RoomVO{
 
     public Date checkInTime;

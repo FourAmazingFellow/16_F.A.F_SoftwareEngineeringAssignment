@@ -10,6 +10,12 @@ import presentation.HotelMainApp;
 import presentation.roomui.spareRoom.model.SpareRoom;
 import presentation.roomui.spareRoom.model.SpareRoomListWrapper;
 
+/**
+ * 浏览空房界面的控制类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class SpareRoomTablePanelController {
     
     @FXML

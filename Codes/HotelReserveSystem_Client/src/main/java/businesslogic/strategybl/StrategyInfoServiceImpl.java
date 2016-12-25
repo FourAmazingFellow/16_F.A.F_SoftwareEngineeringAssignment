@@ -18,7 +18,7 @@ import vo.RegularVipVO;
 import vo.StrategyVO;
 
 /**
- * 
+ * 负责实现给同层其他模块调用的StrategyInfoService接口的方法
  * @author 双
  * @version
  * @see
@@ -36,6 +36,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
 	private FactoryService factoryService;
 
 	public StrategyInfoServiceImpl() {
+	    //用工厂初始化同层调用接口
 		factoryService = new FactoryServiceImpl();
 		hotelInfoService = factoryService.createHotelInfoService();
 		vipInfo = factoryService.createVipInfo();
@@ -174,6 +175,7 @@ public class StrategyInfoServiceImpl implements StrategyInfoService {
 		if (bestMarketStrategy != null) {
 			bestDiscountOfMarket = bestMarketStrategy.discount;
 		}
+		//取网站营销 策略和酒店促销策略的最优折扣
 		if (bestDiscountOfPromotion >= bestDiscountOfMarket) {
 			bestDiscount = bestDiscountOfMarket;
 		} else {

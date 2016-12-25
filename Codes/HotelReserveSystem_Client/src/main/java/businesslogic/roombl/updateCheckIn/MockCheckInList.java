@@ -11,6 +11,12 @@ import po.RoomPO;
 import po.RoomType;
 import vo.RoomVO;
 
+/**
+ * CheckInList的Mock类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class MockCheckInList extends CheckInList{
 
     private RoomDAO roomDAO;

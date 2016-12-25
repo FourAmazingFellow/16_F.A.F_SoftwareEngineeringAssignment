@@ -11,6 +11,12 @@ import po.RoomType;
 import vo.CheckInVO;
 import vo.RoomVO;
 
+/**
+ * CheckInItem的Mock类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class MockCheckInItem extends CheckInItem{
 
     private Enum<RoomType> roomType;

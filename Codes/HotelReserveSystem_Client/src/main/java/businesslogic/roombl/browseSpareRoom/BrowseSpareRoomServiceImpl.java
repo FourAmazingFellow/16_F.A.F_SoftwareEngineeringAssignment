@@ -8,7 +8,7 @@ import vo.RoomVO;
 
 
 /**
- * 负责实现对应于浏览空房所需要的服务
+ * 负责实现界面层浏览空房所需要的服务
  * @author 双
  * @version 
  * @see
@@ -20,6 +20,7 @@ public class BrowseSpareRoomServiceImpl implements BrowseSpareRoomService{
     public BrowseSpareRoomServiceImpl() {
         spareRoomList=new SpareRoomList();
     }
+    
     /**
      * 得到空房列表
      * @param address String型，酒店地址

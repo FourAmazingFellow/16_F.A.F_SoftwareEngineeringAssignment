@@ -5,7 +5,7 @@ import po.RoomType;
 import vo.RoomVO;
 
 /**
- * 
+ * 空房的Item类
  * @author 双
  * @version 
  * @see
@@ -32,6 +32,7 @@ public class SpareRoomItem {
         this.address = address;
     }
     
+    
     public SpareRoomItem(RoomPO roomPO){
         this.roomType = roomPO.getRoomType();
         this.roomNum = roomPO.getRoomNum();
@@ -47,7 +48,7 @@ public class SpareRoomItem {
     }
     
     /**
-     * 转成RoomVO型
+     * 把SpareRoomItem转成RoomVO型
      * @return 返回RoomVO型，包含房间信息
      * @see
      */

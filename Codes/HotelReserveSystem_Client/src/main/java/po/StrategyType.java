@@ -10,6 +10,12 @@ public enum StrategyType {
     BirthdayPromotion, MultiRoomPromotion, CooperationEnterprisePromotion,
     SpecificTimePromotion, SpecificTimeMarket,VipTradeAreaMarket, MemberRankMarket;
     
+    /**
+     * 把某策略的枚举类型转化成该策略的中文
+     * @param strategyType 策略的枚举类
+     * @return
+     * @see
+     */
     public static String enumToChinese(Enum<StrategyType> strategyType){
         if(strategyType==null){
             return null;
@@ -33,6 +39,12 @@ public enum StrategyType {
         }
     }
     
+    /**
+     * 把某策略的中文转化成对应枚举类型
+     * @param strategyTypeShowed 策略的中文
+     * @return
+     * @see
+     */
     public static Enum<StrategyType> chineseToEnum(String strategyTypeShowed){
         if(strategyTypeShowed==null||strategyTypeShowed.isEmpty()){
             return null;

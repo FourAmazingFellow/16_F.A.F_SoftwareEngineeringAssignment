@@ -12,6 +12,12 @@ public enum RoomType {
 	TRIBLE_ROOM,
 	KING_SIZE_ROOM;
     
+    /**
+     * 把枚举类型转化成该房型的中文
+     * @param roomType
+     * @return
+     * @see
+     */
     public static String enumToChinese(Enum<RoomType> roomType){
         if(roomType==null){
             return null;
@@ -27,6 +33,12 @@ public enum RoomType {
         }
     }
     
+    /**
+     * 把房间类型的中文转化成对应的枚举类型
+     * @param roomTypeStr
+     * @return
+     * @see
+     */
     public static Enum<RoomType> chineseToEnum(String roomTypeStr){
         if(roomTypeStr==null||roomTypeStr.isEmpty()){
             return null;

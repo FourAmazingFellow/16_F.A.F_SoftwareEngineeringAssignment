@@ -27,6 +27,12 @@ import presentation.roomui.CheckOut.model.CheckOutListWrapper;
 import presentation.roomui.util.LocalDateAdapter;
 import vo.RoomVO;
 
+/**
+ * 退房信息列表界面的控制类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class ManageCheckOutPanelController {
 
     @FXML

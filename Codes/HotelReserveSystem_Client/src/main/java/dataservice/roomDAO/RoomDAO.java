@@ -136,20 +136,4 @@ public interface RoomDAO extends Remote{
      * @see
      */
     public void insertCheckOut(CheckOutPO po) throws RemoteException;
-//    
-//    /**
-//     * 删除一个房间信息
-//     * @param po RoomPO型，业务逻辑层传递来的房间信息
-//     * @throws RemoteException
-//     * @see
-//     */
-//    public void deleteRoom(RoomPO po) throws RemoteException;
-//    
-//    /**
-//     * 删除一个入住或退房信息
-//     * @param po CheckInOutPO型，业务逻辑层传递来的入住或退房信息
-//     * @throws RemoteException
-//     * @see
-//     */
-//    public void deleteCheckInOut(RoomPO po) throws RemoteException;
 }

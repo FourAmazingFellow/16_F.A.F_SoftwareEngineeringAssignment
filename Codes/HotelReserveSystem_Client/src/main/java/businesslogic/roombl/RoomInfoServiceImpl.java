@@ -21,7 +21,7 @@ import vo.OrderVO;
 import vo.RoomVO;
 
 /**
- * 
+ * 负责实现提供给同层其他模块调用的方法
  * @author 双
  * @version
  * @see
@@ -37,6 +37,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 	private FactoryService factoryService;
 
 	public RoomInfoServiceImpl() {
+	    //用工厂初始化DAO和同层接口
 		factoryService = new FactoryServiceImpl();
 		roomDAO = factoryService.getRoomDAO();
 		availableRoomService = factoryService.createAvailableRoomService();
@@ -52,7 +53,9 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 
 	@Override
 	public boolean isTimeAvailable(String address, Enum<RoomType> roomType, Date date, int num) throws RemoteException {
+	    //得到那天的空房数量
 		int spareRoomNum = getAvailableRoomNum(address, roomType, date);
+		//判断提供的房间数量是否小于空房数量，若小于，则满足条件
 		if (spareRoomNum < num) {
 			return false;
 		}
@@ -62,6 +65,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 	@Override
 	public ResultMessage checkOrder(OrderVO vo) throws RemoteException {
 		// 先判断预订入住时间段是否满足在未来一周内，防御式编程
+	    //获取当天日期
 		Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -72,6 +76,7 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(today);
 		calendar.add(Calendar.DATE, 6);
+		//得到可预定的最晚时间
 		Date availbleEndTime = calendar.getTime();
 		// 如果预订时间不在未来一周内，返回null
 		if (!(vo.beginDate.compareTo(today) >= 0 && vo.beginDate.compareTo(vo.finishDate) <= 0
@@ -129,6 +134,10 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 				calendar.setTime(today);
 				calendar.add(Calendar.DATE, i);// +1今天的时间加一天
 				day = calendar.getTime();
+				//获得当天的空房数量
+				int originalRoomNum=roomDAO.getSpareRoomInfo(roomvo.address, roomvo.roomType, day).getRoomNum();
+				int finalRoomNum=originalRoomNum+roomvo.roomNum;
+				roomvo.roomNum=finalRoomNum;
 				roomDAO.updateRoom(toPO(roomvo), day);
 			}
 		} else {
@@ -184,19 +193,31 @@ public class RoomInfoServiceImpl implements RoomInfoService {
 		return spareRoomVOs;
 	}
 
-	private RoomVO toVO(RoomPO roomPO) {
-		return new RoomVO(roomPO.getRoomType(), roomPO.getRoomNum(), roomPO.getRoomPrice(), roomPO.getAddress());
-	}
-
-	private RoomPO toPO(RoomVO roomVO) {
-		return new RoomPO(roomVO.roomType, roomVO.roomNum, roomVO.roomPrice, roomVO.address);
-	}
-
 	@Override
 	public ResultMessage checkOrder(String hotelAddress, RoomType roomType, int num, Date beginDate, Date finishDate)
 			throws RemoteException {
 		OrderVO orderVO = new OrderVO("", "", "", hotelAddress, beginDate, finishDate, roomType, num, 0,
 				OrderState.ABNORMAL_ORDER, new Date(), new Date(), 0, false, true, false);
 		return checkOrder(orderVO);
+	}
+	
+	/**
+	 * 把roomPO转化成roomVO
+	 * @param roomPO
+	 * @return
+	 * @see
+	 */
+	private RoomVO toVO(RoomPO roomPO) {
+	    return new RoomVO(roomPO.getRoomType(), roomPO.getRoomNum(), roomPO.getRoomPrice(), roomPO.getAddress());
+	}
+	
+	/**
+	 * 把roomVO转化成roomPO
+	 * @param roomVO
+	 * @return
+	 * @see
+	 */
+	private RoomPO toPO(RoomVO roomVO) {
+	    return new RoomPO(roomVO.roomType, roomVO.roomNum, roomVO.roomPrice, roomVO.address);
 	}
 }

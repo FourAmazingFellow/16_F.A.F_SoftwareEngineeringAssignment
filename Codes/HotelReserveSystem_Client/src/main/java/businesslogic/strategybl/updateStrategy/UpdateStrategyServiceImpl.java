@@ -16,7 +16,7 @@ import po.StrategyType;
 import vo.StrategyVO;
 
 /**
- * 
+ * 负责实现界面层管理酒店促销策略和网站营销策略所需要的服务
  * @author 双
  * @version 
  * @see
@@ -148,7 +148,10 @@ public class UpdateStrategyServiceImpl implements UpdateStrategyService{
     public boolean verifyTradeArea(String city, StrategyVO strategyVO) throws WrongInputException, RemoteException {
         return strategyList.verifyTradeArea(city, strategyVO);
     }
-
+    
+    /**
+     * 得到某个城市的商圈列表
+     */
     @Override
     public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException {
         return hotelInfoService.getBusinessDistrictList(city);

@@ -21,7 +21,7 @@ import vo.HotelVO;
 import vo.RoomVO;
 
 /**
- * 
+ * 退房信息的Item类
  * @author 双
  * @version
  * @see
@@ -35,12 +35,14 @@ public class CheckOutItem {
 
 	private RoomDAO checkOutDAO;
 	private RoomInfoService roomInfoService;
+	//同层其他模块提供同层调用的接口
 	private StrategyInfoService strategyInfoService;
 	private AvailableRoomService hotelInfoService;
 
 	private FactoryService factory;
 
 	public CheckOutItem() {
+	    //用工厂初始化DAO和同层接口
 		this.factory = new FactoryServiceImpl();
 		checkOutDAO = factory.getRoomDAO();
 		strategyInfoService = factory.createStrategyInfoService();
@@ -49,9 +51,8 @@ public class CheckOutItem {
 	}
 
 	/**
-	 * 
-	 * @param roomPO
-	 *            RoomPO型，退房信息
+	 * 用退房信息的PO构造该对象
+	 * @param roomPO RoomPO型，退房信息
 	 */
 	public CheckOutItem(RoomPO roomPO) {
 		this();
@@ -63,9 +64,8 @@ public class CheckOutItem {
 	}
 
 	/**
-	 * 
-	 * @param roomVO
-	 *            RoomVO型，退房信息
+	 * 用退房信息的VO构造该对象
+	 * @param roomVO  RoomVO型，退房信息
 	 */
 	public CheckOutItem(RoomVO roomVO) {
 		this();
@@ -78,9 +78,7 @@ public class CheckOutItem {
 
 	/**
 	 * 增加退房信息
-	 * 
-	 * @param address
-	 *            string型，酒店地址
+	 * @param address string型，酒店地址
 	 * @return
 	 * @throws RemoteException
 	 * @see
@@ -93,7 +91,7 @@ public class CheckOutItem {
 			e.printStackTrace();
 			return false;
 		}
-		// 更新空房信息
+		// 更新空房信息，在当天的空房列表中增加相应房间数
 		Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
@@ -108,9 +106,8 @@ public class CheckOutItem {
 
 	/**
 	 * 判断该退房信息是否有效
-	 * 
 	 * @return 返回是否退房信息有效
-	 * @throws WrongInputException
+	 * @throws WrongInputException 当退房信息有误时抛出异常
 	 * @throws RemoteException
 	 * @see
 	 */
@@ -168,8 +165,7 @@ public class CheckOutItem {
 	}
 
 	/**
-	 * 转成checkInOutVO类型
-	 * 
+	 * CheckInItem转成checkInOutVO类型
 	 * @return RoomVO型，包含了退房信息
 	 * @see
 	 */

@@ -9,6 +9,12 @@ import javafx.beans.property.StringProperty;
 import po.RoomType;
 import vo.CheckOutVO;
 
+/**
+ * 退房信息的模型类
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckOut {
     
     private final StringProperty roomType;

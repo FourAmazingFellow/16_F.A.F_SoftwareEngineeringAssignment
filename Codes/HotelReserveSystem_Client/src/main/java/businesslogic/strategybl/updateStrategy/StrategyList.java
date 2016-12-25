@@ -16,7 +16,7 @@ import po.StrategyType;
 import vo.StrategyVO;
 
 /**
- * 
+ * 策略的列表类
  * @author 双
  * @version
  * @see
@@ -35,15 +35,18 @@ public class StrategyList {
     private ArrayList<StrategyItem> vipTradeAreaMarketList;
     private HashMap<StrategyType, ArrayList<StrategyItem>> allStrategyList;
 
+    //使用单件模式，这是StrategyList类的引用
     private static StrategyList strategyList;
     private String address;
     
     private FactoryService factoryService;
 
     protected StrategyList(String address) {
+        //用工厂初始化DAO
         this.address = address;
         factoryService = new FactoryServiceImpl();
         strategyDAO = factoryService.getStrategyDAO();
+        //得到每种策略类型的策略列表
         birthdatyPromotionList = getStrategyList(address, StrategyType.BirthdayPromotion);
         multiRoomPromotionList = getStrategyList(address, StrategyType.MultiRoomPromotion);
         memberRankMarketList = getStrategyList(address, StrategyType.MemberRankMarket);
@@ -62,6 +65,12 @@ public class StrategyList {
 
     }
 
+    /**
+     * 单件模式下得到该类的引用的方法
+     * @param address
+     * @return
+     * @see
+     */
     public static StrategyList getInstance(String address) {
         if (strategyList == null) {
             strategyList = new StrategyList(address);
@@ -78,11 +87,8 @@ public class StrategyList {
 
     /**
      * 得到某种策略类型的列表
-     * 
-     * @param address
-     *            string型，酒店地址
-     * @param StrategyType
-     *            枚举类，策略类型
+     * @param address string型，酒店地址
+     * @param StrategyType 枚举类，策略类型
      * @return 返回策略列表
      * @see
      */

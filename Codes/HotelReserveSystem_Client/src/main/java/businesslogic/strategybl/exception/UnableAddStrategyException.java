@@ -1,5 +1,11 @@
 package businesslogic.strategybl.exception;
 
+/**
+ * 当无法添加策略时抛出该异常
+ * @author 双
+ * @version 
+ * @see
+ */
 public class UnableAddStrategyException extends Exception{
 
     /**

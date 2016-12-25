@@ -10,7 +10,7 @@ import po.RoomPO;
 import po.RoomType;
 
 /**
- * SpareRoomItemList的实现类
+ * SpareRoomList的Mock类
  * @author 双
  * @version 
  * @see
