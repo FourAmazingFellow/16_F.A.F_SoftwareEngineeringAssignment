@@ -12,13 +12,13 @@ public class CommentableOrderList {
 	private OrderInfo orderInfo;
 	private String userID;
 	private FactoryService factory;
-	
+
 	public CommentableOrderList(String userID) {
 		this.userID = userID;
 		this.factory = new FactoryServiceImpl();
 		this.orderInfo = factory.createOrderInfo();
 	}
-	
+
 	public ArrayList<OrderVO> getCommentableOrderList() throws RemoteException {
 		return orderInfo.getCommentableOrderList(userID);
 	}

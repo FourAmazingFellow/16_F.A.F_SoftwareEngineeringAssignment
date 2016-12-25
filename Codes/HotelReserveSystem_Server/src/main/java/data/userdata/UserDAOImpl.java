@@ -298,16 +298,6 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
-			String sql = null;
-			sql = "update client set userID = ?, password = ?, telNum = ?, creditValue = ? where userID = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, clientInfoPO.getUserID());
-			pstmt.setString(2, SecurityTransform.encrypt(clientInfoPO.getpassword()));
-			pstmt.setString(3, clientInfoPO.getTelNum());
-			pstmt.setInt(4, clientInfoPO.getCreditValue());
-			pstmt.setString(5, oldUserID);
-			pstmt.executeUpdate();
-			
 			//删除原来的信用记录
 			pstmt_DeleteOldCreditRecord = conn.prepareStatement("delete from creditrecord where userID = ?");
 			pstmt_DeleteOldCreditRecord.setString(1, oldUserID);
@@ -318,7 +308,7 @@ public class UserDAOImpl implements UserDAO {
 			ArrayList<CreditRecordPO> creditRecordPOs = clientInfoPO.getCreditRecord();
 			if(creditRecordPOs != null){
 				for(CreditRecordPO creditRecordPO : creditRecordPOs) {
-					pstmt_UpdateCreditRecord.setString(1, clientInfoPO.getUserID());
+					pstmt_UpdateCreditRecord.setString(1, oldUserID);
 					pstmt_UpdateCreditRecord.setDate(2, creditRecordPO.getChangeTime());
 					pstmt_UpdateCreditRecord.setInt(3, Integer.parseInt(creditRecordPO.getOrderID()));
 					pstmt_UpdateCreditRecord.setInt(4, convertFromActionTypeToInt(creditRecordPO.getAction()));
@@ -327,6 +317,18 @@ public class UserDAOImpl implements UserDAO {
 					pstmt_UpdateCreditRecord.executeUpdate();
 				}
 			}
+			
+			//更新用户的信息
+			String sql = null;
+			sql = "update client set userID = ?, password = ?, telNum = ?, creditValue = ? where userID = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, clientInfoPO.getUserID());
+			pstmt.setString(2, SecurityTransform.encrypt(clientInfoPO.getpassword()));
+			pstmt.setString(3, clientInfoPO.getTelNum());
+			pstmt.setInt(4, clientInfoPO.getCreditValue());
+			pstmt.setString(5, oldUserID);
+			pstmt.executeUpdate();
+			
 			return true;
 		} catch(SQLException e) {
 			e.printStackTrace();

@@ -1,12 +1,14 @@
 package businesslogic.userbl.modifyClientInfo;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import businesslogicservice.userblservice.ModifyClientInfoService;
 import dataservice.userDAO.UserDAO;
 import factory.FactoryService;
 import factory.FactoryServiceImpl;
 import po.ClientInfoPO;
+import po.CreditRecordPO;
 import po.EnterpriseVipPO;
 import po.RegularVipPO;
 import po.UserType;
@@ -63,9 +65,10 @@ public class ModifyClientInfoServiceImpl implements ModifyClientInfoService {
 	@Override
 	public boolean modifyClientInfo(UserVO user, String oldUserID) throws RemoteException {
 		this.clientInfoVO = getClientInfo(oldUserID);
-		ClientInfoVO modified = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client,
-				clientInfoVO.creditValue, clientInfoVO.creditRecord);
-		boolean result = userDAO.updateClient(new ClientInfoPO(modified), oldUserID);
+		ArrayList<CreditRecordPO> creditRecords = userDAO.queryCreditRecord(oldUserID);
+		ClientInfoPO modified = new ClientInfoPO(user.userID, user.password, user.telNum, UserType.Client,
+				clientInfoVO.creditValue, creditRecords);
+		boolean result = userDAO.updateClient(modified, oldUserID);
 		return result;
 	}
 

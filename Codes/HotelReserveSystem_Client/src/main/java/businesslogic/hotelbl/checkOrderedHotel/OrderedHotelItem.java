@@ -11,22 +11,21 @@ public class OrderedHotelItem {
 	private HotelDAO hotelDAO;
 	private String hotelAddress;
 	private FactoryService factory;
-	
+
 	public void setHotelDAO(HotelDAO hotelDAO) {
 		this.hotelDAO = hotelDAO;
 	}
-	
+
 	public OrderedHotelItem(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
 		this.factory = new FactoryServiceImpl();
 		this.setHotelDAO(factory.getHotelDAO());
 	}
-	
+
 	public BriefHotelInfoVO getBriefHotelInfo() throws RemoteException {
-		if(hotelDAO.getHotelBriefInfo(hotelAddress) != null) {
+		if (hotelDAO.getHotelBriefInfo(hotelAddress) != null) {
 			return new BriefHotelInfoVO(hotelDAO.getHotelBriefInfo(hotelAddress));
-		}
-		else
+		} else
 			return null;
 	}
 }

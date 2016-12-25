@@ -17,27 +17,28 @@ public class OrderedHotelList {
 	private ArrayList<BriefOrderInfoVO> orderInfoList;
 	private OrderedHotelItem hotelItem;
 	private String userID;
-	
+
 	private FactoryService factory;
-	
+
 	public OrderedHotelList(String userID) throws RemoteException {
 		this.userID = userID;
 		this.factory = new FactoryServiceImpl();
 		this.orderInfo = factory.createOrderInfo();
 		this.orderInfoList = orderInfo.getReservedOrderList(this.userID);
 	}
-	
+
 	/**
 	 * 获得地址不重复的订单列表
+	 * 
 	 * @param orderInfoList
 	 * @return
 	 * @see
 	 */
 	private ArrayList<BriefOrderInfoVO> getAddress() {
 		ArrayList<BriefOrderInfoVO> hotelList = new ArrayList<>(orderInfoList);
-		for(int i = 0; i < hotelList.size(); i++) {
-			for(int j = i + 1; j < hotelList.size(); j++) {
-				if(hotelList.get(i).hotelAddress.equals(hotelList.get(j).hotelAddress)) {
+		for (int i = 0; i < hotelList.size(); i++) {
+			for (int j = i + 1; j < hotelList.size(); j++) {
+				if (hotelList.get(i).hotelAddress.equals(hotelList.get(j).hotelAddress)) {
 					hotelList.remove(j);
 					j--;
 				}
@@ -45,32 +46,31 @@ public class OrderedHotelList {
 		}
 		return hotelList;
 	}
-	
+
 	/**
 	 * 获得该用户在该酒店的所有订单类型
+	 * 
 	 * @param hotelAddress
 	 * @return
 	 * @see
 	 */
 	private Set<Enum<OrderState>> getStates(String hotelAddress) {
 		Set<Enum<OrderState>> hotelState = new HashSet<>();
-		for(BriefOrderInfoVO orderInfoVO : orderInfoList) {
-			if(orderInfoVO.hotelAddress.equals(hotelAddress)) {
+		for (BriefOrderInfoVO orderInfoVO : orderInfoList) {
+			if (orderInfoVO.hotelAddress.equals(hotelAddress)) {
 				hotelState.add(orderInfoVO.orderState);
 			}
 		}
 		return hotelState;
 	}
-	
+
 	public ArrayList<OrderedHotelInfoVO> enrollHotelBreifInfoList() throws RemoteException {
 		ArrayList<BriefOrderInfoVO> hotelList = this.getAddress();
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
-		for(BriefOrderInfoVO orderInfoVO : hotelList) {
+		for (BriefOrderInfoVO orderInfoVO : hotelList) {
 			hotelItem = new OrderedHotelItem(orderInfoVO.hotelAddress);
 			result.add(new OrderedHotelInfoVO(hotelItem.getBriefHotelInfo(), this.getStates(orderInfoVO.hotelAddress)));
 		}
 		return result;
 	}
 }
-
-
