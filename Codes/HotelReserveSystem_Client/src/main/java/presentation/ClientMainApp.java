@@ -43,16 +43,6 @@ public class ClientMainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-//		ClientRunner clientRunner = new ClientRunner();
-//		try {
-//			clientRunner.start();
-//		} catch (RemoteException e) {
-//			Alert alert = new Alert(AlertType.WARNING);
-//			alert.setTitle("NetWork Warning");
-//			alert.setHeaderText("Fail to connect with the server!");
-//			alert.setContentText("Please check your network connection!");
-//			alert.showAndWait();
-//		}
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
