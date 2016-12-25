@@ -52,12 +52,12 @@ public class HotelInfoServiceImpl_Stub implements HotelInfoService {
 	
 	@Override
 	public BriefHotelInfoVO getHotelBriefInfo(String address) {
-		return new BriefHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city);
+		return new BriefHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, 100, 500);
 	}
 
 	@Override
 	public HotelVO getHotelDetails(String address) {
-		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, 100, 500, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
     @Override

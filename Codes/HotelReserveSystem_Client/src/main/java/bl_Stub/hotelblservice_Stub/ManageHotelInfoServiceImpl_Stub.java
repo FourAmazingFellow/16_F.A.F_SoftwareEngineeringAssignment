@@ -76,7 +76,7 @@ public class ManageHotelInfoServiceImpl_Stub implements ManageHotelInfoService {
 		this.comments = new HashMap<>();
 		comments.put("原", "这是我住过最舒服的酒店！！！！！");
 		
-		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		return new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, 100, 500, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 }

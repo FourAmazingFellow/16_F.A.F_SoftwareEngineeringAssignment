@@ -73,7 +73,7 @@ public class MaintainHotelBasicInfoServiceImplTest {
 		comments.put("Superman", "舒服的我都不想飞走了");
 		comments.put("Slow_Time", "隔音效果有点差");
 		this.comments = comments;
-		modified = new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		modified = new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, 100, 500, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		modified.min_Price = min_Price;
 	}
 

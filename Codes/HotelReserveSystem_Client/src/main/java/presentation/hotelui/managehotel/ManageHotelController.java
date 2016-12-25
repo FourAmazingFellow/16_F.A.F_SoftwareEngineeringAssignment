@@ -333,7 +333,7 @@ public class ManageHotelController {
 			return;
 		}
 		this.newHotel = null;
-		this.newHotel = new HotelVO(hotelNameNew,tradeArea, hotelAddress , 0, 0, city, "", "", hash1, hash2, hash3);
+		this.newHotel = new HotelVO(hotelNameNew,tradeArea, hotelAddress , 0, 0, city, 100000, 100000, "", "", hash1, hash2, hash3);
 		boolean result1 = false;
 		try {
 			result1 = manageHotel.addHotel(newHotel);

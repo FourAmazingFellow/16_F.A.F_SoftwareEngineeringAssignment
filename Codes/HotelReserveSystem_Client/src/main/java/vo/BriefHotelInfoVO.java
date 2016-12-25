@@ -29,13 +29,15 @@ public class BriefHotelInfoVO{
         this.max_Price = briefHotelInfoPO.getMax_Price();
     }
     
-    public BriefHotelInfoVO(String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city) {
+    public BriefHotelInfoVO(String hotelName, String tradeArea, String hotelAddress, int starLevel, float mark, String city, int min_Price, int max_Price) {
         this.hotelName = hotelName;
         this.tradeArea = tradeArea;
         this.hotelAddress = hotelAddress;
         this.starLevel = starLevel;
         this.mark = mark;
         this.city = city;
+        this.min_Price = min_Price;
+        this.max_Price = max_Price;
     }
 }
 

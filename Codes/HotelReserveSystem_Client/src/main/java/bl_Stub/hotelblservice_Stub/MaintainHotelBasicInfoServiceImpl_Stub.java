@@ -37,7 +37,7 @@ public class MaintainHotelBasicInfoServiceImpl_Stub implements MaintainHotelBasi
 	}
 	@Override
 	public HotelVO enrollHotelBasicInfo(String address) {
-		return new HotelVO(hotelName, tradeArea, address, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		return new HotelVO(hotelName, tradeArea, address, starLevel, mark, city, 100, 500, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 	}
 
 	@Override

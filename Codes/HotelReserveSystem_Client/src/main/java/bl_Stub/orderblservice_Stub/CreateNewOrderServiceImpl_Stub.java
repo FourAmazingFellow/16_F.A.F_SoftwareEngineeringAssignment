@@ -28,7 +28,7 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 		testBriefOrderInfoVO = new BriefOrderInfoVO(userID, orID, hN, hA, bD, fD, rT, n, tP, orderS);
 		testOrderVO = new OrderVO(userID, orID, hN, hA, bD, fD, rT, n, tP ,orderS, oPT, lODT, nOP, isChild, isOnSale, isCom);
 		this.resultMessage = resultMessage;
-		testBriefHotelInfoVO = new BriefHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city);
+		testBriefHotelInfoVO = new BriefHotelInfoVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, 100, 500);
 		testRoomVO = new RoomVO(roomType, roomNum, roomPrice, address);
 	}
 	

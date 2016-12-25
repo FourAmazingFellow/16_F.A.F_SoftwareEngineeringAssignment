@@ -126,7 +126,7 @@ public class EditHotelInfoController {
 
 			this.modified = null;
 			this.modified = new HotelVO(hotelVO.hotelName, hotelVO.tradeArea, hotelVO.hotelAddress, hotelStarm,
-					hotelVO.mark, hotelVO.city, briefIntrom, servicem, hotelVO.roomTypeAndPrice,
+					hotelVO.mark, hotelVO.city, hotelVO.min_Price, hotelVO.max_Price, briefIntrom, servicem, hotelVO.roomTypeAndPrice,
 					hotelVO.roomTypeAndNums, hotelVO.comments);
 			boolean result = false;
 			try {

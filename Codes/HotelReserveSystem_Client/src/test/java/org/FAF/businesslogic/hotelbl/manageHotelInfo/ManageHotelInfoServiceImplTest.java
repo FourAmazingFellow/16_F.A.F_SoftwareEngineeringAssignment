@@ -77,7 +77,7 @@ public class ManageHotelInfoServiceImplTest {
 		HashMap<String, String> comments = new HashMap<>();
 		comments.put("原", "环境一流，服务贴心");
 		this.comments = comments;
-		hotelVO = new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+		hotelVO = new HotelVO(hotelName, tradeArea, hotelAddress, starLevel, mark, city, 100, 500, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
 		hotelVO.min_Price = min_Price;
 		this.hotelStaff = new HotelStaffInfoVO("Accident", "123456789", "13655255834", UserType.HotelStaff, "江苏省南京市栖霞区仙林大道163号");
 	}
