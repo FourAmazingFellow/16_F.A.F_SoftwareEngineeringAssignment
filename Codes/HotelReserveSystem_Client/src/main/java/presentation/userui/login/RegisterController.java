@@ -17,7 +17,7 @@ public class RegisterController {
 	@SuppressWarnings("unused")
 	private LoginAndSignUpService register;
 	private UserUIFactoryService userFactory;
-	private JudgeFormat judge;
+	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
 	private PasswordField r_passwordCofirmArea;
