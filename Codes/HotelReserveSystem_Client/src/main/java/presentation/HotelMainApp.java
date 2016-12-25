@@ -50,6 +50,12 @@ public class HotelMainApp extends Application {
         this.mainApp = mainApp;
     }
 
+	public void logOut(){
+	    HotelMainApp.userId="";
+	    HotelMainApp.hotelAddress="";
+	    mainApp.showLoginView();
+	}
+	
 	@Override
 	public void start(Stage primaryStage) {
 		clientRunner = new ClientRunner();
@@ -101,7 +107,6 @@ public class HotelMainApp extends Application {
 			HotelRootBoardController controller = loader.getController();
 			controller.setMainApp(this);
 			controller.setUserId(userId);
-			controller.setLoginMainApp(mainApp);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -27,12 +27,6 @@ public class HotelRootBoardController {
     
     private String userId;
     private HotelMainApp mainApp;
-    private MainApp loginMainApp;
-    
-    public void setLoginMainApp(MainApp loginMainApp){
-        this.loginMainApp=loginMainApp;
-    }
-    
     
     public void setMainApp(HotelMainApp mainApp) {
         this.mainApp = mainApp;
@@ -84,7 +78,7 @@ public class HotelRootBoardController {
         //关闭酒店工作人员界面
         mainApp.getPrimaryStage().close();
         //打开登录界面
-        loginMainApp.showLoginView();
+        mainApp.logOut();
     }
     
     @FXML
