@@ -24,8 +24,9 @@ public class OrderTerminator {
 		userCreditService = factory.createClientCreditInfoService();
 	}
 	
+	
 	public boolean getOrderDone(OrderVO vo) throws RemoteException {
-		// TODO Codes 将该订单改为已执行状态，然后为该客户增加与订单价值等额的信用值
+		// 将该订单改为已执行状态，然后为该客户增加与订单价值等额的信用值
 		if(vo == null)
 			return false;
 		VO2PO transformer = new VO2PO();
@@ -39,7 +40,7 @@ public class OrderTerminator {
 	}
 	
 	public boolean delayCheckIn(OrderVO vo){
-		// TODO Codes 将该订单置为已执行订单，恢复扣除的信用值
+		//将该订单置为已执行订单，恢复扣除的信用值
 		if(vo == null)
 			return false;
 		VO2PO transformer = new VO2PO();
@@ -51,7 +52,6 @@ public class OrderTerminator {
 			else
 				return false;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;

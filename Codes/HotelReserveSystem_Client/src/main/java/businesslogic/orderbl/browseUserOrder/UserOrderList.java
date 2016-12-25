@@ -39,6 +39,13 @@ public class UserOrderList {
 		return briefUserOrderlist;
 	}
 	
+	/**
+	 * 得到对应订单的订单详情
+	 * @param orderID String类型
+	 * @return 对应订单的订单详情
+	 * @throws RemoteException
+	 * @see
+	 */
 	public OrderVO getDetailedOrder(String orderID) throws RemoteException {
 		detailedOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
 		return detailedOrder;

@@ -154,9 +154,9 @@ public class SearchDetailsPanelController {
 				setDistrictChoiceBox(cityList.get((int) (newValue)));
 				
 				//立即显示出新的搜索条件下的搜索结果
-//				conditions[0] = cityChoiceBox.getItems().get((int)newValue);
-//				conditions[1] = districtChoiceBox.getItems().get(0);
-//				showNewResult();
+				conditions[0] = cityList.get((int) (newValue));
+				conditions[1] = districtChoiceBox.getItems().get(0);
+				showNewResult();
 			}
 		});
 		
@@ -165,7 +165,10 @@ public class SearchDetailsPanelController {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				//立即显示出新的搜索条件下的搜索结果
-//				showNewResult();
+				if(districList != null) { 
+					conditions[1] = districList.get((int)newValue);
+					showNewResult();
+				}
 			}
 		});
 
@@ -240,6 +243,7 @@ public class SearchDetailsPanelController {
 		this.conditions = _conditions;
 	}
 
+	
 	public void showSearchResult() {
 		cityChoiceBox.setValue(conditions[0]);
 		setDistrictChoiceBox(conditions[0]);
@@ -288,13 +292,39 @@ public class SearchDetailsPanelController {
 		}
 	}
 
+	
+	//显示新的搜素条件下的新的搜索结果
 	@FXML
 	private void showNewResult() {
-		conditions[0] = cityChoiceBox.getValue();
-		conditions[1] = districtChoiceBox.getValue();
 		conditions[12] = getDate(beginDatePicker.getValue());
 		conditions[13] = getDate(finishDatePicker.getValue());
-		showSearchResult();
+		
+		ArrayList<OrderedHotelInfoVO> list;
+		try {
+			list = searchHotelService.getHotelBriefInfoListBySearching(conditions);
+			BriHotelVO2Fx trans = new BriHotelVO2Fx();
+			briefFxHotelList = FXCollections.observableArrayList();
+
+			for (OrderedHotelInfoVO vo : list) {
+				briefFxHotelList.add(trans.trans(vo));
+			}
+
+			hotelTableView.setItems(briefFxHotelList);
+
+			hotelNameCol.setCellValueFactory(cellData -> cellData.getValue().getHotelName());
+			hotelAddressCol.setCellValueFactory(cellData -> cellData.getValue().getHotelAddress());
+			markCol.setCellValueFactory(cellData -> cellData.getValue().getMark());
+			starLevelCol.setCellValueFactory(cellData -> cellData.getValue().getStarLevel());
+			minPriceCol.setCellValueFactory(cellData -> cellData.getValue().getMinPrice());
+			tradeAreaCol.setCellValueFactory(cellData -> cellData.getValue().getTradeArea());
+			orderTypesCol.setCellValueFactory(cellData -> cellData.getValue().getOrderTypes());
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 	}
 	
 	@FXML

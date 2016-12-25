@@ -32,6 +32,13 @@ public class AbnormalOrderList {
 		return abnormalOrderList;
 	}
 
+	/**
+	 * 得到订单号对应的订单详情（检查是否真的为异常订单）
+	 * @param orderID
+	 * @return 该订单号对应的VO，若不为异常订单，则返回null
+	 * @throws RemoteException
+	 * @see
+	 */
 	public OrderVO getDetailedOrder(String orderID) throws RemoteException {
 		detailedAbnormalOrder = poTransformer.orderPO2VO(orderDaoService.getDetailedOrder(orderID));
 
@@ -39,7 +46,7 @@ public class AbnormalOrderList {
 		if(detailedAbnormalOrder.orderState == OrderState.ABNORMAL_ORDER)
 			return detailedAbnormalOrder;
 		else{
-			System.out.println("所求订单号不是异常订单");
+			//所求订单号不是异常订单
 			return null;
 		}
 	}
