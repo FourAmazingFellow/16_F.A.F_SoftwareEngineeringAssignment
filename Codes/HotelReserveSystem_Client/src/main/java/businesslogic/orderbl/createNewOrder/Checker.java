@@ -30,7 +30,7 @@ public class Checker {
 	 */
 	public boolean canUserCreateNewOrder(String userID) throws RemoteException {
 		int credit = clientCreditGetter.getCreditValue(userID);
-		if (credit <= 0) {
+		if (credit < 0) {
 			return false;
 		} else
 			return true;
