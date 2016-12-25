@@ -84,6 +84,7 @@ public class HotelDAOImpl implements HotelDAO {
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
 				briefHotelInfoPO.setCity(rs.getString("city"));
 				briefHotelInfoPO.setMin_Price(rs.getInt("min_Price"));
+				briefHotelInfoPO.setMax_Price(rs.getInt("max_Price"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -143,6 +144,7 @@ public class HotelDAOImpl implements HotelDAO {
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
 				briefHotelInfoPO.setCity(rs.getString("city"));
 				briefHotelInfoPO.setMin_Price(rs.getInt("min_Price"));
+				briefHotelInfoPO.setMax_Price(rs.getInt("max_Price"));
 				briefHotelInfoPOs.add(briefHotelInfoPO);
 			}
 		} catch(SQLException e) {
@@ -195,6 +197,7 @@ public class HotelDAOImpl implements HotelDAO {
 				briefHotelInfoPO.setMark(rs.getFloat("mark"));
 				briefHotelInfoPO.setCity(rs.getString("city"));
 				briefHotelInfoPO.setMin_Price(rs.getInt("min_Price"));
+				briefHotelInfoPO.setMax_Price(rs.getInt("max_Price"));
 				briefHotelInfoPOs.add(briefHotelInfoPO);
 			}
 		} catch(SQLException e) {
@@ -255,6 +258,7 @@ public class HotelDAOImpl implements HotelDAO {
 				hotelPO.setMark(rs_Hotel.getFloat("mark"));
 				hotelPO.setCity(rs_Hotel.getString("city"));
 				hotelPO.setMin_Price(rs_Hotel.getInt("min_Price"));
+				hotelPO.setMax_Price(rs_Hotel.getInt("max_Price"));
 				hotelPO.setBriefIntroduction(rs_Hotel.getString("briefIntroduction"));
 				hotelPO.setFacilityAndService(rs_Hotel.getString("facilityAndService"));
 				
@@ -375,7 +379,7 @@ public class HotelDAOImpl implements HotelDAO {
 			//初始化数据库连接
 			conn = JDBC_Connection.getConnection();
 			//插入酒店信息
-			String sql_Hotel = "insert into hotel(hotelName, tradeArea, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city, min_Price) values(?,?,?,?,?,?,?,?,?)";
+			String sql_Hotel = "insert into hotel(hotelName, tradeArea, hotelAddress, starLevel, mark, briefIntroduction, facilityAndService, city, min_Price, max_Price) values(?,?,?,?,?,?,?,?,?,?)";
 			pstm_Hotel = conn.prepareStatement(sql_Hotel);
 			pstm_Hotel.setString(1, po.getHotelName());
 			pstm_Hotel.setString(2, po.getTradeArea());
@@ -386,6 +390,7 @@ public class HotelDAOImpl implements HotelDAO {
 			pstm_Hotel.setString(7, po.getFacilityAndService());
 			pstm_Hotel.setString(8, po.getCity());
 			pstm_Hotel.setInt(9, po.getMin_Price());
+			pstm_Hotel.setInt(10, po.getMax_Price());
 			pstm_Hotel.executeUpdate();
 			
 			//插入酒店房间信息
