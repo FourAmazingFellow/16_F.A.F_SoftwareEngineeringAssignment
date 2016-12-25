@@ -10,6 +10,8 @@ import businesslogicservice.orderblservice.CreateNewOrderService;
 import businesslogicservice.orderblservice.ResultMessage;
 import factory.OrderUIFactoryService;
 import factory.OrderUIFactoryServiceImpl;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -118,6 +120,18 @@ public class CreateOrderPanelController {
 
 		numChoicer.setItems(FXCollections.observableArrayList(1, 2, 3, 4));
 		numChoicer.setValue(1);
+		numChoicer.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {				
+				newOrderVO.num = (int)newValue + 1;		
+				try {
+					strategyNameChoicer.setItems(FXCollections.observableArrayList("自动", newOrderCreater.getAvailbleMarketStrategyName(newOrderVO), newOrderCreater.getAvailbleMarketStrategyName(newOrderVO)));
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+				strategyNameChoicer.setValue("自动");
+			}
+		});
 
 		latestOrderDoneTimeChoicer.setItems(FXCollections.observableArrayList("16:00", "19:00", "22:00"));
 		latestOrderDoneTimeChoicer.setValue("16:00");
@@ -128,8 +142,7 @@ public class CreateOrderPanelController {
 		isChildrenChoicer.setItems(FXCollections.observableArrayList("否", "是"));
 		isChildrenChoicer.setValue("否");
 		
-		strategyNameChoicer.setItems(FXCollections.observableArrayList("自动"));
-		strategyNameChoicer.setValue("自动");
+		setStrategy();
 	}
 
 	public void createAction() {
@@ -193,6 +206,7 @@ public class CreateOrderPanelController {
 		};
 		finishDatePicker.setDayCellFactory(dayCellFactory);
 		finishDatePicker.setValue(beginDatePicker.getValue().plusDays(1));
+		setStrategy();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -299,5 +313,24 @@ public class CreateOrderPanelController {
 		int day2 = aCalendar.get(Calendar.DAY_OF_YEAR);
 
 		return day2 - day1;
+	}
+	
+	@FXML
+	private void setStrategy() {
+		newOrderVO.beginDate = getDate(beginDatePicker.getValue());
+		newOrderVO.finishDate = getDate(finishDatePicker.getValue());
+		newOrderVO.isChildren = getTF(isChildrenChoicer.getValue());
+		newOrderVO.lastedOrderDoneTime = getLastedDoneTime(newOrderVO.beginDate, latestOrderDoneTimeChoicer.getValue());
+		newOrderVO.num = numChoicer.getValue();
+		newOrderVO.numOfPerson = numOfPersonChoicer.getValue();
+		newOrderVO.orderProducedTime = new Date();
+		newOrderVO.roomType = RoomType.chinToEnum(roomTypeChoicer.getValue());
+		
+		try {
+			strategyNameChoicer.setItems(FXCollections.observableArrayList("自动", newOrderCreater.getAvailbleMarketStrategyName(newOrderVO), newOrderCreater.getAvailbleMarketStrategyName(newOrderVO)));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		strategyNameChoicer.setValue("自动");
 	}
 }

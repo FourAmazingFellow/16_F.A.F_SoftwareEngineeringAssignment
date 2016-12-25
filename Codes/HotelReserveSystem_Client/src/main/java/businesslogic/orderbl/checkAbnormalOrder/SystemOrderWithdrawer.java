@@ -59,7 +59,7 @@ public class SystemOrderWithdrawer {
 		return false;
 	}
 
-	// 下面是该类的各种私有方法, 要用到orderDaoService, userCreditService, addSpareRoomService
+	// 下面是该类的各种私有方法, 要用到orderDaoService, userCreditService
 
 	/**
 	 * 

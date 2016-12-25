@@ -71,8 +71,10 @@ public class BrowseUserOrderPanelController {
 	
 	@FXML
 	public void initialize() {
+		//设置订单类型的初始值
 		orderTypeChoiceBox.setItems(FXCollections.observableArrayList("全部订单", "异常订单", "未执行订单", "已执行订单","已撤销订单"));
 		orderTypeChoiceBox.setValue("全部订单");
+		//设置排序类型的初始值
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("订单生成时间","订单开始时间","价格"));
 		rankTypeChoiceBox.setValue("订单生成时间");
 		

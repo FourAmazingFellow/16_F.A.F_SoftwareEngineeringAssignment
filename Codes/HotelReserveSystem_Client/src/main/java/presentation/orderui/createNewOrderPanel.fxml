@@ -37,7 +37,7 @@
             <Label text="最晚订单执行时间 :" GridPane.rowIndex="6" />
             <Label text="预计入住人数 :" GridPane.rowIndex="7" />
             <Label text="有无小孩 :" GridPane.rowIndex="8" />
-            <DatePicker fx:id="finishDatePicker" prefHeight="41.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="finishDatePicker" onAction="#setStrategy" prefHeight="41.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="beginDatePicker" onAction="#dateFilter" prefHeight="41.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="hotelNameLabel" styleClass="label-bright" text="hotelName" GridPane.columnIndex="1" />
             <Label fx:id="hotelAddressLabel" styleClass="label-bright" text="hotelAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
