@@ -72,6 +72,7 @@ public class LoginController {
 			alert.setHeaderText("Fail to connect with the server!");
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
+			return;
 		}
 		boolean isValid = judge.isLetterDigitOrChinese(userID);
 		int userIDLength = judge.getStringLength(userID);
