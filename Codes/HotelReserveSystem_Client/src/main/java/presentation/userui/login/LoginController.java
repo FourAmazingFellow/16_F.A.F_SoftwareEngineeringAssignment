@@ -57,14 +57,13 @@ public class LoginController {
 
 	public void verifyLogin() {
 		this.userID = userIDTextArea.getText();
-		boolean isValid = false;
-		isValid = judge.isLetterDigitOrChinese(userID);
-		int userIDLength = 0;
-		userIDLength = judge.getStringLength(userID);
+		this.password = passwordTextArea.getText();
+		
+		boolean isValid = judge.isLetterDigitOrChinese(userID);
+		int userIDLength = judge.getStringLength(userID);
 		boolean isPasswordValid = judge.isLetterOrDigit(password);
 		int passwordLength = judge.getStringLength(password);
 
-		this.password = passwordTextArea.getText();
 		this.userType = null;
 		if (userID.equals("") || password.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
