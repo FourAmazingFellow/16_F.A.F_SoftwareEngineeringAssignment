@@ -9,14 +9,14 @@ import java.io.Serializable;
  * @see
  */
 public class RoomPO implements Serializable {
-    
+     
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -5728643889668217710L;
-	
-	
-	private Enum<RoomType> roomType;
+     * 
+     */
+    private static final long serialVersionUID = -5728643889668217710L;
+    
+    
+    private Enum<RoomType> roomType;
     private int roomNum;
     private int roomPrice;
     private String address;

@@ -2,6 +2,12 @@ package po;
 
 import java.util.Date;
 
+/**
+ * 入住信息的PO，负责持久化数据传输
+ * @author 双
+ * @version 
+ * @see
+ */
 public class CheckInPO extends RoomPO {
 
     /**
