@@ -98,17 +98,22 @@ public class ClientMainApp extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("orderui/createNewOrderPanel.fxml"));
-			AnchorPane searchPanel = (AnchorPane) loader.load();
-
-			clientRootLayout.setCenter(searchPanel);
+			AnchorPane createOrderPanel = (AnchorPane) loader.load();
 
 			// Give the controller access to the mainApp.
 			CreateOrderPanelController controller = loader.getController();
-
 			controller.setMainApp(this);
-			controller.initOrder(userID, hotelName, hotelAddress);
-
-			primaryStage.show();
+			if(controller.initOrder(userID, hotelName, hotelAddress)) {
+				clientRootLayout.setCenter(createOrderPanel);
+				primaryStage.show();
+			}				
+			else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("生成失败");
+				alert.setHeaderText("您的信用值不足，无法生成订单。");
+				alert.setContentText("请给您的信用值充值");
+				alert.showAndWait();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

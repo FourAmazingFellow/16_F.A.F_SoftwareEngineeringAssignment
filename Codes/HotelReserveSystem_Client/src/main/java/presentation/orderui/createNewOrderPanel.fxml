@@ -25,6 +25,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="酒店名称 :" />
@@ -45,6 +46,8 @@
             <ChoiceBox fx:id="numOfPersonChoicer" prefWidth="150.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <ChoiceBox fx:id="isChildrenChoicer" prefWidth="150.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <ChoiceBox fx:id="roomTypeChoicer" prefWidth="150.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="可用优惠策略 :" GridPane.rowIndex="9" />
+            <ChoiceBox fx:id="strategyNameChoicer" prefWidth="150.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
       <Button fx:id="returnButton" layoutX="323.0" layoutY="572.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="50.0" prefWidth="150.0" text="返回" />

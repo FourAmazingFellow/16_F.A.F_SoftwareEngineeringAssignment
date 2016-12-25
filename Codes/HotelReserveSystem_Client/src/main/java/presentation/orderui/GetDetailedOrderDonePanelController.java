@@ -82,21 +82,7 @@ public class GetDetailedOrderDonePanelController {
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
 		browseHotelOrderHelper = factory.createBrowseHotelOrderService();
-		// browseHotelOrderHelper = new
-		// BrowseHotelOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店",
-		// "仙林大道163号" ,new Date(116,10,16),
-		// new
-		// Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new
-		// Date(116,10,16,18,0),
-		// new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 		getOrderDoner = factory.createGetOrderDoneService();
-		// getOrderDoner = new
-		// GetOrderDoneServiceImpl_Stub("19970206","0000000000000003","仙林大酒店",
-		// "仙林大道163号" ,new Date(116,10,16),
-		// new
-		// Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new
-		// Date(116,10,16,18,0),
-		// new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
 	}
 
 	public void showDetailedOrderPanel(String orderID) {

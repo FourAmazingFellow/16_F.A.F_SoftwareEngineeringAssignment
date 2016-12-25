@@ -24,7 +24,7 @@ import presentation.userui.addcredit.AddCreditValueController;
 import runner.ClientRunner;
 
 public class WebsitePromotionMainApp extends Application {
-	public static String userID = "";
+	public static String userID = "wmstaff2";
 	
 	private Stage primaryStage;
 	private BorderPane websitePromotionRootLayout;

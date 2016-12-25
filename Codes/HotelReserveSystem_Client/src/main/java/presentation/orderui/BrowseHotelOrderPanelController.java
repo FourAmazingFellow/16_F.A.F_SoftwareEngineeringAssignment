@@ -27,6 +27,9 @@ public class BrowseHotelOrderPanelController {
 	private TableView<FxBriefOrder> hotelOrderTableView;
 
 	@FXML
+	private TableColumn<FxBriefOrder, String> userIDColumn;
+	
+	@FXML
 	private TableColumn<FxBriefOrder, String> numColumn;
 
 	@FXML
@@ -129,6 +132,7 @@ public class BrowseHotelOrderPanelController {
 
 		hotelOrderTableView.setItems(briefFxOrderList);
 
+		userIDColumn.setCellValueFactory(cellData -> cellData.getValue().getUserID());
 		hotelNameColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelName());
 		hotelAddressColumn.setCellValueFactory(cellData -> cellData.getValue().getHotelAddress());
 		beginDateColumn.setCellValueFactory(cellData -> cellData.getValue().getBeginDate());

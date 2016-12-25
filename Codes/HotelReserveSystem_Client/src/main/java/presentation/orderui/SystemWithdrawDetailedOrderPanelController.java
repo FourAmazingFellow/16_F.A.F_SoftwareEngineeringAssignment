@@ -1,6 +1,7 @@
 package presentation.orderui;
 
 import java.rmi.RemoteException;
+import java.util.Optional;
 
 import businesslogicservice.orderblservice.CheckAbnormalOrderService;
 import factory.OrderUIFactoryService;
@@ -8,6 +9,7 @@ import factory.OrderUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import po.OrderState;
@@ -81,9 +83,7 @@ public class SystemWithdrawDetailedOrderPanelController {
 		factory = new OrderUIFactoryServiceImpl();
 		
 		abnormalOrderChecker = factory.createBrowseAbnormalOrderService();
-//		abnormalOrderChecker = new CheckAbnormalOrderServiceImpl_Stub("19970206","0000000000000003","仙林大酒店", "仙林大道163号" ,new Date(116,10,16),
-//				new Date(116,10,17),RoomType.KING_SIZE_ROOM,1,100,OrderState.NOT_DONE_ORDER,new Date(116,10,16,18,0),
-//				new java.util.Date(116, 10, 16, 20, 0),2,false,true,false);
+		
 	}
 	
 	public void showDetailedOrderPanel(String orderID) throws RemoteException {
@@ -116,7 +116,24 @@ public class SystemWithdrawDetailedOrderPanelController {
 	
 	public void systemWithdraw(){
 		boolean isRecoverHalf = false;
-		//请操作人员选择要恢复信用值的全部或一半 TO-DO
+		
+		//请操作人员选择要恢复信用值的全部或一半
+		Alert conf = new Alert(AlertType.CONFIRMATION);
+		conf.setTitle("请求确认");
+		conf.setContentText("若要恢复信用值的全部请按\"全部\" \n 恢复一半请按\"一半\":");
+		ButtonType wholeButton = new ButtonType("全部");
+		ButtonType halfButton = new ButtonType("一半");
+		ButtonType cancelButton = new ButtonType("取消");
+		conf.getButtonTypes().setAll(wholeButton, halfButton, cancelButton);
+		Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
+		if (result.get() == wholeButton) {
+			isRecoverHalf = false;
+		}else if (result.get() == halfButton) {
+			isRecoverHalf = true;
+		}else if(result.get() == cancelButton) {
+			conf.close();
+			return;
+		}
 		if(abnormalOrderChecker.systemWithdrawOrder(currentOrderVO, isRecoverHalf)){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("操作成功");
@@ -169,7 +186,8 @@ public class SystemWithdrawDetailedOrderPanelController {
 		else
 			return "否";
 	}
-
+	
+	//给本Controller MainApp的引用，实现跳转逻辑
 	public void setMainApp(WebsitePromotionMainApp websitePromotionMainApp) {
 		this.mainApp = websitePromotionMainApp;
 	}

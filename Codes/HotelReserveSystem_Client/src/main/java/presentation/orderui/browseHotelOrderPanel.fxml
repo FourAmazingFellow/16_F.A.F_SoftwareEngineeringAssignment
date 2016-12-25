@@ -10,13 +10,15 @@
    <children>
       <TableView fx:id="hotelOrderTableView" layoutX="100.0" layoutY="158.0" prefHeight="368.0" prefWidth="800.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
         <columns>
-          <TableColumn fx:id="hotelNameColumn" prefWidth="138.8480987548828" text="酒店名称" />
-          <TableColumn fx:id="hotelAddressColumn" minWidth="1.1593170166015625" prefWidth="131.431396484375" text="酒店地址" />
-            <TableColumn fx:id="beginDateColumn" prefWidth="130.43148803710938" text="开始时间" />
-            <TableColumn fx:id="finishDateColumn" prefWidth="123.00234985351562" text="退房时间" />
-            <TableColumn fx:id="roomTypeColumn" prefWidth="124.5687255859375" text="客房类型" />
-            <TableColumn fx:id="numColumn" prefWidth="77.431396484375" text="数量" />
+            <TableColumn fx:id="hotelNameColumn1" prefWidth="96.0" text="用户名" />
+          <TableColumn fx:id="hotelNameColumn" prefWidth="128.0" text="酒店名称" />
+          <TableColumn fx:id="hotelAddressColumn" minWidth="1.1593170166015625" prefWidth="127.0" text="酒店地址" />
+            <TableColumn fx:id="beginDateColumn" prefWidth="125.0" text="开始时间" />
+            <TableColumn fx:id="finishDateColumn" prefWidth="125.0" text="退房时间" />
+            <TableColumn fx:id="roomTypeColumn" prefWidth="124.0" text="客房类型" />
+            <TableColumn fx:id="numColumn" prefWidth="143.0" text="数量" />
             <TableColumn fx:id="totalPriceColumn" prefWidth="75.2843017578125" text="总价" />
+            <TableColumn fx:id="userIDColumn" prefWidth="138.8480987548828" text="酒店名称" />
         </columns>
       </TableView>
       <Button fx:id="returnButton" layoutX="560.0" layoutY="560.0" mnemonicParsing="false" onAction="#showDetailedOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" />

@@ -1,5 +1,6 @@
 package bl_Stub.orderblservice_Stub;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import businesslogicservice.orderblservice.CreateNewOrderService;
@@ -69,8 +70,17 @@ public class CreateNewOrderServiceImpl_Stub implements CreateNewOrderService {
 
 	@Override
 	public int getOriginalPrice(String hotelAddress, RoomType roomType) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getAvailblePromotionName(OrderVO order) throws RemoteException {
+		return "十周年店庆";
+	}
+
+	@Override
+	public String getAvailbleMarketStrategyName(OrderVO order) throws RemoteException {
+		return "双十一大促";
 	}
 
 

@@ -12,11 +12,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.Callback;
 import presentation.WebsitePromotionMainApp;
 import vo.BriefOrderInfoVO;
 import vo.OrderVO;
@@ -76,11 +78,23 @@ public class BrowseAbnormalOrderPanelController {
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
 		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
-		
-//		abnormalOrderBrowser = new CheckAbnormalOrderServiceImpl_Stub("19970206", "0000000000000003", "仙林大酒店", "仙林大道163号",
-//				new Date(116, 10, 16), new Date(116, 10, 17), RoomType.SINGLE_ROOM, 1, 500,
-//				OrderState.NOT_DONE_ORDER, new Date(116, 10, 16, 18, 0), new java.util.Date(116, 10, 16, 20, 0), 2,
-//				false, true, false);
+		datePicker.setValue(LocalDate.now());
+		datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
+			@Override
+			public DateCell call(final DatePicker datePicker) {
+				return new DateCell() {
+					@Override
+					public void updateItem(LocalDate item, boolean empty) {
+						super.updateItem(item, empty);
+
+						if (item.isAfter(LocalDate.now())) {
+							setDisable(true);
+							setStyle("-fx-background-color: rgb(160,160,160);");
+						}
+					}
+				};
+			}
+		});
 	}
 
 	@SuppressWarnings("deprecation")

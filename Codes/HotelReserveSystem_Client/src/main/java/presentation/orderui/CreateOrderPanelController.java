@@ -27,6 +27,9 @@ import vo.OrderVO;
 public class CreateOrderPanelController {
 
 	@FXML
+	private ChoiceBox<String> strategyNameChoicer;
+	
+	@FXML
 	private ChoiceBox<String> latestOrderDoneTimeChoicer;
 
 	@FXML
@@ -65,7 +68,7 @@ public class CreateOrderPanelController {
 	private CreateNewOrderService newOrderCreater;
 
 	@FXML
-	public void initialize() {
+	private void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
 		newOrderCreater = factory.createOrderCreateService();
 
@@ -124,6 +127,9 @@ public class CreateOrderPanelController {
 
 		isChildrenChoicer.setItems(FXCollections.observableArrayList("否", "是"));
 		isChildrenChoicer.setValue("否");
+		
+		strategyNameChoicer.setItems(FXCollections.observableArrayList("自动"));
+		strategyNameChoicer.setValue("自动");
 	}
 
 	public void createAction() {
@@ -140,7 +146,7 @@ public class CreateOrderPanelController {
 		showResult(resultMessage);
 	}
 
-	public void initOrder(String userID, String hotelName, String hotelAddress) {
+	public boolean initOrder(String userID, String hotelName, String hotelAddress) {
 		hotelNameLabel.setText(hotelName);
 		hotelAddressLabel.setText(hotelAddress);
 		try {
@@ -152,6 +158,11 @@ public class CreateOrderPanelController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
+		
+		if(newOrderVO == null)
+			return false;
+		else 
+			return true;
 	}
 
 	public void setMainApp(ClientMainApp mainApp) {
@@ -228,7 +239,7 @@ public class CreateOrderPanelController {
 
 				Alert conf = new Alert(AlertType.CONFIRMATION);
 				conf.setTitle("生成订单");
-				conf.setContentText("订单价格为 " + price + "\n" + "确认生成订单？");
+				conf.setContentText("系统已经自动为您选择最优的优惠策略\n最优订单价格为 " + price + "\n" + "确认生成订单？");
 
 				Optional<javafx.scene.control.ButtonType> result = conf.showAndWait();
 				if (result.get() == javafx.scene.control.ButtonType.OK) {

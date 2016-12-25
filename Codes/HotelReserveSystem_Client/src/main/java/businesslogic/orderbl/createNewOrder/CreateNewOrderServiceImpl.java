@@ -5,6 +5,7 @@ import java.util.Date;
 
 import businesslogic.hotelbl.HotelInfoService;
 import businesslogic.roombl.RoomInfoService;
+import businesslogic.strategybl.StrategyInfoService;
 import businesslogicservice.orderblservice.CreateNewOrderService;
 import businesslogicservice.orderblservice.ResultMessage;
 import factory.FactoryService;
@@ -18,6 +19,7 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	private RoomInfoService roomInfoService;
 	private Checker checker;
 	private NewOrder newOrder;
+	private StrategyInfoService strategyInfoService;
 
 	private FactoryService factory;
 	
@@ -25,6 +27,7 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 		factory = new FactoryServiceImpl();
 		hotelInfoGetter = factory.createHotelInfoService();
 		roomInfoService = factory.createRoomInfoService();
+		strategyInfoService = factory.createStrategyInfoService();
 		checker = new Checker();
 		newOrder = new NewOrder();
 	}
@@ -70,5 +73,15 @@ public class CreateNewOrderServiceImpl implements CreateNewOrderService {
 	@Override
 	public int getOriginalPrice(String hotelAddress, RoomType roomType) throws RemoteException {
 		return newOrder.getOriginalPrice(hotelAddress, roomType);
+	}
+
+	@Override
+	public String getAvailblePromotionName(OrderVO order) throws RemoteException {
+		return strategyInfoService.getAvailblePromotionName(order);
+	}
+
+	@Override
+	public String getAvailbleMarketStrategyName(OrderVO order) throws RemoteException {
+		return strategyInfoService.getAvailbleMarketStrategyName(order);
 	}
 }
