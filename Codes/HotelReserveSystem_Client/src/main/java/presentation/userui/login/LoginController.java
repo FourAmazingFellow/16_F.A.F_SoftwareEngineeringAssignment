@@ -46,11 +46,6 @@ public class LoginController {
 
 	@FXML
 	public void initialize() {
-		userFactory = new UserUIFactoryServiceImpl();
-		check = new CheckLoginInfo();
-		login = userFactory.createLoginAndSignUpService();
-		manageUserInfo = userFactory.createManageUserInfoService();
-
 		userIDTextArea.setText("");
 		passwordTextArea.setText("");
 	}
@@ -67,6 +62,10 @@ public class LoginController {
 		this.runner = new ClientRunner();
 		try {
 			runner.start();
+			userFactory = new UserUIFactoryServiceImpl();
+			check = new CheckLoginInfo();
+			login = userFactory.createLoginAndSignUpService();
+			manageUserInfo = userFactory.createManageUserInfoService();
 		} catch (RemoteException e) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("NetWork Warning");

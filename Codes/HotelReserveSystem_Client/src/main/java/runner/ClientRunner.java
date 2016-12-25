@@ -17,12 +17,5 @@ public class ClientRunner {
 	public void start() throws RemoteException {
 		linkToServer.linkToServer();
 	}
-	
-	public static void main(String[] args) {
-		
-		while(true) {
-			
-		}
-	}
 
 }
