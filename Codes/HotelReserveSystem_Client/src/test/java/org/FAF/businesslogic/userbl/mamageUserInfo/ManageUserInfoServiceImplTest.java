@@ -9,8 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.userbl.mamageUserInfo.ManageUserInfoServiceImpl;
-import businesslogic.userbl.mamageUserInfo.MockManageUserInfoServiceImpl;
-import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserType;
 import rmi.LinkToServer;

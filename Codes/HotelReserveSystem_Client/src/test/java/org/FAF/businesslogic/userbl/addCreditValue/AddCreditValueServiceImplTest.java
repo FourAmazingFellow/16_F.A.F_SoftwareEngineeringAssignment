@@ -3,18 +3,13 @@ package org.FAF.businesslogic.userbl.addCreditValue;
 import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
-import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.userbl.addCreditValue.AddCreditValueServiceImpl;
-import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
-import po.ActionType;
-import po.CreditRecordPO;
 import rmi.LinkToServer;
 
 public class AddCreditValueServiceImplTest {
@@ -25,7 +20,8 @@ public class AddCreditValueServiceImplTest {
 //    private int creditValue;
 //    private ArrayList<CreditRecordPO> creditRecord;
     private int creditAdded;
-    private UserDAO userDAO;
+    @SuppressWarnings("unused")
+	private UserDAO userDAO;
     
     private static LinkToServer linkToServer;
 

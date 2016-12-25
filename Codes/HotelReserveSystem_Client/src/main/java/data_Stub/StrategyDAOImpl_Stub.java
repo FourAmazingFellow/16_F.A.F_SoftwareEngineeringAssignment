@@ -16,9 +16,7 @@ import po.StrategyType;
  */
 public class StrategyDAOImpl_Stub implements StrategyDAO{
     
-    private String address;
     private String hotelName;
-    private Enum<StrategyType> strategyType;
     private String strategyName;
     private float discount;
     private int minRoomNum;
@@ -33,9 +31,7 @@ public class StrategyDAOImpl_Stub implements StrategyDAO{
             int minRoomNum, String enterpriseName, String securityCode, Date startTime, Date endTime, String tradeArea,
             int vipRank) {
         super();
-        this.address = address;
         this.hotelName = hotelName;
-        this.strategyType = strategyType;
         this.strategyName = strategyName;
         this.discount = discount;
         this.minRoomNum = minRoomNum;

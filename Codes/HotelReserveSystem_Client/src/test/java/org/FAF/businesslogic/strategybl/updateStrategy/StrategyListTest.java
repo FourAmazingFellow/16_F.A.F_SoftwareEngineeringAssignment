@@ -3,18 +3,13 @@ package org.FAF.businesslogic.strategybl.updateStrategy;
 import static org.junit.Assert.*;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.strategybl.exception.UnableAddStrategyException;
-import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
-import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
-import businesslogic.strategybl.updateStrategy.StrategyItem;
 import businesslogic.strategybl.updateStrategy.StrategyList;
 import po.StrategyType;
 import rmi.LinkToServer;

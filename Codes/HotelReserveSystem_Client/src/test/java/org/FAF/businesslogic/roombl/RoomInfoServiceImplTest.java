@@ -15,7 +15,6 @@ import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
 import vo.OrderVO;
-import vo.RoomVO;
 
 public class RoomInfoServiceImplTest {
 

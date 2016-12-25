@@ -78,9 +78,9 @@ public class AbnormalOrderListTest {
 	}
 	
 	//正常情况下的Test
+	@SuppressWarnings("deprecation")
 	@Test
 	public void getAbnormalOrderListTest_1(){
-		@SuppressWarnings("deprecation")
 		ArrayList<BriefOrderInfoVO> briefOrderInfoList;
 		try {
 			briefOrderInfoList = abnormalOrderList.getAbnormalOrderList(new Date(116, 9, 19));

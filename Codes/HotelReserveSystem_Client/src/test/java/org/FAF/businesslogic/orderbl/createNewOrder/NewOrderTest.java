@@ -20,6 +20,7 @@ public class NewOrderTest {
 	
 	private NewOrder newOrder;
 
+	@SuppressWarnings("unused")
 	private int price;
 	private boolean addResult;
 

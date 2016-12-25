@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import presentation.HotelMainApp;
-import presentation.MainApp;
 
 public class HotelRootBoardController {
 

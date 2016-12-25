@@ -11,7 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.userbl.queryClientCreditRecord.QueryClientCreditRecordServiceImpl;
-import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.ActionType;
 import po.CreditRecordPO;

@@ -1,7 +1,6 @@
 package org.FAF.businesslogic.roombl.updateCheckIn;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
 
 import businesslogic.roombl.updateCheckIn.CheckInItem;
 import businesslogic.roombl.updateCheckIn.CheckInList;
@@ -29,7 +27,8 @@ public class CheckInListTest {
     private CheckInVO checkInVO;
     private Date startTime;
     private Date endTime;
-    private boolean updateSpareRoom;
+    @SuppressWarnings("unused")
+	private boolean updateSpareRoom;
     
     private CheckInVO checkInVO1,checkInVO2,checkInVO3,checkInVO4;
 

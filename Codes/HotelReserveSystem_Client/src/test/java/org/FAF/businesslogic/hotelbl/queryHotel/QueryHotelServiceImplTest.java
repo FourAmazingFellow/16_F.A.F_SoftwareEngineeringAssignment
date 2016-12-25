@@ -10,7 +10,6 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.internal.runners.statements.Fail;
 
 import businesslogic.hotelbl.queryHotel.MockQueryHotelServiceImpl;
 import businesslogic.hotelbl.queryHotel.QueryHotelServiceImpl;
@@ -35,7 +34,9 @@ public class QueryHotelServiceImplTest {
 	private int num;
 	private int totalPrice;
 	private Enum<OrderState> orderState;
+	@SuppressWarnings("unused")
 	private Date orderProducedTime;
+	@SuppressWarnings("unused")
 	private Date lastedOrderDoneTime;
 	private int numOfPerson;
 	private boolean isChildren;

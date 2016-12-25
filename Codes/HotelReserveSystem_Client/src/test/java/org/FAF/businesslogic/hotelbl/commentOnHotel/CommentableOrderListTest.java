@@ -12,9 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.hotelbl.OrderInfo;
 import businesslogic.hotelbl.commentOnHotel.CommentableOrderList;
-import businesslogic.orderbl.OrderInfoImpl;
 import po.OrderState;
 import po.RoomType;
 import rmi.LinkToServer;
@@ -25,7 +23,6 @@ public class CommentableOrderListTest {
 	private static LinkToServer linkToServer;
 	
 	private CommentableOrderList commentableOrderList;
-	private OrderInfo orderInfo;
 	private String userID;
 	private String orderID;
 	private String hotelName;
@@ -59,7 +56,6 @@ public class CommentableOrderListTest {
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
-		orderInfo = new OrderInfoImpl();
 		this.orderID = "0000000000000001";
 		this.userID = "原";
 		this.hotelName = "Jingling Hotel";

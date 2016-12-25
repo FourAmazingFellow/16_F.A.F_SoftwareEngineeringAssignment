@@ -10,9 +10,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import businesslogic.hotelbl.manageHotelInfo.ManageHotelInfoServiceImpl;
-import businesslogic.userbl.MockUserInfoImpl;
-import data_Stub.HotelDAOImpl_Stub;
-import dataservice.hotelDAO.HotelDAO;
 import po.RoomType;
 import po.UserType;
 import rmi.LinkToServer;
@@ -33,8 +30,11 @@ public class ManageHotelInfoServiceImplTest {
 	private int min_Price;
 	private String briefIntroduction;
 	private String facilityAndService;
+	@SuppressWarnings("unused")
 	private HashMap<RoomType, Integer> roomTypeAndPrice;
+	@SuppressWarnings("unused")
 	private HashMap<RoomType, Integer> roomTypeAndNums;
+	@SuppressWarnings("unused")
 	private HashMap<String, String> comments;
 	HotelVO hotelVO;
 	HotelStaffInfoVO hotelStaff;

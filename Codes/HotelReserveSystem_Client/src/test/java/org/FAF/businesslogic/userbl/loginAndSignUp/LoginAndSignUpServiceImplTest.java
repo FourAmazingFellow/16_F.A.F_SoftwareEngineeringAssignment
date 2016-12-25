@@ -8,9 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import businesslogic.userbl.loginAndSignUp.CheckLoginInfo;
 import businesslogic.userbl.loginAndSignUp.LoginAndSignUpServiceImpl;
-import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.UserType;
 import rmi.LinkToServer;
@@ -18,10 +16,15 @@ import vo.UserVO;
 
 public class LoginAndSignUpServiceImplTest {
 	private LoginAndSignUpServiceImpl loginAndSignUp;
+	@SuppressWarnings("unused")
 	private String userID, userIDNew;
+	@SuppressWarnings("unused")
 	private String password, passwordNew;
+	@SuppressWarnings("unused")
 	private String telNum, telNumNew;
+	@SuppressWarnings("unused")
 	private UserType userType, userTypeNew;
+	@SuppressWarnings("unused")
 	private UserDAO userDAO;
 
 	private static LinkToServer linkToServer;

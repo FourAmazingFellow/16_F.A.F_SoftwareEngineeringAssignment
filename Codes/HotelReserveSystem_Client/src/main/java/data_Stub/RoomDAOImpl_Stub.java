@@ -21,7 +21,6 @@ public class RoomDAOImpl_Stub implements RoomDAO{
     private Enum<RoomType> roomType;
     private int roomNum;
     private int roomPrice;
-    private String address;
     private Date checkInTime;
     private Date expDepartTime;
     private Date actDepartTime;
@@ -34,7 +33,6 @@ public class RoomDAOImpl_Stub implements RoomDAO{
         this.roomType = roomType;
         this.roomNum = roomNum;
         this.roomPrice = roomPrice;
-        this.address = address;
         this.checkInTime = checkInTime;
         this.expDepartTime = expDepartTime;
         this.actDepartTime = actDepartTime;

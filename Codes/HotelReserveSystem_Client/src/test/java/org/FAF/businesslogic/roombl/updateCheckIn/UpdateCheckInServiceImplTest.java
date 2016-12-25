@@ -27,7 +27,8 @@ public class UpdateCheckInServiceImplTest {
     private CheckInVO checkInVO;
     private Date startTime;
     private Date endTime;
-    private boolean updateSpareRoom;
+    @SuppressWarnings("unused")
+	private boolean updateSpareRoom;
     
     private CheckInVO checkInVO1,checkInVO2,checkInVO3,checkInVO4;
     

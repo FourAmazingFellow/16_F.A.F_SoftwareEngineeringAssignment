@@ -26,7 +26,6 @@ public class RoomInfoService_Driver {
         System.out.println(roomType+" has "+roomNum+" spare rooms");
         
         Date beginDate=new Date(System.currentTimeMillis());
-        Date finishDate=new Date(System.currentTimeMillis()+1);
         boolean isTimeAvailble = false;
         try {
             isTimeAvailble = roomInfoService.isTimeAvailable("江苏省南京市栖霞区仙林大道163号", roomType, beginDate, 0000000000000003);

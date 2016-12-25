@@ -12,7 +12,6 @@ import org.junit.Test;
 import businesslogic.roombl.browseSpareRoom.SpareRoomItem;
 import businesslogic.roombl.browseSpareRoom.SpareRoomList;
 import po.RoomType;
-import po.StrategyType;
 import rmi.LinkToServer;
 import vo.RoomVO;
 
