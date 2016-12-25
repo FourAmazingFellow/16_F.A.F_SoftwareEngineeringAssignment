@@ -1,6 +1,8 @@
 package presentation;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 
 import javafx.application.Application;
@@ -91,7 +93,13 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示生成订单页面
+	/**
+	 * 显示生成订单的页面
+	 * @param userID 用户名
+	 * @param hotelName 酒店明晨
+	 * @param hotelAddress 酒店地址
+	 * @see
+	 */
 	public void showCreateOrderPanel(String userID, String hotelName, String hotelAddress) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -119,7 +127,10 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示"我预定过的酒店"界面
+	/**
+	 * 显示"我预定过的酒店"界面
+	 * @see
+	 */
 	public void showReservedHotelPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -139,7 +150,10 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示用户主界面 --- 搜索界面
+	/**
+	 * 显示用户主界面 --- 搜索界面
+	 * @see
+	 */
 	public void showSearchView() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -158,7 +172,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示搜索结果
+	/**
+	 * 显示搜索结果
+	 * @param conditions
+	 * @see
+	 */
 	public void showSearchDetailsPanel(String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -179,7 +197,12 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示搜索筛选界面
+	/**
+	 * 显示搜索筛选界面
+	 * @param conditions String数组 已经被设置的条件
+	 * @return 用户是否已经确认
+	 * @see
+	 */
 	public boolean showScreenDialog(String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -209,7 +232,12 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 由"搜索界面"到达的酒店详情
+	/**
+	 * 由"搜索界面"到达的"酒店详情界面"
+	 * @param hotelAddress
+	 * @param conditions String[]
+	 * @see
+	 */
 	public void showDetailedHotelPanel(String hotelAddress, String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -230,7 +258,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 由"我预定过的酒店"到达的详情界面
+	/**
+	 * 由"我预定过的酒店"到达的详情界面
+	 * @param hotelAddress 酒店地址
+	 * @see
+	 */
 	public void simplyShowDetailedHotelPanel(String hotelAddress) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -250,7 +282,13 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示酒店评论界面
+	/**
+	 * 显示酒店评论界面
+	 * @param comments HashMap<String, String> 已有评论
+	 * @param hotelAddress 酒店地址
+	 * @param conditions String[]
+	 * @see
+	 */
 	public void showHotelComments(HashMap<String, String> comments, String hotelAddress, String[] conditions) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -271,6 +309,7 @@ public class ClientMainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public void simplyShowHotelComments(HashMap<String, String> comments, String hotelAddress) {
 		try {
@@ -293,7 +332,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示所有订单列表
+	/**
+	 * 显示用户所有订单的列表
+	 * @param userID
+	 * @see
+	 */
 	public void showUserOrderPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -315,7 +358,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示订单详情页面
+	/**
+	 * 显示订单详情页面
+	 * @param orderID
+	 * @see
+	 */
 	public void showDetailedOrderPanel(String orderID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -336,7 +383,10 @@ public class ClientMainApp extends Application {
 
 	}
 
-	// 显示维护个人信息界面
+	/**
+	 * 显示维护个人信息界面
+	 * @see
+	 */
 	public void showModifyClientInfoPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -356,7 +406,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示维护个人信息编辑界面
+	/**
+	 * 显示维护个人信息编辑界面
+	 * @param userID
+	 * @see
+	 */
 	public void showEditClientInfoPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -376,7 +430,13 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示维护个人信息修改密码界面
+	/**
+	 * 显示维护个人信息修改密码界面
+	 * @param userID 用户名
+	 * @param telNum 联系方式
+	 * @param password 当前密码
+	 * @see
+	 */
 	public void showModifyPasswordPanel(String userID, String telNum, String password) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -395,7 +455,10 @@ public class ClientMainApp extends Application {
 		}
 	}
 
-	// 显示维护个人信息查看信用记录界面
+	/**
+	 * 显示维护个人信息查看信用记录界面
+	 * @see
+	 */
 	public void showQueryCreditRecordPanel() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -415,6 +478,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
+	/**
+	 * 显示注册普通会员页面
+	 * @param userID
+	 * @see
+	 */
 	public void showSignRegularVipPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -433,6 +501,11 @@ public class ClientMainApp extends Application {
 		}
 	}
 
+	/**
+	 * 显示注册企业会员页面
+	 * @param userID
+	 * @see
+	 */
 	public void showSignEnterpriseVipPanel(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -452,6 +525,12 @@ public class ClientMainApp extends Application {
 		}
 	}
 	
+	/**
+	 * 显示评论界面
+	 * @param hotelAddress
+	 * @param orderID
+	 * @see
+	 */
 	public void showCommentOnHotelPanel(String hotelAddress, String orderID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();

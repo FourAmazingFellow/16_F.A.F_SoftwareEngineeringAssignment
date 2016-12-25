@@ -26,7 +26,7 @@ public interface StrategyInfoService {
      * 获取某订单能享受的唯一网站营销策略折扣名称
      * @param order OrderVO型，同层调用传来的订单信息
      * @return String型，返回网站营销策略名称，若没有，则返回null
-     * @throws RemoteException 
+     * @throws RemoteException
      * @see
      */
     public String getAvailbleMarketStrategyName (OrderVO order) throws RemoteException;
