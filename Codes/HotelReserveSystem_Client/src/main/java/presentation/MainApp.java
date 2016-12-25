@@ -119,7 +119,8 @@ public class MainApp extends Application {
 		try {
 			HotelMainApp.hotelAddress = hotelAddress;
 			HotelMainApp.userId = userID;
-			mainApp.start(primaryStage);	
+			mainApp.start(primaryStage);
+			((HotelMainApp)mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import presentation.HotelMainApp;
+import presentation.MainApp;
 
 public class HotelRootBoardController {
 
@@ -26,7 +27,11 @@ public class HotelRootBoardController {
     
     private String userId;
     private HotelMainApp mainApp;
+    private MainApp loginMainApp;
     
+    public void setLoginMainApp(MainApp loginMainApp){
+        this.loginMainApp=loginMainApp;
+    }
     
     
     public void setMainApp(HotelMainApp mainApp) {
@@ -79,7 +84,7 @@ public class HotelRootBoardController {
         //关闭酒店工作人员界面
         mainApp.getPrimaryStage().close();
         //打开登录界面
-        
+        loginMainApp.showLoginView();
     }
     
     @FXML

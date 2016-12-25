@@ -43,6 +43,12 @@ public class HotelMainApp extends Application {
 	public static String userId;
 	private Stage primaryStage;
 	private BorderPane hotelRootLayout;
+	private MainApp mainApp;
+	
+	
+	public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -95,7 +101,7 @@ public class HotelMainApp extends Application {
 			HotelRootBoardController controller = loader.getController();
 			controller.setMainApp(this);
 			controller.setUserId(userId);
-
+			controller.setLoginMainApp(mainApp);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
