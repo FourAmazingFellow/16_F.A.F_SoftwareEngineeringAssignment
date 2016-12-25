@@ -2,10 +2,8 @@ package presentation.strategyui.manageHotelPromotion;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
-import java.util.Optional;
 
 import businesslogic.strategybl.exception.UnableAddStrategyException;
-import businesslogic.strategybl.exception.UnableToDeleteStrategyException;
 import businesslogic.strategybl.exception.UnableToModifyStrategyException;
 import businesslogic.strategybl.exception.WrongInputException;
 import businesslogicservice.strategyblservice.UpdateStrategyService;
@@ -13,7 +11,6 @@ import factory.StrategyUIFactoryService;
 import factory.StrategyUIFactoryServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -21,7 +18,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import po.StrategyType;
-import presentation.roomui.CheckIn.CheckInEditPanelController;
 import presentation.roomui.util.LocalDateAdapter;
 import presentation.strategyui.model.Strategy;
 import vo.StrategyVO;

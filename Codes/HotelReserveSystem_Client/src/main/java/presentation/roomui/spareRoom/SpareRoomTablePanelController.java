@@ -27,7 +27,6 @@ public class SpareRoomTablePanelController {
     private HotelMainApp mainApp;
     private ObservableList<SpareRoom> spareRoomData=FXCollections.observableArrayList();
     private SpareRoomListWrapper spareRoomList;
-    private String address;
 
     @FXML
     private void initialize() {
@@ -47,7 +46,6 @@ public class SpareRoomTablePanelController {
     }
     
     public void showSpareRoomList(String address){
-        this.address=address;
         //从bl层获得数据，并添加到spareRoomData中
         spareRoomData.clear();
         spareRoomList.setSpareRoomListFromData(address);

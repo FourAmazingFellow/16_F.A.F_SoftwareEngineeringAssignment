@@ -22,7 +22,6 @@ import javafx.scene.control.Alert.AlertType;
 import po.RoomType;
 import presentation.HotelMainApp;
 import presentation.roomui.CheckIn.ManageCheckInPanelController;
-import presentation.roomui.CheckIn.model.CheckInListWrapper;
 import presentation.roomui.CheckOut.model.CheckOut;
 import presentation.roomui.CheckOut.model.CheckOutListWrapper;
 import presentation.roomui.util.LocalDateAdapter;
