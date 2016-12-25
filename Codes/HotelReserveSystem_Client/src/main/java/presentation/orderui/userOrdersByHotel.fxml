@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1000.0" styleClass="background" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.orderui.UserOrdersByHotelPanelController">
+   <children>
+      <TableView fx:id="userOrders" layoutX="45.0" layoutY="61.0" prefHeight="459.0" prefWidth="899.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
+        <columns>
+          <TableColumn fx:id="userIDColumn" prefWidth="113.85322570800781" text="用户名" />
+          <TableColumn fx:id="hotelNameColumn" minWidth="1.1593170166015625" prefWidth="150.8948974609375" text="酒店名称" />
+            <TableColumn fx:id="beginDateColumn" prefWidth="188.6038818359375" text="开始时间" />
+            <TableColumn fx:id="finishDateColumn" prefWidth="178.207763671875" text="退房时间" />
+            <TableColumn fx:id="roomTypeColumn" prefWidth="131.60382080078125" text="客房类型" />
+            <TableColumn fx:id="numColumn" prefWidth="78.39617919921875" text="数量" />
+            <TableColumn fx:id="totalPriceColumn" prefWidth="75.0831298828125" text="总价" />
+        </columns>
+      </TableView>
+      <Button fx:id="returnButton" layoutX="244.0" layoutY="550.0" mnemonicParsing="false" onAction="#returnButtonAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="getDetailedOrderButton" layoutX="628.0" layoutY="550.0" mnemonicParsing="false" onAction="#showDetailedOrder" prefHeight="40.0" prefWidth="170.0" text="查看详情" />
+      <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="625.0" layoutY="20.0" prefHeight="0.0" prefWidth="200.0" styleClass="choice-box-small" />
+      <ChoiceBox fx:id="orderTypeChoiceBox" layoutX="194.0" layoutY="20.0" prefHeight="0.0" prefWidth="200.0" styleClass="choice-box-small" />
+      <Label layoutX="75.0" layoutY="25.0" text="订单类型" />
+      <Label layoutX="506.0" layoutY="25.0" text="排序方式" />
+   </children>
+</AnchorPane>

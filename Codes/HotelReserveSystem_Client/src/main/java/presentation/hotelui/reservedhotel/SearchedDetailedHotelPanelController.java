@@ -17,7 +17,9 @@ import presentation.ClientMainApp;
 import vo.HotelVO;
 
 public class SearchedDetailedHotelPanelController {
-
+	@FXML
+	private Button ordersByHotelButton;
+	
 	private String[] conditions;
 	
 	@FXML
@@ -137,6 +139,10 @@ public class SearchedDetailedHotelPanelController {
 				break;
 			}
 	    }
+	}
+	
+	public void ordersByHotelAction() {
+		mainApp.showUserOrdersByHotel(hotelAddressLabel.getText());
 	}
 	
 	@FXML

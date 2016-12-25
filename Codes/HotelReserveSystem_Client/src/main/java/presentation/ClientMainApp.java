@@ -1,8 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 
 import javafx.application.Application;
@@ -28,6 +26,7 @@ import presentation.mainui.ClientRootBoardController;
 import presentation.orderui.BrowseUserOrderPanelController;
 import presentation.orderui.CreateOrderPanelController;
 import presentation.orderui.DetailedOrderPanelController;
+import presentation.orderui.UserOrdersByHotelPanelController;
 import presentation.userui.maintain.EditController;
 import presentation.userui.maintain.ModifyClientInfoController;
 import presentation.userui.maintain.ModifyPasswordController;
@@ -150,6 +149,32 @@ public class ClientMainApp extends Application {
 		}
 	}
 
+	/**
+	 * 显示当前用户在某酒店的全部订单
+	 * @param hotelAddress 酒店地址
+	 * @see
+	 */
+	public void showUserOrdersByHotel(String hotelAddress) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ClientMainApp.class.getResource("orderui/userOrdersByHotelPanel.fxml"));
+			AnchorPane userOrdersByHotelPanel = (AnchorPane) loader.load();
+
+			clientRootLayout.setCenter(userOrdersByHotelPanel);
+
+			// Give the controller access to the mainApp.
+			UserOrdersByHotelPanelController controller = loader.getController();
+
+			// 默认显示所有订单
+			controller.setMainApp(this, hotelAddress);
+			controller.getBriefOrderList();
+
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 显示用户主界面 --- 搜索界面
 	 * @see

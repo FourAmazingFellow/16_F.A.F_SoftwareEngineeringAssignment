@@ -67,6 +67,10 @@ public class ReservedHotelPanelController {
 		checkReservedHotelService = factory.createCheckOrderedHotelService();
 	}
 
+	/**
+	 * 显示已经被预定的过的酒店 —— “我的酒店”
+	 * @see
+	 */
 	public  void showReservedHotels() {
 		ArrayList<OrderedHotelInfoVO> list;
 		try {
@@ -74,12 +78,14 @@ public class ReservedHotelPanelController {
 			BriHotelVO2Fx trans = new BriHotelVO2Fx();
 			briefFxHotelList = FXCollections.observableArrayList();
 
+			//对list中的每个订单，将其转化为JavaFX自定义的Model类
 			for (OrderedHotelInfoVO vo : list) {
 				briefFxHotelList.add(trans.trans(vo));
 			}
 
 			hotelTableView.setItems(briefFxHotelList);
-
+			
+			//把界面和Model一一对应起来
 			hotelNameCol.setCellValueFactory(cellData -> cellData.getValue().getHotelName());
 			hotelAddressCol.setCellValueFactory(cellData -> cellData.getValue().getHotelAddress());
 			markCol.setCellValueFactory(cellData -> cellData.getValue().getMark());
@@ -106,6 +112,7 @@ public class ReservedHotelPanelController {
 	@FXML
 	private void handleCheckDetailedHotel() {
 		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
+		//保证用户一定选择了某个酒店
 		if (selectedIndex >= 0) {
 			String hotelAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
 			mainApp.simplyShowDetailedHotelPanel(hotelAddress);
@@ -121,6 +128,7 @@ public class ReservedHotelPanelController {
 	@FXML
 	private void handleCreateOrder() {
 		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
+		//保证用户一定选择了某个酒店
 		if (selectedIndex >= 0) {
 			String hotelAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
 			String hotelName = hotelTableView.getItems().get(selectedIndex).getHotelName().getValue();

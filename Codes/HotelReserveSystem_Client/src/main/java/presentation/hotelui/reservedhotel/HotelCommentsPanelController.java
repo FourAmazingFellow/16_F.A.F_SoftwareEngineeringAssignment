@@ -56,6 +56,11 @@ public class HotelCommentsPanelController {
 		mainApp.showDetailedHotelPanel(hotelAddress, conditions);
 	}
 
+	/**
+	 * 显示评论内容
+	 * @param comments HashMap<String, String>
+	 * @see
+	 */
 	public void showComments(HashMap<String, String> comments) {
 		int count = 0;
 		Set<String> userIDs = comments.keySet();

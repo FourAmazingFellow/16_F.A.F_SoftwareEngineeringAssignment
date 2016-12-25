@@ -18,6 +18,9 @@ import vo.HotelVO;
 
 public class SimpleDetailedHotelPanelController {
 	@FXML
+	private Button ordersByHotelButton;
+	
+	@FXML
     private Label stanRoomPriceLabel;
 
     @FXML
@@ -86,6 +89,10 @@ public class SimpleDetailedHotelPanelController {
 	
 	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
+	}
+	
+	public void ordersByHotelAction() {
+		mainApp.showUserOrdersByHotel(hotelAddressLabel.getText());
 	}
 	
 	public void returnAction() {

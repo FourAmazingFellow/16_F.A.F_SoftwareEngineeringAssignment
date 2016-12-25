@@ -79,8 +79,9 @@
             </ScrollPane>
          </children>
       </GridPane>
-      <Button fx:id="returnButton" layoutX="249.0" layoutY="584.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
-      <Button fx:id="createOrderButton" layoutX="434.0" layoutY="584.0" mnemonicParsing="false" onAction="#createAction" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
-      <Button fx:id="checkCommentsButton" layoutX="605.0" layoutY="584.0" mnemonicParsing="false" onAction="#checkComments" prefHeight="40.0" prefWidth="150.0" text="查看评价" />
+      <Button fx:id="returnButton" layoutX="166.0" layoutY="584.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="40.0" prefWidth="150.0" text="返回" />
+      <Button fx:id="createOrderButton" layoutX="337.0" layoutY="584.0" mnemonicParsing="false" onAction="#createAction" prefHeight="40.0" prefWidth="150.0" text="生成订单" />
+      <Button fx:id="checkCommentsButton" layoutX="676.0" layoutY="584.0" mnemonicParsing="false" onAction="#checkComments" prefHeight="40.0" prefWidth="150.0" text="查看评价" />
+      <Button fx:id="ordersByHotelButton" layoutX="506.0" layoutY="584.0" mnemonicParsing="false" onAction="#ordersByHotelAction" prefHeight="40.0" prefWidth="150.0" text="历史订单" />
    </children>
 </AnchorPane>
