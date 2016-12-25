@@ -7,6 +7,8 @@ import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -34,7 +36,7 @@ import presentation.userui.signvip.SignRegularVipController;
 import runner.ClientRunner;
 
 public class ClientMainApp extends Application {
-	public static String userID = "Accident";
+	public static String userID = "原";
 
 	private MainApp mainApp;
 	private Stage primaryStage;
@@ -46,7 +48,11 @@ public class ClientMainApp extends Application {
 		try {
 			clientRunner.start();
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
 		}
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
