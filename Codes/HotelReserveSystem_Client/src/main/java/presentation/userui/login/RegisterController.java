@@ -12,6 +12,13 @@ import javafx.scene.control.TextField;
 import presentation.MainApp;
 import presentation.userui.JudgeFormat;
 
+/**
+ * 注册界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class RegisterController {
 	private MainApp mainApp;
 	@SuppressWarnings("unused")
@@ -44,16 +51,18 @@ public class RegisterController {
 		this.mainApp = mainApp;
 	}
 
+	// 注册新账户，registerButton操作
 	public void register() {
 		String userID = r_userIDArea.getText();
 		String password = r_passwordArea.getText();
 		String password_c = r_passwordCofirmArea.getText();
-		
+
+		// 判断用户名和密码是否合法
 		boolean isValid = judge.isLetterDigitOrChinese(userID);
 		int userIDLength = judge.getStringLength(userID);
 		boolean isPasswordValid = judge.isLetterOrDigit(password);
 		int passwordLength = judge.getStringLength(password);
-		
+
 		if (userID.equals("") || password.equals("") || password_c.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -89,7 +98,9 @@ public class RegisterController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if (password.equals(password_c)) {
+		}
+		// 两次密码相同且用户名和密码均合法，跳转完善用户信息界面
+		else if (password.equals(password_c)) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("register info");
 			alert.setHeaderText("请继续完善您的信息！");
@@ -106,6 +117,7 @@ public class RegisterController {
 
 	}
 
+	// 返回button操作，返回登录界面
 	public void returnButton() {
 		mainApp.showLoginView("");
 	}

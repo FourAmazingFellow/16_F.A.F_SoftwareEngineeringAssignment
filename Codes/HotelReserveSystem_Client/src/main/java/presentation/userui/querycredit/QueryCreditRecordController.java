@@ -19,6 +19,13 @@ import javafx.scene.control.TableView;
 import presentation.ClientMainApp;
 import vo.CreditRecordVO;
 
+/**
+ * 客户查询信用记录的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class QueryCreditRecordController {
 	private UserUIFactoryService userFactory;
 	private QueryClientCreditRecordService queryClientCreditRecord;
@@ -50,16 +57,20 @@ public class QueryCreditRecordController {
 	@FXML
 	private TableColumn<CreditRecord, String> creditResultColumn;
 
-//	private ArrayList<CreditRecordVO> creditRecord;
+	// private ArrayList<CreditRecordVO> creditRecord;
 
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		creditRecordList = new CreditRecordList();
 		queryClientCreditRecord = userFactory.createQueryClientCreditRecordService();
-//		queryClientCreditRecord = new QueryClientCreditRecordServiceImpl_Stub("原", "qwe123", "12345678900", 1500, creditRecord);
-		
+		// queryClientCreditRecord = new
+		// QueryClientCreditRecordServiceImpl_Stub("原", "qwe123", "12345678900",
+		// 1500, creditRecord);
+
+		// 将信用记录信息添加到tabPane
 		creditTable.setItems(creditRecordData);
+
 		timeColumn.setCellValueFactory(cellData -> cellData.getValue().changeTimeProperty());
 		orderIDColumn.setCellValueFactory(cellData -> cellData.getValue().orderIDProperty());
 		actionColumn.setCellValueFactory(cellData -> cellData.getValue().actionProperty());
@@ -71,7 +82,7 @@ public class QueryCreditRecordController {
 		this.mainApp = mainApp;
 	}
 
-	//显示信用记录列表
+	// 显示信用记录列表
 	public void showCreditRecordList(String userID) {
 		this.userID = userID;
 		ArrayList<CreditRecordVO> creditRecordVOs = null;
@@ -92,13 +103,14 @@ public class QueryCreditRecordController {
 			alert.showAndWait();
 			return;
 		}
+		// 列表显示
 		creditRecordData.clear();
 		creditRecordList.setCreditRecordList(creditRecordVOs);
 		creditRecordData.addAll(creditRecordList.getCreditRecordList());
 	}
 
 	@FXML
-	//返回按钮操作，返回维护个人信息界面
+	// 返回按钮操作，返回维护个人信息界面
 	public void returnButtonAction(ActionEvent event) {
 		mainApp.showModifyClientInfoPanel();
 	}

@@ -5,6 +5,13 @@ import java.util.List;
 
 import vo.CreditRecordVO;
 
+/**
+ * creditRecordList模型类
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class CreditRecordList {
 
 	private List<CreditRecord> creditRecordList = new ArrayList<>();
@@ -19,5 +26,5 @@ public class CreditRecordList {
 			creditRecordList.add(new CreditRecord(creditRecordVO));
 		}
 	}
-	
+
 }

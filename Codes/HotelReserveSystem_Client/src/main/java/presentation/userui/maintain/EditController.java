@@ -22,6 +22,13 @@ import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 import vo.UserVO;
 
+/**
+ * 客户编辑自己的信息的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class EditController {
 	private ClientMainApp mainApp;
 	private ModifyClientInfoService modifyClientInfo;
@@ -36,7 +43,6 @@ public class EditController {
 	private Date birth;
 	private String enterpriseName;
 	private JudgeFormat judge = new JudgeFormat();
-
 
 	@FXML
 	private Label InfoLabel;
@@ -94,6 +100,7 @@ public class EditController {
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
 
+		// 检查client是否是会员，若是会员则转换成相应的会员
 		if (client instanceof EnterpriseVipVO) {
 			this.enterpriseVip = (EnterpriseVipVO) client;
 			this.enterpriseName = enterpriseVip.enterpriseID;
@@ -116,10 +123,13 @@ public class EditController {
 		newUserID = userIDField.getText();
 		ClientMainApp.userID = newUserID;
 		newTelNum = telNumField.getText();
+
+		// 判断编辑过的信息是否合法
 		boolean isValid = judge.isLetterDigitOrChinese(newUserID);
 		int newUserIDLength = judge.getStringLength(newUserID);
 		boolean isNum = judge.isNumeric(newTelNum);
 		int newTelNumLength = judge.getStringLength(newTelNum);
+
 		if (newUserID.equals("") || newTelNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -141,21 +151,21 @@ public class EditController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if(isNum != true){
+		} else if (isNum != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else if(newTelNumLength != 11){
+		} else if (newTelNumLength != 11) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else {
+		} else {
 			UserVO user = new UserVO(newUserID, password, newTelNum, UserType.Client);
 			boolean result = false;
 			try {

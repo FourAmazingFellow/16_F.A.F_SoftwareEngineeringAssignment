@@ -35,6 +35,13 @@ import presentation.userui.JudgeFormat;
 import vo.HotelStaffInfoVO;
 import vo.HotelVO;
 
+/**
+ * 网站管理人员管理酒店的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class ManageHotelController {
 	private HotelUIFactoryService hotelFactory;
 	private StrategyUIFactoryService strategyFactory;
@@ -144,34 +151,34 @@ public class ManageHotelController {
 		// manageHotel = new ManageHotelInfoServiceImpl_Stub();
 
 		searchField.setText("");
-		
+
 		cityChoiceBox.setItems(cityListData);
 		tradeAreaChoiceBox.setItems(tradeAreaListData);
-		 try {
-	            setTradeAreaList(updateStrategyService
-	                    .getBusinessDistrictList(cityChoiceBox.getSelectionModel().getSelectedItem()));
-	        } catch (RemoteException e) {
-	            Alert alert = new Alert(AlertType.WARNING);
-	            alert.setTitle("NetWork Warning");
-	            alert.setHeaderText("Fail to connect with the server!");
-	            alert.setContentText("Please check your network connection!");
-	            alert.showAndWait();
-	        }
-	        // 给cityChoiceBox2添加监听
-	        cityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-	            @Override
-	            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-	                try {
-	                    setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityListData.get((int) newValue)));
-	                } catch (RemoteException e) {
-	                    Alert alert = new Alert(AlertType.WARNING);
-	                    alert.setTitle("NetWork Warning");
-	                    alert.setHeaderText("Fail to connect with the server!");
-	                    alert.setContentText("Please check your network connection!");
-	                    alert.showAndWait();
-	                }
-	            }
-	        });
+		try {
+			setTradeAreaList(
+					updateStrategyService.getBusinessDistrictList(cityChoiceBox.getSelectionModel().getSelectedItem()));
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+		// 给cityChoiceBox添加监听
+		cityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				try {
+					setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityListData.get((int) newValue)));
+				} catch (RemoteException e) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
+					alert.showAndWait();
+				}
+			}
+		});
 
 	}
 
@@ -193,6 +200,7 @@ public class ManageHotelController {
 		telNumField.setText("");
 	}
 
+	// 设置商圈
 	public void setTradeAreaList(ArrayList<BusinessDistrictPO> tradeAreaPOs) {
 		tradeAreaListData.clear();
 		for (BusinessDistrictPO tradeAreaPO : tradeAreaPOs) {
@@ -200,6 +208,7 @@ public class ManageHotelController {
 		}
 	}
 
+	// 获得酒店信息
 	public void getHotelInfo() {
 		this.hotelAddress = searchField.getText();
 		if (hotelAddress.equals("")) {
@@ -250,6 +259,7 @@ public class ManageHotelController {
 		getHotelInfo();
 	}
 
+	// 添加新酒店
 	public void addNewHotel() {
 		// tabPane.getSelectionModel().select(hotelInfoTab);
 		this.hotelNameNew = hotelNameField.getText();
@@ -260,6 +270,8 @@ public class ManageHotelController {
 		this.password = passwordField.getText();
 		this.passwordConfirm = passwordConfirmField.getText();
 		this.telNum = telNumField.getText();
+
+		// 检查输入的格式是否合法
 		boolean isValid = false;
 		isValid = judge.isLetterDigitOrChinese(staffID);
 		int userIDLength = 0;
@@ -275,7 +287,8 @@ public class ManageHotelController {
 		// this.passwordConfirm = "qwe123";
 		// this.telNum = "12345678900";
 
-		if (hotelNameNew.equals("") ||hotelAddress.equals("")||tradeArea.equals("")||city.equals("")|| staffID.equals("") || password.equals("") || telNum.equals("")) {
+		if (hotelNameNew.equals("") || hotelAddress.equals("") || tradeArea.equals("") || city.equals("")
+				|| staffID.equals("") || password.equals("") || telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
@@ -333,7 +346,8 @@ public class ManageHotelController {
 			return;
 		}
 		this.newHotel = null;
-		this.newHotel = new HotelVO(hotelNameNew,tradeArea, hotelAddress , 0, 0, city, 100000, 100000, "", "", hash1, hash2, hash3);
+		this.newHotel = new HotelVO(hotelNameNew, tradeArea, hotelAddress, 0, 0, city, 100000, 100000, "", "", hash1,
+				hash2, hash3);
 		boolean result1 = false;
 		try {
 			result1 = manageHotel.addHotel(newHotel);

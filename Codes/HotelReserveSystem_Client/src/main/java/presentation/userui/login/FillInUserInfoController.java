@@ -21,11 +21,16 @@ import presentation.MainApp;
 import presentation.userui.JudgeFormat;
 import vo.UserVO;
 
+/**
+ * 注册时完善用户信息
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class FillInUserInfoController {
 	private UserUIFactoryService userFactory;
 	private LoginAndSignUpService register;
-	// private ModifyClientInfoService modifyClientInfo;
-	// private ManageUserInfoService manageUserInfo;
 	private MainApp mainApp;
 	private String userID;
 	private String password;
@@ -59,7 +64,6 @@ public class FillInUserInfoController {
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
 		register = userFactory.createLoginAndSignUpService();
-		// modifyClientInfo = userFactory.createModifyClientInfoService();
 		// registerInfo = new LoginAndSignUpServiceImpl_Stub();
 		userTypeChoiceBox
 				.setItems((ObservableList<String>) FXCollections.observableArrayList("客户", "网站营销人员", "网站管理人员"));
@@ -71,20 +75,22 @@ public class FillInUserInfoController {
 		this.mainApp = mainApp;
 	}
 
+	// 设置用户账号和密码
 	public void setUserIDAndPassword(String userID, String password) {
 		this.userID = userID;
 		this.password = password;
 		userIDField.setText(userID);
-//		passwordField.setText(password);
 	}
 
+	// 完善用户信息
 	public void fillInRegisterInfo() {
 		String userTypeStr = userTypeChoiceBox.getValue();
 		String telNum = telNumField.getText();
 		boolean isNum = judge.isNumeric(telNum);
 		int telNumLength = judge.getStringLength(telNum);
-		
+
 		UserType userType = null;
+		// 信息填写不完整的警示框
 		if (telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -92,22 +98,25 @@ public class FillInUserInfoController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if(isNum != true){
+		}
+		// 联系方式包含非法字符的警示框
+		else if (isNum != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else if(telNumLength != 11){
+		}
+		// 联系方式长度不正确的提示框
+		else if (telNumLength != 11) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}
-		else {
+		} else {
 			if (userTypeStr.equals("客户")) {
 				userType = UserType.Client;
 				UserVO user = new UserVO(userID, password, telNum, userType);
@@ -178,7 +187,7 @@ public class FillInUserInfoController {
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
 						alert.showAndWait();
-//						MainApp.userID = userID;
+						// MainApp.userID = userID;
 						mainApp.showLoginView(userID);
 					}
 				} catch (RemoteException e) {
@@ -194,6 +203,7 @@ public class FillInUserInfoController {
 	}
 
 	@FXML
+	// 取消按钮操作，返回注册界面并提示注册失败
 	public void cancelButtonAction(ActionEvent event) {
 		mainApp.showRegisterPanel();
 		Alert alert = new Alert(AlertType.WARNING);
@@ -204,6 +214,7 @@ public class FillInUserInfoController {
 	}
 
 	@FXML
+	// 确认按钮操作，调用完善用户信息方法
 	public void comfirmButtonAction(ActionEvent event) {
 		fillInRegisterInfo();
 	}

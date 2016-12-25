@@ -18,6 +18,13 @@ import presentation.ClientMainApp;
 import vo.ClientInfoVO;
 import vo.EnterpriseVipVO;
 
+/**
+ * 注册企业会员界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class SignEnterpriseVipController {
 	private ClientMainApp mainApp;
 	private SignVipService signVip;
@@ -45,29 +52,29 @@ public class SignEnterpriseVipController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		 signVip = userFactory.createSignVipService();
-		 modifyClientInfo = userFactory.createModifyClientInfoService();
-//		signVip = new SignVipServiceImpl_Stub("阿里巴巴", "alibaba6");
-		 
-		 enterpriseNameField.setText("");
-		 enterprisePasswordField.setText("");
+		signVip = userFactory.createSignVipService();
+		modifyClientInfo = userFactory.createModifyClientInfoService();
+		// signVip = new SignVipServiceImpl_Stub("阿里巴巴", "alibaba6");
+
+		enterpriseNameField.setText("");
+		enterprisePasswordField.setText("");
 	}
 
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
-	
-	//设置userID
-	public void setUserID(String userID){
+
+	// 设置userID
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	
-	//注册企业会员
-	public void signEnterpriseVip(){
+
+	// 注册企业会员
+	public void signEnterpriseVip() {
 		this.enterpriseID = enterpriseNameField.getText();
 		this.enterprisePassword = enterprisePasswordField.getText();
-		
-		if(enterpriseID.equals("")||enterprisePassword.equals("")){
+
+		if (enterpriseID.equals("") || enterprisePassword.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
@@ -75,7 +82,7 @@ public class SignEnterpriseVipController {
 			alert.showAndWait();
 			return;
 		}
-		
+
 		ClientInfoVO client = null;
 		try {
 			client = modifyClientInfo.getClientInfo(userID);
@@ -86,6 +93,8 @@ public class SignEnterpriseVipController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
+
+		// new一个企业会员VO
 		EnterpriseVipVO enterpriseVip = new EnterpriseVipVO(userID, client.password, client.telNum, UserType.Client,
 				client.creditValue, client.creditRecord, enterpriseID, enterprisePassword);
 		boolean result = false;
@@ -113,7 +122,7 @@ public class SignEnterpriseVipController {
 			return;
 		}
 	}
-	
+
 	@FXML
 	// 取消按钮action,返回维护个人信息界面
 	public void cancelbuttonAction(ActionEvent event) {

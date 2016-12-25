@@ -1,16 +1,16 @@
 package org.FAF.businesslogic.userbl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import businesslogic.userbl.ClientCreditInfoImpl;
-import data_Stub.UserDAOImpl_Stub;
 import dataservice.userDAO.UserDAO;
 import po.ActionType;
 import po.CreditRecordPO;
@@ -24,6 +24,7 @@ public class ClientCreditInfoImplTest {
 	private int creditValue;
 	private String orderID;
 	private ActionType actionType;
+	@SuppressWarnings("unused")
 	private ArrayList<CreditRecordPO> creditRecord;
 	private int num;
 	private UserDAO userDAO;

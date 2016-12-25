@@ -17,6 +17,13 @@ import presentation.HotelMainApp;
 import presentation.userui.JudgeFormat;
 import vo.RoomVO;
 
+/**
+ * 酒店工作人员在录入可用客房界面下编辑房间的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class EditRoomController {
 	private HotelUIFactoryService hotelFactory;
 	private ImportNewRoomService importNewRoom;
@@ -51,13 +58,14 @@ public class EditRoomController {
 	@FXML
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
-		 importNewRoom = hotelFactory.createImportNewRoomService();
-//		 RoomType roomType = RoomType.KING_SIZE_ROOM;
-//		 int roomNum = 30;
-//		 int roomPrice = 150;
-//		 String address  ="南京市栖霞区仙林大道163号";
-//		importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum, roomPrice, address);
-		
+		importNewRoom = hotelFactory.createImportNewRoomService();
+		// RoomType roomType = RoomType.KING_SIZE_ROOM;
+		// int roomNum = 30;
+		// int roomPrice = 150;
+		// String address ="南京市栖霞区仙林大道163号";
+		// importNewRoom = new ImportNewRoomServiceImpl_Stub(roomType, roomNum,
+		// roomPrice, address);
+
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {
@@ -86,8 +94,8 @@ public class EditRoomController {
 
 		boolean isRoomNumValid = judge.isNumberPositive(roomNumm);
 		boolean isRoomPriceValid = judge.isNumberPositive(roomPricem);
-		
-		if(isRoomNumValid != true || isRoomPriceValid !=true){
+
+		if (isRoomNumValid != true || isRoomPriceValid != true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("数据格式错误（必须是自然数）！");
@@ -95,7 +103,7 @@ public class EditRoomController {
 			alert.showAndWait();
 			return;
 		}
-		
+
 		this.modified = null;
 		this.modified = new RoomVO(RoomType.chineseToEnum(roomTypeLabel.getText()), roomNumm, roomPricem,
 				selected.address);

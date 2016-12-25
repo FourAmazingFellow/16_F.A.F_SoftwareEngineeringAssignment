@@ -15,6 +15,13 @@ import javafx.scene.layout.GridPane;
 import presentation.HotelMainApp;
 import vo.HotelVO;
 
+/**
+ * 酒店工作人员维护酒店基本信息的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class MaintainHotelInfoController {
 	private HotelUIFactoryService hotelFactory;
 	private MaintainHotelBasicInfoService maintainHotelBasicInfo;
@@ -56,34 +63,36 @@ public class MaintainHotelInfoController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 
-//		String address = "南京市栖霞区仙林大道163号";
-//		// this.hotelAddress = address;
-//		String hotelName = "F.A.F酒店";
-//		String tradeArea = "栖霞区";
-//		int starLevel = 4;
-//		float mark = (float) 4.6;
-//		String city = "南京市";
-//		String facilityAndService = "空调、热水";
-//		String briefIntroduction = "南京市最好的酒店";
-//		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
-//		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 150);
-//		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
-//		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 30);
-//		HashMap<String, String> comments = new HashMap<>();
-//		comments.put("原", "这是我住过最舒服的酒店！！！！！");
-//		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl_Stub(hotelName, tradeArea, address, starLevel,
-//				mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
-		
-		 try {
-		 maintainHotelBasicInfo =
-		 hotelFactory.createMaintainHotelBasicInfoService();
-		 } catch (RemoteException e) {
-		 Alert alert = new Alert(AlertType.WARNING);
-		 alert.setTitle("NetWork Warning");
-		 alert.setHeaderText("Fail to connect with the server!");
-		 alert.setContentText("Please check your network connection!");
-		 alert.showAndWait();
-		 }
+		// String address = "南京市栖霞区仙林大道163号";
+		// // this.hotelAddress = address;
+		// String hotelName = "F.A.F酒店";
+		// String tradeArea = "栖霞区";
+		// int starLevel = 4;
+		// float mark = (float) 4.6;
+		// String city = "南京市";
+		// String facilityAndService = "空调、热水";
+		// String briefIntroduction = "南京市最好的酒店";
+		// HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
+		// roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 150);
+		// HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
+		// roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 30);
+		// HashMap<String, String> comments = new HashMap<>();
+		// comments.put("原", "这是我住过最舒服的酒店！！！！！");
+		// maintainHotelBasicInfo = new
+		// MaintainHotelBasicInfoServiceImpl_Stub(hotelName, tradeArea, address,
+		// starLevel,
+		// mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice,
+		// roomTypeAndNums, comments);
+
+		try {
+			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService();
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {
@@ -95,11 +104,11 @@ public class MaintainHotelInfoController {
 		try {
 			this.hotelVO = maintainHotelBasicInfo.enrollHotelBasicInfo(hotelAddress);
 		} catch (RemoteException e) {
-			 Alert alert = new Alert(AlertType.WARNING);
-			 alert.setTitle("NetWork Warning");
-			 alert.setHeaderText("Fail to connect with the server!");
-			 alert.setContentText("Please check your network connection!");
-			 alert.showAndWait();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
 		}
 		hotelNameLabel.setText(hotelVO.hotelName);
 		hotelAddressLabel.setText(hotelVO.hotelAddress);

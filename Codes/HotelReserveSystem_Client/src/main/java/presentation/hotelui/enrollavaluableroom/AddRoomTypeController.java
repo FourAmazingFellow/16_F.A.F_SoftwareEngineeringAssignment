@@ -20,6 +20,13 @@ import presentation.HotelMainApp;
 import presentation.userui.JudgeFormat;
 import vo.RoomVO;
 
+/**
+ * 酒店工作人员在录入可用客房界面下的新增房间界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class AddRoomTypeController {
 	private HotelUIFactoryService hotelFactory;
 	private ImportNewRoomService importNewRoom;
@@ -84,7 +91,7 @@ public class AddRoomTypeController {
 	// 新增房型相关信息
 	public void addRoomType() {
 		// this.roomTypeStr = choiceBox.getTypeSelector();
-//		this.roomTypeStr = "单人间";
+		// this.roomTypeStr = "单人间";
 		this.roomType = (RoomType) RoomType.chineseToEnum(roomTypeStr);
 
 		if (roomNumberField.getText().equals("") || primePriceField.getText().equals("")) {
@@ -95,14 +102,14 @@ public class AddRoomTypeController {
 			alert.showAndWait();
 			return;
 		}
-		
+
 		this.roomNum = Integer.parseInt(roomNumberField.getText());
 		this.roomPrice = Integer.parseInt(primePriceField.getText());
-		
+
 		boolean isRoomNumValid = judge.isNumberPositive(roomNum);
 		boolean isRoomPriceValid = judge.isNumberPositive(roomPrice);
-		
-		if(isRoomNumValid != true || isRoomPriceValid !=true){
+
+		if (isRoomNumValid != true || isRoomPriceValid != true) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("数据格式错误（必须是自然数）！");
@@ -110,9 +117,6 @@ public class AddRoomTypeController {
 			alert.showAndWait();
 			return;
 		}
-//		this.roomNum = 52;
-//		this.roomPrice = 123;
-
 		this.newRoom = null;
 		this.newRoom = new RoomVO(roomType, roomNum, roomPrice, address);
 		boolean result = false;

@@ -21,6 +21,13 @@ import presentation.userui.JudgeFormat;
 import vo.ClientInfoVO;
 import vo.UserVO;
 
+/**
+ * 网站管理人员在管理用户是编辑用户信息的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class EditUserInfoController {
 	private WebsiteManageMainApp mainApp;
 	private UserUIFactoryServiceImpl userFactory;
@@ -99,12 +106,14 @@ public class EditUserInfoController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		 manageUser = userFactory.createManageUserInfoService();
-		 modifyClientInfo = userFactory.createModifyClientInfoService();
-//		manageUser = new ManageUserInfoServiceImpl_Stub("staff0001", "qwe123", "12345678909", UserType.WebMarketStaff,
-//				"");
-//		modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原", "qwe123", "12345678900", UserType.Client, 1500,
-//				"阿里巴巴");
+		manageUser = userFactory.createManageUserInfoService();
+		modifyClientInfo = userFactory.createModifyClientInfoService();
+		// manageUser = new ManageUserInfoServiceImpl_Stub("staff0001",
+		// "qwe123", "12345678909", UserType.WebMarketStaff,
+		// "");
+		// modifyClientInfo = new ModifyClientInfoServiceImpl_Stub("原",
+		// "qwe123", "12345678900", UserType.Client, 1500,
+		// "阿里巴巴");
 	}
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
@@ -116,12 +125,12 @@ public class EditUserInfoController {
 		this.client = client;
 		this.webUser = webUser;
 		if (client != null) {
-			 tabPane.getSelectionModel().select(0);
+			tabPane.getSelectionModel().select(0);
 			clientUserIDField.setText(client.userID);
 			clientTelNumField.setText(client.telNum);
 			creditValueLabel.setText(String.valueOf(client.creditValue));
 		} else if (webUser != null) {
-			 tabPane.getSelectionModel().select(1);
+			tabPane.getSelectionModel().select(1);
 			webMarketUserIDField.setText(webUser.userID);
 			webMarketTelNumField.setText(webUser.telNum);
 		}
@@ -131,10 +140,13 @@ public class EditUserInfoController {
 	public void editClientInfo() {
 		this.userIDm = clientUserIDField.getText();
 		this.telNumm = clientTelNumField.getText();
+
+		// 检查修改过的用户名和联系方式是否合法
 		boolean isValid = judge.isLetterDigitOrChinese(userIDm);
 		int newUserIDLength = judge.getStringLength(userIDm);
 		boolean isNum = judge.isNumeric(telNumm);
 		int newTelNumLength = judge.getStringLength(telNumm);
+
 		if (userIDm.equals("") || telNumm.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -156,14 +168,14 @@ public class EditUserInfoController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if(isNum != true){
+		} else if (isNum != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else if(newTelNumLength != 11){
+		} else if (newTelNumLength != 11) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式长度必须为11位！");
@@ -171,8 +183,7 @@ public class EditUserInfoController {
 			alert.showAndWait();
 			return;
 		}
-//		this.userIDm = "原";
-//		this.telNumm = "12345612345";
+
 		this.modified = null;
 		this.modified = new UserVO(userIDm, client.password, telNumm, UserType.Client);
 		boolean result = false;
@@ -205,10 +216,13 @@ public class EditUserInfoController {
 	public void editWebUserInfo() {
 		this.userIDm = webMarketUserIDField.getText();
 		this.telNumm = webMarketTelNumField.getText();
+
+		// 检查修改过的用户名和联系方式是否合法
 		boolean isValid = judge.isLetterDigitOrChinese(userIDm);
 		int newUserIDLength = judge.getStringLength(userIDm);
 		boolean isNum = judge.isNumeric(telNumm);
 		int newTelNumLength = judge.getStringLength(telNumm);
+
 		if (userIDm.equals("") || telNumm.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -230,14 +244,14 @@ public class EditUserInfoController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if(isNum != true){
+		} else if (isNum != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("包含非法字符（只能输入数字）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else if(newTelNumLength != 11){
+		} else if (newTelNumLength != 11) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("长度必须为11位！");

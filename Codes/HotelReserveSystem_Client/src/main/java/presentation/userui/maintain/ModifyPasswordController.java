@@ -17,6 +17,13 @@ import presentation.ClientMainApp;
 import presentation.userui.JudgeFormat;
 import vo.UserVO;
 
+/**
+ * 客户修改自己的密码
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class ModifyPasswordController {
 
 	private ModifyClientInfoService modifyClientInfo;
@@ -56,27 +63,29 @@ public class ModifyPasswordController {
 		// "qwe123", "12345678900", UserType.Client,
 		// 1000, "阿里巴巴");
 	}
-	
-	public void setMainApp(ClientMainApp mainApp){
+
+	public void setMainApp(ClientMainApp mainApp) {
 		this.mainApp = mainApp;
 	}
 
-	//显示客户账号信息，并保存密码和联系方式
-	public void showUserID(String userID,String telNum, String prePasswordTrue) {
+	// 显示客户账号信息，并保存密码和联系方式
+	public void showUserID(String userID, String telNum, String prePasswordTrue) {
 		this.userID = userID;
 		this.telNum = telNum;
 		userIDLabel.setText(userID);
 		this.prePasswordTrue = prePasswordTrue;
 	}
 
-	//修改密码
+	// 修改密码
 	public void modifyPassword() {
 		this.prePassword = prePasswordField.getText();
 		this.newPassword = newPasswordField.getText();
 		this.newPasswordConfirm = newPasswordConfirmField.getText();
+
+		// 判断密码是否合法，并检验之前的密码是否正确，正确才可以修改密码
 		boolean isPrePasswordValid = judge.isLetterOrDigit(prePassword);
 		int prePasswordLength = judge.getStringLength(prePassword);
-		
+
 		boolean isNewPasswordValid = judge.isLetterOrDigit(newPassword);
 		int newPasswordLength = judge.getStringLength(newPassword);
 		if (isPrePasswordValid != true || isNewPasswordValid != true) {
@@ -86,7 +95,8 @@ public class ModifyPasswordController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if (5 >= prePasswordLength ||newPasswordLength<=5|| prePasswordLength > 16||newPasswordLength>16) {
+		} else if (5 >= prePasswordLength || newPasswordLength <= 5 || prePasswordLength > 16
+				|| newPasswordLength > 16) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("密码长度不合理（6~16）！");
@@ -94,6 +104,7 @@ public class ModifyPasswordController {
 			alert.showAndWait();
 			return;
 		}
+		// 检查新密码是否一致
 		if (prePassword.equals(prePasswordTrue)) {
 			if (newPassword.equals(newPasswordConfirm)) {
 				UserVO user = new UserVO(userID, newPassword, telNum, UserType.Client);
@@ -130,14 +141,14 @@ public class ModifyPasswordController {
 	}
 
 	@FXML
-	//取消按钮操作，返回编辑信息界面
+	// 取消按钮操作，返回编辑信息界面
 	public void cancelButtonAction(ActionEvent event) {
 		mainApp.showEditClientInfoPanel(userID);
 	}
 
 	@FXML
-	//确认修改按钮操作，保存修改
-	public void confirmButtonAction(ActionEvent event){
+	// 确认修改按钮操作，保存修改
+	public void confirmButtonAction(ActionEvent event) {
 		modifyPassword();
 	}
 

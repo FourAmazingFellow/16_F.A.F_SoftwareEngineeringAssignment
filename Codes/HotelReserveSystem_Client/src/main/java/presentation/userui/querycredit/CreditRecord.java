@@ -10,15 +10,22 @@ import po.ActionType;
 import presentation.userui.DateToString;
 import vo.CreditRecordVO;
 
+/**
+ * creditRecord模型类
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class CreditRecord {
 	private StringProperty userID;;
 	private StringProperty changeTime;
-    private StringProperty orderID;
-    private StringProperty action;
-    private StringProperty process;
-    private StringProperty creditResult;
-    private DateToString trans = new DateToString();
-    
+	private StringProperty orderID;
+	private StringProperty action;
+	private StringProperty process;
+	private StringProperty creditResult;
+	private DateToString trans = new DateToString();
+
 	public CreditRecord(CreditRecordVO creditRecordVO) {
 		this.changeTime = new SimpleStringProperty(trans.dateToString(creditRecordVO.changeTime));
 		this.orderID = new SimpleStringProperty(creditRecordVO.orderID);
@@ -43,9 +50,11 @@ public class CreditRecord {
 	public StringProperty actionProperty() {
 		return action;
 	}
+
 	public StringProperty processProperty() {
 		return process;
 	}
+
 	public StringProperty creditResultProperty() {
 		return creditResult;
 	}
@@ -54,7 +63,6 @@ public class CreditRecord {
 		return userID;
 	}
 
-	
 	public void setUserID(String userID) {
 		this.userID.set(userID);
 	}
@@ -88,7 +96,8 @@ public class CreditRecord {
 	}
 
 	public void setProcess(int process) {
-		this.process.set(String.valueOf(process));;
+		this.process.set(String.valueOf(process));
+		;
 	}
 
 	public int getCreditResult() {
@@ -98,20 +107,20 @@ public class CreditRecord {
 	public void setCreditResult(int creditResult) {
 		this.creditResult.set(String.valueOf(creditResult));
 	}
-	
+
 	public Date getDate(String dateStr) {
 		java.util.Date date = null;
-		  SimpleDateFormat formater = new SimpleDateFormat();  
-	        formater.applyPattern("yyyy/MM/dd"); 
-	        try {  
-	            date = formater.parse(dateStr);  
-	        } catch (ParseException e) {  
-	            e.printStackTrace();  
-	        }  
+		SimpleDateFormat formater = new SimpleDateFormat();
+		formater.applyPattern("yyyy/MM/dd");
+		try {
+			date = formater.parse(dateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return (Date) date;
 	}
-	
-	public CreditRecordVO toVO(String userID){
+
+	public CreditRecordVO toVO(String userID) {
 		return new CreditRecordVO(getChangeTime(), getOrderID(), getAction(), getProcess(), getCreditResult());
 	}
 }

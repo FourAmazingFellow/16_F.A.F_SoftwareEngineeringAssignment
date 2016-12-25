@@ -20,6 +20,13 @@ import javafx.scene.control.TableView;
 import presentation.HotelMainApp;
 import vo.RoomVO;
 
+/**
+ * 酒店工作人员的录入可用客房界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class EnrollAvaluableRoomController {
 	private HotelUIFactoryService hotelFactory;
 	private ImportNewRoomService importNewRoom;
@@ -105,17 +112,17 @@ public class EnrollAvaluableRoomController {
 
 	@FXML
 	public void editButtonAction(ActionEvent event) {
-		if(avaluableRoomInfoTable.getSelectionModel().getSelectedIndex()< 0){
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("wrong");
-		alert.setHeaderText("未选中房间类型！");
-		alert.setContentText("请重新选择！");
-		alert.showAndWait();
-		return;
-		}
-		else {
+		if (avaluableRoomInfoTable.getSelectionModel().getSelectedIndex() < 0) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("未选中房间类型！");
+			alert.setContentText("请重新选择！");
+			alert.showAndWait();
+			return;
+		} else {
 			try {
-				this.selected = roomData.get(avaluableRoomInfoTable.getSelectionModel().getSelectedIndex()).toVO(address);
+				this.selected = roomData.get(avaluableRoomInfoTable.getSelectionModel().getSelectedIndex())
+						.toVO(address);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}

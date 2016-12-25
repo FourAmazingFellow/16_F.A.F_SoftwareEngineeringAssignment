@@ -19,6 +19,13 @@ import javafx.scene.layout.GridPane;
 import presentation.HotelMainApp;
 import vo.HotelVO;
 
+/**
+ * 酒店工作人员维护酒店基本信息下的编辑酒店信息的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class EditHotelInfoController {
 	private HotelUIFactoryService hotelFactory;
 	private MaintainHotelBasicInfoService maintainHotelBasicInfo;
@@ -64,24 +71,27 @@ public class EditHotelInfoController {
 	@FXML
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
-		
-//		String address = "南京市栖霞区仙林大道163号";
-//		// this.hotelAddress = address;
-//		String hotelName = "F.A.F酒店";
-//		String tradeArea = "栖霞区";
-//		int starLevel = 4;
-//		float mark = (float) 4.6;
-//		String city = "南京市";
-//		String facilityAndService = "空调、热水";
-//		String briefIntroduction = "南京市最好的酒店";
-//		HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
-//		roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 150);
-//		HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
-//		roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 30);
-//		HashMap<String, String> comments = new HashMap<>();
-//		comments.put("原", "这是我住过最舒服的酒店！！！！！");
-//		maintainHotelBasicInfo = new MaintainHotelBasicInfoServiceImpl_Stub(hotelName, tradeArea, address, starLevel,
-//				mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice, roomTypeAndNums, comments);
+
+		// String address = "南京市栖霞区仙林大道163号";
+		// // this.hotelAddress = address;
+		// String hotelName = "F.A.F酒店";
+		// String tradeArea = "栖霞区";
+		// int starLevel = 4;
+		// float mark = (float) 4.6;
+		// String city = "南京市";
+		// String facilityAndService = "空调、热水";
+		// String briefIntroduction = "南京市最好的酒店";
+		// HashMap<RoomType, Integer> roomTypeAndPrice = new HashMap<>();
+		// roomTypeAndPrice.put(RoomType.KING_SIZE_ROOM, 150);
+		// HashMap<RoomType, Integer> roomTypeAndNums = new HashMap<>();
+		// roomTypeAndNums.put(RoomType.KING_SIZE_ROOM, 30);
+		// HashMap<String, String> comments = new HashMap<>();
+		// comments.put("原", "这是我住过最舒服的酒店！！！！！");
+		// maintainHotelBasicInfo = new
+		// MaintainHotelBasicInfoServiceImpl_Stub(hotelName, tradeArea, address,
+		// starLevel,
+		// mark, city, briefIntroduction, facilityAndService, roomTypeAndPrice,
+		// roomTypeAndNums, comments);
 
 		try {
 			maintainHotelBasicInfo = hotelFactory.createMaintainHotelBasicInfoService();
@@ -92,8 +102,8 @@ public class EditHotelInfoController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
-		
-		hotelStarChoiceBox.setItems((ObservableList<Integer>) FXCollections.observableArrayList(1,2,3,4,5));
+
+		hotelStarChoiceBox.setItems((ObservableList<Integer>) FXCollections.observableArrayList(1, 2, 3, 4, 5));
 	}
 
 	public void setMainApp(HotelMainApp mainApp) {
@@ -104,7 +114,7 @@ public class EditHotelInfoController {
 		this.hotelVO = hotelVO;
 		hotelNameLabel.setText(hotelVO.hotelName);
 		hotelAddressLabel.setText(hotelVO.hotelAddress);
-		hotelStarChoiceBox.getSelectionModel().select(hotelVO.starLevel-1);
+		hotelStarChoiceBox.getSelectionModel().select(hotelVO.starLevel - 1);
 		hotelMarkLabel.setText(String.valueOf(hotelVO.mark));
 		tradeAreaLabel.setText(hotelVO.tradeArea);
 		briefIntroductionField.setText(hotelVO.briefIntroduction);
@@ -126,8 +136,8 @@ public class EditHotelInfoController {
 
 			this.modified = null;
 			this.modified = new HotelVO(hotelVO.hotelName, hotelVO.tradeArea, hotelVO.hotelAddress, hotelStarm,
-					hotelVO.mark, hotelVO.city, hotelVO.min_Price, hotelVO.max_Price, briefIntrom, servicem, hotelVO.roomTypeAndPrice,
-					hotelVO.roomTypeAndNums, hotelVO.comments);
+					hotelVO.mark, hotelVO.city, hotelVO.min_Price, hotelVO.max_Price, briefIntrom, servicem,
+					hotelVO.roomTypeAndPrice, hotelVO.roomTypeAndNums, hotelVO.comments);
 			boolean result = false;
 			try {
 				result = maintainHotelBasicInfo.confirmModify(modified);

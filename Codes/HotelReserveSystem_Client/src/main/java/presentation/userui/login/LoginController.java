@@ -18,6 +18,13 @@ import presentation.MainApp;
 import presentation.userui.JudgeFormat;
 import runner.ClientRunner;
 
+/**
+ * 登录界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class LoginController {
 	private MainApp mainApp;
 	private LoginAndSignUpService login;
@@ -46,7 +53,7 @@ public class LoginController {
 
 	@FXML
 	public void initialize() {
-//		userIDTextArea.setText("");
+		// userIDTextArea.setText("");
 		passwordTextArea.setText("");
 	}
 
@@ -55,6 +62,9 @@ public class LoginController {
 		userIDTextArea.setText(MainApp.userID);
 	}
 
+	/**
+	 * 验证登录信息
+	 */
 	public void verifyLogin() {
 		this.userID = userIDTextArea.getText();
 		this.password = passwordTextArea.getText();
@@ -81,6 +91,7 @@ public class LoginController {
 		int passwordLength = judge.getStringLength(password);
 
 		this.userType = null;
+		// 信息填写不完整的警示框
 		if (userID.equals("") || password.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -88,28 +99,36 @@ public class LoginController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if (isValid != true) {
+		}
+		// 用户名包含非法字符的警示框
+		else if (isValid != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("用户名包含非法字符（只能是数字、字母或中文）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if (0 >= userIDLength || userIDLength > 20) {
+		}
+		// 用户名长度不正确的的警示框
+		else if (0 >= userIDLength || userIDLength > 20) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("用户名长度不合理（1~20）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if (isPasswordValid != true) {
+		}
+		// 密码包含非法字符的警示框
+		else if (isPasswordValid != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("密码包含非法字符（只能是数字或字母）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		} else if (5 >= passwordLength || passwordLength > 16) {
+		}
+		// 密码长度不正确的的警示框
+		else if (5 >= passwordLength || passwordLength > 16) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("密码长度不合理（6~16）！");
@@ -150,6 +169,7 @@ public class LoginController {
 				alert.setHeaderText("登录成功！");
 				alert.showAndWait();
 
+				// 根据获得的userType分别调用不同用户的mainApp
 				if (userType == UserType.Client)
 					mainApp.showClientMainApp(userID);
 				else if (userType == UserType.HotelStaff) {
@@ -171,10 +191,12 @@ public class LoginController {
 		}
 	}
 
+	// 登录按钮操作，调用验证登录方法
 	public void loginButtonAction() {
 		verifyLogin();
 	}
 
+	// 注册按钮操作，显示注册界面
 	public void showRegisterPanel() {
 		// 尝试连接服务器
 		this.runner = new ClientRunner();

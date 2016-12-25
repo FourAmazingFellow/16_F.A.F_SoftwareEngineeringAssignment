@@ -20,6 +20,13 @@ import presentation.ClientMainApp;
 import vo.ClientInfoVO;
 import vo.RegularVipVO;
 
+/**
+ * 注册普通会员界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class SignRegularVipController {
 	private ClientMainApp mainApp;
 	private SignVipService signVip;
@@ -29,7 +36,6 @@ public class SignRegularVipController {
 	private int creditValue;
 	private int vipRank;
 	private Date birth;
-
 
 	@FXML
 	private HBox birthday;
@@ -50,23 +56,23 @@ public class SignRegularVipController {
 		modifyClientInfo = userFactory.createModifyClientInfoService();
 		// signVip = new SignVipServiceImpl_Stub(new Date(1997 - 1900, 3 - 1,
 		// 22));
-		
-//		datePicker.setValue(LocalDate.now());
+
+		// datePicker.setValue(LocalDate.now());
 		datePicker.setEditable(false);
 	}
 
 	public void setMainApp(ClientMainApp clientMainApp) {
 		this.mainApp = clientMainApp;
 	}
-	
-	public void setUserID(String userID){
+
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 
 	public void signRegularVip() {
 		LocalDate date = datePicker.getValue();
-		
-		if(date == null){
+
+		if (date == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("未选择生日！");
@@ -74,9 +80,9 @@ public class SignRegularVipController {
 			alert.showAndWait();
 			return;
 		}
-		
+
 		this.birth = getDate(date);
-		
+
 		ClientInfoVO client = null;
 		try {
 			client = modifyClientInfo.getClientInfo(userID);
@@ -87,6 +93,8 @@ public class SignRegularVipController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
+
+		// 根据目前客户的信用值更新初始会员信息中的vipRank
 		this.creditValue = client.creditValue;
 		if (creditValue <= 600)
 			this.vipRank = 0;
@@ -98,6 +106,8 @@ public class SignRegularVipController {
 			this.vipRank = 3;
 		else if (creditValue > 12000)
 			this.vipRank = 4;
+
+		// new一个普通会员VO
 		RegularVipVO regularVip = new RegularVipVO(userID, client.password, client.telNum, UserType.Client,
 				client.creditValue, client.creditRecord, birth, vipRank);
 		boolean result = false;
@@ -127,6 +137,7 @@ public class SignRegularVipController {
 	}
 
 	@SuppressWarnings("deprecation")
+	// date转换方法
 	public Date getDate(LocalDate date) {
 		return new Date(date.getYear() - 1900, date.getMonthValue() - 1, date.getDayOfMonth());
 	}

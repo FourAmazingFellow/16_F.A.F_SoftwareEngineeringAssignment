@@ -20,6 +20,13 @@ import vo.ClientInfoVO;
 import vo.EnterpriseVipVO;
 import vo.RegularVipVO;
 
+/**
+ * 客户维护自己的信息的界面（查看当前信息）
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class ModifyClientInfoController {
 	private ClientMainApp mainApp;
 	private ModifyClientInfoService modifyClientInfo;
@@ -93,6 +100,8 @@ public class ModifyClientInfoController {
 		this.userID = userID;
 		this.telNum = client.telNum;
 		this.creditValue = client.creditValue;
+
+		// 检查客户是否是会员，若是则转换成相应的会员信息
 		if (client instanceof EnterpriseVipVO) {
 			this.enterpriseVip = (EnterpriseVipVO) client;
 			this.enterpriseName = enterpriseVip.enterpriseID;
@@ -131,11 +140,14 @@ public class ModifyClientInfoController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("vip info");
 			alert.setHeaderText("请选择注册会员类型！");
+			// 在alert上添加button
 			ButtonType signRegularVip = new ButtonType("注册普通会员");
 			ButtonType signEnterpriseVip = new ButtonType("注册企业会员");
 			ButtonType cancel = new ButtonType("取消", ButtonData.CANCEL_CLOSE);
 			alert.getButtonTypes().setAll(signRegularVip, signEnterpriseVip, cancel);
 			Optional<ButtonType> result = alert.showAndWait();
+
+			// 根据选择的button调用相应的注册会员界面
 			if (result.get() == signRegularVip) {
 				mainApp.showSignRegularVipPanel(userID);
 			} else if (result.get() == signEnterpriseVip) {

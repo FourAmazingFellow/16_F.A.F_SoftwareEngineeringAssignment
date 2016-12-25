@@ -18,6 +18,13 @@ import presentation.WebsiteManageMainApp;
 import presentation.userui.JudgeFormat;
 import vo.UserVO;
 
+/**
+ * 网站管理人员在管理用户时添加新用户的界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class addNewUserController {
 	private WebsiteManageMainApp mainApp;
 	private UserUIFactoryServiceImpl userFactory;
@@ -76,6 +83,7 @@ public class addNewUserController {
 		this.passwordConfirm = webMarketPasswordConfirmField.getText();
 		this.telNum = webMarketTelNumField.getText();
 
+		// 检查用户名和密码和联系方式是否合法
 		boolean isValid = judge.isLetterDigitOrChinese(userID);
 		int newUserIDLength = judge.getStringLength(userID);
 		boolean isNum = judge.isNumeric(telNum);
@@ -129,7 +137,7 @@ public class addNewUserController {
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else if (isNum != true) {
+		} else if (isNum != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("联系方式包含非法字符（只能输入数字）！");

@@ -17,6 +17,13 @@ import javafx.scene.layout.HBox;
 import presentation.WebsitePromotionMainApp;
 import vo.ClientInfoVO;
 
+/**
+ * 信用充值界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class AddCreditValueController {
 	private AddCreditValueService addCreditValue;
 	private ModifyClientInfoService clientCreditInfo;
@@ -57,11 +64,12 @@ public class AddCreditValueController {
 	@FXML
 	public void initialize() {
 		userFactory = new UserUIFactoryServiceImpl();
-		 addCreditValue = userFactory.createAddCreditValueService();
-		 clientCreditInfo = userFactory.createModifyClientInfoService();
-//		clientCreditInfo = new ModifyClientInfoServiceImpl_Stub("Accident", "qwe123", "123456678900", UserType.Client,
-//				1000, "阿里巴巴");
-//		addCreditValue = new AddCreditValueServiceImpl_Stub();
+		addCreditValue = userFactory.createAddCreditValueService();
+		clientCreditInfo = userFactory.createModifyClientInfoService();
+		// clientCreditInfo = new ModifyClientInfoServiceImpl_Stub("Accident",
+		// "qwe123", "123456678900", UserType.Client,
+		// 1000, "阿里巴巴");
+		// addCreditValue = new AddCreditValueServiceImpl_Stub();
 
 		addCreditField.setText("");
 		userIDLabel.setText("");
@@ -72,11 +80,23 @@ public class AddCreditValueController {
 		this.mainApp = mainApp;
 	}
 
-	// 显示客户信息
+	/**
+	 * 显示客户信息
+	 */
 	public void showClientDetail() {
-		 this.userID = searchField.getText();
-//		this.userID = "Accident";
+		this.userID = searchField.getText();
+		// this.userID = "Accident";
 		ClientInfoVO client = null;
+
+		// 搜索框用户名为空弹出警示框
+		if (userID.equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("wrong");
+			alert.setHeaderText("信息填写不完整！");
+			alert.setContentText("请重新输入！");
+			alert.showAndWait();
+			return;
+		}
 		try {
 			client = clientCreditInfo.getClientInfo(userID);
 		} catch (RemoteException e) {
@@ -87,6 +107,7 @@ public class AddCreditValueController {
 			alert.showAndWait();
 		}
 
+		// 找不到此用户的警示框
 		if (client == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -102,7 +123,11 @@ public class AddCreditValueController {
 		}
 	}
 
+	/**
+	 * 信用充值
+	 */
 	public void addCreditValue() {
+		// 未输入数值的警示框
 		if (addCreditField.getText().equals("")) {
 			Alert alert1 = new Alert(AlertType.WARNING);
 			alert1.setTitle("wrong");
@@ -112,6 +137,7 @@ public class AddCreditValueController {
 			return;
 		} else {
 			int creditAdded = Integer.parseInt(addCreditField.getText());
+			// 信用值格式错误的警示框
 			if (creditAdded % 100 != 0) {
 				Alert alert2 = new Alert(AlertType.WARNING);
 				alert2.setTitle("wrong");
@@ -143,19 +169,22 @@ public class AddCreditValueController {
 				alert4.setHeaderText("充值成功！");
 				alert4.showAndWait();
 				mainApp.showAddCreditPanel();
-				
+
 			}
 		}
 	}
 
+	// 搜索按钮操作，显示客户信息
 	public void searchButtonAction() {
 		showClientDetail();
 	}
 
+	// 确认充值按钮操作，调用信用充值方法
 	public void comfirmButtonAction() {
 		addCreditValue();
 	}
 
+	// 取消按钮操作，返回信用初始充值界面
 	public void cancelButtonAction() {
 		mainApp.showAddCreditPanel();
 	}

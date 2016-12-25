@@ -21,6 +21,13 @@ import vo.ClientInfoVO;
 import vo.HotelStaffInfoVO;
 import vo.UserVO;
 
+/**
+ * 网站管理人员管理用户界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class ManageUserController {
 	private WebsiteManageMainApp mainApp;
 	private UserUIFactoryServiceImpl userFactory;
@@ -120,6 +127,7 @@ public class ManageUserController {
 		this.mainApp = mainApp;
 	}
 
+	// 设置初始值
 	public void setPreInfo() {
 		userIDLabel.setText("");
 		telNumLabel.setText("");
@@ -148,6 +156,8 @@ public class ManageUserController {
 		ClientInfoVO client = null;
 		HotelStaffInfoVO hotelStaff = null;
 		UserVO webUser = null;
+
+		// 根据用户名查找对应的客户
 		try {
 			client = modifyClientInfo.getClientInfo(userID);
 			this.client = client;
@@ -158,6 +168,7 @@ public class ManageUserController {
 			alert.setContentText("Please check your network connection!");
 			alert.showAndWait();
 		}
+		// 找不到此客户，则查找对应的酒店工作人员
 		if (this.client == null) {
 			try {
 				hotelStaff = manageUser.getHotelStaffInfo(userID);
@@ -169,6 +180,7 @@ public class ManageUserController {
 				alert.setContentText("Please check your network connection!");
 				alert.showAndWait();
 			}
+			// 找不到此就带你工作人员则查找对应的网站人员
 			if (this.hotelStaff == null) {
 				try {
 					webUser = manageUser.getUserInfo(userID);
@@ -183,18 +195,19 @@ public class ManageUserController {
 			}
 		}
 
+		// 根据查找的结果显示对应的用户信息
 		if (this.client != null) {
-			 tabPane.getSelectionModel().select(0);
+			tabPane.getSelectionModel().select(0);
 			userIDLabel.setText(client.userID);
 			telNumLabel.setText(client.telNum);
 			creditValueLabel.setText(String.valueOf(client.creditValue));
 		} else if (this.hotelStaff != null) {
-			 tabPane.getSelectionModel().select(2);
+			tabPane.getSelectionModel().select(2);
 			hoteluserIDLabel.setText(hotelStaff.userID);
 			hoteltelNumLabel.setText(hotelStaff.telNum);
 			hotelAddressLabel.setText(hotelStaff.hotelAddress);
 		} else if (this.webUser != null) {
-			 tabPane.getSelectionModel().select(1);
+			tabPane.getSelectionModel().select(1);
 			webMarketuserIDLabel.setText(webUser.userID);
 			webMarkettelNumLabel.setText(webUser.telNum);
 		} else {

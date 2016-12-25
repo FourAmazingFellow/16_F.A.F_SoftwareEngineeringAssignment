@@ -19,6 +19,13 @@ import javafx.scene.layout.GridPane;
 import presentation.ClientMainApp;
 import presentation.userui.JudgeFormat;
 
+/**
+ * 客户从订单详情进去的评价酒店界面
+ * 
+ * @author sparkler
+ * @version
+ * @see
+ */
 public class CommentOnHotelController {
 	private HotelUIFactoryService hotelFactory;
 	private ClientMainApp mainApp;
@@ -28,8 +35,8 @@ public class CommentOnHotelController {
 	private float mark;
 	private String orderID;
 	private String comments;
-	private JudgeFormat judge= new JudgeFormat();
-	
+	private JudgeFormat judge = new JudgeFormat();
+
 	@FXML
 	private Label commentLabel;
 
@@ -63,25 +70,28 @@ public class CommentOnHotelController {
 		this.mainApp = mainApp;
 	}
 
+	// 设置用户名和酒店地址
 	public void setuserIDAndAddress(String userID, String address, String orderID) {
 		this.userID = userID;
 		this.hotelAddress = address;
 		this.orderID = orderID;
 	}
 
+	// 评价酒店
 	public void commentOnHotel() {
 		this.mark = markChoiceBox.getSelectionModel().getSelectedItem();
 		this.comments = commentArea.getText();
 		int commentsLength = judge.getStringLength(comments);
-		
-		if(comments.equals("")){
+
+		// 检查填写内容是否合理
+		if (comments.equals("")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
-		}else if (commentsLength < 5) {
+		} else if (commentsLength < 5) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("长度不合理（至少五个字）！");
@@ -116,11 +126,13 @@ public class CommentOnHotelController {
 	}
 
 	@FXML
+	// 取消按钮操作
 	void cancelButtonAction(ActionEvent event) {
 		mainApp.showDetailedOrderPanel(orderID);
 	}
 
 	@FXML
+	// 确定按钮操作
 	void confirmButtonAction(ActionEvent event) {
 		commentOnHotel();
 	}
