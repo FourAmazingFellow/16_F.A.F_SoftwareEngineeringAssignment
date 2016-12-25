@@ -116,12 +116,12 @@ public class EditUserInfoController {
 		this.client = client;
 		this.webUser = webUser;
 		if (client != null) {
-			// tabPane.getSelectionModel().select(clientTab);
+			 tabPane.getSelectionModel().select(0);
 			clientUserIDField.setText(client.userID);
 			clientTelNumField.setText(client.telNum);
 			creditValueLabel.setText(String.valueOf(client.creditValue));
 		} else if (webUser != null) {
-			// tabPane.getSelectionModel().select(webMarketStaffTab);
+			 tabPane.getSelectionModel().select(1);
 			webMarketUserIDField.setText(webUser.userID);
 			webMarketTelNumField.setText(webUser.telNum);
 		}
@@ -145,14 +145,14 @@ public class EditUserInfoController {
 		} else if (isValid != true) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
-			alert.setHeaderText("包含非法字符！");
+			alert.setHeaderText("用户名包含非法字符！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
 		} else if (0 >= newUserIDLength || newUserIDLength > 20) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
-			alert.setHeaderText("长度不合理（1~20）！");
+			alert.setHeaderText("用户名长度不合理（1~20）！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
@@ -166,7 +166,7 @@ public class EditUserInfoController {
 		}else if(newTelNumLength != 11){
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
-			alert.setHeaderText("长度必须为11位！");
+			alert.setHeaderText("联系方式长度必须为11位！");
 			alert.setContentText("请重新输入！");
 			alert.showAndWait();
 			return;
@@ -203,7 +203,7 @@ public class EditUserInfoController {
 
 	// 修改网站人员信息
 	public void editWebUserInfo() {
-		this.userIDm = webMarketPasswordField.getText();
+		this.userIDm = webMarketUserIDField.getText();
 		this.telNumm = webMarketTelNumField.getText();
 		boolean isValid = judge.isLetterDigitOrChinese(userIDm);
 		int newUserIDLength = judge.getStringLength(userIDm);

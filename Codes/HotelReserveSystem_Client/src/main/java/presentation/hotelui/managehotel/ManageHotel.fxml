@@ -16,13 +16,13 @@
 		</HBox>
 		<Label fx:id="manageHotelLabel" layoutX="95.0" layoutY="57.0" prefHeight="50.0" prefWidth="150.0" styleClass="label-title" text="管理酒店" />
 
-		<HBox layoutX="295.0" layoutY="507.0" spacing="100.0">
+		<HBox layoutX="295.0" layoutY="550.0" spacing="100.0">
 			<children>
 				<Button fx:id="cancelButton" layoutX="353.0" layoutY="635.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="50.0" prefWidth="150.0" text="取消" />
 				<Button fx:id="confirmButton" layoutX="535.0" layoutY="623.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="50.0" prefWidth="150.0" text="确认" />
 			</children>
 		</HBox>
-		<TabPane layoutX="195.0" layoutY="157.0" prefHeight="300.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+		<TabPane fx:id="tabPane" layoutX="195.0" layoutY="157.0" prefHeight="350.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab fx:id="hotelInfoTab" text="查询已存在酒店信息">
 					<content>
@@ -64,25 +64,34 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<GridPane fx:id="newHotelInfo" layoutX="100.0" layoutY="25.0" prefHeight="200.0" prefWidth="400.0">
+								<GridPane fx:id="newHotelInfo" layoutX="50.0" layoutY="25.0" prefHeight="300.0" prefWidth="400.0">
 									<children>
 										<Label text="酒店名称" />
-										<Label text="工作人员账号" GridPane.rowIndex="1" />
-										<Label text="账号密码" GridPane.rowIndex="2" />
-										<Label text="联系方式" GridPane.rowIndex="4" />
+										<Label text="工作人员账号" GridPane.rowIndex="4" />
+										<Label text="账号密码" GridPane.rowIndex="5" />
+										<Label text="联系方式" GridPane.rowIndex="7" />
 										<TextField fx:id="hotelNameField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" />
-										<TextField fx:id="hotelStaffIDfField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-										<TextField fx:id="telNumField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="确认密码" GridPane.rowIndex="3" />
-                              <PasswordField fx:id="passwordConfirmField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+										<TextField fx:id="hotelStaffIDfField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+										<TextField fx:id="telNumField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label text="确认密码" GridPane.rowIndex="6" />
+                              <PasswordField fx:id="passwordConfirmField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Label text="商圈" GridPane.rowIndex="3" />
+                              <Label text="酒店地址" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="cityChoiceBox" prefHeight="39.0" prefWidth="300.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ChoiceBox fx:id="tradeAreaChoiceBox" prefHeight="39.0" prefWidth="300.0" styleClass="choice-box-small" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="城市" GridPane.rowIndex="2" />
+                              <TextField fx:id="hotelAddressField" prefHeight="50.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 									</children>
 									<columnConstraints>
-										<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-										<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+										<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="150.0" prefWidth="100.0" />
+										<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="300.0" prefWidth="300.0" />
 									</columnConstraints>
 									<rowConstraints>
 										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

@@ -41,6 +41,7 @@ public class WebsiteManageMainApp extends Application {
 		this.primaryStage.setResizable(false);
 
 		showWebManageRootPanel();
+		showManageUserPanel();
 	}
 
 	public void setMainApp(MainApp mainApp) {
@@ -118,6 +119,7 @@ public class WebsiteManageMainApp extends Application {
 			ManageHotelController controller = loader.getController();
 
 			controller.setMainApp(this);
+			controller.setPreInfo();
 //			controller.confirmButtonAction(null);
 			
 			primaryStage.show();

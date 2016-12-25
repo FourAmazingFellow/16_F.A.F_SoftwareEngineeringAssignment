@@ -136,7 +136,7 @@ public class ManageUserController {
 	// 显示用户信息
 	public void showUserInfo() {
 		this.userID = searchField.getText();
-//		 this.userID = "yuan";
+		// this.userID = "wmstaff1";
 		if (userID.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
@@ -169,34 +169,35 @@ public class ManageUserController {
 				alert.setContentText("Please check your network connection!");
 				alert.showAndWait();
 			}
-		} else if (this.client == null && this.hotelStaff == null) {
-			try {
-				webUser = manageUser.getUserInfo(userID);
-				this.webUser = webUser;
-			} catch (RemoteException e) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("NetWork Warning");
-				alert.setHeaderText("Fail to connect with the server!");
-				alert.setContentText("Please check your network connection!");
-				alert.showAndWait();
+			if (this.hotelStaff == null) {
+				try {
+					webUser = manageUser.getUserInfo(userID);
+					this.webUser = webUser;
+				} catch (RemoteException e) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("NetWork Warning");
+					alert.setHeaderText("Fail to connect with the server!");
+					alert.setContentText("Please check your network connection!");
+					alert.showAndWait();
+				}
 			}
 		}
 
 		if (this.client != null) {
-			// tabPane.getSelectionModel().select(clientTab);
+			 tabPane.getSelectionModel().select(0);
 			userIDLabel.setText(client.userID);
 			telNumLabel.setText(client.telNum);
 			creditValueLabel.setText(String.valueOf(client.creditValue));
 		} else if (this.hotelStaff != null) {
-			// tabPane.getSelectionModel().select(hotelStaffTab);
+			 tabPane.getSelectionModel().select(2);
 			hoteluserIDLabel.setText(hotelStaff.userID);
 			hoteltelNumLabel.setText(hotelStaff.telNum);
 			hotelAddressLabel.setText(hotelStaff.hotelAddress);
 		} else if (this.webUser != null) {
-			// tabPane.getSelectionModel().select(webMarketStaffTab);
+			 tabPane.getSelectionModel().select(1);
 			webMarketuserIDLabel.setText(webUser.userID);
 			webMarkettelNumLabel.setText(webUser.telNum);
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("未找到相关用户！");

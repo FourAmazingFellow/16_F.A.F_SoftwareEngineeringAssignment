@@ -1,16 +1,25 @@
 package presentation.hotelui.managehotel;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import businesslogicservice.hotelblservice.ManageHotelInfoService;
+import businesslogicservice.strategyblservice.UpdateStrategyService;
 import factory.HotelUIFactoryService;
 import factory.HotelUIFactoryServiceImpl;
+import factory.StrategyUIFactoryService;
+import factory.StrategyUIFactoryServiceImpl;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
@@ -18,6 +27,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import po.BusinessDistrictPO;
 import po.RoomType;
 import po.UserType;
 import presentation.WebsiteManageMainApp;
@@ -27,11 +37,14 @@ import vo.HotelVO;
 
 public class ManageHotelController {
 	private HotelUIFactoryService hotelFactory;
+	private StrategyUIFactoryService strategyFactory;
 	private ManageHotelInfoService manageHotel;
+	private UpdateStrategyService updateStrategyService;
 	private WebsiteManageMainApp mainApp;
 	private String hotelAddress;
 	private String hotelName, hotelNameNew;
 	private String tradeArea;
+	private String city;
 	private String service;
 	private int hotelStar;
 	private String briefIntro;
@@ -40,19 +53,24 @@ public class ManageHotelController {
 	private String telNum;
 	private HotelVO newHotel;
 	private HotelStaffInfoVO staff;
+	private ObservableList<String> cityListData = FXCollections.observableArrayList("南京市", "上海市");
+	private ObservableList<String> tradeAreaListData = FXCollections.observableArrayList();
 	private HashMap<RoomType, Integer> hash1 = new HashMap<>();
 	private HashMap<RoomType, Integer> hash2 = new HashMap<>();
 	private HashMap<String, String> hash3 = new HashMap<>();
 	private JudgeFormat judge = new JudgeFormat();
 
 	@FXML
+	private Label briefIntroLabel;
+
+	@FXML
+	private TextField hotelAddressField;
+
+	@FXML
 	private Button searchButton;
 
 	@FXML
 	private TextField searchField;
-
-	@FXML
-	private Label briefIntroLabel;
 
 	@FXML
 	private Label starLabel;
@@ -82,10 +100,16 @@ public class ManageHotelController {
 	private TextField telNumField;
 
 	@FXML
+	private PasswordField passwordConfirmField;
+
+	@FXML
 	private Label tradeAreaLabel;
 
 	@FXML
 	private GridPane newHotelInfo;
+
+	@FXML
+	private ChoiceBox<String> tradeAreaChoiceBox;
 
 	@FXML
 	private Label hotelAddressLabel;
@@ -94,7 +118,7 @@ public class ManageHotelController {
 	private PasswordField passwordField;
 
 	@FXML
-	private PasswordField passwordConfirmField;
+	private ChoiceBox<String> cityChoiceBox;
 
 	@FXML
 	private Label manageHotelLabel;
@@ -115,8 +139,45 @@ public class ManageHotelController {
 	public void initialize() {
 		hotelFactory = new HotelUIFactoryServiceImpl();
 		manageHotel = hotelFactory.createManageHotelInfoService(null);
+		strategyFactory = new StrategyUIFactoryServiceImpl();
+		updateStrategyService = strategyFactory.createUpdateStrategyService();
 		// manageHotel = new ManageHotelInfoServiceImpl_Stub();
 
+		cityChoiceBox.setItems(cityListData);
+		tradeAreaChoiceBox.setItems(tradeAreaListData);
+		 try {
+	            setTradeAreaList(updateStrategyService
+	                    .getBusinessDistrictList(cityChoiceBox.getSelectionModel().getSelectedItem()));
+	        } catch (RemoteException e) {
+	            Alert alert = new Alert(AlertType.WARNING);
+	            alert.setTitle("NetWork Warning");
+	            alert.setHeaderText("Fail to connect with the server!");
+	            alert.setContentText("Please check your network connection!");
+	            alert.showAndWait();
+	        }
+	        // 给cityChoiceBox2添加监听
+	        cityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+	            @Override
+	            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+	                try {
+	                    setTradeAreaList(updateStrategyService.getBusinessDistrictList(cityListData.get((int) newValue)));
+	                } catch (RemoteException e) {
+	                    Alert alert = new Alert(AlertType.WARNING);
+	                    alert.setTitle("NetWork Warning");
+	                    alert.setHeaderText("Fail to connect with the server!");
+	                    alert.setContentText("Please check your network connection!");
+	                    alert.showAndWait();
+	                }
+	            }
+	        });
+
+	}
+
+	public void setMainApp(WebsiteManageMainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+
+	public void setPreInfo() {
 		hotelNameLabel.setText("");
 		hotelAddressLabel.setText("");
 		starLabel.setText("");
@@ -132,13 +193,14 @@ public class ManageHotelController {
 		telNumField.setText("");
 	}
 
-	public void setMainApp(WebsiteManageMainApp mainApp) {
-		this.mainApp = mainApp;
+	public void setTradeAreaList(ArrayList<BusinessDistrictPO> tradeAreaPOs) {
+		tradeAreaListData.clear();
+		for (BusinessDistrictPO tradeAreaPO : tradeAreaPOs) {
+			tradeAreaListData.add(tradeAreaPO.getBusinessDistrictName());
+		}
 	}
 
-	@FXML
-	public void searchButtonAction(ActionEvent event) {
-		// tabPane.getSelectionModel().select(0);;
+	public void getHotelInfo() {
 		this.hotelAddress = searchField.getText();
 		if (hotelAddress.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -181,9 +243,19 @@ public class ManageHotelController {
 
 	}
 
+	@FXML
+	public void searchButtonAction(ActionEvent event) {
+		tabPane.getSelectionModel().select(0);
+		setPreInfo();
+		getHotelInfo();
+	}
+
 	public void addNewHotel() {
 		// tabPane.getSelectionModel().select(hotelInfoTab);
 		this.hotelNameNew = hotelNameField.getText();
+		this.hotelAddress = hotelAddressField.getText();
+		this.city = cityChoiceBox.getTypeSelector();
+		this.tradeArea = tradeAreaChoiceBox.getTypeSelector();
 		this.staffID = hotelStaffIDfField.getText();
 		this.password = passwordField.getText();
 		this.passwordConfirm = passwordConfirmField.getText();
@@ -203,7 +275,7 @@ public class ManageHotelController {
 		// this.passwordConfirm = "qwe123";
 		// this.telNum = "12345678900";
 
-		if (hotelNameNew.equals("") || staffID.equals("") || password.equals("") || telNum.equals("")) {
+		if (hotelNameNew.equals("") ||hotelAddress.equals("")||tradeArea.equals("")||city.equals("")|| staffID.equals("") || password.equals("") || telNum.equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("wrong");
 			alert.setHeaderText("信息填写不完整！");
@@ -261,7 +333,7 @@ public class ManageHotelController {
 			return;
 		}
 		this.newHotel = null;
-		this.newHotel = new HotelVO(hotelNameNew, "", "", 0, 0, "", "", "", hash1, hash2, hash3);
+		this.newHotel = new HotelVO(hotelNameNew,tradeArea, hotelAddress , 0, 0, city, "", "", hash1, hash2, hash3);
 		boolean result1 = false;
 		try {
 			result1 = manageHotel.addHotel(newHotel);
@@ -273,7 +345,7 @@ public class ManageHotelController {
 			alert.showAndWait();
 		}
 		this.staff = null;
-		this.staff = new HotelStaffInfoVO(staffID, password, telNum, UserType.HotelStaff, null);
+		this.staff = new HotelStaffInfoVO(staffID, password, telNum, UserType.HotelStaff, hotelAddress);
 		boolean result2 = false;
 		try {
 			result2 = manageHotel.addHotelStaff(staff);

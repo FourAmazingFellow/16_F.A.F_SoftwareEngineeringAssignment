@@ -34,7 +34,7 @@ public class WebsiteManageRootBoardController {
 
 	public void setMainApp(WebsiteManageMainApp mainApp) {
 		this.mainApp = mainApp;
-		userActionButton.setText(WebsitePromotionMainApp.userID);
+		userActionButton.setText(WebsiteManageMainApp.userID);
 	}
 	
 	@FXML
