@@ -40,8 +40,8 @@ public class LoginController {
 
 	@FXML
 	private PasswordField passwordTextArea;
-	
-	//连接服务器所需的变量
+
+	// 连接服务器所需的变量
 	private ClientRunner runner;
 
 	@FXML
@@ -57,8 +57,8 @@ public class LoginController {
 	public void verifyLogin() {
 		this.userID = userIDTextArea.getText();
 		this.password = passwordTextArea.getText();
-		
-		//尝试连接服务器
+
+		// 尝试连接服务器
 		this.runner = new ClientRunner();
 		try {
 			runner.start();
@@ -175,6 +175,22 @@ public class LoginController {
 	}
 
 	public void showRegisterPanel() {
+		// 尝试连接服务器
+		this.runner = new ClientRunner();
+		try {
+			runner.start();
+			userFactory = new UserUIFactoryServiceImpl();
+			check = new CheckLoginInfo();
+			login = userFactory.createLoginAndSignUpService();
+			manageUserInfo = userFactory.createManageUserInfoService();
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+			return;
+		}
 		mainApp.showRegisterPanel();
 	}
 
