@@ -1,39 +1,22 @@
 package presentation;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import presentation.userui.login.FillInUserInfoController;
 import presentation.userui.login.LoginController;
 import presentation.userui.login.RegisterController;
-import runner.ClientRunner;
 
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private Application mainApp;
-	
-	private ClientRunner runner;
 
 	@Override
 	public void start(Stage primaryStage) {
-		this.runner = new ClientRunner();
-		try {
-			runner.start();
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);

@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import po.UserType;
 import presentation.MainApp;
 import presentation.userui.JudgeFormat;
+import runner.ClientRunner;
 
 public class LoginController {
 	private MainApp mainApp;
@@ -39,6 +40,9 @@ public class LoginController {
 
 	@FXML
 	private PasswordField passwordTextArea;
+	
+	//连接服务器所需的变量
+	private ClientRunner runner;
 
 	@FXML
 	public void initialize() {
@@ -59,6 +63,17 @@ public class LoginController {
 		this.userID = userIDTextArea.getText();
 		this.password = passwordTextArea.getText();
 		
+		//尝试连接服务器
+		this.runner = new ClientRunner();
+		try {
+			runner.start();
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
 		boolean isValid = judge.isLetterDigitOrChinese(userID);
 		int userIDLength = judge.getStringLength(userID);
 		boolean isPasswordValid = judge.isLetterOrDigit(password);
