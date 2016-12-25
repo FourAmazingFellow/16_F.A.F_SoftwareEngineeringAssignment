@@ -7,6 +7,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
+/**
+ * 筛选界面的Controller
+ * @author Accident
+ * @version 
+ * @see
+ */
 public class ScreenPanelController {
 
 	@FXML
@@ -63,10 +69,9 @@ public class ScreenPanelController {
 	private void handleOk() {
 		confirmClicked = true;
 		setPriceRange();
+		//根据用户选择把conditions中相应的值重置
 		conditions[5] = String.valueOf((int)starLevelSlider.getValue());
 		conditions[7] = String.valueOf(hotelMarkChoiceBox.getValue());
-		System.out.println(hotelRoomTypeChoiceBox.getSelectionModel().getSelectedIndex());
-		System.out.println(isReservedBox.getSelectionModel().getSelectedIndex());
 		conditions[10] = String.valueOf(hotelRoomTypeChoiceBox.getSelectionModel().getSelectedIndex());
 		conditions[9] = String.valueOf(isReservedBox.getSelectionModel().getSelectedIndex());
 		
@@ -78,6 +83,7 @@ public class ScreenPanelController {
 		dialogStage.close();
 	}
 	
+	//根据用户选择把conditions中相应的值重置
 	private void setPriceRange() {
 		int index = hotelPriceChoiceBox.getSelectionModel().getSelectedIndex();
 		if(index == 0) {

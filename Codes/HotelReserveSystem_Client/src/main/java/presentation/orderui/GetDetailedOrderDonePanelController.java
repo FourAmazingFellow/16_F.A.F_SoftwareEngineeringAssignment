@@ -86,7 +86,6 @@ public class GetDetailedOrderDonePanelController {
 	}
 
 	public void showDetailedOrderPanel(String orderID) {
-		System.out.println(orderID);
 		OrderVO vo = null;
 		try {
 			vo = browseHotelOrderHelper.getSingleOrder(HotelMainApp.hotelAddress, orderID);

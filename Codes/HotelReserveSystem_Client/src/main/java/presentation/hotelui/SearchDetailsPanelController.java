@@ -97,6 +97,146 @@ public class SearchDetailsPanelController {
 		this.mainApp = mainApp;
 	}
 
+	@FXML
+	private void handleCheckDetailedHotel() {
+		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
+		//保证客户一定选择了某个酒店，否则弹框提醒
+		if (selectedIndex >= 0) {
+			String hoteledAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
+			mainApp.showDetailedHotelPanel(hoteledAddress, conditions);
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("警告");
+			alert.setHeaderText("您没有在表中选择任何酒店！");
+			alert.setContentText("请在表中选择一个酒店！");
+			alert.showAndWait();
+		}
+	}
+
+
+	@FXML
+	private void handleCreateOrder() {
+		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
+		//保证客户一定选择了某个酒店，否则弹框提醒
+		if (selectedIndex >= 0) {
+			String hotelAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
+			String hotelName = hotelTableView.getItems().get(selectedIndex).getHotelName().getValue();
+			mainApp.showCreateOrderPanel(ClientMainApp.userID, hotelName, hotelAddress);
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("警告");
+			alert.setHeaderText("您没有在表中选择任何酒店！");
+			alert.setContentText("请在表中选择一个酒店！");
+			alert.showAndWait();
+		}
+	}
+
+	@FXML
+	private void initialize() {
+		factory = new HotelUIFactoryServiceImpl();
+		try {
+			searchHotelService = factory.createSearchHotelService(ClientMainApp.userID);
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+
+		cityChoiceBox.setItems(cityList);
+
+		//给城市选择添加监听
+		cityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				//将商区设置为该城市对应的商区列表
+				setDistrictChoiceBox(cityList.get((int) (newValue)));
+				
+				//立即显示出新的搜索条件下的搜索结果
+				conditions[0] = cityChoiceBox.getItems().get((int)newValue);
+				conditions[1] = districtChoiceBox.getItems().get(0);
+				showNewResult();
+			}
+		});
+		
+		//给商区选择添加监听
+		districtChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				//立即显示出新的搜索条件下的搜索结果
+				conditions[1] = cityChoiceBox.getItems().get((int)newValue);
+				showNewResult();
+			}
+		});
+
+		setDatePicker();
+		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("星级从低到高","星级从高到低","按评分从低到高","按评分从高到低","按价格从低到高", "按价格从高到低", "默认排序方式"));
+		rankTypeChoiceBox.setValue("默认排序方式");
+		
+		//设置排序逻辑
+		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				if(newValue.intValue() == 0) {
+					starLevelCol.setSortType(SortType.ASCENDING);
+					hotelTableView.getSortOrder().setAll(starLevelCol);
+				}else if(newValue.intValue() == 1) {
+					starLevelCol.setSortType(SortType.DESCENDING);
+					hotelTableView.getSortOrder().setAll(starLevelCol);
+				}else if(newValue.intValue() == 2) {
+					markCol.setSortType(SortType.ASCENDING);
+					hotelTableView.getSortOrder().setAll(markCol);
+				} else if (newValue.intValue() == 3) {
+					markCol.setSortType(SortType.DESCENDING);
+					hotelTableView.getSortOrder().setAll(markCol);
+				} else if (newValue.intValue() == 4) {
+					minPriceCol.setSortType(SortType.ASCENDING);
+					hotelTableView.getSortOrder().setAll(minPriceCol);
+				} else if (newValue.intValue() == 5) {
+					minPriceCol.setSortType(SortType.DESCENDING);
+					hotelTableView.getSortOrder().setAll(minPriceCol);
+				}
+			}
+		});
+	}
+
+	/**
+	 * 将LocalDate转化为String的方法
+	 * @param date
+	 * @return
+	 * @see
+	 */
+	private String getDate(LocalDate date) {
+		return String.valueOf(date.getYear()) + "-" + String.valueOf(date.getMonthValue()) + "-"
+				+ String.valueOf(date.getDayOfMonth());
+	}
+
+	/**
+	 * 根据城市将商区列表重置的方法
+	 * @param cityName
+	 * @see
+	 */
+	private void setDistrictChoiceBox(String cityName) {
+		ArrayList<BusinessDistrictPO> tradeAreaList;
+		try {
+			tradeAreaList = searchHotelService.getBusinessDistrictList(cityName);
+			districList = FXCollections.observableArrayList();
+			for (BusinessDistrictPO districtPO : tradeAreaList) {
+				districList.add(districtPO.getBusinessDistrictName());
+			}
+			districtChoiceBox.setItems(districList);
+			districtChoiceBox.setValue(districList.get(0));
+		} catch (RemoteException e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("NetWork Warning");
+			alert.setHeaderText("Fail to connect with the server!");
+			alert.setContentText("Please check your network connection!");
+			alert.showAndWait();
+		}
+	}
+	
 	public void setConditions(String[] _conditions) {
 		this.conditions = _conditions;
 	}
@@ -151,118 +291,23 @@ public class SearchDetailsPanelController {
 	}
 
 	@FXML
+	private void showNewResult() {
+		conditions[0] = cityChoiceBox.getValue();
+		conditions[1] = districtChoiceBox.getValue();
+		conditions[12] = getDate(beginDatePicker.getValue());
+		conditions[13] = getDate(finishDatePicker.getValue());
+		showSearchResult();
+	}
+	
+	@FXML
 	private void returnAction() {
 		mainApp.showSearchView();
 	}
 
-	@FXML
-	private void handleCheckDetailedHotel() {
-		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {
-			String hoteledAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
-			mainApp.showDetailedHotelPanel(hoteledAddress, conditions);
-		} else {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("警告");
-			alert.setHeaderText("您没有在表中选择任何酒店！");
-			alert.setContentText("请在表中选择一个酒店！");
-			alert.showAndWait();
-		}
-	}
-
-	@FXML
-	private void handleCreateOrder() {
-		int selectedIndex = hotelTableView.getSelectionModel().getSelectedIndex();
-		if (selectedIndex >= 0) {
-			String hotelAddress = hotelTableView.getItems().get(selectedIndex).getHotelAddress().getValue();
-			String hotelName = hotelTableView.getItems().get(selectedIndex).getHotelName().getValue();
-			mainApp.showCreateOrderPanel(ClientMainApp.userID, hotelName, hotelAddress);
-		} else {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("警告");
-			alert.setHeaderText("您没有在表中选择任何酒店！");
-			alert.setContentText("请在表中选择一个酒店！");
-			alert.showAndWait();
-		}
-	}
-
-	@FXML
-	private void initialize() {
-		factory = new HotelUIFactoryServiceImpl();
-		try {
-			searchHotelService = factory.createSearchHotelService(ClientMainApp.userID);
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-
-		cityChoiceBox.setItems(cityList);
-
-		cityChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				setDistrictChoiceBox(cityList.get((int) (newValue)));
-			}
-		});
-
-		setDatePicker();
-		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("星级从低到高","星级从高到低","按评分从低到高","按评分从高到低","按价格从低到高", "按价格从高到低", "默认排序方式"));
-		rankTypeChoiceBox.setValue("默认排序方式");
-		
-		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			@SuppressWarnings("unchecked")
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				if(newValue.intValue() == 0) {
-					starLevelCol.setSortType(SortType.ASCENDING);
-					hotelTableView.getSortOrder().setAll(starLevelCol);
-				}else if(newValue.intValue() == 1) {
-					starLevelCol.setSortType(SortType.DESCENDING);
-					hotelTableView.getSortOrder().setAll(starLevelCol);
-				}else if(newValue.intValue() == 2) {
-					markCol.setSortType(SortType.ASCENDING);
-					hotelTableView.getSortOrder().setAll(markCol);
-				} else if (newValue.intValue() == 3) {
-					markCol.setSortType(SortType.DESCENDING);
-					hotelTableView.getSortOrder().setAll(markCol);
-				} else if (newValue.intValue() == 4) {
-					minPriceCol.setSortType(SortType.ASCENDING);
-					hotelTableView.getSortOrder().setAll(minPriceCol);
-				} else if (newValue.intValue() == 5) {
-					minPriceCol.setSortType(SortType.DESCENDING);
-					hotelTableView.getSortOrder().setAll(minPriceCol);
-				}
-			}
-		});
-	}
-
-	private String getDate(LocalDate date) {
-		return String.valueOf(date.getYear()) + "-" + String.valueOf(date.getMonthValue()) + "-"
-				+ String.valueOf(date.getDayOfMonth());
-	}
-
-	private void setDistrictChoiceBox(String cityName) {
-		ArrayList<BusinessDistrictPO> tradeAreaList;
-		try {
-			tradeAreaList = searchHotelService.getBusinessDistrictList(cityName);
-			districList = FXCollections.observableArrayList();
-			for (BusinessDistrictPO districtPO : tradeAreaList) {
-				districList.add(districtPO.getBusinessDistrictName());
-			}
-			districtChoiceBox.setItems(districList);
-			districtChoiceBox.setValue(districList.get(0));
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
-	}
-
+	/**
+	 * 限制用户选择今天之后七天之内的日期，限制用户不能把退房日期设为早于入住日期
+	 * @see
+	 */
 	private void setDatePicker() {
 		beginDatePicker.setValue(LocalDate.now());
 		beginDatePicker.setEditable(false);
@@ -325,5 +370,6 @@ public class SearchDetailsPanelController {
 		};
 		finishDatePicker.setDayCellFactory(dayCellFactory);
 		finishDatePicker.setValue(beginDatePicker.getValue().plusDays(1));
+		showNewResult();
 	}
 }

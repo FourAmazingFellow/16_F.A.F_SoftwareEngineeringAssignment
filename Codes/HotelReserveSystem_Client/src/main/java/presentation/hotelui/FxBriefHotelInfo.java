@@ -3,6 +3,12 @@ package presentation.hotelui;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+/**
+ * 自定义HotelModel类，用于界面层展示
+ * @author Accident
+ * @version 
+ * @see
+ */
 public class FxBriefHotelInfo {
 	private StringProperty hotelName;
 	private StringProperty tradeArea;

@@ -78,6 +78,7 @@ public class BrowseUserOrderPanelController {
 		rankTypeChoiceBox.setItems(FXCollections.observableArrayList("订单生成时间","订单开始时间","价格"));
 		rankTypeChoiceBox.setValue("订单生成时间");
 		
+		//设置订单类型的监听
 		orderTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -85,6 +86,7 @@ public class BrowseUserOrderPanelController {
 			}
 		});
 		
+		//设置排序选择的监听
 		rankTypeChoiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -119,10 +121,15 @@ public class BrowseUserOrderPanelController {
 		showBriefOrderList();
 	}
 	
+	/**
+	 * 分别给每一列设置值
+	 * @see
+	 */
 	private void showBriefOrderList() {
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
 		briefFxOrderList = FXCollections.observableArrayList();
 		
+		//对每一个VO，将其转化为自定义的JavaFX的Model类
 		for (BriefOrderInfoVO vo : list) {
 			briefFxOrderList.add(trans.briefOrderVO2Fx(vo));
 		}
@@ -142,12 +149,18 @@ public class BrowseUserOrderPanelController {
 		mainApp.showSearchView();
 	}
 	
+	/**
+	 * 显示详细订单的方法
+	 * @see
+	 */
 	public void showDetailedOrder() {
 		int selectedIndex = userOrders.getSelectionModel().getSelectedIndex();
+		//保证用户一定选择了一个订单，否则给予提示
 		if (selectedIndex >= 0) {
 			String orderID = userOrders.getItems().get(selectedIndex).getOrderID().getValue();
 			mainApp.showDetailedOrderPanel(orderID);
 		} else {
+			//提示用户选择一个订单
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("未选择订单");
 			alert.setHeaderText("您没有选择要查看的订单");

@@ -3,6 +3,12 @@ package presentation.hotelui;
 import po.OrderState;
 import vo.OrderedHotelInfoVO;
 
+/**
+ * 把逻辑层的HotelVO转化为JavaFX自定义Model的工具类
+ * @author Accident
+ * @version 1.0
+ * @see
+ */
 public class BriHotelVO2Fx {
 	public FxBriefHotelInfo trans(OrderedHotelInfoVO vo) {
 		String orderTypes = "";

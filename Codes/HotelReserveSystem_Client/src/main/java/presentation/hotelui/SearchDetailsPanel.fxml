@@ -20,7 +20,7 @@
         </columns>
       </TableView>
       <DatePicker fx:id="beginDatePicker" layoutX="320.0" layoutY="15.0" onAction="#dateFilter" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
-      <DatePicker fx:id="finishDatePicker" layoutX="320.0" layoutY="79.0" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
+      <DatePicker fx:id="finishDatePicker" layoutX="320.0" layoutY="79.0" onAction="#showNewResult" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" />
       <ChoiceBox fx:id="cityChoiceBox" layoutX="58.0" layoutY="17.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.leftAnchor="60.0" />
       <ChoiceBox fx:id="districtChoiceBox" layoutX="58.0" layoutY="75.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.leftAnchor="60.0" />
       <ChoiceBox fx:id="rankTypeChoiceBox" layoutX="717.0" layoutY="22.0" prefHeight="50.0" prefWidth="200.0" styleClass="choice-box-small" AnchorPane.rightAnchor="60.0" />

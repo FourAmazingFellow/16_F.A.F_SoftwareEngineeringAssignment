@@ -66,6 +66,10 @@ public class SearchPanelController {
 		this.mainApp = mainApp;
 	}
 	
+	/**
+	 * 
+	 * @see SerchDetailsPanelController.java
+	 */
 	@FXML
 	private void initialize() {
 		factory = new HotelUIFactoryServiceImpl();

@@ -142,6 +142,7 @@ public class BrowseHotelOrderPanelController {
 		totalPriceColumn.setCellValueFactory(cellData -> cellData.getValue().getTotalPrice());
 	}
 
+	//若酒店工作人员请求查看的订单号不属于该酒店，则应给予提示，拒绝访问
 	public void searchOrderByID() {
 		String orderID = searchTextField.getText();
 		OrderVO vo = null;
@@ -150,6 +151,7 @@ public class BrowseHotelOrderPanelController {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		//若酒店工作人员请求查看的订单号不属于该酒店，则返回值为null, 此时应给予提示，拒绝访问该订单详情
 		if (vo == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("订单号错误");

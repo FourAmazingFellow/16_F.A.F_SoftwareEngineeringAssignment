@@ -78,7 +78,9 @@ public class BrowseAbnormalOrderPanelController {
 	public void initialize() {
 		factory = new OrderUIFactoryServiceImpl();
 		abnormalOrderBrowser = factory.createBrowseAbnormalOrderService();
+		//默认显示当天的异常订单
 		datePicker.setValue(LocalDate.now());
+		//将datePicker中今天之后的日期设置为不可选
 		datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
 			@Override
 			public DateCell call(final DatePicker datePicker) {
@@ -97,10 +99,16 @@ public class BrowseAbnormalOrderPanelController {
 		});
 	}
 
+	/**
+	 * 选择的日期发生变化时的监听器
+	 * @see
+	 */
 	@SuppressWarnings("deprecation")
 	public void pickDateAction() {
+		//得到新选择的日期
 		LocalDate l = datePicker.getValue();
 		Date pickedDate = new Date(l.getYear() - 1900, l.getMonthValue() - 1, l.getDayOfMonth());
+		//显示新日期下的异常订单
 		getBriefAbnormalOrderList(pickedDate);
 	}
 	
@@ -121,6 +129,10 @@ public class BrowseAbnormalOrderPanelController {
 		showBriefOrderList();
 	}
 	
+	/**
+	 * 将数据与界面对应的方法
+	 * @see
+	 */
 	private void showBriefOrderList() {
 
 		BriOrderVO2Fx trans = new BriOrderVO2Fx();
