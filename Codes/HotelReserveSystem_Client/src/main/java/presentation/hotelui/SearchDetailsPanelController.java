@@ -29,7 +29,7 @@ import vo.OrderedHotelInfoVO;
 public class SearchDetailsPanelController {
 	private ClientMainApp mainApp;
 	private ObservableList<String> cityList = FXCollections.observableArrayList("南京市", "上海市");
-	private ObservableList<String> districList;
+	private ObservableList<String> districList = null;
 	private ObservableList<FxBriefHotelInfo> briefFxHotelList;
 
 	private String[] conditions;
@@ -165,7 +165,7 @@ public class SearchDetailsPanelController {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				//立即显示出新的搜索条件下的搜索结果
-				if(districList != null) { 
+				if(districList != null && (int)newValue != -1) { 
 					conditions[1] = districList.get((int)newValue);
 					showNewResult();
 				}
@@ -280,6 +280,10 @@ public class SearchDetailsPanelController {
 
 	}
 
+	/**
+	 * 筛选按钮的监听器
+	 * @see
+	 */
 	@FXML
 	private void handleScreenButton() {
 		boolean confirmClicked = mainApp.showScreenDialog(conditions);

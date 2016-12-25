@@ -13,6 +13,7 @@ import factory.OrderUIFactoryServiceImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -323,11 +324,16 @@ public class CreateOrderPanelController {
 		newOrderVO.orderProducedTime = new Date();
 		newOrderVO.roomType = RoomType.chinToEnum(roomTypeChoicer.getValue());
 		
+		ObservableList<String> stretegyList = FXCollections.observableArrayList("自动择优");
 		try {
-			strategyNameChoicer.setItems(FXCollections.observableArrayList("自动", newOrderCreater.getAvailbleMarketStrategyName(newOrderVO), newOrderCreater.getAvailblePromotionName(newOrderVO)));
+			if(newOrderCreater.getAvailbleMarketStrategyName(newOrderVO) != null)
+				stretegyList.add(newOrderCreater.getAvailbleMarketStrategyName(newOrderVO));
+			if(newOrderCreater.getAvailblePromotionName(newOrderVO) != null)
+				stretegyList.add(newOrderCreater.getAvailblePromotionName(newOrderVO));
+			strategyNameChoicer.setItems(stretegyList);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		strategyNameChoicer.setValue("自动");
+		strategyNameChoicer.setValue("自动择优");
 	}
 }
