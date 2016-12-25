@@ -19,9 +19,9 @@
          </font>
       </Button>
       <DatePicker fx:id="beginDatePicker" layoutX="130.0" layoutY="288.0" onAction="#dateFilter" prefHeight="70.0" prefWidth="250.0" AnchorPane.leftAnchor="130.0" />
-      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="130.0" layoutY="189.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.leftAnchor="130.0" />
+      <ChoiceBox fx:id="roomTypeChoiceBox" layoutX="203.0" layoutY="189.0" prefHeight="70.0" prefWidth="227.0" styleClass="choice-box-big" AnchorPane.leftAnchor="203.0" />
       <DatePicker fx:id="finishDatePicker" layoutX="620.0" layoutY="292.0" prefHeight="70.0" prefWidth="250.0" AnchorPane.rightAnchor="130.0" />
-      <ChoiceBox fx:id="roomNumChoiceBox" layoutX="570.0" layoutY="189.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.rightAnchor="130.0" />
+      <ChoiceBox fx:id="roomNumChoiceBox" layoutX="570.0" layoutY="189.0" prefHeight="70.0" prefWidth="227.0" styleClass="choice-box-big" AnchorPane.rightAnchor="130.0" />
       <TextField fx:id="searchTextArea" layoutX="134.0" layoutY="393.0" prefHeight="60.0" prefWidth="698.0" promptText="请填入要搜索的信息..." AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" />
       <Line endX="100.0" layoutX="499.5" layoutY="343.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" AnchorPane.leftAnchor="397.0" AnchorPane.rightAnchor="398.0" />
       <Text fill="#f2eeee" layoutX="429.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="入住区间" textAlignment="CENTER" AnchorPane.leftAnchor="428.0" AnchorPane.rightAnchor="428.0">
@@ -29,7 +29,11 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="tradeAreaChoiceBox" layoutX="570.0" layoutY="89.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.rightAnchor="130.0" />
-      <ChoiceBox fx:id="cityChoiceBox" layoutX="128.0" layoutY="89.0" prefHeight="70.0" prefWidth="300.0" styleClass="choice-box-big" AnchorPane.leftAnchor="130.0" />
+      <ChoiceBox fx:id="tradeAreaChoiceBox" layoutX="570.0" layoutY="89.0" prefHeight="70.0" prefWidth="227.0" styleClass="choice-box-big" AnchorPane.rightAnchor="130.0" />
+      <ChoiceBox fx:id="cityChoiceBox" layoutX="203.0" layoutY="89.0" prefHeight="70.0" prefWidth="227.0" styleClass="choice-box-big" AnchorPane.leftAnchor="203.0" />
+      <Label layoutX="143.0" layoutY="111.0" text="城市:" AnchorPane.topAnchor="111.0" />
+      <Label layoutX="144.0" layoutY="210.0" text="房型:" AnchorPane.topAnchor="210.0" />
+      <Label layoutX="584.0" layoutY="111.0" text="商圈:" AnchorPane.topAnchor="111.0" />
+      <Label layoutX="585.0" layoutY="210.0" text="数量:" AnchorPane.topAnchor="210.0" />
    </children>
 </AnchorPane>
