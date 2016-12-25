@@ -41,8 +41,8 @@ public interface HotelInfoService {
 	
 	/**
 	 * 获得某个酒店的某个房型的原始价格
-	 * @param hotelAddress
-	 * @param roomType
+	 * @param hotelAddress  同层调用传来的酒店名称
+	 * @param roomType 同层调用传来的房间类型
 	 * @return 若不存在该房型，则返回-1，若存在，则返回对应的价格
 	 * @see
 	 */

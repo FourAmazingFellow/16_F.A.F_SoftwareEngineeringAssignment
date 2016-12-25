@@ -9,7 +9,8 @@ import java.rmi.RemoteException;
 public class LinkToServer {
 
 	private RemoteHelper remoteHelper;
-	
+
+	//RMI连接到远程服务器端
 	public void linkToServer() throws RemoteException {
 		try {
 			remoteHelper = RemoteHelper.getInstance();

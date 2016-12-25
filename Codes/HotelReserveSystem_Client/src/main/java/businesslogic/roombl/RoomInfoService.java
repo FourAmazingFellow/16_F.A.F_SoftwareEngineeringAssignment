@@ -64,7 +64,7 @@ public interface RoomInfoService {
     /**
      * 在更新可用客房后更新空房信息
      * @param address String型， 同层调用传来的酒店地址
-     * @param roomvo RoomVO类型，同层调用传来的可用客房信息
+     * @param roomvo RoomVO类型，同层调用传来的可用客房信息的变化量
      * @return boolean型， 返回是否更新空房信息成功
      * @throws RemoteException 
      * @see

@@ -10,7 +10,8 @@ public class RemoteHelper {
 	public RemoteHelper(){
 		initServer();
 	}
-	
+
+	//初始化RMI配置
 	public void initServer(){
 		DataRemoteObjectMySql dataRemoteObjectMySql;
 		try {

@@ -34,11 +34,19 @@ public class CommentOnHotelServiceImpl implements CommentOnHotelService {
 	public boolean confirmComment(String username, float mark, String comment, String hotelAddress, String orderID)
 			throws RemoteException {
 		HotelPO hotelPO = hotelDAO.getHotelDetails(hotelAddress);
+		
+		//根据原来酒店已有的评分以及评分的人数，结合这一次的评分，计算出酒店现在的评分
 		int numsOfBeforeComments = hotelPO.getComments().size();
 		float nowMark = (numsOfBeforeComments * hotelPO.getMark() + mark) / (numsOfBeforeComments + 1);
 		hotelPO.setMark(nowMark);
+		
+		//将这一次的评论添加进酒店的评论中
 		hotelPO.getComments().put(username, comment);
+		
+		//更新修改过后的酒店信息
 		hotelDAO.updateHotel(hotelPO);
+		
+		//将该订单置为已评价的状态
 		return orderInfo.setOrderCommented(orderID);
 	}
 

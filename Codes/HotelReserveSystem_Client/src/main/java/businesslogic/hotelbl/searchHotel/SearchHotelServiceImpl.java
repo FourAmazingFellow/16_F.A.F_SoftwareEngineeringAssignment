@@ -60,10 +60,13 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 	 * @see
 	 */
 	private ArrayList<BriefOrderInfoPO> getAddress() {
+		//拷贝一份订单列表供方法内部操作，防止操作修改原有的数据
 		ArrayList<BriefOrderInfoPO> hotelList = new ArrayList<>();
 		for(BriefOrderInfoVO order: orderList) {
 			hotelList.add(new BriefOrderInfoPO(order));
 		}
+		
+		//通过酒店地址，检查是否有相同的酒店，若有，则在拷贝的那一份中删除
 		for(int i = 0; i < hotelList.size(); i++) {
 			for(int j = i + 1; j < hotelList.size(); j++) {
 				if(hotelList.get(i).getHotelAddress().equals(hotelList.get(j).getHotelAddress())) {
@@ -104,7 +107,9 @@ public class SearchHotelServiceImpl implements SearchHotelService {
 	public ArrayList<OrderedHotelInfoVO> getHotelBriefInfoListBySearching(String[] condition) throws RemoteException {
 		ArrayList<OrderedHotelInfoVO> result = new ArrayList<>();
 		ArrayList<BriefOrderInfoPO> orderedHotelList = this.getAddress();
+		
 		ArrayList<BriefHotelInfoPO> list = hotelDAO.getHotelBriefInfoListBySearching(condition, orderedHotelList);
+		//日期的格式变量
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date beginDate = null;
 		Date finishDate = null;
