@@ -51,7 +51,7 @@ public class WebsitePromotionRootBoardController {
         //关闭网站营销人员界面
         mainApp.getPrimaryStage().close();
         //打开登录界面
-        
+        mainApp.logOut();
     }
 
     @FXML

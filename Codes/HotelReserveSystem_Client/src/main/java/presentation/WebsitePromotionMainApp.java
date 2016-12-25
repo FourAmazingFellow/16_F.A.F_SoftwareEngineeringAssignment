@@ -30,6 +30,16 @@ public class WebsitePromotionMainApp extends Application {
 	private BorderPane websitePromotionRootLayout;
 	private ClientRunner clientRunner;
 	private static String websiteAddress="Web";
+	private MainApp mainApp;
+	
+	public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+	
+	public void logOut(){
+	    WebsitePromotionMainApp.userID="";
+	    mainApp.showLoginView();
+	}
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -73,7 +83,7 @@ public class WebsitePromotionMainApp extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(HotelMainApp.class.getResource("mainui/websitePromotionRootBoard.fxml"));
+            loader.setLocation(WebsitePromotionMainApp.class.getResource("mainui/websitePromotionRootBoard.fxml"));
             websitePromotionRootLayout = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.

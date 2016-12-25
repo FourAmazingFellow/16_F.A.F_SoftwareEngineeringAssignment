@@ -41,8 +41,8 @@
 				</Button>
 				<MenuButton fx:id="userActionButton" minWidth="250.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" text="UserID" GridPane.columnIndex="3">
 					<items>
-						<MenuItem mnemonicParsing="false" onAction="#handleLogOut" text="LOGOUT" />
-						<MenuItem mnemonicParsing="false" onAction="#handleExit" text="EXIT" />
+						<MenuItem mnemonicParsing="false" onAction="#handleLogOut" text="登出" />
+						<MenuItem mnemonicParsing="false" onAction="#handleExit" text="退出" />
 					</items>
 				</MenuButton>
 			</children>

@@ -127,10 +127,11 @@ public class MainApp extends Application {
 	}
 
 	public void showWebsitePromotionMainApp(String userID) {
-		mainApp = new WebsiteManageMainApp();
+		mainApp = new WebsitePromotionMainApp();
 		try {
-			WebsiteManageMainApp.userID = userID;
+			WebsitePromotionMainApp.userID = userID;
 			mainApp.start(primaryStage);
+			((WebsitePromotionMainApp)mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
