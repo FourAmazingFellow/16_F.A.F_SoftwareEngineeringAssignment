@@ -21,7 +21,7 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 		showLoginView();
-//		showClientMainApp("原");
+		// showClientMainApp("原");
 	}
 
 	// 显示初始界面 --- 登陆界面
@@ -65,7 +65,7 @@ public class MainApp extends Application {
 		}
 	}
 
-	public void showFillInUserInfoPanel(String userID, String password){
+	public void showFillInUserInfoPanel(String userID, String password) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(ClientMainApp.class.getResource("userui/login/FillInUserInfo.fxml"));
@@ -79,13 +79,13 @@ public class MainApp extends Application {
 			FillInUserInfoController controller = loader.getController();
 			controller.setMainApp(this);
 			controller.setUserIDAndPassword(userID, password);
-			
+
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showClientMainApp(String userID) {
 		mainApp = new ClientMainApp();
 		try {
@@ -103,7 +103,7 @@ public class MainApp extends Application {
 			HotelMainApp.hotelAddress = hotelAddress;
 			HotelMainApp.userId = userID;
 			mainApp.start(primaryStage);
-			((HotelMainApp)mainApp).setMainApp(this);
+			((HotelMainApp) mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -114,21 +114,23 @@ public class MainApp extends Application {
 		try {
 			WebsitePromotionMainApp.userID = userID;
 			mainApp.start(primaryStage);
-			((WebsitePromotionMainApp)mainApp).setMainApp(this);
+			((WebsitePromotionMainApp) mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void showWebsiteManageMainApp(String userID){
+
+	public void showWebsiteManageMainApp(String userID) {
 		mainApp = new WebsiteManageMainApp();
 		try {
 			WebsiteManageMainApp.userID = userID;
 			mainApp.start(primaryStage);
+			((WebsiteManageMainApp) mainApp).setMainApp(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

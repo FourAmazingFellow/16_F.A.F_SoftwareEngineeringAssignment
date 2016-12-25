@@ -44,7 +44,8 @@ public class LoginAndSignUpServiceImpl implements LoginAndSignUpService {
     	boolean result = false;
         if (user.userType == UserType.Client){
             ClientInfoVO client = new ClientInfoVO(user.userID, user.password, user.telNum, UserType.Client, 0, null);
-            result = userDAO.insertClient(new ClientInfoPO(client));
+            ClientInfoPO clientInfoPO = new ClientInfoPO(client);
+            result = userDAO.insertClient(clientInfoPO);
         }
         else
         {

@@ -12,7 +12,7 @@
 		<GridPane fx:id="userInfoPane" layoutX="301.0" layoutY="250.0" prefHeight="200.0" prefWidth="400.0">
 			<columnConstraints>
 				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints />
@@ -28,7 +28,7 @@
 				<TextField fx:id="telNumField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="用户名" />
             <Label text="密码" GridPane.rowIndex="2" />
-            <Label fx:id="passwordField" text="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="passwordField" text="********" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="userIDField" text="userID" GridPane.columnIndex="1" />
 			</children>
 		</GridPane>

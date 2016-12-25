@@ -22,7 +22,7 @@
 				<Button fx:id="confirmButton" layoutX="535.0" layoutY="623.0" mnemonicParsing="false" onAction="#confirmButtonAction" prefHeight="50.0" prefWidth="150.0" text="确认" />
 			</children>
 		</HBox>
-		<TabPane fx:id="tabPane" layoutX="195.0" layoutY="157.0" prefHeight="350.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+		<TabPane fx:id="tabPane" layoutX="195.0" layoutY="130.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab fx:id="hotelInfoTab" text="查询已存在酒店信息">
 					<content>
@@ -64,7 +64,7 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<GridPane fx:id="newHotelInfo" layoutX="50.0" layoutY="25.0" prefHeight="300.0" prefWidth="400.0">
+								<GridPane fx:id="newHotelInfo" layoutX="50.0" layoutY="20.0" prefHeight="300.0" prefWidth="400.0">
 									<children>
 										<Label text="酒店名称" />
 										<Label text="工作人员账号" GridPane.rowIndex="4" />

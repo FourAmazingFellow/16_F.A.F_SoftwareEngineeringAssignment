@@ -75,7 +75,7 @@ public class FillInUserInfoController {
 		this.userID = userID;
 		this.password = password;
 		userIDField.setText(userID);
-		passwordField.setText(password);
+//		passwordField.setText(password);
 	}
 
 	public void fillInRegisterInfo() {

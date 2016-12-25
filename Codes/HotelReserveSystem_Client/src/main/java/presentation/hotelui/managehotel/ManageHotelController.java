@@ -143,6 +143,8 @@ public class ManageHotelController {
 		updateStrategyService = strategyFactory.createUpdateStrategyService();
 		// manageHotel = new ManageHotelInfoServiceImpl_Stub();
 
+		searchField.setText("");
+		
 		cityChoiceBox.setItems(cityListData);
 		tradeAreaChoiceBox.setItems(tradeAreaListData);
 		 try {
@@ -184,8 +186,6 @@ public class ManageHotelController {
 		tradeAreaLabel.setText("");
 		serviceLabel.setText("");
 		briefIntroLabel.setText("");
-
-		searchField.setText("");
 
 		hotelNameField.setText("");
 		hotelStaffIDfField.setText("");
@@ -254,8 +254,8 @@ public class ManageHotelController {
 		// tabPane.getSelectionModel().select(hotelInfoTab);
 		this.hotelNameNew = hotelNameField.getText();
 		this.hotelAddress = hotelAddressField.getText();
-		this.city = cityChoiceBox.getTypeSelector();
-		this.tradeArea = tradeAreaChoiceBox.getTypeSelector();
+		this.city = cityChoiceBox.getSelectionModel().getSelectedItem();
+		this.tradeArea = tradeAreaChoiceBox.getSelectionModel().getSelectedItem();
 		this.staffID = hotelStaffIDfField.getText();
 		this.password = passwordField.getText();
 		this.passwordConfirm = passwordConfirmField.getText();
