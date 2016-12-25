@@ -141,8 +141,6 @@ public class CreateOrderPanelController {
 
 		isChildrenChoicer.setItems(FXCollections.observableArrayList("否", "是"));
 		isChildrenChoicer.setValue("否");
-		
-		setStrategy();
 	}
 
 	public void createAction() {
@@ -315,8 +313,7 @@ public class CreateOrderPanelController {
 		return day2 - day1;
 	}
 	
-	@FXML
-	private void setStrategy() {
+	public void setStrategy() {
 		newOrderVO.beginDate = getDate(beginDatePicker.getValue());
 		newOrderVO.finishDate = getDate(finishDatePicker.getValue());
 		newOrderVO.isChildren = getTF(isChildrenChoicer.getValue());
@@ -327,7 +324,7 @@ public class CreateOrderPanelController {
 		newOrderVO.roomType = RoomType.chinToEnum(roomTypeChoicer.getValue());
 		
 		try {
-			strategyNameChoicer.setItems(FXCollections.observableArrayList("自动", newOrderCreater.getAvailbleMarketStrategyName(newOrderVO), newOrderCreater.getAvailbleMarketStrategyName(newOrderVO)));
+			strategyNameChoicer.setItems(FXCollections.observableArrayList("自动", newOrderCreater.getAvailbleMarketStrategyName(newOrderVO), newOrderCreater.getAvailblePromotionName(newOrderVO)));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

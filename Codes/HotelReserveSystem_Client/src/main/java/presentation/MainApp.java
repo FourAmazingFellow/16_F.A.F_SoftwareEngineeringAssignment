@@ -21,7 +21,6 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
 		showLoginView();
-		// showClientMainApp("原");
 	}
 
 	// 显示初始界面 --- 登陆界面

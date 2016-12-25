@@ -103,6 +103,8 @@ public class ClientMainApp extends Application {
 			controller.setMainApp(this);
 			if(controller.initOrder(userID, hotelName, hotelAddress)) {
 				clientRootLayout.setCenter(createOrderPanel);
+				controller.initOrder(userID, hotelName, hotelAddress);
+				controller.setStrategy();
 				primaryStage.show();
 			}				
 			else {

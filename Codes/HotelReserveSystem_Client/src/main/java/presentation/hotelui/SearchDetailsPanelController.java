@@ -154,9 +154,9 @@ public class SearchDetailsPanelController {
 				setDistrictChoiceBox(cityList.get((int) (newValue)));
 				
 				//立即显示出新的搜索条件下的搜索结果
-				conditions[0] = cityChoiceBox.getItems().get((int)newValue);
-				conditions[1] = districtChoiceBox.getItems().get(0);
-				showNewResult();
+//				conditions[0] = cityChoiceBox.getItems().get((int)newValue);
+//				conditions[1] = districtChoiceBox.getItems().get(0);
+//				showNewResult();
 			}
 		});
 		
@@ -165,8 +165,7 @@ public class SearchDetailsPanelController {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				//立即显示出新的搜索条件下的搜索结果
-				conditions[1] = cityChoiceBox.getItems().get((int)newValue);
-				showNewResult();
+//				showNewResult();
 			}
 		});
 
@@ -247,7 +246,6 @@ public class SearchDetailsPanelController {
 		districtChoiceBox.setValue(conditions[1]);
 		beginDatePicker.setValue(LocalDate.parse(conditions[12]));
 		finishDatePicker.setValue(LocalDate.parse(conditions[13]));
-		
 		
 		ArrayList<OrderedHotelInfoVO> list;
 		try {
