@@ -82,7 +82,6 @@ public class SignVipServiceImplTest {
     @Test
     public void testSignEnterpriseVip() {
         signVip = new SignVipServiceImpl();
-        signVip.setVerifyEnterpriseVip();
         enterpriseVip = new EnterpriseVipVO(userIDe, password, telNum, userType, 0, null, enterpriseID,
                 enterprisePassword);
         boolean result;

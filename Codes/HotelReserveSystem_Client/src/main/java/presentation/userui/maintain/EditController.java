@@ -96,12 +96,10 @@ public class EditController {
 
 		if (client instanceof EnterpriseVipVO) {
 			this.enterpriseVip = (EnterpriseVipVO) client;
+			this.enterpriseName = enterpriseVip.enterpriseID;
 		} else if (client instanceof RegularVipVO) {
 			this.regularVip = (RegularVipVO) client;
-		}
-		this.birth = regularVip.birth;
-		if (birth == null) {
-			this.enterpriseName = enterpriseVip.enterpriseID;
+			this.birth = regularVip.birth;
 		}
 		userIDField.setText(userID);
 		telNumField.setText(telNum);
@@ -174,6 +172,7 @@ public class EditController {
 				alert.setTitle("modify info");
 				alert.setHeaderText("修改成功！");
 				alert.showAndWait();
+				mainApp.showModifyClientInfoPanel();
 			} else {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("wrong");

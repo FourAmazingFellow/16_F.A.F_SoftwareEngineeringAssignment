@@ -48,7 +48,7 @@ public class HotelMainApp extends Application {
 	public void logOut(){
 	    HotelMainApp.userId="";
 	    HotelMainApp.hotelAddress="";
-	    mainApp.showLoginView();
+	    mainApp.showLoginView("");
 	}
 	
 	@Override

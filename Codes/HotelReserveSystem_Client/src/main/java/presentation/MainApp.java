@@ -14,17 +14,18 @@ import presentation.userui.login.RegisterController;
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private Application mainApp;
+	public static String userID = "";
 
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
-		showLoginView();
+		showLoginView(userID);
 	}
 
 	// 显示初始界面 --- 登陆界面
-	public void showLoginView() {
+	public void showLoginView(String userID) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 

@@ -107,6 +107,6 @@ public class RegisterController {
 	}
 
 	public void returnButton() {
-		mainApp.showLoginView();
+		mainApp.showLoginView("");
 	}
 }

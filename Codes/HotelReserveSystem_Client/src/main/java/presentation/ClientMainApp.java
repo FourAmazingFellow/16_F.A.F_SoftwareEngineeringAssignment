@@ -66,7 +66,7 @@ public class ClientMainApp extends Application {
 
 	public void logout() {
 		userID = "";
-		mainApp.showLoginView();
+		mainApp.showLoginView("");
 	}
 	
 	// 显示客户导航栏

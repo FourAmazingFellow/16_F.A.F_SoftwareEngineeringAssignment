@@ -125,7 +125,7 @@ public class FillInUserInfoController {
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
 						alert.showAndWait();
-						mainApp.showLoginView();
+						mainApp.showLoginView(userID);
 					}
 				} catch (RemoteException e) {
 					Alert alert = new Alert(AlertType.WARNING);
@@ -152,7 +152,7 @@ public class FillInUserInfoController {
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
 						alert.showAndWait();
-						mainApp.showLoginView();
+						mainApp.showLoginView(userID);
 					}
 				} catch (RemoteException e) {
 					Alert alert = new Alert(AlertType.WARNING);
@@ -178,7 +178,8 @@ public class FillInUserInfoController {
 						alert.setTitle("register info");
 						alert.setHeaderText("注册成功！");
 						alert.showAndWait();
-						mainApp.showLoginView();
+//						MainApp.userID = userID;
+						mainApp.showLoginView(userID);
 					}
 				} catch (RemoteException e) {
 					Alert alert = new Alert(AlertType.WARNING);

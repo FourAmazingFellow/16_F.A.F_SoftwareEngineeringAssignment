@@ -37,7 +37,7 @@ public class WebsitePromotionMainApp extends Application {
 	
 	public void logOut(){
 	    WebsitePromotionMainApp.userID="";
-	    mainApp.showLoginView();
+	    mainApp.showLoginView("");
 	}
 	
 	@Override

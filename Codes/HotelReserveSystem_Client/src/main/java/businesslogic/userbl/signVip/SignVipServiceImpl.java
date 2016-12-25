@@ -22,7 +22,7 @@ import vo.RegularVipVO;
 public class SignVipServiceImpl implements SignVipService {
 
     private UserDAO userDAO;
-    private VerifyEnterpriseVip verifyEnterpriseVip;
+    private VerifyEnterpriseVip verifyEnterpriseVip = new VerifyEnterpriseVipImpl();
 
     private FactoryService factoryService;
     
@@ -30,10 +30,6 @@ public class SignVipServiceImpl implements SignVipService {
     public SignVipServiceImpl() {
     	this.factoryService = new FactoryServiceImpl();
     	this.userDAO = factoryService.getUserDAO();
-    }
-
-    public void setVerifyEnterpriseVip() {
-        this.verifyEnterpriseVip = new VerifyEnterpriseVipImpl();
     }
 
     @Override
@@ -44,9 +40,11 @@ public class SignVipServiceImpl implements SignVipService {
 
     @Override
     public boolean signEnterpriseVip(EnterpriseVipVO enterpriseVip) throws RemoteException {
-        if (verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword) == true) {
-        	userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
-        	return true;
+    	boolean check = false;
+    	check = verifyEnterpriseVip.verifyEnterpriseMember(enterpriseVip.enterpriseID, enterpriseVip.enterprisePassword);
+        if (check == true) {
+        	boolean result = userDAO.signEnterpriseVip(new EnterpriseVipPO(enterpriseVip));
+        	return result;
         } else
             return false;
     }

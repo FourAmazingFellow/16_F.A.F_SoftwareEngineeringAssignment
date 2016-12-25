@@ -262,6 +262,7 @@ public class EditUserInfoController {
 			alert.setTitle("modify info");
 			alert.setHeaderText("修改成功！");
 			alert.showAndWait();
+			mainApp.showManageUserPanel();
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("wrong");

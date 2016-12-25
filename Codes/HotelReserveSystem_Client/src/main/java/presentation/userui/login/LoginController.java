@@ -46,12 +46,13 @@ public class LoginController {
 
 	@FXML
 	public void initialize() {
-		userIDTextArea.setText("");
+//		userIDTextArea.setText("");
 		passwordTextArea.setText("");
 	}
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
+		userIDTextArea.setText(MainApp.userID);
 	}
 
 	public void verifyLogin() {

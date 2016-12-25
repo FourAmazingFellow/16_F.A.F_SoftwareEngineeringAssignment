@@ -50,7 +50,7 @@ public class WebsiteManageMainApp extends Application {
 
 	public void logout() {
 		userID = "";
-		mainApp.showLoginView();
+		mainApp.showLoginView("");
 	}
 	public static void main(String[] args) {
 		launch(args);
