@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.Date;
 
 import javafx.application.Application;
@@ -21,16 +20,16 @@ import presentation.strategyui.manageMarketStrategy.MarketStrategyPanelControlle
 import presentation.strategyui.manageMarketStrategy.WebsiteMarketMainUIController;
 import presentation.strategyui.model.Strategy;
 import presentation.userui.addcredit.AddCreditValueController;
-import runner.ClientRunner;
 
 public class WebsitePromotionMainApp extends Application {
 	public static String userID = "wmstaff2";
 	
 	private Stage primaryStage;
 	private BorderPane websitePromotionRootLayout;
-	private ClientRunner clientRunner;
 	private static String websiteAddress="Web";
 	private MainApp mainApp;
+	
+//	private ClientRunner clientRunner;
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -43,16 +42,16 @@ public class WebsitePromotionMainApp extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		clientRunner = new ClientRunner();
-		try {
-			clientRunner.start();
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
+//		clientRunner = new ClientRunner();
+//		try {
+//			clientRunner.start();
+//		} catch (RemoteException e) {
+//			Alert alert = new Alert(AlertType.WARNING);
+//			alert.setTitle("NetWork Warning");
+//			alert.setHeaderText("Fail to connect with the server!");
+//			alert.setContentText("Please check your network connection!");
+//			alert.showAndWait();
+//		}
 		
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");

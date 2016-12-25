@@ -1,13 +1,10 @@
 package presentation;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -31,13 +28,11 @@ import presentation.roomui.spareRoom.SpareRoomTablePanelController;
 import presentation.strategyui.manageHotelPromotion.PromotionEditPanelController;
 import presentation.strategyui.manageHotelPromotion.PromotionPanelController;
 import presentation.strategyui.model.Strategy;
-import runner.ClientRunner;
 import vo.HotelVO;
 import vo.RoomVO;
 
 public class HotelMainApp extends Application {
 
-	private ClientRunner clientRunner;
 
 	public static String hotelAddress = "江苏省南京市栖霞区仙林大道166号";
 	public static String userId;
@@ -58,16 +53,16 @@ public class HotelMainApp extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		clientRunner = new ClientRunner();
-		try {
-			clientRunner.start();
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
+//		clientRunner = new ClientRunner();
+//		try {
+//			clientRunner.start();
+//		} catch (RemoteException e) {
+//			Alert alert = new Alert(AlertType.WARNING);
+//			alert.setTitle("NetWork Warning");
+//			alert.setHeaderText("Fail to connect with the server!");
+//			alert.setContentText("Please check your network connection!");
+//			alert.showAndWait();
+//		}
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);

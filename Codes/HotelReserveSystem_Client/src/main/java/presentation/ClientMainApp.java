@@ -1,7 +1,6 @@
 package presentation;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.HashMap;
 
 import javafx.application.Application;
@@ -33,7 +32,6 @@ import presentation.userui.maintain.ModifyPasswordController;
 import presentation.userui.querycredit.QueryCreditRecordController;
 import presentation.userui.signvip.SignEnterpriseVipController;
 import presentation.userui.signvip.SignRegularVipController;
-import runner.ClientRunner;
 
 public class ClientMainApp extends Application {
 	public static String userID = "原";
@@ -44,16 +42,16 @@ public class ClientMainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		ClientRunner clientRunner = new ClientRunner();
-		try {
-			clientRunner.start();
-		} catch (RemoteException e) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("NetWork Warning");
-			alert.setHeaderText("Fail to connect with the server!");
-			alert.setContentText("Please check your network connection!");
-			alert.showAndWait();
-		}
+//		ClientRunner clientRunner = new ClientRunner();
+//		try {
+//			clientRunner.start();
+//		} catch (RemoteException e) {
+//			Alert alert = new Alert(AlertType.WARNING);
+//			alert.setTitle("NetWork Warning");
+//			alert.setHeaderText("Fail to connect with the server!");
+//			alert.setContentText("Please check your network connection!");
+//			alert.showAndWait();
+//		}
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("F.A.F 酒店预定系统");
 		this.primaryStage.setResizable(false);
