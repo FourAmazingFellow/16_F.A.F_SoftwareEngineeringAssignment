@@ -5,6 +5,12 @@ import java.sql.Date;
 import po.ActionType;
 import po.CreditRecordPO;
 
+/**
+ * 信用记录的值对象
+ * @author sparkler
+ * @version 
+ * @see
+ */
 public class CreditRecordVO {
     public String userID;
     public Date changeTime;

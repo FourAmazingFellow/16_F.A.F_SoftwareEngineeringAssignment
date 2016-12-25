@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import po.CreditRecordPO;
 import po.RegularVipPO;
 import po.UserType;
-
+/**
+ * 普通会员信息的值对象
+ * @author sparkler
+ * @version 
+ * @see
+ */
 public class RegularVipVO extends ClientInfoVO{
 
     public Date birth;

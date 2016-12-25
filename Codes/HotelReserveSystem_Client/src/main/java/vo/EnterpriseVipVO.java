@@ -7,7 +7,7 @@ import po.EnterpriseVipPO;
 import po.UserType;
 
 /**
- * 
+ * 企业会员信息的值对象
  * @author sparkler
  * @version 1.0
  */

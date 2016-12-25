@@ -7,7 +7,7 @@ import po.CreditRecordPO;
 import po.UserType;
 
 /**
- * 
+ * 客户信息的值对象
  * @author sparkler
  * @version 
  * @see

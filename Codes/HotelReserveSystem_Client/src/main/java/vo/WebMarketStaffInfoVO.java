@@ -3,7 +3,7 @@ package vo;
 import po.UserType;
 
 /**
- * 
+ * 网站营销人员的值对象
  * @author sparkler
  * @version 
  * @see

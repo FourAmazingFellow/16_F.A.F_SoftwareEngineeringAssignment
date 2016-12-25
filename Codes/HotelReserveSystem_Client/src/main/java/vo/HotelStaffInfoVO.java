@@ -4,7 +4,7 @@ import po.HotelStaffInfoPO;
 import po.UserType;
 
 /**
- * 
+ * 酒店国内工作人员信息的值对象
  * @author sparkler
  * @version
  * @see

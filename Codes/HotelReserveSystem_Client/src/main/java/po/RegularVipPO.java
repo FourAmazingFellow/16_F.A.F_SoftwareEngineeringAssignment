@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 import vo.RegularVipVO;
 
+/**
+ * 普通会员信息PO（继承于客户信息PO），负责持久化数据传输
+ * @author sparkler
+ * @version 1.0
+ */
 public class RegularVipPO extends ClientInfoPO{
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -8928180744998954863L;
 
     private Date birth;

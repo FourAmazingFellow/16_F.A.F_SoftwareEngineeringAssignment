@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.EnterpriseVipVO;
 
 /**
- * 会员信息PO（继承于客户信息PO），负责持久化数据传输
+ * 企业会员信息PO（继承于客户信息PO），负责持久化数据传输
  * @author sparkler
  * @version 1.0
  */

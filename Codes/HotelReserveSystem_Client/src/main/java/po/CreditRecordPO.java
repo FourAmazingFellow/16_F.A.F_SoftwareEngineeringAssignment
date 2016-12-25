@@ -3,10 +3,13 @@ package po;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * 客户信用记录的PO，负责持久化数据传输
+ * @author sparkler
+ * @version 
+ * @see
+ */
 public class CreditRecordPO implements Serializable {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -1560844507837087960L;	
     private Date changeTime;
     private String orderID;

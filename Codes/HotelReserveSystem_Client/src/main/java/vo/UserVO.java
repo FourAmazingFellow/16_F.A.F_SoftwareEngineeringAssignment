@@ -3,7 +3,7 @@ package vo;
 import po.UserPO;
 import po.UserType;
 /**
- * 
+ * 用户信息的值对象
  * @author sparkler
  * @version 1.0
  */
