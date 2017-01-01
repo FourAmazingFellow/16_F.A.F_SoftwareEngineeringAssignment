@@ -104,14 +104,7 @@ public interface RoomDAO extends Remote{
      * @see
      */
     public void updateRoom(RoomPO po, Date day) throws RemoteException;
-    
-//    /**
-//     * 更新某个入住或退房信息
-//     * @param po CheckInOutPO型，业务逻辑层传递来的入住或退房信息
-//     * @throws RemoteException
-//     * @see
-//     */
-//    public void updateCheckInOut(CheckInOutPO po) throws RemoteException;
+
     
     /**
      * 插入一个新的房间类型的空房信息
