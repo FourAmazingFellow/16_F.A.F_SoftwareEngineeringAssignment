@@ -13,8 +13,15 @@ import vo.HotelVO;
  */
 public interface ManageHotelInfoService {
 
-	
+	/**
+	 * 获得酒店详细信息
+	 * @param hotelAddress String型，界面传递来的酒店地址
+	 * @return 酒店的详细信息
+	 * @throws RemoteException
+	 * @see
+	 */
 	public HotelVO getHotelInfo(String hotelAddress) throws RemoteException;
+	
 	/**
 	 * 添加酒店
 	 * @param hotel HotelVO型，界面传递来的酒店信息

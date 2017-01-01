@@ -34,7 +34,9 @@ public interface HotelInfoService {
 	
 	/**
 	 * 获得商圈列表
-	 * @return 返回商圈列表
+	 * @param city String型，同层调用传来的城市名
+	 * @return 返回该城市的所有商圈列表
+	 * @throws RemoteException
 	 * @see
 	 */
 	public ArrayList<BusinessDistrictPO> getBusinessDistrictList(String city) throws RemoteException;
