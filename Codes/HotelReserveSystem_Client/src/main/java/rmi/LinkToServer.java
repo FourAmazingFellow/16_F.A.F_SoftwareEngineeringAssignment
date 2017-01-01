@@ -14,7 +14,7 @@ public class LinkToServer {
 	public void linkToServer() throws RemoteException {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
-			remoteHelper.setRemote(Naming.lookup("rmi://local:1099/DataRemoteObjectMySql"));
+			remoteHelper.setRemote(Naming.lookup("rmi://127.0.0.1:1099/DataRemoteObjectMySql"));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {
