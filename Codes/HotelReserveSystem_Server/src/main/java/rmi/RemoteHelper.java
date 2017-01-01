@@ -15,10 +15,10 @@ public class RemoteHelper {
 	public void initServer(){
 		DataRemoteObjectMySql dataRemoteObjectMySql;
 		try {
-			System.setProperty("java.rmi.server.hostname","172.25.183.128");
+			System.setProperty("java.rmi.server.hostname","local");
 			dataRemoteObjectMySql = new DataRemoteObjectMySql();
 			LocateRegistry.createRegistry(1099);
-			Naming.bind("rmi://172.25.183.128:1099/DataRemoteObjectMySql", dataRemoteObjectMySql);
+			Naming.bind("rmi://local:1099/DataRemoteObjectMySql", dataRemoteObjectMySql);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (MalformedURLException e) {
